@@ -1,0 +1,135 @@
+name: hiddify
+description: A Proxy Frontend.
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.0.1 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.5
+
+  # internationalization
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.18.0
+  slang: ^3.19.0
+  slang_flutter: ^3.19.0
+  recase: ^4.1.0
+  timeago: ^3.5.0
+  duration: ^3.0.12
+
+  # data & serialization
+  fpdart: ^0.6.0
+  freezed_annotation: ^2.2.0
+  json_annotation: ^4.8.1
+
+  # state management
+  hooks_riverpod: ^2.3.6
+  flutter_hooks: ^0.18.6
+  riverpod_annotation: ^2.1.1
+  rxdart: ^0.27.7
+
+  # persistence
+  drift: ^2.9.0
+  sqlite3_flutter_libs: ^0.5.15
+  shared_preferences: ^2.2.0
+
+  # networking
+  dio: ^5.2.1+1
+  web_socket_channel: ^2.4.0
+
+  # native
+  ffi: ^2.0.2
+  proxy_manager: ^0.0.3
+  path_provider: ^2.0.15
+  flutter_local_notifications: ^15.0.1
+  mobile_scanner: ^3.3.0
+  protocol_handler: ^0.1.5
+  flutter_native_splash: ^2.3.1
+  icons_launcher: ^2.1.2
+  file_picker: ^5.3.2
+  share_plus: ^7.0.2
+  window_manager: ^0.3.5
+  tray_manager: ^0.2.0
+
+  # utils
+  combine: ^0.5.3
+  path: ^1.8.3
+  loggy: ^2.0.3
+  flutter_loggy: ^2.0.2
+  meta: ^1.9.1
+  stack_trace: ^1.11.0
+  dartx: ^1.1.0
+  uuid: ^3.0.7
+
+  # widgets
+  go_router: ^9.0.0
+  flex_color_scheme: ^7.1.2
+  flutter_animate: ^4.2.0
+  flutter_svg: ^2.0.7
+  gap: ^2.0.2
+  percent_indicator: ^4.2.3
+  fluttertoast: ^8.2.2
+  sliver_tools: ^0.2.10
+  flutter_adaptive_scaffold: ^0.1.5
+  fl_chart: ^0.63.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  lint: ^2.1.2
+  build_runner: ^2.4.6
+  json_serializable: ^6.7.1
+  freezed: ^2.3.5
+  riverpod_generator: ^2.2.3
+  drift_dev: ^2.9.0
+  ffigen: ^8.0.2
+  slang_build_runner: ^3.19.0
+  flutter_gen_runner: ^5.3.1
+  go_router_builder: ^2.2.0
+  custom_lint: ^0.4.0
+  riverpod_lint: ^1.3.2
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/core/clash/
+    - assets/images/
+
+flutter_gen:
+  output: lib/gen/
+  integrations:
+    flutter_svg: true
+    
+icons_launcher:
+  image_path: "assets/images/ic_launcher.png"
+  platforms:
+    android:
+      enable: true
+      adaptive_background_image: "assets/images/ic_launcher_background.png"
+      adaptive_foreground_image: "assets/images/ic_launcher_foreground.png"
+      adaptive_round_image: "assets/images/ic_launcher_round.png"
+      adaptive_monochrome_image: "assets/images/ic_launcher_monochrome.png"
+    windows:
+      enable: true
+      image_path: "assets/images/ic_launcher_round.png"
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/images/ic_launcher.png
+  android_12:
+    image: assets/images/ic_launcher_foreground.png
+    color: "#ffffff"
+
+ffigen:
+  name: 'ClashNativeLibrary'
+  description: 'Bindings to Clash'
+  output: 'lib/gen/clash_generated_bindings.dart'
+  headers:
+    entry-points:
+      - 'core/dist/libclash.h'
+
+scripts: scripts/derry.yaml

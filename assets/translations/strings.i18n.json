@@ -1,0 +1,125 @@
+{
+    "general": {
+        "appTitle": "hiddify",
+        "reset": "reset",
+        "toggle": {
+            "enabled": "enabled",
+            "disabled": "disabled"
+        }
+    },
+    "home": {
+        "pageTitle": "home",
+        "emptyProfilesMsg": "start by adding subscription profile",
+        "noActiveProfileMsg": "select a profile",
+        "connection": {
+            "tapToConnect": "tap to connect",
+            "connecting": "connecting",
+            "disconnecting": "disconnecting",
+            "connected": "connected"
+        }
+    },
+    "profile": {
+        "overviewPageTitle": "profiles",
+        "detailsPageTitle": "profile",
+        "subscription": {
+            "traffic": "traffic",
+            "updatedTimeAgo": "updated ${timeago}",
+            "remaining": "remaining",
+            "expired": "expired",
+            "noTraffic": "no traffic"
+        },
+        "add": {
+            "buttonText": "add new profile",
+            "fromClipboard": "add from clipboard",
+            "scanQr": "Scan QR code",
+            "manually": "add manually",
+            "invalidUrlMsg": "unexpected url"
+        },
+        "update": {
+            "failureMsg": "failed to update profile: ${reason}",
+            "successMsg": "successfully updated profile"
+        },
+        "delete": {
+            "buttonText": "delete",
+            "confirmationMsg": "delete profile for ever? this can not be undone",
+            "successMsg": "successfully deleted profile"
+        },
+        "save": {
+            "buttonText": "save",
+            "successMsg": "successfully saved profile"
+        },
+        "detailsForm": {
+            "nameHint": "name",
+            "urlHint": "url",
+            "emptyNameMsg": "name can't be empty",
+            "invalidUrlMsg": "invalid URL"
+        }
+    },
+    "proxies": {
+        "pageTitle": "proxies",
+        "emptyProxiesMsg": "no proxies",
+        "delayTestTooltip": "delay test",
+        "cancelTestButtonText": "cancel test"
+    },
+    "logs": {
+        "pageTitle": "logs",
+        "clearLogsButtonText": "clear",
+        "filterHint": "filter",
+        "allLevelsFilter": "all"
+    },
+    "settings": {
+        "pageTitle": "settings",
+        "appearance": {
+            "sectionTitle": "appearance",
+            "themeMode": "theme mode",
+            "themeModes": {
+                "system": "follow system theme",
+                "dark": "dark mode",
+                "light": "light mode"
+            },
+            "trueBlack": "true black"
+        },
+        "network": {
+            "sectionTitle": "network",
+            "systemProxy": "system proxy",
+            "systemProxyMsg": "Attach http proxy to VpnService",
+            "bypassPrivateNetworks": "bypass private networks",
+            "bypassPrivateNetworksMsg": "Bypass private network addresses"
+        },
+        "clash": {
+            "sectionTitle": "clash proxy overrides",
+            "doNotModify": "do not modify",
+            "overrides": {
+                "httpPort": "HTTP Port",
+                "socksPort": "Socks Port",
+                "redirPort": "Redirect Port",
+                "tproxyPort": "TProxy Port",
+                "mixedPort": "Mixed Port",
+                "allowLan": "Allow LAN",
+                "ipv6": "IPv6",
+                "mode": "Mode",
+                "logLevel": "Log Level"
+            }
+        }
+    },
+    "tray": {
+        "dashboard": "dashboard",
+        "quit": "quit",
+        "systemProxy": "system proxy"
+    },
+    "failure": {
+        "unexpected": "unexpected failure",
+        "clash": {
+            "unexpected": "unexpected failure",
+            "core": "clash failure ${reason}"
+        },
+        "connectivity": {
+            "unexpected": "unexpected failure"
+        },
+        "profiles": {
+            "unexpected": "unexpected failure",
+            "notFound": "profile not found",
+            "invalidConfig": "invalid config"
+        }
+    }
+}

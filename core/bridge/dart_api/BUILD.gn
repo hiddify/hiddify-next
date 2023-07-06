@@ -1,0 +1,23 @@
+# Copyright (c) 2021, the Dart project authors.  Please see the AUTHORS file
+# for details. All rights reserved. Use of this source code is governed by a
+# BSD-style license that can be found in the LICENSE file.
+
+import("../../sdk_args.gni")
+
+# This rule copies header files to include/
+copy("copy_headers") {
+  visibility = [ "../../sdk:copy_headers" ]
+
+  sources = [
+    "dart_api.h",
+    "dart_api_dl.c",
+    "dart_api_dl.h",
+    "dart_native_api.h",
+    "dart_tools_api.h",
+    "dart_version.h",
+    "internal/dart_api_dl_impl.h",
+  ]
+
+  outputs =
+      [ "$root_out_dir/$dart_sdk_output/include/{{source_target_relative}}" ]
+}
