@@ -25,7 +25,7 @@ class SettingsPage extends HookConsumerWidget {
         child: ListView(
           children: [
             _SettingsSectionHeader(
-              t.settings.appearance.sectionTitle.titleCase,
+              t.settings.general.sectionTitle.titleCase,
             ),
             const AppearanceSettingTiles(),
             divider,

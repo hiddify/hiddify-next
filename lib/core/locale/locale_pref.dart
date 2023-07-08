@@ -5,7 +5,8 @@ import 'package:hiddify/gen/translations.g.dart';
 export 'package:hiddify/gen/translations.g.dart';
 
 enum LocalePref {
-  en;
+  en,
+  fa;
 
   Locale get locale {
     return Locale(name);

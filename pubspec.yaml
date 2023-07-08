@@ -76,6 +76,7 @@ dependencies:
   sliver_tools: ^0.2.10
   flutter_adaptive_scaffold: ^0.1.5
   fl_chart: ^0.63.0
+  flutter_localized_locales: ^2.0.4
 
 dev_dependencies:
   flutter_test:

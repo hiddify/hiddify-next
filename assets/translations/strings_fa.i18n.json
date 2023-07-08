@@ -1,0 +1,126 @@
+{
+    "general": {
+        "appTitle": "هیدیفای",
+        "reset": "ریست",
+        "toggle": {
+            "enabled": "فعال",
+            "disabled": "غیر فعال"
+        }
+    },
+    "home": {
+        "pageTitle": "خانه",
+        "emptyProfilesMsg": "با افزودن پروفایل شروع کنید",
+        "noActiveProfileMsg": "انتخاب پروفایل",
+        "connection": {
+            "tapToConnect": "برای اتصال ضربه بزنید",
+            "connecting": "در حال اتصال",
+            "disconnecting": "در حال قطع اتصال",
+            "connected": "متصل"
+        }
+    },
+    "profile": {
+        "overviewPageTitle": "پروفایل‌ها",
+        "detailsPageTitle": "پروفایل",
+        "subscription": {
+            "traffic": "ترافیک",
+            "updatedTimeAgo": "بروزرسانی شده در ${timeago}",
+            "remaining": "باقی مانده",
+            "expired": "منقضی شده",
+            "noTraffic": "پایان ترافیک"
+        },
+        "add": {
+            "buttonText": "افزودن پروفایل جدید",
+            "fromClipboard": "افزودن از کلیپ‌بورد",
+            "scanQr": "اسکن QR کد",
+            "manually": "افزودن دستی",
+            "invalidUrlMsg": "لینک نامعتبر"
+        },
+        "update": {
+            "failureMsg": "در بروزرسانی پروفایل خطایی رخ داد: ${reason}",
+            "successMsg": "پروفایل با موفقیت بروزرسانی شد"
+        },
+        "delete": {
+            "buttonText": "حذف",
+            "confirmationMsg": "حذف پروفایل برای همیشه؟ این عمل قابل لغو نیست.",
+            "successMsg": "پروفایل با موفقیت حذف شد"
+        },
+        "save": {
+            "buttonText": "ذخیره",
+            "successMsg": "پروفایل با موفقیت ذخیره شد"
+        },
+        "detailsForm": {
+            "nameHint": "نام",
+            "urlHint": "لینک",
+            "emptyNameMsg": "نام نمیتواند خالی باشد",
+            "invalidUrlMsg": "لینک غیر معتبر"
+        }
+    },
+    "proxies": {
+        "pageTitle": "پراکسی‌ها",
+        "emptyProxiesMsg": "پراکسی وجود ندارد",
+        "delayTestTooltip": "تست تاخیر",
+        "cancelTestButtonText": "لغو تست"
+    },
+    "logs": {
+        "pageTitle": "لاگ‌ها",
+        "clearLogsButtonText": "پاک‌سازی",
+        "filterHint": "فیلتر",
+        "allLevelsFilter": "همه"
+    },
+    "settings": {
+        "pageTitle": "تنظیمات",
+        "general": {
+            "sectionTitle": "اصلی",
+            "locale": "زبان",
+            "themeMode": "تم مود",
+            "themeModes": {
+                "system": "پیروی از تم دستگاه",
+                "dark": "تم تیره",
+                "light": "تم روشن"
+            },
+            "trueBlack": "کاملا سیاه"
+        },
+        "network": {
+            "sectionTitle": "شبکه",
+            "systemProxy": "سیستم پراکسی",
+            "systemProxyMsg": "افزودن سیستم پراکسی به سرویس VPN",
+            "bypassPrivateNetworks": "عبور دادن شبکه خصوصی",
+            "bypassPrivateNetworksMsg": "عبور دادن آدرس‌های شبکه خصوصی"
+        },
+        "clash": {
+            "sectionTitle": "جاگزین‌های پراکسی کلش",
+            "doNotModify": "تغییر نده",
+            "overrides": {
+                "httpPort": "HTTP Port",
+                "socksPort": "Socks Port",
+                "redirPort": "Redirect Port",
+                "tproxyPort": "TProxy Port",
+                "mixedPort": "Mixed Port",
+                "allowLan": "Allow LAN",
+                "ipv6": "IPv6",
+                "mode": "Mode",
+                "logLevel": "Log Level"
+            }
+        }
+    },
+    "tray": {
+        "dashboard": "داشبورد",
+        "quit": "خروج",
+        "systemProxy": "پراکسی سیستم"
+    },
+    "failure": {
+        "unexpected": "خطایی رخ داده",
+        "clash": {
+            "unexpected": "خطایی رخ داده",
+            "core": "خطای کلش ${reason}"
+        },
+        "connectivity": {
+            "unexpected": "خطایی رخ داده"
+        },
+        "profiles": {
+            "unexpected": "خطایی رخ داده",
+            "notFound": "پروفایل یافت نشد",
+            "invalidConfig": "کانفیگ غیر معتبر"
+        }
+    }
+}

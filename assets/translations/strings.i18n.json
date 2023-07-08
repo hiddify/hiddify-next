@@ -69,8 +69,9 @@
     },
     "settings": {
         "pageTitle": "settings",
-        "appearance": {
-            "sectionTitle": "appearance",
+        "general": {
+            "sectionTitle": "general",
+            "locale": "language",
             "themeMode": "theme mode",
             "themeModes": {
                 "system": "follow system theme",
