@@ -1,0 +1,8 @@
+output: dist/
+releases:
+  - name: prod
+    jobs:
+      - name: release-prod-windows
+        package:
+          platform: windows
+          target: exe
