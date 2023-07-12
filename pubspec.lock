@@ -325,10 +325,10 @@ packages:
     dependency: "direct main"
     description:
       name: duration
-      sha256: d0b29d0a345429e3986ac56d60e4aef65b37d11e653022b2b9a4b361332b777f
+      sha256: "0548a12d235dab185c677ef660995f23fdc06a02a2b984aa23805f6a03d82815"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.12"
+    version: "3.0.13"
   equatable:
     dependency: transitive
     description:
@@ -418,10 +418,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_adaptive_scaffold
-      sha256: "01ee32a8f64b68f15436b5e59124e79df9c46bbffe7bbb6edb8ae93d879511fb"
+      sha256: "4f448902314bc9b6cf820c85d5bad4de6489c0eff75dcedf5098f3a53ec981ee"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.5"
+    version: "0.1.6"
   flutter_animate:
     dependency: "direct main"
     description:
@@ -458,10 +458,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_local_notifications
-      sha256: c4602f3047b383e6b652f3edb23bb35a2d33fec65c7b8cadaedc9e8ff5c48893
+      sha256: "3cc40fe8c50ab8383f3e053a499f00f975636622ecdc8e20a77418ece3b1e975"
       url: "https://pub.dev"
     source: hosted
-    version: "15.0.1"
+    version: "15.1.0+1"
   flutter_local_notifications_linux:
     dependency: transitive
     description:
@@ -561,18 +561,18 @@ packages:
     dependency: "direct dev"
     description:
       name: freezed
-      sha256: a9520490532087cf38bf3f7de478ab6ebeb5f68bb1eb2641546d92719b224445
+      sha256: "2df89855fe181baae3b6d714dc3c4317acf4fccd495a6f36e5e00f24144c6c3b"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.5"
+    version: "2.4.1"
   freezed_annotation:
     dependency: "direct main"
     description:
       name: freezed_annotation
-      sha256: aeac15850ef1b38ee368d4c53ba9a847e900bb2c53a4db3f6881cbb3cb684338
+      sha256: c3fd9336eb55a38cc1bbd79ab17573113a8deccd0ecbbf926cca3c62803b5c2d
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.0"
+    version: "2.4.1"
   frontend_server_client:
     dependency: transitive
     description:
@@ -601,18 +601,18 @@ packages:
     dependency: "direct main"
     description:
       name: go_router
-      sha256: "1531542666c2d052c44bbf6e2b48011bf3771da0404b94c60eabec1228a62906"
+      sha256: b33a88c67816312597e5e0f5906c5139a0b9bd9bb137346e872c788da7af8ea0
       url: "https://pub.dev"
     source: hosted
-    version: "9.0.0"
+    version: "9.0.3"
   go_router_builder:
     dependency: "direct dev"
     description:
       name: go_router_builder
-      sha256: dbd5028908e5e1409ffc3da02257a489f6ac1caa509a0e03f126b1c2e451bb65
+      sha256: a6f66ed4e3aa4b46d623bbcbbf3c0d482538ee6db5180433ca0e5a873d90d6af
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.0"
+    version: "2.2.1"
   graphs:
     dependency: transitive
     description:
@@ -665,10 +665,10 @@ packages:
     dependency: "direct main"
     description:
       name: icons_launcher
-      sha256: "71cf6baae0f0d1752e3c26035f9e6ea07bd297af72d389e907fb0119e9d56ba1"
+      sha256: af05397792f6d82b93375a8a0253b8db0d3f816ef1dd1bf5c35cbab55321d327
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.2"
+    version: "2.1.3"
   image:
     dependency: transitive
     description:
@@ -1142,26 +1142,26 @@ packages:
     dependency: "direct main"
     description:
       name: slang
-      sha256: "187e35d220765ff22be030b30506d1b8e0e94842a2c1801a6a2941c95db5a9eb"
+      sha256: a90af3c2a70ae7d302f47717c0578370e5b2e6040c84280c3e11c9221c2a34ae
       url: "https://pub.dev"
     source: hosted
-    version: "3.19.0"
+    version: "3.20.0"
   slang_build_runner:
     dependency: "direct dev"
     description:
       name: slang_build_runner
-      sha256: "3c48c91736704879b767552bf9e7ba38f1974dd06f44b5e15981cadfde06d760"
+      sha256: ce7f17a32827460cf6f0aab22917c782f133b1811adae0bc7e1449c9a27b6db2
       url: "https://pub.dev"
     source: hosted
-    version: "3.19.0"
+    version: "3.20.0"
   slang_flutter:
     dependency: "direct main"
     description:
       name: slang_flutter
-      sha256: c6c58162ef66fe88be0313d8062a39e98ae9b539dde7b35f59fa206eb4db2030
+      sha256: f3fb0ffabc5119dbe39fb8ef134d0415a27b1da816f32f1f55c8b67d4e2ac1af
       url: "https://pub.dev"
     source: hosted
-    version: "3.19.0"
+    version: "3.20.0"
   sliver_tools:
     dependency: "direct main"
     description:

@@ -15,15 +15,16 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: ^0.18.0
-  slang: ^3.19.0
-  slang_flutter: ^3.19.0
+  slang: ^3.20.0
+  slang_flutter: ^3.20.0
   recase: ^4.1.0
   timeago: ^3.5.0
-  duration: ^3.0.12
+  duration: ^3.0.13
+  flutter_localized_locales: ^2.0.4
 
   # data & serialization
   fpdart: ^0.6.0
-  freezed_annotation: ^2.2.0
+  freezed_annotation: ^2.4.1
   json_annotation: ^4.8.1
 
   # state management
@@ -45,11 +46,11 @@ dependencies:
   ffi: ^2.0.2
   proxy_manager: ^0.0.3
   path_provider: ^2.0.15
-  flutter_local_notifications: ^15.0.1
+  flutter_local_notifications: ^15.1.0+1
   mobile_scanner: ^3.3.0
   protocol_handler: ^0.1.5
   flutter_native_splash: ^2.3.1
-  icons_launcher: ^2.1.2
+  icons_launcher: ^2.1.3
   file_picker: ^5.3.2
   share_plus: ^7.0.2
   window_manager: ^0.3.5
@@ -66,7 +67,7 @@ dependencies:
   uuid: ^3.0.7
 
   # widgets
-  go_router: ^9.0.0
+  go_router: ^9.0.3
   flex_color_scheme: ^7.1.2
   flutter_animate: ^4.2.0
   flutter_svg: ^2.0.7
@@ -74,9 +75,8 @@ dependencies:
   percent_indicator: ^4.2.3
   fluttertoast: ^8.2.2
   sliver_tools: ^0.2.10
-  flutter_adaptive_scaffold: ^0.1.5
+  flutter_adaptive_scaffold: ^0.1.6
   fl_chart: ^0.63.0
-  flutter_localized_locales: ^2.0.4
 
 dev_dependencies:
   flutter_test:
@@ -84,13 +84,13 @@ dev_dependencies:
   lint: ^2.1.2
   build_runner: ^2.4.6
   json_serializable: ^6.7.1
-  freezed: ^2.3.5
+  freezed: ^2.4.1
   riverpod_generator: ^2.2.3
   drift_dev: ^2.9.0
   ffigen: ^8.0.2
-  slang_build_runner: ^3.19.0
+  slang_build_runner: ^3.20.0
   flutter_gen_runner: ^5.3.1
-  go_router_builder: ^2.2.0
+  go_router_builder: ^2.2.1
   custom_lint: ^0.4.0
   riverpod_lint: ^1.3.2
 
@@ -104,7 +104,7 @@ flutter_gen:
   output: lib/gen/
   integrations:
     flutter_svg: true
-    
+
 icons_launcher:
   image_path: "assets/images/ic_launcher.png"
   platforms:
@@ -132,5 +132,3 @@ ffigen:
   headers:
     entry-points:
       - 'core/dist/libclash.h'
-
-scripts: scripts/derry.yaml
