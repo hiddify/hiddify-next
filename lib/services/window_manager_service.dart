@@ -11,7 +11,13 @@ class WindowManagerService with WindowListener {
       center: true,
     );
     await windowManager.waitUntilReadyToShow(windowOptions);
+    await windowManager.setPreventClose(true);
     windowManager.addListener(this);
+  }
+
+  @override
+  Future<void> onWindowClose() async {
+    await windowManager.hide();
   }
 
   void dispose() {

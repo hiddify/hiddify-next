@@ -50,12 +50,10 @@ class SystemTrayController extends _$SystemTrayController
 
   Future<void> _updateTray() async {
     final t = ref.watch(translationsProvider);
-    final isVisible = await windowManager.isVisible();
     final trayMenu = Menu(
       items: [
-        MenuItem.checkbox(
+        MenuItem(
           label: t.tray.dashboard,
-          checked: isVisible,
           onClick: handleClickShowApp,
         ),
         if (mode != null) ...[
@@ -86,17 +84,19 @@ class SystemTrayController extends _$SystemTrayController
   }
 
   @override
+  Future<void> onTrayIconMouseDown() async {
+    await windowManager.show();
+  }
+
+  @override
   Future<void> onTrayIconRightMouseDown() async {
     super.onTrayIconRightMouseDown();
     await trayManager.popUpContextMenu();
   }
 
   Future<void> handleClickShowApp(MenuItem menuItem) async {
-    if (menuItem.checked == true) {
-      await windowManager.close();
-    } else {
-      await windowManager.show();
-    }
+    if (await windowManager.isVisible()) return;
+    await windowManager.show();
   }
 
   Future<void> handleClickModeItem(
