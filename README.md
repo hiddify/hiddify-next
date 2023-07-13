@@ -16,6 +16,8 @@
   - MinGW-w64
   - Android SDK (with CMake and NDK)
 
+  This project uses [flutter_distributor](https://github.com/leanflutter/flutter_distributor) for packaging.
+
   ```shell
   # fetch dependencies and build generated files
   $ make get gen
@@ -25,6 +27,9 @@
 
   # build apk for android
   $ make release-android
+
+  # build windows executable
+  $ flutter_distributor package --platform windows --targets exe
   ```
 
 ## Acknowledgements
