@@ -78,7 +78,8 @@
                 "dark": "dark mode",
                 "light": "light mode"
             },
-            "trueBlack": "true black"
+            "trueBlack": "true black",
+            "silentStart": "silent start"
         },
         "network": {
             "sectionTitle": "network",

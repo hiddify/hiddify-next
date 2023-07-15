@@ -78,7 +78,8 @@
                 "dark": "تم تیره",
                 "light": "تم روشن"
             },
-            "trueBlack": "کاملا سیاه"
+            "trueBlack": "کاملا سیاه",
+            "silentStart": "اجرای ساکت"
         },
         "network": {
             "sectionTitle": "شبکه",

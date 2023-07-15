@@ -3,8 +3,10 @@ import 'package:flutter_localized_locales/flutter_localized_locales.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/core/locale/locale.dart';
+import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:hiddify/core/theme/theme.dart';
 import 'package:hiddify/features/settings/widgets/theme_mode_switch_button.dart';
+import 'package:hiddify/utils/platform_utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:recase/recase.dart';
 
@@ -14,6 +16,9 @@ class AppearanceSettingTiles extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = ref.watch(translationsProvider);
+
+    final general =
+        ref.watch(prefsControllerProvider.select((value) => value.general));
 
     final locale = ref.watch(localeControllerProvider);
 
@@ -89,6 +94,16 @@ class AppearanceSettingTiles extends HookConsumerWidget {
             themeController.change(trueBlack: value);
           },
         ),
+        if (PlatformUtils.isDesktop)
+          SwitchListTile(
+            title: Text(t.settings.general.silentStart.titleCase),
+            value: general.silentStart,
+            onChanged: (value) {
+              ref
+                  .read(prefsControllerProvider.notifier)
+                  .patchGeneralPrefs(silentStart: value);
+            },
+          ),
       ],
     );
   }

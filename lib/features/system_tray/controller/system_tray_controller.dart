@@ -7,48 +7,40 @@ import 'package:hiddify/domain/clash/clash.dart';
 import 'package:hiddify/domain/connectivity/connectivity.dart';
 import 'package:hiddify/features/common/clash/clash_mode.dart';
 import 'package:hiddify/features/common/connectivity/connectivity_controller.dart';
+import 'package:hiddify/features/common/window/window_controller.dart';
 import 'package:hiddify/gen/assets.gen.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:tray_manager/tray_manager.dart';
-import 'package:window_manager/window_manager.dart';
 
 part 'system_tray_controller.g.dart';
 
-// TODO: rewrite
 @Riverpod(keepAlive: true)
 class SystemTrayController extends _$SystemTrayController
     with TrayListener, AppLogger {
   @override
   Future<void> build() async {
-    await trayManager.setIcon(Assets.images.logoRound);
-    trayManager.addListener(this);
-    ref.onDispose(() {
-      loggy.debug('disposing');
-      trayManager.removeListener(this);
-    });
-    ref.listen(
-      connectivityControllerProvider,
-      (_, next) async {
-        connection = next;
-        await _updateTray();
-      },
-      fireImmediately: true,
-    );
-    ref.listen(
-      clashModeProvider.select((value) => value.valueOrNull),
-      (_, next) async {
-        mode = next;
-        await _updateTray();
-      },
-      fireImmediately: true,
-    );
+    if (!_initialized) {
+      loggy.debug('initializing');
+      await trayManager.setIcon(Assets.images.logoRound);
+      trayManager.addListener(this);
+      _initialized = true;
+    }
+
+    final connection = ref.watch(connectivityControllerProvider);
+    final mode =
+        ref.watch(clashModeProvider.select((value) => value.valueOrNull));
+
+    loggy.debug('updating system tray');
+    await _updateTray(connection, mode);
   }
 
-  late ConnectionStatus connection;
-  late TunnelMode? mode;
+  bool _initialized = false;
 
-  Future<void> _updateTray() async {
+  Future<void> _updateTray(
+    ConnectionStatus connection,
+    TunnelMode? mode,
+  ) async {
     final t = ref.watch(translationsProvider);
     final trayMenu = Menu(
       items: [
@@ -85,7 +77,7 @@ class SystemTrayController extends _$SystemTrayController
 
   @override
   Future<void> onTrayIconMouseDown() async {
-    await windowManager.show();
+    await ref.read(windowControllerProvider.notifier).show();
   }
 
   @override
@@ -95,8 +87,8 @@ class SystemTrayController extends _$SystemTrayController
   }
 
   Future<void> handleClickShowApp(MenuItem menuItem) async {
-    if (await windowManager.isVisible()) return;
-    await windowManager.show();
+    if (await ref.read(windowControllerProvider.future)) return;
+    await ref.read(windowControllerProvider.notifier).show();
   }
 
   Future<void> handleClickModeItem(
@@ -112,6 +104,7 @@ class SystemTrayController extends _$SystemTrayController
     return ref.read(connectivityControllerProvider.notifier).toggleConnection();
   }
 
+  // TODO rewrite
   Future<void> handleClickExitApp(MenuItem menuItem) async {
     exit(0);
   }

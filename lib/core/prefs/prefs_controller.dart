@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:hiddify/core/prefs/general_prefs.dart';
 import 'package:hiddify/core/prefs/prefs_state.dart';
 import 'package:hiddify/data/data_providers.dart';
 import 'package:hiddify/domain/clash/clash.dart';
@@ -15,6 +16,7 @@ class PrefsController extends _$PrefsController with AppLogger {
   @override
   PrefsState build() {
     return PrefsState(
+      general: _getGeneralPrefs(),
       clash: _getClashPrefs(),
       network: _getNetworkPrefs(),
     );
@@ -22,8 +24,15 @@ class PrefsController extends _$PrefsController with AppLogger {
 
   SharedPreferences get _prefs => ref.read(sharedPreferencesProvider);
 
+  static const _generalKey = "general_prefs";
   static const _overridesKey = "clash_overrides";
-  static const _networkKey = "clash_overrides";
+  static const _networkKey = "network_prefs";
+
+  GeneralPrefs _getGeneralPrefs() {
+    final persisted = _prefs.getString(_generalKey);
+    if (persisted == null) return const GeneralPrefs();
+    return GeneralPrefs.fromJson(jsonDecode(persisted) as Map<String, dynamic>);
+  }
 
   ClashConfig _getClashPrefs() {
     final persisted = _prefs.getString(_overridesKey);
@@ -35,6 +44,14 @@ class PrefsController extends _$PrefsController with AppLogger {
     final persisted = _prefs.getString(_networkKey);
     if (persisted == null) return const NetworkPrefs();
     return NetworkPrefs.fromJson(jsonDecode(persisted) as Map<String, dynamic>);
+  }
+
+  Future<void> patchGeneralPrefs({bool? silentStart}) async {
+    final newPrefs = state.general.copyWith(
+      silentStart: silentStart ?? state.general.silentStart,
+    );
+    await _prefs.setString(_generalKey, jsonEncode(newPrefs.toJson()));
+    state = state.copyWith(general: newPrefs);
   }
 
   Future<void> patchClashOverrides(ClashConfigPatch overrides) async {
