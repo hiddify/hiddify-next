@@ -1,13 +1,6 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-name: Dart
+name: Build
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
@@ -16,22 +9,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: checkout
+        uses: actions/checkout@v3
 
-      # Note: This workflow uses the latest stable version of the Dart SDK.
-      # You can specify other versions if desired, see documentation here:
-      # https://github.com/dart-lang/setup-dart/blob/main/README.md
-      # - uses: dart-lang/setup-dart@v1
-      - uses: dart-lang/setup-dart@v1
-      - name: Install Flutter SDK
-        uses: mobiledevops/flutter-sdk-action@v1.0.0
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
         with:
-          flutter-sdk-version: 3.7.7
-      - run: flutter --version
-      - run: flutter doctor
-      - run: flutter pub get
-     # - run: flutter test
-     # - run: flutter build ios --release --no-codesign 
+          flutter-version: '3.10.6'
+          channel: 'stable'
 
       - name: Setup Go environment
         uses: actions/setup-go@v4.0.1
@@ -44,41 +29,31 @@ jobs:
           
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
-        
-      - name: Install dependencies
-        run: dart pub get
-      - name: gen
+
+      - name: Get Dependencies
+        run: |
+          make get
+
+      - name: Generate
         run: |
           make gen
-          dart run slang
+          make translate
           
-      - name: make libs
+      - name: Generate Libs
         run: |
           make android-libs windows-libs
+
       - name: Release Android
         run: |
           make release-android
           cp "$(find . -name '*.apk')" .
+
       - name: Release Windows
         run: |
           flutter_distributor package --platform windows --targets exe
           cp "$(find . -name '*.exe')" .
 
-      # Uncomment this step to verify the use of 'dart format' on each commit.
-      # - name: Verify formatting
-      #   run: dart format --output=none --set-exit-if-changed .
-
-#       # Consider passing '--fatal-infos' for slightly stricter analysis.
-#       - name: Analyze project source
-#         run: dart analyze
-
-#       # Your project will need to have tests in test/ and a dependency on
-#       # package:test for this step to succeed. Note that Flutter projects will
-#       # want to change this to 'flutter test'.
-#       - name: Run tests
-#         run: dart test
-
       - uses: actions/upload-artifact@v3
         with:
-         name: apk
-         path: ./*.apk
+          name: apk
+          path: ./*.apk

@@ -3,7 +3,7 @@ NDK_BIN=$(ANDROID_HOME)/ndk/25.2.9519653/toolchains/llvm/prebuilt/linux-x86_64/b
 GOBUILD=CGO_ENABLED=1 go build -trimpath -tags with_gvisor,with_lwip -ldflags="-w -s" -buildmode=c-shared
 
 get:
-	dart pub get
+	flutter pub get
 gen:
 	dart run build_runner build --delete-conflicting-outputs
 translate:
