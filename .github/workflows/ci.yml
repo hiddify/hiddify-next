@@ -22,7 +22,12 @@ jobs:
 
       - name: Setup Go environment
         uses: actions/setup-go@v4.0.1
-        
+
+      - name: Set up MinGW
+        uses: egor-tensin/setup-mingw@v2
+        with:
+          platform: x64
+
       - name: Setup Java
         uses: actions/setup-java@v3
         with:
