@@ -23,7 +23,16 @@ jobs:
       # https://github.com/dart-lang/setup-dart/blob/main/README.md
       # - uses: dart-lang/setup-dart@v1
       - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
-      
+      - name: Install Flutter SDK
+        uses: mobiledevops/flutter-sdk-action@v1.0.0
+        with:
+          flutter-sdk-version: 3.7.7
+      - run: flutter --version
+      - run: flutter doctor
+      - run: flutter pub get
+     # - run: flutter test
+     # - run: flutter build ios --release --no-codesign 
+
       - name: Setup Go environment
         uses: actions/setup-go@v4.0.1
         
