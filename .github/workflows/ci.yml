@@ -17,7 +17,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-
+      - uses: nttld/setup-ndk@v1
+        with:
+          ndk-version: r25b
       # Note: This workflow uses the latest stable version of the Dart SDK.
       # You can specify other versions if desired, see documentation here:
       # https://github.com/dart-lang/setup-dart/blob/main/README.md
@@ -28,7 +30,7 @@ jobs:
       - name: Install Flutter SDK
         uses: mobiledevops/flutter-sdk-action@v1.0.0
         with:
-          flutter-sdk-version: 3.7.7
+          flutter-sdk-version: 3.10.6
       - run: flutter --version
       - run: flutter doctor
       - run: flutter pub get
