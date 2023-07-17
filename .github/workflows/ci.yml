@@ -23,6 +23,8 @@ jobs:
       # https://github.com/dart-lang/setup-dart/blob/main/README.md
       # - uses: dart-lang/setup-dart@v1
       - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: 3.0.1
       - name: Install Flutter SDK
         uses: mobiledevops/flutter-sdk-action@v1.0.0
         with:
