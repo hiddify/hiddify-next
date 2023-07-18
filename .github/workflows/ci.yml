@@ -53,14 +53,19 @@ jobs:
       - name: Release Android
         run: |
           make release-android
-          cp "$(find . -name '*.apk')" .
+          find ./ -type f -name "*.apk" -exec cp {} . \; 
 
       - name: Release Windows
         run: |
           flutter_distributor package --platform windows --targets exe
-          cp "$(find . -name '*.exe')" .
+          find ./ -type f -name "*.exe" -exec cp {} . \; 
 
       - uses: actions/upload-artifact@v3
         with:
           name: apk
           path: ./*.apk
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: exe
+          path: ./*.exe
