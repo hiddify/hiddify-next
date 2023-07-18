@@ -31,7 +31,7 @@ Future<void> lazyBootstrap(WidgetsBinding widgetsBinding) async {
   };
 
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  await windowManager.ensureInitialized();
+  if (PlatformUtils.isDesktop) await windowManager.ensureInitialized();
 
   final sharedPreferences = await SharedPreferences.getInstance();
   final container = ProviderContainer(

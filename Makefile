@@ -23,5 +23,5 @@ android-arm64:
 windows-libs:
 	cd core && env GOOS=windows GOARCH=amd64 CC=x86_64-w64-mingw32-gcc $(GOBUILD) -o dist/libclash.dll # building windows clash libs
 
-release-android: get gen
+release-android:
 	flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi
