@@ -55,15 +55,16 @@ jobs:
           make release-android
           find ./ -type f -name "*.apk" -exec cp {} . \; 
 
-      - name: Release Windows
-        run: |
-          flutter_distributor package --platform windows --targets exe
-          find ./ -type f -name "*.exe" -exec cp {} . \; 
-
       - uses: actions/upload-artifact@v3
         with:
           name: apk
           path: ./*.apk
+
+      - name: Release Windows
+        run: |
+          dart pub global activate flutter_distributor
+          flutter_distributor package --platform windows --targets exe
+          find ./ -type f -name "*.exe" -exec cp {} . \; 
 
       - uses: actions/upload-artifact@v3
         with:
