@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    continue-on-error: true
+    # continue-on-error: true
     strategy:
       fail-fast: false
       matrix:
@@ -50,24 +50,24 @@ jobs:
         uses: actions/setup-go@v4.0.1
 
       - name: Install GCC
-        if: ${{ matrix.os }} == "macos-latest" 
+        if: matrix.os == 'macos-latest'
         run: brew install gcc
 
       - name: Set up MinGW
-        if: ${{ matrix.os }} != "macos-latest" 
+        if: matrix.os != 'macos-latest'
         uses: egor-tensin/setup-mingw@v2
         with:
           platform: x64
 
       - name: Setup Java
-        if: ${{ matrix.platform }} == "android"
+        if: matrix.platform == 'android'
         uses: actions/setup-java@v3
         with:
           distribution: "zulu"
           java-version: 11
           
       - name: Setup Android SDK
-        if: ${{ matrix.platform }} == "android"
+        if: matrix.platform == 'android'
         uses: android-actions/setup-android@v2
 
       - name: Get Dependencies
