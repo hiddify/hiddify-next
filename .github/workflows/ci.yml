@@ -17,21 +17,21 @@ jobs:
              os: ubuntu-latest
              targets: aab,apk
 
-           - platform: windows
-             os: windows-latest
-             targets: exe
+          #  - platform: windows
+          #    os: windows-latest
+          #    targets: exe
 
-           - platform: linux
-             os: ubuntu-latest
-             targets: appimage
+          #  - platform: linux
+          #    os: ubuntu-latest
+          #    targets: appimage
 
-           - platform: macos
-             os: macos-latest
-             targets: dmg
+          #  - platform: macos
+          #    os: macos-latest
+          #    targets: dmg
 
-           - platform: ios
-             os: macos-latest
-             targets: ipa
+          #  - platform: ios
+          #    os: macos-latest
+          #    targets: ipa
 
 
              
@@ -49,7 +49,12 @@ jobs:
       - name: Setup Go environment
         uses: actions/setup-go@v4.0.1
 
+      - name: Install GCC
+        if: ${{ matrix.os }} == "macos-latest" 
+        run: brew install gcc
+
       - name: Set up MinGW
+        if: ${{ matrix.os }} != "macos-latest" 
         uses: egor-tensin/setup-mingw@v2
         with:
           platform: x64
@@ -74,19 +79,13 @@ jobs:
           make gen
           make translate
           
-      - name: Generate Android Libs
-        if: ${{ matrix.platform }} == "android"
-        run: |
-          make android-libs
           
-      - name: Generate Windows Libs
-        if: ${{ matrix.platform }} == "windows"
-        run: |
-          make windows-libs
-
-      - name: Release ${{ matrix.platform }}
+      - name: Generate Libs ${{ matrix.platform }}
         run: |
           make ${{ matrix.platform }}-libs
+
+      - name: Release ${{ matrix.platform }}
+        run: |          
           make ${{ matrix.platform }}-release
           mkdir out
           find ./ -type f -name "$(echo '*.${{ matrix.targets }}'| tr ',' ' ')" -exec cp {} out \; 
