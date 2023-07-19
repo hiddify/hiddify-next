@@ -1,0 +1,6 @@
+display_name: Hiddify
+publisher_display_name: Hiddify
+identity_name: app.hiddify.com
+msix_version: 1.0.0.0
+logo_path:  ..\..\assets\images\logo_round.ico
+capabilities: internetClient, privateNetworkClientServer

@@ -7,3 +7,4 @@ install_dir_name: "{autopf64}\\hiddify"
 setup_icon_file: ..\..\assets\images\logo_round.ico
 locales:
   - en
+  - fa

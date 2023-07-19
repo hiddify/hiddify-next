@@ -8,8 +8,34 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    continue-on-error: true
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+           - platform: android
+             os: ubuntu-latest
+             targets: aab,apk
 
+           - platform: windows
+             os: windows-latest
+             targets: exe
+
+           - platform: linux
+             os: ubuntu-latest
+             targets: appimage
+
+           - platform: macos
+             os: macos-latest
+             targets: dmg
+
+           - platform: ios
+             os: macos-latest
+             targets: ipa
+
+
+             
+    runs-on: ${{ matrix.os }}
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -29,12 +55,14 @@ jobs:
           platform: x64
 
       - name: Setup Java
+        if: ${{ matrix.platform }} == "android"
         uses: actions/setup-java@v3
         with:
           distribution: "zulu"
           java-version: 11
           
       - name: Setup Android SDK
+        if: ${{ matrix.platform }} == "android"
         uses: android-actions/setup-android@v2
 
       - name: Get Dependencies
@@ -46,27 +74,24 @@ jobs:
           make gen
           make translate
           
-      - name: Generate Libs
+      - name: Generate Android Libs
+        if: ${{ matrix.platform }} == "android"
         run: |
-          make android-libs windows-libs
+          make android-libs
+          
+      - name: Generate Windows Libs
+        if: ${{ matrix.platform }} == "windows"
+        run: |
+          make windows-libs
 
-      - name: Release Android
+      - name: Release ${{ matrix.platform }}
         run: |
-          make release-android
-          find ./ -type f -name "*.apk" -exec cp {} . \; 
+          make ${{ matrix.platform }}-libs
+          make ${{ matrix.platform }}-release
+          mkdir out
+          find ./ -type f -name "$(echo '*.${{ matrix.targets }}'| tr ',' ' ')" -exec cp {} out \; 
 
       - uses: actions/upload-artifact@v3
         with:
-          name: apk
-          path: ./*.apk
-
-      - name: Release Windows
-        run: |
-          dart pub global activate flutter_distributor
-          flutter_distributor package --platform windows --targets exe
-          find ./ -type f -name "*.exe" -exec cp {} . \; 
-
-      - uses: actions/upload-artifact@v3
-        with:
-          name: exe
-          path: ./*.exe
+          name: ${{ matrix.platform }}
+          path: ./out
