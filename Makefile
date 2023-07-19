@@ -45,27 +45,27 @@ android-libs: android-x64 android-arm android-arm64
 
 android-x64:
 	cd core && \
-	env GOOS=android GOARCH=amd64 CC=$(NDK_BIN)/x86_64-linux-android21-clang $(GOBUILD) -o $(ANDROID_OUT)/x86_64/libclash.so
+	GOOS=android GOARCH=amd64 CC=$(NDK_BIN)/x86_64-linux-android21-clang $(GOBUILD) -o $(ANDROID_OUT)/x86_64/libclash.so
 
 android-arm:
 	cd core && \
-	env GOOS=android GOARCH=arm GOARM=7 CC=$(NDK_BIN)/armv7a-linux-androideabi21-clang $(GOBUILD) -o $(ANDROID_OUT)/armeabi-v7a/libclash.so
+	GOOS=android GOARCH=arm GOARM=7 CC=$(NDK_BIN)/armv7a-linux-androideabi21-clang $(GOBUILD) -o $(ANDROID_OUT)/armeabi-v7a/libclash.so
 
 android-arm64:
 	cd core && \
-	env GOOS=android GOARCH=arm64 CC=$(NDK_BIN)/aarch64-linux-android21-clang $(GOBUILD) -o $(ANDROID_OUT)/arm64-v8a/libclash.so
+	GOOS=android GOARCH=arm64 CC=$(NDK_BIN)/aarch64-linux-android21-clang $(GOBUILD) -o $(ANDROID_OUT)/arm64-v8a/libclash.so
 
 windows-libs:
 	cd core && \
-	env GOOS=windows GOARCH=amd64 CC=x86_64-w64-mingw32-gcc $(GOBUILD) -o dist/libclash.dll && \
-	env GOOS=windows GOARCH=386 $(GOBUILD) -o dist/libclash_x86.dll
+	GOOS=windows GOARCH=amd64 CC=x86_64-w64-mingw32-gcc $(GOBUILD) -o dist/libclash.dll && \
+	GOOS=windows GOARCH=386 $(GOBUILD) -o dist/libclash_x86.dll
 
 linux-libs:
 	cd core && \
-	env GOOS=linux GOARCH=amd64 $(GOBUILD) -o ./dist/libclash.so && \
-	env GOOS=linux GOARCH=386 $(GOBUILD) -o ./dist/libclash_x86.so
+	GOOS=linux GOARCH=amd64 $(GOBUILD) -o ./dist/libclash.so && \
+	GOOS=linux GOARCH=386 $(GOBUILD) -o ./dist/libclash_x86.so
 
 macos-libs:
 	cd core && \
-	env GOOS=darwin GOARCH=arm64 $(GOBUILD) -o ./dist/libclash_arm64.dylib && \
-	env GOOS=darwin GOARCH=amd64 $(GOBUILD) -o ./dist/libclash.dylib
+	GOOS=darwin GOARCH=arm64 $(GOBUILD) -o ./dist/libclash_arm64.dylib && \
+	GOOS=darwin GOARCH=amd64 $(GOBUILD) -o ./dist/libclash.dylib
