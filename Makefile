@@ -33,6 +33,7 @@ linux-release:
 	flutter_distributor package --platform linux --targets appimage
 
 macos-release:
+    cp -f ./core/dist/*.dylib ./macos/Frameworks/
 	dart pub global activate flutter_distributor
 	npm install -g appdmg
 	flutter_distributor package --platform macos --targets dmg
@@ -52,16 +53,32 @@ ios-release:
 
 android-libs: android-x64 android-arm android-arm64
 android-x64:
-	cd core && env GOOS=android GOARCH=amd64 CC=$(NDK_BIN)/x86_64-linux-android21-clang $(GOBUILD) -o $(ANDROID_OUT)/x86_64/libclash.so # building android x64 clash libs
+	cd core
+	env GOOS=android GOARCH=amd64 CC=$(NDK_BIN)/x86_64-linux-android21-clang $(GOBUILD) -o $(ANDROID_OUT)/x86_64/libclash.so # building android x64 clash libs
 
 android-arm:
-	cd core && env GOOS=android GOARCH=arm GOARM=7 CC=$(NDK_BIN)/armv7a-linux-androideabi21-clang $(GOBUILD) -o $(ANDROID_OUT)/armeabi-v7a/libclash.so # building android arm clash libs
+	cd core
+	env GOOS=android GOARCH=arm GOARM=7 CC=$(NDK_BIN)/armv7a-linux-androideabi21-clang $(GOBUILD) -o $(ANDROID_OUT)/armeabi-v7a/libclash.so # building android arm clash libs
 
 android-arm64:
-	cd core && env GOOS=android GOARCH=arm64 CC=$(NDK_BIN)/aarch64-linux-android21-clang $(GOBUILD) -o $(ANDROID_OUT)/arm64-v8a/libclash.so # building android arm64 clash libs
+	cd core
+	env GOOS=android GOARCH=arm64 CC=$(NDK_BIN)/aarch64-linux-android21-clang $(GOBUILD) -o $(ANDROID_OUT)/arm64-v8a/libclash.so # building android arm64 clash libs
 
 windows-libs:
-	cd core && env GOOS=windows GOARCH=amd64 CC=x86_64-w64-mingw32-gcc $(GOBUILD) -o dist/libclash.dll # building windows clash libs
+	cd core
+	env GOOS=windows GOARCH=amd64 CC=x86_64-w64-mingw32-gcc $(GOBUILD) -o dist/libclash.dll # building windows clash libs
+	env GOOS=windows GOARCH=386 $(GOBUILD) -o dist/libclash_x86.dll # building windows clash libs
+
+
+linux-libs:
+	cd core
+	env GOOS=linux GOARCH=amd64 $(GOBUILD) build -ldflags="-w -s" -buildmode=c-shared -o ./dist/libclash.so
+	env GOOS=linux GOARCH=386 $(GOBUILD) build -ldflags="-w -s" -buildmode=c-shared -o ./dist/libclash_x86.so
+
+macos-libs:
+	cd core
+	env GOOS=darwin GOARCH=arm64 $(GOBUILD) build -ldflags="-w -s" -buildmode=c-shared -o ./dist/libclash_arm64.dylib
+	env GOOS=darwin GOARCH=amd64 $(GOBUILD) build -ldflags="-w -s" -buildmode=c-shared -o ./dist/libclash.dylib
 
 
 
