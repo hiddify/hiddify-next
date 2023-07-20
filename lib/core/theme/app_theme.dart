@@ -59,6 +59,7 @@ extension AppTheme on ThemePrefs {
       ),
       tones: FlexTones.jolly(Brightness.light),
       visualDensity: FlexColorScheme.comfortablePlatformDensity,
+      fontFamily: "Shabnam",
     );
   }
 
@@ -118,6 +119,7 @@ extension AppTheme on ThemePrefs {
       ),
       // tones: FlexTones.jolly(Brightness.dark),
       visualDensity: FlexColorScheme.comfortablePlatformDensity,
+      fontFamily: "Shabnam",
     );
   }
 }
