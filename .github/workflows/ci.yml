@@ -87,8 +87,17 @@ jobs:
       - name: Release ${{ matrix.platform }}
         run: |          
           make ${{ matrix.platform }}-release
+      
+      - name: Copy to out
+        run: |
           mkdir out
-          find ./ -type f -name "$(echo '*.${{ matrix.targets }}'| tr ',' ' ')" -exec cp {} out \; 
+          IFS=',' read -r -a EXT_ARRAY <<< "${{ matrix.targets }}"
+
+          # Loop over extensions
+          for EXT in "${EXT_ARRAY[@]}"; do
+              # Find all files with this extension in SRC_DIR, and copy them to DST_DIR
+              find "." -type f -name "*.$EXT" -exec cp {} "out" \;
+          done
 
       - uses: actions/upload-artifact@v3
         with:
