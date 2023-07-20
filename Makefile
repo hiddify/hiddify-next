@@ -33,7 +33,6 @@ linux-release:
 	flutter_distributor package --platform linux --targets appimage
 
 macos-release:
-	cp -f ./core/dist/*.dylib ./macos/Frameworks/ && \
 	dart pub global activate flutter_distributor && \
 	npm install -g appdmg && \
 	flutter_distributor package --platform macos --targets dmg
@@ -41,31 +40,19 @@ macos-release:
 ios-release:
 	flutter_distributor package --platform ios --targets ipa --build-export-options-plist ios/exportOptions.plist
 
-android-libs: android-x64 android-arm android-arm64
-
-android-x64:
-	cd core && \
-	GOOS=android GOARCH=amd64 CC=$(NDK_BIN)/x86_64-linux-android21-clang $(GOBUILD) -o $(ANDROID_OUT)/x86_64/libclash.so
-
-android-arm:
-	cd core && \
-	GOOS=android GOARCH=arm GOARM=7 CC=$(NDK_BIN)/armv7a-linux-androideabi21-clang $(GOBUILD) -o $(ANDROID_OUT)/armeabi-v7a/libclash.so
-
-android-arm64:
-	cd core && \
-	GOOS=android GOARCH=arm64 CC=$(NDK_BIN)/aarch64-linux-android21-clang $(GOBUILD) -o $(ANDROID_OUT)/arm64-v8a/libclash.so
+android-libs: 
+	curl -L https://github.com/hiddify/hiddify-libclash/releases/latest/download/hiddify_clashlib-linux-amd64-cgo.so.gz | gunzip >  $(ANDROID_OUT)/x86_64/hiddify_libclash.so &&\
+	curl -L https://github.com/hiddify/hiddify-libclash/releases/latest/download/hiddify_clashlib-android-arm64-cgo.so.gz | gunzip >$(ANDROID_OUT)/arm64-v8a/hiddify_libclash.so &&\
+	curl -L https://github.com/hiddify/hiddify-libclash/releases/latest/download/hiddify_clashlib-linux-armv7-cgo.so.gz | gunzip >$(ANDROID_OUT)/armeabi-v7a/hiddify_libclash.so 
 
 windows-libs:
-	cd core && \
-	GOOS=windows GOARCH=amd64 CC=x86_64-w64-mingw32-gcc $(GOBUILD) -o dist/libclash.dll && \
-	GOOS=windows GOARCH=386 $(GOBUILD) -o dist/libclash_x86.dll
+	curl -L https://github.com/hiddify/hiddify-libclash/releases/latest/download/hiddify_clashlib-windows-amd64-cgo.dll.gz | gunzip >./dist/hiddify_libclash_x64.dll &&\
+	curl -L https://github.com/hiddify/hiddify-libclash/releases/latest/download/hiddify_clashlib-windows-386-cgo.dll.gz | gunzip >./dist/hiddify_libclash_x86.dll 
 
 linux-libs:
-	cd core && \
-	GOOS=linux GOARCH=amd64 $(GOBUILD) -o ./dist/libclash.so && \
-	GOOS=linux GOARCH=386 $(GOBUILD) -o ./dist/libclash_x86.so
+	curl -L https://github.com/hiddify/hiddify-libclash/releases/latest/download/hiddify_clashlib-linux-amd64-cgo.so.gz | gunzip > ./macos/Frameworks/hiddify_libclash_x64.so &&\
+	curl -L https://github.com/hiddify/hiddify-libclash/releases/latest/download/hiddify_clashlib-linux-386-cgo.so.gz | gunzip > ./macos/Frameworks/hiddify_libclash_x86.so
 
 macos-libs:
-	cd core && \
-	GOOS=darwin GOARCH=arm64 $(GOBUILD) -o ./dist/libclash_arm64.dylib && \
-	GOOS=darwin GOARCH=amd64 $(GOBUILD) -o ./dist/libclash.dylib
+	curl -L https://github.com/hiddify/hiddify-libclash/releases/latest/download/hiddify_clashlib-darwin-amd64-cgo.dylib.gz | gunzip > ./macos/Frameworks/hiddify_libclash_x64.dylib &&\
+	curl -L https://github.com/hiddify/hiddify-libclash/releases/latest/download/hiddify_clashlib-darwin-arm64-cgo.dylib.gz | gunzip > ./macos/Frameworks/hiddify_libclash_arm64.dylib
