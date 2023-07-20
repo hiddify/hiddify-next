@@ -15,8 +15,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: ^0.18.0
-  slang: ^3.20.0
-  slang_flutter: ^3.20.0
+  slang: ^3.21.0
+  slang_flutter: ^3.21.0
   recase: ^4.1.0
   timeago: ^3.5.0
   duration: ^3.0.13
@@ -34,13 +34,12 @@ dependencies:
   rxdart: ^0.27.7
 
   # persistence
-  drift: ^2.9.0
+  drift: ^2.10.0
   sqlite3_flutter_libs: ^0.5.15
   shared_preferences: ^2.2.0
 
   # networking
-  dio: ^5.2.1+1
-  web_socket_channel: ^2.4.0
+  dio: ^5.3.0
 
   # native
   ffi: ^2.0.2
@@ -63,18 +62,18 @@ dependencies:
   flutter_loggy: ^2.0.2
   meta: ^1.9.1
   stack_trace: ^1.11.0
-  dartx: ^1.1.0
+  dartx: ^1.2.0
   uuid: ^3.0.7
 
   # widgets
-  go_router: ^9.0.3
+  go_router: ^9.1.0
   flex_color_scheme: ^7.1.2
   flutter_animate: ^4.2.0
   flutter_svg: ^2.0.7
   gap: ^2.0.2
   percent_indicator: ^4.2.3
   fluttertoast: ^8.2.2
-  sliver_tools: ^0.2.10
+  sliver_tools: ^0.2.12
   flutter_adaptive_scaffold: ^0.1.6
   fl_chart: ^0.63.0
 
@@ -86,11 +85,11 @@ dev_dependencies:
   json_serializable: ^6.7.1
   freezed: ^2.4.1
   riverpod_generator: ^2.2.3
-  drift_dev: ^2.9.0
+  drift_dev: ^2.10.0
   ffigen: ^8.0.2
   slang_build_runner: ^3.20.0
   flutter_gen_runner: ^5.3.1
-  go_router_builder: ^2.2.1
+  go_router_builder: ^2.2.2
   custom_lint: ^0.4.0
   riverpod_lint: ^1.3.2
 
