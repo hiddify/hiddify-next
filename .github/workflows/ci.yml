@@ -49,32 +49,32 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pub-cache-
 
-      - name: Cache Go dependencies
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/go/pkg/mod
-          key: ${{ runner.os }}-go-deps-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-go-deps-
+      # - name: Cache Go dependencies
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: |
+      #       ~/go/pkg/mod
+      #     key: ${{ runner.os }}-go-deps-${{ hashFiles('**/go.sum') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-go-deps-
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.10.6'
           channel: 'stable'
 
-      - name: Setup Go environment
-        uses: actions/setup-go@v4.0.1
+      # - name: Setup Go environment
+      #   uses: actions/setup-go@v4.0.1
 
-      - name: Install GCC
-        if: matrix.os == 'macos-latest'
-        run: brew install gcc
+      # - name: Install GCC
+      #   if: matrix.os == 'macos-latest'
+      #   run: brew install gcc
 
-      - name: Set up MinGW
-        if: matrix.os != 'macos-latest'
-        uses: egor-tensin/setup-mingw@v2
-        with:
-          platform: x64
+      # - name: Set up MinGW
+      #   if: matrix.os != 'macos-latest'
+      #   uses: egor-tensin/setup-mingw@v2
+      #   with:
+      #     platform: x64
 
       - name: Setup Java
         if: matrix.platform == 'android'
@@ -83,9 +83,9 @@ jobs:
           distribution: "zulu"
           java-version: 11
           
-      - name: Setup Android SDK
-        if: matrix.platform == 'android'
-        uses: android-actions/setup-android@v2
+      # - name: Setup Android SDK
+      #   if: matrix.platform == 'android'
+      #   uses: android-actions/setup-android@v2
 
       - name: Get Dependencies
         run: |
