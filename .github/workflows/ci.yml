@@ -40,7 +40,23 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
+      - name: Cache Flutter dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.pub-cache
+          key: ${{ runner.os }}-pub-cache-${{ hashFiles('**/pubspec.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pub-cache-
 
+      - name: Cache Go dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-go-deps-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-deps-
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
