@@ -5,7 +5,8 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
+permissions:
+  contents: write
 jobs:
   build:
     # continue-on-error: true
@@ -113,5 +114,5 @@ jobs:
           files: ./out/*
           name: "draft"
           tag_name: "draft"
-          draft: true
+          prerelease: true
           overwrite: true
