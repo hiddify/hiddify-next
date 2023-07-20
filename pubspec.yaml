@@ -98,6 +98,11 @@ flutter:
   assets:
     - assets/core/clash/
     - assets/images/
+  
+  fonts:
+    - family: Shabnam
+      fonts:
+        - asset: assets/fonts/Shabnam.ttf
 
 flutter_gen:
   output: lib/gen/
