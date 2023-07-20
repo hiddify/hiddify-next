@@ -103,3 +103,15 @@ jobs:
         with:
           name: ${{ matrix.platform }}
           path: ./out
+          retention-days: 2
+
+      - name: Create or Update Draft Release
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          files: ./out/*
+          name: "draft"
+          tag_name: "draft"
+          draft: true
+          overwrite: true
