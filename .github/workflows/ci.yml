@@ -19,12 +19,21 @@ jobs:
 
           - platform: windows
             os: windows-latest
+            aarch: amd64
             targets: exe
+#           - platform: windows
+#             os: windows-latest
+#             aarch: 386
+#             targets: exe            
 
-          # - platform: linux
-          #   os: ubuntu-latest
-          #   targets: appimage
-
+#           - platform: linux
+#             os: ubuntu-latest
+#             aarch: 386
+#             targets: appimage
+          - platform: linux
+            os: ubuntu-latest
+            aarch: amd64
+            targets: appimage
     runs-on: ${{ matrix.os }}
     steps:
       - name: checkout
@@ -53,8 +62,8 @@ jobs:
           java-version: 11
 
       - name: Setup Flutter Distributor
-        if: matrix.platform == 'windows'
-        shell: powershell
+        if: matrix.platform == 'windows' || matrix.platform == 'linux'
+#         shell: powershell
         run: |
           dart pub global activate flutter_distributor
           where flutter_distributor
