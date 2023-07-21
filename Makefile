@@ -16,11 +16,9 @@ android-release:
 	flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi
 
 windows-release:
-	dart pub global activate flutter_distributor && \
 	flutter_distributor package --platform windows --targets exe
 
 linux-release:
-	dart pub global activate flutter_distributor && \
 	which locate && \
 	if [ $$? != 0 ]; then \
 		sudo apt install locate; \

@@ -9,37 +9,27 @@ permissions:
   contents: write
 jobs:
   build:
-    # continue-on-error: true
     strategy:
       fail-fast: false
       matrix:
         include:
-           - platform: android
-             os: ubuntu-latest
-             targets: aab,apk
+          - platform: android
+            os: ubuntu-latest
+            targets: aab,apk
 
-           - platform: windows
-             os: windows-latest
-             targets: exe
+          - platform: windows
+            os: windows-latest
+            targets: exe
 
-           - platform: linux
-             os: ubuntu-latest
-             targets: appimage
+          # - platform: linux
+          #   os: ubuntu-latest
+          #   targets: appimage
 
-           - platform: macos
-             os: macos-latest
-             targets: dmg
-
-          #  - platform: ios
-          #    os: macos-latest
-          #    targets: ipa
-
-
-             
     runs-on: ${{ matrix.os }}
     steps:
       - name: checkout
         uses: actions/checkout@v3
+
       - name: Cache Flutter dependencies
         uses: actions/cache@v2
         with:
@@ -49,32 +39,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pub-cache-
 
-      # - name: Cache Go dependencies
-      #   uses: actions/cache@v2
-      #   with:
-      #     path: |
-      #       ~/go/pkg/mod
-      #     key: ${{ runner.os }}-go-deps-${{ hashFiles('**/go.sum') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-go-deps-
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.10.6'
           channel: 'stable'
-
-      # - name: Setup Go environment
-      #   uses: actions/setup-go@v4.0.1
-
-      # - name: Install GCC
-      #   if: matrix.os == 'macos-latest'
-      #   run: brew install gcc
-
-      # - name: Set up MinGW
-      #   if: matrix.os != 'macos-latest'
-      #   uses: egor-tensin/setup-mingw@v2
-      #   with:
-      #     platform: x64
 
       - name: Setup Java
         if: matrix.platform == 'android'
@@ -82,10 +51,11 @@ jobs:
         with:
           distribution: "zulu"
           java-version: 11
-          
-      # - name: Setup Android SDK
-      #   if: matrix.platform == 'android'
-      #   uses: android-actions/setup-android@v2
+
+      - name: Setup Flutter Distributor
+        run: |
+          dart pub global activate flutter_distributor
+          export PATH="$PATH":"$HOME/.pub-cache/bin"
 
       - name: Get Dependencies
         run: |
@@ -95,9 +65,8 @@ jobs:
         run: |
           make gen
           make translate
-          
-          
-      - name: Generate Libs ${{ matrix.platform }}
+
+      - name: Get Libs ${{ matrix.platform }}
         run: |
           make ${{ matrix.platform }}-libs
 
