@@ -53,9 +53,11 @@ jobs:
           java-version: 11
 
       - name: Setup Flutter Distributor
+        if: matrix.platform == 'windows'
+        shell: powershell
         run: |
           dart pub global activate flutter_distributor
-          export PATH="$PATH":"$HOME/.pub-cache/bin"
+          where flutter_distributor
 
       - name: Get Dependencies
         run: |
