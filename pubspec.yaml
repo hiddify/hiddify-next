@@ -135,4 +135,4 @@ ffigen:
   output: 'lib/gen/clash_generated_bindings.dart'
   headers:
     entry-points:
-      - 'core/dist/libclash.h'
+      - 'core/bin/libclash.h'
