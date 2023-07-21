@@ -41,6 +41,17 @@ windows-libs:
 	mkdir -p $(DESKTOP_OUT)/ &&\
 	curl -L https://github.com/hiddify/hiddify-libclash/releases/latest/download/hiddify_clashlib-windows-amd64-cgo.dll.gz | gunzip > $(DESKTOP_OUT)/libclash.dll
 
+build-android-libs:
+	cd core &&\
+	mkdir -p .$(ANDROID_OUT)/x86_64/  .$(ANDROID_OUT)/arm64-v8a/ .$(ANDROID_OUT)/armeabi-v7a/ &&\
+	make android-amd64 && mv bin/hiddify-clashlib-android-amd64.so .$(ANDROID_OUT)/x86_64/libclash.so &&\
+	make android-arm && mv bin/hiddify-clashlib-android-arm.so .$(ANDROID_OUT)/armeabi-v7a/libclash.so &&\
+	make android-arm64 && mv bin/hiddify-clashlib-android-arm64.so .$(ANDROID_OUT)/arm64-v8a/libclash.so
+
+build-windows-libs:
+	cd core &&\
+	make windows-amd64 && mv bin/hiddify-clashlib-windows-amd64.dll bin/libclash.dll
+
 linux-libs:
 	mkdir -p $(DESKTOP_OUT)/ &&\
 	curl -L https://github.com/hiddify/hiddify-libclash/releases/latest/download/hiddify_clashlib-linux-amd64-cgo.so.gz | gunzip > $(DESKTOP_OUT)/libclash.so &&\
