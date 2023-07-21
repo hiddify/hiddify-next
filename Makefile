@@ -39,11 +39,11 @@ android-libs:
 
 windows-libs:
 	mkdir -p $(DESKTOP_OUT)/ &&\
-	curl -L https://github.com/hiddify/hiddify-libclash/releases/latest/download/hiddify_clashlib-windows-amd64-cgo.dll.gz | gunzip > $(DESKTOP_OUT)/libclash.dll
+	curl -L https://github.com/hiddify/hiddify-libclash/releases/latest/download/hiddify-clashlib-windows-amd64.dll.gz | gunzip > $(DESKTOP_OUT)/libclash.dll
 
 linux-libs:
 	mkdir -p $(DESKTOP_OUT)/ &&\
-	curl -L https://github.com/hiddify/hiddify-libclash/releases/latest/download/hiddify_clashlib-windows-amd64-cgo.dll.gz | gunzip > $(DESKTOP_OUT)/libclash.dll
+	curl -L https://github.com/hiddify/hiddify-libclash/releases/latest/download/hiddify-clashlib-linux-amd64.dll.gz | gunzip > $(DESKTOP_OUT)/libclash.so
 
 
 build-android-libs:
@@ -59,9 +59,5 @@ build-windows-libs:
 
 build-linux-libs:
 	cd core &&\
-	make linux-amd64 && mv bin/hiddify-clashlib-linux-amd64.dll bin/libclash.dll
+	make linux-amd64 && mv bin/hiddify-clashlib-linux-amd64.dll bin/libclash.so
 
-linux-libs:
-	mkdir -p $(DESKTOP_OUT)/ &&\
-	curl -L https://github.com/hiddify/hiddify-libclash/releases/latest/download/hiddify-clashlib-linux-amd64.so.gz | gunzip > $(DESKTOP_OUT)/libclash.so
-	#curl -L https://github.com/hiddify/hiddify-libclash/releases/latest/download/hiddify-clashlib-linux-386-so.gz | gunzip > $(DESKTOP_OUT)/libclash.so
