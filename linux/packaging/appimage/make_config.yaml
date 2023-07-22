@@ -25,7 +25,7 @@ actions:
       - --stop
 
 categories:
-  - Internet
+  - Network
 
 startup_notify: true
 
