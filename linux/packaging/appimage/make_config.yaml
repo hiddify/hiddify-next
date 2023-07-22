@@ -1,6 +1,6 @@
 display_name: Hiddify
 
-icon: ./assets/images/hiddify.png
+icon: ./assets/images/ic_launcher_round.png
 
 keywords:
   - Hiddify
@@ -40,9 +40,3 @@ startup_notify: true
 #   - libcurl.so.4
 include: []
 
-files:
-  # include extra files & folders
-  include:
-    -  ./assets/images/hiddify.png
-    -  ./hiddify.png
-  

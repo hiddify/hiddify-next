@@ -40,7 +40,7 @@ jobs:
           - platform: linux
             os: ubuntu-latest
             aarch: amd64
-            targets: appimage
+            targets: AppImage
     runs-on: ${{ matrix.os }}
     steps:
       - name: checkout
@@ -119,6 +119,7 @@ jobs:
       - name: Copy to out unix
         if: matrix.platform != 'windows'
         run: |
+          ls -R
           mkdir out
           IFS=',' read -r -a EXT_ARRAY <<< "${{ matrix.targets }}"
           # Loop over extensions
