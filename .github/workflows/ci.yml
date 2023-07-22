@@ -110,10 +110,11 @@ jobs:
         if: matrix.platform == 'windows'
         run: |
           New-Item -ItemType Directory -Force -Name "out"
+          
           $EXT_ARRAY = "${{ matrix.targets }}" -split ","
           foreach ($EXT in $EXT_ARRAY) {
               # Find all files with this extension in the current directory, and copy them to "out" directory
-              Get-ChildItem -Recurse -File -Filter "*.$EXT" | Copy-Item -Destination "out" -ErrorAction SilentlyContinue
+              Get-ChildItem -Recurse -File -Filter "*setup.$EXT" | Copy-Item -Destination "out" -ErrorAction SilentlyContinue
           }
           
       - name: Copy to out unix
