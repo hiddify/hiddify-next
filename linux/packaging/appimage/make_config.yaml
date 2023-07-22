@@ -1,6 +1,6 @@
 display_name: Hiddify
 
-icon: ../../assets/images/logo_round.ico
+icon: ./assets/images/logo_round.ico
 
 keywords:
   - Hiddify

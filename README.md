@@ -2,9 +2,9 @@
 
 <p align="center"><img src="assets/images/logo.svg" width="168"/></p>
 
-<p align="center" style="font-size: 20px">Multi-platform Proxy Frontend</p>
+<p align="center" style="font-size: 20px">Hiddify Multi-platform Proxy Client</p>
 <p align="center" style="font-size: 20px">⚠️Hiddify Next is still in early development phase⚠️</p>
-<p align="center" style="font-size: 16px">Windows and Android supported (more platforms coming soon)</p>
+<p align="center" style="font-size: 16px">Windows, Android, Linux are supported (macOS and iOS is coming soon)</p>
 
 ## Build from source
 
