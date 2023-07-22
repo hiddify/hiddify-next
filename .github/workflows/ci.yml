@@ -84,11 +84,21 @@ jobs:
         run: |          
           make ${{ matrix.platform }}-release
       
-      - name: Copy to out
+      - name: Copy to out WINDOWS 
+        if: matrix.platform == 'windows'
+        run: |
+          New-Item -ItemType Directory -Force -Name "out"
+          $EXT_ARRAY = "${{ matrix.targets }}" -split ","
+          foreach ($EXT in $EXT_ARRAY) {
+              # Find all files with this extension in the current directory, and copy them to "out" directory
+              Get-ChildItem -Recurse -File -Filter "*.$EXT" | Copy-Item -Destination "out"
+          }
+          
+      - name: Copy to out unix
+        if: matrix.platform != 'windows'
         run: |
           mkdir out
           IFS=',' read -r -a EXT_ARRAY <<< "${{ matrix.targets }}"
-
           # Loop over extensions
           for EXT in "${EXT_ARRAY[@]}"; do
               # Find all files with this extension in SRC_DIR, and copy them to DST_DIR
