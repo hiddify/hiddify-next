@@ -65,7 +65,9 @@ jobs:
       - name: Setup Linux dependencies
         if: matrix.platform == 'linux'
         run: |
-          sudo apt install -y locate ninja-build pkg-config libgtk-3-dev libglib2.0-dev libgio2.0-cil-dev libayatana-appindicator3-dev
+          sudo apt install -y locate ninja-build pkg-config libgtk-3-dev libglib2.0-dev libgio2.0-cil-dev libayatana-appindicator3-dev fuse
+          sudo modprobe fuse
+
 
           wget -O appimagetool "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage"
           chmod +x appimagetool
