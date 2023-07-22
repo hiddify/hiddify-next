@@ -19,8 +19,13 @@ windows-release:
 	flutter_distributor package --platform windows --targets exe
 
 linux-release:
+	mkdir -p /home/runner/work/hiddify-next/hiddify-next/dist/0.1.0/hiddify-0.1.0+0.1.0-linux_appimage/hiddify.AppDir/hiddify.png &&\
+	cp ./assets/images/hiddify.png /home/runner/work/hiddify-next/hiddify-next/dist/0.1.0/hiddify-0.1.0+0.1.0-linux_appimage/hiddify.AppDir/hiddify.png &&\
 	flutter_distributor package --platform linux --targets appimage
-
+macos-realase:
+	flutter build macos --release &&\
+	tree ./build/macos/Build &&\
+    create-dmg  --app-drop-link 600 185 "hiddify-amd64.dmg" ./build/macos/Build/Products/Release/hiddify-clash.app
 android-libs: 
 	mkdir -p $(ANDROID_OUT)/x86_64  $(ANDROID_OUT)/arm64-v8a/ $(ANDROID_OUT)/armeabi-v7a/ &&\
 	curl -L https://github.com/hiddify/hiddify-libclash/releases/latest/download/hiddify-clashlib-android-amd64.so.gz | gunzip > $(ANDROID_OUT)/x86_64/libclash.so &&\
@@ -35,6 +40,9 @@ linux-libs:
 	mkdir -p $(DESKTOP_OUT)/ &&\
 	curl -L https://github.com/hiddify/hiddify-libclash/releases/latest/download/hiddify-clashlib-linux-amd64.so.gz | gunzip > $(DESKTOP_OUT)/libclash.so
 
+macos-libs:
+	mkdir -p $(DESKTOP_OUT)/ &&\
+	curl -L https://github.com/hiddify/hiddify-libclash/releases/latest/download/hiddify-clashlib-macos-amd64.so.gz | gunzip > $(DESKTOP_OUT)/libclash.dylib
 
 build-android-libs:
 	cd core &&\

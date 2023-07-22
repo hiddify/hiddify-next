@@ -32,6 +32,11 @@ jobs:
 #             os: ubuntu-latest
 #             aarch: 386
 #             targets: appimage
+
+#           - platform: macos
+#             os: macos-11
+#             aarch: amd64
+#             targets: dmg
           - platform: linux
             os: ubuntu-latest
             aarch: amd64
@@ -55,7 +60,12 @@ jobs:
         with:
           flutter-version: '3.10.6'
           channel: 'stable'
+          cache: true
 
+      - name: Build macos dmg
+        if: matrix.platform == 'macos'
+        run: |
+          brew install create-dmg tree
       - name: Setup Java
         if: matrix.platform == 'android'
         uses: actions/setup-java@v3
@@ -74,7 +84,7 @@ jobs:
           mv appimagetool /usr/local/bin/
 
       - name: Setup Flutter Distributor
-        if: matrix.platform == 'windows' || matrix.platform == 'linux'
+        if: matrix.platform != 'android' 
 #         shell: powershell
         run: |
           dart pub global activate flutter_distributor
