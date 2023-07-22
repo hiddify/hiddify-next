@@ -25,6 +25,7 @@ class LocalNotificationService with InfraLogger implements NotificationService {
     loggy.debug('initializing');
     const initializationSettings = InitializationSettings(
       android: AndroidInitializationSettings('mipmap/ic_launcher'),
+      linux: LinuxInitializationSettings(defaultActionName: "open"),
     );
 
     await _initDetails();
