@@ -15,23 +15,23 @@ jobs:
       fail-fast: false
       matrix:
         include:
-#           - platform: android
-#             os: ubuntu-latest
-#             targets: aab,apk
+          - platform: android
+            os: ubuntu-latest
+            targets: aab,apk
 
-#           - platform: windows
-#             os: windows-latest
-#             aarch: amd64
-#             targets: exe
+          - platform: windows
+            os: windows-latest
+            aarch: amd64
+            targets: exe
 #           - platform: windows
 #             os: windows-latest
 #             aarch: 386
 #             targets: exe            
 
-#           - platform: linux
-#             os: ubuntu-latest
-#             aarch: 386
-#             targets: appimage
+          # - platform: linux
+          #   os: ubuntu-latest
+          #   aarch: 386
+          #   targets: AppImage
 
 #           - platform: macos
 #             os: macos-11
