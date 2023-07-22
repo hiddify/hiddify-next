@@ -43,7 +43,7 @@ windows-libs:
 
 linux-libs:
 	mkdir -p $(DESKTOP_OUT)/ &&\
-	curl -L https://github.com/hiddify/hiddify-libclash/releases/latest/download/hiddify-clashlib-linux-amd64.dll.gz | gunzip > $(DESKTOP_OUT)/libclash.so
+	curl -L https://github.com/hiddify/hiddify-libclash/releases/latest/download/hiddify-clashlib-linux-amd64.so.gz | gunzip > $(DESKTOP_OUT)/libclash.so
 
 
 build-android-libs:
