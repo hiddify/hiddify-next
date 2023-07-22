@@ -19,16 +19,6 @@ windows-release:
 	flutter_distributor package --platform windows --targets exe
 
 linux-release:
-	which locate && \
-	if [ $$? != 0 ]; then \
-		sudo apt install locate; \
-	fi && \
-	which appimagetool && \
-	if [ $$? != 0 ]; then \
-		wget -O appimagetool "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage" && \
-		chmod +x appimagetool && \
-		mv appimagetool /usr/local/bin/; \
-	fi && \
 	flutter_distributor package --platform linux --targets appimage
 
 android-libs: 
