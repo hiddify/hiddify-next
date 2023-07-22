@@ -60,6 +60,13 @@ jobs:
         with:
           distribution: "zulu"
           java-version: 11
+      - name: Setup Linux dependencies
+        if: matrix.platform == 'linux'
+        run: |
+        	sudo apt install -y locate
+		      wget -O appimagetool "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage"
+		      chmod +x appimagetool
+		      mv appimagetool /usr/local/bin/
 
       - name: Setup Flutter Distributor
         if: matrix.platform == 'windows' || matrix.platform == 'linux'
