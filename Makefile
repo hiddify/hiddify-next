@@ -19,8 +19,6 @@ windows-release:
 	flutter_distributor package --platform windows --targets exe
 
 linux-release:
-	mkdir -p /home/runner/work/hiddify-next/hiddify-next/dist/0.1.0/hiddify-0.1.0+0.1.0-linux_appimage/hiddify.AppDir/hiddify.png &&\
-	cp ./assets/images/hiddify.png /home/runner/work/hiddify-next/hiddify-next/dist/0.1.0/hiddify-0.1.0+0.1.0-linux_appimage/hiddify.AppDir/hiddify.png &&\
 	flutter_distributor package --platform linux --targets appimage
 macos-realase:
 	flutter build macos --release &&\

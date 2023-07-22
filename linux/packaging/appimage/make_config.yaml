@@ -1,6 +1,6 @@
 display_name: Hiddify
 
-icon: ./assets/images/logo_round.ico
+icon: ./assets/images/hiddify.png
 
 keywords:
   - Hiddify
@@ -44,3 +44,5 @@ files:
   # include extra files & folders
   include:
     -  ./assets/images/hiddify.png
+    -  ./hiddify.png
+  
