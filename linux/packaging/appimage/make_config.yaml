@@ -40,3 +40,7 @@ startup_notify: true
 #   - libcurl.so.4
 include: []
 
+files:
+  # include extra files & folders
+  include:
+    -  ./assets/images/hiddify.png
