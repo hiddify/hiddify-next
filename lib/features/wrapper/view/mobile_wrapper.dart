@@ -42,6 +42,12 @@ class MobileWrapper extends HookConsumerWidget {
                 selected: location == LogsRoute.path,
                 onSelect: () => const LogsRoute().push(context),
               ),
+              DrawerTile(
+                label: t.about.pageTitle.titleCase,
+                icon: Icons.info,
+                selected: location == AboutRoute.path,
+                onSelect: () => const AboutRoute().push(context),
+              ),
               const Spacer(),
               Align(
                 child: Column(

@@ -104,6 +104,14 @@
             }
         }
     },
+    "about": {
+        "pageTitle": "about",
+        "version": "version",
+        "whatsNew": "what's new",
+        "sourceCode": "source code",
+        "telegramChannel": "telegram channel",
+        "checkForUpdate": "check for update"
+    },
     "tray": {
         "dashboard": "dashboard",
         "quit": "quit",

@@ -104,6 +104,14 @@
             }
         }
     },
+    "about": {
+        "pageTitle": "درباره",
+        "version": "ورژن",
+        "whatsNew": "تغییرات",
+        "sourceCode": "سورس کد",
+        "telegramChannel": "کانال تلگرام",
+        "checkForUpdate": "بررسی آپدیت جدید"
+    },
     "tray": {
         "dashboard": "داشبورد",
         "quit": "خروج",

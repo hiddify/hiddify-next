@@ -54,6 +54,7 @@ dependencies:
   share_plus: ^7.0.2
   window_manager: ^0.3.5
   tray_manager: ^0.2.0
+  package_info_plus: ^4.0.2
 
   # utils
   combine: ^0.5.3
@@ -76,6 +77,7 @@ dependencies:
   sliver_tools: ^0.2.12
   flutter_adaptive_scaffold: ^0.1.6
   fl_chart: ^0.63.0
+  url_launcher: ^6.1.12
 
 dev_dependencies:
   flutter_test:

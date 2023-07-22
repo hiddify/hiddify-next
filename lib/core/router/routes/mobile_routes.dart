@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/router/routes/shared_routes.dart';
+import 'package:hiddify/features/about/view/view.dart';
 import 'package:hiddify/features/logs/view/view.dart';
 import 'package:hiddify/features/settings/view/view.dart';
 import 'package:hiddify/features/wrapper/wrapper.dart';
@@ -57,6 +58,22 @@ class SettingsRoute extends GoRouteData {
     return const MaterialPage(
       fullscreenDialog: true,
       child: SettingsPage(),
+    );
+  }
+}
+
+@TypedGoRoute<AboutRoute>(path: AboutRoute.path)
+class AboutRoute extends GoRouteData {
+  const AboutRoute();
+  static const path = '/about';
+
+  static final GlobalKey<NavigatorState> $parentNavigatorKey = rootNavigatorKey;
+
+  @override
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    return const MaterialPage(
+      fullscreenDialog: true,
+      child: AboutPage(),
     );
   }
 }

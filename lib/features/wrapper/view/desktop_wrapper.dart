@@ -33,6 +33,10 @@ class DesktopWrapper extends HookConsumerWidget {
         icon: const Icon(Icons.settings),
         label: Text(t.settings.pageTitle.titleCase),
       ),
+      NavigationRailDestination(
+        icon: const Icon(Icons.info),
+        label: Text(t.about.pageTitle.titleCase),
+      ),
     ];
 
     return Scaffold(

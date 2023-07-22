@@ -39,6 +39,7 @@ int getCurrentIndex(BuildContext context) {
   if (location.startsWith(ProxiesRoute.path)) return 1;
   if (location.startsWith(LogsRoute.path)) return 2;
   if (location.startsWith(SettingsRoute.path)) return 3;
+  if (location.startsWith(AboutRoute.path)) return 4;
   return 0;
 }
 
@@ -52,5 +53,7 @@ void switchTab(int index, BuildContext context) {
       const LogsRoute().go(context);
     case 3:
       const SettingsRoute().go(context);
+    case 4:
+      const AboutRoute().go(context);
   }
 }
