@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:hiddify/utils/utils.dart';
 import 'package:protocol_handler/protocol_handler.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -11,8 +13,10 @@ class DeepLinkService extends _$DeepLinkService
     with ProtocolListener, InfraLogger {
   @override
   Future<NewProfileLink?> build() async {
-    for (final protocol in _protocols) {
-      await protocolHandler.register(protocol);
+    if (!Platform.isLinux) {
+      for (final protocol in _protocols) {
+        await protocolHandler.register(protocol);
+      }
     }
     protocolHandler.addListener(this);
     ref.onDispose(() {

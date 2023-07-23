@@ -6,7 +6,10 @@ import 'package:hiddify/services/notification/stub_notification_service.dart';
 
 abstract class NotificationService {
   factory NotificationService() {
-    if (Platform.isWindows) return StubNotificationService();
+    // HACK temporarily return stub for linux as well
+    if (Platform.isWindows || Platform.isLinux) {
+      return StubNotificationService();
+    }
     return LocalNotificationService(FlutterLocalNotificationsPlugin());
   }
 
