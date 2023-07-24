@@ -24,9 +24,10 @@
         "subscription": {
             "traffic": "traffic",
             "updatedTimeAgo": "updated ${timeago}",
-            "remaining": "remaining",
+            "remainingDuration": "${duration} days remaining",
             "expired": "expired",
-            "noTraffic": "no traffic"
+            "noTraffic": "no traffic",
+            "gigaByte": "GB"
         },
         "add": {
             "buttonText": "add new profile",
@@ -36,11 +37,15 @@
             "invalidUrlMsg": "unexpected url"
         },
         "update": {
+            "buttonTxt": "update",
             "failureMsg": "failed to update profile: ${reason}",
             "successMsg": "successfully updated profile"
         },
+        "edit": {
+            "buttonTxt": "edit"
+        },
         "delete": {
-            "buttonText": "delete",
+            "buttonTxt": "delete",
             "confirmationMsg": "delete profile for ever? this can not be undone",
             "successMsg": "successfully deleted profile"
         },

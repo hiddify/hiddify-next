@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:fpdart/fpdart.dart';
 import 'package:hiddify/data/data_providers.dart';
 import 'package:hiddify/domain/profiles/profiles.dart';
 import 'package:hiddify/utils/utils.dart';
@@ -24,6 +25,15 @@ class ProfilesNotifier extends _$ProfilesNotifier with AppLogger {
       loggy.warning('failed to set [$id] as active profile, $f');
       throw f;
     }).run();
+  }
+
+  Future<Unit?> updateProfile(Profile profile) async {
+    loggy.debug("updating profile");
+    return ref
+        .read(profilesRepositoryProvider)
+        .update(profile)
+        .getOrElse((l) => throw l)
+        .run();
   }
 
   Future<void> deleteProfile(Profile profile) async {

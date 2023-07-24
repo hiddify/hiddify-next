@@ -142,7 +142,7 @@ class ProfileDetailPage extends HookConsumerWidget with PresLogger {
                                         await showConfirmationDialog(
                                       context,
                                       title:
-                                          t.profile.delete.buttonText.titleCase,
+                                          t.profile.delete.buttonTxt.titleCase,
                                       message: t.profile.delete.confirmationMsg
                                           .sentenceCase,
                                     );
@@ -156,7 +156,7 @@ class ProfileDetailPage extends HookConsumerWidget with PresLogger {
                                     ),
                                   ),
                                   child: Text(
-                                    t.profile.delete.buttonText.titleCase,
+                                    t.profile.delete.buttonTxt.titleCase,
                                     style: TextStyle(
                                       color: themeData
                                           .colorScheme.onErrorContainer,

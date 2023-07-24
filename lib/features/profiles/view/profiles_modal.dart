@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hiddify/features/common/common.dart';
 import 'package:hiddify/features/profiles/notifier/notifier.dart';
-import 'package:hiddify/features/profiles/widgets/widgets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ProfilesModal extends HookConsumerWidget {
@@ -24,7 +24,7 @@ class ProfilesModal extends HookConsumerWidget {
             AsyncData(value: final profiles) => SliverList.builder(
                 itemBuilder: (context, index) {
                   final profile = profiles[index];
-                  return ProfileTile(profile);
+                  return ProfileTile(profile: profile);
                 },
                 itemCount: profiles.length,
               ),

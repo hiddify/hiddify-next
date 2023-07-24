@@ -9,6 +9,5 @@ export 'mutation_state.dart';
 export 'number_formatters.dart';
 export 'placeholders.dart';
 export 'platform_utils.dart';
-export 'string_formatters.dart';
 export 'text_utils.dart';
 export 'validators.dart';

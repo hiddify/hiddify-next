@@ -51,7 +51,7 @@ class HomePage extends HookConsumerWidget {
               switch (activeProfile) {
                 AsyncData(value: final profile?) => MultiSliver(
                     children: [
-                      ActiveProfileCard(profile),
+                      ProfileTile(profile: profile, isMain: true),
                       const SliverFillRemaining(
                         hasScrollBody: false,
                         child: Padding(

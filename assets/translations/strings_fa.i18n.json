@@ -24,9 +24,10 @@
         "subscription": {
             "traffic": "ترافیک",
             "updatedTimeAgo": "بروزرسانی شده در ${timeago}",
-            "remaining": "باقی مانده",
+            "remainingDuration": "${duration} روز باقی مانده",
             "expired": "منقضی شده",
-            "noTraffic": "پایان ترافیک"
+            "noTraffic": "پایان ترافیک",
+            "gigaByte": "گیگ"
         },
         "add": {
             "buttonText": "افزودن پروفایل جدید",
@@ -36,11 +37,15 @@
             "invalidUrlMsg": "لینک نامعتبر"
         },
         "update": {
+            "buttonTxt": "بروزرسانی",
             "failureMsg": "در بروزرسانی پروفایل خطایی رخ داد: ${reason}",
             "successMsg": "پروفایل با موفقیت بروزرسانی شد"
         },
+        "edit": {
+            "buttonTxt": "ویرایش"
+        },
         "delete": {
-            "buttonText": "حذف",
+            "buttonTxt": "حذف",
             "confirmationMsg": "حذف پروفایل برای همیشه؟ این عمل قابل لغو نیست.",
             "successMsg": "پروفایل با موفقیت حذف شد"
         },
