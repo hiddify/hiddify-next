@@ -13,10 +13,9 @@ class DeepLinkService extends _$DeepLinkService
     with ProtocolListener, InfraLogger {
   @override
   Future<NewProfileLink?> build() async {
-    if (!Platform.isLinux) {
-      for (final protocol in _protocols) {
-        await protocolHandler.register(protocol);
-      }
+    if (Platform.isLinux) return null;
+    for (final protocol in _protocols) {
+      await protocolHandler.register(protocol);
     }
     protocolHandler.addListener(this);
     ref.onDispose(() {
