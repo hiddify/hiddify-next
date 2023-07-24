@@ -19,6 +19,9 @@ class AppView extends HookConsumerWidget with PresLogger {
 
     ref.watch(commonControllersProvider);
 
+    // HACK temporary solution
+    final fontFamily = locale.languageCode == "fa" ? "Shabnam" : "";
+
     return MaterialApp.router(
       routerConfig: router,
       locale: locale,
@@ -26,8 +29,8 @@ class AppView extends HookConsumerWidget with PresLogger {
       localizationsDelegates: GlobalMaterialLocalizations.delegates,
       debugShowCheckedModeBanner: false,
       themeMode: theme.themeMode,
-      theme: theme.light,
-      darkTheme: theme.dark,
+      theme: theme.light(fontFamily: fontFamily),
+      darkTheme: theme.dark(fontFamily: fontFamily),
       title: 'Hiddify',
     ).animate().fadeIn();
   }

@@ -4,7 +4,9 @@ import 'package:hiddify/core/theme/theme_prefs.dart';
 
 // mostly exact copy of flex color scheme 7.1's fabulous 12 theme
 extension AppTheme on ThemePrefs {
-  ThemeData get light {
+  ThemeData light({
+    String fontFamily = "Shabnam",
+  }) {
     return FlexThemeData.light(
       scheme: FlexScheme.indigoM3,
       surfaceMode: FlexSurfaceMode.highScaffoldLowSurface,
@@ -59,11 +61,13 @@ extension AppTheme on ThemePrefs {
       ),
       tones: FlexTones.jolly(Brightness.light),
       visualDensity: FlexColorScheme.comfortablePlatformDensity,
-      fontFamily: "Shabnam",
+      fontFamily: fontFamily,
     );
   }
 
-  ThemeData get dark {
+  ThemeData dark({
+    String fontFamily = "Shabnam",
+  }) {
     return FlexThemeData.dark(
       scheme: FlexScheme.indigoM3,
       useMaterial3: true,
@@ -119,7 +123,7 @@ extension AppTheme on ThemePrefs {
       ),
       // tones: FlexTones.jolly(Brightness.dark),
       visualDensity: FlexColorScheme.comfortablePlatformDensity,
-      fontFamily: "Shabnam",
+      fontFamily: fontFamily,
     );
   }
 }
