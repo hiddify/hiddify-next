@@ -10,28 +10,52 @@ extension ProfileMapper on Profile {
       name: name,
       url: url,
       lastUpdate: lastUpdate,
+      updateInterval: Value(options?.updateInterval),
       upload: Value(subInfo?.upload),
       download: Value(subInfo?.download),
       total: Value(subInfo?.total),
       expire: Value(subInfo?.expire),
-      updateInterval: Value(updateInterval),
+      webPageUrl: Value(extra?.webPageUrl),
+      supportUrl: Value(extra?.supportUrl),
     );
   }
 
-  static Profile fromEntry(ProfileEntry entry) {
+  static Profile fromEntry(ProfileEntry e) {
+    ProfileOptions? options;
+    if (e.updateInterval != null) {
+      options = ProfileOptions(updateInterval: e.updateInterval!);
+    }
+
+    SubscriptionInfo? subInfo;
+    if (e.upload != null &&
+        e.download != null &&
+        e.total != null &&
+        e.expire != null) {
+      subInfo = SubscriptionInfo(
+        upload: e.upload!,
+        download: e.download!,
+        total: e.total!,
+        expire: e.expire!,
+      );
+    }
+
+    ProfileExtra? extra;
+    if (e.webPageUrl != null || e.supportUrl != null) {
+      extra = ProfileExtra(
+        webPageUrl: e.webPageUrl,
+        supportUrl: e.supportUrl,
+      );
+    }
+
     return Profile(
-      id: entry.id,
-      active: entry.active,
-      name: entry.name,
-      url: entry.url,
-      lastUpdate: entry.lastUpdate,
-      updateInterval: entry.updateInterval,
-      subInfo: SubscriptionInfo(
-        upload: entry.upload,
-        download: entry.download,
-        total: entry.total,
-        expire: entry.expire,
-      ),
+      id: e.id,
+      active: e.active,
+      name: e.name,
+      url: e.url,
+      lastUpdate: e.lastUpdate,
+      options: options,
+      subInfo: subInfo,
+      extra: extra,
     );
   }
 }

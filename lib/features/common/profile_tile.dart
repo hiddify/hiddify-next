@@ -115,9 +115,9 @@ class ProfileTile extends HookConsumerWidget {
                           profile.name,
                           style: theme.textTheme.titleMedium,
                         ),
-                      if (subInfo?.isValid ?? false) ...[
+                      if (subInfo != null) ...[
                         const Gap(4),
-                        RemainingTrafficIndicator(subInfo!.ratio),
+                        RemainingTrafficIndicator(subInfo.ratio),
                         const Gap(4),
                         ProfileSubscriptionInfo(subInfo),
                         const Gap(4),
@@ -290,19 +290,18 @@ class ProfileSubscriptionInfo extends HookConsumerWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        if (subInfo.total != null)
-          Text.rich(
-            TextSpan(
-              children: [
-                TextSpan(text: formatByte(subInfo.consumption, unit: 3).size),
-                const TextSpan(text: " / "),
-                TextSpan(text: formatByte(subInfo.total!, unit: 3).size),
-                const TextSpan(text: " "),
-                TextSpan(text: t.profile.subscription.gigaByte),
-              ],
-            ),
-            style: theme.textTheme.bodySmall,
+        Text.rich(
+          TextSpan(
+            children: [
+              TextSpan(text: formatByte(subInfo.consumption, unit: 3).size),
+              const TextSpan(text: " / "),
+              TextSpan(text: formatByte(subInfo.total, unit: 3).size),
+              const TextSpan(text: " "),
+              TextSpan(text: t.profile.subscription.gigaByte),
+            ],
           ),
+          style: theme.textTheme.bodySmall,
+        ),
         Text(
           remaining.$1,
           style: theme.textTheme.bodySmall?.copyWith(color: remaining.$2),
