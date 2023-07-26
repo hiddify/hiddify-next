@@ -32,6 +32,8 @@ class RuntimeDetails with _$RuntimeDetails {
     required String clashVersion,
   }) = _RuntimeDetails;
 
+  String get fullVersion => version + buildNumber;
+
   factory RuntimeDetails.fromJson(Map<String, dynamic> json) =>
       _$RuntimeDetailsFromJson(json);
 }

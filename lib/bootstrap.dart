@@ -6,6 +6,7 @@ import 'package:hiddify/core/app/app.dart';
 import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:hiddify/data/data_providers.dart';
 import 'package:hiddify/features/common/active_profile/active_profile_notifier.dart';
+import 'package:hiddify/features/common/common.dart';
 import 'package:hiddify/features/common/window/window_controller.dart';
 import 'package:hiddify/features/system_tray/system_tray.dart';
 import 'package:hiddify/services/deep_link_service.dart';
@@ -86,6 +87,7 @@ Future<void> initControllers(
     [
       read(activeProfileProvider.future),
       read(deepLinkServiceProvider.future),
+      read(runtimeDetailsNotifierProvider.future),
       if (PlatformUtils.isDesktop) read(systemTrayControllerProvider.future),
     ],
   );

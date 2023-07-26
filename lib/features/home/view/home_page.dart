@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/core/router/router.dart';
 import 'package:hiddify/domain/failures.dart';
@@ -40,7 +41,13 @@ class HomePage extends HookConsumerWidget {
           CustomScrollView(
             slivers: [
               NestedTabAppBar(
-                title: Text(t.general.appTitle.titleCase),
+                title: Row(
+                  children: [
+                    Text(t.general.appTitle.titleCase),
+                    const Gap(4),
+                    const AppVersionLabel(),
+                  ],
+                ),
                 actions: [
                   IconButton(
                     onPressed: () => const AddProfileRoute().push(context),
@@ -78,6 +85,43 @@ class HomePage extends HookConsumerWidget {
             ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+class AppVersionLabel extends HookConsumerWidget {
+  const AppVersionLabel({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = Theme.of(context);
+
+    final version = ref.watch(
+      runtimeDetailsNotifierProvider.select(
+        (value) => switch (value) {
+          AsyncData(:final value) => value.fullVersion,
+          _ => "",
+        },
+      ),
+    );
+
+    if (version.isEmpty) return const SizedBox();
+
+    return Container(
+      decoration: BoxDecoration(
+        color: theme.colorScheme.secondaryContainer,
+        borderRadius: BorderRadius.circular(4),
+      ),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 4,
+        vertical: 1,
+      ),
+      child: Text(
+        version,
+        style: theme.textTheme.bodySmall?.copyWith(
+          color: theme.colorScheme.onSecondaryContainer,
+        ),
       ),
     );
   }
