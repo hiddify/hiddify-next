@@ -44,16 +44,27 @@ class ProfilesDao extends DatabaseAccessor<AppDatabase>
     return (profileEntries.select()
           ..orderBy(
             [
+              (tbl) {
+                final trafficRatio = (tbl.download + tbl.upload) / tbl.total;
+                final isExpired =
+                    tbl.expire.isSmallerOrEqualValue(DateTime.now());
+                return OrderingTerm(
+                  expression: (trafficRatio.isNull() |
+                          trafficRatio.isSmallerThanValue(1)) &
+                      (isExpired.isNull() | isExpired.equals(false)),
+                  mode: OrderingMode.desc,
+                );
+              },
               switch (sort) {
                 ProfilesSort.name => (tbl) => OrderingTerm(
                       expression: tbl.name,
                       mode: orderMap[mode]!,
                     ),
-                _ => (tbl) => OrderingTerm(
+                ProfilesSort.lastUpdate => (tbl) => OrderingTerm(
                       expression: tbl.lastUpdate,
                       mode: orderMap[mode]!,
                     ),
-              }
+              },
             ],
           ))
         .map(ProfileMapper.fromEntry)
