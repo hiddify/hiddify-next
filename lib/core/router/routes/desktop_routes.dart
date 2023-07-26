@@ -20,7 +20,12 @@ part 'desktop_routes.g.dart';
     ),
     TypedGoRoute<ProxiesRoute>(path: ProxiesRoute.path),
     TypedGoRoute<LogsRoute>(path: LogsRoute.path),
-    TypedGoRoute<SettingsRoute>(path: SettingsRoute.path),
+    TypedGoRoute<SettingsRoute>(
+      path: SettingsRoute.path,
+      routes: [
+        TypedGoRoute<ClashOverridesRoute>(path: ClashOverridesRoute.path),
+      ],
+    ),
     TypedGoRoute<AboutRoute>(path: AboutRoute.path),
   ],
 )

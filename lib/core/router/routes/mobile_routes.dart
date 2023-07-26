@@ -46,7 +46,12 @@ class LogsRoute extends GoRouteData {
   }
 }
 
-@TypedGoRoute<SettingsRoute>(path: SettingsRoute.path)
+@TypedGoRoute<SettingsRoute>(
+  path: SettingsRoute.path,
+  routes: [
+    TypedGoRoute<ClashOverridesRoute>(path: ClashOverridesRoute.path),
+  ],
+)
 class SettingsRoute extends GoRouteData {
   const SettingsRoute();
   static const path = '/settings';

@@ -4,6 +4,7 @@ import 'package:hiddify/features/home/view/view.dart';
 import 'package:hiddify/features/profile_detail/view/view.dart';
 import 'package:hiddify/features/profiles/view/view.dart';
 import 'package:hiddify/features/proxies/view/view.dart';
+import 'package:hiddify/features/settings/view/view.dart';
 import 'package:hiddify/utils/utils.dart';
 
 part 'shared_routes.g.dart';
@@ -99,6 +100,19 @@ class ProfileDetailsRoute extends GoRouteData {
     return MaterialPage(
       fullscreenDialog: true,
       child: ProfileDetailPage(id),
+    );
+  }
+}
+
+class ClashOverridesRoute extends GoRouteData {
+  const ClashOverridesRoute();
+  static const path = 'clash-overrides';
+
+  @override
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    return const MaterialPage(
+      fullscreenDialog: true,
+      child: ClashOverridesPage(),
     );
   }
 }

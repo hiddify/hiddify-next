@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hiddify/core/core_providers.dart';
+import 'package:hiddify/core/router/router.dart';
 import 'package:hiddify/features/settings/widgets/widgets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:recase/recase.dart';
@@ -32,8 +33,14 @@ class SettingsPage extends HookConsumerWidget {
             _SettingsSectionHeader(t.settings.network.sectionTitle.titleCase),
             const NetworkSettingTiles(),
             divider,
-            _SettingsSectionHeader(t.settings.clash.sectionTitle.titleCase),
-            const ClashSettingTiles(),
+            ListTile(
+              title: Text(t.settings.clash.sectionTitle.titleCase),
+              leading: const Icon(Icons.edit_document),
+              contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+              onTap: () async {
+                await const ClashOverridesRoute().push(context);
+              },
+            ),
             const Gap(16),
           ],
         ),
