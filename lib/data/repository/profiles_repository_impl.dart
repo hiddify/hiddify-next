@@ -5,6 +5,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:hiddify/data/local/dao/dao.dart';
 import 'package:hiddify/data/repository/exception_handlers.dart';
 import 'package:hiddify/domain/clash/clash.dart';
+import 'package:hiddify/domain/enums.dart';
 import 'package:hiddify/domain/profiles/profiles.dart';
 import 'package:hiddify/services/files_editor_service.dart';
 import 'package:hiddify/utils/utils.dart';
@@ -50,9 +51,12 @@ class ProfilesRepositoryImpl
   }
 
   @override
-  Stream<Either<ProfileFailure, List<Profile>>> watchAll() {
+  Stream<Either<ProfileFailure, List<Profile>>> watchAll({
+    ProfilesSort sort = ProfilesSort.lastUpdate,
+    SortMode mode = SortMode.ascending,
+  }) {
     return profilesDao
-        .watchAll()
+        .watchAll(sort: sort, mode: mode)
         .handleExceptions(ProfileUnexpectedFailure.new);
   }
 

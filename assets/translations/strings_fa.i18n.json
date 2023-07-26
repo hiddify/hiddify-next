@@ -5,7 +5,9 @@
         "toggle": {
             "enabled": "فعال",
             "disabled": "غیر فعال"
-        }
+        },
+        "sort": "مرتب‌سازی",
+        "sortBy": "مرتب‌سازی براساس"
     },
     "home": {
         "pageTitle": "خانه",
@@ -29,8 +31,13 @@
             "noTraffic": "پایان ترافیک",
             "gigaByte": "گیگ"
         },
+        "sortBy": {
+            "lastUpdate": "اخیرا بروز شده",
+            "name": "براساس نام"
+        },
         "add": {
             "buttonText": "افزودن پروفایل جدید",
+            "shortBtnTxt": "ایجاد",
             "fromClipboard": "افزودن از کلیپ‌بورد",
             "scanQr": "اسکن QR کد",
             "manually": "افزودن دستی",

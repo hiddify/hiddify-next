@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:fpdart/fpdart.dart';
 import 'package:hiddify/data/data_providers.dart';
+import 'package:hiddify/domain/enums.dart';
 import 'package:hiddify/domain/profiles/profiles.dart';
 import 'package:hiddify/features/common/active_profile/active_profile_notifier.dart';
 import 'package:hiddify/utils/utils.dart';
@@ -10,11 +11,30 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'profiles_notifier.g.dart';
 
 @riverpod
+class ProfilesSortNotifier extends _$ProfilesSortNotifier with AppLogger {
+  @override
+  ({ProfilesSort by, SortMode mode}) build() {
+    return (by: ProfilesSort.lastUpdate, mode: SortMode.descending);
+  }
+
+  void changeSort(ProfilesSort sortBy) =>
+      state = (by: sortBy, mode: state.mode);
+
+  void toggleMode() => state = (
+        by: state.by,
+        mode: state.mode == SortMode.ascending
+            ? SortMode.descending
+            : SortMode.ascending
+      );
+}
+
+@riverpod
 class ProfilesNotifier extends _$ProfilesNotifier with AppLogger {
   @override
   Stream<List<Profile>> build() {
+    final sort = ref.watch(profilesSortNotifierProvider);
     return _profilesRepo
-        .watchAll()
+        .watchAll(sort: sort.by, mode: sort.mode)
         .map((event) => event.getOrElse((l) => throw l));
   }
 

@@ -1,4 +1,5 @@
 import 'package:fpdart/fpdart.dart';
+import 'package:hiddify/domain/enums.dart';
 import 'package:hiddify/domain/profiles/profiles.dart';
 
 abstract class ProfilesRepository {
@@ -8,7 +9,10 @@ abstract class ProfilesRepository {
 
   Stream<Either<ProfileFailure, bool>> watchHasAnyProfile();
 
-  Stream<Either<ProfileFailure, List<Profile>>> watchAll();
+  Stream<Either<ProfileFailure, List<Profile>>> watchAll({
+    ProfilesSort sort = ProfilesSort.lastUpdate,
+    SortMode mode = SortMode.ascending,
+  });
 
   TaskEither<ProfileFailure, Unit> addByUrl(
     String url, {

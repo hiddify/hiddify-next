@@ -2,10 +2,16 @@ import 'package:drift/drift.dart';
 import 'package:hiddify/data/local/data_mappers.dart';
 import 'package:hiddify/data/local/database.dart';
 import 'package:hiddify/data/local/tables.dart';
+import 'package:hiddify/domain/enums.dart';
 import 'package:hiddify/domain/profiles/profiles.dart';
 import 'package:hiddify/utils/utils.dart';
 
 part 'profiles_dao.g.dart';
+
+Map<SortMode, OrderingMode> orderMap = {
+  SortMode.ascending: OrderingMode.asc,
+  SortMode.descending: OrderingMode.desc
+};
 
 @DriftAccessor(tables: [ProfileEntries])
 class ProfilesDao extends DatabaseAccessor<AppDatabase>
@@ -31,10 +37,24 @@ class ProfilesDao extends DatabaseAccessor<AppDatabase>
         .watchSingle();
   }
 
-  Stream<List<Profile>> watchAll() {
+  Stream<List<Profile>> watchAll({
+    ProfilesSort sort = ProfilesSort.lastUpdate,
+    SortMode mode = SortMode.ascending,
+  }) {
     return (profileEntries.select()
           ..orderBy(
-            [(tbl) => OrderingTerm.desc(tbl.active)],
+            [
+              switch (sort) {
+                ProfilesSort.name => (tbl) => OrderingTerm(
+                      expression: tbl.name,
+                      mode: orderMap[mode]!,
+                    ),
+                _ => (tbl) => OrderingTerm(
+                      expression: tbl.lastUpdate,
+                      mode: orderMap[mode]!,
+                    ),
+              }
+            ],
           ))
         .map(ProfileMapper.fromEntry)
         .watch();

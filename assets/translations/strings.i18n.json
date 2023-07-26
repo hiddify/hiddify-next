@@ -5,7 +5,9 @@
         "toggle": {
             "enabled": "enabled",
             "disabled": "disabled"
-        }
+        },
+        "sort": "sort",
+        "sortBy": "sort by"
     },
     "home": {
         "pageTitle": "home",
@@ -29,8 +31,13 @@
             "noTraffic": "no traffic",
             "gigaByte": "GB"
         },
+        "sortBy": {
+            "lastUpdate": "Recently updated",
+            "name": "by Name"
+        },
         "add": {
             "buttonText": "add new profile",
+            "shortBtnTxt": "add new",
             "fromClipboard": "add from clipboard",
             "scanQr": "Scan QR code",
             "manually": "add manually",
