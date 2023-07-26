@@ -121,7 +121,7 @@ class SubscriptionInfo with _$SubscriptionInfo {
 
   int get consumption => upload + download;
 
-  double get ratio => consumption / total;
+  double get ratio => (consumption / total).clamp(0, 1);
 
   Duration get remaining => expire.difference(DateTime.now());
 
