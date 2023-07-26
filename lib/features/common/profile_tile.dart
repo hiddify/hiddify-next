@@ -162,7 +162,7 @@ class ProfileActionButton extends HookConsumerWidget {
             ref.read(profilesNotifierProvider.notifier).updateProfile(profile),
           );
         },
-        child: const Icon(Icons.refresh),
+        child: const Icon(Icons.update),
       );
     }
     return ProfileActionsMenu(
@@ -211,7 +211,7 @@ class ProfileActionsMenu extends HookConsumerWidget {
       builder: builder,
       menuChildren: [
         MenuItemButton(
-          leadingIcon: const Icon(Icons.refresh),
+          leadingIcon: const Icon(Icons.update),
           child: Text(t.profile.update.buttonTxt.titleCase),
           onPressed: () {
             if (updateProfileMutation.state.isInProgress) {

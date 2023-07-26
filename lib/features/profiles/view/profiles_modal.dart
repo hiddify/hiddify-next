@@ -115,6 +115,7 @@ class ProfilesSortModal extends HookConsumerWidget {
                         }
                       },
                       selected: selected,
+                      leading: Icon(e.icon),
                       trailing: selected
                           ? IconButton(
                               onPressed: () {

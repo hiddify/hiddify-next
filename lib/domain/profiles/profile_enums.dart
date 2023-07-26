@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:hiddify/core/locale/locale.dart';
 
 enum ProfilesSort {
@@ -10,4 +11,9 @@ enum ProfilesSort {
       name => t.profile.sortBy.name,
     };
   }
+
+  IconData get icon => switch (this) {
+        lastUpdate => Icons.update,
+        name => Icons.sort_by_alpha,
+      };
 }
