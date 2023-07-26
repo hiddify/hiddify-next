@@ -68,7 +68,7 @@ class ProfilesModal extends HookConsumerWidget {
                       },
                     );
                   },
-                  icon: const Icon(Icons.filter_list),
+                  icon: const Icon(Icons.sort),
                   label: Text(t.general.sort.titleCase),
                 ),
               ],
