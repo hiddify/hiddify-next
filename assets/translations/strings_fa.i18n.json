@@ -34,6 +34,7 @@
             "fromClipboard": "افزودن از کلیپ‌بورد",
             "scanQr": "اسکن QR کد",
             "manually": "افزودن دستی",
+            "addingProfileMsg": "در حال افزودن پروفایل",
             "invalidUrlMsg": "لینک نامعتبر"
         },
         "update": {

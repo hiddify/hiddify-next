@@ -13,16 +13,14 @@ GoRouter router(RouterRef ref) {
     deepLinkServiceProvider,
     (_, next) async {
       if (next case AsyncData(value: final link?)) {
-        await ref.state.push(
-          NewProfileRoute(url: link.url, name: link.name).location,
-        );
+        await ref.state.push(AddProfileRoute(url: link.url).location);
       }
     },
   );
   final initialLink = deepLink.read();
   String initialLocation = HomeRoute.path;
   if (initialLink case AsyncData(value: final link?)) {
-    initialLocation = NewProfileRoute(url: link.url, name: link.name).location;
+    initialLocation = AddProfileRoute(url: link.url).location;
   }
 
   return GoRouter(

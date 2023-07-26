@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:fpdart/fpdart.dart';
 import 'package:hiddify/data/data_providers.dart';
 import 'package:hiddify/domain/profiles/profiles.dart';
+import 'package:hiddify/features/common/active_profile/active_profile_notifier.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -24,6 +25,18 @@ class ProfilesNotifier extends _$ProfilesNotifier with AppLogger {
     await _profilesRepo.setAsActive(id).mapLeft((f) {
       loggy.warning('failed to set [$id] as active profile, $f');
       throw f;
+    }).run();
+  }
+
+  Future<Unit> addProfile(String url) async {
+    final activeProfile = await ref.read(activeProfileProvider.future);
+    loggy.debug("adding profile, url: [$url]");
+    return ref
+        .read(profilesRepositoryProvider)
+        .addByUrl(url, markAsActive: activeProfile == null)
+        .getOrElse((l) {
+      loggy.warning("failed to add profile: $l");
+      throw l;
     }).run();
   }
 

@@ -10,6 +10,11 @@ abstract class ProfilesRepository {
 
   Stream<Either<ProfileFailure, List<Profile>>> watchAll();
 
+  TaskEither<ProfileFailure, Unit> addByUrl(
+    String url, {
+    bool markAsActive = false,
+  });
+
   TaskEither<ProfileFailure, Unit> add(Profile baseProfile);
 
   TaskEither<ProfileFailure, Unit> update(Profile baseProfile);

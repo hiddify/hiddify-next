@@ -9,6 +9,7 @@ import 'package:hiddify/domain/profiles/profiles.dart';
 import 'package:hiddify/services/files_editor_service.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:meta/meta.dart';
+import 'package:uuid/uuid.dart';
 
 class ProfilesRepositoryImpl
     with ExceptionHandler, InfraLogger
@@ -56,15 +57,44 @@ class ProfilesRepositoryImpl
   }
 
   @override
+  TaskEither<ProfileFailure, Unit> addByUrl(
+    String url, {
+    bool markAsActive = false,
+  }) {
+    return exceptionHandler(
+      () async {
+        final profileId = const Uuid().v4();
+        return fetch(url, profileId)
+            .flatMap(
+              (profile) => TaskEither(
+                () async {
+                  await profilesDao.create(
+                    profile.copyWith(
+                      id: profileId,
+                      active: markAsActive,
+                    ),
+                  );
+                  return right(unit);
+                },
+              ),
+            )
+            .run();
+      },
+      ProfileUnexpectedFailure.new,
+    );
+  }
+
+  @override
   TaskEither<ProfileFailure, Unit> add(Profile baseProfile) {
     return exceptionHandler(
       () async {
         return fetch(baseProfile.url, baseProfile.id)
             .flatMap(
-              (subInfo) => TaskEither(() async {
+              (remoteProfile) => TaskEither(() async {
                 await profilesDao.create(
                   baseProfile.copyWith(
-                    subInfo: subInfo,
+                    subInfo: remoteProfile.subInfo,
+                    extra: remoteProfile.extra,
                     lastUpdate: DateTime.now(),
                   ),
                 );
@@ -83,10 +113,11 @@ class ProfilesRepositoryImpl
       () async {
         return fetch(baseProfile.url, baseProfile.id)
             .flatMap(
-              (subInfo) => TaskEither(() async {
+              (remoteProfile) => TaskEither(() async {
                 await profilesDao.edit(
                   baseProfile.copyWith(
-                    subInfo: subInfo,
+                    subInfo: remoteProfile.subInfo,
+                    extra: remoteProfile.extra,
                     lastUpdate: DateTime.now(),
                   ),
                 );
@@ -123,7 +154,7 @@ class ProfilesRepositoryImpl
   }
 
   @visibleForTesting
-  TaskEither<ProfileFailure, SubscriptionInfo?> fetch(
+  TaskEither<ProfileFailure, Profile> fetch(
     String url,
     String fileName,
   ) {
@@ -143,12 +174,8 @@ class ProfilesRepositoryImpl
           await File(path).delete();
           return left(const ProfileFailure.invalidConfig());
         }
-        final subInfoString =
-            response.headers.map['subscription-userinfo']?.single;
-        final subInfo = subInfoString != null
-            ? SubscriptionInfo.fromResponseHeader(subInfoString)
-            : null;
-        return right(subInfo);
+        final profile = Profile.fromResponse(url, response.headers.map);
+        return right(profile);
       },
     );
   }

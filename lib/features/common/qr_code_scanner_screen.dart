@@ -20,7 +20,7 @@ class QRCodeScannerScreen extends HookConsumerWidget with PresLogger {
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = useMemoized(
       () => MobileScannerController(
-        detectionSpeed: DetectionSpeed.noDuplicates,
+        detectionTimeoutMs: 500,
         formats: [BarcodeFormat.qrCode],
       ),
     );

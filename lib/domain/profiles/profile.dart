@@ -72,7 +72,7 @@ class Profile with _$Profile {
     return Profile(
       id: const Uuid().v4(),
       active: false,
-      name: title,
+      name: title.isBlank ? "Remote Profile" : title,
       url: url,
       lastUpdate: DateTime.now(),
       options: options,

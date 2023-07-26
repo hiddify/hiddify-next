@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hiddify/features/common/common.dart';
 import 'package:hiddify/features/home/view/view.dart';
 import 'package:hiddify/features/profile_detail/view/view.dart';
 import 'package:hiddify/features/profiles/view/view.dart';
@@ -35,8 +34,9 @@ class ProxiesRoute extends GoRouteData {
 
 @TypedGoRoute<AddProfileRoute>(path: AddProfileRoute.path)
 class AddProfileRoute extends GoRouteData {
-  const AddProfileRoute();
+  const AddProfileRoute({this.url});
   static const path = '/add';
+  final String? url;
 
   static final GlobalKey<NavigatorState> $parentNavigatorKey = rootNavigatorKey;
 
@@ -44,7 +44,10 @@ class AddProfileRoute extends GoRouteData {
   Page<void> buildPage(BuildContext context, GoRouterState state) {
     return BottomSheetPage(
       fixed: true,
-      builder: (controller) => AddProfileModal(scrollController: controller),
+      builder: (controller) => AddProfileModal(
+        url: url,
+        scrollController: controller,
+      ),
     );
   }
 }
