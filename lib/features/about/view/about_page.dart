@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/domain/constants.dart';
+import 'package:hiddify/domain/failures.dart';
+import 'package:hiddify/features/common/new_version_dialog.dart';
 import 'package:hiddify/features/common/runtime_details.dart';
 import 'package:hiddify/gen/assets.gen.dart';
+import 'package:hiddify/utils/alerts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:recase/recase.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -14,7 +17,36 @@ class AboutPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = ref.watch(translationsProvider);
-    final details = ref.watch(runtimeDetailsNotifierProvider);
+    final appVersion = ref.watch(appVersionProvider);
+
+    final isCheckingForUpdate = ref.watch(
+      runtimeDetailsNotifierProvider.select(
+        (value) => value.maybeWhen(
+          data: (data) => data.latestVersion.isLoading,
+          orElse: () => false,
+        ),
+      ),
+    );
+
+    ref.listen(
+      runtimeDetailsNotifierProvider,
+      (_, next) async {
+        if (next case AsyncData(:final value)) {
+          switch (value.latestVersion) {
+            case AsyncError(:final error):
+              CustomToast.error(t.presentError(error)).show(context);
+            default:
+              if (value.newVersionAvailable) {
+                await NewVersionDialog(
+                  value.appVersion,
+                  value.latestVersion.value!,
+                  canIgnore: false,
+                ).show(context);
+              }
+          }
+        }
+      },
+    );
 
     return Scaffold(
       body: CustomScrollView(
@@ -22,7 +54,7 @@ class AboutPage extends HookConsumerWidget {
           SliverAppBar(
             title: Text(t.about.pageTitle.titleCase),
           ),
-          ...switch (details) {
+          ...switch (appVersion) {
             AsyncData(:final value) => [
                 SliverToBoxAdapter(
                   child: Padding(
@@ -77,6 +109,18 @@ class AboutPage extends HookConsumerWidget {
                       ),
                       ListTile(
                         title: Text(t.about.checkForUpdate.sentenceCase),
+                        trailing: isCheckingForUpdate
+                            ? const SizedBox(
+                                width: 24,
+                                height: 24,
+                                child: CircularProgressIndicator(),
+                              )
+                            : const Icon(Icons.update),
+                        onTap: () async {
+                          await ref
+                              .read(runtimeDetailsNotifierProvider.notifier)
+                              .checkForUpdates();
+                        },
                       ),
                     ],
                   ),

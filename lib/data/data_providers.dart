@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:hiddify/data/local/dao/dao.dart';
 import 'package:hiddify/data/local/database.dart';
 import 'package:hiddify/data/repository/repository.dart';
+import 'package:hiddify/data/repository/update_repository_impl.dart';
+import 'package:hiddify/domain/app/app.dart';
 import 'package:hiddify/domain/clash/clash.dart';
 import 'package:hiddify/domain/profiles/profiles.dart';
 import 'package:hiddify/services/service_providers.dart';
@@ -40,3 +42,7 @@ ProfilesRepository profilesRepository(ProfilesRepositoryRef ref) =>
       clashFacade: ref.watch(clashFacadeProvider),
       dio: ref.watch(dioProvider),
     );
+
+@Riverpod(keepAlive: true)
+UpdateRepository updateRepository(UpdateRepositoryRef ref) =>
+    UpdateRepositoryImpl(ref.watch(dioProvider));

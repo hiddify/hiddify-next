@@ -98,7 +98,7 @@ class AppVersionLabel extends HookConsumerWidget {
     final theme = Theme.of(context);
 
     final version = ref.watch(
-      runtimeDetailsNotifierProvider.select(
+      appVersionProvider.select(
         (value) => switch (value) {
           AsyncData(:final value) => value.fullVersion,
           _ => "",

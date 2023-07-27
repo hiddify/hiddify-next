@@ -1,6 +1,6 @@
 {
     "general": {
-        "appTitle": "هیدیفای",
+        "appTitle": "هیدیفای نکست",
         "reset": "ریست",
         "toggle": {
             "enabled": "فعال",
@@ -124,6 +124,15 @@
         "sourceCode": "سورس کد",
         "telegramChannel": "کانال تلگرام",
         "checkForUpdate": "بررسی آپدیت جدید"
+    },
+    "appUpdate": {
+        "dialogTitle": "نسخه جدید",
+        "updateMsg": "نسخه جدیدی از @:general.appTitle موجود است! الان بروزرسانی شود؟",
+        "currentVersionLbl": "نسخه فعلی",
+        "newVersionLbl": "نسخه جدید",
+        "updateNowBtnTxt": "بروزرسانی",
+        "laterBtnTxt": "بعدا",
+        "ignoreBtnTxt": "نادیده‌گرفتن"
     },
     "tray": {
         "dashboard": "داشبورد",

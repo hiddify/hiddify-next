@@ -1,6 +1,6 @@
 {
     "general": {
-        "appTitle": "hiddify",
+        "appTitle": "Hiddify Next",
         "reset": "reset",
         "toggle": {
             "enabled": "enabled",
@@ -124,6 +124,15 @@
         "sourceCode": "source code",
         "telegramChannel": "telegram channel",
         "checkForUpdate": "check for update"
+    },
+    "appUpdate": {
+        "dialogTitle": "update available",
+        "updateMsg": "A new version of @:general.appTitle is available! Would you like to update now?",
+        "currentVersionLbl": "current version",
+        "newVersionLbl": "new version",
+        "updateNowBtnTxt": "update now",
+        "laterBtnTxt": "later",
+        "ignoreBtnTxt": "ignore"
     },
     "tray": {
         "dashboard": "dashboard",
