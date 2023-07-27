@@ -6,6 +6,7 @@ import 'package:hiddify/core/theme/theme.dart';
 import 'package:hiddify/features/common/connectivity/connectivity_controller.dart';
 import 'package:hiddify/gen/assets.gen.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:recase/recase.dart';
 
 // TODO: rewrite
 class ConnectionButton extends HookConsumerWidget {
@@ -61,7 +62,7 @@ class ConnectionButton extends HookConsumerWidget {
         ).animate(target: intractable ? 0 : 1).scaleXY(end: .88),
         const Gap(16),
         Text(
-          connectionStatus.present(t),
+          connectionStatus.present(t).sentenceCase,
           style: Theme.of(context).textTheme.bodyLarge,
         ),
       ],
