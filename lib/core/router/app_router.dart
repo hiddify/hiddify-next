@@ -18,7 +18,7 @@ GoRouter router(RouterRef ref) {
     },
   );
   final initialLink = deepLink.read();
-  String initialLocation = HomeRoute.path;
+  String initialLocation = const HomeRoute().location;
   if (initialLink case AsyncData(value: final link?)) {
     initialLocation = AddProfileRoute(url: link.url).location;
   }

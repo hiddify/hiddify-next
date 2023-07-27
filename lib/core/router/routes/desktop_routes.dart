@@ -13,6 +13,7 @@ part 'desktop_routes.g.dart';
     TypedGoRoute<HomeRoute>(
       path: HomeRoute.path,
       routes: [
+        TypedGoRoute<AddProfileRoute>(path: AddProfileRoute.path),
         TypedGoRoute<ProfilesRoute>(path: ProfilesRoute.path),
         TypedGoRoute<NewProfileRoute>(path: NewProfileRoute.path),
         TypedGoRoute<ProfileDetailsRoute>(path: ProfileDetailsRoute.path),
@@ -55,6 +56,19 @@ class SettingsRoute extends GoRouteData {
   @override
   Page<void> buildPage(BuildContext context, GoRouterState state) {
     return const NoTransitionPage(child: SettingsPage());
+  }
+}
+
+class ClashOverridesRoute extends GoRouteData {
+  const ClashOverridesRoute();
+  static const path = 'clash';
+
+  @override
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    return const MaterialPage(
+      fullscreenDialog: true,
+      child: ClashOverridesPage(),
+    );
   }
 }
 
