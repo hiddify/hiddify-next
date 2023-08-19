@@ -42,6 +42,9 @@ migrate_working_dir/
 **/*.dylib
 /dist/
 
+/assets/core/*
+!/assets/core/.gitkeep
+
 # Symbolication related
 app.*.symbols
 

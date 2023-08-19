@@ -8,7 +8,7 @@ class LogsState with _$LogsState {
   const LogsState._();
 
   const factory LogsState({
-    @Default([]) List<ClashLog> logs,
+    @Default([]) List<String> logs,
     @Default("") String filter,
     LogLevel? levelFilter,
   }) = _LogsState;

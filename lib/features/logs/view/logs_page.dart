@@ -10,6 +10,7 @@ import 'package:hiddify/features/logs/notifier/notifier.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:recase/recase.dart';
+import 'package:tint/tint.dart';
 
 class LogsPage extends HookConsumerWidget {
   const LogsPage({super.key});
@@ -80,19 +81,7 @@ class LogsPage extends HookConsumerWidget {
                 children: [
                   ListTile(
                     dense: true,
-                    title: Text.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(text: log.timeStamp),
-                          const TextSpan(text: "   "),
-                          TextSpan(
-                            text: log.level.name.toUpperCase(),
-                            style: TextStyle(color: log.level.color),
-                          ),
-                        ],
-                      ),
-                    ),
-                    subtitle: Text(log.message),
+                    subtitle: Text(log.strip()),
                   ),
                   if (index != 0)
                     const Divider(

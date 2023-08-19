@@ -40,10 +40,10 @@ dependencies:
 
   # networking
   dio: ^5.3.0
+  web_socket_channel: ^2.4.0
 
   # native
   ffi: ^2.0.2
-  proxy_manager: ^0.0.3
   path_provider: ^2.0.15
   flutter_local_notifications: ^15.1.0+1
   mobile_scanner: ^3.3.0
@@ -66,6 +66,7 @@ dependencies:
   stack_trace: ^1.11.0
   dartx: ^1.2.0
   uuid: ^3.0.7
+  tint: ^2.0.1
 
   # widgets
   go_router: ^9.1.0
@@ -98,7 +99,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/core/clash/
+    - assets/core/
     - assets/images/
   
   fonts:
@@ -132,9 +133,9 @@ flutter_native_splash:
     color: "#ffffff"
 
 ffigen:
-  name: 'ClashNativeLibrary'
-  description: 'Bindings to Clash'
-  output: 'lib/gen/clash_generated_bindings.dart'
+  name: 'SingboxNativeLibrary'
+  description: 'Bindings to Singbox'
+  output: 'lib/gen/singbox_generated_bindings.dart'
   headers:
     entry-points:
-      - 'core/bin/libclash.h'
+      - 'libcore/bin/libcore.h'

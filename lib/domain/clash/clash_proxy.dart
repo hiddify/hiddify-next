@@ -7,7 +7,7 @@ part 'clash_proxy.g.dart';
 
 // TODO: test and improve
 @Freezed(fromJson: true)
-class ClashProxy with _$ClashProxy {
+sealed class ClashProxy with _$ClashProxy {
   const ClashProxy._();
 
   const factory ClashProxy.group({
@@ -15,6 +15,7 @@ class ClashProxy with _$ClashProxy {
     @JsonKey(fromJson: _typeFromJson) required ProxyType type,
     required List<String> all,
     required String now,
+    @Default(false) bool udp,
     List<ClashHistory>? history,
     @JsonKey(includeFromJson: false, includeToJson: false) int? delay,
   }) = ClashProxyGroup;
@@ -22,6 +23,7 @@ class ClashProxy with _$ClashProxy {
   const factory ClashProxy.item({
     required String name,
     @JsonKey(fromJson: _typeFromJson) required ProxyType type,
+    @Default(false) bool udp,
     List<ClashHistory>? history,
     @JsonKey(includeFromJson: false, includeToJson: false) int? delay,
   }) = ClashProxyItem;

@@ -36,7 +36,11 @@ class SliverLoadingBodyPlaceholder extends HookConsumerWidget {
 }
 
 class SliverErrorBodyPlaceholder extends HookConsumerWidget {
-  const SliverErrorBodyPlaceholder(this.msg, {super.key, this.icon});
+  const SliverErrorBodyPlaceholder(
+    this.msg, {
+    super.key,
+    this.icon = Icons.error,
+  });
 
   final String msg;
   final IconData? icon;
@@ -48,8 +52,10 @@ class SliverErrorBodyPlaceholder extends HookConsumerWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(icon ?? Icons.error),
-          const Gap(16),
+          if (icon != null) ...[
+            Icon(icon),
+            const Gap(16),
+          ],
           Text(msg),
         ],
       ),

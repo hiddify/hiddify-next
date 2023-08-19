@@ -10,14 +10,14 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'logs_notifier.g.dart';
 
 // TODO: rewrite
-@riverpod
+@Riverpod(keepAlive: true)
 class LogsNotifier extends _$LogsNotifier with AppLogger {
   static const maxLength = 1000;
 
   @override
   Stream<LogsState> build() {
     state = const AsyncData(LogsState());
-    return ref.read(clashFacadeProvider).watchLogs().asyncMap(
+    return ref.read(coreFacadeProvider).watchLogs().asyncMap(
       (event) async {
         _logs = [
           event.getOrElse((l) => throw l),
@@ -32,16 +32,15 @@ class LogsNotifier extends _$LogsNotifier with AppLogger {
     );
   }
 
-  var _logs = <ClashLog>[];
+  var _logs = <String>[];
   final _debouncer = CallbackDebouncer(const Duration(milliseconds: 200));
   LogLevel? _levelFilter;
   String _filter = "";
 
-  Future<List<ClashLog>> _computeLogs() async {
+  Future<List<String>> _computeLogs() async {
     if (_levelFilter == null && _filter.isEmpty) return _logs;
     return _logs.where((e) {
-      return (_filter.isEmpty || e.message.contains(_filter)) &&
-          (_levelFilter == null || e.level == _levelFilter);
+      return _filter.isEmpty || e.contains(_filter);
     }).toList();
   }
 

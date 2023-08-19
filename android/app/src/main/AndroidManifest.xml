@@ -1,14 +1,24 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+
+    <uses-permission
+        android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
+
     <application
+        android:name=".Application"
         android:label="hiddify"
-        android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
-		android:roundIcon="@mipmap/ic_launcher_round">
+		android:roundIcon="@mipmap/ic_launcher_round"
+        tools:targetApi="31">
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -39,15 +49,14 @@
                 <data android:host="install-config"/>
             </intent-filter>
         </activity>
-       <service
-           android:name=".HiddifyVpnService"
-           android:permission="android.permission.BIND_VPN_SERVICE"
-           android:stopWithTask="false"
-           android:exported="false">
-           <intent-filter>
-               <action android:name="android.net.VpnService"/>
-           </intent-filter>
-       </service>
+        <service
+            android:name=".bg.VPNService"
+            android:exported="false"
+            android:permission="android.permission.BIND_VPN_SERVICE">
+            <intent-filter>
+                <action android:name="android.net.VpnService" />
+            </intent-filter>
+        </service>
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data

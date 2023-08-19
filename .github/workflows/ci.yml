@@ -98,6 +98,10 @@ jobs:
           make gen
           make translate
 
+      - name: Get Geo Assets
+        run: |
+          make get-geo-assets
+
       - name: Get Libs ${{ matrix.platform }}
         run: |
           make ${{ matrix.platform }}-libs

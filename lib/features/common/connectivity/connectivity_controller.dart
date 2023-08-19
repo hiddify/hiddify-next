@@ -1,62 +1,90 @@
-import 'package:hiddify/core/prefs/prefs.dart';
+import 'package:hiddify/data/data_providers.dart';
 import 'package:hiddify/domain/connectivity/connectivity.dart';
-import 'package:hiddify/services/connectivity/connectivity.dart';
-import 'package:hiddify/services/service_providers.dart';
+import 'package:hiddify/domain/core_facade.dart';
+import 'package:hiddify/features/common/active_profile/active_profile_notifier.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'connectivity_controller.g.dart';
 
-// TODO: test and improve
-// TODO: abort connection on clash error
 @Riverpod(keepAlive: true)
 class ConnectivityController extends _$ConnectivityController with AppLogger {
   @override
-  ConnectionStatus build() {
-    state = const Disconnected();
-    final connection = _connectivity
-        .watchConnectionStatus()
-        .map(ConnectionStatus.fromBool)
-        .listen((event) => state = event);
-
-    // currently changes wont take effect while connected
+  Stream<ConnectionStatus> build() {
     ref.listen(
-      prefsControllerProvider.select((value) => value.network),
-      (_, next) => _networkPrefs = next,
-      fireImmediately: true,
+      activeProfileProvider.select((value) => value.asData?.value),
+      (previous, next) async {
+        if (previous == null) return;
+        final shouldReconnect = previous != next;
+        if (shouldReconnect) {
+          loggy.debug("active profile modified, reconnect");
+          await reconnect();
+        }
+      },
     );
-    ref.listen(
-      prefsControllerProvider
-          .select((value) => (value.clash.httpPort!, value.clash.socksPort!)),
-      (_, next) => _ports = (http: next.$1, socks: next.$2),
-      fireImmediately: true,
-    );
-
-    ref.onDispose(connection.cancel);
-    return state;
+    return _connectivity.watchConnectionStatus();
   }
 
-  ConnectivityService get _connectivity =>
-      ref.watch(connectivityServiceProvider);
-
-  late ({int http, int socks}) _ports;
-  // ignore: unused_field
-  late NetworkPrefs _networkPrefs;
+  CoreFacade get _connectivity => ref.watch(coreFacadeProvider);
 
   Future<void> toggleConnection() async {
-    switch (state) {
-      case Disconnected():
-        if (!await _connectivity.grantVpnPermission()) {
-          state = const Disconnected(ConnectivityFailure.unexpected());
-          return;
-        }
-        await _connectivity.connect(
-          httpPort: _ports.http,
-          socksPort: _ports.socks,
-        );
-      case Connected():
-        await _connectivity.disconnect();
-      default:
+    if (state case AsyncError()) {
+      await _connect();
+    } else if (state case AsyncData(:final value)) {
+      switch (value) {
+        case Disconnected():
+          await _connect();
+        case Connected():
+          await _disconnect();
+        default:
+          loggy.warning("switching status, debounce");
+      }
     }
   }
+
+  Future<void> reconnect() async {
+    if (state case AsyncData(:final value)) {
+      if (value case Connected()) {
+        loggy.debug("reconnecting");
+        await _disconnect();
+        await _connect();
+      }
+    }
+  }
+
+  Future<void> abortConnection() async {
+    if (state case AsyncData(:final value)) {
+      switch (value) {
+        case Connected() || Connecting():
+          loggy.debug("aborting connection");
+          await _disconnect();
+        default:
+      }
+    }
+  }
+
+  Future<void> _connect() async {
+    final activeProfile = await ref.read(activeProfileProvider.future);
+    await _connectivity
+        .changeConfig(activeProfile!.id)
+        .andThen(_connectivity.connect)
+        .mapLeft((l) {
+      loggy.warning("error connecting: $l");
+      state = AsyncError(l, StackTrace.current);
+    }).run();
+  }
+
+  Future<void> _disconnect() async {
+    await _connectivity.disconnect().mapLeft((l) {
+      loggy.warning("error disconnecting: $l");
+      state = AsyncError(l, StackTrace.current);
+    }).run();
+  }
 }
+
+@Riverpod(keepAlive: true)
+Future<bool> serviceRunning(ServiceRunningRef ref) => ref
+    .watch(
+      connectivityControllerProvider.selectAsync((data) => data.isConnected),
+    )
+    .onError((error, stackTrace) => false);

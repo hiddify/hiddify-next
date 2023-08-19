@@ -957,14 +957,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.1.5"
-  proxy_manager:
-    dependency: "direct main"
-    description:
-      name: proxy_manager
-      sha256: "4cdb8853bcedc1a6879c6d940d624d740e1c76ee6b83377b13270f96a8415a37"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.3"
   pub_semver:
     dependency: transitive
     description:
@@ -1322,6 +1314,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.1"
+  tint:
+    dependency: "direct main"
+    description:
+      name: tint
+      sha256: "9652d9a589f4536d5e392cf790263d120474f15da3cf1bee7f1fdb31b4de5f46"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
   tray_manager:
     dependency: "direct main"
     description:
@@ -1467,7 +1467,7 @@ packages:
     source: hosted
     version: "1.1.0"
   web_socket_channel:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: web_socket_channel
       sha256: d88238e5eac9a42bb43ca4e721edba3c08c6354d4a53063afaa568516217621b

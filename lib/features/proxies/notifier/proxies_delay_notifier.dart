@@ -32,7 +32,7 @@ class ProxiesDelayNotifier extends _$ProxiesDelayNotifier with AppLogger {
     return {};
   }
 
-  ClashFacade get _clash => ref.read(clashFacadeProvider);
+  ClashFacade get _clash => ref.read(coreFacadeProvider);
   StreamSubscription? _currentTest;
 
   Future<void> testDelay(Iterable<String> proxies) async {

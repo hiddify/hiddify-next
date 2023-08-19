@@ -23,9 +23,9 @@ part 'desktop_routes.g.dart';
     TypedGoRoute<LogsRoute>(path: LogsRoute.path),
     TypedGoRoute<SettingsRoute>(
       path: SettingsRoute.path,
-      routes: [
-        TypedGoRoute<ClashOverridesRoute>(path: ClashOverridesRoute.path),
-      ],
+      // routes: [
+      //   TypedGoRoute<ClashOverridesRoute>(path: ClashOverridesRoute.path),
+      // ],
     ),
     TypedGoRoute<AboutRoute>(path: AboutRoute.path),
   ],
@@ -59,18 +59,18 @@ class SettingsRoute extends GoRouteData {
   }
 }
 
-class ClashOverridesRoute extends GoRouteData {
-  const ClashOverridesRoute();
-  static const path = 'clash';
+// class ClashOverridesRoute extends GoRouteData {
+//   const ClashOverridesRoute();
+//   static const path = 'clash';
 
-  @override
-  Page<void> buildPage(BuildContext context, GoRouterState state) {
-    return const MaterialPage(
-      fullscreenDialog: true,
-      child: ClashOverridesPage(),
-    );
-  }
-}
+//   @override
+//   Page<void> buildPage(BuildContext context, GoRouterState state) {
+//     return const MaterialPage(
+//       fullscreenDialog: true,
+//       child: ClashOverridesPage(),
+//     );
+//   }
+// }
 
 class AboutRoute extends GoRouteData {
   const AboutRoute();

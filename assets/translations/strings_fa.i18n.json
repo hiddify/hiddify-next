@@ -145,8 +145,18 @@
             "unexpected": "خطایی رخ داده",
             "core": "خطای کلش ${reason}"
         },
+        "singbox": {
+            "unexpected": "خطایی غیر منتظره در سرویس رخ داد",
+            "serviceNotRunning": "سرویس در حال اجرا نیست",
+            "invalidConfig": "کانفیگ غیر معتبر",
+            "create": "در ایجاد سرویس خطایی رخ داده",
+            "start": "در راه‌اندازی سرویس خطایی رخ داده"
+        },
         "connectivity": {
-            "unexpected": "خطایی رخ داده"
+            "unexpected": "خطایی رخ داده",
+            "missingVpnPermission": "نیازمند دسترسی VPN",
+            "missingNotificationPermission": "نیازمند دسترسی اعلانات",
+            "core": "خطای هسته"
         },
         "profiles": {
             "unexpected": "خطایی رخ داده",

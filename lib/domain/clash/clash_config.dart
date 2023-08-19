@@ -24,12 +24,6 @@ class ClashConfig with _$ClashConfig {
     bool? ipv6,
   }) = _ClashConfig;
 
-  static const initial = ClashConfig(
-    httpPort: 12346,
-    socksPort: 12347,
-    mixedPort: 12348,
-  );
-
   ClashConfig patch(ClashConfigPatch patch) {
     return copyWith(
       httpPort: (patch.httpPort ?? optionOf(httpPort)).toNullable(),

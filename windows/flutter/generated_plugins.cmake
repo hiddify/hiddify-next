@@ -4,7 +4,6 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   protocol_handler
-  proxy_manager
   screen_retriever
   share_plus
   sqlite3_flutter_libs

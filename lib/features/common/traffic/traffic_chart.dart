@@ -22,73 +22,85 @@ class TrafficChart extends HookConsumerWidget {
 
     switch (asyncTraffics) {
       case AsyncData(value: final traffics):
-        final latest =
-            traffics.lastOrNull ?? const Traffic(upload: 0, download: 0);
-        final latestUploadData = formatByteSpeed(latest.upload);
-        final latestDownloadData = formatByteSpeed(latest.download);
-
-        final uploadChartSpots = traffics.takeLast(chartSteps).mapIndexed(
-              (index, p) => FlSpot(index.toDouble(), p.upload.toDouble()),
-            );
-        final downloadChartSpots = traffics.takeLast(chartSteps).mapIndexed(
-              (index, p) => FlSpot(index.toDouble(), p.download.toDouble()),
-            );
-
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          // mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            SizedBox(
-              height: 68,
-              child: LineChart(
-                LineChartData(
-                  minY: 0,
-                  borderData: FlBorderData(show: false),
-                  titlesData: const FlTitlesData(show: false),
-                  gridData: const FlGridData(show: false),
-                  lineTouchData: const LineTouchData(enabled: false),
-                  lineBarsData: [
-                    LineChartBarData(
-                      isCurved: true,
-                      preventCurveOverShooting: true,
-                      dotData: const FlDotData(show: false),
-                      spots: uploadChartSpots.toList(),
-                    ),
-                    LineChartBarData(
-                      color: Theme.of(context).colorScheme.tertiary,
-                      isCurved: true,
-                      preventCurveOverShooting: true,
-                      dotData: const FlDotData(show: false),
-                      spots: downloadChartSpots.toList(),
-                    ),
-                  ],
-                ),
-                duration: Duration.zero,
-              ),
-            ),
-            const Gap(16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                const Text("↑"),
-                Text(latestUploadData.size),
-                Text(latestUploadData.unit),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                const Text("↓"),
-                Text(latestDownloadData.size),
-                Text(latestDownloadData.unit),
-              ],
-            ),
-            const Gap(16),
-          ],
-        );
-      // TODO: handle loading and error
+        return _Chart(traffics, chartSteps);
+      case AsyncLoading(:final value):
+        if (value == null) return const SizedBox();
+        return _Chart(value, chartSteps);
       default:
         return const SizedBox();
     }
+  }
+}
+
+class _Chart extends StatelessWidget {
+  const _Chart(this.records, this.steps);
+
+  final List<Traffic> records;
+  final int steps;
+
+  @override
+  Widget build(BuildContext context) {
+    final latest = records.lastOrNull ?? const Traffic(upload: 0, download: 0);
+    final latestUploadData = formatByteSpeed(latest.upload);
+    final latestDownloadData = formatByteSpeed(latest.download);
+
+    final uploadChartSpots = records.takeLast(steps).mapIndexed(
+          (index, p) => FlSpot(index.toDouble(), p.upload.toDouble()),
+        );
+    final downloadChartSpots = records.takeLast(steps).mapIndexed(
+          (index, p) => FlSpot(index.toDouble(), p.download.toDouble()),
+        );
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        SizedBox(
+          height: 68,
+          child: LineChart(
+            LineChartData(
+              minY: 0,
+              borderData: FlBorderData(show: false),
+              titlesData: const FlTitlesData(show: false),
+              gridData: const FlGridData(show: false),
+              lineTouchData: const LineTouchData(enabled: false),
+              lineBarsData: [
+                LineChartBarData(
+                  isCurved: true,
+                  preventCurveOverShooting: true,
+                  dotData: const FlDotData(show: false),
+                  spots: uploadChartSpots.toList(),
+                ),
+                LineChartBarData(
+                  color: Theme.of(context).colorScheme.tertiary,
+                  isCurved: true,
+                  preventCurveOverShooting: true,
+                  dotData: const FlDotData(show: false),
+                  spots: downloadChartSpots.toList(),
+                ),
+              ],
+            ),
+            duration: Duration.zero,
+          ),
+        ),
+        const Gap(16),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            const Text("↑"),
+            Text(latestUploadData.size),
+            Text(latestUploadData.unit),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            const Text("↓"),
+            Text(latestDownloadData.size),
+            Text(latestDownloadData.unit),
+          ],
+        ),
+        const Gap(16),
+      ],
+    );
   }
 }

@@ -15,7 +15,8 @@ sealed class ProfileFailure with _$ProfileFailure, Failure {
 
   const factory ProfileFailure.notFound() = ProfileNotFoundFailure;
 
-  const factory ProfileFailure.invalidConfig() = ProfileInvalidConfigFailure;
+  const factory ProfileFailure.invalidConfig([String? message]) =
+      ProfileInvalidConfigFailure;
 
   @override
   String present(TranslationsEn t) {

@@ -1,64 +1,49 @@
-import 'dart:io';
-
-import 'package:hiddify/domain/constants.dart';
+import 'package:hiddify/domain/connectivity/connectivity.dart';
 import 'package:hiddify/services/connectivity/connectivity_service.dart';
+import 'package:hiddify/services/singbox/singbox_service.dart';
 import 'package:hiddify/utils/utils.dart';
-import 'package:proxy_manager/proxy_manager.dart';
 import 'package:rxdart/rxdart.dart';
 
-// TODO: rewrite
 class DesktopConnectivityService
     with InfraLogger
     implements ConnectivityService {
-  // TODO: possibly replace
-  final _proxyManager = ProxyManager();
+  DesktopConnectivityService(this._singboxService);
 
-  final _connectionStatus = BehaviorSubject.seeded(false);
+  final SingboxService _singboxService;
 
-  @override
-  Future<void> init() async {}
+  late final BehaviorSubject<ConnectionStatus> _connectionStatus;
 
   @override
-  Stream<bool> watchConnectionStatus() {
-    return _connectionStatus;
+  Future<void> init() async {
+    loggy.debug("initializing");
+    _connectionStatus =
+        BehaviorSubject.seeded(const ConnectionStatus.disconnected());
   }
 
   @override
-  Future<bool> grantVpnPermission() async => true;
+  Stream<ConnectionStatus> watchConnectionStatus() => _connectionStatus;
 
   @override
-  Future<void> connect({
-    required int httpPort,
-    required int socksPort,
-    bool systemProxy = true,
-  }) async {
+  Future<void> connect() async {
     loggy.debug('connecting');
-    await Future.wait([
-      _proxyManager.setAsSystemProxy(
-        ProxyTypes.http,
-        Constants.localHost,
-        httpPort,
-      ),
-      _proxyManager.setAsSystemProxy(
-        ProxyTypes.https,
-        Constants.localHost,
-        httpPort,
-      )
-    ]);
-    if (!Platform.isWindows) {
-      await _proxyManager.setAsSystemProxy(
-        ProxyTypes.socks,
-        Constants.localHost,
-        socksPort,
-      );
-    }
-    _connectionStatus.value = true;
+    _connectionStatus.value = const ConnectionStatus.connecting();
+    await _singboxService.start().getOrElse(
+      (l) {
+        _connectionStatus.value = const ConnectionStatus.disconnected();
+        throw l;
+      },
+    ).run();
+    _connectionStatus.value = const ConnectionStatus.connected();
   }
 
   @override
   Future<void> disconnect() async {
     loggy.debug("disconnecting");
-    await _proxyManager.cleanSystemProxy();
-    _connectionStatus.value = false;
+    _connectionStatus.value = const ConnectionStatus.disconnecting();
+    await _singboxService.stop().getOrElse((l) {
+      _connectionStatus.value = const ConnectionStatus.connected();
+      throw l;
+    }).run();
+    _connectionStatus.value = const ConnectionStatus.disconnected();
   }
 }

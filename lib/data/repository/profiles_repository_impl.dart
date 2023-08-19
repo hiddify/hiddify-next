@@ -4,9 +4,9 @@ import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:hiddify/data/local/dao/dao.dart';
 import 'package:hiddify/data/repository/exception_handlers.dart';
-import 'package:hiddify/domain/clash/clash.dart';
 import 'package:hiddify/domain/enums.dart';
 import 'package:hiddify/domain/profiles/profiles.dart';
+import 'package:hiddify/domain/singbox/singbox.dart';
 import 'package:hiddify/services/files_editor_service.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:meta/meta.dart';
@@ -18,13 +18,13 @@ class ProfilesRepositoryImpl
   ProfilesRepositoryImpl({
     required this.profilesDao,
     required this.filesEditor,
-    required this.clashFacade,
+    required this.singbox,
     required this.dio,
   });
 
   final ProfilesDao profilesDao;
   final FilesEditorService filesEditor;
-  final ClashFacade clashFacade;
+  final SingboxFacade singbox;
   final Dio dio;
 
   @override
@@ -166,20 +166,17 @@ class ProfilesRepositoryImpl
       () async {
         final path = filesEditor.configPath(fileName);
         final response = await dio.download(url, path);
-        if (response.statusCode != 200) {
-          await File(path).delete();
-          return left(const ProfileUnexpectedFailure());
-        }
-        final isValid = await clashFacade
-            .validateConfig(fileName)
-            .getOrElse((_) => false)
-            .run();
-        if (!isValid) {
-          await File(path).delete();
-          return left(const ProfileFailure.invalidConfig());
-        }
-        final profile = Profile.fromResponse(url, response.headers.map);
-        return right(profile);
+        final parseResult = await singbox.parseConfig(path).run();
+        return parseResult.fold(
+          (l) async {
+            await File(path).delete();
+            return left(ProfileFailure.invalidConfig(l.msg));
+          },
+          (_) {
+            final profile = Profile.fromResponse(url, response.headers.map);
+            return right(profile);
+          },
+        );
       },
     );
   }

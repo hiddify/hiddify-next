@@ -38,6 +38,7 @@ enum ProxyType {
   hysteria("Hysteria"),
   wireGuard("WireGuard"),
   tuic("Tuic"),
+  ssh("SSH"),
   relay("Relay"),
   selector("Selector"),
   fallback("Fallback"),

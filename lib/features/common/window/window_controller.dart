@@ -46,6 +46,12 @@ class WindowController extends _$WindowController
     await windowManager.close();
   }
 
+  Future<void> quit() async {
+    loggy.debug("quitting");
+    await windowManager.close();
+    await windowManager.destroy();
+  }
+
   @override
   Future<void> onWindowClose() async {
     await windowManager.hide();

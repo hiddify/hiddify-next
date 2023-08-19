@@ -39,7 +39,15 @@ Future<void> lazyBootstrap(WidgetsBinding widgetsBinding) async {
     overrides: [sharedPreferencesProvider.overrideWithValue(sharedPreferences)],
   );
 
-  Loggy.initLoggy(logPrinter: const PrettyPrinter());
+  // Loggy.initLoggy(logPrinter: const PrettyPrinter());
+  final filesEditor = container.read(filesEditorServiceProvider);
+  await filesEditor.init();
+  Loggy.initLoggy(
+    logPrinter: MultiLogPrinter(
+      const PrettyPrinter(),
+      FileLogPrinter(filesEditor.appLogsPath),
+    ),
+  );
 
   final silentStart =
       container.read(prefsControllerProvider).general.silentStart;
@@ -68,12 +76,10 @@ Future<void> lazyBootstrap(WidgetsBinding widgetsBinding) async {
 Future<void> initAppServices(
   Result Function<Result>(ProviderListenable<Result>) read,
 ) async {
-  await read(filesEditorServiceProvider).init();
+  // await read(filesEditorServiceProvider).init();
   await Future.wait(
     [
       read(connectivityServiceProvider).init(),
-      read(clashServiceProvider).init(),
-      read(clashServiceProvider).start(),
       read(notificationServiceProvider).init(),
     ],
   );
@@ -83,6 +89,7 @@ Future<void> initAppServices(
 Future<void> initControllers(
   Result Function<Result>(ProviderListenable<Result>) read,
 ) async {
+  _loggy.debug("initializing controllers");
   await Future.wait(
     [
       read(activeProfileProvider.future),

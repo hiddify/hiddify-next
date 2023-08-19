@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:fpdart/fpdart.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/core/prefs/prefs.dart';
@@ -27,7 +25,7 @@ class SystemTrayController extends _$SystemTrayController
       _initialized = true;
     }
 
-    final connection = ref.watch(connectivityControllerProvider);
+    final connection = await ref.watch(connectivityControllerProvider.future);
     final mode =
         ref.watch(clashModeProvider.select((value) => value.valueOrNull));
 
@@ -104,8 +102,9 @@ class SystemTrayController extends _$SystemTrayController
     return ref.read(connectivityControllerProvider.notifier).toggleConnection();
   }
 
-  // TODO rewrite
   Future<void> handleClickExitApp(MenuItem menuItem) async {
-    exit(0);
+    await ref.read(connectivityControllerProvider.notifier).abortConnection();
+    await trayManager.destroy();
+    return ref.read(windowControllerProvider.notifier).quit();
   }
 }

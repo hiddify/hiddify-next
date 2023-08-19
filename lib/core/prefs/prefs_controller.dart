@@ -36,7 +36,7 @@ class PrefsController extends _$PrefsController with AppLogger {
 
   ClashConfig _getClashPrefs() {
     final persisted = _prefs.getString(_overridesKey);
-    if (persisted == null) return ClashConfig.initial;
+    if (persisted == null) return const ClashConfig();
     return ClashConfig.fromJson(jsonDecode(persisted) as Map<String, dynamic>);
   }
 

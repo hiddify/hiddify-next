@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hiddify/core/locale/locale.dart';
-import 'package:hiddify/domain/connectivity/connectivity_failure.dart';
+import 'package:hiddify/domain/connectivity/connection_failure.dart';
 
 part 'connection_status.freezed.dart';
 
@@ -9,24 +9,13 @@ sealed class ConnectionStatus with _$ConnectionStatus {
   const ConnectionStatus._();
 
   const factory ConnectionStatus.disconnected([
-    ConnectivityFailure? connectFailure,
+    ConnectionFailure? connectionFailure,
   ]) = Disconnected;
   const factory ConnectionStatus.connecting() = Connecting;
-  const factory ConnectionStatus.connected([
-    ConnectivityFailure? disconnectFailure,
-  ]) = Connected;
+  const factory ConnectionStatus.connected() = Connected;
   const factory ConnectionStatus.disconnecting() = Disconnecting;
 
-  factory ConnectionStatus.fromBool(bool connected) {
-    return connected
-        ? const ConnectionStatus.connected()
-        : const Disconnected();
-  }
-
-  bool get isConnected => switch (this) {
-        Connected() => true,
-        _ => false,
-      };
+  bool get isConnected => switch (this) { Connected() => true, _ => false };
 
   bool get isSwitching => switch (this) {
         Connecting() => true,

@@ -20,7 +20,7 @@ class ProxiesPage extends HookConsumerWidget with PresLogger {
 
     final notifier = ref.watch(proxiesNotifierProvider.notifier);
     final asyncProxies = ref.watch(proxiesNotifierProvider);
-    final proxies = asyncProxies.value ?? [];
+    final proxies = asyncProxies.asData?.value ?? [];
     final delays = ref.watch(proxiesDelayNotifierProvider);
 
     final selectActiveProxyMutation = useMutation(
@@ -163,7 +163,10 @@ class ProxiesPage extends HookConsumerWidget with PresLogger {
               NestedTabAppBar(
                 title: Text(t.proxies.pageTitle.titleCase),
               ),
-              SliverErrorBodyPlaceholder(t.presentError(error)),
+              SliverErrorBodyPlaceholder(
+                t.presentError(error),
+                icon: null,
+              ),
             ],
           ),
         );

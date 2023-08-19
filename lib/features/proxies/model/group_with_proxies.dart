@@ -24,7 +24,7 @@ class GroupWithProxies with _$GroupWithProxies {
         final result = <GroupWithProxies>[];
         for (final proxy in proxies) {
           if (proxy is ClashProxyGroup) {
-            if (mode != TunnelMode.global && proxy.name == "GLOBAL") continue;
+            // if (mode != TunnelMode.global && proxy.name == "GLOBAL") continue;
             final current = <ClashProxy>[];
             for (final name in proxy.all) {
               current.addAll(proxies.where((e) => e.name == name).toList());

@@ -1,32 +1,24 @@
-import 'dart:async';
-
 import 'package:fpdart/fpdart.dart';
 import 'package:hiddify/domain/clash/clash.dart';
 import 'package:hiddify/domain/constants.dart';
+import 'package:hiddify/domain/core_service_failure.dart';
 
 abstract class ClashFacade {
-  TaskEither<ClashFailure, ClashConfig> getConfigs();
+  TaskEither<CoreServiceFailure, ClashConfig> getConfigs();
 
-  TaskEither<ClashFailure, bool> validateConfig(String configFileName);
+  TaskEither<CoreServiceFailure, Unit> patchOverrides(ClashConfig overrides);
 
-  /// change active configuration file by [configFileName]
-  TaskEither<ClashFailure, Unit> changeConfigs(String configFileName);
+  TaskEither<CoreServiceFailure, List<ClashProxy>> getProxies();
 
-  TaskEither<ClashFailure, Unit> patchOverrides(ClashConfig overrides);
-
-  TaskEither<ClashFailure, List<ClashProxy>> getProxies();
-
-  TaskEither<ClashFailure, Unit> changeProxy(
+  TaskEither<CoreServiceFailure, Unit> changeProxy(
     String selectorName,
     String proxyName,
   );
 
-  TaskEither<ClashFailure, int> testDelay(
+  TaskEither<CoreServiceFailure, int> testDelay(
     String proxyName, {
-    String testUrl = Constants.delayTestUrl,
+    String testUrl = Defaults.delayTestUrl,
   });
 
-  TaskEither<ClashFailure, ClashTraffic> getTraffic();
-
-  Stream<Either<ClashFailure, ClashLog>> watchLogs();
+  Stream<Either<CoreServiceFailure, ClashTraffic>> watchTraffic();
 }

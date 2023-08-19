@@ -1,7 +1,9 @@
 import 'package:flutter/services.dart';
-import 'package:hiddify/domain/connectivity/connectivity_failure.dart';
+import 'package:hiddify/domain/connectivity/connectivity.dart';
+import 'package:hiddify/domain/core_service_failure.dart';
 import 'package:hiddify/services/connectivity/connectivity_service.dart';
 import 'package:hiddify/services/notification/notification.dart';
+import 'package:hiddify/services/singbox/singbox_service.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -9,78 +11,84 @@ import 'package:rxdart/rxdart.dart';
 class MobileConnectivityService
     with InfraLogger
     implements ConnectivityService {
-  MobileConnectivityService(this._notificationService);
+  MobileConnectivityService(this.singbox, this.notifications);
 
-  final NotificationService _notificationService;
+  final SingboxService singbox;
+  final NotificationService notifications;
 
-  static const _methodChannel = MethodChannel("Hiddify/VpnService");
-  static const _eventChannel = EventChannel("Hiddify/VpnServiceEvents");
+  late final EventChannel _statusChannel;
+  late final EventChannel _alertsChannel;
+  late final ValueStream<ConnectionStatus> _connectionStatus;
 
-  final _connectionStatus = ValueConnectableStream(
-    _eventChannel.receiveBroadcastStream().map((event) => event as bool),
-  ).autoConnect();
+  static CoreServiceFailure fromServiceAlert(String key, String? message) {
+    return switch (key) {
+      "EmptyConfiguration" => InvalidConfig(message),
+      "StartCommandServer" ||
+      "CreateService" =>
+        CoreServiceCreateFailure(message),
+      "StartService" => CoreServiceStartFailure(message),
+      _ => const CoreServiceOtherFailure(),
+    };
+  }
+
+  static ConnectionStatus fromServiceEvent(dynamic event) {
+    final status = event['status'] as String;
+    late ConnectionStatus connectionStatus;
+    switch (status) {
+      case "Stopped":
+        final failure = event["failure"] as String?;
+        final message = event["message"] as String?;
+        connectionStatus = ConnectionStatus.disconnected(
+          switch (failure) {
+            null => null,
+            "RequestVPNPermission" => MissingVpnPermission(message),
+            "RequestNotificationPermission" =>
+              MissingNotificationPermission(message),
+            "EmptyConfiguration" ||
+            "StartCommandServer" ||
+            "CreateService" ||
+            "StartService" =>
+              CoreConnectionFailure(fromServiceAlert(failure, message)),
+            _ => const UnexpectedConnectionFailure(),
+          },
+        );
+      case "Starting":
+        connectionStatus = const Connecting();
+      case "Started":
+        connectionStatus = const Connected();
+      case "Stopping":
+        connectionStatus = const Disconnecting();
+    }
+    return connectionStatus;
+  }
 
   @override
   Future<void> init() async {
     loggy.debug("initializing");
-    final initialStatus = _connectionStatus.first;
-    await _methodChannel.invokeMethod("refresh_status");
-    await initialStatus;
+    _statusChannel = const EventChannel("com.hiddify.app/service.status");
+    _alertsChannel = const EventChannel("com.hiddify.app/service.alerts");
+    final status =
+        _statusChannel.receiveBroadcastStream().map(fromServiceEvent);
+    final alerts =
+        _alertsChannel.receiveBroadcastStream().map(fromServiceEvent);
+    _connectionStatus =
+        ValueConnectableStream(Rx.merge([status, alerts])).autoConnect();
+    await _connectionStatus.first;
   }
 
   @override
-  Stream<bool> watchConnectionStatus() {
-    return _connectionStatus;
-  }
+  Stream<ConnectionStatus> watchConnectionStatus() => _connectionStatus;
 
   @override
-  Future<bool> grantVpnPermission() async {
-    loggy.debug('requesting vpn permission');
-    final result = await _methodChannel.invokeMethod<bool>("grant_permission");
-    if (!(result ?? false)) {
-      loggy.info("vpn permission denied");
-    }
-    return result ?? false;
-  }
-
-  @override
-  Future<void> connect({
-    required int httpPort,
-    required int socksPort,
-    bool systemProxy = true,
-  }) async {
+  Future<void> connect() async {
     loggy.debug("connecting");
-    await setPrefs(httpPort, socksPort, systemProxy);
-    final hasNotificationPermission =
-        await _notificationService.grantPermission();
-    if (!hasNotificationPermission) {
-      loggy.warning("notification permission denied");
-      throw const ConnectivityFailure.unexpected();
-    }
-    await _methodChannel.invokeMethod<bool>("start");
+    await notifications.grantPermission();
+    await singbox.start().getOrElse((l) => throw l).run();
   }
 
   @override
   Future<void> disconnect() async {
     loggy.debug("disconnecting");
-    await _methodChannel.invokeMethod<bool>("stop");
-  }
-
-  Future<void> setPrefs(int port, int socksPort, bool systemProxy) async {
-    loggy.debug(
-      'setting connection prefs: httpPort: $port, socksPort: $socksPort, systemProxy: $systemProxy',
-    );
-    final result = await _methodChannel.invokeMethod<bool>(
-      "set_prefs",
-      {
-        "port": port,
-        "socks-port": socksPort,
-        "system-proxy": systemProxy,
-      },
-    );
-    if (!(result ?? false)) {
-      loggy.error("failed to set connection prefs");
-      // TODO: throw
-    }
+    await singbox.stop().getOrElse((l) => throw l).run();
   }
 }

@@ -1,7 +1,8 @@
-ANDROID_OUT=./android/app/src/main/jniLibs
-DESKTOP_OUT=./core/bin
-NDK_BIN=$(ANDROID_HOME)/ndk/25.2.9519653/toolchains/llvm/prebuilt/linux-x86_64/bin
-GOBUILD=CGO_ENABLED=1 go build -trimpath -tags with_gvisor,with_lwip -ldflags="-w -s" -buildmode=c-shared
+BINDIR=./libcore/bin
+ANDROID_OUT=./android/app/libs
+DESKTOP_OUT=./libcore/bin
+GEO_ASSETS_DIR=./assets/core
+LIBS_DOWNLOAD_URL=https://github.com/hiddify/hiddify-next-core/releases/download/draft
 
 get:
 	flutter pub get
@@ -20,40 +21,40 @@ windows-release:
 
 linux-release:
 	flutter_distributor package --platform linux --targets appimage
+
 macos-realase:
 	flutter build macos --release &&\
 	tree ./build/macos/Build &&\
     create-dmg  --app-drop-link 600 185 "hiddify-amd64.dmg" ./build/macos/Build/Products/Release/hiddify-clash.app
+
 android-libs: 
-	mkdir -p $(ANDROID_OUT)/x86_64  $(ANDROID_OUT)/arm64-v8a/ $(ANDROID_OUT)/armeabi-v7a/ &&\
-	curl -L https://github.com/hiddify/hiddify-libclash/releases/latest/download/hiddify-clashlib-android-amd64.so.gz | gunzip > $(ANDROID_OUT)/x86_64/libclash.so &&\
-	curl -L https://github.com/hiddify/hiddify-libclash/releases/latest/download/hiddify-clashlib-android-arm64.so.gz | gunzip > $(ANDROID_OUT)/arm64-v8a/libclash.so &&\
-	curl -L https://github.com/hiddify/hiddify-libclash/releases/latest/download/hiddify-clashlib-android-arm.so.gz | gunzip > $(ANDROID_OUT)/armeabi-v7a/libclash.so
+	mkdir -p $(ANDROID_OUT)
+	curl -L $(LIBS_DOWNLOAD_URL)/hiddify-libcore-android.aar.gz | gunzip > $(ANDROID_OUT)/libcore.aar
 
 windows-libs:
-	mkdir -p $(DESKTOP_OUT)/ &&\
-	curl -L https://github.com/hiddify/hiddify-libclash/releases/latest/download/hiddify-clashlib-windows-amd64.dll.gz | gunzip > $(DESKTOP_OUT)/libclash.dll
+	mkdir -p $(DESKTOP_OUT)
+	curl -L $(LIBS_DOWNLOAD_URL)/hiddify-libcore-windows-amd64.dll.gz | gunzip > $(DESKTOP_OUT)/libcore.dll
 
 linux-libs:
-	mkdir -p $(DESKTOP_OUT)/ &&\
-	curl -L https://github.com/hiddify/hiddify-libclash/releases/latest/download/hiddify-clashlib-linux-amd64.so.gz | gunzip > $(DESKTOP_OUT)/libclash.so
+	mkdir -p $(DESKTOP_OUT)
+	curl -L $(LIBS_DOWNLOAD_URL)/hiddify-libcore-linux-amd64.so.gz | gunzip > $(DESKTOP_OUT)/libcore.so
 
 macos-libs:
 	mkdir -p $(DESKTOP_OUT)/ &&\
 	curl -L https://github.com/hiddify/hiddify-libclash/releases/latest/download/hiddify-clashlib-macos-amd64.so.gz | gunzip > $(DESKTOP_OUT)/libclash.dylib
 
+get-geo-assets:
+	curl -L https://github.com/SagerNet/sing-geoip/releases/latest/download/geoip.db -o $(GEO_ASSETS_DIR)/geoip.db
+	curl -L https://github.com/SagerNet/sing-geosite/releases/latest/download/geosite.db -o $(GEO_ASSETS_DIR)/geosite.db
+
+build-headers:
+	make -C libcore -f Makefile headers && mv $(BINDIR)/hiddify-libcore-headers.h $(BINDIR)/libcore.h
+
 build-android-libs:
-	cd core &&\
-	mkdir -p .$(ANDROID_OUT)/x86_64/  .$(ANDROID_OUT)/arm64-v8a/ .$(ANDROID_OUT)/armeabi-v7a/ &&\
-	make android-amd64 && mv bin/hiddify-clashlib-android-amd64.so .$(ANDROID_OUT)/x86_64/libclash.so &&\
-	make android-arm && mv bin/hiddify-clashlib-android-arm.so .$(ANDROID_OUT)/armeabi-v7a/libclash.so &&\
-	make android-arm64 && mv bin/hiddify-clashlib-android-arm64.so .$(ANDROID_OUT)/arm64-v8a/libclash.so
+	make -C libcore -f Makefile android && mv $(BINDIR)/hiddify-libcore-android.aar $(ANDROID_OUT)/libcore.aar
 
 build-windows-libs:
-	cd core &&\
-	make windows-amd64 && mv bin/hiddify-clashlib-windows-amd64.dll bin/libclash.dll
+	make -C libcore -f Makefile windows-amd64 && mv $(BINDIR)/hiddify-libcore-windows-amd64.dll $(DESKTOP_OUT)/libcore.dll
 
 build-linux-libs:
-	cd core &&\
-	make linux-amd64 && mv bin/hiddify-clashlib-linux-amd64.dll bin/libclash.so
-
+	make -C libcore -f Makefile linux-amd64 && mv $(BINDIR)/hiddify-libcore-linux-amd64.dll $(DESKTOP_OUT)/libcore.so

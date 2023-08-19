@@ -145,8 +145,18 @@
             "unexpected": "unexpected failure",
             "core": "clash failure ${reason}"
         },
+        "singbox": {
+            "unexpected": "unexpected service failure",
+            "serviceNotRunning": "Service not running",
+            "invalidConfig": "Configuration is not valid",
+            "create": "Error creating service",
+            "start": "Error starting service"
+        },
         "connectivity": {
-            "unexpected": "unexpected failure"
+            "unexpected": "unexpected failure",
+            "missingVpnPermission": "Missing VPN permission",
+            "missingNotificationPermission": "Missing Notification permission",
+            "core": "Core failure"
         },
         "profiles": {
             "unexpected": "unexpected failure",

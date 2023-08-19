@@ -5,7 +5,6 @@ import 'package:hiddify/core/router/router.dart';
 import 'package:hiddify/domain/failures.dart';
 import 'package:hiddify/features/common/active_profile/active_profile_notifier.dart';
 import 'package:hiddify/features/common/active_profile/has_any_profile_notifier.dart';
-import 'package:hiddify/features/common/clash/clash_controller.dart';
 import 'package:hiddify/features/common/common.dart';
 import 'package:hiddify/features/home/widgets/widgets.dart';
 import 'package:hiddify/utils/utils.dart';
@@ -21,18 +20,6 @@ class HomePage extends HookConsumerWidget {
     final t = ref.watch(translationsProvider);
     final hasAnyProfile = ref.watch(hasAnyProfileProvider);
     final activeProfile = ref.watch(activeProfileProvider);
-
-    ref.listen(
-      clashControllerProvider,
-      (_, next) {
-        if (next case AsyncError(:final error)) {
-          CustomToast.error(
-            t.presentError(error),
-            duration: const Duration(seconds: 10),
-          ).show(context);
-        }
-      },
-    );
 
     return Scaffold(
       body: Stack(

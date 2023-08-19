@@ -1,116 +1,148 @@
 package com.hiddify.hiddify
 
 import android.content.Intent
-import android.content.IntentFilter
 import android.net.VpnService
 import android.util.Log
-import io.flutter.embedding.android.FlutterActivity
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.lifecycleScope
+import com.hiddify.hiddify.bg.ServiceConnection
+import com.hiddify.hiddify.bg.ServiceNotification
+import com.hiddify.hiddify.bg.VPNService
+import com.hiddify.hiddify.constant.Alert
+import com.hiddify.hiddify.constant.Status
+import io.flutter.embedding.android.FlutterFragmentActivity
 import io.flutter.embedding.engine.FlutterEngine
-import io.flutter.plugin.common.EventChannel
-import io.flutter.plugin.common.MethodCall
-import io.flutter.plugin.common.MethodChannel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.util.LinkedList
 
-class MainActivity : FlutterActivity(), MethodChannel.MethodCallHandler {
-    private lateinit var methodChannel: MethodChannel
-    private lateinit var eventChannel: EventChannel
-    private lateinit var methodResult: MethodChannel.Result
-    private var vpnBroadcastReceiver: VpnState? = null
-
+class MainActivity : FlutterFragmentActivity(), ServiceConnection.Callback {
     companion object {
+        private const val TAG = "ANDROID/MyActivity"
+        lateinit var instance: MainActivity
+
         const val VPN_PERMISSION_REQUEST_CODE = 1001
-
-        enum class Action(val method: String) {
-            GrantPermission("grant_permission"),
-            StartProxy("start"),
-            StopProxy("stop"),
-            RefreshStatus("refresh_status"),
-            SetPrefs("set_prefs")
-        }
+        const val NOTIFICATION_PERMISSION_REQUEST_CODE = 1010
     }
 
-    private fun registerBroadcastReceiver() {
-        Log.d(HiddifyVpnService.TAG, "registering broadcast receiver")
-        vpnBroadcastReceiver = VpnState()
-        val intentFilter = IntentFilter(VpnState.ACTION_VPN_STATUS)
-        registerReceiver(vpnBroadcastReceiver, intentFilter)
-    }
+    private val connection = ServiceConnection(this, this)
 
-    private fun unregisterBroadcastReceiver() {
-        Log.d(HiddifyVpnService.TAG, "unregistering broadcast receiver")
-        if (vpnBroadcastReceiver != null) {
-            unregisterReceiver(vpnBroadcastReceiver)
-            vpnBroadcastReceiver = null
-        }
-    }
+    val logList = LinkedList<String>()
+    var logCallback: ((Boolean) -> Unit)? = null
+    val serviceStatus = MutableLiveData(Status.Stopped)
+    val serviceAlerts = MutableLiveData<ServiceEvent?>(null)
+    val serviceLogs = MutableLiveData<String?>(null)
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
-        methodChannel =
-            MethodChannel(flutterEngine.dartExecutor.binaryMessenger, HiddifyVpnService.TAG)
-        methodChannel.setMethodCallHandler(this)
-
-        eventChannel = EventChannel(flutterEngine.dartExecutor.binaryMessenger, HiddifyVpnService.EVENT_TAG)
-        registerBroadcastReceiver()
-        eventChannel.setStreamHandler(vpnBroadcastReceiver)
+        instance = this
+        reconnect()
+        flutterEngine.plugins.add(MethodHandler())
+        flutterEngine.plugins.add(EventHandler())
+        flutterEngine.plugins.add(LogHandler())
     }
 
-    override fun onMethodCall(call: MethodCall, result: MethodChannel.Result) {
-        methodResult = result
-        @Suppress("UNCHECKED_CAST")
-        when (call.method) {
-            Action.GrantPermission.method -> {
-                grantVpnPermission()
+    fun reconnect() {
+        connection.reconnect()
+    }
+
+    fun startService() {
+        if (!ServiceNotification.checkPermission()) {
+            Log.d(TAG, "missing notification permission")
+            return
+        }
+        lifecycleScope.launch(Dispatchers.IO) {
+//            if (Settings.rebuildServiceMode()) {
+//                reconnect()
+//            }
+            if (prepare()) {
+                Log.d(TAG, "VPN permission required")
+                return@launch
             }
 
-            Action.StartProxy.method -> {
-                VpnServiceManager.startVpnService(this)
-                result.success(true)
-            }
-
-            Action.StopProxy.method -> {
-                VpnServiceManager.stopVpnService()
-                result.success(true)
-            }
-
-            Action.RefreshStatus.method -> {
-                val statusIntent = Intent(VpnState.ACTION_VPN_STATUS)
-                statusIntent.putExtra(VpnState.IS_VPN_ACTIVE, VpnServiceManager.isRunning)
-                sendBroadcast(statusIntent)
-                result.success(true)
-            }
-
-            Action.SetPrefs.method -> {
-                val args = call.arguments as Map<String, Any>
-                VpnServiceManager.setPrefs(context, args)
-                result.success(true)
-            }
-
-            else -> {
-                result.notImplemented()
+            val intent = Intent(Application.application, VPNService::class.java)
+            withContext(Dispatchers.Main) {
+                ContextCompat.startForegroundService(Application.application, intent)
             }
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        unregisterBroadcastReceiver()
+
+    override fun onServiceStatusChanged(status: Status) {
+        Log.d(TAG, "service status changed: $status")
+        serviceStatus.postValue(status)
     }
 
-    private fun grantVpnPermission() {
-        val vpnPermissionIntent = VpnService.prepare(this)
-        if (vpnPermissionIntent == null) {
-            onActivityResult(VPN_PERMISSION_REQUEST_CODE, RESULT_OK, null)
-        } else {
-            startActivityForResult(vpnPermissionIntent, VPN_PERMISSION_REQUEST_CODE)
+
+    override fun onServiceAlert(type: Alert, message: String?) {
+        Log.d(TAG, "service alert: $type")
+        serviceAlerts.postValue(ServiceEvent(Status.Stopped, type, message))
+    }
+
+    private var paused = false
+    override fun onPause() {
+        super.onPause()
+
+        paused = true
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        paused = false
+        logCallback?.invoke(true)
+    }
+
+    override fun onServiceWriteLog(message: String?) {
+        if (paused) {
+            if (logList.size > 300) {
+                logList.removeFirst()
+            }
+        }
+        logList.addLast(message)
+        if (!paused) {
+            logCallback?.invoke(false)
+            serviceLogs.postValue(message)
+        }
+    }
+
+    override fun onServiceResetLogs(messages: MutableList<String>) {
+        logList.clear()
+        logList.addAll(messages)
+        if (!paused) logCallback?.invoke(true)
+    }
+
+    override fun onDestroy() {
+        connection.disconnect()
+        super.onDestroy()
+    }
+
+    private suspend fun prepare() = withContext(Dispatchers.Main) {
+        try {
+            val intent = VpnService.prepare(this@MainActivity)
+            if (intent != null) {
+//                prepareLauncher.launch(intent)
+                startActivityForResult(intent, VPN_PERMISSION_REQUEST_CODE)
+                true
+            } else {
+                false
+            }
+        } catch (e: Exception) {
+            onServiceAlert(Alert.RequestVPNPermission, e.message)
+            false
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == VPN_PERMISSION_REQUEST_CODE) {
-            methodResult.success(resultCode == RESULT_OK)
-        } else if (requestCode == 101010) {
-            methodResult.success(resultCode == RESULT_OK)
+            if (resultCode == RESULT_OK) startService()
+            else onServiceAlert(Alert.RequestVPNPermission, null)
+        } else if (requestCode == NOTIFICATION_PERMISSION_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) startService()
+            else onServiceAlert(Alert.RequestNotificationPermission, null)
         }
     }
 }

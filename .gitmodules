@@ -1,3 +1,3 @@
-[submodule "core"]
-	path = core
-	url = https://github.com/hiddify/hiddify-libclash
+[submodule "libcore"]
+	path = libcore
+	url = https://github.com/hiddify/hiddify-next-core
