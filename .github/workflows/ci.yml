@@ -89,6 +89,10 @@ jobs:
         run: |
           dart pub global activate flutter_distributor
 
+      - name: Get Geo Assets
+        run: |
+          make get-geo-assets
+
       - name: Get Dependencies
         run: |
           make get
@@ -97,10 +101,6 @@ jobs:
         run: |
           make gen
           make translate
-
-      - name: Get Geo Assets
-        run: |
-          make get-geo-assets
 
       - name: Get Libs ${{ matrix.platform }}
         run: |
