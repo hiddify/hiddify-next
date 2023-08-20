@@ -127,13 +127,13 @@ jobs:
           foreach ($EXT in $EXT_ARRAY) {
               # Find all files with this extension in the current directory, and copy them to "out" directory
               Get-ChildItem -Recurse -File -Filter "*setup.$EXT" | Copy-Item -Destination "out" -ErrorAction SilentlyContinue
-              move out\*setup.$EXT out\${{ matrix.platform }}-x64-setup.$EXT
+              move out\*setup.$EXT out\hiddify-${{ matrix.platform }}-x64-setup.$EXT
               Get-ChildItem -Recurse -File -Filter "*.$EXT"
           }
           
           mkdir ${{ matrix.platform }}-portable
           xcopy /s /v D:\a\hiddify-next\hiddify-next\build\windows\runner\Release\ .\${{ matrix.platform }}-portable\
-          Compress-Archive ${{ matrix.platform }}-portable out\${{ matrix.platform }}-x64-portable.zip
+          Compress-Archive ${{ matrix.platform }}-portable out\hiddify-${{ matrix.platform }}-x64-portable.zip
           
       - name: Copy to out unix
         if: matrix.platform != 'windows'
