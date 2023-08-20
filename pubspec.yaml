@@ -4,7 +4,7 @@ publish_to: 'none'
 version: 0.1.0
 
 environment:
-  sdk: '>=3.1.0 <4.0.0'
+  sdk: '>=3.0.5 <4.0.0'
 
 dependencies:
   flutter:
@@ -15,8 +15,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: ^0.18.0
-  slang: ^3.21.0
-  slang_flutter: ^3.21.0
+  slang: ^3.23.0
+  slang_flutter: ^3.23.0
   recase: ^4.1.0
   timeago: ^3.5.0
   duration: ^3.0.13
@@ -28,33 +28,33 @@ dependencies:
   json_annotation: ^4.8.1
 
   # state management
-  hooks_riverpod: ^2.3.6
-  flutter_hooks: ^0.18.6
-  riverpod_annotation: ^2.1.1
+  hooks_riverpod: ^2.3.8
+  flutter_hooks: ^0.20.0
+  riverpod_annotation: ^2.1.2
   rxdart: ^0.27.7
 
   # persistence
-  drift: ^2.10.0
+  drift: ^2.11.0
   sqlite3_flutter_libs: ^0.5.15
   shared_preferences: ^2.2.0
 
   # networking
-  dio: ^5.3.0
+  dio: ^5.3.2
   web_socket_channel: ^2.4.0
 
   # native
-  ffi: ^2.0.2
-  path_provider: ^2.0.15
+  ffi: ^2.1.0
+  path_provider: ^2.1.0
   flutter_local_notifications: ^15.1.0+1
-  mobile_scanner: ^3.3.0
+  mobile_scanner: ^3.4.1
   protocol_handler: ^0.1.5
-  flutter_native_splash: ^2.3.1
+  flutter_native_splash: ^2.3.2
   icons_launcher: ^2.1.3
-  file_picker: ^5.3.2
-  share_plus: ^7.0.2
+  file_picker: ^5.3.3
+  share_plus: ^7.1.0
   window_manager: ^0.3.5
   tray_manager: ^0.2.0
-  package_info_plus: ^4.0.2
+  package_info_plus: ^4.1.0
   url_launcher: ^6.1.12
 
   # utils
@@ -69,9 +69,9 @@ dependencies:
   tint: ^2.0.1
 
   # widgets
-  go_router: ^9.1.0
+  go_router: ^10.1.0
   flex_color_scheme: ^7.2.0
-  flutter_animate: ^4.2.0
+  flutter_animate: ^4.2.0+1
   flutter_svg: ^2.0.7
   gap: ^3.0.1
   percent_indicator: ^4.2.3
@@ -86,15 +86,18 @@ dev_dependencies:
   lint: ^2.1.2
   build_runner: ^2.4.6
   json_serializable: ^6.7.1
-  freezed: ^2.4.1
-  riverpod_generator: ^2.2.3
-  drift_dev: ^2.10.0
+  freezed: ^2.4.2
+  riverpod_generator: ^2.2.6
+  drift_dev: ^2.11.0
   ffigen: ^8.0.2
-  slang_build_runner: ^3.21.0
+  slang_build_runner: ^3.23.0
   flutter_gen_runner: ^5.3.1
-  go_router_builder: ^2.2.3
-  custom_lint: ^0.4.0
-  riverpod_lint: ^1.3.2
+  go_router_builder: ^2.3.0
+  custom_lint: ^0.5.2
+  riverpod_lint: ^2.0.1
+
+dependency_overrides:
+  analyzer: '5.12.0'
 
 flutter:
   uses-material-design: true

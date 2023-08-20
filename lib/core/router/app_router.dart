@@ -32,7 +32,7 @@ GoRouter router(RouterRef ref) {
 }
 
 int getCurrentIndex(BuildContext context) {
-  final String location = GoRouterState.of(context).location;
+  final String location = GoRouterState.of(context).uri.path;
   if (location == const HomeRoute().location) return 0;
   if (location.startsWith(const ProxiesRoute().location)) return 1;
   if (location.startsWith(const LogsRoute().location)) return 2;

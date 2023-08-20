@@ -18,7 +18,7 @@ class MobileWrapper extends HookConsumerWidget {
     final t = ref.watch(translationsProvider);
 
     final currentIndex = getCurrentIndex(context);
-    final location = GoRouterState.of(context).location;
+    final location = GoRouterState.of(context).uri.path;
 
     return Scaffold(
       key: RootScaffold.stateKey,
