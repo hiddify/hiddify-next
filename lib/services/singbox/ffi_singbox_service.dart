@@ -4,12 +4,14 @@ import 'dart:io';
 
 import 'package:combine/combine.dart';
 import 'package:ffi/ffi.dart';
-import 'package:flutter/foundation.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:hiddify/gen/singbox_generated_bindings.dart';
 import 'package:hiddify/services/singbox/singbox_service.dart';
 import 'package:hiddify/utils/utils.dart';
+import 'package:loggy/loggy.dart';
 import 'package:path/path.dart' as p;
+
+final _logger = Loggy('FFISingboxService');
 
 class FFISingboxService with InfraLogger implements SingboxService {
   static final SingboxNativeLibrary _box = _gen();
@@ -26,7 +28,7 @@ class FFISingboxService with InfraLogger implements SingboxService {
     } else {
       fullPath = p.join(fullPath, "libcore.so");
     }
-    debugPrint('singbox native libs path: "$fullPath"');
+    _logger.debug('singbox native libs path: "$fullPath"');
     final lib = DynamicLibrary.open(fullPath);
     return SingboxNativeLibrary(lib);
   }

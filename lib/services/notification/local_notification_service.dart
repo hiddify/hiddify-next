@@ -26,6 +26,7 @@ class LocalNotificationService with InfraLogger implements NotificationService {
     const initializationSettings = InitializationSettings(
       android: AndroidInitializationSettings('mipmap/ic_launcher'),
       linux: LinuxInitializationSettings(defaultActionName: "open"),
+      macOS: DarwinInitializationSettings(),
     );
 
     await _initDetails();
