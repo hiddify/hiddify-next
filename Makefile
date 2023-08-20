@@ -39,7 +39,7 @@ linux-libs:
 	mkdir -p $(DESKTOP_OUT)
 	curl -L $(LIBS_DOWNLOAD_URL)/hiddify-libcore-linux-amd64.so.gz | gunzip > $(DESKTOP_OUT)/libcore.so
 
-macos-universal-libs:
+macos-libs:
 	mkdir -p $(DESKTOP_OUT)/ &&\
 	curl -L $(LIBS_DOWNLOAD_URL)/hiddify-libcore-macos-universal.dylib.gz | gunzip > $(DESKTOP_OUT)/libcore.dylib
 

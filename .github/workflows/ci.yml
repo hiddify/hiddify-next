@@ -146,10 +146,10 @@ jobs:
               # Find all files with this extension in SRC_DIR, and copy them to DST_DIR
               find "." -type f -name "*.$EXT" -exec cp {} "out" \;
           done
-          mv out/*arm64-v8a*.apk out/hiddify-android-arm64.apk
-          mv out/*armeabi-v7a*.apk out/hiddify-android-arm7.apk
-          mv out/*x86_64*.apk out/hiddify-android-x86_64.apk
-          mv out/*.AppImage out/hiddify-linux-x64.AppImage
+          mv out/*arm64-v8a*.apk out/hiddify-android-arm64.apk || echo "no arm64 apk"
+          mv out/*armeabi-v7a*.apk out/hiddify-android-arm7.apk || echo "no arm7 apk"
+          mv out/*x86_64*.apk out/hiddify-android-x86_64.apk || echo "no x64 apk"
+          mv out/*.AppImage out/hiddify-linux-x64.AppImage || echo "no app image"
 
       - uses: actions/upload-artifact@v3
         with:
