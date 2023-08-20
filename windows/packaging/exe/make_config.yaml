@@ -4,7 +4,7 @@ publisher_url: https://github.com/hiddify/hiddify-next
 display_name: Hiddify
 create_desktop_icon: true
 install_dir_name: "{autopf64}\\hiddify"
-setup_icon_file: ..\..\assets\images\logo_round.ico
+setup_icon_file: ..\..\assets\images\windows.ico
 locales:
   - en
   - fa
