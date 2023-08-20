@@ -31,6 +31,9 @@ macos-release:
 	# tree ./build/macos/Build &&\
     # create-dmg  --app-drop-link 600 185 "hiddify-macos-universal.dmg" ./build/macos/Build/Products/Release/hiddify.app
 
+ios-release: #not tested
+	flutter_distributor package --platform ios --targets ipa --build-export-options-plist  ios/exportOptions.plist
+
 android-libs: 
 	mkdir -p $(ANDROID_OUT)
 	curl -L $(LIBS_DOWNLOAD_URL)/hiddify-libcore-android.aar.gz | gunzip > $(ANDROID_OUT)/libcore.aar
@@ -46,6 +49,10 @@ linux-libs:
 macos-libs:
 	mkdir -p $(DESKTOP_OUT)/ &&\
 	curl -L $(LIBS_DOWNLOAD_URL)/hiddify-libcore-macos-universal.dylib.gz | gunzip > $(DESKTOP_OUT)/libcore.dylib
+
+ios-libs: #not tested
+	mkdir -p $(DESKTOP_OUT)/ &&\
+	curl -L $(LIBS_DOWNLOAD_URL)/hiddify-libcore-ios-universal.xcframework.gz | gunzip > $(DESKTOP_OUT)/libcore.xcframework
 
 get-geo-assets:
 	curl -L https://github.com/SagerNet/sing-geoip/releases/latest/download/geoip.db -o $(GEO_ASSETS_DIR)/geoip.db
@@ -64,4 +71,8 @@ build-linux-libs:
 	make -C libcore -f Makefile linux-amd64 && mv $(BINDIR)/hiddify-libcore-linux-amd64.dll $(DESKTOP_OUT)/libcore.so
 
 build-macos-libs:
-	make -C libcore -f Makefile macos-amd64 && mv $(BINDIR)/hiddify-libcore-macos-amd64.dylib $(DESKTOP_OUT)/libcore.dylib
+	make -C libcore -f Makefile macos-universal && mv $(BINDIR)/hiddify-libcore-macos-universal.dylib $(DESKTOP_OUT)/libcore.dylib
+
+
+build-ios-libs: #not tested
+	make -C libcore -f Makefile ios && mv $(BINDIR)/hiddify-libcore-ios.xcframework $(DESKTOP_OUT)/libcore.xcframework
