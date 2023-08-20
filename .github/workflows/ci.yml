@@ -25,11 +25,12 @@ jobs:
             aarch: amd64
             targets: exe
             target: windows-x64
-          - platform: windows
-            os: windows-latest
-            aarch: 386
-            targets: exe     
-            target: windows-x86       
+            
+          # - platform: windows
+          #   os: windows-latest
+          #   aarch: 386
+          #   targets: exe     
+          #   target: windows-x86       
 
           # - platform: linux
           #   os: ubuntu-latest
@@ -40,17 +41,19 @@ jobs:
             os: macos-11
             aarch: universal
             targets: dmg
+            target: macos-universal
 
           - platform: linux
             os: ubuntu-latest
             aarch: amd64
             targets: AppImage
             target: linux-x64
-          - platform: linux
-            os: ubuntu-latest
-            aarch: 386
-            targets: AppImage
-            target: linux-x86
+
+          # - platform: linux
+          #   os: ubuntu-latest
+          #   aarch: 386
+          #   targets: AppImage
+          #   target: linux-x86
 
     runs-on: ${{ matrix.os }}
     steps:

@@ -16,13 +16,13 @@ translate:
 android-release:
 	flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi
 
-windows-release:
+windows-x64-release:
 	flutter_distributor package --platform windows --targets exe
 
-linux-release:
+linux-x64-release:
 	flutter_distributor package --platform linux --targets appimage
 
-macos-realase:
+macos-universal-release:
 	flutter build macos --release &&\
 	tree ./build/macos/Build &&\
     create-dmg  --app-drop-link 600 185 "hiddify-amd64.dmg" ./build/macos/Build/Products/Release/hiddify-clash.app
@@ -31,15 +31,15 @@ android-libs:
 	mkdir -p $(ANDROID_OUT)
 	curl -L $(LIBS_DOWNLOAD_URL)/hiddify-libcore-android.aar.gz | gunzip > $(ANDROID_OUT)/libcore.aar
 
-windows-libs:
+windows-x64-libs:
 	mkdir -p $(DESKTOP_OUT)
 	curl -L $(LIBS_DOWNLOAD_URL)/hiddify-libcore-windows-amd64.dll.gz | gunzip > $(DESKTOP_OUT)/libcore.dll
 
-linux-libs:
+linux-x64-libs:
 	mkdir -p $(DESKTOP_OUT)
 	curl -L $(LIBS_DOWNLOAD_URL)/hiddify-libcore-linux-amd64.so.gz | gunzip > $(DESKTOP_OUT)/libcore.so
 
-macos-libs:
+macos-universal-libs:
 	mkdir -p $(DESKTOP_OUT)/ &&\
 	curl -L $(LIBS_DOWNLOAD_URL)/hiddify-libcore-macos-universal.dylib.gz | gunzip > $(DESKTOP_OUT)/libcore.dylib
 
