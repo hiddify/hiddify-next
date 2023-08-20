@@ -25,7 +25,7 @@ linux-release:
 macos-release:
 	flutter build macos --release &&\
 	tree ./build/macos/Build &&\
-    create-dmg  --app-drop-link 600 185 "hiddify-macos-universal.dmg" ./build/macos/Build/Products/Release/hiddify-clash.app
+    create-dmg  --app-drop-link 600 185 "hiddify-macos-universal.dmg" ./build/macos/Build/Products/Release/hiddify.app
 
 android-libs: 
 	mkdir -p $(ANDROID_OUT)

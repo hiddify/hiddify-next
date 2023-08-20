@@ -15,15 +15,15 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - platform: android
-            os: ubuntu-latest
-            targets: aab,apk
-            target: android
+          # - platform: android
+          #   os: ubuntu-latest
+          #   targets: aab,apk
+          #   target: android
 
-          - platform: windows
-            os: windows-latest
-            aarch: amd64
-            targets: exe
+          # - platform: windows
+          #   os: windows-latest
+          #   aarch: amd64
+          #   targets: exe
 
           # Flutter does not support x86
           # - platform: windows 
@@ -44,10 +44,10 @@ jobs:
             targets: dmg
 
 
-          - platform: linux
-            os: ubuntu-latest
-            aarch: amd64
-            targets: AppImage
+          # - platform: linux
+          #   os: ubuntu-latest
+          #   aarch: amd64
+          #   targets: AppImage
 
 
     runs-on: ${{ matrix.os }}
