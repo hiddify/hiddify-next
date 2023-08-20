@@ -132,7 +132,7 @@ jobs:
           }
           
           mkdir ${{ matrix.platform }}-portable
-          copy build/windows/runner/Release ${{ matrix.platform }}-portable
+          xcopy /s /v D:\a\hiddify-next\hiddify-next\build\windows\runner\Release\ .\${{ matrix.platform }}-portable\
           Compress-Archive ${{ matrix.platform }}-portable out\${{ matrix.platform }}-x64-portable.zip
           
       - name: Copy to out unix
