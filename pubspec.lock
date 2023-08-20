@@ -397,10 +397,10 @@ packages:
     dependency: "direct main"
     description:
       name: flex_color_scheme
-      sha256: "659cf59bd5ccaa1e7de9384342be8b666ff10b108ed57a7fd46c122fb8bf6aca"
+      sha256: "32914024a4f404d90ff449f58d279191675b28e7c08824046baf06826e99d984"
       url: "https://pub.dev"
     source: hosted
-    version: "7.2.0"
+    version: "7.3.1"
   flex_seed_scheme:
     dependency: transitive
     description:
@@ -553,10 +553,10 @@ packages:
     dependency: "direct main"
     description:
       name: fpdart
-      sha256: "4a0d047c3359a4bdd19e4941603bbe394bd133b3772a38049e17f9534d47106e"
+      sha256: "7413acc5a6569a3fe8277928fc7487f3198530f0c4e635d0baef199ea36e8ee9"
       url: "https://pub.dev"
     source: hosted
-    version: "0.6.0"
+    version: "1.1.0"
   freezed:
     dependency: "direct dev"
     description:
@@ -1540,4 +1540,4 @@ packages:
     version: "2.1.1"
 sdks:
   dart: ">=3.1.0-185.0.dev <4.0.0"
-  flutter: ">=3.10.0"
+  flutter: ">=3.13.0"

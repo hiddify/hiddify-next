@@ -23,7 +23,7 @@ dependencies:
   flutter_localized_locales: ^2.0.4
 
   # data & serialization
-  fpdart: ^0.6.0
+  fpdart: ^1.1.0
   freezed_annotation: ^2.4.1
   json_annotation: ^4.8.1
 
@@ -70,7 +70,7 @@ dependencies:
 
   # widgets
   go_router: ^10.1.0
-  flex_color_scheme: ^7.2.0
+  flex_color_scheme: ^7.3.1
   flutter_animate: ^4.2.0+1
   flutter_svg: ^2.0.7
   gap: ^3.0.1
