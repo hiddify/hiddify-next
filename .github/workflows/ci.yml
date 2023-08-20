@@ -74,7 +74,9 @@ jobs:
       - name: Build macos dmg
         if: matrix.platform == 'macos'
         run: |
-          brew install create-dmg tree
+          brew install create-dmg tree node
+          npm install -g appdmg
+
       - name: Setup Java
         if: matrix.platform == 'android'
         uses: actions/setup-java@v3

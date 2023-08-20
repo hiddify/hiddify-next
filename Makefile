@@ -23,9 +23,10 @@ linux-release:
 	flutter_distributor package --platform linux --targets appimage
 
 macos-release:
-	flutter build macos --release &&\
-	tree ./build/macos/Build &&\
-    create-dmg  --app-drop-link 600 185 "hiddify-macos-universal.dmg" ./build/macos/Build/Products/Release/hiddify.app
+	flutter_distributor package --platform macos --targets dmg 
+	# flutter build macos --release &&\
+	# tree ./build/macos/Build &&\
+    # create-dmg  --app-drop-link 600 185 "hiddify-macos-universal.dmg" ./build/macos/Build/Products/Release/hiddify.app
 
 android-libs: 
 	mkdir -p $(ANDROID_OUT)
