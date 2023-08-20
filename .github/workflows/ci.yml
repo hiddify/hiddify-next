@@ -18,29 +18,40 @@ jobs:
           - platform: android
             os: ubuntu-latest
             targets: aab,apk
+            target: android
 
           - platform: windows
             os: windows-latest
             aarch: amd64
             targets: exe
-#           - platform: windows
-#             os: windows-latest
-#             aarch: 386
-#             targets: exe            
+            target: windows-x64
+          - platform: windows
+            os: windows-latest
+            aarch: 386
+            targets: exe     
+            target: windows-x86       
 
           # - platform: linux
           #   os: ubuntu-latest
           #   aarch: 386
           #   targets: AppImage
 
-#           - platform: macos
-#             os: macos-11
-#             aarch: amd64
-#             targets: dmg
+          - platform: macos
+            os: macos-11
+            aarch: universal
+            targets: dmg
+
           - platform: linux
             os: ubuntu-latest
             aarch: amd64
             targets: AppImage
+            target: linux-x64
+          - platform: linux
+            os: ubuntu-latest
+            aarch: 386
+            targets: AppImage
+            target: linux-x86
+
     runs-on: ${{ matrix.os }}
     steps:
       - name: checkout
@@ -104,22 +115,24 @@ jobs:
 
       - name: Get Libs ${{ matrix.platform }}
         run: |
-          make ${{ matrix.platform }}-libs
+          make ${{ matrix.target }}-libs
 
-      - name: Release ${{ matrix.platform }}
+      - name: Release ${{ matrix.target }}
         run: |          
-          make ${{ matrix.platform }}-release
+          make ${{ matrix.target }}-release
       
       - name: Copy to out WINDOWS 
         if: matrix.platform == 'windows'
         run: |
           New-Item -ItemType Directory -Force -Name "out"
-          
           $EXT_ARRAY = "${{ matrix.targets }}" -split ","
           foreach ($EXT in $EXT_ARRAY) {
               # Find all files with this extension in the current directory, and copy them to "out" directory
               Get-ChildItem -Recurse -File -Filter "*setup.$EXT" | Copy-Item -Destination "out" -ErrorAction SilentlyContinue
           }
+          mkdir ${{ matrix.target }}-portable
+          copy build/windows/runner/Release ${{ matrix.target }}-portable
+          Compress-Archive ${{ matrix.target }}-portable out\${{ matrix.target }}-portable.zip
           
       - name: Copy to out unix
         if: matrix.platform != 'windows'

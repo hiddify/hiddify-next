@@ -41,7 +41,7 @@ linux-libs:
 
 macos-libs:
 	mkdir -p $(DESKTOP_OUT)/ &&\
-	curl -L https://github.com/hiddify/hiddify-libclash/releases/latest/download/hiddify-clashlib-macos-amd64.so.gz | gunzip > $(DESKTOP_OUT)/libclash.dylib
+	curl -L $(LIBS_DOWNLOAD_URL)/hiddify-libcore-macos-universal.dylib.gz | gunzip > $(DESKTOP_OUT)/libcore.dylib
 
 get-geo-assets:
 	curl -L https://github.com/SagerNet/sing-geoip/releases/latest/download/geoip.db -o $(GEO_ASSETS_DIR)/geoip.db
@@ -58,3 +58,6 @@ build-windows-libs:
 
 build-linux-libs:
 	make -C libcore -f Makefile linux-amd64 && mv $(BINDIR)/hiddify-libcore-linux-amd64.dll $(DESKTOP_OUT)/libcore.so
+
+build-macos-libs:
+	make -C libcore -f Makefile macos-amd64 && mv $(BINDIR)/hiddify-libcore-macos-amd64.dylib $(DESKTOP_OUT)/libcore.dylib
