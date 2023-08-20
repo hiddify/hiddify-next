@@ -4,7 +4,7 @@ publish_to: 'none'
 version: 0.1.0
 
 environment:
-  sdk: '>=3.0.1 <4.0.0'
+  sdk: '>=3.1.0 <4.0.0'
 
 dependencies:
   flutter:
@@ -58,7 +58,7 @@ dependencies:
   url_launcher: ^6.1.12
 
   # utils
-  combine: ^0.5.3
+  combine: ^0.5.4
   path: ^1.8.3
   loggy: ^2.0.3
   flutter_loggy: ^2.0.2
@@ -73,7 +73,7 @@ dependencies:
   flex_color_scheme: ^7.2.0
   flutter_animate: ^4.2.0
   flutter_svg: ^2.0.7
-  gap: ^2.0.2
+  gap: ^3.0.1
   percent_indicator: ^4.2.3
   fluttertoast: ^8.2.2
   sliver_tools: ^0.2.12
