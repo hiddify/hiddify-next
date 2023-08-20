@@ -59,10 +59,15 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Cache Flutter dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             ~/.pub-cache
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            ~/.npm
+            ~/.cache
+            ~/go/pkg/mod
           key: ${{ runner.os }}-pub-cache-${{ hashFiles('**/pubspec.lock') }}
           restore-keys: |
             ${{ runner.os }}-pub-cache-
