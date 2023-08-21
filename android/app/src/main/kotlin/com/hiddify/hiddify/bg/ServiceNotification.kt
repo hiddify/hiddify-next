@@ -34,7 +34,7 @@ class ServiceNotification(private val service: Service) {
 
     private val notification by lazy {
         NotificationCompat.Builder(service, notificationChannel).setWhen(0)
-            .setContentTitle("hiddify next")
+            .setContentTitle("Hiddify Next")
             .setContentText("service running").setOnlyAlertOnce(true)
             .setSmallIcon(R.drawable.ic_stat_logo)
             .setCategory(NotificationCompat.CATEGORY_SERVICE)
