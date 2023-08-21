@@ -1,4 +1,4 @@
-name: Hiddify_Next
+name: hiddify
 description: A Proxy Frontend.
 publish_to: 'none'
 version: 0.1.0
