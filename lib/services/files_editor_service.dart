@@ -62,7 +62,7 @@ class FilesEditorService with InfraLogger {
   static Future<Directory> getDatabaseDirectory() async {
     if (Platform.isIOS || Platform.isMacOS) {
       return getLibraryDirectory();
-    } else if (Platform.isWindows) {
+    } else if (Platform.isWindows || Platform.isLinux) {
       return getApplicationSupportDirectory();
     }
     return getApplicationDocumentsDirectory();
