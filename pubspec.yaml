@@ -118,15 +118,25 @@ flutter_gen:
 icons_launcher:
   image_path: "assets/images/ic_launcher.png"
   platforms:
+    ios:
+      enable: true
+      image_path: "assets/images/ic_launcher.png"
+    macos:
+      enable: true
+      image_path: "assets/images/linux.png"
+    linux:
+      enable: true
+      image_path: "assets/images/linux.png"
     android:
       enable: true
-      adaptive_background_image: "assets/images/ic_launcher_background.png"
+      adaptive_background_color: "#ffffff"
+      #adaptive_background_image: "assets/images/ic_launcher_background.png"
       adaptive_foreground_image: "assets/images/ic_launcher_foreground.png"
       adaptive_round_image: "assets/images/ic_launcher_round.png"
       adaptive_monochrome_image: "assets/images/ic_launcher_monochrome.png"
     windows:
       enable: true
-      image_path: "assets/images/ic_launcher_round.png"
+      image_path: "assets/images/linux.png"
 
 flutter_native_splash:
   color: "#ffffff"

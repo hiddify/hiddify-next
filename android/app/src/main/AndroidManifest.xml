@@ -17,7 +17,7 @@
         android:name=".Application"
         android:label="Hiddify Next"
         android:icon="@mipmap/ic_launcher"
-		android:roundIcon="@mipmap/ic_launcher_round"
+		android:roundIcon="@mipmap/ic_launcher_rounded"
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"
