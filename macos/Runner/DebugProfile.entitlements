@@ -10,5 +10,22 @@
 	<true/>
 	<key>com.apple.security.network.server</key>
 	<true/>
+		<!-- <key>com.apple.developer.system-extension.install</key>
+		<true/> -->
+				
+	<key>com.apple.developer.networking.networkextension</key>
+	<array>
+				<!-- <string>packet-tunnel-provider-systemextension</string>
+				<string>app-proxy-provider-systemextension</string>
+				<string>content-filter-provider-systemextension</string>
+				<string>dns-proxy-systemextension</string> -->
+				<string>dns-settings</string>
+				<string>dns-proxy</string>
+				<string>app-proxy-provider</string>
+				<string>packet-tunnel-provider</string>
+	</array>
+	<key>com.apple.developer.networking.vpn.api</key>
+	<string>allow-vpn</string>
+
 </dict>
 </plist>
