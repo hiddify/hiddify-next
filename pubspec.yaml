@@ -121,13 +121,13 @@ icons_launcher:
   platforms:
     ios:
       enable: true
-      image_path: "assets/images/ic_launcher.png"
+      image_path: "assets/images/macos-icon.png"
     macos:
       enable: true
-      image_path: "assets/images/linux.png"
+      image_path: "assets/images/macos-icon.png"
     linux:
       enable: true
-      image_path: "assets/images/linux.png"
+      image_path: "assets/images/macos-icon.png"
     android:
       enable: true
       adaptive_background_color: "#ffffff"
