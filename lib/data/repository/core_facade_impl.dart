@@ -27,6 +27,10 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
     return exceptionHandler(
       () {
         loggy.debug("setting up singbox");
+        loggy.debug("base dir: ${filesEditor.baseDir.path}");
+        loggy.debug("working dir: ${filesEditor.workingDir.path}");
+        loggy.debug("temp dir: ${filesEditor.tempDir.path}");
+
         return singbox
             .setup(
               filesEditor.baseDir.path,

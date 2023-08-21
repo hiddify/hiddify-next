@@ -84,7 +84,10 @@ class ProfilesRepositoryImpl
             )
             .run();
       },
-      ProfileUnexpectedFailure.new,
+      (error, stackTrace) {
+        loggy.warning("error adding profile by url", error, stackTrace);
+        return ProfileUnexpectedFailure(error, stackTrace);
+      },
     );
   }
 
@@ -107,7 +110,10 @@ class ProfilesRepositoryImpl
             )
             .run();
       },
-      ProfileUnexpectedFailure.new,
+      (error, stackTrace) {
+        loggy.warning("error adding profile", error, stackTrace);
+        return ProfileUnexpectedFailure(error, stackTrace);
+      },
     );
   }
 
@@ -115,6 +121,9 @@ class ProfilesRepositoryImpl
   TaskEither<ProfileFailure, Unit> update(Profile baseProfile) {
     return exceptionHandler(
       () async {
+        loggy.debug(
+          "updating profile [${baseProfile.name} (${baseProfile.id})]",
+        );
         return fetch(baseProfile.url, baseProfile.id)
             .flatMap(
               (remoteProfile) => TaskEither(() async {
@@ -130,7 +139,10 @@ class ProfilesRepositoryImpl
             )
             .run();
       },
-      ProfileUnexpectedFailure.new,
+      (error, stackTrace) {
+        loggy.warning("error updating profile", error, stackTrace);
+        return ProfileUnexpectedFailure(error, stackTrace);
+      },
     );
   }
 
@@ -170,6 +182,7 @@ class ProfilesRepositoryImpl
         return parseResult.fold(
           (l) async {
             await File(path).delete();
+            loggy.warning("error parsing config: $l");
             return left(ProfileFailure.invalidConfig(l.msg));
           },
           (_) {

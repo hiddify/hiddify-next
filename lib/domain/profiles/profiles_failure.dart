@@ -23,7 +23,9 @@ sealed class ProfileFailure with _$ProfileFailure, Failure {
     return switch (this) {
       ProfileUnexpectedFailure() => t.failure.profiles.unexpected,
       ProfileNotFoundFailure() => t.failure.profiles.notFound,
-      ProfileInvalidConfigFailure() => t.failure.profiles.invalidConfig,
+      ProfileInvalidConfigFailure(:final message) =>
+        t.failure.profiles.invalidConfig +
+            (message == null ? "" : ": $message"),
     };
   }
 }
