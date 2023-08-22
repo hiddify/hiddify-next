@@ -26,6 +26,7 @@ class FileLogPrinter extends LoggyPrinter {
 
   @override
   void onLog(LogRecord record) {
-    _sink.writeln(record.toString());
+    final time = record.time.toIso8601String().split('T')[1];
+    _sink.writeln("$time - $record");
   }
 }
