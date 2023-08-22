@@ -179,6 +179,8 @@ jobs:
           mv out/*arm64-v8a*.apk out/hiddify-android-arm64.apk || echo "no arm64 apk"
           mv out/*armeabi-v7a*.apk out/hiddify-android-arm7.apk || echo "no arm7 apk"
           mv out/*x86_64*.apk out/hiddify-android-x86_64.apk || echo "no x64 apk"
+          mv out/*universal*.apk out/hiddify-android-universal.apk || echo "no universal apk"
+          rm out/app-release.apk ||echo "no app-release.apk"
           mv out/*.aab out/hiddify-android-playstore.aab || echo "no aab"
           mv out/*.AppImage out/hiddify-linux-x64.AppImage || echo "no app image"
           mv out/*.dmg out/hiddify-macos-universal.dmg || echo "no macos dmg"
