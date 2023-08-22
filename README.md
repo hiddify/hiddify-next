@@ -4,12 +4,17 @@
 
 <p align="center" style="font-size: 20px">Hiddify Multi-platform Proxy Client</p>
 <p align="center" style="font-size: 20px">⚠️Hiddify Next is still in early development phase⚠️</p>
-<p align="center" style="font-size: 16px">Windows, Android, Linux are supported (macOS and iOS is coming soon)</p>
+<p align="center" style="font-size: 16px">Windows, Android, Linux and macOS are supported (PR for iOS welcome)</p>
 
+## Download Hiddify Next Pre-Release 
+- Android: [Universal](https://github.com/hiddify/hiddify-next/releases/download/draft/hiddify-android-universal.apk) - [Arm64](https://github.com/hiddify/hiddify-next/releases/download/draft/hiddify-android-arm64.apk) - [Arm7](https://github.com/hiddify/hiddify-next/releases/download/draft/hiddify-android-arm7.apk)  - [x86_64](https://github.com/hiddify/hiddify-next/releases/download/draft/hiddify-android-x86_64.apk)
+- Windows: [x64 Setup](https://github.com/hiddify/hiddify-next/releases/download/draft/hiddify-windows-x64-setup.exe) - [x64 Portable](https://github.com/hiddify/hiddify-next/releases/download/draft/hiddify-windows-x64-portable.zip)
+- Linux: [x64 AppImage](https://github.com/hiddify/hiddify-next/releases/download/draft/hiddify-linux-x64.AppImage)
+- macOS: [Universal (x64, M1, M2)](https://github.com/hiddify/hiddify-next/releases/download/draft/hiddify-macos-universal.dmg)
 ## Build from source
 
 ### requirements:
-  - GO v1.19+
+  - GO v1.21+
   - Flutter v3.10+
   - Make
   - GCC
