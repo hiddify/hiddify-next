@@ -66,10 +66,19 @@ android {
         release {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
         }
     }
-
+    signingConfigs {
+        release {
+            def properties = new Properties()
+            properties.load(new FileInputStream(rootProject.file('release.properties')))
+            keyAlias properties['key.alias']
+            keyPassword properties['key.password']
+            storeFile file(properties['keystore.path'])
+            storePassword properties['keystore.password']
+        }
+    }
 
     buildFeatures {
         viewBinding true

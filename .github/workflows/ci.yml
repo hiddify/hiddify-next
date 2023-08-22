@@ -127,6 +127,23 @@ jobs:
         run: |
           make ${{ matrix.platform }}-libs
 
+      - name: Signing properties
+        env:
+          ANDROID_SIGNING_KEY_ALIAS: ${{ secrets.ANDROID_SIGNING_KEY_ALIAS }}
+          ANDROID_SIGNING_KEY_PASSWORD: ${{ secrets.ANDROID_SIGNING_KEY_PASSWORD }}
+          ANDROID_SIGNING_STORE_PASSWORD: ${{ secrets.ANDROID_SIGNING_STORE_PASSWORD }}
+          ANDROID_SIGNING_KEY: ${{ secrets.ANDROID_SIGNING_KEY }}
+        run: |
+          cd android
+          touch signing.properties
+          echo $ANDROID_SIGNING_KEY | base64 -d > release.keystore
+          echo "keystore.path=release.keystore" > release.properties
+          echo keystore.password="$ANDROID_SIGNING_STORE_PASSWORD" >> release.properties
+          echo key.alias="$ANDROID_SIGNING_KEY_ALIAS" >> release.properties
+          echo key.password="$ANDROID_SIGNING_KEY_PASSWORD" >> release.properties
+          cp  release.* app/ 
+          cat release.properties
+          cd ..
       - name: Release ${{ matrix.platform }}
         run: |          
           make ${{ matrix.platform }}-release
