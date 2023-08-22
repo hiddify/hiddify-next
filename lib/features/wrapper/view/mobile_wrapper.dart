@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/core/router/router.dart';
 import 'package:hiddify/features/common/common.dart';
-import 'package:hiddify/gen/assets.gen.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:recase/recase.dart';
 
@@ -47,19 +46,6 @@ class MobileWrapper extends HookConsumerWidget {
                 icon: Icons.info,
                 selected: location == AboutRoute.path,
                 onSelect: () => const AboutRoute().push(context),
-              ),
-              const Spacer(),
-              Align(
-                child: Column(
-                  children: [
-                    Assets.images.logo.svg(width: 64),
-                    const Gap(8),
-                    Text(
-                      t.general.appTitle.titleCase,
-                      style: Theme.of(context).textTheme.titleSmall,
-                    ),
-                  ],
-                ),
               ),
               const Gap(16),
             ],
