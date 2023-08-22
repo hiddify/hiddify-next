@@ -22,17 +22,18 @@
   # fetch dependencies and build generated files
   $ make get gen
 
-  # build clash native library for all supported platforms and architectures
-  $ make android-libs windows-libs
-
-  # build apk for android
-  $ make release-android
-
-  # build windows executable
-  $ flutter_distributor package --platform windows --targets exe
+  for platform in [windows linux macos android]:
+     # build native library
+     $ make $platform-libs windows-libs
+     $ make release-$platform
+  
+  # example:
+     $ make windows-libs
+     $ make windows-release
   ```
 
 ## Acknowledgements
+  - [Singbox](https://github.com/SagerNet/sing-box)
   - [Clash](https://github.com/Dreamacro/clash)
   - [Clash Meta](https://github.com/MetaCubeX/Clash.Meta)
   - [FClash](https://github.com/Fclash/Fclash)
