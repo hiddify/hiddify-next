@@ -10,6 +10,7 @@ part 'active_profile_notifier.g.dart';
 class ActiveProfile extends _$ActiveProfile with AppLogger {
   @override
   Stream<Profile?> build() {
+    loggy.debug("watching active profile");
     return ref
         .watch(profilesRepositoryProvider)
         .watchActiveProfile()

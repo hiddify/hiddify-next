@@ -37,9 +37,12 @@ class ProfilesRepositoryImpl
 
   @override
   Stream<Either<ProfileFailure, Profile?>> watchActiveProfile() {
-    return profilesDao
-        .watchActiveProfile()
-        .handleExceptions(ProfileUnexpectedFailure.new);
+    return profilesDao.watchActiveProfile().handleExceptions(
+      (error, stackTrace) {
+        loggy.warning("error watching active profile", error, stackTrace);
+        return ProfileUnexpectedFailure(error, stackTrace);
+      },
+    );
   }
 
   @override

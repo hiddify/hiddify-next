@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -49,6 +50,11 @@ Future<void> lazyBootstrap(WidgetsBinding widgetsBinding) async {
     ),
   );
 
+  _loggy.debug(
+    "os: ${Platform.operatingSystem}(${Platform.operatingSystemVersion})",
+  );
+  _loggy.debug("basic setup took [${_stopWatch.elapsedMilliseconds}]ms");
+
   final silentStart =
       container.read(prefsControllerProvider).general.silentStart;
   if (silentStart) {
@@ -76,7 +82,7 @@ Future<void> lazyBootstrap(WidgetsBinding widgetsBinding) async {
 Future<void> initAppServices(
   Result Function<Result>(ProviderListenable<Result>) read,
 ) async {
-  // await read(filesEditorServiceProvider).init();
+  _loggy.debug("initializing app services");
   await Future.wait(
     [
       read(connectivityServiceProvider).init(),

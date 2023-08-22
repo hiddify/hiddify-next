@@ -17,6 +17,7 @@ class UpdateRepositoryImpl
   TaskEither<UpdateFailure, InstalledVersionInfo> getCurrentVersion() {
     return exceptionHandler(
       () async {
+        loggy.debug("getting current app version");
         final packageInfo = await PackageInfo.fromPlatform();
         return right(
           InstalledVersionInfo(
@@ -26,7 +27,10 @@ class UpdateRepositoryImpl
           ),
         );
       },
-      UpdateFailure.unexpected,
+      (error, stackTrace) {
+        loggy.warning("error getting current app version", error, stackTrace);
+        return UpdateFailure.unexpected(error, stackTrace);
+      },
     );
   }
 

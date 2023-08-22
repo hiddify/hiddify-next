@@ -12,6 +12,7 @@ part 'runtime_details.g.dart';
 class RuntimeDetailsNotifier extends _$RuntimeDetailsNotifier with AppLogger {
   @override
   Future<RuntimeDetails> build() async {
+    loggy.debug("initializing");
     final appVersion = await ref
         .watch(updateRepositoryProvider)
         .getCurrentVersion()

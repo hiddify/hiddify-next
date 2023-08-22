@@ -14,6 +14,7 @@ class DeepLinkService extends _$DeepLinkService
   @override
   Future<NewProfileLink?> build() async {
     if (Platform.isLinux) return null;
+    loggy.debug("initializing");
     for (final protocol in _protocols) {
       await protocolHandler.register(protocol);
     }
