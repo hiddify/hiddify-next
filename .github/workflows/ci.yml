@@ -135,6 +135,7 @@ jobs:
           ANDROID_SIGNING_KEY: ${{ secrets.ANDROID_SIGNING_KEY }}
         run: |
           cd android
+          pwd
           touch signing.properties
           echo $ANDROID_SIGNING_KEY | base64 -d > release.keystore
           echo "keystore.path=release.keystore" > release.properties
