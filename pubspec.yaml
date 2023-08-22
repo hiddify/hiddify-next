@@ -49,7 +49,6 @@ dependencies:
   mobile_scanner: ^3.4.1
   protocol_handler: ^0.1.5
   flutter_native_splash: ^2.3.2
-  icons_launcher: ^2.1.3
   file_picker: ^5.3.3
   share_plus: ^7.1.0
   window_manager: ^0.3.5
@@ -79,7 +78,6 @@ dependencies:
   sliver_tools: ^0.2.12
   flutter_adaptive_scaffold: ^0.1.6
   fl_chart: ^0.63.0
-  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   flutter_test:
@@ -96,6 +94,7 @@ dev_dependencies:
   go_router_builder: ^2.3.0
   custom_lint: ^0.5.2
   riverpod_lint: ^2.0.1
+  icons_launcher: ^2.1.3
 
 dependency_overrides:
   analyzer: '5.12.0'
@@ -103,8 +102,10 @@ dependency_overrides:
 flutter:
   uses-material-design: true
   assets:
-    - assets/core/
-    - assets/images/
+    - assets/core/geoip.db
+    - assets/core/geosite.db
+    - assets/images/logo.svg
+    - assets/images/icon.ico
   
   fonts:
     - family: Shabnam
@@ -117,59 +118,34 @@ flutter_gen:
     flutter_svg: true
 
 icons_launcher:
-  image_path: "assets/images/ic_launcher.png"
+  image_path: "assets/images/source/ic_launcher_corner.png"
   platforms:
-    ios:
-      enable: true
-      image_path: "assets/images/macos-icon.png"
-    macos:
-      enable: true
-      image_path: "assets/images/macos-icon.png"
-    linux:
-      enable: true
-      image_path: "assets/images/macos-icon.png"
     android:
       enable: true
       adaptive_background_color: "#ffffff"
-      #adaptive_background_image: "assets/images/ic_launcher_background.png"
-      adaptive_foreground_image: "assets/images/ic_launcher_foreground.png"
-      adaptive_round_image: "assets/images/ic_launcher_round.png"
-      adaptive_monochrome_image: "assets/images/ic_launcher_monochrome.png"
+      image_path: "assets/images/source/ic_launcher_corner.png"
+      adaptive_foreground_image: "assets/images/source/ic_launcher_foreground.png"
+      adaptive_round_image: "assets/images/source/ic_launcher_round.png"
+      adaptive_monochrome_image: "assets/images/source/ic_launcher_monochrome.png"
+    ios:
+      enable: true
+      image_path: "assets/images/source/ic_launcher_rectangle.png"
+    macos:
+      enable: true
+      image_path: "assets/images/source/ic_launcher_corner.png"
+    linux:
+      enable: true
+      image_path: "assets/images/source/ic_launcher_corner.png"
     windows:
       enable: true
-      image_path: "assets/images/linux.png"
-
-# flutter_launcher_icons:
-#   image_path: "assets/images/linux.png"
-#   image_path_android: "assets/images/icon-710x599-android.png"
-#   image_path_ios: "assets/images/icon-1024x1024.png"
-#   android: true # can specify file name here e.g. "ic_launcher"
-#   ios: true # can specify file name here e.g. "My-Launcher-Icon"
-#   #adaptive_icon_background: "assets/images/christmas-background.png" # only available for Android 8.0 devices and above
-#   adaptive_icon_background: "#ffffff" # only available for Android 8.0 devices and above
-#   adaptive_icon_foreground: "assets/images/icon-foreground-432x432.png" # only available for Android 8.0 devices and above
-#   min_sdk_android: 21 # android min sdk min:16, default 21
-#   remove_alpha_ios: true
-#   background_color_ios: "#ffffff"
-#   web:
-#     generate: true
-#     image_path: "assets/images/icon-1024x1024.png"
-#     background_color: "#ffffff"
-#     theme_color: "#e29942"
-#   windows:
-#     generate: true
-#     image_path: "assets/images/linux.png"
-#     icon_size: 256 # min:48, max:256, default: 48
-#   macos:
-#     generate: true
-#     image_path: "assets/images/linux.png"
+      image_path: "assets/images/source/ic_launcher_corner.png"
 
 flutter_native_splash:
   color: "#ffffff"
-  image: assets/images/ic_launcher.png
+  image: assets/images/source/ic_launcher_corner.png
   android_12:
-    image: assets/images/ic_launcher_foreground.png
     color: "#ffffff"
+    image: assets/images/source/ic_launcher_foreground.png
 
 ffigen:
   name: 'SingboxNativeLibrary'

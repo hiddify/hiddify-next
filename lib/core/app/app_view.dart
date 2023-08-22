@@ -5,6 +5,7 @@ import 'package:hiddify/core/locale/locale.dart';
 import 'package:hiddify/core/router/router.dart';
 import 'package:hiddify/core/theme/theme.dart';
 import 'package:hiddify/features/common/common_controllers.dart';
+import 'package:hiddify/gen/fonts.gen.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -20,7 +21,7 @@ class AppView extends HookConsumerWidget with PresLogger {
     ref.watch(commonControllersProvider);
 
     // HACK temporary solution
-    final fontFamily = locale.languageCode == "fa" ? "Shabnam" : "";
+    final fontFamily = locale.languageCode == "fa" ? FontFamily.shabnam : "";
 
     return MaterialApp.router(
       routerConfig: router,

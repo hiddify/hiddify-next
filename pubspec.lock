@@ -454,14 +454,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.20.0"
-  flutter_launcher_icons:
-    dependency: "direct main"
-    description:
-      name: flutter_launcher_icons
-      sha256: "526faf84284b86a4cb36d20a5e45147747b7563d921373d4ee0559c54fcdbcea"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.13.1"
   flutter_local_notifications:
     dependency: "direct main"
     description:
@@ -678,7 +670,7 @@ packages:
     source: hosted
     version: "4.0.2"
   icons_launcher:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: icons_launcher
       sha256: af05397792f6d82b93375a8a0253b8db0d3f816ef1dd1bf5c35cbab55321d327

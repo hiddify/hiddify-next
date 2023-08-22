@@ -20,8 +20,7 @@ class SystemTrayController extends _$SystemTrayController
   Future<void> build() async {
     if (!_initialized) {
       loggy.debug('initializing');
-      // await trayManager.setIcon(Assets.images.logoRound);
-      await trayManager.setIcon(Assets.images.windows);
+      await trayManager.setIcon(Assets.images.icon);
       trayManager.addListener(this);
       _initialized = true;
     }
