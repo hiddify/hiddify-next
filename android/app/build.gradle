@@ -86,6 +86,13 @@ android {
         viewBinding true
         aidl true
     }
+    
+}
+
+android.applicationVariants.all { variant ->
+  variant.outputs.each { output ->
+      output.versionCodeOverride = android.defaultConfig.versionCode
+  }
 }
 
 flutter {
