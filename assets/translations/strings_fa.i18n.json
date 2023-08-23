@@ -92,7 +92,8 @@
                 "light": "تم روشن"
             },
             "trueBlack": "کاملا سیاه",
-            "silentStart": "اجرای ساکت"
+            "silentStart": "اجرای ساکت",
+            "openWorkingDir": "باز کردن دایرکتوری کاری"
         },
         "network": {
             "sectionTitle": "شبکه",

@@ -92,7 +92,8 @@
                 "light": "light mode"
             },
             "trueBlack": "true black",
-            "silentStart": "silent start"
+            "silentStart": "silent start",
+            "openWorkingDir": "open working directory"
         },
         "network": {
             "sectionTitle": "network",

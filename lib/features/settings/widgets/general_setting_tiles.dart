@@ -6,9 +6,11 @@ import 'package:hiddify/core/locale/locale.dart';
 import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:hiddify/core/theme/theme.dart';
 import 'package:hiddify/features/settings/widgets/theme_mode_switch_button.dart';
+import 'package:hiddify/services/service_providers.dart';
 import 'package:hiddify/utils/platform_utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:recase/recase.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AppearanceSettingTiles extends HookConsumerWidget {
   const AppearanceSettingTiles({super.key});
@@ -94,7 +96,7 @@ class AppearanceSettingTiles extends HookConsumerWidget {
             themeController.change(trueBlack: value);
           },
         ),
-        if (PlatformUtils.isDesktop)
+        if (PlatformUtils.isDesktop) ...[
           SwitchListTile(
             title: Text(t.settings.general.silentStart.titleCase),
             value: general.silentStart,
@@ -104,6 +106,15 @@ class AppearanceSettingTiles extends HookConsumerWidget {
                   .patchGeneralPrefs(silentStart: value);
             },
           ),
+          ListTile(
+            title: Text(t.settings.general.openWorkingDir.titleCase),
+            trailing: const Icon(Icons.arrow_outward_outlined),
+            onTap: () async {
+              final path = ref.read(filesEditorServiceProvider).workingDir.uri;
+              launchUrl(path);
+            },
+          ),
+        ],
       ],
     );
   }
