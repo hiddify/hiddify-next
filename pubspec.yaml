@@ -105,8 +105,10 @@ flutter:
     - assets/core/geoip.db
     - assets/core/geosite.db
     - assets/images/logo.svg
-    - assets/images/icon.ico
-  
+    - assets/images/tray_icon.ico
+    - assets/images/tray_icon_connected.ico
+    - assets/images/tray_icon_disconnected.ico
+
   fonts:
     - family: Shabnam
       fonts:
@@ -118,12 +120,13 @@ flutter_gen:
     flutter_svg: true
 
 icons_launcher:
-  image_path: "assets/images/source/ic_launcher_corner.png"
+  image_path: "assets/images/source/ic_launcher_border.png"
   platforms:
     android:
       enable: true
-      adaptive_background_color: "#ffffff"
-      image_path: "assets/images/source/ic_launcher_corner.png"
+      image_path: "assets/images/source/ic_launcher_border.png"
+      # adaptive_background_color: "#ffffff"
+      adaptive_background_image: "assets/images/source/ic_launcher_background.png"
       adaptive_foreground_image: "assets/images/source/ic_launcher_foreground.png"
       adaptive_round_image: "assets/images/source/ic_launcher_round.png"
       adaptive_monochrome_image: "assets/images/source/ic_launcher_monochrome.png"
@@ -132,17 +135,17 @@ icons_launcher:
       image_path: "assets/images/source/ic_launcher_rectangle.png"
     macos:
       enable: true
-      image_path: "assets/images/source/ic_launcher_corner.png"
+      image_path: "assets/images/source/ic_launcher_border.png"
     linux:
       enable: true
-      image_path: "assets/images/source/ic_launcher_corner.png"
+      image_path: "assets/images/source/ic_launcher_border.png"
     windows:
       enable: true
-      image_path: "assets/images/source/ic_launcher_corner.png"
+      image_path: "assets/images/source/ic_launcher_transparent.png"
 
 flutter_native_splash:
   color: "#ffffff"
-  image: assets/images/source/ic_launcher_corner.png
+  image: assets/images/source/ic_launcher_border.png
   android_12:
     color: "#ffffff"
     image: assets/images/source/ic_launcher_foreground.png
