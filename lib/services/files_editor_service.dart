@@ -18,7 +18,7 @@ class FilesEditorService with InfraLogger {
     if (Platform.isAndroid) {
       final externalDir = await getExternalStorageDirectory();
       workingDir = externalDir!;
-    } else if (Platform.isWindows) {
+    } else if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
       workingDir = baseDir;
     } else {
       workingDir = await getApplicationDocumentsDirectory();
