@@ -20,13 +20,13 @@ android-aab-release:
 	flutter build aab --target-platform android-arm,android-arm64,android-x64 --split-per-abi  &&\	
 
 windows-release:
-	flutter_distributor package --platform windows --targets exe
+	flutter_distributor package --platform windows --targets exe --skip-clean
 
 linux-release:
-	flutter_distributor package --platform linux --targets appimage
+	flutter_distributor package --platform linux --targets appimage --skip-clean
 
 macos-release:
-	flutter_distributor package --platform macos --targets dmg 
+	flutter_distributor package --platform macos --targets dmg --skip-clean
 	# flutter build macos --release &&\
 	# tree ./build/macos/Build &&\
     # create-dmg  --app-drop-link 600 185 "hiddify-macos-universal.dmg" ./build/macos/Build/Products/Release/hiddify.app
