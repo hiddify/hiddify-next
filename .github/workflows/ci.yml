@@ -167,6 +167,7 @@ jobs:
       - name: Copy to out Android
         if: matrix.platform == 'android'
         run: |
+          mkdir out
           ls -R ./build/app/outputs
           mv ./build/app/outputs/flutter-apk/*arm64-v8a*.apk out/hiddify-android-arm64.apk || echo "no arm64 apk"
           mv ./build/app/outputs/flutter-apk/*armeabi-v7a*.apk out/hiddify-android-arm7.apk || echo "no arm7 apk"
