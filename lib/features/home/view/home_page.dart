@@ -87,7 +87,7 @@ class AppVersionLabel extends HookConsumerWidget {
     final version = ref.watch(
       appVersionProvider.select(
         (value) => switch (value) {
-          AsyncData(:final value) => value.fullVersion,
+          AsyncData(:final value) => value.version,
           _ => "",
         },
       ),
