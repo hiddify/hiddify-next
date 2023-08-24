@@ -14,5 +14,6 @@ abstract class Constants {
 abstract class Defaults {
   static const clashApiPort = 9090;
   static const mixedPort = 2334;
-  static const delayTestUrl = "https://www.gstatic.com/generate_204";
+  static const connectionTestUrl = "https://www.gstatic.com/generate_204";
+  static const concurrentTestCount = 5;
 }

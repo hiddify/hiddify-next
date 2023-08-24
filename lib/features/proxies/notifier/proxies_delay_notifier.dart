@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:dartx/dartx.dart';
+import 'package:hiddify/core/prefs/misc_prefs.dart';
 import 'package:hiddify/data/data_providers.dart';
 import 'package:hiddify/domain/clash/clash.dart';
 import 'package:hiddify/features/common/active_profile/active_profile_notifier.dart';
@@ -36,7 +37,12 @@ class ProxiesDelayNotifier extends _$ProxiesDelayNotifier with AppLogger {
   StreamSubscription? _currentTest;
 
   Future<void> testDelay(Iterable<String> proxies) async {
-    loggy.debug('testing delay for [${proxies.length}] proxies');
+    final testUrl = ref.read(connectionTestUrlProvider);
+    final concurrent = ref.read(concurrentTestCountProvider);
+
+    loggy.debug(
+      'testing delay for [${proxies.length}] proxies with [$testUrl], [$concurrent] at a time',
+    );
 
     // cancel possible running test
     await _currentTest?.cancel();
@@ -51,18 +57,21 @@ class ProxiesDelayNotifier extends _$ProxiesDelayNotifier with AppLogger {
             name,
             (_) => delay,
             ifAbsent: () => delay,
-          )
+          ),
       };
     }
 
     _currentTest = Stream.fromIterable(proxies)
-        .bufferCount(5)
+        .bufferCount(concurrent)
         .asyncMap(
           (chunk) => Future.wait(
             chunk.map(
               (e) async => setDelay(
                 e,
-                await _clash.testDelay(e).getOrElse((l) => -1).run(),
+                await _clash
+                    .testDelay(e, testUrl: testUrl)
+                    .getOrElse((l) => -1)
+                    .run(),
               ),
             ),
           ),

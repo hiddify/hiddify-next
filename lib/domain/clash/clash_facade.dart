@@ -17,7 +17,7 @@ abstract class ClashFacade {
 
   TaskEither<CoreServiceFailure, int> testDelay(
     String proxyName, {
-    String testUrl = Defaults.delayTestUrl,
+    String testUrl = Defaults.connectionTestUrl,
   });
 
   Stream<Either<CoreServiceFailure, ClashTraffic>> watchTraffic();

@@ -149,7 +149,7 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
   @override
   TaskEither<CoreServiceFailure, int> testDelay(
     String proxyName, {
-    String testUrl = Defaults.delayTestUrl,
+    String testUrl = Defaults.connectionTestUrl,
   }) {
     return exceptionHandler(
       () async {
