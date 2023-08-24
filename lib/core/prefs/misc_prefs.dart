@@ -8,3 +8,5 @@ final concurrentTestCountProvider = PrefNotifier.provider(
   "concurrent_test_count",
   Defaults.concurrentTestCount,
 );
+
+final debugModeProvider = PrefNotifier.provider("debug_mode", false);

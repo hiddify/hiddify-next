@@ -78,7 +78,9 @@
         "pageTitle": "لاگ‌ها",
         "clearLogsButtonText": "پاک‌سازی",
         "filterHint": "فیلتر",
-        "allLevelsFilter": "همه"
+        "allLevelsFilter": "همه",
+        "shareCoreLogs": "اشتراک‌گذاری لاگ هسته",
+        "shareAppLogs": "اشتراک‌گذاری لاگ برنامه"
     },
     "settings": {
         "pageTitle": "تنظیمات",
@@ -120,7 +122,9 @@
         "miscellaneous": {
             "sectionTitle": "متفرقه",
             "connectionTestUrl": "لینک تست کانکشن",
-            "concurrentTestCount": "شمار تست همزمان"
+            "concurrentTestCount": "شمار تست همزمان",
+            "debugMode": "دیباگ مود",
+            "debugModeMsg": "برای اعمال این تغییر اپ را ری‌استارت کنید"
         }
     },
     "about": {

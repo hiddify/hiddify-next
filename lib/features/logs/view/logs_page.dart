@@ -1,16 +1,22 @@
+import 'dart:io';
+
 import 'package:dartx/dartx.dart';
 import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:gap/gap.dart';
 import 'package:hiddify/core/core_providers.dart';
+import 'package:hiddify/core/prefs/misc_prefs.dart';
 import 'package:hiddify/domain/clash/clash.dart';
 import 'package:hiddify/domain/failures.dart';
 import 'package:hiddify/features/common/common.dart';
 import 'package:hiddify/features/logs/notifier/notifier.dart';
+import 'package:hiddify/services/service_providers.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:recase/recase.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:tint/tint.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class LogsPage extends HookConsumerWidget {
   const LogsPage({super.key});
@@ -21,6 +27,45 @@ class LogsPage extends HookConsumerWidget {
     final asyncState = ref.watch(logsNotifierProvider);
     final notifier = ref.watch(logsNotifierProvider.notifier);
 
+    final debug = ref.watch(debugModeProvider);
+
+    final List<PopupMenuEntry> popupButtons = debug || PlatformUtils.isDesktop
+        ? [
+            PopupMenuItem(
+              child: Text(t.logs.shareCoreLogs.sentenceCase),
+              onTap: () async {
+                if (Platform.isWindows || Platform.isLinux) {
+                  await launchUrl(
+                    ref.read(filesEditorServiceProvider).logsDir.uri,
+                  );
+                } else {
+                  final file = XFile(
+                    ref.read(filesEditorServiceProvider).coreLogsPath,
+                    mimeType: "text/plain",
+                  );
+                  await Share.shareXFiles([file]);
+                }
+              },
+            ),
+            PopupMenuItem(
+              child: Text(t.logs.shareAppLogs.sentenceCase),
+              onTap: () async {
+                if (Platform.isWindows || Platform.isLinux) {
+                  await launchUrl(
+                    ref.read(filesEditorServiceProvider).logsDir.uri,
+                  );
+                } else {
+                  final file = XFile(
+                    ref.read(filesEditorServiceProvider).appLogsPath,
+                    mimeType: "text/plain",
+                  );
+                  await Share.shareXFiles([file]);
+                }
+              },
+            ),
+          ]
+        : [];
+
     switch (asyncState) {
       case AsyncData(value: final state):
         return Scaffold(
@@ -28,6 +73,14 @@ class LogsPage extends HookConsumerWidget {
             // TODO: fix height
             toolbarHeight: 90,
             title: Text(t.logs.pageTitle.titleCase),
+            actions: [
+              if (popupButtons.isNotEmpty)
+                PopupMenuButton(
+                  itemBuilder: (context) {
+                    return popupButtons;
+                  },
+                ),
+            ],
             bottom: PreferredSize(
               preferredSize: const Size.fromHeight(36),
               child: Padding(

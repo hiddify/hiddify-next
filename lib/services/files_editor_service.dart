@@ -11,6 +11,7 @@ class FilesEditorService with InfraLogger {
   late final Directory baseDir;
   late final Directory workingDir;
   late final Directory tempDir;
+  late final Directory logsDir;
   late final Directory _configsDir;
 
   Future<void> init() async {
@@ -24,10 +25,12 @@ class FilesEditorService with InfraLogger {
       workingDir = await getApplicationDocumentsDirectory();
     }
     tempDir = await getTemporaryDirectory();
+    logsDir = workingDir;
 
     loggy.debug("base dir: ${baseDir.path}");
     loggy.debug("working dir: ${workingDir.path}");
     loggy.debug("temp dir: ${tempDir.path}");
+    loggy.debug("logs dire: ${logsDir.path}");
 
     _configsDir =
         Directory(p.join(workingDir.path, Constants.configsFolderName));
@@ -49,13 +52,12 @@ class FilesEditorService with InfraLogger {
     }
 
     await _populateGeoAssets();
-    if (PlatformUtils.isDesktop) {
-      final logFile = File(logsPath);
-      if (await logFile.exists()) {
-        await logFile.writeAsString("");
-      } else {
-        await logFile.create(recursive: true);
-      }
+
+    final coreLogFile = File(coreLogsPath);
+    if (await coreLogFile.exists()) {
+      await coreLogFile.writeAsString("");
+    } else {
+      await coreLogFile.create(recursive: true);
     }
   }
 
@@ -68,8 +70,8 @@ class FilesEditorService with InfraLogger {
     return getApplicationDocumentsDirectory();
   }
 
-  String get appLogsPath => p.join(workingDir.path, "app.log");
-  String get logsPath => p.join(workingDir.path, "box.log");
+  String get appLogsPath => p.join(logsDir.path, "app.log");
+  String get coreLogsPath => p.join(logsDir.path, "box.log");
 
   String configPath(String fileName) {
     return p.join(_configsDir.path, "$fileName.json");

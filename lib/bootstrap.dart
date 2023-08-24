@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hiddify/core/app/app.dart';
+import 'package:hiddify/core/prefs/misc_prefs.dart';
 import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:hiddify/data/data_providers.dart';
 import 'package:hiddify/features/common/active_profile/active_profile_notifier.dart';
@@ -41,10 +42,12 @@ Future<void> lazyBootstrap(WidgetsBinding widgetsBinding) async {
     overrides: [sharedPreferencesProvider.overrideWithValue(sharedPreferences)],
   );
 
+  final debug = container.read(debugModeProvider) || kDebugMode;
+
   final filesEditor = container.read(filesEditorServiceProvider);
   await filesEditor.init();
 
-  initLoggers(container.read);
+  initLoggers(container.read, debug);
   _loggy.info(
     "os: ${Platform.operatingSystem}(${Platform.operatingSystemVersion})",
   );
@@ -76,9 +79,10 @@ Future<void> lazyBootstrap(WidgetsBinding widgetsBinding) async {
 
 void initLoggers(
   Result Function<Result>(ProviderListenable<Result>) read,
+  bool debug,
 ) {
-  const logLevel = kDebugMode ? LogLevel.all : LogLevel.info;
-  final logToFile = !Platform.isAndroid && !Platform.isIOS;
+  final logLevel = debug ? LogLevel.all : LogLevel.info;
+  final logToFile = debug || (!Platform.isAndroid && !Platform.isIOS);
   Loggy.initLoggy(
     logPrinter: MultiLogPrinter(
       const PrettyPrinter(),
@@ -86,8 +90,7 @@ void initLoggers(
           ? FileLogPrinter(read(filesEditorServiceProvider).appLogsPath)
           : null,
     ),
-    // ignore: avoid_redundant_argument_values
-    logOptions: const LogOptions(logLevel),
+    logOptions: LogOptions(logLevel),
   );
 }
 

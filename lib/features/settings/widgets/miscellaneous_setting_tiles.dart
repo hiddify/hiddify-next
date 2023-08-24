@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/core/prefs/misc_prefs.dart';
 import 'package:hiddify/domain/constants.dart';
@@ -16,6 +17,7 @@ class MiscellaneousSettingTiles extends HookConsumerWidget {
 
     final connectionTestUrl = ref.watch(connectionTestUrlProvider);
     final concurrentTestCount = ref.watch(concurrentTestCountProvider);
+    final debug = ref.watch(debugModeProvider);
 
     return Column(
       children: [
@@ -37,7 +39,7 @@ class MiscellaneousSettingTiles extends HookConsumerWidget {
           subtitle: Text(concurrentTestCount.toString()),
           onTap: () async {
             final val = await SettingsInputDialog<int>(
-              title: t.settings.miscellaneous.connectionTestUrl.titleCase,
+              title: t.settings.miscellaneous.concurrentTestCount.titleCase,
               initialValue: concurrentTestCount,
               resetValue: Defaults.concurrentTestCount,
               mapTo: (value) => int.tryParse(value),
@@ -45,6 +47,34 @@ class MiscellaneousSettingTiles extends HookConsumerWidget {
             ).show(context);
             if (val == null || val < 1) return;
             await ref.read(concurrentTestCountProvider.notifier).update(val);
+          },
+        ),
+        SwitchListTile(
+          title: Text(t.settings.miscellaneous.debugMode.titleCase),
+          value: debug,
+          onChanged: (value) async {
+            if (value) {
+              await showDialog<bool>(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    title: Text(t.settings.miscellaneous.debugMode.titleCase),
+                    content: Text(
+                      t.settings.miscellaneous.debugModeMsg.sentenceCase,
+                    ),
+                    actions: [
+                      TextButton(
+                        onPressed: () => context.pop(true),
+                        child: Text(
+                          MaterialLocalizations.of(context).okButtonLabel,
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              );
+            }
+            await ref.read(debugModeProvider.notifier).update(value);
           },
         ),
       ],

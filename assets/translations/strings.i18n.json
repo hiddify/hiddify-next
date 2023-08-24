@@ -78,7 +78,9 @@
         "pageTitle": "logs",
         "clearLogsButtonText": "clear",
         "filterHint": "filter",
-        "allLevelsFilter": "all"
+        "allLevelsFilter": "all",
+        "shareCoreLogs": "share core logs",
+        "shareAppLogs": "share app logs"
     },
     "settings": {
         "pageTitle": "settings",
@@ -120,7 +122,9 @@
         "miscellaneous": {
             "sectionTitle": "miscellaneous",
             "connectionTestUrl": "connection test url",
-            "concurrentTestCount": "concurrent test count"
+            "concurrentTestCount": "concurrent test count",
+            "debugMode": "debug mode",
+            "debugModeMsg": "restart the app for this to take effect"
         }
     },
     "about": {

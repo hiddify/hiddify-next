@@ -98,7 +98,7 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
   @override
   Stream<Either<CoreServiceFailure, String>> watchLogs() {
     return singbox
-        .watchLogs(filesEditor.logsPath)
+        .watchLogs(filesEditor.coreLogsPath)
         .handleExceptions(CoreServiceFailure.unexpected);
   }
 
