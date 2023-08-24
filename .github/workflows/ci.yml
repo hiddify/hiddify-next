@@ -173,6 +173,7 @@ jobs:
           mv ./build/app/outputs/flutter-apk/*armeabi-v7a*.apk out/hiddify-android-arm7.apk || echo "no arm7 apk"
           mv ./build/app/outputs/flutter-apk/*x86_64*.apk out/hiddify-android-x86_64.apk || echo "no x64 apk"
           mv ./build/app/outputs/flutter-apk/app-release.apk out/hiddify-android-universal.apk || echo "no universal apk"
+          cp ./build/app/outputs/bundle/release/app-release.aab out/bundle.aab
           
 
       
