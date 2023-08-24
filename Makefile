@@ -13,7 +13,8 @@ gen:
 translate:
 	dart run slang
 
-android-release:
+android-release: android-aab-release android-apk-release
+android-apk-release: 
 	flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi
 
 android-aab-release:
