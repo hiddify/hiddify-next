@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hiddify/core/app/app.dart';
@@ -40,20 +41,14 @@ Future<void> lazyBootstrap(WidgetsBinding widgetsBinding) async {
     overrides: [sharedPreferencesProvider.overrideWithValue(sharedPreferences)],
   );
 
-  // Loggy.initLoggy(logPrinter: const PrettyPrinter());
   final filesEditor = container.read(filesEditorServiceProvider);
   await filesEditor.init();
-  Loggy.initLoggy(
-    logPrinter: MultiLogPrinter(
-      const PrettyPrinter(),
-      FileLogPrinter(filesEditor.appLogsPath),
-    ),
-  );
 
-  _loggy.debug(
+  initLoggers(container.read);
+  _loggy.info(
     "os: ${Platform.operatingSystem}(${Platform.operatingSystemVersion})",
   );
-  _loggy.debug("basic setup took [${_stopWatch.elapsedMilliseconds}]ms");
+  _loggy.info("basic setup took [${_stopWatch.elapsedMilliseconds}]ms");
 
   final silentStart =
       container.read(prefsControllerProvider).general.silentStart;
@@ -76,7 +71,24 @@ Future<void> lazyBootstrap(WidgetsBinding widgetsBinding) async {
 
   if (!silentStart) FlutterNativeSplash.remove();
   _stopWatch.stop();
-  _loggy.debug("bootstrapping took [${_stopWatch.elapsedMilliseconds}]ms");
+  _loggy.info("bootstrapping took [${_stopWatch.elapsedMilliseconds}]ms");
+}
+
+void initLoggers(
+  Result Function<Result>(ProviderListenable<Result>) read,
+) {
+  const logLevel = kDebugMode ? LogLevel.all : LogLevel.info;
+  final logToFile = !Platform.isAndroid && !Platform.isIOS;
+  Loggy.initLoggy(
+    logPrinter: MultiLogPrinter(
+      const PrettyPrinter(),
+      logToFile
+          ? FileLogPrinter(read(filesEditorServiceProvider).appLogsPath)
+          : null,
+    ),
+    // ignore: avoid_redundant_argument_values
+    logOptions: const LogOptions(logLevel),
+  );
 }
 
 Future<void> initAppServices(

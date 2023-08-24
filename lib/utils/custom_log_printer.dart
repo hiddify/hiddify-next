@@ -6,12 +6,12 @@ class MultiLogPrinter extends LoggyPrinter {
   MultiLogPrinter(this.consolePrinter, this.filePrinter);
 
   final LoggyPrinter consolePrinter;
-  final LoggyPrinter filePrinter;
+  final LoggyPrinter? filePrinter;
 
   @override
   void onLog(LogRecord record) {
     consolePrinter.onLog(record);
-    filePrinter.onLog(record);
+    filePrinter?.onLog(record);
   }
 }
 
