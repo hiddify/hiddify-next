@@ -71,7 +71,7 @@ class MobileSingboxService with InfraLogger implements SingboxService {
   Stream<String> watchLogs(String path) {
     return _logsChannel.receiveBroadcastStream().map(
       (event) {
-        loggy.debug("received log: $event");
+        // loggy.debug("received log: $event");
         return event as String;
       },
     );

@@ -40,7 +40,7 @@ class ProxiesDelayNotifier extends _$ProxiesDelayNotifier with AppLogger {
     final testUrl = ref.read(connectionTestUrlProvider);
     final concurrent = ref.read(concurrentTestCountProvider);
 
-    loggy.debug(
+    loggy.info(
       'testing delay for [${proxies.length}] proxies with [$testUrl], [$concurrent] at a time',
     );
 
