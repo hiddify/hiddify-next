@@ -161,9 +161,9 @@ jobs:
               Get-ChildItem -Recurse -File -Filter "*.$EXT"
           }
           
-          mkdir ${{ matrix.platform }}-portable
-          xcopy /s /v D:\a\hiddify-next\hiddify-next\build\windows\runner\Release\ .\${{ matrix.platform }}-portable\
-          Compress-Archive ${{ matrix.platform }}-portable out\hiddify-${{ matrix.platform }}-x64-portable.zip
+          mkdir HiddifyNext-portable
+          xcopy /s /v D:\a\hiddify-next\hiddify-next\build\windows\runner\Release\ .\HiddifyNext-portable\
+          Compress-Archive HiddifyNext-portable out\hiddify-${{ matrix.platform }}-x64-portable.zip
       - name: Copy to out Android
         if: matrix.platform == 'android'
         run: |
