@@ -39,6 +39,7 @@ class HomePage extends HookConsumerWidget {
                   IconButton(
                     onPressed: () => const AddProfileRoute().push(context),
                     icon: const Icon(Icons.add_circle),
+                    tooltip: t.profile.add.buttonText,
                   ),
                 ],
               ),

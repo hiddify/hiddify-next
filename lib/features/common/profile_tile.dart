@@ -153,30 +153,38 @@ class ProfileActionButton extends HookConsumerWidget {
     );
 
     if (!showAllActions) {
-      return InkWell(
-        onTap: () {
-          if (updateProfileMutation.state.isInProgress) {
-            return;
-          }
-          updateProfileMutation.setFuture(
-            ref.read(profilesNotifierProvider.notifier).updateProfile(profile),
-          );
-        },
-        child: const Icon(Icons.update),
+      return Tooltip(
+        message: t.profile.update.buttonTxt,
+        child: InkWell(
+          onTap: () {
+            if (updateProfileMutation.state.isInProgress) {
+              return;
+            }
+            updateProfileMutation.setFuture(
+              ref
+                  .read(profilesNotifierProvider.notifier)
+                  .updateProfile(profile),
+            );
+          },
+          child: const Icon(Icons.update),
+        ),
       );
     }
     return ProfileActionsMenu(
       profile,
       (context, controller, child) {
-        return InkWell(
-          onTap: () {
-            if (controller.isOpen) {
-              controller.close();
-            } else {
-              controller.open();
-            }
-          },
-          child: const Icon(Icons.more_vert),
+        return Tooltip(
+          message: MaterialLocalizations.of(context).showMenuTooltip,
+          child: InkWell(
+            onTap: () {
+              if (controller.isOpen) {
+                controller.close();
+              } else {
+                controller.open();
+              }
+            },
+            child: const Icon(Icons.more_vert),
+          ),
         );
       },
     );
