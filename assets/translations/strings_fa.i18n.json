@@ -116,6 +116,11 @@
                 "mode": "Mode",
                 "logLevel": "Log Level"
             }
+        },
+        "miscellaneous": {
+            "sectionTitle": "متفرقه",
+            "connectionTestUrl": "لینک تست کانکشن",
+            "concurrentTestCount": "شمار تست همزمان"
         }
     },
     "about": {

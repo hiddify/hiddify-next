@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hiddify/core/core_providers.dart';
+import 'package:hiddify/features/settings/widgets/miscellaneous_setting_tiles.dart';
 import 'package:hiddify/features/settings/widgets/widgets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:recase/recase.dart';
@@ -40,6 +41,10 @@ class SettingsPage extends HookConsumerWidget {
             //     await const ClashOverridesRoute().push(context);
             //   },
             // ),
+            _SettingsSectionHeader(
+              t.settings.miscellaneous.sectionTitle.titleCase,
+            ),
+            const MiscellaneousSettingTiles(),
             const Gap(16),
           ],
         ),

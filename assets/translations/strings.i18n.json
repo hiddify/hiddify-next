@@ -116,6 +116,11 @@
                 "mode": "Mode",
                 "logLevel": "Log Level"
             }
+        },
+        "miscellaneous": {
+            "sectionTitle": "miscellaneous",
+            "connectionTestUrl": "connection test url",
+            "concurrentTestCount": "concurrent test count"
         }
     },
     "about": {

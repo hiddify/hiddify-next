@@ -32,7 +32,7 @@ class InputOverrideTile extends HookConsumerWidget {
             : value.toString(),
       ),
       onTap: () async {
-        final result = await SettingsInputDialog<int>(
+        final result = await OptionalSettingsInputDialog<int>(
           title: title,
           initialValue: value,
           resetValue: optionOf(resetValue),
