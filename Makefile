@@ -18,7 +18,7 @@ android-apk-release:
 	flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi
 
 android-aab-release:
-	flutter build aab --target-platform android-arm,android-arm64,android-x64 --split-per-abi  &&\	
+	flutter build aab  
 
 windows-release:
 	flutter_distributor package --platform windows --targets exe --skip-clean
