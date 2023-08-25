@@ -1,4 +1,5 @@
 import 'package:hiddify/domain/connectivity/connectivity.dart';
+import 'package:hiddify/domain/core_service_failure.dart';
 import 'package:hiddify/services/connectivity/connectivity_service.dart';
 import 'package:hiddify/services/singbox/singbox_service.dart';
 import 'package:hiddify/utils/utils.dart';
@@ -27,13 +28,16 @@ class DesktopConnectivityService
   Future<void> connect() async {
     loggy.debug('connecting');
     _connectionStatus.value = const ConnectionStatus.connecting();
-    await _singboxService.start().getOrElse(
-      (l) {
-        _connectionStatus.value = const ConnectionStatus.disconnected();
-        throw l;
+    await _singboxService.start().match(
+      (err) {
+        _connectionStatus.value = ConnectionStatus.disconnected(
+          CoreConnectionFailure(
+            CoreServiceStartFailure(err),
+          ),
+        );
       },
+      (_) => _connectionStatus.value = const ConnectionStatus.connected(),
     ).run();
-    _connectionStatus.value = const ConnectionStatus.connected();
   }
 
   @override
