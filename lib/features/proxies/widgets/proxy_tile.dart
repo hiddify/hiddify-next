@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hiddify/domain/clash/clash.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-// TODO: rewrite
 class ProxyTile extends HookConsumerWidget {
   const ProxyTile(
     this.proxy, {
@@ -22,6 +21,7 @@ class ProxyTile extends HookConsumerWidget {
     final theme = Theme.of(context);
 
     return ListTile(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       title: Text(
         switch (proxy) {
           ClashProxyGroup(:final name) => name.toUpperCase(),
@@ -44,31 +44,32 @@ class ProxyTile extends HookConsumerWidget {
         TextSpan(
           children: [
             TextSpan(text: proxy.type.label),
-            if (proxy.udp)
-              WidgetSpan(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4),
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: theme.colorScheme.tertiaryContainer,
-                      ),
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    child: Text(
-                      " UDP ",
-                      style: TextStyle(
-                        fontSize: theme.textTheme.labelSmall?.fontSize,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+            // if (proxy.udp)
+            //   WidgetSpan(
+            //     child: Padding(
+            //       padding: const EdgeInsets.symmetric(horizontal: 4),
+            //       child: DecoratedBox(
+            //         decoration: BoxDecoration(
+            //           border: Border.all(
+            //             color: theme.colorScheme.tertiaryContainer,
+            //           ),
+            //           borderRadius: BorderRadius.circular(6),
+            //         ),
+            //         child: Text(
+            //           " UDP ",
+            //           style: TextStyle(
+            //             fontSize: theme.textTheme.labelSmall?.fontSize,
+            //           ),
+            //         ),
+            //       ),
+            //     ),
+            //   ),
             if (proxy case ClashProxyGroup(:final now)) ...[
               TextSpan(text: " ($now)"),
             ],
           ],
         ),
+        overflow: TextOverflow.ellipsis,
       ),
       trailing: delay != null ? Text(delay.toString()) : null,
       selected: selected,

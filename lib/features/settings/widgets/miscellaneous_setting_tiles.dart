@@ -36,7 +36,8 @@ class MiscellaneousSettingTiles extends HookConsumerWidget {
         ),
         ListTile(
           title: Text(t.settings.miscellaneous.concurrentTestCount.titleCase),
-          subtitle: Text(concurrentTestCount.toString()),
+          trailing: Text(concurrentTestCount.toString()),
+          leadingAndTrailingTextStyle: Theme.of(context).textTheme.bodyMedium,
           onTap: () async {
             final val = await SettingsInputDialog<int>(
               title: t.settings.miscellaneous.concurrentTestCount.titleCase,
