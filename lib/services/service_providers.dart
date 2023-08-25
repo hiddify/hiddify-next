@@ -1,6 +1,7 @@
 import 'package:hiddify/services/connectivity/connectivity.dart';
 import 'package:hiddify/services/files_editor_service.dart';
 import 'package:hiddify/services/notification/notification.dart';
+import 'package:hiddify/services/runtime_details_service.dart';
 import 'package:hiddify/services/singbox/singbox_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -13,6 +14,10 @@ NotificationService notificationService(NotificationServiceRef ref) =>
 @Riverpod(keepAlive: true)
 FilesEditorService filesEditorService(FilesEditorServiceRef ref) =>
     FilesEditorService();
+
+@Riverpod(keepAlive: true)
+RuntimeDetailsService runtimeDetailsService(RuntimeDetailsServiceRef ref) =>
+    RuntimeDetailsService();
 
 @Riverpod(keepAlive: true)
 SingboxService singboxService(SingboxServiceRef ref) => SingboxService();

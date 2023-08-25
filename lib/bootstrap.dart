@@ -48,9 +48,7 @@ Future<void> lazyBootstrap(WidgetsBinding widgetsBinding) async {
   await filesEditor.init();
 
   initLoggers(container.read, debug);
-  _loggy.info(
-    "os: ${Platform.operatingSystem}(${Platform.operatingSystemVersion})",
-  );
+  await container.read(runtimeDetailsServiceProvider).init();
   _loggy.info("basic setup took [${_stopWatch.elapsedMilliseconds}]ms");
 
   final silentStart =

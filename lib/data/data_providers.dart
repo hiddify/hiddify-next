@@ -23,7 +23,13 @@ SharedPreferences sharedPreferences(SharedPreferencesRef ref) =>
 
 // TODO: set options for dio
 @Riverpod(keepAlive: true)
-Dio dio(DioRef ref) => Dio();
+Dio dio(DioRef ref) => Dio(
+      BaseOptions(
+        headers: {
+          "User-Agent": ref.watch(runtimeDetailsServiceProvider).userAgent,
+        },
+      ),
+    );
 
 @Riverpod(keepAlive: true)
 ProfilesDao profilesDao(ProfilesDaoRef ref) => ProfilesDao(
