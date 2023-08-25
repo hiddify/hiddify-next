@@ -7,10 +7,9 @@ import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:hiddify/core/theme/theme.dart';
 import 'package:hiddify/features/settings/widgets/theme_mode_switch_button.dart';
 import 'package:hiddify/services/service_providers.dart';
-import 'package:hiddify/utils/platform_utils.dart';
+import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:recase/recase.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class AppearanceSettingTiles extends HookConsumerWidget {
   const AppearanceSettingTiles({super.key});
@@ -111,7 +110,7 @@ class AppearanceSettingTiles extends HookConsumerWidget {
             trailing: const Icon(Icons.arrow_outward_outlined),
             onTap: () async {
               final path = ref.read(filesEditorServiceProvider).workingDir.uri;
-              launchUrl(path);
+              await UriUtils.tryLaunch(path);
             },
           ),
         ],

@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:dartx/dartx.dart';
 import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart';
@@ -14,9 +12,7 @@ import 'package:hiddify/services/service_providers.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:recase/recase.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:tint/tint.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class LogsPage extends HookConsumerWidget with PresLogger {
   const LogsPage({super.key});
@@ -35,18 +31,18 @@ class LogsPage extends HookConsumerWidget with PresLogger {
             PopupMenuItem(
               child: Text(t.logs.shareCoreLogs.sentenceCase),
               onTap: () async {
-                await shareFileOrOpenDir(
-                  filesEditor.coreLogsPath,
-                  filesEditor.logsDir.uri,
+                await UriUtils.tryShareOrLaunchFile(
+                  Uri.parse(filesEditor.coreLogsPath),
+                  fileOrDir: filesEditor.logsDir.uri,
                 );
               },
             ),
             PopupMenuItem(
               child: Text(t.logs.shareAppLogs.sentenceCase),
               onTap: () async {
-                await shareFileOrOpenDir(
-                  filesEditor.appLogsPath,
-                  filesEditor.logsDir.uri,
+                await UriUtils.tryShareOrLaunchFile(
+                  Uri.parse(filesEditor.appLogsPath),
+                  fileOrDir: filesEditor.logsDir.uri,
                 );
               },
             ),
@@ -162,19 +158,6 @@ class LogsPage extends HookConsumerWidget with PresLogger {
       // TODO: remove
       default:
         return const Scaffold();
-    }
-  }
-
-  Future<void> shareFileOrOpenDir(String path, Uri dir) async {
-    try {
-      if (Platform.isWindows || Platform.isLinux) {
-        await launchUrl(dir);
-      } else {
-        final file = XFile(path, mimeType: "text/plain");
-        await Share.shareXFiles([file]);
-      }
-    } catch (err, stackTrace) {
-      loggy.warning("error sharing log file", err, stackTrace);
     }
   }
 }

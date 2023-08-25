@@ -6,10 +6,9 @@ import 'package:hiddify/domain/failures.dart';
 import 'package:hiddify/features/common/new_version_dialog.dart';
 import 'package:hiddify/features/common/runtime_details.dart';
 import 'package:hiddify/gen/assets.gen.dart';
-import 'package:hiddify/utils/alerts.dart';
+import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:recase/recase.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class AboutPage extends HookConsumerWidget {
   const AboutPage({super.key});
@@ -76,7 +75,7 @@ class AboutPage extends HookConsumerWidget {
                               "${t.about.version} ${value.version} ${value.buildNumber}",
                             ),
                           ],
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -91,9 +90,8 @@ class AboutPage extends HookConsumerWidget {
                         title: Text(t.about.sourceCode.sentenceCase),
                         trailing: const Icon(Icons.open_in_new),
                         onTap: () async {
-                          await launchUrl(
+                          await UriUtils.tryLaunch(
                             Uri.parse(Constants.githubUrl),
-                            mode: LaunchMode.externalApplication,
                           );
                         },
                       ),
@@ -101,9 +99,8 @@ class AboutPage extends HookConsumerWidget {
                         title: Text(t.about.telegramChannel.sentenceCase),
                         trailing: const Icon(Icons.open_in_new),
                         onTap: () async {
-                          await launchUrl(
+                          await UriUtils.tryLaunch(
                             Uri.parse(Constants.telegramChannelUrl),
-                            mode: LaunchMode.externalApplication,
                           );
                         },
                       ),
@@ -127,7 +124,7 @@ class AboutPage extends HookConsumerWidget {
                 ),
               ],
             _ => [],
-          }
+          },
         ],
       ),
     );

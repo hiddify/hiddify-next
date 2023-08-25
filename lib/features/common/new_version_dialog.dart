@@ -4,9 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/domain/app/app.dart';
 import 'package:hiddify/domain/constants.dart';
+import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:recase/recase.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 // TODO add release notes
 class NewVersionDialog extends HookConsumerWidget {
@@ -86,9 +86,8 @@ class NewVersionDialog extends HookConsumerWidget {
         ),
         TextButton(
           onPressed: () async {
-            await launchUrl(
+            await UriUtils.tryLaunch(
               Uri.parse(Constants.githubLatestReleaseUrl),
-              mode: LaunchMode.externalApplication,
             );
           },
           child: Text(t.appUpdate.updateNowBtnTxt.titleCase),
