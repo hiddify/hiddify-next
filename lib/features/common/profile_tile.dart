@@ -31,7 +31,7 @@ class ProfileTile extends HookConsumerWidget {
 
     final selectActiveMutation = useMutation(
       initialOnFailure: (err) {
-        CustomToast.error(t.presentError(err)).show(context);
+        CustomToast.error(t.printError(err)).show(context);
       },
     );
 
@@ -146,7 +146,8 @@ class ProfileActionButton extends HookConsumerWidget {
 
     final updateProfileMutation = useMutation(
       initialOnFailure: (err) {
-        CustomToast.error(t.presentError(err)).show(context);
+        // CustomToast.error(t.printError(err)).show(context);
+        CustomAlertDialog.fromErr(t.presentError(err)).show(context);
       },
       initialOnSuccess: () =>
           CustomToast.success(t.profile.update.successMsg).show(context),
@@ -204,14 +205,14 @@ class ProfileActionsMenu extends HookConsumerWidget {
 
     final updateProfileMutation = useMutation(
       initialOnFailure: (err) {
-        CustomToast.error(t.presentError(err)).show(context);
+        CustomAlertDialog.fromErr(t.presentError(err)).show(context);
       },
       initialOnSuccess: () =>
           CustomToast.success(t.profile.update.successMsg).show(context),
     );
     final deleteProfileMutation = useMutation(
       initialOnFailure: (err) {
-        CustomToast.error(t.presentError(err)).show(context);
+        CustomAlertDialog.fromErr(t.presentError(err)).show(context);
       },
     );
 

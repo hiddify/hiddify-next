@@ -33,7 +33,7 @@ class AboutPage extends HookConsumerWidget {
         if (next case AsyncData(:final value)) {
           switch (value.latestVersion) {
             case AsyncError(:final error):
-              CustomToast.error(t.presentError(error)).show(context);
+              CustomToast.error(t.printError(error)).show(context);
             default:
               if (value.newVersionAvailable) {
                 await NewVersionDialog(

@@ -14,9 +14,9 @@ sealed class UpdateFailure with _$UpdateFailure, Failure {
   ]) = UpdateUnexpectedFailure;
 
   @override
-  String present(TranslationsEn t) {
+  ({String type, String? message}) present(TranslationsEn t) {
     return switch (this) {
-      UpdateUnexpectedFailure() => t.failure.unexpected,
+      UpdateUnexpectedFailure() => (type: t.failure.unexpected, message: null),
     };
   }
 }

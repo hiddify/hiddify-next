@@ -24,13 +24,12 @@ class ConnectionButton extends HookConsumerWidget {
       connectivityControllerProvider,
       (_, next) {
         if (next case AsyncError(:final error)) {
-          CustomToast.error(t.presentError(error)).show(context);
+          CustomAlertDialog.fromErr(t.presentError(error)).show(context);
         }
         if (next
             case AsyncData(value: Disconnected(:final connectionFailure?))) {
-          CustomAlertDialog(
-            message: connectionFailure.present(t),
-          ).show(context);
+          CustomAlertDialog.fromErr(t.presentError(connectionFailure))
+              .show(context);
         }
       },
     );

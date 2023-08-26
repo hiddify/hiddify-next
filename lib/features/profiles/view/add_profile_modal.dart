@@ -30,7 +30,8 @@ class AddProfileModal extends HookConsumerWidget {
     final addProfileMutation = useMutation(
       initialOnFailure: (err) {
         mutationTriggered.value = false;
-        CustomToast.error(t.presentError(err)).show(context);
+        // CustomToast.error(t.presentError(err)).show(context);
+        CustomAlertDialog.fromErr(t.presentError(err)).show(context);
       },
       initialOnSuccess: () {
         CustomToast.success(t.profile.save.successMsg.sentenceCase)

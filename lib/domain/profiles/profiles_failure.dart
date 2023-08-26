@@ -19,13 +19,20 @@ sealed class ProfileFailure with _$ProfileFailure, Failure {
       ProfileInvalidConfigFailure;
 
   @override
-  String present(TranslationsEn t) {
+  ({String type, String? message}) present(TranslationsEn t) {
     return switch (this) {
-      ProfileUnexpectedFailure() => t.failure.profiles.unexpected,
-      ProfileNotFoundFailure() => t.failure.profiles.notFound,
-      ProfileInvalidConfigFailure(:final message) =>
-        t.failure.profiles.invalidConfig +
-            (message == null ? "" : ": $message"),
+      ProfileUnexpectedFailure() => (
+          type: t.failure.profiles.unexpected,
+          message: null
+        ),
+      ProfileNotFoundFailure() => (
+          type: t.failure.profiles.notFound,
+          message: null
+        ),
+      ProfileInvalidConfigFailure(:final message) => (
+          type: t.failure.profiles.invalidConfig,
+          message: message
+        ),
     };
   }
 }

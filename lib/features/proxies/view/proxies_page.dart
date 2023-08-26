@@ -22,7 +22,7 @@ class ProxiesPage extends HookConsumerWidget with PresLogger {
 
     final selectActiveProxyMutation = useMutation(
       initialOnFailure: (error) =>
-          CustomToast.error(t.presentError(error)).show(context),
+          CustomToast.error(t.printError(error)).show(context),
     );
 
     switch (asyncProxies) {
@@ -148,7 +148,7 @@ class ProxiesPage extends HookConsumerWidget with PresLogger {
                 title: Text(t.proxies.pageTitle.titleCase),
               ),
               SliverErrorBodyPlaceholder(
-                t.presentError(error),
+                t.printError(error),
                 icon: null,
               ),
             ],

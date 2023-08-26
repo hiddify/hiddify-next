@@ -25,15 +25,20 @@ sealed class ConnectionFailure with _$ConnectionFailure, Failure {
       CoreConnectionFailure;
 
   @override
-  String present(TranslationsEn t) {
+  ({String type, String? message}) present(TranslationsEn t) {
     return switch (this) {
-      UnexpectedConnectionFailure() => t.failure.connectivity.unexpected,
-      MissingVpnPermission(:final message) =>
-        t.failure.connectivity.missingVpnPermission +
-            (message == null ? "" : ": $message"),
-      MissingNotificationPermission(:final message) =>
-        t.failure.connectivity.missingNotificationPermission +
-            (message == null ? "" : ": $message"),
+      UnexpectedConnectionFailure() => (
+          type: t.failure.connectivity.unexpected,
+          message: null
+        ),
+      MissingVpnPermission(:final message) => (
+          type: t.failure.connectivity.missingVpnPermission,
+          message: message
+        ),
+      MissingNotificationPermission(:final message) => (
+          type: t.failure.connectivity.missingNotificationPermission,
+          message: message
+        ),
       CoreConnectionFailure(:final failure) => failure.present(t),
     };
   }

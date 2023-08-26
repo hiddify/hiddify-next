@@ -38,7 +38,7 @@ class ProfileDetailPage extends HookConsumerWidget with PresLogger {
         if (asyncSave case AsyncData(value: final save)) {
           switch (save) {
             case MutationFailure(:final failure):
-              CustomToast.error(t.presentError(failure)).show(context);
+              CustomToast.error(t.printError(failure)).show(context);
             case MutationSuccess():
               CustomToast.success(t.profile.save.successMsg.sentenceCase)
                   .show(context);
@@ -58,7 +58,7 @@ class ProfileDetailPage extends HookConsumerWidget with PresLogger {
         if (asyncSave case AsyncData(value: final delete)) {
           switch (delete) {
             case MutationFailure(:final failure):
-              CustomToast.error(t.presentError(failure)).show(context);
+              CustomToast.error(t.printError(failure)).show(context);
             case MutationSuccess():
               CustomToast.success(t.profile.delete.successMsg.sentenceCase)
                   .show(context);

@@ -67,7 +67,7 @@ class HomePage extends HookConsumerWidget {
                     _ => const EmptyProfilesHomeBody(),
                   },
                 AsyncError(:final error) =>
-                  SliverErrorBodyPlaceholder(t.presentError(error)),
+                  SliverErrorBodyPlaceholder(t.printError(error)),
                 _ => const SliverToBoxAdapter(),
               },
             ],

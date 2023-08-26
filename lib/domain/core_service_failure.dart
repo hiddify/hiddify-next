@@ -42,19 +42,32 @@ sealed class CoreServiceFailure with _$CoreServiceFailure, Failure {
       };
 
   @override
-  String present(TranslationsEn t) {
+  ({String type, String? message}) present(TranslationsEn t) {
     return switch (this) {
-      UnexpectedCoreServiceFailure() => t.failure.singbox.unexpected,
-      CoreServiceNotRunning(:final message) =>
-        t.failure.singbox.serviceNotRunning +
-            (message == null ? "" : ": $message"),
-      InvalidConfig(:final message) =>
-        t.failure.singbox.invalidConfig + (message == null ? "" : ": $message"),
-      CoreServiceCreateFailure(:final message) =>
-        t.failure.singbox.create + (message == null ? "" : ": $message"),
-      CoreServiceStartFailure(:final message) =>
-        t.failure.singbox.start + (message == null ? "" : ": $message"),
-      CoreServiceOtherFailure(:final message) => message ?? "",
+      UnexpectedCoreServiceFailure() => (
+          type: t.failure.singbox.unexpected,
+          message: null
+        ),
+      CoreServiceNotRunning(:final message) => (
+          type: t.failure.singbox.serviceNotRunning,
+          message: message
+        ),
+      InvalidConfig(:final message) => (
+          type: t.failure.singbox.invalidConfig,
+          message: message
+        ),
+      CoreServiceCreateFailure(:final message) => (
+          type: t.failure.singbox.create,
+          message: message
+        ),
+      CoreServiceStartFailure(:final message) => (
+          type: t.failure.singbox.start,
+          message: message
+        ),
+      CoreServiceOtherFailure(:final message) => (
+          type: t.failure.singbox.unexpected,
+          message: message
+        ),
     };
   }
 }

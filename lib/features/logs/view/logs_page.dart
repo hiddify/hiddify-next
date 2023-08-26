@@ -138,7 +138,7 @@ class LogsPage extends HookConsumerWidget with PresLogger {
               NestedTabAppBar(
                 title: Text(t.logs.pageTitle.titleCase),
               ),
-              SliverErrorBodyPlaceholder(t.presentError(error)),
+              SliverErrorBodyPlaceholder(t.printError(error)),
             ],
           ),
         );
