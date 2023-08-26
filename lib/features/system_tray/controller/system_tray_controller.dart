@@ -1,9 +1,5 @@
-import 'package:fpdart/fpdart.dart';
 import 'package:hiddify/core/core_providers.dart';
-import 'package:hiddify/core/prefs/prefs.dart';
-import 'package:hiddify/domain/clash/clash.dart';
 import 'package:hiddify/domain/connectivity/connectivity.dart';
-import 'package:hiddify/features/common/clash/clash_mode.dart';
 import 'package:hiddify/features/common/connectivity/connectivity_controller.dart';
 import 'package:hiddify/features/common/window/window_controller.dart';
 import 'package:hiddify/gen/assets.gen.dart';
@@ -26,19 +22,14 @@ class SystemTrayController extends _$SystemTrayController
     }
 
     final connection = await ref.watch(connectivityControllerProvider.future);
-    final mode =
-        ref.watch(clashModeProvider.select((value) => value.valueOrNull));
 
     loggy.debug('updating system tray');
-    await _updateTray(connection, mode);
+    await _updateTray(connection);
   }
 
   bool _initialized = false;
 
-  Future<void> _updateTray(
-    ConnectionStatus connection,
-    TunnelMode? mode,
-  ) async {
+  Future<void> _updateTray(ConnectionStatus connection) async {
     final t = ref.watch(translationsProvider);
     final trayMenu = Menu(
       items: [
@@ -46,16 +37,6 @@ class SystemTrayController extends _$SystemTrayController
           label: t.tray.dashboard,
           onClick: handleClickShowApp,
         ),
-        if (mode != null) ...[
-          MenuItem.separator(),
-          ...TunnelMode.values.map(
-            (e) => MenuItem.checkbox(
-              label: e.name,
-              checked: e == mode,
-              onClick: (mi) => handleClickModeItem(e, mi),
-            ),
-          ),
-        ],
         MenuItem.separator(),
         MenuItem.checkbox(
           label: t.tray.systemProxy,
@@ -87,15 +68,6 @@ class SystemTrayController extends _$SystemTrayController
   Future<void> handleClickShowApp(MenuItem menuItem) async {
     if (await ref.read(windowControllerProvider.future)) return;
     await ref.read(windowControllerProvider.notifier).show();
-  }
-
-  Future<void> handleClickModeItem(
-    TunnelMode mode,
-    MenuItem menuItem,
-  ) async {
-    return ref
-        .read(prefsControllerProvider.notifier)
-        .patchClashOverrides(ClashConfigPatch(mode: some(mode)));
   }
 
   Future<void> handleClickSetAsSystemProxy(MenuItem menuItem) async {

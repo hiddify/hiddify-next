@@ -22,7 +22,7 @@ class WindowController extends _$WindowController
     await windowManager.waitUntilReadyToShow(
       windowOptions,
       () async {
-        if (ref.read(prefsControllerProvider).general.silentStart) {
+        if (ref.read(silentStartProvider)) {
           loggy.debug("silent start is enabled, hiding window");
           await windowManager.hide();
         }

@@ -1,2 +1,2 @@
-export 'prefs_controller.dart';
-export 'prefs_state.dart';
+export 'general_prefs.dart';
+export 'misc_prefs.dart';

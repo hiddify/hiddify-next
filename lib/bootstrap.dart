@@ -51,8 +51,7 @@ Future<void> lazyBootstrap(WidgetsBinding widgetsBinding) async {
   await container.read(runtimeDetailsServiceProvider).init();
   _loggy.info("basic setup took [${_stopWatch.elapsedMilliseconds}]ms");
 
-  final silentStart =
-      container.read(prefsControllerProvider).general.silentStart;
+  final silentStart = container.read(silentStartProvider);
   if (silentStart) {
     FlutterNativeSplash.remove();
   }

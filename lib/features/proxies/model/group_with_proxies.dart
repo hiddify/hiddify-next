@@ -16,7 +16,6 @@ class GroupWithProxies with _$GroupWithProxies {
 
   static Future<List<GroupWithProxies>> fromProxies(
     List<ClashProxy> proxies,
-    TunnelMode? mode,
   ) async {
     final stopWatch = Stopwatch()..start();
     final res = await CombineWorker().execute(

@@ -4,7 +4,6 @@ import 'package:fpdart/fpdart.dart';
 import 'package:hiddify/data/data_providers.dart';
 import 'package:hiddify/domain/clash/clash.dart';
 import 'package:hiddify/domain/core_service_failure.dart';
-import 'package:hiddify/features/common/clash/clash_mode.dart';
 import 'package:hiddify/features/common/connectivity/connectivity_controller.dart';
 import 'package:hiddify/features/proxies/model/model.dart';
 import 'package:hiddify/utils/utils.dart';
@@ -20,11 +19,10 @@ class ProxiesNotifier extends _$ProxiesNotifier with AppLogger {
     if (!await ref.watch(serviceRunningProvider.future)) {
       throw const CoreServiceNotRunning();
     }
-    final mode = await ref.watch(clashModeProvider.future);
     return _clash.getProxies().flatMap(
       (proxies) {
         return TaskEither(
-          () async => right(await GroupWithProxies.fromProxies(proxies, mode)),
+          () async => right(await GroupWithProxies.fromProxies(proxies)),
         );
       },
     ).getOrElse((l) {
