@@ -5,7 +5,7 @@ typedef ProfileLink = ({String url, String name});
 
 // TODO: test and improve
 abstract class LinkParser {
-  static const protocols = ['clash', 'clashmeta'];
+  static const protocols = ['clash', 'clashmeta', 'sing-box'];
 
   static ProfileLink? simple(String link) {
     if (!isUrl(link)) return null;
@@ -23,11 +23,20 @@ abstract class LinkParser {
   }
 
   static ProfileLink? deep(String link) {
-    final uri = Uri.parse(link.trim());
-    if (protocols.none((e) => uri.scheme == e)) return null;
-    if (uri.authority != 'install-config') return null;
-    final params = uri.queryParameters;
-    if (params['url'] == null) return null;
-    return (url: params['url']!, name: params['name'] ?? '');
+    final uri = Uri.tryParse(link.trim());
+    if (uri == null || !uri.hasScheme || !uri.hasAuthority) return null;
+    final queryParams = uri.queryParameters;
+    switch (uri.scheme) {
+      case 'clash' || 'clashmeta':
+        if (uri.authority != 'install-config' ||
+            !queryParams.containsKey('url')) return null;
+        return (url: queryParams['url']!, name: queryParams['name'] ?? '');
+      case 'sing-box':
+        if (uri.authority != 'import-remote-profile' ||
+            !queryParams.containsKey('url')) return null;
+        return (url: queryParams['url']!, name: queryParams['name'] ?? '');
+      default:
+        return null;
+    }
   }
 }

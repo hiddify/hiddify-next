@@ -15,7 +15,7 @@ class DeepLinkService extends _$DeepLinkService
   Future<NewProfileLink?> build() async {
     if (Platform.isLinux) return null;
     loggy.debug("initializing");
-    for (final protocol in _protocols) {
+    for (final protocol in LinkParser.protocols) {
       await protocolHandler.register(protocol);
     }
     protocolHandler.addListener(this);
@@ -31,8 +31,6 @@ class DeepLinkService extends _$DeepLinkService
     }
     return null;
   }
-
-  static const _protocols = ['clash', 'clashmeta'];
 
   @override
   void onProtocolUrlReceived(String url) {
