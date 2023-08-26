@@ -9,7 +9,7 @@ abstract class LinkParser {
 
   static ProfileLink? simple(String link) {
     if (!isUrl(link)) return null;
-    final uri = Uri.parse(link);
+    final uri = Uri.parse(link.trim());
     final params = uri.queryParameters;
     return (
       url: uri
@@ -23,7 +23,7 @@ abstract class LinkParser {
   }
 
   static ProfileLink? deep(String link) {
-    final uri = Uri.parse(link);
+    final uri = Uri.parse(link.trim());
     if (protocols.none((e) => uri.scheme == e)) return null;
     if (uri.authority != 'install-config') return null;
     final params = uri.queryParameters;

@@ -180,7 +180,7 @@ class ProfilesRepositoryImpl
     return TaskEither(
       () async {
         final path = filesEditor.configPath(fileName);
-        final response = await dio.download(url, path);
+        final response = await dio.download(url.trim(), path);
         final parseResult = await singbox.parseConfig(path).run();
         return parseResult.fold(
           (l) async {
