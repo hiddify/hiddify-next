@@ -197,6 +197,7 @@ jobs:
           #rm out/app-release.apk ||echo "no app-release.apk"
           #mv out/*.aab out/hiddify-android-playstore.aab || echo "no aab"
           mv out/*.AppImage out/hiddify-linux-x64.AppImage || echo "no app image"
+          (cd out&& chmod +x hiddify-linux-x64.AppImage && 7z a hiddify-linux-x64.AppImage.zip hiddify-linux-x64.AppImage)||echo "no app image"
           mv out/*.dmg out/hiddify-macos-universal.dmg || echo "no macos dmg"
 
       - uses: actions/upload-artifact@v3
