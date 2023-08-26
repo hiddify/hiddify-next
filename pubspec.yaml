@@ -19,7 +19,6 @@ dependencies:
   slang_flutter: ^3.23.0
   recase: ^4.1.0
   timeago: ^3.5.0
-  duration: ^3.0.13
   flutter_localized_locales: ^2.0.4
 
   # data & serialization
@@ -49,7 +48,6 @@ dependencies:
   mobile_scanner: ^3.4.1
   protocol_handler: ^0.1.5
   flutter_native_splash: ^2.3.2
-  file_picker: ^5.3.3
   share_plus: ^7.1.0
   window_manager: ^0.3.5
   tray_manager: ^0.2.0
@@ -57,7 +55,7 @@ dependencies:
   url_launcher: ^6.1.12
 
   # utils
-  combine: ^0.5.4
+  combine: ^0.5.5
   path: ^1.8.3
   loggy: ^2.0.3
   flutter_loggy: ^2.0.2

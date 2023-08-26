@@ -197,10 +197,10 @@ packages:
     dependency: "direct main"
     description:
       name: combine
-      sha256: ca39205d2f0f8ea87ae46cbbda8d6e9af4daf133d14e98281ff5caa3bd5f2182
+      sha256: "0a8e511065182f228ebec4e88c70b2ba72b1ae66d37a7ad196ff6071c7f10a2a"
       url: "https://pub.dev"
     source: hosted
-    version: "0.5.4"
+    version: "0.5.5"
   convert:
     dependency: transitive
     description:
@@ -321,14 +321,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
-  duration:
-    dependency: "direct main"
-    description:
-      name: duration
-      sha256: "0548a12d235dab185c677ef660995f23fdc06a02a2b984aa23805f6a03d82815"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.0.13"
   equatable:
     dependency: transitive
     description:
@@ -369,14 +361,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.4"
-  file_picker:
-    dependency: "direct main"
-    description:
-      name: file_picker
-      sha256: "21145c9c268d54b1f771d8380c195d2d6f655e0567dc1ca2f9c134c02c819e0a"
-      url: "https://pub.dev"
-    source: hosted
-    version: "5.3.3"
   fixnum:
     dependency: transitive
     description:
@@ -507,14 +491,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.2"
-  flutter_plugin_android_lifecycle:
-    dependency: transitive
-    description:
-      name: flutter_plugin_android_lifecycle
-      sha256: "950e77c2bbe1692bc0874fc7fb491b96a4dc340457f4ea1641443d0a6c1ea360"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.15"
   flutter_riverpod:
     dependency: transitive
     description:
