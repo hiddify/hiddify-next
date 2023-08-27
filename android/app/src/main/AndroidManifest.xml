@@ -44,15 +44,13 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data
-                    android:host="import-remote-profile"
-                    android:scheme="sing-box" />
-                <data
-                    android:host="install-config"
-                    android:scheme="clash" />
-                <data
-                    android:host="install-config"
-                    android:scheme="clashmeta" />
+                <data android:scheme="sing-box"/>
+                <data android:host="import-remote-profile"/>
+                <data android:scheme="clash"/>
+                <data android:host="install-config"/>
+                <data android:scheme="clashmeta"/>
+                <data android:scheme="hiddify"/>
+                <data android:host="install-sub"/>
             </intent-filter>
         </activity>
         <service

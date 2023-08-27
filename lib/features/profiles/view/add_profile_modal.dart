@@ -105,7 +105,7 @@ class AddProfileModal extends HookConsumerWidget {
                             final captureResult =
                                 await Clipboard.getData(Clipboard.kTextPlain);
                             final link =
-                                LinkParser.simple(captureResult?.text ?? '');
+                                LinkParser.parse(captureResult?.text ?? '');
                             if (link != null && context.mounted) {
                               if (addProfileMutation.state.isInProgress) return;
                               mutationTriggered.value = true;
@@ -115,9 +115,11 @@ class AddProfileModal extends HookConsumerWidget {
                                     .addProfile(link.url),
                               );
                             } else {
-                              CustomToast.error(
-                                t.profile.add.invalidUrlMsg.sentenceCase,
-                              ).show(context);
+                              if (context.mounted) {
+                                CustomToast.error(
+                                  t.profile.add.invalidUrlMsg.sentenceCase,
+                                ).show(context);
+                              }
                             }
                           },
                         ),
