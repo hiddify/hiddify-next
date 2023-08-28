@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:fpdart/fpdart.dart';
 import 'package:hiddify/data/api/clash_api.dart';
 import 'package:hiddify/data/repository/exception_handlers.dart';
@@ -6,6 +8,7 @@ import 'package:hiddify/domain/connectivity/connection_status.dart';
 import 'package:hiddify/domain/constants.dart';
 import 'package:hiddify/domain/core_facade.dart';
 import 'package:hiddify/domain/core_service_failure.dart';
+import 'package:hiddify/domain/singbox/singbox.dart';
 import 'package:hiddify/services/connectivity/connectivity.dart';
 import 'package:hiddify/services/files_editor_service.dart';
 import 'package:hiddify/services/singbox/singbox_service.dart';
@@ -92,6 +95,19 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
     return exceptionHandler(
       () => singbox.stop().mapLeft(CoreServiceFailure.other).run(),
       CoreServiceFailure.unexpected,
+    );
+  }
+
+  @override
+  Stream<Either<CoreServiceFailure, CoreStatus>> watchCoreStatus() {
+    return singbox.watchStatus().map((event) {
+      final json = jsonDecode(event);
+      return CoreStatus.fromJson(json as Map<String, dynamic>);
+    }).handleExceptions(
+      (error, stackTrace) {
+        loggy.warning("error watching status", error, stackTrace);
+        return CoreServiceFailure.unexpected(error, stackTrace);
+      },
     );
   }
 

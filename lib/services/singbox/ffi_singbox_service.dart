@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:ffi';
 import 'dart:io';
+import 'dart:isolate';
 
 import 'package:combine/combine.dart';
 import 'package:ffi/ffi.dart';
@@ -15,6 +16,8 @@ final _logger = Loggy('FFISingboxService');
 
 class FFISingboxService with InfraLogger implements SingboxService {
   static final SingboxNativeLibrary _box = _gen();
+
+  Stream<String>? _statusStream;
 
   static SingboxNativeLibrary _gen() {
     String fullPath = "";
@@ -47,6 +50,7 @@ class FFISingboxService with InfraLogger implements SingboxService {
             workingDir.toNativeUtf8().cast(),
             tempDir.toNativeUtf8().cast(),
           );
+          _box.setupOnce(NativeApi.initializeApiDLData);
           return right(unit);
         },
       ),
@@ -117,6 +121,46 @@ class FFISingboxService with InfraLogger implements SingboxService {
         },
       ),
     );
+  }
+
+  @override
+  Stream<String> watchStatus() {
+    if (_statusStream != null) return _statusStream!;
+    final receiver = ReceivePort('status receiver');
+    final statusStream = receiver.asBroadcastStream(
+      onCancel: (_) {
+        _logger.debug("stopping status command client");
+        final err = _box.stopCommandClient(1).cast<Utf8>().toDartString();
+        if (err.isNotEmpty) {
+          _logger.warning("error stopping status client");
+        }
+        receiver.close();
+        _statusStream = null;
+      },
+    ).map(
+      (event) {
+        if (event case String _) {
+          if (event.startsWith('error:')) {
+            loggy.warning("[status client] error received: $event");
+            throw event.replaceFirst('error:', "");
+          }
+          return event;
+        }
+        loggy.warning("[status client] unexpected type, msg: $event");
+        throw "invalid type";
+      },
+    );
+
+    final err = _box
+        .startCommandClient(1, receiver.sendPort.nativePort)
+        .cast<Utf8>()
+        .toDartString();
+    if (err.isNotEmpty) {
+      loggy.warning("error starting status command: $err");
+      throw err;
+    }
+
+    return _statusStream = statusStream;
   }
 
   @override

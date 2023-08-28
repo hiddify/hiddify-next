@@ -17,12 +17,16 @@ class TrafficNotifier extends _$TrafficNotifier with AppLogger {
   Stream<List<Traffic>> build() async* {
     final serviceRunning = await ref.watch(serviceRunningProvider.future);
     if (serviceRunning) {
-      yield* ref.watch(coreFacadeProvider).watchTraffic().map(
-            (event) => _mapToState(
-              event
-                  .getOrElse((_) => const ClashTraffic(upload: 0, download: 0)),
-            ),
-          );
+      // TODO: temporary!
+      yield* ref.watch(coreFacadeProvider).watchCoreStatus().map((event) {
+        return event.map(
+          (a) => ClashTraffic(upload: a.uplink, download: a.downlink),
+        );
+      }).map(
+        (event) => _mapToState(
+          event.getOrElse((_) => const ClashTraffic(upload: 0, download: 0)),
+        ),
+      );
     } else {
       yield* Stream.periodic(const Duration(seconds: 1)).asyncMap(
         (_) async {

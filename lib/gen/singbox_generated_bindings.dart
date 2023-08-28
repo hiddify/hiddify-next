@@ -857,6 +857,20 @@ class SingboxNativeLibrary {
   late final __FCmulcr =
       __FCmulcrPtr.asFunction<_Fcomplex Function(_Fcomplex, double)>();
 
+  void setupOnce(
+    ffi.Pointer<ffi.Void> api,
+  ) {
+    return _setupOnce(
+      api,
+    );
+  }
+
+  late final _setupOncePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+          'setupOnce');
+  late final _setupOnce =
+      _setupOncePtr.asFunction<void Function(ffi.Pointer<ffi.Void>)>();
+
   void setup(
     ffi.Pointer<ffi.Char> baseDir,
     ffi.Pointer<ffi.Char> workingDir,
@@ -920,6 +934,37 @@ class SingboxNativeLibrary {
   late final _stopPtr =
       _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function()>>('stop');
   late final _stop = _stopPtr.asFunction<ffi.Pointer<ffi.Char> Function()>();
+
+  ffi.Pointer<ffi.Char> startCommandClient(
+    int command,
+    int port,
+  ) {
+    return _startCommandClient(
+      command,
+      port,
+    );
+  }
+
+  late final _startCommandClientPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Int, ffi.LongLong)>>('startCommandClient');
+  late final _startCommandClient = _startCommandClientPtr
+      .asFunction<ffi.Pointer<ffi.Char> Function(int, int)>();
+
+  ffi.Pointer<ffi.Char> stopCommandClient(
+    int command,
+  ) {
+    return _stopCommandClient(
+      command,
+    );
+  }
+
+  late final _stopCommandClientPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Int)>>(
+          'stopCommandClient');
+  late final _stopCommandClient =
+      _stopCommandClientPtr.asFunction<ffi.Pointer<ffi.Char> Function(int)>();
 }
 
 typedef va_list = ffi.Pointer<ffi.Char>;

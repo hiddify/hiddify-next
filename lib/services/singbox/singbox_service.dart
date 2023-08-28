@@ -26,5 +26,7 @@ abstract interface class SingboxService {
 
   TaskEither<String, Unit> stop();
 
+  Stream<String> watchStatus();
+
   Stream<String> watchLogs(String path);
 }

@@ -68,6 +68,12 @@ class MobileSingboxService with InfraLogger implements SingboxService {
   }
 
   @override
+  Stream<String> watchStatus() {
+    // TODO: implement watchStatus
+    return const Stream.empty();
+  }
+
+  @override
   Stream<String> watchLogs(String path) {
     return _logsChannel.receiveBroadcastStream().map(
       (event) {
