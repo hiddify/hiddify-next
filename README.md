@@ -9,7 +9,7 @@
 ## Download Hiddify Next Pre-Release 
 - Android: [Universal](https://github.com/hiddify/hiddify-next/releases/download/draft/hiddify-android-universal.apk) - [Arm64](https://github.com/hiddify/hiddify-next/releases/download/draft/hiddify-android-arm64.apk) - [Arm7](https://github.com/hiddify/hiddify-next/releases/download/draft/hiddify-android-arm7.apk)  - [x86_64](https://github.com/hiddify/hiddify-next/releases/download/draft/hiddify-android-x86_64.apk)
 - Windows: [x64 Setup](https://github.com/hiddify/hiddify-next/releases/download/draft/hiddify-windows-x64-setup.exe) - [x64 Portable](https://github.com/hiddify/hiddify-next/releases/download/draft/hiddify-windows-x64-portable.zip)
-- Linux: [x64 AppImage](https://github.com/hiddify/hiddify-next/releases/download/draft/hiddify-linux-x64.AppImage)
+- Linux: [x64 AppImage](https://github.com/hiddify/hiddify-next/releases/download/draft/hiddify-linux-x64.AppImage.zip)
 - macOS: [Universal (x64, M1, M2)](https://github.com/hiddify/hiddify-next/releases/download/draft/hiddify-macos-universal.dmg)
 
 ## Build from source
