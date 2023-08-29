@@ -76,6 +76,7 @@ class MobileSingboxService with InfraLogger implements SingboxService {
         if (event case String _) {
           return event;
         }
+        loggy.warning("[group client] unexpected type, msg: $event");
         throw "invalid type";
       },
     );

@@ -58,10 +58,10 @@ class GroupsChannel(private val scope: CoroutineScope) : FlutterPlugin, CommandC
     }
 
     data class KOutboundGroup(
-        val tag: String,
-        val type: String,
-        val selected: String,
-        val items: List<KOutboundGroupItem>
+        @SerializedName("tag") val tag: String,
+        @SerializedName("type") val type: String,
+        @SerializedName("selected") val selected: String,
+        @SerializedName("items") val items: List<KOutboundGroupItem>
     ) {
         companion object {
             fun fromOutbound(group: OutboundGroup): KOutboundGroup {
@@ -76,8 +76,8 @@ class GroupsChannel(private val scope: CoroutineScope) : FlutterPlugin, CommandC
     }
 
     data class KOutboundGroupItem(
-        val tag: String,
-        val type: String,
+        @SerializedName("tag") val tag: String,
+        @SerializedName("type") val type: String,
         @SerializedName("url-test-delay") val urlTestDelay: Int,
     ) {
         constructor(item: OutboundGroupItem) : this(item.tag, item.type, item.urlTestDelay)
