@@ -3,7 +3,6 @@ import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/domain/failures.dart';
 import 'package:hiddify/features/common/common.dart';
 import 'package:hiddify/features/proxies/notifier/notifier.dart';
-import 'package:hiddify/features/proxies/notifier/proxies_delay_notifier.dart';
 import 'package:hiddify/features/proxies/widgets/widgets.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -18,7 +17,6 @@ class ProxiesPage extends HookConsumerWidget with PresLogger {
 
     final asyncProxies = ref.watch(proxiesNotifierProvider);
     final notifier = ref.watch(proxiesNotifierProvider.notifier);
-    final delays = ref.watch(proxiesDelayNotifierProvider);
 
     final selectActiveProxyMutation = useMutation(
       initialOnFailure: (error) =>
@@ -47,55 +45,33 @@ class ProxiesPage extends HookConsumerWidget with PresLogger {
           );
         }
 
-        final select = groups.first;
+        final group = groups.first;
 
         return Scaffold(
           body: CustomScrollView(
             slivers: [
-              NestedTabAppBar(
-                title: Text(t.proxies.pageTitle.titleCase),
-                actions: [
-                  PopupMenuButton(
-                    itemBuilder: (_) {
-                      return [
-                        PopupMenuItem(
-                          onTap: ref
-                              .read(proxiesDelayNotifierProvider.notifier)
-                              .cancelDelayTest,
-                          child: Text(
-                            t.proxies.cancelTestButtonText.sentenceCase,
-                          ),
-                        ),
-                      ];
-                    },
-                  ),
-                ],
-              ),
+              NestedTabAppBar(title: Text(t.proxies.pageTitle.titleCase)),
               SliverLayoutBuilder(
                 builder: (context, constraints) {
                   final width = constraints.crossAxisExtent;
                   if (!PlatformUtils.isDesktop && width < 648) {
                     return SliverList.builder(
                       itemBuilder: (_, index) {
-                        final proxy = select.proxies[index];
+                        final proxy = group.items[index];
                         return ProxyTile(
                           proxy,
-                          selected: select.group.now == proxy.name,
-                          delay: delays[proxy.name],
+                          selected: group.selected == proxy.tag,
                           onSelect: () async {
                             if (selectActiveProxyMutation.state.isInProgress) {
                               return;
                             }
                             selectActiveProxyMutation.setFuture(
-                              notifier.changeProxy(
-                                select.group.name,
-                                proxy.name,
-                              ),
+                              notifier.changeProxy(group.tag, proxy.tag),
                             );
                           },
                         );
                       },
-                      itemCount: select.proxies.length,
+                      itemCount: group.items.length,
                     );
                   }
 
@@ -105,36 +81,31 @@ class ProxiesPage extends HookConsumerWidget with PresLogger {
                       mainAxisExtent: 68,
                     ),
                     itemBuilder: (context, index) {
-                      final proxy = select.proxies[index];
+                      final proxy = group.items[index];
                       return ProxyTile(
                         proxy,
-                        selected: select.group.now == proxy.name,
-                        delay: delays[proxy.name],
+                        selected: group.selected == proxy.tag,
                         onSelect: () async {
                           if (selectActiveProxyMutation.state.isInProgress) {
                             return;
                           }
                           selectActiveProxyMutation.setFuture(
                             notifier.changeProxy(
-                              select.group.name,
-                              proxy.name,
+                              group.tag,
+                              proxy.tag,
                             ),
                           );
                         },
                       );
                     },
-                    itemCount: select.proxies.length,
+                    itemCount: group.items.length,
                   );
                 },
               ),
             ],
           ),
           floatingActionButton: FloatingActionButton(
-            onPressed: () async =>
-                // TODO: improve
-                ref.read(proxiesDelayNotifierProvider.notifier).testDelay(
-                      select.proxies.map((e) => e.name),
-                    ),
+            onPressed: () async => notifier.urlTest(group.tag),
             tooltip: t.proxies.delayTestTooltip.titleCase,
             child: const Icon(Icons.bolt),
           ),

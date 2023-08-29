@@ -18,6 +18,7 @@ class FFISingboxService with InfraLogger implements SingboxService {
   static final SingboxNativeLibrary _box = _gen();
 
   Stream<String>? _statusStream;
+  Stream<String>? _groupsStream;
 
   static SingboxNativeLibrary _gen() {
     String fullPath = "";
@@ -161,6 +162,85 @@ class FFISingboxService with InfraLogger implements SingboxService {
     }
 
     return _statusStream = statusStream;
+  }
+
+  @override
+  Stream<String> watchOutbounds() {
+    if (_groupsStream != null) return _groupsStream!;
+    final receiver = ReceivePort('outbounds receiver');
+    final groupsStream = receiver.asBroadcastStream(
+      onCancel: (_) {
+        _logger.debug("stopping group command client");
+        final err = _box.stopCommandClient(4).cast<Utf8>().toDartString();
+        if (err.isNotEmpty) {
+          _logger.warning("error stopping group client");
+        }
+        receiver.close();
+        _groupsStream = null;
+      },
+    ).map(
+      (event) {
+        if (event case String _) {
+          if (event.startsWith('error:')) {
+            loggy.warning("[group client] error received: $event");
+            throw event.replaceFirst('error:', "");
+          }
+          return event;
+        }
+        loggy.warning("[group client] unexpected type, msg: $event");
+        throw "invalid type";
+      },
+    );
+
+    final err = _box
+        .startCommandClient(4, receiver.sendPort.nativePort)
+        .cast<Utf8>()
+        .toDartString();
+    if (err.isNotEmpty) {
+      loggy.warning("error starting group command: $err");
+      throw err;
+    }
+
+    return _groupsStream = groupsStream;
+  }
+
+  @override
+  TaskEither<String, Unit> selectOutbound(String groupTag, String outboundTag) {
+    return TaskEither(
+      () => CombineWorker().execute(
+        () {
+          final err = _box
+              .selectOutbound(
+                groupTag.toNativeUtf8().cast(),
+                outboundTag.toNativeUtf8().cast(),
+              )
+              .cast<Utf8>()
+              .toDartString();
+          if (err.isNotEmpty) {
+            return left(err);
+          }
+          return right(unit);
+        },
+      ),
+    );
+  }
+
+  @override
+  TaskEither<String, Unit> urlTest(String groupTag) {
+    return TaskEither(
+      () => CombineWorker().execute(
+        () {
+          final err = _box
+              .urlTest(groupTag.toNativeUtf8().cast())
+              .cast<Utf8>()
+              .toDartString();
+          if (err.isNotEmpty) {
+            return left(err);
+          }
+          return right(unit);
+        },
+      ),
+    );
   }
 
   @override

@@ -99,6 +99,42 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
   }
 
   @override
+  Stream<Either<CoreServiceFailure, List<OutboundGroup>>> watchOutbounds() {
+    return singbox.watchOutbounds().map((event) {
+      return (jsonDecode(event) as List).map((e) {
+        return OutboundGroup.fromJson(e as Map<String, dynamic>);
+      }).toList();
+    }).handleExceptions(
+      (error, stackTrace) {
+        loggy.warning("error watching outbounds", error, stackTrace);
+        return CoreServiceFailure.unexpected(error, stackTrace);
+      },
+    );
+  }
+
+  @override
+  TaskEither<CoreServiceFailure, Unit> selectOutbound(
+    String groupTag,
+    String outboundTag,
+  ) {
+    return exceptionHandler(
+      () => singbox
+          .selectOutbound(groupTag, outboundTag)
+          .mapLeft(CoreServiceFailure.other)
+          .run(),
+      CoreServiceFailure.unexpected,
+    );
+  }
+
+  @override
+  TaskEither<CoreServiceFailure, Unit> urlTest(String groupTag) {
+    return exceptionHandler(
+      () => singbox.urlTest(groupTag).mapLeft(CoreServiceFailure.other).run(),
+      CoreServiceFailure.unexpected,
+    );
+  }
+
+  @override
   Stream<Either<CoreServiceFailure, CoreStatus>> watchCoreStatus() {
     return singbox.watchStatus().map((event) {
       final json = jsonDecode(event);

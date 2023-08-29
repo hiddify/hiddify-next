@@ -26,6 +26,12 @@ abstract interface class SingboxService {
 
   TaskEither<String, Unit> stop();
 
+  Stream<String> watchOutbounds();
+
+  TaskEither<String, Unit> selectOutbound(String groupTag, String outboundTag);
+
+  TaskEither<String, Unit> urlTest(String groupTag);
+
   Stream<String> watchStatus();
 
   Stream<String> watchLogs(String path);

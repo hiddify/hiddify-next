@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hiddify/domain/clash/clash.dart';
+import 'package:hiddify/domain/singbox/singbox.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ProxyTile extends HookConsumerWidget {
@@ -8,13 +8,11 @@ class ProxyTile extends HookConsumerWidget {
     super.key,
     required this.selected,
     required this.onSelect,
-    this.delay,
   });
 
-  final ClashProxy proxy;
+  final OutboundGroupItem proxy;
   final bool selected;
   final VoidCallback onSelect;
-  final int? delay;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -23,10 +21,7 @@ class ProxyTile extends HookConsumerWidget {
     return ListTile(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       title: Text(
-        switch (proxy) {
-          ClashProxyGroup(:final name) => name.toUpperCase(),
-          ClashProxyItem(:final name) => name,
-        },
+        proxy.tag,
         overflow: TextOverflow.ellipsis,
       ),
       leading: Padding(
@@ -40,38 +35,12 @@ class ProxyTile extends HookConsumerWidget {
           ),
         ),
       ),
-      subtitle: Text.rich(
-        TextSpan(
-          children: [
-            TextSpan(text: proxy.type.label),
-            // if (proxy.udp)
-            //   WidgetSpan(
-            //     child: Padding(
-            //       padding: const EdgeInsets.symmetric(horizontal: 4),
-            //       child: DecoratedBox(
-            //         decoration: BoxDecoration(
-            //           border: Border.all(
-            //             color: theme.colorScheme.tertiaryContainer,
-            //           ),
-            //           borderRadius: BorderRadius.circular(6),
-            //         ),
-            //         child: Text(
-            //           " UDP ",
-            //           style: TextStyle(
-            //             fontSize: theme.textTheme.labelSmall?.fontSize,
-            //           ),
-            //         ),
-            //       ),
-            //     ),
-            //   ),
-            if (proxy case ClashProxyGroup(:final now)) ...[
-              TextSpan(text: " ($now)"),
-            ],
-          ],
-        ),
+      subtitle: Text(
+        proxy.type.label,
         overflow: TextOverflow.ellipsis,
       ),
-      trailing: delay != null ? Text(delay.toString()) : null,
+      trailing:
+          proxy.urlTestDelay != 0 ? Text(proxy.urlTestDelay.toString()) : null,
       selected: selected,
       onTap: onSelect,
       horizontalTitleGap: 4,

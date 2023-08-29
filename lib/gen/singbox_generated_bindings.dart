@@ -965,6 +965,38 @@ class SingboxNativeLibrary {
           'stopCommandClient');
   late final _stopCommandClient =
       _stopCommandClientPtr.asFunction<ffi.Pointer<ffi.Char> Function(int)>();
+
+  ffi.Pointer<ffi.Char> selectOutbound(
+    ffi.Pointer<ffi.Char> groupTag,
+    ffi.Pointer<ffi.Char> outboundTag,
+  ) {
+    return _selectOutbound(
+      groupTag,
+      outboundTag,
+    );
+  }
+
+  late final _selectOutboundPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>>('selectOutbound');
+  late final _selectOutbound = _selectOutboundPtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+
+  ffi.Pointer<ffi.Char> urlTest(
+    ffi.Pointer<ffi.Char> groupTag,
+  ) {
+    return _urlTest(
+      groupTag,
+    );
+  }
+
+  late final _urlTestPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('urlTest');
+  late final _urlTest = _urlTestPtr
+      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
 }
 
 typedef va_list = ffi.Pointer<ffi.Char>;

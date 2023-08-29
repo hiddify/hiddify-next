@@ -68,9 +68,50 @@ class MobileSingboxService with InfraLogger implements SingboxService {
   }
 
   @override
+  Stream<String> watchOutbounds() {
+    const channel = EventChannel("com.hiddify.app/groups");
+    loggy.debug("watching outbounds");
+    return channel.receiveBroadcastStream().map(
+      (event) {
+        if (event case String _) {
+          return event;
+        }
+        throw "invalid type";
+      },
+    );
+  }
+
+  @override
   Stream<String> watchStatus() {
     // TODO: implement watchStatus
     return const Stream.empty();
+  }
+
+  @override
+  TaskEither<String, Unit> selectOutbound(String groupTag, String outboundTag) {
+    return TaskEither(
+      () async {
+        loggy.debug("selecting outbound");
+        await _methodChannel.invokeMethod(
+          "select_outbound",
+          {"groupTag": groupTag, "outboundTag": outboundTag},
+        );
+        return right(unit);
+      },
+    );
+  }
+
+  @override
+  TaskEither<String, Unit> urlTest(String groupTag) {
+    return TaskEither(
+      () async {
+        await _methodChannel.invokeMethod(
+          "url_test",
+          {"groupTag": groupTag},
+        );
+        return right(unit);
+      },
+    );
   }
 
   @override
