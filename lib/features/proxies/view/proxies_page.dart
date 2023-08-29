@@ -55,23 +55,27 @@ class ProxiesPage extends HookConsumerWidget with PresLogger {
                 builder: (context, constraints) {
                   final width = constraints.crossAxisExtent;
                   if (!PlatformUtils.isDesktop && width < 648) {
-                    return SliverList.builder(
-                      itemBuilder: (_, index) {
-                        final proxy = group.items[index];
-                        return ProxyTile(
-                          proxy,
-                          selected: group.selected == proxy.tag,
-                          onSelect: () async {
-                            if (selectActiveProxyMutation.state.isInProgress) {
-                              return;
-                            }
-                            selectActiveProxyMutation.setFuture(
-                              notifier.changeProxy(group.tag, proxy.tag),
-                            );
-                          },
-                        );
-                      },
-                      itemCount: group.items.length,
+                    return SliverPadding(
+                      padding: const EdgeInsets.only(bottom: 86),
+                      sliver: SliverList.builder(
+                        itemBuilder: (_, index) {
+                          final proxy = group.items[index];
+                          return ProxyTile(
+                            proxy,
+                            selected: group.selected == proxy.tag,
+                            onSelect: () async {
+                              if (selectActiveProxyMutation
+                                  .state.isInProgress) {
+                                return;
+                              }
+                              selectActiveProxyMutation.setFuture(
+                                notifier.changeProxy(group.tag, proxy.tag),
+                              );
+                            },
+                          );
+                        },
+                        itemCount: group.items.length,
+                      ),
                     );
                   }
 

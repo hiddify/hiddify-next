@@ -27,7 +27,6 @@ class GroupsChannel(private val scope: CoroutineScope) : FlutterPlugin, CommandC
     override fun updateGroups(groups: List<OutboundGroup>) {
         MainActivity.instance.runOnUiThread {
             val kGroups = groups.map { group -> KOutboundGroup.fromOutbound(group) }
-            Log.d(TAG, kGroups.toString())
             groupsEvent?.success(gson.toJson(kGroups))
         }
     }

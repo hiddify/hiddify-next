@@ -84,9 +84,6 @@ class AboutPage extends HookConsumerWidget {
                   delegate: SliverChildListDelegate(
                     [
                       ListTile(
-                        title: Text(t.about.whatsNew.sentenceCase),
-                      ),
-                      ListTile(
                         title: Text(t.about.sourceCode.sentenceCase),
                         trailing: const Icon(Icons.open_in_new),
                         onTap: () async {
