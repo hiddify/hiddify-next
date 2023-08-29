@@ -98,6 +98,9 @@ interface PlatformInterfaceWrapper : PlatformInterface {
         return false
     }
 
+    override fun clearDNSCache() {
+    }
+
     private class InterfaceArray(private val iterator: Enumeration<NetworkInterface>) :
         NetworkInterfaceIterator {
 

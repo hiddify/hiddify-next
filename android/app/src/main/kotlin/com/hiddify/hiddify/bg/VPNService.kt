@@ -142,6 +142,10 @@ class VPNService : VpnService(), PlatformInterfaceWrapper {
         return pfd.fd
     }
 
+    override fun closeTun() {
+        service.onRevoke()
+    }
+
     override fun writeLog(message: String) = service.writeLog(message)
 
 }

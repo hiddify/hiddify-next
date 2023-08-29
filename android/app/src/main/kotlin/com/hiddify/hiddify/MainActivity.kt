@@ -42,6 +42,7 @@ class MainActivity : FlutterFragmentActivity(), ServiceConnection.Callback {
         flutterEngine.plugins.add(MethodHandler())
         flutterEngine.plugins.add(EventHandler())
         flutterEngine.plugins.add(LogHandler())
+        flutterEngine.plugins.add(GroupsChannel(lifecycleScope))
     }
 
     fun reconnect() {

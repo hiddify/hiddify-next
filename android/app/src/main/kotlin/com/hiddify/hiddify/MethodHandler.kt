@@ -6,6 +6,9 @@ import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.StandardMethodCodec
+import io.nekohasekai.libbox.Libbox
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class MethodHandler : FlutterPlugin, MethodChannel.MethodCallHandler {
     private lateinit var channel: MethodChannel
@@ -18,6 +21,8 @@ class MethodHandler : FlutterPlugin, MethodChannel.MethodCallHandler {
             SetActiveConfigPath("set_active_config_path"),
             Start("start"),
             Stop("stop"),
+            SelectOutbound("select_outbound"),
+            UrlTest("url_test"),
         }
     }
 
@@ -39,10 +44,14 @@ class MethodHandler : FlutterPlugin, MethodChannel.MethodCallHandler {
     override fun onMethodCall(call: MethodCall, result: MethodChannel.Result) {
         when (call.method) {
             Trigger.ParseConfig.method -> {
-                val args = call.arguments as Map<*, *>
-                val path = args["path"] as String? ?: ""
-                val msg = BoxService.parseConfig(path)
-                result.success(msg)
+                GlobalScope.launch {
+                    result.runCatching {
+                        val args = call.arguments as Map<*, *>
+                        val path = args["path"] as String? ?: ""
+                        val msg = BoxService.parseConfig(path)
+                        success(msg)
+                    }
+                }
             }
 
             Trigger.SetActiveConfigPath.method -> {
@@ -59,6 +68,33 @@ class MethodHandler : FlutterPlugin, MethodChannel.MethodCallHandler {
             Trigger.Stop.method -> {
                 BoxService.stop()
                 result.success(true)
+            }
+
+            Trigger.SelectOutbound.method -> {
+                GlobalScope.launch {
+                    result.runCatching {
+                        val args = call.arguments as Map<*, *>
+                        Libbox.newStandaloneCommandClient()
+                            .selectOutbound(
+                                args["groupTag"] as String,
+                                args["outboundTag"] as String
+                            )
+                        success(true)
+                    }
+                }
+            }
+
+            Trigger.UrlTest.method -> {
+                GlobalScope.launch {
+                    result.runCatching {
+                        val args = call.arguments as Map<*, *>
+                        Libbox.newStandaloneCommandClient()
+                            .urlTest(
+                                args["groupTag"] as String
+                            )
+                        success(true)
+                    }
+                }
             }
 
             else -> result.notImplemented()
