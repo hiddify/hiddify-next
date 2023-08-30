@@ -18,6 +18,12 @@
             "connecting": "connecting",
             "disconnecting": "disconnecting",
             "connected": "connected"
+        },
+        "stats": {
+            "traffic": "traffic",
+            "trafficTotal": "traffic total",
+            "uplink": "uplink",
+            "downlink": "downlink"
         }
     },
     "profile": {

@@ -5,6 +5,8 @@ part 'core_status.g.dart';
 
 @freezed
 class CoreStatus with _$CoreStatus {
+  const CoreStatus._();
+
   @JsonSerializable(fieldRename: FieldRename.kebab)
   const factory CoreStatus({
     required int connectionsIn,
@@ -14,6 +16,15 @@ class CoreStatus with _$CoreStatus {
     required int uplinkTotal,
     required int downlinkTotal,
   }) = _CoreStatus;
+
+  factory CoreStatus.empty() => const CoreStatus(
+        connectionsIn: 0,
+        connectionsOut: 0,
+        uplink: 0,
+        downlink: 0,
+        uplinkTotal: 0,
+        downlinkTotal: 0,
+      );
 
   factory CoreStatus.fromJson(Map<String, dynamic> json) =>
       _$CoreStatusFromJson(json);

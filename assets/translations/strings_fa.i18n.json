@@ -18,6 +18,12 @@
             "connecting": "در حال اتصال",
             "disconnecting": "در حال قطع اتصال",
             "connected": "متصل"
+        },
+        "stats": {
+            "traffic": "ترافیک",
+            "trafficTotal": "مجموع ترافیک",
+            "uplink": "ارسال",
+            "downlink": "دریافت"
         }
     },
     "profile": {

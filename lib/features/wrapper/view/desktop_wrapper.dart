@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/core/router/router.dart';
-import 'package:hiddify/features/common/traffic/traffic_chart.dart';
+import 'package:hiddify/features/common/stats/stats_overview.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:recase/recase.dart';
 
@@ -53,7 +53,7 @@ class DesktopWrapper extends HookConsumerWidget {
               trailing: const Expanded(
                 child: Align(
                   alignment: Alignment.bottomCenter,
-                  child: TrafficChart(),
+                  child: StatsOverview(),
                 ),
               ),
             ),

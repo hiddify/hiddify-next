@@ -299,16 +299,8 @@ class ProfileSubscriptionInfo extends HookConsumerWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text.rich(
-          TextSpan(
-            children: [
-              TextSpan(text: formatByte(subInfo.consumption, unit: 3).size),
-              const TextSpan(text: " / "),
-              TextSpan(text: formatByte(subInfo.total, unit: 3).size),
-              const TextSpan(text: " "),
-              TextSpan(text: t.profile.subscription.gigaByte),
-            ],
-          ),
+        Text(
+          subInfo.consumption.sizeOf(subInfo.total),
           style: theme.textTheme.bodySmall,
         ),
         Text(
