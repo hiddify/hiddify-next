@@ -136,42 +136,42 @@
         "checkForUpdate": "check for update"
     },
     "appUpdate": {
-        "dialogTitle": "update available",
+        "dialogTitle": "Update Available",
         "updateMsg": "A new version of @:general.appTitle is available! Would you like to update now?",
-        "currentVersionLbl": "current version",
-        "newVersionLbl": "new version",
-        "updateNowBtnTxt": "update now",
-        "laterBtnTxt": "later",
-        "ignoreBtnTxt": "ignore"
+        "currentVersionLbl": "Current Version",
+        "newVersionLbl": "New Version",
+        "updateNowBtnTxt": "Update Now",
+        "laterBtnTxt": "Later",
+        "ignoreBtnTxt": "Ignore"
     },
     "tray": {
-        "dashboard": "dashboard",
-        "quit": "quit",
-        "systemProxy": "system proxy"
+        "dashboard": "Dashboard",
+        "quit": "Quit",
+        "systemProxy": "System Proxy"
     },
     "failure": {
-        "unexpected": "unexpected failure",
+        "unexpected": "Unexpected Failure",
         "clash": {
-            "unexpected": "unexpected failure",
-            "core": "clash failure ${reason}"
+            "unexpected": "Unexpected Failure",
+            "core": "Clash Failure ${reason}"
         },
         "singbox": {
-            "unexpected": "unexpected service failure",
-            "serviceNotRunning": "Service not running",
+            "unexpected": "Unexpected Service Failure",
+            "serviceNotRunning": "Service not Running",
             "invalidConfig": "Configuration is not valid",
             "create": "Error creating service",
             "start": "Error starting service"
         },
         "connectivity": {
-            "unexpected": "unexpected failure",
-            "missingVpnPermission": "Missing VPN permission",
-            "missingNotificationPermission": "Missing Notification permission",
+            "unexpected": "Unexpected Failure",
+            "missingVpnPermission": "Missing VPN Permission",
+            "missingNotificationPermission": "Missing Notification Permission",
             "core": "Core failure"
         },
         "profiles": {
-            "unexpected": "unexpected failure",
-            "notFound": "profile not found",
-            "invalidConfig": "invalid config"
+            "unexpected": "Unexpected Failure",
+            "notFound": "Profile not Found",
+            "invalidConfig": "Invalid Config"
         }
     }
 }
