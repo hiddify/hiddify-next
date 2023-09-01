@@ -6,6 +6,7 @@ import 'package:hiddify/domain/failures.dart';
 import 'package:hiddify/features/common/new_version_dialog.dart';
 import 'package:hiddify/features/common/runtime_details.dart';
 import 'package:hiddify/gen/assets.gen.dart';
+import 'package:hiddify/services/service_providers.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:recase/recase.dart';
@@ -114,6 +115,17 @@ class AboutPage extends HookConsumerWidget {
                           await ref
                               .read(runtimeDetailsNotifierProvider.notifier)
                               .checkForUpdates();
+                        },
+                      ),
+                      ListTile(
+                        title: Text(t.settings.general.openWorkingDir),
+                        trailing: const Icon(Icons.arrow_outward_outlined),
+                        onTap: () async {
+                          final path = ref
+                              .read(filesEditorServiceProvider)
+                              .workingDir
+                              .uri;
+                          await UriUtils.tryLaunch(path);
                         },
                       ),
                     ],

@@ -103,34 +103,43 @@
             "silentStart": "اجرای ساکت",
             "openWorkingDir": "باز کردن دایرکتوری کاری"
         },
-        "network": {
-            "sectionTitle": "شبکه",
-            "systemProxy": "سیستم پراکسی",
-            "systemProxyMsg": "افزودن سیستم پراکسی به سرویس VPN",
-            "bypassPrivateNetworks": "عبور دادن شبکه خصوصی",
-            "bypassPrivateNetworksMsg": "عبور دادن آدرس‌های شبکه خصوصی"
-        },
-        "clash": {
-            "sectionTitle": "جاگزین‌های پراکسی کلش",
-            "doNotModify": "تغییر نده",
-            "overrides": {
-                "httpPort": "HTTP Port",
-                "socksPort": "Socks Port",
-                "redirPort": "Redirect Port",
-                "tproxyPort": "TProxy Port",
-                "mixedPort": "Mixed Port",
-                "allowLan": "Allow LAN",
-                "ipv6": "IPv6",
-                "mode": "Mode",
-                "logLevel": "Log Level"
-            }
-        },
-        "miscellaneous": {
-            "sectionTitle": "متفرقه",
-            "connectionTestUrl": "لینک تست کانکشن",
-            "concurrentTestCount": "شمار تست همزمان",
+        "advanced": {
+            "sectionTitle": "پیشرفته",
             "debugMode": "دیباگ مود",
             "debugModeMsg": "برای اعمال این تغییر اپ را ری‌استارت کنید"
+        },
+        "config": {
+            "section": {
+                "route": "تنظیمات Route",
+                "dns": "تنظیمات DNS",
+                "inbound": "تنظیمات Inbound",
+                "misc": "تنظیمات متفرقه"
+            },
+            "pageTitle": "تنظیمات کانفیگ",
+            "executeConfigAsIs": "اجرای کانفیگ بدون تغییر",
+            "executeConfigAsIsMsg": "کانفیگ را با تغییرات حداقلی اجرا میکند. مناسب برای کانفیگ‌های سینگ‌باکس",
+            "logLevel": "Log Level",
+            "resolveDestination": "Resolve Destination",
+            "ipv6Mode": "IPv6 Route",
+            "ipv6Modes": {
+                "disable": "Disable",
+                "enable": "Enable",
+                "prefer": "Prefer",
+                "only": "Only"
+            },
+            "remoteDnsAddress": "Remote DNS",
+            "remoteDnsDomainStrategy": "Remote DNS Domain Strategy",
+            "directDnsAddress": "Direct DNS",
+            "directDnsDomainStrategy": "Direct DNS Domain Strategy",
+            "mixedPort": "Mixed Port",
+            "localDnsPort": "Local DNS Port",
+            "mtu": "MTU",
+            "connectionTestUrl": "Connection Test URL",
+            "urlTestInterval": "URL Test Interval",
+            "enableClashApi": "Enable Clash API",
+            "clashApiPort": "Clash API Port",
+            "enableTun": "Enable TUN",
+            "setSystemProxy": "Set System Proxy"
         }
     },
     "about": {
@@ -164,6 +173,7 @@
         "singbox": {
             "unexpected": "خطایی غیر منتظره در سرویس رخ داد",
             "serviceNotRunning": "سرویس در حال اجرا نیست",
+            "invalidConfigOptions": "تنظیمات کانفیگ نامعتبر",
             "invalidConfig": "کانفیگ غیر معتبر",
             "create": "در ایجاد سرویس خطایی رخ داده",
             "start": "در راه‌اندازی سرویس خطایی رخ داده"

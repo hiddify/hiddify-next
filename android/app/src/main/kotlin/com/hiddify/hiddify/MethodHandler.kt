@@ -19,6 +19,7 @@ class MethodHandler : FlutterPlugin, MethodChannel.MethodCallHandler {
         enum class Trigger(val method: String) {
             ParseConfig("parse_config"),
             SetActiveConfigPath("set_active_config_path"),
+            ChangeConfigOptions("change_config_options"),
             Start("start"),
             Stop("stop"),
             SelectOutbound("select_outbound"),
@@ -58,6 +59,14 @@ class MethodHandler : FlutterPlugin, MethodChannel.MethodCallHandler {
                 val args = call.arguments as Map<*, *>
                 Settings.selectedConfigPath = args["path"] as String? ?: ""
                 result.success(true)
+            }
+
+            Trigger.ChangeConfigOptions.method -> {
+                result.runCatching {
+                    val args = call.arguments as String
+                    Settings.configOptions = args
+                    success(true)
+                }
             }
 
             Trigger.Start.method -> {

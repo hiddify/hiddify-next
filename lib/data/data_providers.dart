@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:hiddify/data/api/clash_api.dart';
 import 'package:hiddify/data/local/dao/dao.dart';
 import 'package:hiddify/data/local/database.dart';
+import 'package:hiddify/data/repository/config_options_store.dart';
 import 'package:hiddify/data/repository/repository.dart';
 import 'package:hiddify/data/repository/update_repository_impl.dart';
 import 'package:hiddify/domain/app/app.dart';
@@ -58,4 +59,5 @@ CoreFacade coreFacade(CoreFacadeRef ref) => CoreFacadeImpl(
       ref.watch(filesEditorServiceProvider),
       ref.watch(clashApiProvider),
       ref.watch(connectivityServiceProvider),
+      () => ref.read(configOptionsProvider),
     );

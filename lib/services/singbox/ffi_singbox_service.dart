@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:ffi';
 import 'dart:io';
 import 'dart:isolate';
@@ -6,6 +7,7 @@ import 'dart:isolate';
 import 'package:combine/combine.dart';
 import 'package:ffi/ffi.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:hiddify/domain/singbox/config_options.dart';
 import 'package:hiddify/gen/singbox_generated_bindings.dart';
 import 'package:hiddify/services/singbox/singbox_service.dart';
 import 'package:hiddify/utils/utils.dart';
@@ -77,10 +79,29 @@ class FFISingboxService with InfraLogger implements SingboxService {
   }
 
   @override
-  TaskEither<String, Unit> create(String configPath) {
+  TaskEither<String, Unit> changeConfigOptions(ConfigOptions options) {
     return TaskEither(
       () => CombineWorker().execute(
         () {
+          final json = jsonEncode(options.toJson());
+          final err = _box
+              .changeConfigOptions(json.toNativeUtf8().cast())
+              .cast<Utf8>()
+              .toDartString();
+          if (err.isNotEmpty) {
+            return left(err);
+          }
+          return right(unit);
+        },
+      ),
+    );
+  }
+
+  @override
+  TaskEither<String, Unit> create(String configPath) {
+    return TaskEither(
+      () => CombineWorker().execute(
+        () async {
           final err = _box
               .create(configPath.toNativeUtf8().cast())
               .cast<Utf8>()

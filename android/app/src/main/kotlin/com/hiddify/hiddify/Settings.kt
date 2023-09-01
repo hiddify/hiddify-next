@@ -26,6 +26,10 @@ object Settings {
         get() = preferences.getString(SettingsKey.SELECTED_CONFIG_PATH, "") ?: ""
         set(value) = preferences.edit().putString(SettingsKey.SELECTED_CONFIG_PATH, value).apply()
 
+    var configOptions: String
+        get() = preferences.getString(SettingsKey.CONFIG_OPTIONS, "") ?: ""
+        set(value) = preferences.edit().putString(SettingsKey.CONFIG_OPTIONS, value).apply()
+
     var startedByUser: Boolean
         get() = preferences.getBoolean(SettingsKey.STARTED_BY_USER, false)
         set(value) = preferences.edit().putBoolean(SettingsKey.STARTED_BY_USER, value).apply()

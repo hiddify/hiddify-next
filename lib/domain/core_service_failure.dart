@@ -16,6 +16,10 @@ sealed class CoreServiceFailure with _$CoreServiceFailure, Failure {
   const factory CoreServiceFailure.serviceNotRunning([String? message]) =
       CoreServiceNotRunning;
 
+  const factory CoreServiceFailure.invalidConfigOptions([
+    String? message,
+  ]) = InvalidConfigOptions;
+
   const factory CoreServiceFailure.invalidConfig([
     String? message,
   ]) = InvalidConfig;
@@ -35,6 +39,7 @@ sealed class CoreServiceFailure with _$CoreServiceFailure, Failure {
   String? get msg => switch (this) {
         UnexpectedCoreServiceFailure() => null,
         CoreServiceNotRunning(:final message) => message,
+        InvalidConfigOptions(:final message) => message,
         InvalidConfig(:final message) => message,
         CoreServiceCreateFailure(:final message) => message,
         CoreServiceStartFailure(:final message) => message,
@@ -50,6 +55,10 @@ sealed class CoreServiceFailure with _$CoreServiceFailure, Failure {
         ),
       CoreServiceNotRunning(:final message) => (
           type: t.failure.singbox.serviceNotRunning,
+          message: message
+        ),
+      InvalidConfigOptions(:final message) => (
+          type: t.failure.singbox.invalidConfigOptions,
           message: message
         ),
       InvalidConfig(:final message) => (

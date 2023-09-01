@@ -15,12 +15,19 @@ import 'package:hiddify/services/singbox/singbox_service.dart';
 import 'package:hiddify/utils/utils.dart';
 
 class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
-  CoreFacadeImpl(this.singbox, this.filesEditor, this.clash, this.connectivity);
+  CoreFacadeImpl(
+    this.singbox,
+    this.filesEditor,
+    this.clash,
+    this.connectivity,
+    this.configOptions,
+  );
 
   final SingboxService singbox;
   final FilesEditorService filesEditor;
   final ClashApi clash;
   final ConnectivityService connectivity;
+  final ConfigOptions Function() configOptions;
 
   bool _initialized = false;
 
@@ -66,12 +73,28 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
   }
 
   @override
+  TaskEither<CoreServiceFailure, Unit> changeConfigOptions(
+    ConfigOptions options,
+  ) {
+    return exceptionHandler(
+      () {
+        return singbox
+            .changeConfigOptions(options)
+            .mapLeft(CoreServiceFailure.invalidConfigOptions)
+            .run();
+      },
+      CoreServiceFailure.unexpected,
+    );
+  }
+
+  @override
   TaskEither<CoreServiceFailure, Unit> changeConfig(String fileName) {
     return exceptionHandler(
       () {
         final configPath = filesEditor.configPath(fileName);
         loggy.debug("changing config to: $configPath");
         return setup()
+            .andThen(() => changeConfigOptions(configOptions()))
             .andThen(
               () =>
                   singbox.create(configPath).mapLeft(CoreServiceFailure.create),

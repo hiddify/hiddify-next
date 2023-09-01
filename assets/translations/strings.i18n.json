@@ -89,48 +89,57 @@
         "shareAppLogs": "share app logs"
     },
     "settings": {
-        "pageTitle": "settings",
+        "pageTitle": "Settings",
         "general": {
-            "sectionTitle": "general",
-            "locale": "language",
-            "themeMode": "theme mode",
+            "sectionTitle": "General",
+            "locale": "Language",
+            "themeMode": "Theme Mode",
             "themeModes": {
-                "system": "follow system theme",
-                "dark": "dark mode",
-                "light": "light mode"
+                "system": "Follow system theme",
+                "dark": "Dark mode",
+                "light": "Light mode"
             },
-            "trueBlack": "true black",
-            "silentStart": "silent start",
-            "openWorkingDir": "open working directory"
+            "trueBlack": "True Black",
+            "silentStart": "Silent Start",
+            "openWorkingDir": "Open Working Directory"
         },
-        "network": {
-            "sectionTitle": "network",
-            "systemProxy": "system proxy",
-            "systemProxyMsg": "Attach http proxy to VpnService",
-            "bypassPrivateNetworks": "bypass private networks",
-            "bypassPrivateNetworksMsg": "Bypass private network addresses"
+        "advanced": {
+            "sectionTitle": "Advanced",
+            "debugMode": "Debug Mode",
+            "debugModeMsg": "Restart the app for this to take effect"
         },
-        "clash": {
-            "sectionTitle": "clash proxy overrides",
-            "doNotModify": "do not modify",
-            "overrides": {
-                "httpPort": "HTTP Port",
-                "socksPort": "Socks Port",
-                "redirPort": "Redirect Port",
-                "tproxyPort": "TProxy Port",
-                "mixedPort": "Mixed Port",
-                "allowLan": "Allow LAN",
-                "ipv6": "IPv6",
-                "mode": "Mode",
-                "logLevel": "Log Level"
-            }
-        },
-        "miscellaneous": {
-            "sectionTitle": "miscellaneous",
-            "connectionTestUrl": "connection test url",
-            "concurrentTestCount": "concurrent test count",
-            "debugMode": "debug mode",
-            "debugModeMsg": "restart the app for this to take effect"
+        "config": {
+            "section": {
+                "route": "Route Options",
+                "dns": "DNS Options",
+                "inbound": "Inbound Options",
+                "misc": "Misc Options"
+            },
+            "pageTitle": "Config Options",
+            "executeConfigAsIs": "Execute Config As Is",
+            "executeConfigAsIsMsg": "Run provided config with minimum changes. only works with sing-box configs",
+            "logLevel": "Log Level",
+            "resolveDestination": "Resolve Destination",
+            "ipv6Mode": "IPv6 Route",
+            "ipv6Modes": {
+                "disable": "Disable",
+                "enable": "Enable",
+                "prefer": "Prefer",
+                "only": "Only"
+            },
+            "remoteDnsAddress": "Remote DNS",
+            "remoteDnsDomainStrategy": "Remote DNS Domain Strategy",
+            "directDnsAddress": "Direct DNS",
+            "directDnsDomainStrategy": "Direct DNS Domain Strategy",
+            "mixedPort": "Mixed Port",
+            "localDnsPort": "Local DNS Port",
+            "mtu": "MTU",
+            "connectionTestUrl": "Connection Test URL",
+            "urlTestInterval": "URL Test Interval",
+            "enableClashApi": "Enable Clash API",
+            "clashApiPort": "Clash API Port",
+            "enableTun": "Enable TUN",
+            "setSystemProxy": "Set System Proxy"
         }
     },
     "about": {
@@ -164,6 +173,7 @@
         "singbox": {
             "unexpected": "Unexpected Service Failure",
             "serviceNotRunning": "Service not Running",
+            "invalidConfigOptions": "Configuration options are not valid",
             "invalidConfig": "Configuration is not valid",
             "create": "Error creating service",
             "start": "Error starting service"

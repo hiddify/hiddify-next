@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:gap/gap.dart';
 import 'package:hiddify/core/core_providers.dart';
-import 'package:hiddify/core/prefs/misc_prefs.dart';
+import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:hiddify/domain/clash/clash.dart';
 import 'package:hiddify/domain/failures.dart';
 import 'package:hiddify/features/common/common.dart';

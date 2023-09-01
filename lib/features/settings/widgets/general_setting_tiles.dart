@@ -6,13 +6,11 @@ import 'package:hiddify/core/locale/locale.dart';
 import 'package:hiddify/core/prefs/general_prefs.dart';
 import 'package:hiddify/core/theme/theme.dart';
 import 'package:hiddify/features/settings/widgets/theme_mode_switch_button.dart';
-import 'package:hiddify/services/service_providers.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:recase/recase.dart';
 
-class AppearanceSettingTiles extends HookConsumerWidget {
-  const AppearanceSettingTiles({super.key});
+class GeneralSettingTiles extends HookConsumerWidget {
+  const GeneralSettingTiles({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -26,17 +24,18 @@ class AppearanceSettingTiles extends HookConsumerWidget {
     return Column(
       children: [
         ListTile(
-          title: Text(t.settings.general.locale.titleCase),
+          title: Text(t.settings.general.locale),
           subtitle: Text(
             LocaleNamesLocalizationsDelegate.nativeLocaleNames[locale.name] ??
                 locale.name,
           ),
+          leading: const Icon(Icons.language),
           onTap: () async {
             final selectedLocale = await showDialog<LocalePref>(
               context: context,
               builder: (context) {
                 return SimpleDialog(
-                  title: Text(t.settings.general.locale.titleCase),
+                  title: Text(t.settings.general.locale),
                   children: LocalePref.values
                       .map(
                         (e) => RadioListTile(
@@ -62,14 +61,13 @@ class AppearanceSettingTiles extends HookConsumerWidget {
           },
         ),
         ListTile(
-          title: Text(t.settings.general.themeMode.titleCase),
+          title: Text(t.settings.general.themeMode),
           subtitle: Text(
             switch (theme.themeMode) {
               ThemeMode.system => t.settings.general.themeModes.system,
               ThemeMode.light => t.settings.general.themeModes.light,
               ThemeMode.dark => t.settings.general.themeModes.dark,
-            }
-                .sentenceCase,
+            },
           ),
           trailing: ThemeModeSwitch(
             themeMode: theme.themeMode,
@@ -77,6 +75,7 @@ class AppearanceSettingTiles extends HookConsumerWidget {
               themeController.change(themeMode: value);
             },
           ),
+          leading: const Icon(Icons.light_mode),
           onTap: () async {
             await themeController.change(
               themeMode: Theme.of(context).brightness == Brightness.light
@@ -86,7 +85,7 @@ class AppearanceSettingTiles extends HookConsumerWidget {
           },
         ),
         SwitchListTile(
-          title: Text(t.settings.general.trueBlack.titleCase),
+          title: Text(t.settings.general.trueBlack),
           value: theme.trueBlack,
           onChanged: (value) {
             themeController.change(trueBlack: value);
@@ -94,18 +93,10 @@ class AppearanceSettingTiles extends HookConsumerWidget {
         ),
         if (PlatformUtils.isDesktop) ...[
           SwitchListTile(
-            title: Text(t.settings.general.silentStart.titleCase),
+            title: Text(t.settings.general.silentStart),
             value: ref.watch(silentStartProvider),
             onChanged: (value) async {
               await ref.read(silentStartProvider.notifier).update(value);
-            },
-          ),
-          ListTile(
-            title: Text(t.settings.general.openWorkingDir.titleCase),
-            trailing: const Icon(Icons.arrow_outward_outlined),
-            onTap: () async {
-              final path = ref.read(filesEditorServiceProvider).workingDir.uri;
-              await UriUtils.tryLaunch(path);
             },
           ),
         ],

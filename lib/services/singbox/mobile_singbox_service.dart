@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/services.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:hiddify/domain/singbox/config_options.dart';
 import 'package:hiddify/services/singbox/singbox_service.dart';
 import 'package:hiddify/utils/utils.dart';
 
@@ -27,6 +30,19 @@ class MobileSingboxService with InfraLogger implements SingboxService {
         );
         if (message == null || message.isEmpty) return right(unit);
         return left(message);
+      },
+    );
+  }
+
+  @override
+  TaskEither<String, Unit> changeConfigOptions(ConfigOptions options) {
+    return TaskEither(
+      () async {
+        await _methodChannel.invokeMethod(
+          "change_config_options",
+          jsonEncode(options.toJson()),
+        );
+        return right(unit);
       },
     );
   }

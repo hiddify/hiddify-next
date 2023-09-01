@@ -2,6 +2,7 @@ package com.hiddify.hiddify.constant
 
 object SettingsKey {
     const val SELECTED_CONFIG_PATH = "selected_config_path"
+    const val CONFIG_OPTIONS = "config_options_json"
     const val DISABLE_MEMORY_LIMIT = "disable_memory_limit"
 
     const val PER_APP_PROXY_ENABLED = "per_app_proxy_enabled"

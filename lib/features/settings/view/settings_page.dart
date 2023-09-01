@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hiddify/core/core_providers.dart';
-import 'package:hiddify/features/settings/widgets/miscellaneous_setting_tiles.dart';
 import 'package:hiddify/features/settings/widgets/widgets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:recase/recase.dart';
 
 class SettingsPage extends HookConsumerWidget {
   const SettingsPage({super.key});
@@ -13,58 +11,19 @@ class SettingsPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final t = ref.watch(translationsProvider);
 
-    // const divider = Divider(indent: 16, endIndent: 16);
-
     return Scaffold(
       appBar: AppBar(
-        title: Text(t.settings.pageTitle.titleCase),
+        title: Text(t.settings.pageTitle),
       ),
-      body: ListTileTheme(
-        data: ListTileTheme.of(context).copyWith(
-          contentPadding: const EdgeInsetsDirectional.only(start: 48, end: 16),
-        ),
-        child: ListView(
-          children: [
-            _SettingsSectionHeader(
-              t.settings.general.sectionTitle.titleCase,
-            ),
-            const AppearanceSettingTiles(),
-            // divider,
-            // _SettingsSectionHeader(t.settings.network.sectionTitle.titleCase),
-            // const NetworkSettingTiles(),
-            // divider,
-            // ListTile(
-            //   title: Text(t.settings.clash.sectionTitle.titleCase),
-            //   leading: const Icon(Icons.edit_document),
-            //   contentPadding: const EdgeInsets.symmetric(horizontal: 16),
-            //   onTap: () async {
-            //     await const ClashOverridesRoute().push(context);
-            //   },
-            // ),
-            _SettingsSectionHeader(
-              t.settings.miscellaneous.sectionTitle.titleCase,
-            ),
-            const MiscellaneousSettingTiles(),
-            const Gap(16),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _SettingsSectionHeader extends StatelessWidget {
-  const _SettingsSectionHeader(this.title);
-
-  final String title;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      child: Text(
-        title,
-        style: Theme.of(context).textTheme.titleMedium,
+      body: ListView(
+        children: [
+          SettingsSection(t.settings.general.sectionTitle),
+          const GeneralSettingTiles(),
+          const SettingsDivider(),
+          SettingsSection(t.settings.advanced.sectionTitle),
+          const AdvancedSettingTiles(),
+          const Gap(16),
+        ],
       ),
     );
   }

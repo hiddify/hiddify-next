@@ -1,81 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:fpdart/fpdart.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-class OptionalSettingsInputDialog<T> extends HookConsumerWidget
-    with PresLogger {
-  const OptionalSettingsInputDialog({
-    super.key,
-    required this.title,
-    this.initialValue,
-    this.resetValue = const None(),
-    this.icon,
-  });
-
-  final String title;
-  final T? initialValue;
-
-  /// default value, useful for mandatory fields
-  final Option<T> resetValue;
-  final IconData? icon;
-
-  Future<Option<String>?> show(BuildContext context) async {
-    return showDialog(
-      context: context,
-      useRootNavigator: true,
-      builder: (context) => this,
-    );
-  }
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final t = ref.watch(translationsProvider);
-    final localizations = MaterialLocalizations.of(context);
-
-    final textController = useTextEditingController(
-      text: initialValue?.toString(),
-    );
-
-    return AlertDialog(
-      title: Text(title),
-      icon: icon != null ? Icon(icon) : null,
-      content: TextFormField(
-        controller: textController,
-        inputFormatters: [
-          FilteringTextInputFormatter.singleLineFormatter,
-        ],
-        autovalidateMode: AutovalidateMode.always,
-      ),
-      actions: [
-        TextButton(
-          onPressed: () async {
-            await Navigator.of(context)
-                .maybePop(resetValue.map((t) => t.toString()));
-          },
-          child: Text(t.general.reset.toUpperCase()),
-        ),
-        TextButton(
-          onPressed: () async {
-            await Navigator.of(context).maybePop();
-          },
-          child: Text(localizations.cancelButtonLabel.toUpperCase()),
-        ),
-        TextButton(
-          onPressed: () async {
-            // onConfirm(textController.value.text);
-            await Navigator.of(context)
-                .maybePop(some(textController.value.text));
-          },
-          child: Text(localizations.okButtonLabel.toUpperCase()),
-        ),
-      ],
-    );
-  }
-}
 
 class SettingsInputDialog<T> extends HookConsumerWidget with PresLogger {
   const SettingsInputDialog({
@@ -83,6 +12,7 @@ class SettingsInputDialog<T> extends HookConsumerWidget with PresLogger {
     required this.title,
     required this.initialValue,
     this.mapTo,
+    this.validator,
     this.resetValue,
     this.icon,
     this.digitsOnly = false,
@@ -91,6 +21,7 @@ class SettingsInputDialog<T> extends HookConsumerWidget with PresLogger {
   final String title;
   final T initialValue;
   final T? Function(String value)? mapTo;
+  final bool Function(String value)? validator;
   final T? resetValue;
   final IconData? icon;
   final bool digitsOnly;
@@ -139,7 +70,9 @@ class SettingsInputDialog<T> extends HookConsumerWidget with PresLogger {
         ),
         TextButton(
           onPressed: () async {
-            if (mapTo != null) {
+            if (validator?.call(textController.value.text) == false) {
+              await Navigator.of(context).maybePop(null);
+            } else if (mapTo != null) {
               await Navigator.of(context)
                   .maybePop(mapTo!.call(textController.value.text));
             } else {
@@ -150,6 +83,69 @@ class SettingsInputDialog<T> extends HookConsumerWidget with PresLogger {
           child: Text(localizations.okButtonLabel.toUpperCase()),
         ),
       ],
+    );
+  }
+}
+
+class SettingsPickerDialog<T> extends HookConsumerWidget with PresLogger {
+  const SettingsPickerDialog({
+    super.key,
+    required this.title,
+    required this.selected,
+    required this.options,
+    required this.getTitle,
+    this.resetValue,
+  });
+
+  final String title;
+  final T selected;
+  final List<T> options;
+  final String Function(T e) getTitle;
+  final T? resetValue;
+
+  Future<T?> show(BuildContext context) async {
+    return showDialog(
+      context: context,
+      useRootNavigator: true,
+      builder: (context) => this,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = ref.watch(translationsProvider);
+    final localizations = MaterialLocalizations.of(context);
+
+    return AlertDialog(
+      title: Text(title),
+      content: Column(
+        children: options
+            .map(
+              (e) => RadioListTile(
+                title: Text(getTitle(e)),
+                value: e,
+                groupValue: selected,
+                onChanged: (value) => context.pop(e),
+              ),
+            )
+            .toList(),
+      ),
+      actions: [
+        if (resetValue != null)
+          TextButton(
+            onPressed: () async {
+              await Navigator.of(context).maybePop(resetValue);
+            },
+            child: Text(t.general.reset.toUpperCase()),
+          ),
+        TextButton(
+          onPressed: () async {
+            await Navigator.of(context).maybePop();
+          },
+          child: Text(localizations.cancelButtonLabel.toUpperCase()),
+        ),
+      ],
+      scrollable: true,
     );
   }
 }

@@ -132,8 +132,14 @@ class BoxService(
                 return
             }
 
+            val configOptions = Settings.configOptions
+            if (configOptions.isBlank()) {
+                stopAndAlert(Alert.EmptyConfiguration)
+                return
+            }
+
             val content = try {
-                Mobile.applyOverrides(selectedConfigPath)
+                Mobile.buildConfig(selectedConfigPath, configOptions)
             } catch (e: Exception) {
                 Log.w(TAG, e)
                 stopAndAlert(Alert.EmptyConfiguration)

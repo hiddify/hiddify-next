@@ -905,6 +905,21 @@ class SingboxNativeLibrary {
   late final _parse = _parsePtr
       .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
 
+  ffi.Pointer<ffi.Char> changeConfigOptions(
+    ffi.Pointer<ffi.Char> configOptionsJson,
+  ) {
+    return _changeConfigOptions(
+      configOptionsJson,
+    );
+  }
+
+  late final _changeConfigOptionsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>)>>('changeConfigOptions');
+  late final _changeConfigOptions = _changeConfigOptionsPtr
+      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
+
   ffi.Pointer<ffi.Char> create(
     ffi.Pointer<ffi.Char> configPath,
   ) {
