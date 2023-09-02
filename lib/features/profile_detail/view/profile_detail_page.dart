@@ -25,7 +25,8 @@ class ProfileDetailPage extends HookConsumerWidget with PresLogger {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final provider = profileDetailNotifierProvider(id, url: url, name: name);
+    final provider =
+        profileDetailNotifierProvider(id, url: url, profileName: name);
     final t = ref.watch(translationsProvider);
     final asyncState = ref.watch(provider);
     final notifier = ref.watch(provider.notifier);

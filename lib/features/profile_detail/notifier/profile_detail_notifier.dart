@@ -15,14 +15,14 @@ class ProfileDetailNotifier extends _$ProfileDetailNotifier with AppLogger {
   Future<ProfileDetailState> build(
     String id, {
     String? url,
-    String? name,
+    String? profileName,
   }) async {
     if (id == 'new') {
       return ProfileDetailState(
         profile: Profile(
           id: const Uuid().v4(),
           active: true,
-          name: name ?? "",
+          name: profileName ?? "",
           url: url ?? "",
           lastUpdate: DateTime.now(),
         ),
