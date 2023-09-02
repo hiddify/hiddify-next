@@ -105,6 +105,8 @@ flutter:
     - assets/core/geosite.db
     - assets/images/logo.svg
     - assets/images/tray_icon.ico
+    - assets/images/tray_icon.png
+    - assets/images/tray_icon_black.png
     - assets/images/tray_icon_connected.ico
     - assets/images/tray_icon_disconnected.ico
 

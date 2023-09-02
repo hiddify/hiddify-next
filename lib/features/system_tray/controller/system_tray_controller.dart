@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/domain/connectivity/connectivity.dart';
 import 'package:hiddify/features/common/connectivity/connectivity_controller.dart';
@@ -16,7 +18,10 @@ class SystemTrayController extends _$SystemTrayController
   Future<void> build() async {
     if (!_initialized) {
       loggy.debug('initializing');
-      await trayManager.setIcon(Assets.images.trayIcon);
+      await trayManager.setIcon(
+        _trayIconPath,
+        isTemplate: Platform.isMacOS,
+      );
       trayManager.addListener(this);
       _initialized = true;
     }
@@ -28,6 +33,11 @@ class SystemTrayController extends _$SystemTrayController
   }
 
   bool _initialized = false;
+
+  String get _trayIconPath {
+    if (Platform.isWindows) return Assets.images.trayIconIco;
+    return Assets.images.trayIconPng.path;
+  }
 
   Future<void> _updateTray(ConnectionStatus connection) async {
     final t = ref.watch(translationsProvider);
