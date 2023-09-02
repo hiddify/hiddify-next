@@ -133,16 +133,18 @@ class ConfigOptionsPage extends HookConsumerWidget {
           ),
           const SettingsDivider(),
           SettingsSection(t.settings.config.section.inbound),
-          SwitchListTile(
-            title: Text(t.settings.config.enableTun),
-            value: options.enableTun,
-            onChanged: ref.read(enableTunStore.notifier).update,
-          ),
-          SwitchListTile(
-            title: Text(t.settings.config.setSystemProxy),
-            value: options.setSystemProxy,
-            onChanged: ref.read(setSystemProxyStore.notifier).update,
-          ),
+          if (PlatformUtils.isDesktop) ...[
+            SwitchListTile(
+              title: Text(t.settings.config.enableTun),
+              value: options.enableTun,
+              onChanged: ref.read(enableTunStore.notifier).update,
+            ),
+            SwitchListTile(
+              title: Text(t.settings.config.setSystemProxy),
+              value: options.setSystemProxy,
+              onChanged: ref.read(setSystemProxyStore.notifier).update,
+            ),
+          ],
           ListTile(
             title: Text(t.settings.config.mixedPort),
             subtitle: Text(options.mixedPort.toString()),
