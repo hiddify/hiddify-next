@@ -87,38 +87,43 @@ class _ConnectionButton extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container(
-          clipBehavior: Clip.antiAlias,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            boxShadow: [
-              BoxShadow(
-                blurRadius: 16,
-                color: buttonColor.withOpacity(0.5),
-              ),
-            ],
-          ),
-          width: 148,
-          height: 148,
-          child: Material(
-            shape: const CircleBorder(),
-            color: Colors.white,
-            child: InkWell(
-              onTap: onTap,
-              child: Padding(
-                padding: const EdgeInsets.all(36),
-                child: Assets.images.logo.svg(
-                  colorFilter: ColorFilter.mode(
-                    buttonColor,
-                    BlendMode.srcIn,
+        Semantics(
+          button: true,
+          enabled: enabled,
+          label: label,
+          child: Container(
+            clipBehavior: Clip.antiAlias,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                  blurRadius: 16,
+                  color: buttonColor.withOpacity(0.5),
+                ),
+              ],
+            ),
+            width: 148,
+            height: 148,
+            child: Material(
+              shape: const CircleBorder(),
+              color: Colors.white,
+              child: InkWell(
+                onTap: onTap,
+                child: Padding(
+                  padding: const EdgeInsets.all(36),
+                  child: Assets.images.logo.svg(
+                    colorFilter: ColorFilter.mode(
+                      buttonColor,
+                      BlendMode.srcIn,
+                    ),
                   ),
                 ),
               ),
-            ),
-          ).animate(target: enabled ? 0 : 1).blurXY(end: 1),
-        )
-            .animate(target: enabled ? 0 : 1)
-            .scaleXY(end: .88, curve: Curves.easeIn),
+            ).animate(target: enabled ? 0 : 1).blurXY(end: 1),
+          )
+              .animate(target: enabled ? 0 : 1)
+              .scaleXY(end: .88, curve: Curves.easeIn),
+        ),
         const Gap(16),
         Text(
           label.sentenceCase,

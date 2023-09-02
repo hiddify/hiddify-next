@@ -146,9 +146,11 @@ class AddProfileModal extends HookConsumerWidget {
                                       .addProfile(link.url),
                                 );
                               } else {
-                                CustomToast.error(
-                                  t.profile.add.invalidUrlMsg.sentenceCase,
-                                ).show(context);
+                                if (context.mounted) {
+                                  CustomToast.error(
+                                    t.profile.add.invalidUrlMsg.sentenceCase,
+                                  ).show(context);
+                                }
                               }
                             },
                           )
@@ -171,35 +173,38 @@ class AddProfileModal extends HookConsumerWidget {
                         horizontal: buttonsPadding,
                         vertical: 16,
                       ),
-                      child: SizedBox(
-                        height: 36,
-                        child: Material(
-                          elevation: 8,
-                          color: theme.colorScheme.surface,
-                          surfaceTintColor: theme.colorScheme.surfaceTint,
-                          shadowColor: Colors.transparent,
-                          borderRadius: BorderRadius.circular(8),
-                          clipBehavior: Clip.antiAlias,
-                          child: InkWell(
-                            onTap: () async {
-                              context.pop();
-                              await const NewProfileRoute().push(context);
-                            },
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.add,
-                                  color: theme.colorScheme.primary,
-                                ),
-                                const Gap(8),
-                                Text(
-                                  t.profile.add.manually.sentenceCase,
-                                  style: theme.textTheme.labelLarge?.copyWith(
+                      child: Semantics(
+                        button: true,
+                        child: SizedBox(
+                          height: 36,
+                          child: Material(
+                            elevation: 8,
+                            color: theme.colorScheme.surface,
+                            surfaceTintColor: theme.colorScheme.surfaceTint,
+                            shadowColor: Colors.transparent,
+                            borderRadius: BorderRadius.circular(8),
+                            clipBehavior: Clip.antiAlias,
+                            child: InkWell(
+                              onTap: () async {
+                                context.pop();
+                                await const NewProfileRoute().push(context);
+                              },
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.add,
                                     color: theme.colorScheme.primary,
                                   ),
-                                ),
-                              ],
+                                  const Gap(8),
+                                  Text(
+                                    t.profile.add.manually.sentenceCase,
+                                    style: theme.textTheme.labelLarge?.copyWith(
+                                      color: theme.colorScheme.primary,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -238,34 +243,37 @@ class _Button extends StatelessWidget {
     final theme = Theme.of(context);
     final color = theme.colorScheme.primary;
 
-    return SizedBox(
-      width: size,
-      height: size,
-      child: Material(
-        elevation: 8,
-        color: theme.colorScheme.surface,
-        surfaceTintColor: theme.colorScheme.surfaceTint,
-        shadowColor: Colors.transparent,
-        borderRadius: BorderRadius.circular(8),
-        clipBehavior: Clip.antiAlias,
-        child: InkWell(
-          onTap: onTap,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                icon,
-                size: size / 3,
-                color: color,
-              ),
-              const Gap(16),
-              Flexible(
-                child: Text(
-                  label,
-                  style: theme.textTheme.labelLarge?.copyWith(color: color),
+    return Semantics(
+      button: true,
+      child: SizedBox(
+        width: size,
+        height: size,
+        child: Material(
+          elevation: 8,
+          color: theme.colorScheme.surface,
+          surfaceTintColor: theme.colorScheme.surfaceTint,
+          shadowColor: Colors.transparent,
+          borderRadius: BorderRadius.circular(8),
+          clipBehavior: Clip.antiAlias,
+          child: InkWell(
+            onTap: onTap,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  icon,
+                  size: size / 3,
+                  color: color,
                 ),
-              ),
-            ],
+                const Gap(16),
+                Flexible(
+                  child: Text(
+                    label,
+                    style: theme.textTheme.labelLarge?.copyWith(color: color),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

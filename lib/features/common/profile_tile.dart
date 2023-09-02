@@ -92,20 +92,24 @@ class ProfileTile extends HookConsumerWidget {
                             borderRadius: BorderRadius.circular(8),
                             color: Colors.transparent,
                             clipBehavior: Clip.antiAlias,
-                            child: InkWell(
-                              onTap: () => const ProfilesRoute().go(context),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Flexible(
-                                    child: Text(
-                                      profile.name,
-                                      style: theme.textTheme.titleMedium,
+                            child: Semantics(
+                              button: true,
+                              label: t.profile.overviewPageTitle,
+                              child: InkWell(
+                                onTap: () => const ProfilesRoute().go(context),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Flexible(
+                                      child: Text(
+                                        profile.name,
+                                        style: theme.textTheme.titleMedium,
+                                      ),
                                     ),
-                                  ),
-                                  const Icon(Icons.arrow_drop_down),
-                                ],
+                                    const Icon(Icons.arrow_drop_down),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -154,37 +158,44 @@ class ProfileActionButton extends HookConsumerWidget {
     );
 
     if (!showAllActions) {
-      return Tooltip(
-        message: t.profile.update.buttonTxt,
-        child: InkWell(
-          onTap: () {
-            if (updateProfileMutation.state.isInProgress) {
-              return;
-            }
-            updateProfileMutation.setFuture(
-              ref
-                  .read(profilesNotifierProvider.notifier)
-                  .updateProfile(profile),
-            );
-          },
-          child: const Icon(Icons.update),
+      return Semantics(
+        button: true,
+        enabled: !updateProfileMutation.state.isInProgress,
+        child: Tooltip(
+          message: t.profile.update.tooltip,
+          child: InkWell(
+            onTap: () {
+              if (updateProfileMutation.state.isInProgress) {
+                return;
+              }
+              updateProfileMutation.setFuture(
+                ref
+                    .read(profilesNotifierProvider.notifier)
+                    .updateProfile(profile),
+              );
+            },
+            child: const Icon(Icons.update),
+          ),
         ),
       );
     }
     return ProfileActionsMenu(
       profile,
       (context, controller, child) {
-        return Tooltip(
-          message: MaterialLocalizations.of(context).showMenuTooltip,
-          child: InkWell(
-            onTap: () {
-              if (controller.isOpen) {
-                controller.close();
-              } else {
-                controller.open();
-              }
-            },
-            child: const Icon(Icons.more_vert),
+        return Semantics(
+          button: true,
+          child: Tooltip(
+            message: MaterialLocalizations.of(context).showMenuTooltip,
+            child: InkWell(
+              onTap: () {
+                if (controller.isOpen) {
+                  controller.close();
+                } else {
+                  controller.open();
+                }
+              },
+              child: const Icon(Icons.more_vert),
+            ),
           ),
         );
       },

@@ -52,6 +52,7 @@
         },
         "update": {
             "buttonTxt": "update",
+            "tooltip": "update profile",
             "failureMsg": "failed to update profile: ${reason}",
             "successMsg": "successfully updated profile"
         },
