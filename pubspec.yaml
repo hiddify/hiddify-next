@@ -34,7 +34,7 @@ dependencies:
 
   # persistence
   drift: ^2.11.1
-  sqlite3_flutter_libs: ^0.5.15
+  sqlite3_flutter_libs: ^0.5.16
   shared_preferences: ^2.2.1
 
   # networking
