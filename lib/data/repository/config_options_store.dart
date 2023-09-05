@@ -42,6 +42,12 @@ final directDnsDomainStrategyStore = PrefNotifier.provider(
 final mixedPortStore = PrefNotifier.provider("mixed-port", _default.mixedPort);
 final localDnsPortStore =
     PrefNotifier.provider("localDns-port", _default.localDnsPort);
+final tunImplementationStore = PrefNotifier.provider(
+  "tun-implementation",
+  _default.tunImplementation,
+  mapFrom: TunImplementation.values.byName,
+  mapTo: (value) => value.name,
+);
 final mtuStore = PrefNotifier.provider("mtu", _default.mtu);
 final connectionTestUrlStore =
     PrefNotifier.provider("connection-test-url", _default.connectionTestUrl);
@@ -67,6 +73,7 @@ ConfigOptions configOptions(ConfigOptionsRef ref) => ConfigOptions(
       directDnsDomainStrategy: ref.watch(directDnsDomainStrategyStore),
       mixedPort: ref.watch(mixedPortStore),
       localDnsPort: ref.watch(localDnsPortStore),
+      tunImplementation: ref.watch(tunImplementationStore),
       mtu: ref.watch(mtuStore),
       connectionTestUrl: ref.watch(connectionTestUrlStore),
       urlTestInterval: ref.watch(urlTestIntervalStore),

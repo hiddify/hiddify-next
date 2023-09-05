@@ -19,10 +19,11 @@ class ConfigOptions with _$ConfigOptions {
     @Default(DomainStrategy.auto) DomainStrategy directDnsDomainStrategy,
     @Default(2334) int mixedPort,
     @Default(6450) int localDnsPort,
+    @Default(TunImplementation.mixed) TunImplementation tunImplementation,
     @Default(9000) int mtu,
     @Default("https://www.gstatic.com/generate_204") String connectionTestUrl,
     @IntervalConverter()
-    @Default(Duration(minutes: 5))
+    @Default(Duration(minutes: 10))
     Duration urlTestInterval,
     @Default(true) bool enableClashApi,
     @Default(9090) int clashApiPort,
@@ -81,6 +82,12 @@ enum DomainStrategy {
         auto => "auto",
         _ => key,
       };
+}
+
+enum TunImplementation {
+  mixed,
+  system,
+  gVisor;
 }
 
 class IntervalConverter implements JsonConverter<Duration, String> {

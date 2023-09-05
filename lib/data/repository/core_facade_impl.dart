@@ -78,6 +78,7 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
   ) {
     return exceptionHandler(
       () {
+        loggy.debug("changing config options: $options");
         return singbox
             .changeConfigOptions(options)
             .mapLeft(CoreServiceFailure.invalidConfigOptions)
