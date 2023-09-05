@@ -24,10 +24,7 @@ class ServiceNotification(private val service: Service) {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
                 return true
             }
-            if (Application.notification.areNotificationsEnabled()) {
-                return true
-            }
-            return false
+            return Application.notification.areNotificationsEnabled()
         }
     }
 

@@ -32,6 +32,9 @@ class VPNService : VpnService(), PlatformInterfaceWrapper {
         protect(fd)
     }
 
+    var systemProxyAvailable = false
+    var systemProxyEnabled = true
+
     override fun openTun(options: TunOptions): Int {
         if (prepare(this) != null) error("android: missing vpn permission")
 
@@ -124,8 +127,10 @@ class VPNService : VpnService(), PlatformInterfaceWrapper {
         }
 
         if (options.isHTTPProxyEnabled) {
+            systemProxyAvailable = true
+//            systemProxyEnabled = Settings.systemProxyEnabled
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                builder.setHttpProxy(
+                if (systemProxyEnabled) builder.setHttpProxy(
                     ProxyInfo.buildDirectProxy(
                         options.httpProxyServer,
                         options.httpProxyServerPort
@@ -134,6 +139,9 @@ class VPNService : VpnService(), PlatformInterfaceWrapper {
             } else {
                 error("android: tun.platform.http_proxy requires android 10 or higher")
             }
+        } else {
+            systemProxyAvailable = false
+            systemProxyEnabled = false
         }
 
         val pfd =

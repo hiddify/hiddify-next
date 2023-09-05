@@ -5,9 +5,12 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.os.Build
 import android.os.IBinder
 import android.os.ParcelFileDescriptor
+import android.os.PowerManager
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
 import com.hiddify.hiddify.Application
@@ -22,6 +25,7 @@ import io.nekohasekai.libbox.CommandServerHandler
 import io.nekohasekai.libbox.Libbox
 import io.nekohasekai.libbox.PProfServer
 import io.nekohasekai.libbox.PlatformInterface
+import io.nekohasekai.libbox.SystemProxyStatus
 import io.nekohasekai.mobile.Mobile
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -111,6 +115,12 @@ class BoxService(
                 Action.SERVICE_RELOAD -> {
                     serviceReload()
                 }
+
+                PowerManager.ACTION_DEVICE_IDLE_MODE_CHANGED -> {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        serviceUpdateIdleMode()
+                    }
+                }
             }
         }
     }
@@ -174,6 +184,7 @@ class BoxService(
     }
 
     override fun serviceReload() {
+        status.postValue(Status.Starting)
         GlobalScope.launch(Dispatchers.IO) {
             val pfd = fileDescriptor
             if (pfd != null) {
@@ -191,6 +202,28 @@ class BoxService(
             }
             boxService = null
             startService()
+        }
+    }
+
+    override fun getSystemProxyStatus(): SystemProxyStatus {
+        val status = SystemProxyStatus()
+        if (service is VPNService) {
+            status.available = service.systemProxyAvailable
+            status.enabled = service.systemProxyEnabled
+        }
+        return status
+    }
+
+    override fun setSystemProxyEnabled(isEnabled: Boolean) {
+        serviceReload()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun serviceUpdateIdleMode() {
+        if (Application.powerManager.isDeviceIdleMode) {
+            boxService?.sleep()
+        } else {
+            boxService?.wake()
         }
     }
 
@@ -257,6 +290,9 @@ class BoxService(
             ContextCompat.registerReceiver(service, receiver, IntentFilter().apply {
                 addAction(Action.SERVICE_CLOSE)
                 addAction(Action.SERVICE_RELOAD)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    addAction(PowerManager.ACTION_DEVICE_IDLE_MODE_CHANGED)
+                }
             }, ContextCompat.RECEIVER_NOT_EXPORTED)
             receiverRegistered = true
         }
