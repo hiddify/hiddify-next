@@ -7,6 +7,7 @@ import 'package:hiddify/domain/singbox/singbox.dart';
 import 'package:hiddify/features/settings/widgets/widgets.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:humanizer/humanizer.dart';
 
 class ConfigOptionsPage extends HookConsumerWidget {
   const ConfigOptionsPage({super.key});
@@ -146,6 +147,23 @@ class ConfigOptionsPage extends HookConsumerWidget {
             ),
           ],
           ListTile(
+            title: Text(t.settings.config.tunImplementation),
+            subtitle: Text(options.tunImplementation.name),
+            onTap: () async {
+              final tunImplementation = await SettingsPickerDialog(
+                title: t.settings.config.tunImplementation,
+                selected: options.tunImplementation,
+                options: TunImplementation.values,
+                getTitle: (e) => e.name,
+                resetValue: _default.tunImplementation,
+              ).show(context);
+              if (tunImplementation == null) return;
+              await ref
+                  .read(tunImplementationStore.notifier)
+                  .update(tunImplementation);
+            },
+          ),
+          ListTile(
             title: Text(t.settings.config.mixedPort),
             subtitle: Text(options.mixedPort.toString()),
             onTap: () async {
@@ -190,6 +208,28 @@ class ConfigOptionsPage extends HookConsumerWidget {
               ).show(context);
               if (url == null || url.isEmpty || !isUrl(url)) return;
               await ref.read(connectionTestUrlStore.notifier).update(url);
+            },
+          ),
+          ListTile(
+            title: Text(t.settings.config.urlTestInterval),
+            subtitle: Text(
+              options.urlTestInterval.toApproximateTime(isRelativeToNow: false),
+            ),
+            onTap: () async {
+              final urlTestInterval = await SettingsSliderDialog(
+                title: t.settings.config.urlTestInterval,
+                initialValue: options.urlTestInterval.inMinutes.toDouble(),
+                resetValue: _default.urlTestInterval.inMinutes.toDouble(),
+                min: 1,
+                max: 60,
+                divisions: 60,
+                labelGen: (value) => Duration(minutes: value.toInt())
+                    .toApproximateTime(isRelativeToNow: false),
+              ).show(context);
+              if (urlTestInterval == null) return;
+              await ref
+                  .read(urlTestIntervalStore.notifier)
+                  .update(Duration(minutes: urlTestInterval.toInt()));
             },
           ),
           ListTile(

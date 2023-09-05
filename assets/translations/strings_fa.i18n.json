@@ -134,6 +134,7 @@
             "directDnsDomainStrategy": "Direct DNS Domain Strategy",
             "mixedPort": "Mixed Port",
             "localDnsPort": "Local DNS Port",
+            "tunImplementation": "TUN Implementation",
             "mtu": "MTU",
             "connectionTestUrl": "Connection Test URL",
             "urlTestInterval": "URL Test Interval",

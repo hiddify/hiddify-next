@@ -149,3 +149,75 @@ class SettingsPickerDialog<T> extends HookConsumerWidget with PresLogger {
     );
   }
 }
+
+class SettingsSliderDialog extends HookConsumerWidget with PresLogger {
+  const SettingsSliderDialog({
+    super.key,
+    required this.title,
+    required this.initialValue,
+    this.resetValue,
+    this.min = 0,
+    this.max = 1,
+    this.divisions,
+    this.labelGen,
+  });
+
+  final String title;
+  final double initialValue;
+  final double? resetValue;
+  final double min;
+  final double max;
+  final int? divisions;
+  final String Function(double value)? labelGen;
+
+  Future<double?> show(BuildContext context) async {
+    return showDialog(
+      context: context,
+      useRootNavigator: true,
+      builder: (context) => this,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = ref.watch(translationsProvider);
+    final localizations = MaterialLocalizations.of(context);
+
+    final sliderValue = useState(initialValue);
+
+    return AlertDialog(
+      title: Text(title),
+      content: IntrinsicHeight(
+        child: Slider(
+          value: sliderValue.value,
+          min: min,
+          max: max,
+          divisions: divisions,
+          onChanged: (value) => sliderValue.value = value,
+          label: labelGen?.call(sliderValue.value),
+        ),
+      ),
+      actions: [
+        if (resetValue != null)
+          TextButton(
+            onPressed: () async {
+              await Navigator.of(context).maybePop(resetValue);
+            },
+            child: Text(t.general.reset.toUpperCase()),
+          ),
+        TextButton(
+          onPressed: () async {
+            await Navigator.of(context).maybePop();
+          },
+          child: Text(localizations.cancelButtonLabel.toUpperCase()),
+        ),
+        TextButton(
+          onPressed: () async {
+            await Navigator.of(context).maybePop(sliderValue.value);
+          },
+          child: Text(localizations.okButtonLabel.toUpperCase()),
+        ),
+      ],
+    );
+  }
+}
