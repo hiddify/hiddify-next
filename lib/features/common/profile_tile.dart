@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hiddify/core/core_providers.dart';
-import 'package:hiddify/core/locale/locale.dart';
+import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:hiddify/core/router/routes/routes.dart';
 import 'package:hiddify/domain/failures.dart';
 import 'package:hiddify/domain/profiles/profiles.dart';

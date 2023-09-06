@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hiddify/core/locale/locale.dart';
+import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:hiddify/domain/failures.dart';
 
 part 'update_failure.freezed.dart';

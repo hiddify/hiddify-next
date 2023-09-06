@@ -1,18 +1,28 @@
-import 'package:hiddify/core/locale/locale.dart';
+import 'package:dio/dio.dart';
+import 'package:hiddify/core/prefs/prefs.dart';
 
-// TODO: rewrite
 mixin Failure {
   ({String type, String? message}) present(TranslationsEn t);
 }
 
 extension ErrorPresenter on TranslationsEn {
-  String printError(Object error) {
-    if (error case Failure()) {
-      final err = error.present(this);
-      return err.type + (err.message == null ? "" : ": ${err.message}");
+  String? _errorToMessage(Object error) {
+    switch (error) {
+      case Failure():
+        final err = error.present(this);
+        return err.type + (err.message == null ? "" : ": ${err.message}");
+      case DioException():
+        return error.toString();
+      default:
+        return null;
     }
-    return failure.unexpected;
   }
+
+  String printError(Object error) =>
+      _errorToMessage(error) ?? failure.unexpected;
+
+  String? mayPrintError(Object? error) =>
+      error != null ? _errorToMessage(error) : null;
 
   ({String type, String? message}) presentError(Object error) {
     if (error case Failure()) return error.present(this);

@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hiddify/core/locale/locale.dart';
+import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:hiddify/domain/failures.dart';
 
 part 'core_service_failure.freezed.dart';
@@ -49,9 +49,9 @@ sealed class CoreServiceFailure with _$CoreServiceFailure, Failure {
   @override
   ({String type, String? message}) present(TranslationsEn t) {
     return switch (this) {
-      UnexpectedCoreServiceFailure() => (
+      UnexpectedCoreServiceFailure(:final error) => (
           type: t.failure.singbox.unexpected,
-          message: null
+          message: t.mayPrintError(error),
         ),
       CoreServiceNotRunning(:final message) => (
           type: t.failure.singbox.serviceNotRunning,

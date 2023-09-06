@@ -30,7 +30,12 @@ class CustomAlertDialog extends StatelessWidget {
 
     return AlertDialog(
       title: title != null ? Text(title!) : null,
-      content: Text(message),
+      content: SingleChildScrollView(
+        child: SizedBox(
+          width: 468,
+          child: Text(message),
+        ),
+      ),
       actions: [
         TextButton(
           onPressed: () {

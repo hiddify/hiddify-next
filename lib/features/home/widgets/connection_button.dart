@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:gap/gap.dart';
 import 'package:hiddify/core/core_providers.dart';
-import 'package:hiddify/core/theme/theme.dart';
+import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:hiddify/domain/connectivity/connectivity.dart';
 import 'package:hiddify/domain/failures.dart';
 import 'package:hiddify/features/common/connectivity/connectivity_controller.dart';
@@ -34,11 +34,13 @@ class ConnectionButton extends HookConsumerWidget {
       },
     );
 
+    final buttonTheme = Theme.of(context).extension<ConnectionButtonTheme>()!;
+
     switch (connectionStatus) {
       case AsyncData(value: final status):
         final Color connectionLogoColor = status.isConnected
-            ? ConnectionButtonColor.connected
-            : ConnectionButtonColor.disconnected;
+            ? buttonTheme.connectedColor!
+            : buttonTheme.idleColor!;
 
         return _ConnectionButton(
           onTap: () => ref
@@ -55,7 +57,7 @@ class ConnectionButton extends HookConsumerWidget {
               .toggleConnection(),
           enabled: true,
           label: const Disconnected().present(t),
-          buttonColor: ConnectionButtonColor.disconnected,
+          buttonColor: buttonTheme.idleColor!,
         );
       default:
         // HACK

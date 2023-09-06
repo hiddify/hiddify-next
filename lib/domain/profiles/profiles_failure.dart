@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hiddify/core/locale/locale.dart';
+import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:hiddify/domain/failures.dart';
 
 part 'profiles_failure.freezed.dart';
@@ -21,9 +21,9 @@ sealed class ProfileFailure with _$ProfileFailure, Failure {
   @override
   ({String type, String? message}) present(TranslationsEn t) {
     return switch (this) {
-      ProfileUnexpectedFailure() => (
+      ProfileUnexpectedFailure(:final error) => (
           type: t.failure.profiles.unexpected,
-          message: null
+          message: t.mayPrintError(error),
         ),
       ProfileNotFoundFailure() => (
           type: t.failure.profiles.notFound,

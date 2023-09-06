@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hiddify/core/locale/locale.dart';
+import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:hiddify/domain/core_service_failure.dart';
 import 'package:hiddify/domain/failures.dart';
 
@@ -27,9 +27,9 @@ sealed class ConnectionFailure with _$ConnectionFailure, Failure {
   @override
   ({String type, String? message}) present(TranslationsEn t) {
     return switch (this) {
-      UnexpectedConnectionFailure() => (
+      UnexpectedConnectionFailure(:final error) => (
           type: t.failure.connectivity.unexpected,
-          message: null
+          message: t.mayPrintError(error),
         ),
       MissingVpnPermission(:final message) => (
           type: t.failure.connectivity.missingVpnPermission,

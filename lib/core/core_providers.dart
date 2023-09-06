@@ -1,6 +1,15 @@
-import 'package:hiddify/core/locale/locale.dart';
+import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final translationsProvider = Provider<TranslationsEn>(
-  (ref) => ref.watch(localeControllerProvider).translations(),
-);
+part 'core_providers.g.dart';
+
+@Riverpod(keepAlive: true)
+TranslationsEn translations(TranslationsRef ref) =>
+    ref.watch(localeProvider).translations();
+
+@riverpod
+AppTheme theme(ThemeRef ref) => AppTheme(
+      ref.watch(themeModeProvider),
+      ref.watch(trueBlackThemeProvider),
+      ref.watch(localeProvider).preferredFontFamily,
+    );
