@@ -62,26 +62,26 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
 
-      - name: Cache Flutter dependencies
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.pub-cache
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-            ~/.npm
-            ~/.cache
-            ~/go/pkg/mod
-          key: ${{ runner.os }}-pub-cache-${{ hashFiles('**/pubspec.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-pub-cache-
+      # - name: Cache Flutter dependencies
+      #   uses: actions/cache@v3
+      #   with:
+      #     path: |
+      #       ~/.pub-cache
+      #       ~/.gradle/caches
+      #       ~/.gradle/wrapper
+      #       ~/.npm
+      #       ~/.cache
+      #       ~/go/pkg/mod
+      #     key: ${{ runner.os }}-pub-cache-${{ hashFiles('**/pubspec.lock') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-pub-cache-
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.13.x'
+          # flutter-version: '3.13.x'
           channel: 'stable'
-          cache: true
+          # cache: true
 
       - name: Build macos dmg
         if: matrix.platform == 'macos' || matrix.platform == 'ios'
@@ -217,16 +217,16 @@ jobs:
           prerelease: true
           overwrite: true
 
-      - name: Create service_account.json
-        if: matrix.platform == 'android'
-        run: echo '${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}' > service_account.json
+      # - name: Create service_account.json
+      #   if: matrix.platform == 'android'
+      #   run: echo '${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}' > service_account.json
 
-      - name: Deploy to Internal Testers
-        if: matrix.platform == 'android'
-        uses: r0adkll/upload-google-play@v1
-        with:
-          serviceAccountJson: service_account.json
-          packageName: app.hiddify.com
-          releaseName: ${{ github.ref }}
-          releaseFiles: ./build/app/outputs/bundle/release/app-release.aab
-          track: internal          
+      # - name: Deploy to Internal Testers
+      #   if: matrix.platform == 'android'
+      #   uses: r0adkll/upload-google-play@v1
+      #   with:
+      #     serviceAccountJson: service_account.json
+      #     packageName: app.hiddify.com
+      #     releaseName: ${{ github.ref }}
+      #     releaseFiles: ./build/app/outputs/bundle/release/app-release.aab
+      #     track: internal          
