@@ -23,7 +23,7 @@ class EmptyProfilesHomeBody extends HookConsumerWidget {
             onPressed: () => const AddProfileRoute().push(context),
             icon: const Icon(Icons.add),
             label: Text(t.profile.add.buttonText.titleCase),
-          )
+          ),
         ],
       ),
     );
@@ -47,7 +47,7 @@ class EmptyActiveProfileHomeBody extends HookConsumerWidget {
           OutlinedButton(
             onPressed: () => const ProfilesRoute().push(context),
             child: Text(t.profile.overviewPageTitle.titleCase),
-          )
+          ),
         ],
       ),
     );

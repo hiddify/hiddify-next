@@ -129,7 +129,7 @@ class SubscriptionInfo with _$SubscriptionInfo {
     final values = header.split(';');
     final map = {
       for (final v in values)
-        v.split('=').first: int.tryParse(v.split('=').second)
+        v.split('=').first: int.tryParse(v.split('=').second),
     };
     return SubscriptionInfo.fromJson(map);
   }

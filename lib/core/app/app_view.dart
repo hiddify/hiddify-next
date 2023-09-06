@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/core/prefs/prefs.dart';
@@ -29,6 +28,6 @@ class AppView extends HookConsumerWidget with PresLogger {
       theme: theme.light(),
       darkTheme: theme.dark(),
       title: 'Hiddify Next',
-    ).animate().fadeIn();
+    );
   }
 }

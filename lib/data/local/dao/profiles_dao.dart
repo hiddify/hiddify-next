@@ -10,7 +10,7 @@ part 'profiles_dao.g.dart';
 
 Map<SortMode, OrderingMode> orderMap = {
   SortMode.ascending: OrderingMode.asc,
-  SortMode.descending: OrderingMode.desc
+  SortMode.descending: OrderingMode.desc,
 };
 
 @DriftAccessor(tables: [ProfileEntries])

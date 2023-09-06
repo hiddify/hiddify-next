@@ -2,7 +2,8 @@ import 'dart:io';
 
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
-import 'package:hiddify/data/local/dao/dao.dart';
+// import 'package:hiddify/data/local/dao/dao.dart';
+import 'package:hiddify/data/local/dao/profiles_dao.dart'; // TODO https://github.com/simolus3/drift/issues/2589
 import 'package:hiddify/data/local/tables.dart';
 import 'package:hiddify/data/local/type_converters.dart';
 import 'package:hiddify/services/files_editor_service.dart';

@@ -17,7 +17,6 @@ import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:loggy/loggy.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:stack_trace/stack_trace.dart' as stack_trace;
 import 'package:window_manager/window_manager.dart';
 
 final _loggy = Loggy('bootstrap');
@@ -25,13 +24,6 @@ final _stopWatch = Stopwatch();
 
 Future<void> lazyBootstrap(WidgetsBinding widgetsBinding) async {
   _stopWatch.start();
-
-  // temporary solution: https://github.com/rrousselGit/riverpod/issues/1874
-  FlutterError.demangleStackTrace = (StackTrace stack) {
-    if (stack is stack_trace.Trace) return stack.vmTrace;
-    if (stack is stack_trace.Chain) return stack.toTrace().vmTrace;
-    return stack;
-  };
 
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   if (PlatformUtils.isDesktop) await windowManager.ensureInitialized();
