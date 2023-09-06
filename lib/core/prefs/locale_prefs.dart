@@ -8,7 +8,7 @@ export 'package:hiddify/gen/translations.g.dart';
 
 final localeProvider = AlwaysAlivePrefNotifier.provider(
   "locale",
-  AppLocale.deviceLocale(),
+  AppLocale.en,
   mapFrom: AppLocale.values.byName,
   mapTo: (value) => value.name,
 );
