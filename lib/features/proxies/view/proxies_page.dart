@@ -17,6 +17,7 @@ class ProxiesPage extends HookConsumerWidget with PresLogger {
 
     final asyncProxies = ref.watch(proxiesNotifierProvider);
     final notifier = ref.watch(proxiesNotifierProvider.notifier);
+    final sortBy = ref.watch(proxiesSortProvider);
 
     final selectActiveProxyMutation = useMutation(
       initialOnFailure: (error) =>
@@ -50,7 +51,27 @@ class ProxiesPage extends HookConsumerWidget with PresLogger {
         return Scaffold(
           body: CustomScrollView(
             slivers: [
-              NestedTabAppBar(title: Text(t.proxies.pageTitle.titleCase)),
+              NestedTabAppBar(
+                title: Text(t.proxies.pageTitle.titleCase),
+                actions: [
+                  PopupMenuButton<ProxiesSort>(
+                    initialValue: sortBy,
+                    onSelected: ref.read(proxiesSortProvider.notifier).update,
+                    icon: const Icon(Icons.sort),
+                    tooltip: t.proxies.sortTooltip,
+                    itemBuilder: (context) {
+                      return [
+                        ...ProxiesSort.values.map(
+                          (e) => PopupMenuItem(
+                            value: e,
+                            child: Text(e.present(t)),
+                          ),
+                        ),
+                      ];
+                    },
+                  ),
+                ],
+              ),
               SliverLayoutBuilder(
                 builder: (context, constraints) {
                   final width = constraints.crossAxisExtent;

@@ -79,7 +79,12 @@
         "pageTitle": "پراکسی‌ها",
         "emptyProxiesMsg": "پراکسی وجود ندارد",
         "delayTestTooltip": "تست تاخیر",
-        "cancelTestButtonText": "لغو تست"
+        "sortTooltip": "مرتب‌سازی پراکسی‌ها",
+        "sortOptions": {
+            "unsorted": "پیش‌فرض",
+            "name": "براساس نام",
+            "delay": "براساس تاخیر"
+        }
     },
     "logs": {
         "pageTitle": "لاگ‌ها",

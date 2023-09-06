@@ -79,7 +79,12 @@
         "pageTitle": "proxies",
         "emptyProxiesMsg": "no proxies",
         "delayTestTooltip": "delay test",
-        "cancelTestButtonText": "cancel test"
+        "sortTooltip": "sort proxies",
+        "sortOptions": {
+            "unsorted": "Default",
+            "name": "by Name",
+            "delay": "by Delay"
+        }
     },
     "logs": {
         "pageTitle": "logs",

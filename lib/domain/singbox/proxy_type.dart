@@ -28,4 +28,6 @@ enum ProxyType {
   String get key => name;
 
   static List<ProxyType> groupValues = [selector, urltest];
+
+  bool get isGroup => ProxyType.groupValues.contains(this);
 }
