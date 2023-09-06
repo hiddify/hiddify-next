@@ -3,6 +3,61 @@ import 'package:hiddify/utils/custom_loggers.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+class Pref<T> with InfraLogger {
+  const Pref(
+    this.prefs,
+    this.key,
+    this.defaultValue, {
+    this.mapFrom,
+    this.mapTo,
+  });
+
+  final SharedPreferences prefs;
+  final String key;
+  final T defaultValue;
+  final T Function(String value)? mapFrom;
+  final String Function(T value)? mapTo;
+
+  /// Updates the value asynchronously.
+  Future<void> update(T value) async {
+    loggy.debug("updating preference [$key] to [$value]");
+    try {
+      if (mapTo != null && mapFrom != null) {
+        await prefs.setString(key, mapTo!(value));
+      } else {
+        switch (value) {
+          case String _:
+            await prefs.setString(key, value);
+          case bool _:
+            await prefs.setBool(key, value);
+          case int _:
+            await prefs.setInt(key, value);
+          case double _:
+            await prefs.setDouble(key, value);
+          case List<String> _:
+            await prefs.setStringList(key, value);
+        }
+      }
+    } catch (e) {
+      loggy.warning("error updating preference[$key]: $e");
+    }
+  }
+
+  T getValue() {
+    try {
+      loggy.debug("getting persisted preference [$key]");
+      if (mapTo != null && mapFrom != null) {
+        final persisted = prefs.getString(key);
+        return persisted != null ? mapFrom!(persisted) : defaultValue;
+      }
+      return prefs.get(key) as T? ?? defaultValue;
+    } catch (e) {
+      loggy.warning("error getting preference[$key]: $e");
+      return defaultValue;
+    }
+  }
+}
+
 class PrefNotifier<T> extends AutoDisposeNotifier<T>
     with _Prefs<T>, InfraLogger {
   PrefNotifier(

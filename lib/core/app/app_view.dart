@@ -13,7 +13,7 @@ class AppView extends HookConsumerWidget with PresLogger {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(routerProvider);
-    final locale = ref.watch(localeProvider).locale;
+    final locale = ref.watch(localeNotifierProvider).locale;
     final theme = ref.watch(themeProvider);
 
     ref.watch(commonControllersProvider);

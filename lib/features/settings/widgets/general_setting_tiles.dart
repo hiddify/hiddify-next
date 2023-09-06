@@ -14,7 +14,7 @@ class GeneralSettingTiles extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final t = ref.watch(translationsProvider);
 
-    final locale = ref.watch(localeProvider);
+    final locale = ref.watch(localeNotifierProvider);
 
     final theme = ref.watch(themeProvider);
 
@@ -51,7 +51,9 @@ class GeneralSettingTiles extends HookConsumerWidget {
               },
             );
             if (selectedLocale != null) {
-              await ref.read(localeProvider.notifier).update(selectedLocale);
+              await ref
+                  .read(localeNotifierProvider.notifier)
+                  .update(selectedLocale);
             }
           },
         ),
@@ -66,11 +68,11 @@ class GeneralSettingTiles extends HookConsumerWidget {
           ),
           trailing: ThemeModeSwitch(
             themeMode: theme.mode,
-            onChanged: ref.read(themeModeProvider.notifier).update,
+            onChanged: ref.read(themeModeNotifierProvider.notifier).update,
           ),
           leading: const Icon(Icons.light_mode),
           onTap: () async {
-            await ref.read(themeModeProvider.notifier).update(
+            await ref.read(themeModeNotifierProvider.notifier).update(
                   Theme.of(context).brightness == Brightness.light
                       ? ThemeMode.dark
                       : ThemeMode.light,
@@ -80,7 +82,7 @@ class GeneralSettingTiles extends HookConsumerWidget {
         SwitchListTile(
           title: Text(t.settings.general.trueBlack),
           value: theme.trueBlack,
-          onChanged: ref.read(trueBlackThemeProvider.notifier).update,
+          onChanged: ref.read(trueBlackThemeNotifierProvider.notifier).update,
         ),
         if (PlatformUtils.isDesktop) ...[
           SwitchListTile(
