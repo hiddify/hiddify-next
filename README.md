@@ -3,7 +3,7 @@
 <p align="center"><img src="assets/images/logo.svg" width="168"/></p>
 
 <p align="center" style="font-size: 20px">Hiddify Multi-platform Proxy Client</p>
-<p align="center" style="font-size: 20px">⚠️Hiddify Next is still in early development phase⚠️</p>
+<p align="center" style="font-size: 20px">⚠️ Hiddify Next is still in early development phase ⚠️</p>
 <p align="center" style="font-size: 16px">Windows, Android, Linux and macOS are supported (PR for iOS welcome)</p>
 
 ## Download Hiddify Next Pre-Release 
