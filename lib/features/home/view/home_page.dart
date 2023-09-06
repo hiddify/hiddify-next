@@ -9,7 +9,7 @@ import 'package:hiddify/features/common/common.dart';
 import 'package:hiddify/features/home/widgets/widgets.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:recase/recase.dart';
+
 import 'package:sliver_tools/sliver_tools.dart';
 
 class HomePage extends HookConsumerWidget {
@@ -30,7 +30,7 @@ class HomePage extends HookConsumerWidget {
               NestedTabAppBar(
                 title: Row(
                   children: [
-                    Text(t.general.appTitle.titleCase),
+                    Text(t.general.appTitle),
                     const Gap(4),
                     const AppVersionLabel(),
                   ],

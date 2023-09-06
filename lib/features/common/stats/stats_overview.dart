@@ -5,7 +5,6 @@ import 'package:hiddify/domain/singbox/singbox.dart';
 import 'package:hiddify/features/common/stats/stats_notifier.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:recase/recase.dart';
 
 class StatsOverview extends HookConsumerWidget {
   const StatsOverview({super.key});
@@ -23,25 +22,25 @@ class StatsOverview extends HookConsumerWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           _StatCard(
-            title: t.home.stats.traffic.titleCase,
+            title: t.home.stats.traffic,
             firstStat: (
-              label: t.home.stats.uplink.titleCase,
+              label: t.home.stats.uplink,
               data: stats.uplink.speed(),
             ),
             secondStat: (
-              label: t.home.stats.downlink.titleCase,
+              label: t.home.stats.downlink,
               data: stats.downlink.speed(),
             ),
           ),
           const Gap(8),
           _StatCard(
-            title: t.home.stats.trafficTotal.titleCase,
+            title: t.home.stats.trafficTotal,
             firstStat: (
-              label: t.home.stats.uplink.titleCase,
+              label: t.home.stats.uplink,
               data: stats.uplinkTotal.size(),
             ),
             secondStat: (
-              label: t.home.stats.downlink.titleCase,
+              label: t.home.stats.downlink,
               data: stats.downlinkTotal.size(),
             ),
           ),

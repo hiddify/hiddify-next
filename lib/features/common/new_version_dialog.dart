@@ -6,7 +6,6 @@ import 'package:hiddify/domain/app/app.dart';
 import 'package:hiddify/domain/constants.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:recase/recase.dart';
 
 // TODO add release notes
 class NewVersionDialog extends HookConsumerWidget {
@@ -34,7 +33,7 @@ class NewVersionDialog extends HookConsumerWidget {
     final theme = Theme.of(context);
 
     return AlertDialog(
-      title: Text(t.appUpdate.dialogTitle.titleCase),
+      title: Text(t.appUpdate.dialogTitle),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,11 +77,11 @@ class NewVersionDialog extends HookConsumerWidget {
               // TODO add prefs for ignoring version
               context.pop();
             },
-            child: Text(t.appUpdate.ignoreBtnTxt.titleCase),
+            child: Text(t.appUpdate.ignoreBtnTxt),
           ),
         TextButton(
           onPressed: context.pop,
-          child: Text(t.appUpdate.laterBtnTxt.titleCase),
+          child: Text(t.appUpdate.laterBtnTxt),
         ),
         TextButton(
           onPressed: () async {
@@ -90,7 +89,7 @@ class NewVersionDialog extends HookConsumerWidget {
               Uri.parse(Constants.githubLatestReleaseUrl),
             );
           },
-          child: Text(t.appUpdate.updateNowBtnTxt.titleCase),
+          child: Text(t.appUpdate.updateNowBtnTxt),
         ),
       ],
     );

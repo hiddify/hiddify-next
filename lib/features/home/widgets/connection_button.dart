@@ -9,7 +9,6 @@ import 'package:hiddify/features/common/connectivity/connectivity_controller.dar
 import 'package:hiddify/gen/assets.gen.dart';
 import 'package:hiddify/utils/alerts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:recase/recase.dart';
 
 // TODO: rewrite
 class ConnectionButton extends HookConsumerWidget {
@@ -128,7 +127,7 @@ class _ConnectionButton extends StatelessWidget {
         ),
         const Gap(16),
         Text(
-          label.sentenceCase,
+          label,
           style: Theme.of(context).textTheme.bodyLarge,
         ),
       ],

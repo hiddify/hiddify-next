@@ -10,7 +10,6 @@ import 'package:hiddify/features/common/qr_code_scanner_screen.dart';
 import 'package:hiddify/features/profiles/notifier/notifier.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:recase/recase.dart';
 
 class AddProfileModal extends HookConsumerWidget {
   const AddProfileModal({
@@ -34,8 +33,7 @@ class AddProfileModal extends HookConsumerWidget {
         CustomAlertDialog.fromErr(t.presentError(err)).show(context);
       },
       initialOnSuccess: () {
-        CustomToast.success(t.profile.save.successMsg.sentenceCase)
-            .show(context);
+        CustomToast.success(t.profile.save.successMsg).show(context);
         WidgetsBinding.instance.addPostFrameCallback(
           (_) {
             if (context.mounted) context.pop();
@@ -79,7 +77,7 @@ class AddProfileModal extends HookConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        t.profile.add.addingProfileMsg.sentenceCase,
+                        t.profile.add.addingProfileMsg,
                         style: theme.textTheme.bodySmall,
                       ),
                       const Gap(8),
@@ -98,7 +96,7 @@ class AddProfileModal extends HookConsumerWidget {
                     child: Row(
                       children: [
                         _Button(
-                          label: t.profile.add.fromClipboard.sentenceCase,
+                          label: t.profile.add.fromClipboard,
                           icon: Icons.content_paste,
                           size: buttonWidth,
                           onTap: () async {
@@ -117,7 +115,7 @@ class AddProfileModal extends HookConsumerWidget {
                             } else {
                               if (context.mounted) {
                                 CustomToast.error(
-                                  t.profile.add.invalidUrlMsg.sentenceCase,
+                                  t.profile.add.invalidUrlMsg,
                                 ).show(context);
                               }
                             }
@@ -148,7 +146,7 @@ class AddProfileModal extends HookConsumerWidget {
                               } else {
                                 if (context.mounted) {
                                   CustomToast.error(
-                                    t.profile.add.invalidUrlMsg.sentenceCase,
+                                    t.profile.add.invalidUrlMsg,
                                   ).show(context);
                                 }
                               }
@@ -156,7 +154,7 @@ class AddProfileModal extends HookConsumerWidget {
                           )
                         else
                           _Button(
-                            label: t.profile.add.manually.sentenceCase,
+                            label: t.profile.add.manually,
                             icon: Icons.add,
                             size: buttonWidth,
                             onTap: () async {
@@ -198,7 +196,7 @@ class AddProfileModal extends HookConsumerWidget {
                                   ),
                                   const Gap(8),
                                   Text(
-                                    t.profile.add.manually.sentenceCase,
+                                    t.profile.add.manually,
                                     style: theme.textTheme.labelLarge?.copyWith(
                                       color: theme.colorScheme.primary,
                                     ),

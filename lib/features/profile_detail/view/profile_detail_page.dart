@@ -7,7 +7,6 @@ import 'package:hiddify/features/common/confirmation_dialogs.dart';
 import 'package:hiddify/features/profile_detail/notifier/notifier.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:recase/recase.dart';
 
 // TODO: test and improve
 // TODO: prevent popping screen when busy
@@ -41,8 +40,7 @@ class ProfileDetailPage extends HookConsumerWidget with PresLogger {
             case MutationFailure(:final failure):
               CustomToast.error(t.printError(failure)).show(context);
             case MutationSuccess():
-              CustomToast.success(t.profile.save.successMsg.sentenceCase)
-                  .show(context);
+              CustomToast.success(t.profile.save.successMsg).show(context);
               WidgetsBinding.instance.addPostFrameCallback(
                 (_) {
                   if (context.mounted) context.pop();
@@ -61,8 +59,7 @@ class ProfileDetailPage extends HookConsumerWidget with PresLogger {
             case MutationFailure(:final failure):
               CustomToast.error(t.printError(failure)).show(context);
             case MutationSuccess():
-              CustomToast.success(t.profile.delete.successMsg.sentenceCase)
-                  .show(context);
+              CustomToast.success(t.profile.delete.successMsg).show(context);
               WidgetsBinding.instance.addPostFrameCallback(
                 (_) {
                   if (context.mounted) context.pop();
@@ -82,7 +79,7 @@ class ProfileDetailPage extends HookConsumerWidget with PresLogger {
                 slivers: [
                   SliverAppBar(
                     pinned: true,
-                    title: Text(t.profile.detailsPageTitle.titleCase),
+                    title: Text(t.profile.detailsPageTitle),
                   ),
                   const SliverGap(8),
                   SliverPadding(
@@ -102,7 +99,7 @@ class ProfileDetailPage extends HookConsumerWidget with PresLogger {
                               validator: (value) => (value?.isEmpty ?? true)
                                   ? t.profile.detailsForm.emptyNameMsg
                                   : null,
-                              label: t.profile.detailsForm.nameHint.titleCase,
+                              label: t.profile.detailsForm.nameHint,
                             ),
                             const Gap(16),
                             CustomTextFormField(
@@ -142,10 +139,8 @@ class ProfileDetailPage extends HookConsumerWidget with PresLogger {
                                     final deleteConfirmed =
                                         await showConfirmationDialog(
                                       context,
-                                      title:
-                                          t.profile.delete.buttonTxt.titleCase,
-                                      message: t.profile.delete.confirmationMsg
-                                          .sentenceCase,
+                                      title: t.profile.delete.buttonTxt,
+                                      message: t.profile.delete.confirmationMsg,
                                     );
                                     if (deleteConfirmed) {
                                       await notifier.delete();
@@ -157,7 +152,7 @@ class ProfileDetailPage extends HookConsumerWidget with PresLogger {
                                     ),
                                   ),
                                   child: Text(
-                                    t.profile.delete.buttonTxt.titleCase,
+                                    t.profile.delete.buttonTxt,
                                     style: TextStyle(
                                       color: themeData
                                           .colorScheme.onErrorContainer,
@@ -166,8 +161,7 @@ class ProfileDetailPage extends HookConsumerWidget with PresLogger {
                                 ),
                               OutlinedButton(
                                 onPressed: notifier.save,
-                                child:
-                                    Text(t.profile.save.buttonText.titleCase),
+                                child: Text(t.profile.save.buttonText),
                               ),
                             ],
                           ),

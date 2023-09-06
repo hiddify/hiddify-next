@@ -6,7 +6,6 @@ import 'package:hiddify/features/proxies/notifier/notifier.dart';
 import 'package:hiddify/features/proxies/widgets/widgets.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:recase/recase.dart';
 
 class ProxiesPage extends HookConsumerWidget with PresLogger {
   const ProxiesPage({super.key});
@@ -31,13 +30,13 @@ class ProxiesPage extends HookConsumerWidget with PresLogger {
             body: CustomScrollView(
               slivers: [
                 NestedTabAppBar(
-                  title: Text(t.proxies.pageTitle.titleCase),
+                  title: Text(t.proxies.pageTitle),
                 ),
                 SliverFillRemaining(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(t.proxies.emptyProxiesMsg.titleCase),
+                      Text(t.proxies.emptyProxiesMsg),
                     ],
                   ),
                 ),
@@ -52,7 +51,7 @@ class ProxiesPage extends HookConsumerWidget with PresLogger {
           body: CustomScrollView(
             slivers: [
               NestedTabAppBar(
-                title: Text(t.proxies.pageTitle.titleCase),
+                title: Text(t.proxies.pageTitle),
                 actions: [
                   PopupMenuButton<ProxiesSort>(
                     initialValue: sortBy,
@@ -131,7 +130,7 @@ class ProxiesPage extends HookConsumerWidget with PresLogger {
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () async => notifier.urlTest(group.tag),
-            tooltip: t.proxies.delayTestTooltip.titleCase,
+            tooltip: t.proxies.delayTestTooltip,
             child: const Icon(Icons.bolt),
           ),
         );
@@ -141,7 +140,7 @@ class ProxiesPage extends HookConsumerWidget with PresLogger {
           body: CustomScrollView(
             slivers: [
               NestedTabAppBar(
-                title: Text(t.proxies.pageTitle.titleCase),
+                title: Text(t.proxies.pageTitle),
               ),
               SliverErrorBodyPlaceholder(
                 t.printError(error),
@@ -156,7 +155,7 @@ class ProxiesPage extends HookConsumerWidget with PresLogger {
           body: CustomScrollView(
             slivers: [
               NestedTabAppBar(
-                title: Text(t.proxies.pageTitle.titleCase),
+                title: Text(t.proxies.pageTitle),
               ),
               const SliverLoadingBodyPlaceholder(),
             ],

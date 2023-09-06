@@ -17,7 +17,6 @@ dependencies:
   intl: ^0.18.1
   slang: ^3.23.0
   slang_flutter: ^3.23.0
-  recase: ^4.1.0
   timeago: ^3.5.0
   flutter_localized_locales: ^2.0.4
 

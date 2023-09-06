@@ -10,7 +10,6 @@ import 'package:hiddify/features/profiles/notifier/notifier.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-import 'package:recase/recase.dart';
 
 class ProfileTile extends HookConsumerWidget {
   const ProfileTile({
@@ -232,7 +231,7 @@ class ProfileActionsMenu extends HookConsumerWidget {
       menuChildren: [
         MenuItemButton(
           leadingIcon: const Icon(Icons.update),
-          child: Text(t.profile.update.buttonTxt.titleCase),
+          child: Text(t.profile.update.buttonTxt),
           onPressed: () {
             if (updateProfileMutation.state.isInProgress) {
               return;
@@ -246,22 +245,22 @@ class ProfileActionsMenu extends HookConsumerWidget {
         ),
         MenuItemButton(
           leadingIcon: const Icon(Icons.edit),
-          child: Text(t.profile.edit.buttonTxt.titleCase),
+          child: Text(t.profile.edit.buttonTxt),
           onPressed: () async {
             await ProfileDetailsRoute(profile.id).push(context);
           },
         ),
         MenuItemButton(
           leadingIcon: const Icon(Icons.delete),
-          child: Text(t.profile.delete.buttonTxt.titleCase),
+          child: Text(t.profile.delete.buttonTxt),
           onPressed: () async {
             if (deleteProfileMutation.state.isInProgress) {
               return;
             }
             final deleteConfirmed = await showConfirmationDialog(
               context,
-              title: t.profile.delete.buttonTxt.titleCase,
-              message: t.profile.delete.confirmationMsg.sentenceCase,
+              title: t.profile.delete.buttonTxt,
+              message: t.profile.delete.confirmationMsg,
             );
             if (deleteConfirmed) {
               deleteProfileMutation.setFuture(

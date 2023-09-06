@@ -9,7 +9,6 @@ import 'package:hiddify/features/common/common.dart';
 import 'package:hiddify/features/profiles/notifier/notifier.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:recase/recase.dart';
 
 class ProfilesModal extends HookConsumerWidget {
   const ProfilesModal({
@@ -57,7 +56,7 @@ class ProfilesModal extends HookConsumerWidget {
                     const AddProfileRoute().push(context);
                   },
                   icon: const Icon(Icons.add),
-                  label: Text(t.profile.add.shortBtnTxt.titleCase),
+                  label: Text(t.profile.add.shortBtnTxt),
                 ),
                 FilledButton.icon(
                   onPressed: () {
@@ -69,7 +68,7 @@ class ProfilesModal extends HookConsumerWidget {
                     );
                   },
                   icon: const Icon(Icons.sort),
-                  label: Text(t.general.sort.titleCase),
+                  label: Text(t.general.sort),
                 ),
               ],
             ),
@@ -88,7 +87,7 @@ class ProfilesSortModal extends HookConsumerWidget {
     final t = ref.watch(translationsProvider);
 
     return AlertDialog(
-      title: Text(t.general.sortBy.titleCase),
+      title: Text(t.general.sortBy),
       content: Consumer(
         builder: (context, ref, child) {
           final sort = ref.watch(profilesSortNotifierProvider);

@@ -1,83 +1,82 @@
 {
     "general": {
         "appTitle": "Hiddify Next",
-        "reset": "reset",
+        "reset": "Reset",
         "toggle": {
-            "enabled": "enabled",
-            "disabled": "disabled"
+            "enabled": "Enabled",
+            "disabled": "Disabled"
         },
-        "sort": "sort",
-        "sortBy": "sort by"
+        "sort": "Sort",
+        "sortBy": "Sort by"
     },
     "home": {
-        "pageTitle": "home",
-        "emptyProfilesMsg": "start by adding subscription profile",
-        "noActiveProfileMsg": "select a profile",
+        "pageTitle": "Home",
+        "emptyProfilesMsg": "Start by adding subscription profile",
+        "noActiveProfileMsg": "Select a profile",
         "connection": {
-            "tapToConnect": "tap to connect",
-            "connecting": "connecting",
-            "disconnecting": "disconnecting",
-            "connected": "connected"
+            "tapToConnect": "Tap to Connect",
+            "connecting": "Connecting",
+            "disconnecting": "Disconnecting",
+            "connected": "Connected"
         },
         "stats": {
-            "traffic": "traffic",
-            "trafficTotal": "traffic total",
-            "uplink": "uplink",
-            "downlink": "downlink"
+            "traffic": "Traffic",
+            "trafficTotal": "Traffic total",
+            "uplink": "Uplink",
+            "downlink": "Downlink"
         }
     },
     "profile": {
-        "overviewPageTitle": "profiles",
-        "detailsPageTitle": "profile",
+        "overviewPageTitle": "Profiles",
+        "detailsPageTitle": "Profile",
         "subscription": {
-            "traffic": "traffic",
-            "updatedTimeAgo": "updated ${timeago}",
+            "traffic": "Traffic",
+            "updatedTimeAgo": "Updated ${timeago}",
             "remainingDuration": "${duration} days remaining",
-            "expired": "expired",
-            "noTraffic": "no traffic",
-            "gigaByte": "GB"
+            "expired": "Expired",
+            "noTraffic": "No traffic"
         },
         "sortBy": {
             "lastUpdate": "Recently updated",
             "name": "by Name"
         },
         "add": {
-            "buttonText": "add new profile",
-            "shortBtnTxt": "add new",
-            "fromClipboard": "add from clipboard",
+            "buttonText": "Add New Profile",
+            "shortBtnTxt": "Add New",
+            "fromClipboard": "Add From Clipboard",
             "scanQr": "Scan QR code",
-            "manually": "add manually",
-            "addingProfileMsg": "adding profile",
-            "invalidUrlMsg": "unexpected url"
+            "manually": "Add Manually",
+            "addingProfileMsg": "Adding Profile",
+            "invalidUrlMsg": "Unexpected URL"
         },
         "update": {
-            "buttonTxt": "update",
+            "buttonTxt": "Update",
             "tooltip": "update profile",
-            "failureMsg": "failed to update profile: ${reason}",
-            "successMsg": "successfully updated profile"
+            "failureMsg": "Failed to update profile: ${reason}",
+            "successMsg": "Successfully updated profile"
         },
         "edit": {
-            "buttonTxt": "edit"
+            "buttonTxt": "Edit"
         },
         "delete": {
-            "buttonTxt": "delete",
-            "confirmationMsg": "delete profile for ever? this can not be undone",
-            "successMsg": "successfully deleted profile"
+            "buttonTxt": "Delete",
+            "confirmationMsg": "Delete profile for ever? This can not be undone",
+            "successMsg": "Successfully deleted profile"
         },
         "save": {
-            "buttonText": "save",
-            "successMsg": "successfully saved profile"
+            "buttonText": "Save",
+            "successMsg": "Successfully saved profile"
         },
         "detailsForm": {
-            "nameHint": "name",
-            "urlHint": "url",
-            "emptyNameMsg": "name can't be empty",
-            "invalidUrlMsg": "invalid URL"
+            "nameHint": "Name",
+            "urlHint": "URL",
+            "emptyNameMsg": "Name can't be empty",
+            "invalidUrlMsg": "Invalid URL"
         }
     },
     "proxies": {
-        "pageTitle": "proxies",
-        "emptyProxiesMsg": "no proxies",
+        "pageTitle": "Proxies",
+        "emptyProxiesMsg": "No Proxies",
         "delayTestTooltip": "delay test",
         "sortTooltip": "sort proxies",
         "sortOptions": {
@@ -87,12 +86,12 @@
         }
     },
     "logs": {
-        "pageTitle": "logs",
-        "clearLogsButtonText": "clear",
-        "filterHint": "filter",
-        "allLevelsFilter": "all",
-        "shareCoreLogs": "share core logs",
-        "shareAppLogs": "share app logs"
+        "pageTitle": "Logs",
+        "clearLogsButtonText": "Clear",
+        "filterHint": "Filter",
+        "allLevelsFilter": "All",
+        "shareCoreLogs": "Share core logs",
+        "shareAppLogs": "Share app logs"
     },
     "settings": {
         "pageTitle": "Settings",
@@ -150,12 +149,11 @@
         }
     },
     "about": {
-        "pageTitle": "about",
-        "version": "version",
-        "whatsNew": "what's new",
-        "sourceCode": "source code",
-        "telegramChannel": "telegram channel",
-        "checkForUpdate": "check for update"
+        "pageTitle": "About",
+        "version": "Version",
+        "sourceCode": "Source Code",
+        "telegramChannel": "Telegram Channel",
+        "checkForUpdate": "Check for update"
     },
     "appUpdate": {
         "dialogTitle": "Update Available",

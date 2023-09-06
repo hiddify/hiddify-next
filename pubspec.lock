@@ -966,7 +966,7 @@ packages:
     source: hosted
     version: "2.2.2"
   recase:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: recase
       sha256: e4eb4ec2dcdee52dcf99cb4ceabaffc631d7424ee55e56f280bc039737f89213

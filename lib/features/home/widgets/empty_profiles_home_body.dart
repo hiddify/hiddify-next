@@ -3,7 +3,6 @@ import 'package:gap/gap.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/core/router/router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:recase/recase.dart';
 
 class EmptyProfilesHomeBody extends HookConsumerWidget {
   const EmptyProfilesHomeBody({super.key});
@@ -17,12 +16,12 @@ class EmptyProfilesHomeBody extends HookConsumerWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(t.home.emptyProfilesMsg.sentenceCase),
+          Text(t.home.emptyProfilesMsg),
           const Gap(16),
           OutlinedButton.icon(
             onPressed: () => const AddProfileRoute().push(context),
             icon: const Icon(Icons.add),
-            label: Text(t.profile.add.buttonText.titleCase),
+            label: Text(t.profile.add.buttonText),
           ),
         ],
       ),
@@ -42,11 +41,11 @@ class EmptyActiveProfileHomeBody extends HookConsumerWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(t.home.noActiveProfileMsg.sentenceCase),
+          Text(t.home.noActiveProfileMsg),
           const Gap(16),
           OutlinedButton(
             onPressed: () => const ProfilesRoute().push(context),
-            child: Text(t.profile.overviewPageTitle.titleCase),
+            child: Text(t.profile.overviewPageTitle),
           ),
         ],
       ),

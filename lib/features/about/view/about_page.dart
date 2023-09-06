@@ -9,7 +9,6 @@ import 'package:hiddify/gen/assets.gen.dart';
 import 'package:hiddify/services/service_providers.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:recase/recase.dart';
 
 class AboutPage extends HookConsumerWidget {
   const AboutPage({super.key});
@@ -52,7 +51,7 @@ class AboutPage extends HookConsumerWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            title: Text(t.about.pageTitle.titleCase),
+            title: Text(t.about.pageTitle),
           ),
           ...switch (appVersion) {
             AsyncData(:final value) => [
@@ -68,7 +67,7 @@ class AboutPage extends HookConsumerWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              t.general.appTitle.titleCase,
+                              t.general.appTitle,
                               style: Theme.of(context).textTheme.titleLarge,
                             ),
                             const Gap(4),
@@ -85,7 +84,7 @@ class AboutPage extends HookConsumerWidget {
                   delegate: SliverChildListDelegate(
                     [
                       ListTile(
-                        title: Text(t.about.sourceCode.sentenceCase),
+                        title: Text(t.about.sourceCode),
                         trailing: const Icon(Icons.open_in_new),
                         onTap: () async {
                           await UriUtils.tryLaunch(
@@ -94,7 +93,7 @@ class AboutPage extends HookConsumerWidget {
                         },
                       ),
                       ListTile(
-                        title: Text(t.about.telegramChannel.sentenceCase),
+                        title: Text(t.about.telegramChannel),
                         trailing: const Icon(Icons.open_in_new),
                         onTap: () async {
                           await UriUtils.tryLaunch(
@@ -103,7 +102,7 @@ class AboutPage extends HookConsumerWidget {
                         },
                       ),
                       ListTile(
-                        title: Text(t.about.checkForUpdate.sentenceCase),
+                        title: Text(t.about.checkForUpdate),
                         trailing: isCheckingForUpdate
                             ? const SizedBox(
                                 width: 24,

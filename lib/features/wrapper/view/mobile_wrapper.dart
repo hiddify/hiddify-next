@@ -5,7 +5,6 @@ import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/core/router/router.dart';
 import 'package:hiddify/features/common/common.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:recase/recase.dart';
 
 class MobileWrapper extends HookConsumerWidget {
   const MobileWrapper(this.navigator, {super.key});
@@ -30,19 +29,19 @@ class MobileWrapper extends HookConsumerWidget {
             children: [
               const Gap(16),
               DrawerTile(
-                label: t.settings.pageTitle.titleCase,
+                label: t.settings.pageTitle,
                 icon: Icons.settings,
                 selected: location == SettingsRoute.path,
                 onSelect: () => const SettingsRoute().push(context),
               ),
               DrawerTile(
-                label: t.logs.pageTitle.titleCase,
+                label: t.logs.pageTitle,
                 icon: Icons.article,
                 selected: location == LogsRoute.path,
                 onSelect: () => const LogsRoute().push(context),
               ),
               DrawerTile(
-                label: t.about.pageTitle.titleCase,
+                label: t.about.pageTitle,
                 icon: Icons.info,
                 selected: location == AboutRoute.path,
                 onSelect: () => const AboutRoute().push(context),
@@ -56,11 +55,11 @@ class MobileWrapper extends HookConsumerWidget {
         destinations: [
           NavigationDestination(
             icon: const Icon(Icons.power_settings_new),
-            label: t.home.pageTitle.titleCase,
+            label: t.home.pageTitle,
           ),
           NavigationDestination(
             icon: const Icon(Icons.filter_list),
-            label: t.proxies.pageTitle.titleCase,
+            label: t.proxies.pageTitle,
           ),
         ],
         selectedIndex: currentIndex > 1 ? 0 : currentIndex,

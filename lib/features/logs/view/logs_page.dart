@@ -11,7 +11,7 @@ import 'package:hiddify/features/logs/notifier/notifier.dart';
 import 'package:hiddify/services/service_providers.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:recase/recase.dart';
+
 import 'package:tint/tint.dart';
 
 class LogsPage extends HookConsumerWidget with PresLogger {
@@ -29,7 +29,7 @@ class LogsPage extends HookConsumerWidget with PresLogger {
     final List<PopupMenuEntry> popupButtons = debug || PlatformUtils.isDesktop
         ? [
             PopupMenuItem(
-              child: Text(t.logs.shareCoreLogs.sentenceCase),
+              child: Text(t.logs.shareCoreLogs),
               onTap: () async {
                 await UriUtils.tryShareOrLaunchFile(
                   Uri.parse(filesEditor.coreLogsPath),
@@ -38,7 +38,7 @@ class LogsPage extends HookConsumerWidget with PresLogger {
               },
             ),
             PopupMenuItem(
-              child: Text(t.logs.shareAppLogs.sentenceCase),
+              child: Text(t.logs.shareAppLogs),
               onTap: () async {
                 await UriUtils.tryShareOrLaunchFile(
                   Uri.parse(filesEditor.appLogsPath),
@@ -55,7 +55,7 @@ class LogsPage extends HookConsumerWidget with PresLogger {
           appBar: AppBar(
             // TODO: fix height
             toolbarHeight: 90,
-            title: Text(t.logs.pageTitle.titleCase),
+            title: Text(t.logs.pageTitle),
             actions: [
               if (popupButtons.isNotEmpty)
                 PopupMenuButton(
@@ -76,7 +76,7 @@ class LogsPage extends HookConsumerWidget with PresLogger {
                         onChanged: notifier.filterMessage,
                         decoration: InputDecoration(
                           isDense: true,
-                          hintText: t.logs.filterHint.sentenceCase,
+                          hintText: t.logs.filterHint,
                         ),
                       ),
                     ),
@@ -92,12 +92,12 @@ class LogsPage extends HookConsumerWidget with PresLogger {
                       items: [
                         DropdownMenuItem(
                           value: none(),
-                          child: Text(t.logs.allLevelsFilter.sentenceCase),
+                          child: Text(t.logs.allLevelsFilter),
                         ),
                         ...LogLevel.values.takeFirst(3).map(
                               (e) => DropdownMenuItem(
                                 value: some(e),
-                                child: Text(e.name.sentenceCase),
+                                child: Text(e.name),
                               ),
                             ),
                       ],
@@ -136,7 +136,7 @@ class LogsPage extends HookConsumerWidget with PresLogger {
           body: CustomScrollView(
             slivers: [
               NestedTabAppBar(
-                title: Text(t.logs.pageTitle.titleCase),
+                title: Text(t.logs.pageTitle),
               ),
               SliverErrorBodyPlaceholder(t.printError(error)),
             ],
@@ -148,7 +148,7 @@ class LogsPage extends HookConsumerWidget with PresLogger {
           body: CustomScrollView(
             slivers: [
               NestedTabAppBar(
-                title: Text(t.logs.pageTitle.titleCase),
+                title: Text(t.logs.pageTitle),
               ),
               const SliverLoadingBodyPlaceholder(),
             ],

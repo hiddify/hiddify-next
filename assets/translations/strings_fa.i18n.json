@@ -34,8 +34,7 @@
             "updatedTimeAgo": "بروزرسانی شده در ${timeago}",
             "remainingDuration": "${duration} روز باقی مانده",
             "expired": "منقضی شده",
-            "noTraffic": "پایان ترافیک",
-            "gigaByte": "گیگ"
+            "noTraffic": "پایان ترافیک"
         },
         "sortBy": {
             "lastUpdate": "اخیرا بروز شده",
@@ -152,7 +151,6 @@
     "about": {
         "pageTitle": "درباره",
         "version": "ورژن",
-        "whatsNew": "تغییرات",
         "sourceCode": "سورس کد",
         "telegramChannel": "کانال تلگرام",
         "checkForUpdate": "بررسی آپدیت جدید"
