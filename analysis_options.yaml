@@ -4,6 +4,7 @@ analyzer:
   plugins:
     - custom_lint
   exclude:
+    - "libcore/**"
     - "**.g.dart"
     - "lib/gen/**"
   errors:
