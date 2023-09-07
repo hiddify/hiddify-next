@@ -13,7 +13,7 @@ class ConfigOptions with _$ConfigOptions {
     @Default(LogLevel.warn) LogLevel logLevel,
     @Default(false) bool resolveDestination,
     @Default(IPv6Mode.disable) IPv6Mode ipv6Mode,
-    @Default("https://8.8.8.8/dns-query") String remoteDnsAddress,
+    @Default("tcp://8.8.8.8") String remoteDnsAddress,
     @Default(DomainStrategy.auto) DomainStrategy remoteDnsDomainStrategy,
     @Default("https://235.5.5.5/dns-query") String directDnsAddress,
     @Default(DomainStrategy.auto) DomainStrategy directDnsDomainStrategy,
@@ -26,7 +26,7 @@ class ConfigOptions with _$ConfigOptions {
     @Default(Duration(minutes: 10))
     Duration urlTestInterval,
     @Default(true) bool enableClashApi,
-    @Default(9090) int clashApiPort,
+    @Default(6756) int clashApiPort,
     @Default(false) bool enableTun,
     @Default(true) bool setSystemProxy,
   }) = _ConfigOptions;
