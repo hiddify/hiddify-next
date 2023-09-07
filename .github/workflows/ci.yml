@@ -120,8 +120,8 @@ jobs:
 
       - name: Generate
         run: |
-          make gen
           make translate
+          make gen
 
       - name: Get Libs ${{ matrix.platform }}
         run: |
