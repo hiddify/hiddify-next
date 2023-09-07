@@ -87,9 +87,11 @@ class GeneralSettingTiles extends HookConsumerWidget {
         if (PlatformUtils.isDesktop) ...[
           SwitchListTile(
             title: Text(t.settings.general.silentStart),
-            value: ref.watch(silentStartProvider),
+            value: ref.watch(silentStartNotifierProvider),
             onChanged: (value) async {
-              await ref.read(silentStartProvider.notifier).update(value);
+              await ref
+                  .read(silentStartNotifierProvider.notifier)
+                  .update(value);
             },
           ),
         ],

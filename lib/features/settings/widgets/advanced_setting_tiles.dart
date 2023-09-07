@@ -12,7 +12,7 @@ class AdvancedSettingTiles extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final t = ref.watch(translationsProvider);
 
-    final debug = ref.watch(debugModeProvider);
+    final debug = ref.watch(debugModeNotifierProvider);
 
     return Column(
       children: [
@@ -47,7 +47,7 @@ class AdvancedSettingTiles extends HookConsumerWidget {
                 },
               );
             }
-            await ref.read(debugModeProvider.notifier).update(value);
+            await ref.read(debugModeNotifierProvider.notifier).update(value);
           },
         ),
       ],

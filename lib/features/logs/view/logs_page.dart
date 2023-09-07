@@ -23,7 +23,7 @@ class LogsPage extends HookConsumerWidget with PresLogger {
     final asyncState = ref.watch(logsNotifierProvider);
     final notifier = ref.watch(logsNotifierProvider.notifier);
 
-    final debug = ref.watch(debugModeProvider);
+    final debug = ref.watch(debugModeNotifierProvider);
     final filesEditor = ref.watch(filesEditorServiceProvider);
 
     final List<PopupMenuEntry> popupButtons = debug || PlatformUtils.isDesktop

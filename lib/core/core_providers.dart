@@ -5,7 +5,7 @@ part 'core_providers.g.dart';
 
 @Riverpod(keepAlive: true)
 TranslationsEn translations(TranslationsRef ref) =>
-    ref.watch(localeNotifierProvider).translations();
+    ref.watch(localeNotifierProvider).build();
 
 @Riverpod(keepAlive: true)
 AppTheme theme(ThemeRef ref) => AppTheme(

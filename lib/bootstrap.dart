@@ -33,7 +33,7 @@ Future<void> lazyBootstrap(WidgetsBinding widgetsBinding) async {
     overrides: [sharedPreferencesProvider.overrideWithValue(sharedPreferences)],
   );
 
-  final debug = container.read(debugModeProvider) || kDebugMode;
+  final debug = container.read(debugModeNotifierProvider) || kDebugMode;
 
   final filesEditor = container.read(filesEditorServiceProvider);
   await filesEditor.init();
@@ -42,7 +42,7 @@ Future<void> lazyBootstrap(WidgetsBinding widgetsBinding) async {
   await container.read(runtimeDetailsServiceProvider).init();
   _loggy.info("basic setup took [${_stopWatch.elapsedMilliseconds}]ms");
 
-  final silentStart = container.read(silentStartProvider);
+  final silentStart = container.read(silentStartNotifierProvider);
   if (silentStart) {
     FlutterNativeSplash.remove();
   }

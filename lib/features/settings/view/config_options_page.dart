@@ -26,7 +26,7 @@ class ConfigOptionsPage extends HookConsumerWidget {
       ),
       body: ListView(
         children: [
-          if (ref.watch(debugModeProvider))
+          if (ref.watch(debugModeNotifierProvider))
             SwitchListTile(
               title: Text(t.settings.config.executeConfigAsIs),
               subtitle: Text(t.settings.config.executeConfigAsIsMsg),

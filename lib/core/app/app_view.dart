@@ -13,7 +13,7 @@ class AppView extends HookConsumerWidget with PresLogger {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(routerProvider);
-    final locale = ref.watch(localeNotifierProvider).locale;
+    final locale = ref.watch(localeNotifierProvider).flutterLocale;
     final theme = ref.watch(themeProvider);
 
     ref.watch(commonControllersProvider);
@@ -21,7 +21,7 @@ class AppView extends HookConsumerWidget with PresLogger {
     return MaterialApp.router(
       routerConfig: router,
       locale: locale,
-      supportedLocales: AppLocale.locales,
+      supportedLocales: AppLocaleUtils.supportedLocales,
       localizationsDelegates: GlobalMaterialLocalizations.delegates,
       debugShowCheckedModeBanner: false,
       themeMode: theme.mode,

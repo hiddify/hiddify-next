@@ -1,5 +1,3 @@
-import 'package:dartx/dartx.dart';
-import 'package:flutter/widgets.dart';
 import 'package:hiddify/data/data_providers.dart';
 import 'package:hiddify/gen/fonts.gen.dart';
 import 'package:hiddify/gen/translations.g.dart';
@@ -24,32 +22,7 @@ class LocaleNotifier extends _$LocaleNotifier {
   }
 }
 
-enum AppLocale {
-  en,
-  fa;
-
-  Locale get locale {
-    return Locale(name);
-  }
-
-  static List<Locale> get locales =>
-      AppLocale.values.map((e) => e.locale).toList();
-
-  static AppLocale fromString(String e) {
-    return AppLocale.values.firstOrNullWhere((element) => element.name == e) ??
-        AppLocale.en;
-  }
-
-  static AppLocale deviceLocale() {
-    return AppLocale.fromString(
-      AppLocaleUtils.findDeviceLocale().languageCode,
-    );
-  }
-
-  TranslationsEn translations() {
-    final appLocale = AppLocaleUtils.parse(name);
-    return appLocale.build();
-  }
-
-  String get preferredFontFamily => this == fa ? FontFamily.shabnam : "";
+extension AppLocaleX on AppLocale {
+  String get preferredFontFamily =>
+      this == AppLocale.fa ? FontFamily.shabnam : "";
 }
