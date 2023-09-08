@@ -1402,6 +1402,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.7"
+  vclibs:
+    dependency: "direct main"
+    description:
+      name: vclibs
+      sha256: fd57183a8a01b2767f41f79dfffafb3baf09baee7c9a3ae6ff0ac6abec499451
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.0"
   vector_graphics:
     dependency: transitive
     description:
