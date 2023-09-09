@@ -43,11 +43,12 @@ class BoxService(
         private const val TAG = "A/BoxService"
 
         private var initializeOnce = false
+        private lateinit var workingDir: File
         private fun initialize() {
             if (initializeOnce) return
             val baseDir = Application.application.filesDir
             baseDir.mkdirs()
-            val workingDir = Application.application.getExternalFilesDir(null) ?: return
+            workingDir = Application.application.getExternalFilesDir(null) ?: return
             workingDir.mkdirs()
             val tempDir = Application.application.cacheDir
             tempDir.mkdirs()
@@ -154,6 +155,10 @@ class BoxService(
                 Log.w(TAG, e)
                 stopAndAlert(Alert.EmptyConfiguration)
                 return
+            }
+
+            if(Settings.debugMode) {
+                File(workingDir, "current-config.json").writeText(content)
             }
 
             withContext(Dispatchers.Main) {

@@ -13,6 +13,8 @@ object SettingsKey {
     const val PER_APP_PROXY_LIST = "per_app_proxy_list"
     const val PER_APP_PROXY_UPDATE_ON_CHANGE = "per_app_proxy_update_on_change"
 
+    const val DEBUG_MODE = "${KEY_PREFIX}debug_mode"
+    const val ENABLE_TUN = "${KEY_PREFIX}enable-tun"
     const val DISABLE_MEMORY_LIMIT = "${KEY_PREFIX}disable_memory_limit"
     const val SYSTEM_PROXY_ENABLED = "${KEY_PREFIX}system_proxy_enabled"
 

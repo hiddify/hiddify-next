@@ -38,6 +38,13 @@ object Settings {
         get() = preferences.getString(SettingsKey.CONFIG_OPTIONS, "") ?: ""
         set(value) = preferences.edit().putString(SettingsKey.CONFIG_OPTIONS, value).apply()
 
+    var debugMode: Boolean
+        get() = preferences.getBoolean(SettingsKey.DEBUG_MODE, false)
+        set(value) = preferences.edit().putBoolean(SettingsKey.DEBUG_MODE, value).apply()
+
+    val enableTun: Boolean
+        get() = preferences.getBoolean(SettingsKey.ENABLE_TUN, true)
+
     var disableMemoryLimit: Boolean
         get() = preferences.getBoolean(SettingsKey.DISABLE_MEMORY_LIMIT, false)
         set(value) = preferences.edit().putBoolean(SettingsKey.DISABLE_MEMORY_LIMIT, value).apply()
@@ -73,6 +80,7 @@ object Settings {
     }
 
     private suspend fun needVPNService(): Boolean {
+        if(enableTun) return true
         val filePath = activeConfigPath
         if (filePath.isBlank()) return false
         val content = JSONObject(File(filePath).readText())
