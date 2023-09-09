@@ -106,7 +106,9 @@
             },
             "trueBlack": "True Black",
             "silentStart": "Silent Start",
-            "openWorkingDir": "Open Working Directory"
+            "openWorkingDir": "Open Working Directory",
+            "ignoreBatteryOptimizations": "Ignore Battery Optimization",
+            "ignoreBatteryOptimizationsMsg": "Remove restrictions for VPN to work properly"
         },
         "advanced": {
             "sectionTitle": "Advanced",

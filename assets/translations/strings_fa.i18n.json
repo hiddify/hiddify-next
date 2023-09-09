@@ -106,7 +106,9 @@
             },
             "trueBlack": "کاملا سیاه",
             "silentStart": "اجرای ساکت",
-            "openWorkingDir": "باز کردن دایرکتوری کاری"
+            "openWorkingDir": "باز کردن دایرکتوری کاری",
+            "ignoreBatteryOptimizations": "نادیده‌گرفتن بهینه‌سازی باتری",
+            "ignoreBatteryOptimizationsMsg": "حذف محدودیت‌ها برای عملکرد بهتر VPN"
         },
         "advanced": {
             "sectionTitle": "پیشرفته",

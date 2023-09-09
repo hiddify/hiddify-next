@@ -19,6 +19,7 @@ class SettingsPage extends HookConsumerWidget {
         children: [
           SettingsSection(t.settings.general.sectionTitle),
           const GeneralSettingTiles(),
+          const PlatformSettingsTiles(),
           const SettingsDivider(),
           SettingsSection(t.settings.advanced.sectionTitle),
           const AdvancedSettingTiles(),
