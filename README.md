@@ -12,6 +12,12 @@
 - Linux: [x64 AppImage](https://github.com/hiddify/hiddify-next/releases/download/draft/hiddify-linux-x64.AppImage.zip)
 - macOS: [Universal (x64, M1, M2)](https://github.com/hiddify/hiddify-next/releases/download/draft/hiddify-macos-universal.dmg)
 
+
+## Support
+- V2Ray Subscription link
+- Clash / Clash Meta link
+- Singbox Config
+
 ## Build from source
 
 Hiddify Next relies on [core library](https://github.com/hiddify/hiddify-next-core) made with GO. if you're interested in building/contributing to that as well follow instructions there.
