@@ -19,6 +19,11 @@
         android:icon="@mipmap/ic_launcher"
 		android:roundIcon="@mipmap/ic_launcher_rounded"
         tools:targetApi="31">
+
+        <meta-data
+            android:name="android.app.shortcuts"
+            android:resource="@xml/shortcuts" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -27,6 +32,11 @@
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:hardwareAccelerated="true"
             android:windowSoftInputMode="adjustResize">
+
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
+
             <!-- Specifies an Android theme to apply to this Activity as soon as
                  the Android process has started. This theme is visible to the user
                  while the Flutter UI initializes. After that, this theme continues
@@ -57,6 +67,19 @@
                 <action android:name="android.service.quicksettings.action.QS_TILE_PREFERENCES" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ShortcutActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:label="@string/quick_toggle"
+            android:launchMode="singleTask"
+            android:taskAffinity="">
+            <intent-filter>
+                <action android:name="android.intent.action.CREATE_SHORTCUT" />
+            </intent-filter>
+        </activity>
+
         <service
             android:name=".bg.TileService"
             android:directBootAware="true"
@@ -78,6 +101,10 @@
             <intent-filter>
                 <action android:name="android.net.VpnService" />
             </intent-filter>
+        </service>
+        <service
+            android:name=".bg.ProxyService"
+            android:exported="false">
         </service>
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->

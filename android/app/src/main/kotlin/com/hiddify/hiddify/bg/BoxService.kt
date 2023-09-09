@@ -73,7 +73,7 @@ class BoxService(
         fun start() {
             val intent = runBlocking {
                 withContext(Dispatchers.IO) {
-                    Intent(Application.application, VPNService::class.java)
+                    Intent(Application.application, Settings.serviceClass())
                 }
             }
             ContextCompat.startForegroundService(Application.application, intent)
