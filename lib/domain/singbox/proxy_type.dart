@@ -15,6 +15,7 @@ enum ProxyType {
   shadowsocksr("ShadowsocksR"),
   vless("VLESS"),
   tuic("TUIC"),
+  hysteria2("Hysteria2"),
 
   selector("Selector"),
   urltest("URLTest"),
