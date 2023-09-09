@@ -11,6 +11,7 @@ import 'package:hiddify/features/common/active_profile/active_profile_notifier.d
 import 'package:hiddify/features/common/common.dart';
 import 'package:hiddify/features/common/window/window_controller.dart';
 import 'package:hiddify/features/system_tray/system_tray.dart';
+import 'package:hiddify/services/auto_start_service.dart';
 import 'package:hiddify/services/deep_link_service.dart';
 import 'package:hiddify/services/service_providers.dart';
 import 'package:hiddify/utils/utils.dart';
@@ -47,6 +48,7 @@ Future<void> lazyBootstrap(WidgetsBinding widgetsBinding) async {
     FlutterNativeSplash.remove();
   }
   if (PlatformUtils.isDesktop) {
+    await container.read(autoStartServiceProvider.future);
     await container.read(windowControllerProvider.future);
   }
 

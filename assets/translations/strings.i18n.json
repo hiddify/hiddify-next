@@ -105,6 +105,7 @@
                 "light": "Light mode"
             },
             "trueBlack": "True Black",
+            "autoStart": "Start on Boot",
             "silentStart": "Silent Start",
             "openWorkingDir": "Open Working Directory",
             "ignoreBatteryOptimizations": "Ignore Battery Optimization",

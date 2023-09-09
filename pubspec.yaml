@@ -53,6 +53,7 @@ dependencies:
   package_info_plus: ^4.1.0
   url_launcher: ^6.1.14
   vclibs: ^0.1.0
+  launch_at_startup: ^0.2.2
 
   # utils
   combine: ^0.5.6

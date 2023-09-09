@@ -105,6 +105,7 @@
                 "light": "تم روشن"
             },
             "trueBlack": "کاملا سیاه",
+            "autoStart": "اجرا با روشن شدن سیستم",
             "silentStart": "اجرای ساکت",
             "openWorkingDir": "باز کردن دایرکتوری کاری",
             "ignoreBatteryOptimizations": "نادیده‌گرفتن بهینه‌سازی باتری",

@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:hiddify/features/settings/widgets/theme_mode_switch_button.dart';
+import 'package:hiddify/services/auto_start_service.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -85,6 +86,17 @@ class GeneralSettingTiles extends HookConsumerWidget {
           onChanged: ref.read(trueBlackThemeNotifierProvider.notifier).update,
         ),
         if (PlatformUtils.isDesktop) ...[
+          SwitchListTile(
+            title: Text(t.settings.general.autoStart),
+            value: ref.watch(autoStartServiceProvider).asData!.value,
+            onChanged: (value) async {
+              if (value) {
+                await ref.read(autoStartServiceProvider.notifier).enable();
+              } else {
+                await ref.read(autoStartServiceProvider.notifier).disable();
+              }
+            },
+          ),
           SwitchListTile(
             title: Text(t.settings.general.silentStart),
             value: ref.watch(silentStartNotifierProvider),
