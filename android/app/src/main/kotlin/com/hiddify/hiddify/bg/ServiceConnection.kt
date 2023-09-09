@@ -36,7 +36,7 @@ class ServiceConnection(
     fun connect() {
         val intent = runBlocking {
             withContext(Dispatchers.IO) {
-                Intent(context, VPNService::class.java).setAction(Action.SERVICE)
+                Intent(context, Settings.serviceClass()).setAction(Action.SERVICE)
             }
         }
         context.bindService(intent, this, AppCompatActivity.BIND_AUTO_CREATE)
@@ -56,7 +56,7 @@ class ServiceConnection(
         }
         val intent = runBlocking {
             withContext(Dispatchers.IO) {
-                Intent(context, VPNService::class.java).setAction(Action.SERVICE)
+                Intent(context, Settings.serviceClass()).setAction(Action.SERVICE)
             }
         }
         context.bindService(intent, this, AppCompatActivity.BIND_AUTO_CREATE)

@@ -30,6 +30,10 @@ interface PlatformInterfaceWrapper : PlatformInterface {
         error("invalid argument")
     }
 
+    override fun closeTun() {
+        error("invalid argument")
+    }
+
     override fun useProcFS(): Boolean {
         return Build.VERSION.SDK_INT < Build.VERSION_CODES.Q
     }

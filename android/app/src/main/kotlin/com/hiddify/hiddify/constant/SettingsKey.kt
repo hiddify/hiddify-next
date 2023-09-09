@@ -4,6 +4,7 @@ object SettingsKey {
     private const val KEY_PREFIX = "flutter."
 
     const val ACTIVE_CONFIG_PATH = "${KEY_PREFIX}active_config_path"
+    const val SERVICE_MODE = "${KEY_PREFIX}service_mode"
 
     const val CONFIG_OPTIONS = "config_options_json"
 

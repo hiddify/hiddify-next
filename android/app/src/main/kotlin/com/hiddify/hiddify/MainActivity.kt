@@ -8,7 +8,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
 import com.hiddify.hiddify.bg.ServiceConnection
 import com.hiddify.hiddify.bg.ServiceNotification
-import com.hiddify.hiddify.bg.VPNService
 import com.hiddify.hiddify.constant.Alert
 import com.hiddify.hiddify.constant.Status
 import io.flutter.embedding.android.FlutterFragmentActivity
@@ -56,15 +55,15 @@ class MainActivity : FlutterFragmentActivity(), ServiceConnection.Callback {
             return
         }
         lifecycleScope.launch(Dispatchers.IO) {
-//            if (Settings.rebuildServiceMode()) {
-//                reconnect()
-//            }
+            if (Settings.rebuildServiceMode()) {
+                reconnect()
+            }
             if (prepare()) {
                 Log.d(TAG, "VPN permission required")
                 return@launch
             }
 
-            val intent = Intent(Application.application, VPNService::class.java)
+            val intent = Intent(Application.application, Settings.serviceClass())
             withContext(Dispatchers.Main) {
                 ContextCompat.startForegroundService(Application.application, intent)
             }
