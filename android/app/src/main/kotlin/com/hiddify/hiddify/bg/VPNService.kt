@@ -33,7 +33,7 @@ class VPNService : VpnService(), PlatformInterfaceWrapper {
     }
 
     var systemProxyAvailable = false
-    var systemProxyEnabled = true
+    var systemProxyEnabled = false
 
     override fun openTun(options: TunOptions): Int {
         if (prepare(this) != null) error("android: missing vpn permission")
@@ -128,7 +128,7 @@ class VPNService : VpnService(), PlatformInterfaceWrapper {
 
         if (options.isHTTPProxyEnabled) {
             systemProxyAvailable = true
-//            systemProxyEnabled = Settings.systemProxyEnabled
+            systemProxyEnabled = Settings.systemProxyEnabled
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 if (systemProxyEnabled) builder.setHttpProxy(
                     ProxyInfo.buildDirectProxy(

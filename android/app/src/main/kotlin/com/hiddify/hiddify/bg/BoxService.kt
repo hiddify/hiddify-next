@@ -136,7 +136,7 @@ class BoxService(
         try {
             Log.d(TAG, "starting service")
 
-            val selectedConfigPath = Settings.selectedConfigPath
+            val selectedConfigPath = Settings.activeConfigPath
             if (selectedConfigPath.isBlank()) {
                 stopAndAlert(Alert.EmptyConfiguration)
                 return

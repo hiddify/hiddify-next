@@ -11,10 +11,8 @@ object Settings {
 
     private val preferences by lazy {
         val context = Application.application.applicationContext
-        context.getSharedPreferences("preferences", Context.MODE_PRIVATE)
+        context.getSharedPreferences("FlutterSharedPreferences", Context.MODE_PRIVATE)
     }
-
-    var disableMemoryLimit = preferences.getBoolean(SettingsKey.DISABLE_MEMORY_LIMIT, false)
 
     var perAppProxyEnabled = preferences.getBoolean(SettingsKey.PER_APP_PROXY_ENABLED, false)
     var perAppProxyMode = preferences.getInt(SettingsKey.PER_APP_PROXY_MODE, PER_APP_PROXY_EXCLUDE)
@@ -22,13 +20,21 @@ object Settings {
     var perAppProxyUpdateOnChange =
         preferences.getInt(SettingsKey.PER_APP_PROXY_UPDATE_ON_CHANGE, PER_APP_PROXY_DISABLED)
 
-    var selectedConfigPath: String
-        get() = preferences.getString(SettingsKey.SELECTED_CONFIG_PATH, "") ?: ""
-        set(value) = preferences.edit().putString(SettingsKey.SELECTED_CONFIG_PATH, value).apply()
+    var activeConfigPath: String
+        get() = preferences.getString(SettingsKey.ACTIVE_CONFIG_PATH, "") ?: ""
+        set(value) = preferences.edit().putString(SettingsKey.ACTIVE_CONFIG_PATH, value).apply()
 
     var configOptions: String
         get() = preferences.getString(SettingsKey.CONFIG_OPTIONS, "") ?: ""
         set(value) = preferences.edit().putString(SettingsKey.CONFIG_OPTIONS, value).apply()
+
+    var disableMemoryLimit: Boolean
+        get() = preferences.getBoolean(SettingsKey.DISABLE_MEMORY_LIMIT, false)
+        set(value) = preferences.edit().putBoolean(SettingsKey.DISABLE_MEMORY_LIMIT, value).apply()
+
+    var systemProxyEnabled: Boolean
+        get() = preferences.getBoolean(SettingsKey.SYSTEM_PROXY_ENABLED, true)
+        set(value) = preferences.edit().putBoolean(SettingsKey.SYSTEM_PROXY_ENABLED, value).apply()
 
     var startedByUser: Boolean
         get() = preferences.getBoolean(SettingsKey.STARTED_BY_USER, false)

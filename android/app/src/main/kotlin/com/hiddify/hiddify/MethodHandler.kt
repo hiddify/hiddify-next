@@ -57,7 +57,7 @@ class MethodHandler : FlutterPlugin, MethodChannel.MethodCallHandler {
 
             Trigger.SetActiveConfigPath.method -> {
                 val args = call.arguments as Map<*, *>
-                Settings.selectedConfigPath = args["path"] as String? ?: ""
+                Settings.activeConfigPath = args["path"] as String? ?: ""
                 result.success(true)
             }
 
