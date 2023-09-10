@@ -21,9 +21,7 @@
         },
         "stats": {
             "traffic": "Live Traffic",
-            "trafficTotal": "Total Traffic",
-            "uplink": "↑",
-            "downlink": "↓"
+            "trafficTotal": "Total Traffic"
         }
     },
     "profile": {
@@ -32,7 +30,7 @@
         "subscription": {
             "traffic": "Traffic",
             "updatedTimeAgo": "Updated ${timeago}",
-            "remainingDuration": "📅 ${duration} Days Remaining",
+            "remainingDuration": "${duration} Days Remaining",
             "expired": "Expired",
             "noTraffic": "No more traffic"
         },
@@ -109,7 +107,7 @@
             "silentStart": "Silent Start",
             "openWorkingDir": "Open Working Directory",
             "ignoreBatteryOptimizations": "Ignore Battery Optimization",
-            "ignoreBatteryOptimizationsMsg": "Remove restrictions for optimal VPN performance"            
+            "ignoreBatteryOptimizationsMsg": "Remove restrictions for optimal VPN performance"
         },
         "advanced": {
             "sectionTitle": "Advanced",

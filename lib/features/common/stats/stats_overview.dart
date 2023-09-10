@@ -24,11 +24,11 @@ class StatsOverview extends HookConsumerWidget {
           _StatCard(
             title: t.home.stats.traffic,
             firstStat: (
-              label: t.home.stats.uplink,
+              label: "↑",
               data: stats.uplink.speed(),
             ),
             secondStat: (
-              label: t.home.stats.downlink,
+              label: "↓",
               data: stats.downlink.speed(),
             ),
           ),
@@ -36,11 +36,11 @@ class StatsOverview extends HookConsumerWidget {
           _StatCard(
             title: t.home.stats.trafficTotal,
             firstStat: (
-              label: t.home.stats.uplink,
+              label: "↑",
               data: stats.uplinkTotal.size(),
             ),
             secondStat: (
-              label: t.home.stats.downlink,
+              label: "↓",
               data: stats.downlinkTotal.size(),
             ),
           ),
@@ -80,7 +80,7 @@ class _StatCard extends HookConsumerWidget {
               children: [
                 Text(
                   firstStat.label,
-                  style: TextStyle(color: Colors.green),
+                  style: const TextStyle(color: Colors.green),
                 ),
                 Text(
                   firstStat.data,
@@ -93,7 +93,7 @@ class _StatCard extends HookConsumerWidget {
               children: [
                 Text(
                   secondStat.label,
-                  style: TextStyle(color: Colors.red),
+                  style: TextStyle(color: theme.colorScheme.error),
                 ),
                 Text(
                   secondStat.data,

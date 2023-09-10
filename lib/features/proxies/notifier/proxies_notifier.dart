@@ -8,6 +8,7 @@ import 'package:hiddify/domain/core_service_failure.dart';
 import 'package:hiddify/domain/singbox/singbox.dart';
 import 'package:hiddify/features/common/connectivity/connectivity_controller.dart';
 import 'package:hiddify/utils/pref_notifier.dart';
+import 'package:hiddify/utils/riverpod_utils.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -36,6 +37,7 @@ final proxiesSortProvider = AlwaysAlivePrefNotifier.provider(
 class ProxiesNotifier extends _$ProxiesNotifier with AppLogger {
   @override
   Stream<List<OutboundGroup>> build() async* {
+    ref.disposeDelay(const Duration(seconds: 15));
     final serviceRunning = await ref.watch(serviceRunningProvider.future);
     if (!serviceRunning) {
       throw const CoreServiceNotRunning();
