@@ -3,9 +3,12 @@ import 'dart:convert';
 import 'package:dartx/dartx.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:uuid/uuid.dart';
+import 'package:loggy/loggy.dart';
 
 part 'profile.freezed.dart';
 part 'profile.g.dart';
+
+final _loggy = Loggy('Profile');
 
 @freezed
 class Profile with _$Profile {
@@ -27,6 +30,7 @@ class Profile with _$Profile {
     String url,
     Map<String, List<String>> headers,
   ) {
+    _loggy.debug("Profile Headers: $headers");
     final titleHeader = headers['profile-title']?.single;
     var title = '';
     if (titleHeader != null) {
@@ -129,8 +133,9 @@ class SubscriptionInfo with _$SubscriptionInfo {
     final values = header.split(';');
     final map = {
       for (final v in values)
-        v.split('=').first: int.tryParse(v.split('=').second),
+        v.split('=').first.trim(): int.tryParse(v.split('=').second.trim()),
     };
+    _loggy.debug("Subscription Info: $map");
     return SubscriptionInfo.fromJson(map);
   }
 
