@@ -1,8 +1,14 @@
 package com.hiddify.hiddify
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.Manifest
+import android.content.pm.PackageManager
 import android.net.VpnService
+import android.os.Build
 import android.util.Log
+import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
@@ -17,6 +23,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.LinkedList
+
 
 class MainActivity : FlutterFragmentActivity(), ServiceConnection.Callback {
     companion object {
@@ -52,7 +59,8 @@ class MainActivity : FlutterFragmentActivity(), ServiceConnection.Callback {
 
     fun startService() {
         if (!ServiceNotification.checkPermission()) {
-            Log.d(TAG, "missing notification permission")
+//            Log.d(TAG, "missing notification permission")
+            grantNotificationPermission()
             return
         }
         lifecycleScope.launch(Dispatchers.IO) {
@@ -121,6 +129,29 @@ class MainActivity : FlutterFragmentActivity(), ServiceConnection.Callback {
     override fun onDestroy() {
         connection.disconnect()
         super.onDestroy()
+    }
+
+    @SuppressLint("NewApi")
+    private fun grantNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.POST_NOTIFICATIONS),
+                NOTIFICATION_PERMISSION_REQUEST_CODE
+            )
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        if (requestCode == NOTIFICATION_PERMISSION_REQUEST_CODE) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                startService()
+            } else onServiceAlert(Alert.RequestNotificationPermission, null)
+        }
     }
 
     private suspend fun prepare() = withContext(Dispatchers.Main) {
