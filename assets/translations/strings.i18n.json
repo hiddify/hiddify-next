@@ -11,8 +11,8 @@
     },
     "home": {
         "pageTitle": "Home",
-        "emptyProfilesMsg": "Start by adding subscription profile",
-        "noActiveProfileMsg": "Select a profile",
+        "emptyProfilesMsg": "Begin by adding a subscription profile",
+        "noActiveProfileMsg": "Choose a profile",
         "connection": {
             "tapToConnect": "Tap to Connect",
             "connecting": "Connecting",
@@ -20,10 +20,10 @@
             "connected": "Connected"
         },
         "stats": {
-            "traffic": "Traffic",
-            "trafficTotal": "Traffic total",
-            "uplink": "Uplink",
-            "downlink": "Downlink"
+            "traffic": "Live Traffic",
+            "trafficTotal": "Total Traffic",
+            "uplink": "↑",
+            "downlink": "↓"
         }
     },
     "profile": {
@@ -34,64 +34,64 @@
             "updatedTimeAgo": "Updated ${timeago}",
             "remainingDuration": "${duration} days remaining",
             "expired": "Expired",
-            "noTraffic": "No traffic"
+            "noTraffic": "No more traffic"
         },
         "sortBy": {
             "lastUpdate": "Recently updated",
-            "name": "by Name"
+            "name": "Alphabetically"
         },
         "add": {
-            "buttonText": "Add New Profile",
-            "shortBtnTxt": "Add New",
+            "buttonText": "New Profile",
+            "shortBtnTxt": "New Profile",
             "fromClipboard": "Add From Clipboard",
             "scanQr": "Scan QR code",
-            "manually": "Add Manually",
+            "manually": "Manual Entry",
             "addingProfileMsg": "Adding Profile",
-            "invalidUrlMsg": "Unexpected URL"
+            "invalidUrlMsg": "Invalid URL"
         },
         "update": {
             "buttonTxt": "Update",
-            "tooltip": "update profile",
-            "failureMsg": "Failed to update profile: ${reason}",
-            "successMsg": "Successfully updated profile"
+            "tooltip": "Update Profile",
+            "failureMsg": "Update Failed: ${reason}",
+            "successMsg": "Profile updated successfully"
         },
         "edit": {
             "buttonTxt": "Edit"
         },
         "delete": {
             "buttonTxt": "Delete",
-            "confirmationMsg": "Delete profile for ever? This can not be undone",
-            "successMsg": "Successfully deleted profile"
+            "confirmationMsg": "Delete profile permanently?",
+            "successMsg": "Profile deleted successfully"
         },
         "save": {
             "buttonText": "Save",
-            "successMsg": "Successfully saved profile"
+            "successMsg": "Profile saved successfully"
         },
         "detailsForm": {
             "nameHint": "Name",
             "urlHint": "URL",
-            "emptyNameMsg": "Name can't be empty",
+            "emptyNameMsg": "Name is required",
             "invalidUrlMsg": "Invalid URL"
         }
     },
     "proxies": {
         "pageTitle": "Proxies",
-        "emptyProxiesMsg": "No Proxies",
-        "delayTestTooltip": "delay test",
-        "sortTooltip": "sort proxies",
+        "emptyProxiesMsg": "No proxies available",
+        "delayTestTooltip": "Test Delay",
+        "sortTooltip": "Sort Proxies",
         "sortOptions": {
             "unsorted": "Default",
-            "name": "by Name",
-            "delay": "by Delay"
+            "name": "Alphabetically",
+            "delay": "By Delay"
         }
     },
     "logs": {
         "pageTitle": "Logs",
-        "clearLogsButtonText": "Clear",
+        "clearLogsButtonText": "Clear Logs",
         "filterHint": "Filter",
         "allLevelsFilter": "All",
-        "shareCoreLogs": "Share core logs",
-        "shareAppLogs": "Share app logs"
+        "shareCoreLogs": "Share Core Logs",
+        "shareAppLogs": "Share App logs"
     },
     "settings": {
         "pageTitle": "Settings",
@@ -104,17 +104,17 @@
                 "dark": "Dark mode",
                 "light": "Light mode"
             },
-            "trueBlack": "True Black",
+            "trueBlack": "Pure Black",
             "autoStart": "Start on Boot",
             "silentStart": "Silent Start",
             "openWorkingDir": "Open Working Directory",
             "ignoreBatteryOptimizations": "Ignore Battery Optimization",
-            "ignoreBatteryOptimizationsMsg": "Remove restrictions for VPN to work properly"
+            "ignoreBatteryOptimizationsMsg": "Remove restrictions for optimal VPN performance"            
         },
         "advanced": {
             "sectionTitle": "Advanced",
             "debugMode": "Debug Mode",
-            "debugModeMsg": "Restart the app for this to take effect"
+            "debugModeMsg": "Restart the app for applying this change"
         },
         "config": {
             "section": {
@@ -125,15 +125,15 @@
             },
             "pageTitle": "Config Options",
             "executeConfigAsIs": "Execute Config As Is",
-            "executeConfigAsIsMsg": "Run provided config with minimum changes. only works with sing-box configs",
+            "executeConfigAsIsMsg": "Executes the SingBox configs with minimal changes.",
             "logLevel": "Log Level",
             "resolveDestination": "Resolve Destination",
             "ipv6Mode": "IPv6 Route",
             "ipv6Modes": {
                 "disable": "Disable",
                 "enable": "Enable",
-                "prefer": "Prefer",
-                "only": "Only"
+                "prefer": "Preferred",
+                "only": "Exclusive"
             },
             "remoteDnsAddress": "Remote DNS",
             "remoteDnsDomainStrategy": "Remote DNS Domain Strategy",
@@ -160,7 +160,7 @@
     },
     "appUpdate": {
         "dialogTitle": "Update Available",
-        "updateMsg": "A new version of @:general.appTitle is available! Would you like to update now?",
+        "updateMsg": "A new version of @:general.appTitle is available. Would you like to update now?",
         "currentVersionLbl": "Current Version",
         "newVersionLbl": "New Version",
         "updateNowBtnTxt": "Update Now",
@@ -173,29 +173,29 @@
         "systemProxy": "System Proxy"
     },
     "failure": {
-        "unexpected": "Unexpected Failure",
+        "unexpected": "Unexpected Error",
         "clash": {
-            "unexpected": "Unexpected Failure",
-            "core": "Clash Failure ${reason}"
+            "unexpected": "Unexpected Error",
+            "core": "Clash Error ${reason}"
         },
         "singbox": {
-            "unexpected": "Unexpected Service Failure",
-            "serviceNotRunning": "Service not Running",
-            "invalidConfigOptions": "Configuration options are not valid",
-            "invalidConfig": "Configuration is not valid",
-            "create": "Error creating service",
-            "start": "Error starting service"
+            "unexpected": "Unexpected Service Error",
+            "serviceNotRunning": "Service is not running",
+            "invalidConfigOptions": "Invalid configuration options",
+            "invalidConfig": "Invalid Configuration",
+            "create": "Service creation error",
+            "start": "Service startup error"
         },
         "connectivity": {
             "unexpected": "Unexpected Failure",
             "missingVpnPermission": "Missing VPN Permission",
             "missingNotificationPermission": "Missing Notification Permission",
-            "core": "Core failure"
+            "core": "Core Error"
         },
         "profiles": {
-            "unexpected": "Unexpected Failure",
-            "notFound": "Profile not Found",
-            "invalidConfig": "Invalid Config"
+            "unexpected": "Unexpected Error",
+            "notFound": "Profile Not Found",
+            "invalidConfig": "Invalid Configs"
         }
     }
 }

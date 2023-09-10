@@ -1,7 +1,7 @@
 {
     "general": {
         "appTitle": "هیدیفای نکست",
-        "reset": "ریست",
+        "reset": "بازنشانی",
         "toggle": {
             "enabled": "فعال",
             "disabled": "غیر فعال"
@@ -12,7 +12,7 @@
     "home": {
         "pageTitle": "خانه",
         "emptyProfilesMsg": "با افزودن پروفایل شروع کنید",
-        "noActiveProfileMsg": "انتخاب پروفایل",
+        "noActiveProfileMsg": "یک پروفایل انتخاب کنید",
         "connection": {
             "tapToConnect": "برای اتصال ضربه بزنید",
             "connecting": "در حال اتصال",
@@ -20,10 +20,10 @@
             "connected": "متصل"
         },
         "stats": {
-            "traffic": "ترافیک",
-            "trafficTotal": "مجموع ترافیک",
-            "uplink": "ارسال",
-            "downlink": "دریافت"
+            "traffic": "مصرف لحظه‌ای",
+            "trafficTotal": "مصرف کل",
+            "uplink": "🔺",
+            "downlink": "🔻"
         }
     },
     "profile": {
@@ -42,7 +42,7 @@
         },
         "add": {
             "buttonText": "افزودن پروفایل جدید",
-            "shortBtnTxt": "ایجاد",
+            "shortBtnTxt": "افزودن",
             "fromClipboard": "افزودن از کلیپ‌بورد",
             "scanQr": "اسکن QR کد",
             "manually": "افزودن دستی",
@@ -60,7 +60,7 @@
         },
         "delete": {
             "buttonTxt": "حذف",
-            "confirmationMsg": "حذف پروفایل برای همیشه؟ این عمل قابل لغو نیست.",
+            "confirmationMsg": "حذف پروفایل برای همیشه؟",
             "successMsg": "پروفایل با موفقیت حذف شد"
         },
         "save": {
@@ -70,8 +70,8 @@
         "detailsForm": {
             "nameHint": "نام",
             "urlHint": "لینک",
-            "emptyNameMsg": "نام نمیتواند خالی باشد",
-            "invalidUrlMsg": "لینک غیر معتبر"
+            "emptyNameMsg": "نام نمی‌تواند خالی باشد",
+            "invalidUrlMsg": "لینک نامعتبر"
         }
     },
     "proxies": {
@@ -118,37 +118,37 @@
         },
         "config": {
             "section": {
-                "route": "تنظیمات Route",
+                "route": "تنظیمات مسیریاب",
                 "dns": "تنظیمات DNS",
-                "inbound": "تنظیمات Inbound",
+                "inbound": "تنظیمات ورودی",
                 "misc": "تنظیمات متفرقه"
             },
             "pageTitle": "تنظیمات کانفیگ",
             "executeConfigAsIs": "اجرای کانفیگ بدون تغییر",
-            "executeConfigAsIsMsg": "کانفیگ را با تغییرات حداقلی اجرا میکند. مناسب برای کانفیگ‌های سینگ‌باکس",
-            "logLevel": "Log Level",
-            "resolveDestination": "Resolve Destination",
-            "ipv6Mode": "IPv6 Route",
+            "executeConfigAsIsMsg": "کانفیگ موجود را با تغییرات حداقلی اجرا می‌کند. فقط برای کانفیگ‌های سینگ‌باکس کار می‌کند",
+            "logLevel": "سطح لاگ",
+            "resolveDestination": "جایگذاری IP مقصد",
+            "ipv6Mode": "مسیریابی IPV6 در تونل",
             "ipv6Modes": {
-                "disable": "Disable",
-                "enable": "Enable",
-                "prefer": "Prefer",
-                "only": "Only"
+                "disable": "غیرفعال",
+                "enable": "فعال",
+                "prefer": "ترجیح",
+                "only": "فقط"
             },
-            "remoteDnsAddress": "Remote DNS",
-            "remoteDnsDomainStrategy": "Remote DNS Domain Strategy",
-            "directDnsAddress": "Direct DNS",
-            "directDnsDomainStrategy": "Direct DNS Domain Strategy",
-            "mixedPort": "Mixed Port",
-            "localDnsPort": "Local DNS Port",
-            "tunImplementation": "TUN Implementation",
-            "mtu": "MTU",
-            "connectionTestUrl": "Connection Test URL",
-            "urlTestInterval": "URL Test Interval",
-            "enableClashApi": "Enable Clash API",
-            "clashApiPort": "Clash API Port",
-            "enableTun": "Enable TUN",
-            "setSystemProxy": "Set System Proxy"
+            "remoteDnsAddress": "DNS خارجی",
+            "remoteDnsDomainStrategy": "حالت DNS خارجی",
+            "directDnsAddress": "DNS مستقیم",
+            "directDnsDomainStrategy": "حالت DNS مستقیم",
+            "mixedPort": "پورت همه منظوره",
+            "localDnsPort": "پورت DNS داخلی",
+            "tunImplementation": "مدل تونل",
+            "mtu": "سایز بسته‌ها",
+            "connectionTestUrl": "لینک تست اتصال",
+            "urlTestInterval": "زمان تست اتصال",
+            "enableClashApi": "فعالسازی کلش",
+            "clashApiPort": "پورت کلش",
+            "enableTun": "فعال سازی تونل",
+            "setSystemProxy": "تنظیم پروکسی سیستم"
         }
     },
     "about": {
@@ -159,7 +159,7 @@
         "checkForUpdate": "بررسی آپدیت جدید"
     },
     "appUpdate": {
-        "dialogTitle": "نسخه جدید",
+        "dialogTitle": "نسخه جدید موجود است",
         "updateMsg": "نسخه جدیدی از @:general.appTitle موجود است! الان بروزرسانی شود؟",
         "currentVersionLbl": "نسخه فعلی",
         "newVersionLbl": "نسخه جدید",
@@ -173,13 +173,13 @@
         "systemProxy": "پراکسی سیستم"
     },
     "failure": {
-        "unexpected": "خطایی رخ داده",
+        "unexpected": "خطای غیرمنتظره",
         "clash": {
-            "unexpected": "خطایی رخ داده",
+            "unexpected": "خطای غیرمنتظره",
             "core": "خطای کلش ${reason}"
         },
         "singbox": {
-            "unexpected": "خطایی غیر منتظره در سرویس رخ داد",
+            "unexpected": "خطای غیرمنتظره در سرویس",
             "serviceNotRunning": "سرویس در حال اجرا نیست",
             "invalidConfigOptions": "تنظیمات کانفیگ نامعتبر",
             "invalidConfig": "کانفیگ غیر معتبر",
@@ -187,13 +187,13 @@
             "start": "در راه‌اندازی سرویس خطایی رخ داده"
         },
         "connectivity": {
-            "unexpected": "خطایی رخ داده",
+            "unexpected": "خطای غیرمنتظره",
             "missingVpnPermission": "نیازمند دسترسی VPN",
             "missingNotificationPermission": "نیازمند دسترسی اعلانات",
             "core": "خطای هسته"
         },
         "profiles": {
-            "unexpected": "خطایی رخ داده",
+            "unexpected": "خطای غیرمنتظره",
             "notFound": "پروفایل یافت نشد",
             "invalidConfig": "کانفیگ غیر معتبر"
         }
