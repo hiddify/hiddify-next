@@ -875,21 +875,23 @@ class SingboxNativeLibrary {
     ffi.Pointer<ffi.Char> baseDir,
     ffi.Pointer<ffi.Char> workingDir,
     ffi.Pointer<ffi.Char> tempDir,
+    int statusPort,
   ) {
     return _setup(
       baseDir,
       workingDir,
       tempDir,
+      statusPort,
     );
   }
 
   late final _setupPtr = _lookup<
       ffi.NativeFunction<
           ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('setup');
+              ffi.Pointer<ffi.Char>, ffi.LongLong)>>('setup');
   late final _setup = _setupPtr.asFunction<
       void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>)>();
+          ffi.Pointer<ffi.Char>, int)>();
 
   ffi.Pointer<ffi.Char> parse(
     ffi.Pointer<ffi.Char> path,
@@ -920,27 +922,19 @@ class SingboxNativeLibrary {
   late final _changeConfigOptions = _changeConfigOptionsPtr
       .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
 
-  ffi.Pointer<ffi.Char> create(
+  ffi.Pointer<ffi.Char> start(
     ffi.Pointer<ffi.Char> configPath,
   ) {
-    return _create(
+    return _start(
       configPath,
     );
   }
 
-  late final _createPtr = _lookup<
+  late final _startPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('create');
-  late final _create = _createPtr
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('start');
+  late final _start = _startPtr
       .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
-
-  ffi.Pointer<ffi.Char> start() {
-    return _start();
-  }
-
-  late final _startPtr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function()>>('start');
-  late final _start = _startPtr.asFunction<ffi.Pointer<ffi.Char> Function()>();
 
   ffi.Pointer<ffi.Char> stop() {
     return _stop();
@@ -949,6 +943,20 @@ class SingboxNativeLibrary {
   late final _stopPtr =
       _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function()>>('stop');
   late final _stop = _stopPtr.asFunction<ffi.Pointer<ffi.Char> Function()>();
+
+  ffi.Pointer<ffi.Char> restart(
+    ffi.Pointer<ffi.Char> configPath,
+  ) {
+    return _restart(
+      configPath,
+    );
+  }
+
+  late final _restartPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('restart');
+  late final _restart = _restartPtr
+      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<ffi.Char> startCommandClient(
     int command,

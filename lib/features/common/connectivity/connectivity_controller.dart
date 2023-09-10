@@ -17,15 +17,14 @@ class ConnectivityController extends _$ConnectivityController with AppLogger {
         if (previous == null) return;
         final shouldReconnect = previous != next;
         if (shouldReconnect) {
-          loggy.debug("active profile modified, reconnect");
-          await reconnect();
+          await reconnect(next?.id);
         }
       },
     );
-    return _connectivity.watchConnectionStatus();
+    return _core.watchConnectionStatus();
   }
 
-  CoreFacade get _connectivity => ref.watch(coreFacadeProvider);
+  CoreFacade get _core => ref.watch(coreFacadeProvider);
 
   Future<void> toggleConnection() async {
     if (state case AsyncError()) {
@@ -42,13 +41,16 @@ class ConnectivityController extends _$ConnectivityController with AppLogger {
     }
   }
 
-  Future<void> reconnect() async {
-    if (state case AsyncData(:final value)) {
-      if (value case Connected()) {
-        loggy.debug("reconnecting");
-        await _disconnect();
-        await _connect();
+  Future<void> reconnect(String? profileId) async {
+    if (state case AsyncData(:final value) when value == const Connected()) {
+      if (profileId == null) {
+        return _disconnect();
       }
+      loggy.debug("reconnecting, profile: [$profileId]");
+      await _core.restart(profileId).mapLeft((l) {
+        loggy.warning("error reconnecting: $l");
+        state = AsyncError(l, StackTrace.current);
+      }).run();
     }
   }
 
@@ -65,17 +67,14 @@ class ConnectivityController extends _$ConnectivityController with AppLogger {
 
   Future<void> _connect() async {
     final activeProfile = await ref.read(activeProfileProvider.future);
-    await _connectivity
-        .changeConfig(activeProfile!.id)
-        .andThen(_connectivity.connect)
-        .mapLeft((l) {
+    await _core.start(activeProfile!.id).mapLeft((l) {
       loggy.warning("error connecting: $l");
       state = AsyncError(l, StackTrace.current);
     }).run();
   }
 
   Future<void> _disconnect() async {
-    await _connectivity.disconnect().mapLeft((l) {
+    await _core.stop().mapLeft((l) {
       loggy.warning("error disconnecting: $l");
       state = AsyncError(l, StackTrace.current);
     }).run();

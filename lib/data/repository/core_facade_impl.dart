@@ -9,7 +9,6 @@ import 'package:hiddify/domain/constants.dart';
 import 'package:hiddify/domain/core_facade.dart';
 import 'package:hiddify/domain/core_service_failure.dart';
 import 'package:hiddify/domain/singbox/singbox.dart';
-import 'package:hiddify/services/connectivity/connectivity.dart';
 import 'package:hiddify/services/files_editor_service.dart';
 import 'package:hiddify/services/singbox/singbox_service.dart';
 import 'package:hiddify/utils/utils.dart';
@@ -19,14 +18,12 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
     this.singbox,
     this.filesEditor,
     this.clash,
-    this.connectivity,
     this.configOptions,
   );
 
   final SingboxService singbox;
   final FilesEditorService filesEditor;
   final ClashApi clash;
-  final ConnectivityService connectivity;
   final ConfigOptions Function() configOptions;
 
   bool _initialized = false;
@@ -89,16 +86,14 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
   }
 
   @override
-  TaskEither<CoreServiceFailure, Unit> changeConfig(String fileName) {
+  TaskEither<CoreServiceFailure, Unit> start(String fileName) {
     return exceptionHandler(
       () {
         final configPath = filesEditor.configPath(fileName);
-        loggy.debug("changing config to: $configPath");
         return setup()
             .andThen(() => changeConfigOptions(configOptions()))
             .andThen(
-              () =>
-                  singbox.create(configPath).mapLeft(CoreServiceFailure.create),
+              () => singbox.start(configPath).mapLeft(CoreServiceFailure.start),
             )
             .run();
       },
@@ -107,17 +102,25 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
   }
 
   @override
-  TaskEither<CoreServiceFailure, Unit> start() {
+  TaskEither<CoreServiceFailure, Unit> stop() {
     return exceptionHandler(
-      () => singbox.start().mapLeft(CoreServiceFailure.start).run(),
+      () => singbox.stop().mapLeft(CoreServiceFailure.other).run(),
       CoreServiceFailure.unexpected,
     );
   }
 
   @override
-  TaskEither<CoreServiceFailure, Unit> stop() {
+  TaskEither<CoreServiceFailure, Unit> restart(String fileName) {
     return exceptionHandler(
-      () => singbox.stop().mapLeft(CoreServiceFailure.other).run(),
+      () {
+        final configPath = filesEditor.configPath(fileName);
+        return changeConfigOptions(configOptions())
+            .andThen(
+              () =>
+                  singbox.restart(configPath).mapLeft(CoreServiceFailure.start),
+            )
+            .run();
+      },
       CoreServiceFailure.unexpected,
     );
   }
@@ -160,7 +163,7 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
 
   @override
   Stream<Either<CoreServiceFailure, CoreStatus>> watchCoreStatus() {
-    return singbox.watchStatus().map((event) {
+    return singbox.watchStats().map((event) {
       final json = jsonDecode(event);
       return CoreStatus.fromJson(json as Map<String, dynamic>);
     }).handleExceptions(
@@ -240,28 +243,6 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
   }
 
   @override
-  TaskEither<CoreServiceFailure, Unit> connect() {
-    return exceptionHandler(
-      () async {
-        await connectivity.connect();
-        return right(unit);
-      },
-      CoreServiceFailure.unexpected,
-    );
-  }
-
-  @override
-  TaskEither<CoreServiceFailure, Unit> disconnect() {
-    return exceptionHandler(
-      () async {
-        await connectivity.disconnect();
-        return right(unit);
-      },
-      CoreServiceFailure.unexpected,
-    );
-  }
-
-  @override
   Stream<ConnectionStatus> watchConnectionStatus() =>
-      connectivity.watchConnectionStatus();
+      singbox.watchConnectionStatus();
 }

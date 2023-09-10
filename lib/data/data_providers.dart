@@ -58,6 +58,5 @@ CoreFacade coreFacade(CoreFacadeRef ref) => CoreFacadeImpl(
       ref.watch(singboxServiceProvider),
       ref.watch(filesEditorServiceProvider),
       ref.watch(clashApiProvider),
-      ref.watch(connectivityServiceProvider),
       () => ref.read(configOptionsProvider),
     );

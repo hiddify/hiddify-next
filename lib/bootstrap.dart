@@ -90,8 +90,7 @@ Future<void> initAppServices(
   _loggy.debug("initializing app services");
   await Future.wait(
     [
-      read(connectivityServiceProvider).init(),
-      read(notificationServiceProvider).init(),
+      read(singboxServiceProvider).init(),
     ],
   );
   _loggy.debug('initialized app services');
