@@ -42,6 +42,18 @@ class Profile with _$Profile {
         title = titleHeader;
       }
     }
+
+    if (title.isEmpty) {
+      final contentDisposition = headers['content-disposition']?.single;
+      if (contentDisposition != null) {
+        final RegExp regExp = RegExp(r'filename="([^"]*)"');
+        final match = regExp.firstMatch(contentDisposition);
+        if (match != null && match.groupCount >= 1) {
+          title = match.group(1) ?? '';
+        }
+      }
+    }
+    
     if (title.isEmpty) {
       final part = url.split("/").lastOrNull;
       if (part != null) {
