@@ -22,8 +22,8 @@
         "stats": {
             "traffic": "مصرف لحظه‌ای",
             "trafficTotal": "مصرف کل",
-            "uplink": "🔺",
-            "downlink": "🔻"
+            "uplink": "↑",
+            "downlink": "↓"
         }
     },
     "profile": {

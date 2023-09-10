@@ -80,9 +80,12 @@ class _StatCard extends HookConsumerWidget {
               children: [
                 Text(
                   firstStat.label,
+                  style: TextStyle(color: Colors.green),
+                ),
+                Text(
+                  firstStat.data,
                   style: theme.textTheme.bodySmall,
                 ),
-                Text(firstStat.data),
               ],
             ),
             Row(
@@ -90,9 +93,12 @@ class _StatCard extends HookConsumerWidget {
               children: [
                 Text(
                   secondStat.label,
+                  style: TextStyle(color: Colors.red),
+                ),
+                Text(
+                  secondStat.data,
                   style: theme.textTheme.bodySmall,
                 ),
-                Text(secondStat.data),
               ],
             ),
           ],
