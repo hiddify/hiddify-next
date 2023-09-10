@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:dartx/dartx.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:uuid/uuid.dart';
 import 'package:loggy/loggy.dart';
+import 'package:uuid/uuid.dart';
 
 part 'profile.freezed.dart';
 part 'profile.g.dart';
@@ -25,7 +25,6 @@ class Profile with _$Profile {
     ProfileExtra? extra,
   }) = _Profile;
 
-  // TODO add content disposition parsing
   factory Profile.fromResponse(
     String url,
     Map<String, List<String>> headers,
@@ -53,7 +52,7 @@ class Profile with _$Profile {
         }
       }
     }
-    
+
     if (title.isEmpty) {
       final part = url.split("/").lastOrNull;
       if (part != null) {
