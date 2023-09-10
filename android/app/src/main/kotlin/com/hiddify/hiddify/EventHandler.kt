@@ -50,7 +50,7 @@ class EventHandler : FlutterPlugin {
                     Log.d(TAG, "new alert: $it")
                     val map = listOf(
                         Pair("status", it.status.name),
-                        Pair("failure", it.alert?.name),
+                        Pair("alert", it.alert?.name),
                         Pair("message", it.message)
                     )
                         .mapNotNull { p -> p.second?.let { Pair(p.first, p.second) } }
