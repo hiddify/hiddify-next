@@ -128,6 +128,7 @@ class SubscriptionInfo with _$SubscriptionInfo {
   const factory SubscriptionInfo({
     required int upload,
     required int download,
+    @JsonKey(fromJson: _fromJsonTotal, defaultValue: 9223372036854775807)
     required int total,
     @JsonKey(fromJson: _dateTimeFromSecondsSinceEpoch) required DateTime expire,
   }) = _SubscriptionInfo;
@@ -154,5 +155,15 @@ class SubscriptionInfo with _$SubscriptionInfo {
       _$SubscriptionInfoFromJson(json);
 }
 
-DateTime _dateTimeFromSecondsSinceEpoch(dynamic expire) =>
-    DateTime.fromMillisecondsSinceEpoch((expire as int) * 1000);
+int _fromJsonTotal(dynamic total) {
+  if (total == null) {
+    return 9223372036854775807;
+  }
+  return total as int;
+}
+
+DateTime _dateTimeFromSecondsSinceEpoch(dynamic expire) {
+  return DateTime.fromMillisecondsSinceEpoch(
+    (expire as int? ?? 92233720368) * 1000,
+  );
+}

@@ -32,7 +32,7 @@
         "subscription": {
             "traffic": "ترافیک",
             "updatedTimeAgo": "بروزرسانی شده در ${timeago}",
-            "remainingDuration": "${duration} روز باقی مانده",
+            "remainingDuration": "📅 ${duration} روز باقی مانده",
             "expired": "منقضی شده",
             "noTraffic": "پایان ترافیک"
         },

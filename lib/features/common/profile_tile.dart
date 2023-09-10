@@ -305,13 +305,17 @@ class ProfileSubscriptionInfo extends HookConsumerWidget {
     final theme = Theme.of(context);
 
     final remaining = remainingText(t, theme);
-
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          subInfo.consumption.sizeOf(subInfo.total),
-          style: theme.textTheme.bodySmall,
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: Text(
+            subInfo.total > 10 * 1099511627776 //10TB
+                ? "∞ GiB"
+                : subInfo.consumption.sizeOf(subInfo.total),
+            style: theme.textTheme.bodySmall,
+          ),
         ),
         Text(
           remaining.$1,

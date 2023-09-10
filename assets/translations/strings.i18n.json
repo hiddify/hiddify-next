@@ -32,7 +32,7 @@
         "subscription": {
             "traffic": "Traffic",
             "updatedTimeAgo": "Updated ${timeago}",
-            "remainingDuration": "${duration} days remaining",
+            "remainingDuration": "📅 ${duration} Days Remaining",
             "expired": "Expired",
             "noTraffic": "No more traffic"
         },
