@@ -31,3 +31,20 @@ class DebugModeNotifier extends _$DebugModeNotifier {
     return _pref.update(value);
   }
 }
+
+@riverpod
+class MarkNewProfileActive extends _$MarkNewProfileActive {
+  late final _pref = Pref(
+    ref.watch(sharedPreferencesProvider),
+    "mark_new_profile_active",
+    true,
+  );
+
+  @override
+  bool build() => _pref.getValue();
+
+  Future<void> update(bool value) {
+    state = value;
+    return _pref.update(value);
+  }
+}

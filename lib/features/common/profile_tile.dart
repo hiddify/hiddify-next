@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:hiddify/core/router/routes/routes.dart';
@@ -31,6 +32,9 @@ class ProfileTile extends HookConsumerWidget {
     final selectActiveMutation = useMutation(
       initialOnFailure: (err) {
         CustomToast.error(t.printError(err)).show(context);
+      },
+      initialOnSuccess: () {
+        if (context.mounted) context.pop();
       },
     );
 

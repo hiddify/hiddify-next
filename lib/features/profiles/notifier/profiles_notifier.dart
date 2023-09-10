@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:fpdart/fpdart.dart';
+import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:hiddify/data/data_providers.dart';
 import 'package:hiddify/domain/enums.dart';
 import 'package:hiddify/domain/profiles/profiles.dart';
@@ -40,9 +41,9 @@ class ProfilesNotifier extends _$ProfilesNotifier with AppLogger {
 
   ProfilesRepository get _profilesRepo => ref.read(profilesRepositoryProvider);
 
-  Future<void> selectActiveProfile(String id) async {
+  Future<Unit> selectActiveProfile(String id) async {
     loggy.debug('changing active profile to: [$id]');
-    await _profilesRepo.setAsActive(id).mapLeft((f) {
+    return _profilesRepo.setAsActive(id).getOrElse((f) {
       loggy.warning('failed to set [$id] as active profile, $f');
       throw f;
     }).run();
@@ -50,10 +51,12 @@ class ProfilesNotifier extends _$ProfilesNotifier with AppLogger {
 
   Future<Unit> addProfile(String url) async {
     final activeProfile = await ref.read(activeProfileProvider.future);
+    final markAsActive =
+        activeProfile == null || ref.read(markNewProfileActiveProvider);
     loggy.debug("adding profile, url: [$url]");
     return ref
         .read(profilesRepositoryProvider)
-        .addByUrl(url, markAsActive: activeProfile == null)
+        .addByUrl(url, markAsActive: markAsActive)
         .getOrElse((l) {
       loggy.warning("failed to add profile: $l");
       throw l;
