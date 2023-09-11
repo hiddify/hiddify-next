@@ -26,10 +26,12 @@ class StatsOverview extends HookConsumerWidget {
             firstStat: (
               label: "↑",
               data: stats.uplink.speed(),
+              semanticLabel: t.home.stats.uplink,
             ),
             secondStat: (
               label: "↓",
               data: stats.downlink.speed(),
+              semanticLabel: t.home.stats.downlink,
             ),
           ),
           const Gap(8),
@@ -38,10 +40,12 @@ class StatsOverview extends HookConsumerWidget {
             firstStat: (
               label: "↑",
               data: stats.uplinkTotal.size(),
+              semanticLabel: t.home.stats.uplink,
             ),
             secondStat: (
               label: "↓",
               data: stats.downlinkTotal.size(),
+              semanticLabel: t.home.stats.downlink,
             ),
           ),
         ],
@@ -58,8 +62,8 @@ class _StatCard extends HookConsumerWidget {
   });
 
   final String title;
-  final ({String label, String data}) firstStat;
-  final ({String label, String data}) secondStat;
+  final ({String label, String data, String semanticLabel}) firstStat;
+  final ({String label, String data, String semanticLabel}) secondStat;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -80,6 +84,7 @@ class _StatCard extends HookConsumerWidget {
               children: [
                 Text(
                   firstStat.label,
+                  semanticsLabel: firstStat.semanticLabel,
                   style: const TextStyle(color: Colors.green),
                 ),
                 Text(
@@ -93,6 +98,7 @@ class _StatCard extends HookConsumerWidget {
               children: [
                 Text(
                   secondStat.label,
+                  semanticsLabel: secondStat.semanticLabel,
                   style: TextStyle(color: theme.colorScheme.error),
                 ),
                 Text(

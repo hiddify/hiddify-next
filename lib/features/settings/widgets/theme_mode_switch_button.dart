@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hiddify/core/core_providers.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ThemeModeSwitch extends StatelessWidget {
+class ThemeModeSwitch extends HookConsumerWidget {
   const ThemeModeSwitch({
     super.key,
     required this.themeMode,
@@ -10,7 +12,9 @@ class ThemeModeSwitch extends StatelessWidget {
   final ValueChanged<ThemeMode> onChanged;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = ref.watch(translationsProvider);
+
     final List<bool> isSelected = <bool>[
       themeMode == ThemeMode.light,
       themeMode == ThemeMode.system,
@@ -28,10 +32,19 @@ class ThemeModeSwitch extends StatelessWidget {
           onChanged(ThemeMode.dark);
         }
       },
-      children: const <Widget>[
-        Icon(Icons.wb_sunny),
-        Icon(Icons.phone_iphone),
-        Icon(Icons.bedtime),
+      children: <Widget>[
+        Icon(
+          Icons.wb_sunny,
+          semanticLabel: t.settings.general.themeModes.light,
+        ),
+        Icon(
+          Icons.phone_iphone,
+          semanticLabel: t.settings.general.themeModes.system,
+        ),
+        Icon(
+          Icons.bedtime,
+          semanticLabel: t.settings.general.themeModes.dark,
+        ),
       ],
     );
   }

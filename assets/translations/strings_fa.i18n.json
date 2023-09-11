@@ -21,7 +21,9 @@
         },
         "stats": {
             "traffic": "مصرف لحظه‌ای",
-            "trafficTotal": "مصرف کل"
+            "trafficTotal": "مصرف کل",
+            "uplink": "ارسال",
+            "downlink": "دریافت"
         }
     },
     "profile": {
@@ -54,7 +56,8 @@
             "successMsg": "پروفایل با موفقیت بروزرسانی شد"
         },
         "edit": {
-            "buttonTxt": "ویرایش"
+            "buttonTxt": "ویرایش",
+            "selectActiveTxt": "انتخاب پروفایل فعال"
         },
         "delete": {
             "buttonTxt": "حذف",

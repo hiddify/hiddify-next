@@ -21,7 +21,9 @@
         },
         "stats": {
             "traffic": "Live Traffic",
-            "trafficTotal": "Total Traffic"
+            "trafficTotal": "Total Traffic",
+            "uplink": "Uplink",
+            "downlink": "Downlink"
         }
     },
     "profile": {
@@ -54,7 +56,8 @@
             "successMsg": "Profile updated successfully"
         },
         "edit": {
-            "buttonTxt": "Edit"
+            "buttonTxt": "Edit",
+            "selectActiveTxt": "Select active profile"
         },
         "delete": {
             "buttonTxt": "Delete",

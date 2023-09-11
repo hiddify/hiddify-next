@@ -9,6 +9,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "60.0.0"
+  accessibility_tools:
+    dependency: "direct main"
+    description:
+      name: accessibility_tools
+      sha256: "0a16adc8dfa3a7ebd38775135d86443011a65d4ecbb438913e4992b5d29135fe"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   analyzer:
     dependency: "direct overridden"
     description:

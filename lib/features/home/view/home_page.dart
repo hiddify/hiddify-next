@@ -83,6 +83,7 @@ class AppVersionLabel extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final t = ref.watch(translationsProvider);
     final theme = Theme.of(context);
 
     final version = ref.watch(
@@ -96,19 +97,23 @@ class AppVersionLabel extends HookConsumerWidget {
 
     if (version.isEmpty) return const SizedBox();
 
-    return Container(
-      decoration: BoxDecoration(
-        color: theme.colorScheme.secondaryContainer,
-        borderRadius: BorderRadius.circular(4),
-      ),
-      padding: const EdgeInsets.symmetric(
-        horizontal: 4,
-        vertical: 1,
-      ),
-      child: Text(
-        version,
-        style: theme.textTheme.bodySmall?.copyWith(
-          color: theme.colorScheme.onSecondaryContainer,
+    return Semantics(
+      label: t.about.version,
+      button: false,
+      child: Container(
+        decoration: BoxDecoration(
+          color: theme.colorScheme.secondaryContainer,
+          borderRadius: BorderRadius.circular(4),
+        ),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 4,
+          vertical: 1,
+        ),
+        child: Text(
+          version,
+          style: theme.textTheme.bodySmall?.copyWith(
+            color: theme.colorScheme.onSecondaryContainer,
+          ),
         ),
       ),
     );

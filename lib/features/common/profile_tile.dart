@@ -48,6 +48,7 @@ class ProfileTile extends HookConsumerWidget {
         profile.active ? theme.colorScheme.outlineVariant : Colors.transparent;
 
     return Card(
+      semanticContainer: false,
       margin: effectiveMargin,
       elevation: effectiveElevation,
       shape: RoundedRectangleBorder(
@@ -55,86 +56,87 @@ class ProfileTile extends HookConsumerWidget {
         borderRadius: BorderRadius.circular(16),
       ),
       shadowColor: Colors.transparent,
-      child: InkWell(
-        onTap: isMain
-            ? null
-            : () {
-                if (selectActiveMutation.state.isInProgress) return;
-                if (profile.active) return;
-                selectActiveMutation.setFuture(
-                  ref
-                      .read(profilesNotifierProvider.notifier)
-                      .selectActiveProfile(profile.id),
-                );
-              },
-        child: IntrinsicHeight(
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              SizedBox(
-                width: 48,
-                child: ProfileActionButton(profile, !isMain),
-              ),
-              VerticalDivider(
-                width: 1,
-                color: effectiveOutlineColor,
-              ),
-              Flexible(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 4,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      if (isMain)
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 4),
-                          child: Material(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Colors.transparent,
-                            clipBehavior: Clip.antiAlias,
-                            child: Semantics(
-                              button: true,
-                              label: t.profile.overviewPageTitle,
-                              child: InkWell(
-                                onTap: () => const ProfilesRoute().go(context),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Flexible(
-                                      child: Text(
-                                        profile.name,
-                                        style: theme.textTheme.titleMedium,
-                                      ),
+      child: IntrinsicHeight(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            SizedBox(
+              width: 48,
+              child: ProfileActionButton(profile, !isMain),
+            ),
+            VerticalDivider(
+              width: 1,
+              color: effectiveOutlineColor,
+            ),
+            Flexible(
+              child: Semantics(
+                button: true,
+                label: isMain
+                    ? t.profile.overviewPageTitle
+                    : t.profile.edit.selectActiveTxt,
+                child: InkWell(
+                  onTap: () {
+                    if (isMain) {
+                      const ProfilesRoute().go(context);
+                    } else {
+                      if (selectActiveMutation.state.isInProgress) return;
+                      if (profile.active) return;
+                      selectActiveMutation.setFuture(
+                        ref
+                            .read(profilesNotifierProvider.notifier)
+                            .selectActiveProfile(profile.id),
+                      );
+                    }
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 4,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        if (isMain)
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 4),
+                            child: Material(
+                              borderRadius: BorderRadius.circular(8),
+                              color: Colors.transparent,
+                              clipBehavior: Clip.antiAlias,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Flexible(
+                                    child: Text(
+                                      profile.name,
+                                      style: theme.textTheme.titleMedium,
                                     ),
-                                    const Icon(Icons.arrow_drop_down),
-                                  ],
-                                ),
+                                  ),
+                                  const Icon(Icons.arrow_drop_down),
+                                ],
                               ),
                             ),
+                          )
+                        else
+                          Text(
+                            profile.name,
+                            style: theme.textTheme.titleMedium,
                           ),
-                        )
-                      else
-                        Text(
-                          profile.name,
-                          style: theme.textTheme.titleMedium,
-                        ),
-                      if (subInfo != null) ...[
-                        const Gap(4),
-                        RemainingTrafficIndicator(subInfo.ratio),
-                        const Gap(4),
-                        ProfileSubscriptionInfo(subInfo),
-                        const Gap(4),
+                        if (subInfo != null) ...[
+                          const Gap(4),
+                          RemainingTrafficIndicator(subInfo.ratio),
+                          const Gap(4),
+                          ProfileSubscriptionInfo(subInfo),
+                          const Gap(4),
+                        ],
                       ],
-                    ],
+                    ),
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
