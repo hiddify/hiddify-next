@@ -5,9 +5,12 @@ ANDROID_OUT=./android/app/libs
 DESKTOP_OUT=./libcore/bin
 GEO_ASSETS_DIR=./assets/core
 
+BRANCH=$(shell git branch --show-current)
+VERSION=$(shell git describe --tags --abbrev=0 || echo "unknown version")
+
 CORE_NAME=hiddify-libcore
 CORE_VERSION=v$(core.version)
-LIBS_DOWNLOAD_URL=https://github.com/hiddify/hiddify-next-core/releases/download/$(CORE_VERSION)
+CORE_URL=https://github.com/hiddify/hiddify-next-core/releases/download/$(CORE_VERSION)
 
 get:
 	flutter pub get
@@ -39,23 +42,23 @@ ios-release: #not tested
 
 android-libs: 
 	mkdir -p $(ANDROID_OUT)
-	curl -L $(LIBS_DOWNLOAD_URL)/$(CORE_NAME)-android-$(CORE_VERSION).aar.gz | gunzip > $(ANDROID_OUT)/libcore.aar
+	curl -L $(CORE_URL)/$(CORE_NAME)-android-$(CORE_VERSION).aar.gz | gunzip > $(ANDROID_OUT)/libcore.aar
 
 windows-libs:
 	mkdir -p $(DESKTOP_OUT)
-	curl -L $(LIBS_DOWNLOAD_URL)/$(CORE_NAME)-windows-amd64-$(CORE_VERSION).dll.gz | gunzip > $(DESKTOP_OUT)/libcore.dll
+	curl -L $(CORE_URL)/$(CORE_NAME)-windows-amd64-$(CORE_VERSION).dll.gz | gunzip > $(DESKTOP_OUT)/libcore.dll
 
 linux-libs:
 	mkdir -p $(DESKTOP_OUT)
-	curl -L $(LIBS_DOWNLOAD_URL)/$(CORE_NAME)-linux-amd64-$(CORE_VERSION).so.gz | gunzip > $(DESKTOP_OUT)/libcore.so
+	curl -L $(CORE_URL)/$(CORE_NAME)-linux-amd64-$(CORE_VERSION).so.gz | gunzip > $(DESKTOP_OUT)/libcore.so
 
 macos-libs:
 	mkdir -p $(DESKTOP_OUT)/ &&\
-	curl -L $(LIBS_DOWNLOAD_URL)/$(CORE_NAME)-macos-universal-$(CORE_VERSION).dylib.gz | gunzip > $(DESKTOP_OUT)/libcore.dylib
+	curl -L $(CORE_URL)/$(CORE_NAME)-macos-universal-$(CORE_VERSION).dylib.gz | gunzip > $(DESKTOP_OUT)/libcore.dylib
 
 ios-libs: #not tested
 	mkdir -p $(DESKTOP_OUT)/ &&\
-	curl -L $(LIBS_DOWNLOAD_URL)/$(CORE_NAME)-ios-universal-$(CORE_VERSION).xcframework.gz | gunzip > $(DESKTOP_OUT)/libcore.xcframework
+	curl -L $(CORE_URL)/$(CORE_NAME)-ios-universal-$(CORE_VERSION).xcframework.gz | gunzip > $(DESKTOP_OUT)/libcore.xcframework
 
 get-geo-assets:
 	curl -L https://github.com/SagerNet/sing-geoip/releases/latest/download/geoip.db -o $(GEO_ASSETS_DIR)/geoip.db

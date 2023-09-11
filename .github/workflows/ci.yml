@@ -1,16 +1,24 @@
 name: Build
-
 on:
   push:
-    branches: [ "main","temp" ]
+    branches:
+      - main
+    tags:
+      - 'v*'
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - '.github/**'
+      - '!.github/workflows/ci.yml'
   pull_request:
-    branches: [ "main" ]
-permissions: write-all      
+    branches:
+      - main
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
   cancel-in-progress: true
 jobs:
   build:
+    permissions: write-all
     strategy:
       fail-fast: false
       matrix:
@@ -28,18 +36,10 @@ jobs:
             aarch: amd64
             targets: exe
 
-          # Flutter does not support x86
-          # - platform: windows 
-          #   os: windows-latest
-          #   aarch: 386
-          #   targets: exe     
-          #   target: windows-x86       
-
-          # Flutter does not support x86
-          # - platform: linux
-          #   os: ubuntu-latest
-          #   aarch: 386
-          #   targets: AppImage
+          - platform: linux
+            os: ubuntu-latest
+            aarch: amd64
+            targets: AppImage
 
           - platform: macos
             os: macos-11
@@ -50,12 +50,6 @@ jobs:
           #   os: macos-11
           #   aarch: universal
           #   targets: ipa
-
-          - platform: linux
-            os: ubuntu-latest
-            aarch: amd64
-            targets: AppImage
-
 
     runs-on: ${{ matrix.os }}
     steps:
@@ -79,22 +73,22 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          # flutter-version: '3.13.x'
+          flutter-version: '3.13.x'
           channel: 'stable'
-          # cache: true
-
-      - name: Build macos dmg
-        if: matrix.platform == 'macos' || matrix.platform == 'ios'
-        run: |
-          brew install create-dmg tree node
-          npm install -g appdmg
+          cache: true
 
       - name: Setup Java
         if: startsWith(matrix.platform,'android')
         uses: actions/setup-java@v3
         with:
-          distribution: "zulu"
+          distribution: 'zulu'
           java-version: 11
+
+      - name: Setup Flutter Distributor
+        if: ${{ !startsWith(matrix.platform,'android') }}
+        run: |
+          dart pub global activate flutter_distributor
+
       - name: Setup Linux dependencies
         if: matrix.platform == 'linux'
         run: |
@@ -104,11 +98,11 @@ jobs:
           chmod +x appimagetool
           mv appimagetool /usr/local/bin/
 
-      - name: Setup Flutter Distributor
-        if: ${{ !startsWith(matrix.platform,'android') }} 
-#         shell: powershell
+      - name: Build macos dmg
+        if: matrix.platform == 'macos' || matrix.platform == 'ios'
         run: |
-          dart pub global activate flutter_distributor
+          brew install create-dmg tree node
+          npm install -g appdmg
 
       - name: Get Geo Assets
         run: |
@@ -127,7 +121,7 @@ jobs:
         run: |
           make ${{ matrix.platform }}-libs
 
-      - name: Signing properties
+      - name: Setup Signing Properties
         env:
           ANDROID_SIGNING_KEY_ALIAS: ${{ secrets.ANDROID_SIGNING_KEY_ALIAS }}
           ANDROID_SIGNING_KEY_PASSWORD: ${{ secrets.ANDROID_SIGNING_KEY_PASSWORD }}
@@ -145,11 +139,12 @@ jobs:
           cp  release.* app/ 
           cat release.properties
           cd ..
+
       - name: Release ${{ matrix.platform }}
-        run: |          
+        run: |
           make ${{ matrix.platform }}-release
-      
-      - name: Copy to out WINDOWS 
+
+      - name: Copy to out Windows
         if: matrix.platform == 'windows'
         run: |
           New-Item -ItemType Directory -Force -Name "out"
@@ -160,10 +155,10 @@ jobs:
               move out\*setup.$EXT out\hiddify-${{ matrix.platform }}-x64-setup.$EXT
               Get-ChildItem -Recurse -File -Filter "*.$EXT"
           }
-          
           mkdir HiddifyNext-portable
           xcopy /s /v D:\a\hiddify-next\hiddify-next\build\windows\runner\Release\ .\HiddifyNext-portable\
           Compress-Archive HiddifyNext-portable out\hiddify-${{ matrix.platform }}-x64-portable.zip
+
       - name: Copy to out Android
         if: matrix.platform == 'android'
         run: |
@@ -174,10 +169,6 @@ jobs:
           mv ./build/app/outputs/flutter-apk/*x86_64*.apk out/hiddify-android-x86_64.apk || echo "no x64 apk"
           mv ./build/app/outputs/flutter-apk/app-release.apk out/hiddify-android-universal.apk || echo "no universal apk"
           cp ./build/app/outputs/bundle/release/app-release.aab out/bundle.aab
-          
-
-      
-
 
       - name: Copy to out unix
         if: matrix.platform == 'linux' || matrix.platform == 'macos' || matrix.platform == 'ios'
@@ -190,32 +181,16 @@ jobs:
               # Find all files with this extension in SRC_DIR, and copy them to DST_DIR
               find "." -type f -name "*.$EXT" -exec cp {} "out" \;
           done
-          #          mv out/*arm64-v8a*.apk out/hiddify-android-arm64.apk || echo "no arm64 apk"
-          #          mv out/*armeabi-v7a*.apk out/hiddify-android-arm7.apk || echo "no arm7 apk"
-          #          mv out/*x86_64*.apk out/hiddify-android-x86_64.apk || echo "no x64 apk"
-          #          mv out/*universal*.apk out/hiddify-android-universal.apk || echo "no universal apk"
-          #rm out/app-release.apk ||echo "no app-release.apk"
-          #mv out/*.aab out/hiddify-android-playstore.aab || echo "no aab"
           mv out/*.AppImage out/hiddify-linux-x64.AppImage || echo "no app image"
           (cd out&& chmod +x hiddify-linux-x64.AppImage && 7z a hiddify-linux-x64.AppImage.zip hiddify-linux-x64.AppImage)||echo "no app image"
           mv out/*.dmg out/hiddify-macos-universal.dmg || echo "no macos dmg"
 
-      - uses: actions/upload-artifact@v3
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.platform }}
           path: ./out
           retention-days: 2
-
-      - name: Create or Update Draft Release
-        uses: softprops/action-gh-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          files: ./out/*
-          name: "draft"
-          tag_name: "draft"
-          prerelease: true
-          overwrite: true
 
       # - name: Create service_account.json
       #   if: matrix.platform == 'android'
@@ -229,4 +204,62 @@ jobs:
       #     packageName: app.hiddify.com
       #     releaseName: ${{ github.ref }}
       #     releaseFiles: ./build/app/outputs/bundle/release/app-release.aab
-      #     track: internal          
+      #     track: internal
+
+  upload-prerelease:
+    permissions: write-all
+    if: ${{ github.ref_type=='branch' }}
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: artifact
+          path: ./out/
+
+      - name: Display Files Structure
+        run: ls -R
+        working-directory: ./out
+
+      - name: Delete Current Release Assets
+        uses: 8Mi-Tech/delete-release-assets-action@main
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          tag: 'draft'
+          deleteOnlyFromDrafts: false
+
+      - name: Create or Update Draft Release
+        uses: softprops/action-gh-release@v1
+        if: ${{ success() }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          files: ./out/*
+          name: 'draft'
+          tag_name: 'draft'
+          prerelease: true
+
+  upload-release:
+    permissions: write-all
+    if: ${{ github.ref_type=='tag' }}
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: artifact
+          path: ./out/
+
+      - name: Display Files Structure
+        run: ls -R
+        working-directory: ./out
+
+      - name: Upload Release
+        uses: softprops/action-gh-release@v1
+        if: ${{ success() }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref_name }}
+          files: ./out/*
