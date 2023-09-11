@@ -9,8 +9,7 @@ BRANCH=$(shell git branch --show-current)
 VERSION=$(shell git describe --tags --abbrev=0 || echo "unknown version")
 
 CORE_NAME=hiddify-libcore
-CORE_VERSION=v$(core.version)
-CORE_URL=https://github.com/hiddify/hiddify-next-core/releases/download/$(CORE_VERSION)
+CORE_URL=https://github.com/hiddify/hiddify-next-core/releases/download/v$(core.version)
 
 get:
 	flutter pub get
@@ -40,44 +39,44 @@ macos-release:
 ios-release: #not tested
 	flutter_distributor package --platform ios --targets ipa --build-export-options-plist  ios/exportOptions.plist
 
-android-libs: 
+android-libs:
 	mkdir -p $(ANDROID_OUT)
-	curl -L $(CORE_URL)/$(CORE_NAME)-android-$(CORE_VERSION).aar.gz | gunzip > $(ANDROID_OUT)/libcore.aar
+	curl -L $(CORE_URL)/$(CORE_NAME)-android.aar.gz | gunzip > $(ANDROID_OUT)/libcore.aar
 
 windows-libs:
 	mkdir -p $(DESKTOP_OUT)
-	curl -L $(CORE_URL)/$(CORE_NAME)-windows-amd64-$(CORE_VERSION).dll.gz | gunzip > $(DESKTOP_OUT)/libcore.dll
+	curl -L $(CORE_URL)/$(CORE_NAME)-windows-amd64.dll.gz | gunzip > $(DESKTOP_OUT)/libcore.dll
 
 linux-libs:
 	mkdir -p $(DESKTOP_OUT)
-	curl -L $(CORE_URL)/$(CORE_NAME)-linux-amd64-$(CORE_VERSION).so.gz | gunzip > $(DESKTOP_OUT)/libcore.so
+	curl -L $(CORE_URL)/$(CORE_NAME)-linux-amd64.so.gz | gunzip > $(DESKTOP_OUT)/libcore.so
 
 macos-libs:
 	mkdir -p $(DESKTOP_OUT)/ &&\
-	curl -L $(CORE_URL)/$(CORE_NAME)-macos-universal-$(CORE_VERSION).dylib.gz | gunzip > $(DESKTOP_OUT)/libcore.dylib
+	curl -L $(CORE_URL)/$(CORE_NAME)-macos-universal.dylib.gz | gunzip > $(DESKTOP_OUT)/libcore.dylib
 
 ios-libs: #not tested
 	mkdir -p $(DESKTOP_OUT)/ &&\
-	curl -L $(CORE_URL)/$(CORE_NAME)-ios-universal-$(CORE_VERSION).xcframework.gz | gunzip > $(DESKTOP_OUT)/libcore.xcframework
+	curl -L $(CORE_URL)/$(CORE_NAME)-ios-universal.xcframework.gz | gunzip > $(DESKTOP_OUT)/libcore.xcframework
 
 get-geo-assets:
 	curl -L https://github.com/SagerNet/sing-geoip/releases/latest/download/geoip.db -o $(GEO_ASSETS_DIR)/geoip.db
 	curl -L https://github.com/SagerNet/sing-geosite/releases/latest/download/geosite.db -o $(GEO_ASSETS_DIR)/geosite.db
 
 build-headers:
-	make -C libcore -f Makefile headers && mv $(BINDIR)/$(CORE_NAME)-headers-*.h $(BINDIR)/libcore.h
+	make -C libcore -f Makefile headers && mv $(BINDIR)/$(CORE_NAME)-headers.h $(BINDIR)/libcore.h
 
 build-android-libs:
-	make -C libcore -f Makefile android && mv $(BINDIR)/$(CORE_NAME)-android-*.aar $(ANDROID_OUT)/libcore.aar
+	make -C libcore -f Makefile android && mv $(BINDIR)/$(CORE_NAME)-android.aar $(ANDROID_OUT)/libcore.aar
 
 build-windows-libs:
-	make -C libcore -f Makefile windows-amd64 && mv $(BINDIR)/$(CORE_NAME)-windows-amd64-*.dll $(DESKTOP_OUT)/libcore.dll
+	make -C libcore -f Makefile windows-amd64 && mv $(BINDIR)/$(CORE_NAME)-windows-amd64.dll $(DESKTOP_OUT)/libcore.dll
 
 build-linux-libs:
-	make -C libcore -f Makefile linux-amd64 && mv $(BINDIR)/$(CORE_NAME)-linux-amd64-*.dll $(DESKTOP_OUT)/libcore.so
+	make -C libcore -f Makefile linux-amd64 && mv $(BINDIR)/$(CORE_NAME)-linux-amd64.dll $(DESKTOP_OUT)/libcore.so
 
 build-macos-libs:
-	make -C libcore -f Makefile macos-universal && mv $(BINDIR)/$(CORE_NAME)-macos-universal-*.dylib $(DESKTOP_OUT)/libcore.dylib
+	make -C libcore -f Makefile macos-universal && mv $(BINDIR)/$(CORE_NAME)-macos-universal.dylib $(DESKTOP_OUT)/libcore.dylib
 
 build-ios-libs: #not tested
-	make -C libcore -f Makefile ios && mv $(BINDIR)/$(CORE_NAME)-ios-*.xcframework $(DESKTOP_OUT)/libcore.xcframework
+	make -C libcore -f Makefile ios && mv $(BINDIR)/$(CORE_NAME)-ios.xcframework $(DESKTOP_OUT)/libcore.xcframework
