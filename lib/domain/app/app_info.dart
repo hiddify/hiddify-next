@@ -1,24 +1,27 @@
 import 'package:dartx/dartx.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hiddify/domain/environment.dart';
 
-part 'version_info.freezed.dart';
-part 'version_info.g.dart';
+part 'app_info.freezed.dart';
+part 'app_info.g.dart';
 
 @freezed
-class InstalledVersionInfo with _$InstalledVersionInfo {
-  const InstalledVersionInfo._();
+class AppInfo with _$AppInfo {
+  const AppInfo._();
 
-  const factory InstalledVersionInfo({
+  const factory AppInfo({
+    required String name,
     required String version,
     required String buildNumber,
     String? installerMedia,
-  }) = _InstalledVersionInfo;
+    required String operatingSystem,
+    required Environment environment,
+  }) = _AppInfo;
 
-  String get fullVersion =>
-      buildNumber.isBlank ? version : "$version+$buildNumber";
+  String get userAgent => "HiddifyNext/$version ($operatingSystem)";
 
-  factory InstalledVersionInfo.fromJson(Map<String, dynamic> json) =>
-      _$InstalledVersionInfoFromJson(json);
+  factory AppInfo.fromJson(Map<String, dynamic> json) =>
+      _$AppInfoFromJson(json);
 }
 
 // TODO ignore drafts

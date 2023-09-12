@@ -1,4 +1,6 @@
+import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/data/data_providers.dart';
+import 'package:hiddify/domain/environment.dart';
 import 'package:hiddify/utils/pref_notifier.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -20,8 +22,11 @@ class SilentStartNotifier extends _$SilentStartNotifier {
 
 @Riverpod(keepAlive: true)
 class DebugModeNotifier extends _$DebugModeNotifier {
-  late final _pref =
-      Pref(ref.watch(sharedPreferencesProvider), "debug_mode", false);
+  late final _pref = Pref(
+    ref.watch(sharedPreferencesProvider),
+    "debug_mode",
+    ref.read(envProvider) == Environment.dev,
+  );
 
   @override
   bool build() => _pref.getValue();

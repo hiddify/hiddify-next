@@ -15,6 +15,13 @@ else
 CORE_URL=https://github.com/hiddify/hiddify-next-core/releases/download/draft
 endif
 
+ifeq ($(BRANCH),RELEASE)
+FLAVOR=prod
+else
+FLAVOR=dev
+endif
+TARGET=lib/main_$(FLAVOR).dart
+
 get:
 	flutter pub get
 
@@ -25,23 +32,24 @@ translate:
 	dart run slang
 
 android-release: android-aab-release android-apk-release
+
 android-apk-release: 
-	flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi
+	flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi --target $(TARGET)
 
 android-aab-release:
-	flutter build appbundle  
+	flutter build appbundle --target $(TARGET)
 
 windows-release:
-	flutter_distributor package --platform windows --targets exe --skip-clean
+	flutter_distributor package --platform windows --targets exe --skip-clean --build-target $(TARGET)
 
 linux-release:
-	flutter_distributor package --platform linux --targets appimage --skip-clean
+	flutter_distributor package --platform linux --targets appimage --skip-clean --build-target $(TARGET)
 
 macos-release:
-	flutter_distributor package --platform macos --targets dmg --skip-clean
+	flutter_distributor package --platform macos --targets dmg --skip-clean --build-target $(TARGET)
 
 ios-release: #not tested
-	flutter_distributor package --platform ios --targets ipa --build-export-options-plist  ios/exportOptions.plist
+	flutter_distributor package --platform ios --targets ipa --build-export-options-plist  ios/exportOptions.plist --build-target $(TARGET)
 
 android-libs:
 	mkdir -p $(ANDROID_OUT)

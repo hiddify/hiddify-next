@@ -16,7 +16,7 @@ class NewVersionDialog extends HookConsumerWidget {
     this.canIgnore = true,
   });
 
-  final InstalledVersionInfo currentVersion;
+  final String currentVersion;
   final RemoteVersionInfo newVersion;
   final bool canIgnore;
 
@@ -48,7 +48,7 @@ class NewVersionDialog extends HookConsumerWidget {
                   style: theme.textTheme.bodySmall,
                 ),
                 TextSpan(
-                  text: currentVersion.fullVersion,
+                  text: currentVersion,
                   style: theme.textTheme.labelMedium,
                 ),
               ],

@@ -2,13 +2,13 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:hiddify/domain/failures.dart';
 
-part 'update_failure.freezed.dart';
+part 'app_failure.freezed.dart';
 
 @freezed
-sealed class UpdateFailure with _$UpdateFailure, Failure {
-  const UpdateFailure._();
+sealed class AppFailure with _$AppFailure, Failure {
+  const AppFailure._();
 
-  const factory UpdateFailure.unexpected([
+  const factory AppFailure.unexpected([
     Object? error,
     StackTrace? stackTrace,
   ]) = UpdateUnexpectedFailure;

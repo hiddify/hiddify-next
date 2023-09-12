@@ -1,7 +1,9 @@
+import 'package:dartx/dartx.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/core/router/router.dart';
+import 'package:hiddify/domain/environment.dart';
 import 'package:hiddify/domain/failures.dart';
 import 'package:hiddify/features/common/active_profile/active_profile_notifier.dart';
 import 'package:hiddify/features/common/active_profile/has_any_profile_notifier.dart';
@@ -86,16 +88,12 @@ class AppVersionLabel extends HookConsumerWidget {
     final t = ref.watch(translationsProvider);
     final theme = Theme.of(context);
 
-    final version = ref.watch(
-      appVersionProvider.select(
-        (value) => switch (value) {
-          AsyncData(:final value) => value.version,
-          _ => "",
-        },
-      ),
-    );
-
-    if (version.isEmpty) return const SizedBox();
+    final appInfo = ref.watch(appInfoProvider);
+    final version = appInfo.version +
+        (appInfo.environment == Environment.prod
+            ? ""
+            : " ${appInfo.environment.name}");
+    if (version.isBlank) return const SizedBox();
 
     return Semantics(
       label: t.about.version,
@@ -111,6 +109,7 @@ class AppVersionLabel extends HookConsumerWidget {
         ),
         child: Text(
           version,
+          textDirection: TextDirection.ltr,
           style: theme.textTheme.bodySmall?.copyWith(
             color: theme.colorScheme.onSecondaryContainer,
           ),

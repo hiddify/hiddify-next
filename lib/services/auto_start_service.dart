@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:hiddify/services/service_providers.dart';
+import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:launch_at_startup/launch_at_startup.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -13,9 +13,9 @@ class AutoStartService extends _$AutoStartService with InfraLogger {
   Future<bool> build() async {
     loggy.debug("initializing");
     if (!PlatformUtils.isDesktop) return false;
-    final packageInfo = ref.watch(runtimeDetailsServiceProvider).packageInfo;
+    final appInfo = ref.watch(appInfoProvider);
     launchAtStartup.setup(
-      appName: packageInfo.appName,
+      appName: appInfo.name,
       appPath: Platform.resolvedExecutable,
     );
     final isEnabled = await launchAtStartup.isEnabled();

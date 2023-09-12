@@ -1,10 +1,11 @@
 import 'package:dio/dio.dart';
+import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/data/api/clash_api.dart';
 import 'package:hiddify/data/local/dao/dao.dart';
 import 'package:hiddify/data/local/database.dart';
+import 'package:hiddify/data/repository/app_repository_impl.dart';
 import 'package:hiddify/data/repository/config_options_store.dart';
 import 'package:hiddify/data/repository/repository.dart';
-import 'package:hiddify/data/repository/update_repository_impl.dart';
 import 'package:hiddify/domain/app/app.dart';
 import 'package:hiddify/domain/constants.dart';
 import 'package:hiddify/domain/core_facade.dart';
@@ -27,7 +28,7 @@ SharedPreferences sharedPreferences(SharedPreferencesRef ref) =>
 Dio dio(DioRef ref) => Dio(
       BaseOptions(
         headers: {
-          "User-Agent": ref.watch(runtimeDetailsServiceProvider).userAgent,
+          "User-Agent": ref.watch(appInfoProvider).userAgent,
         },
       ),
     );
@@ -47,8 +48,8 @@ ProfilesRepository profilesRepository(ProfilesRepositoryRef ref) =>
     );
 
 @Riverpod(keepAlive: true)
-UpdateRepository updateRepository(UpdateRepositoryRef ref) =>
-    UpdateRepositoryImpl(ref.watch(dioProvider));
+AppRepository appRepository(AppRepositoryRef ref) =>
+    AppRepositoryImpl(ref.watch(dioProvider));
 
 @Riverpod(keepAlive: true)
 ClashApi clashApi(ClashApiRef ref) => ClashApi(Defaults.clashApiPort);
