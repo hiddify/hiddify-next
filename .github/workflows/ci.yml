@@ -118,6 +118,8 @@ jobs:
           make gen
 
       - name: Get Libs ${{ matrix.platform }}
+        env:
+          BRANCH: ${{ if github.ref_type == 'tag' }}RELEASE${{ else }}DEVELOP${{ endif }}
         run: |
           make ${{ matrix.platform }}-libs
 
