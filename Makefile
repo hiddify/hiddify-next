@@ -9,11 +9,12 @@ BRANCH=$(shell git branch --show-current)
 VERSION=$(shell git describe --tags --abbrev=0 || echo "unknown version")
 
 CORE_NAME=hiddify-libcore
-ifeq ($(BRANCH),DEVELOP)
-CORE_URL=https://github.com/hiddify/hiddify-next-core/releases/download/draft
-else
+ifeq ($(BRANCH),RELEASE)
 CORE_URL=https://github.com/hiddify/hiddify-next-core/releases/download/v$(core.version)
+else
+CORE_URL=https://github.com/hiddify/hiddify-next-core/releases/download/draft
 endif
+
 get:
 	flutter pub get
 
