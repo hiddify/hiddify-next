@@ -16,22 +16,22 @@ class AppChangeReceiver : BroadcastReceiver() {
     }
 
     private fun checkUpdate(context: Context, intent: Intent) {
-        if (!Settings.perAppProxyEnabled) {
-            return
-        }
-        val perAppProxyUpdateOnChange = Settings.perAppProxyUpdateOnChange
-        if (perAppProxyUpdateOnChange == Settings.PER_APP_PROXY_DISABLED) {
-            return
-        }
-        val packageName = intent.dataString?.substringAfter("package:")
-        if (packageName.isNullOrBlank()) {
-            return
-        }
-        if ((perAppProxyUpdateOnChange == Settings.PER_APP_PROXY_INCLUDE)) {
-            Settings.perAppProxyList = Settings.perAppProxyList + packageName
-        } else {
-            Settings.perAppProxyList = Settings.perAppProxyList - packageName
-        }
+//        if (!Settings.perAppProxyEnabled) {
+//            return
+//        }
+//        val perAppProxyUpdateOnChange = Settings.perAppProxyUpdateOnChange
+//        if (perAppProxyUpdateOnChange == Settings.PER_APP_PROXY_DISABLED) {
+//            return
+//        }
+//        val packageName = intent.dataString?.substringAfter("package:")
+//        if (packageName.isNullOrBlank()) {
+//            return
+//        }
+//        if ((perAppProxyUpdateOnChange == Settings.PER_APP_PROXY_INCLUDE)) {
+//            Settings.perAppProxyList = Settings.perAppProxyList + packageName
+//        } else {
+//            Settings.perAppProxyList = Settings.perAppProxyList - packageName
+//        }
     }
 
 }

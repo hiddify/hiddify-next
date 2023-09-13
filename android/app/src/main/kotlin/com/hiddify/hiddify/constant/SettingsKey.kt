@@ -8,10 +8,9 @@ object SettingsKey {
 
     const val CONFIG_OPTIONS = "config_options_json"
 
-    const val PER_APP_PROXY_ENABLED = "per_app_proxy_enabled"
-    const val PER_APP_PROXY_MODE = "per_app_proxy_mode"
-    const val PER_APP_PROXY_LIST = "per_app_proxy_list"
-    const val PER_APP_PROXY_UPDATE_ON_CHANGE = "per_app_proxy_update_on_change"
+    const val PER_APP_PROXY_MODE = "${KEY_PREFIX}per_app_proxy_mode"
+    const val PER_APP_PROXY_INCLUDE_LIST = "${KEY_PREFIX}per_app_proxy_include_list"
+    const val PER_APP_PROXY_EXCLUDE_LIST = "${KEY_PREFIX}per_app_proxy_exclude_list"
 
     const val DEBUG_MODE = "${KEY_PREFIX}debug_mode"
     const val ENABLE_TUN = "${KEY_PREFIX}enable-tun"

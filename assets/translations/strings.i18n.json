@@ -117,6 +117,20 @@
             "debugMode": "Debug Mode",
             "debugModeMsg": "Restart the app for applying this change"
         },
+        "network": {
+            "perAppProxyPageTitle": "Per-app Proxy",
+            "perAppProxyModes": {
+                "off": "All",
+                "offMsg": "Proxy all apps",
+                "include": "Proxy",
+                "includeMsg": "Proxy only selected apps",
+                "exclude": "Bypass",
+                "excludeMsg": "Do not proxy selected apps"
+            },
+            "showSystemApps": "Show system apps",
+            "hideSystemApps": "Hide system apps",
+            "clearSelection": "Clear selection"
+        },
         "config": {
             "section": {
                 "route": "Route Options",

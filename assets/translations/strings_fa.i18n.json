@@ -117,6 +117,20 @@
             "debugMode": "دیباگ مود",
             "debugModeMsg": "برای اعمال این تغییر اپ را ری‌استارت کنید"
         },
+        "network": {
+            "perAppProxyPageTitle": "پراکسی برنامه‌ها",
+            "perAppProxyModes": {
+                "off": "همه",
+                "offMsg": "همه برنامه‌ها پراکسی میشوند",
+                "include": "پراکسی",
+                "includeMsg": "تنها برنامه‌های انتخاب شده پراکسی میشوند",
+                "exclude": "بایپس",
+                "excludeMsg": "همه بجز برنامه‌های انتخاب شده پراکسی میشوند"
+            },
+            "showSystemApps": "نمایش برنامه‌های سیستمی",
+            "hideSystemApps": "مخفی کردن برنامه‌های سیستمی",
+            "clearSelection": "حذف انتخاب‌ها"
+        },
         "config": {
             "section": {
                 "route": "تنظیمات مسیریاب",

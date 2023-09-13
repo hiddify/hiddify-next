@@ -1,41 +1,62 @@
 package com.hiddify.hiddify
 
 import android.content.Context
+import android.util.Base64
 import com.hiddify.hiddify.bg.ProxyService
 import com.hiddify.hiddify.bg.VPNService
+import com.hiddify.hiddify.constant.PerAppProxyMode
 import com.hiddify.hiddify.constant.ServiceMode
 import com.hiddify.hiddify.constant.SettingsKey
 import org.json.JSONObject
+import java.io.ByteArrayInputStream
 import java.io.File
+import java.io.ObjectInputStream
+
 
 object Settings {
-
-    const val PER_APP_PROXY_DISABLED = 0
-    const val PER_APP_PROXY_EXCLUDE = 1
-    const val PER_APP_PROXY_INCLUDE = 2
 
     private val preferences by lazy {
         val context = Application.application.applicationContext
         context.getSharedPreferences("FlutterSharedPreferences", Context.MODE_PRIVATE)
     }
 
-    var perAppProxyEnabled = preferences.getBoolean(SettingsKey.PER_APP_PROXY_ENABLED, false)
-    var perAppProxyMode = preferences.getInt(SettingsKey.PER_APP_PROXY_MODE, PER_APP_PROXY_EXCLUDE)
-    var perAppProxyList = preferences.getStringSet(SettingsKey.PER_APP_PROXY_LIST, emptySet())!!
-    var perAppProxyUpdateOnChange =
-        preferences.getInt(SettingsKey.PER_APP_PROXY_UPDATE_ON_CHANGE, PER_APP_PROXY_DISABLED)
+    private const val LIST_IDENTIFIER = "VGhpcyBpcyB0aGUgcHJlZml4IGZvciBhIGxpc3Qu"
+
+    var perAppProxyMode: String
+        get() = preferences.getString(SettingsKey.PER_APP_PROXY_MODE, PerAppProxyMode.OFF)!!
+        set(value) = preferences.edit().putString(SettingsKey.PER_APP_PROXY_MODE, value).apply()
+
+    val perAppProxyEnabled: Boolean
+        get() = perAppProxyMode != PerAppProxyMode.OFF
+
+    val perAppProxyList: List<String>
+        get() {
+            val stringValue = if (perAppProxyMode == PerAppProxyMode.INCLUDE) {
+                preferences.getString(SettingsKey.PER_APP_PROXY_INCLUDE_LIST, "")!!;
+            } else {
+                preferences.getString(SettingsKey.PER_APP_PROXY_EXCLUDE_LIST, "")!!;
+            }
+            if (!stringValue.startsWith(LIST_IDENTIFIER)) {
+                return emptyList()
+            }
+            return decodeListString(stringValue.substring(LIST_IDENTIFIER.length))
+        }
+
+    private fun decodeListString(listString: String): List<String> {
+        val stream = ObjectInputStream(ByteArrayInputStream(Base64.decode(listString, 0)))
+        return stream.readObject() as List<String>
+    }
 
     var activeConfigPath: String
-        get() = preferences.getString(SettingsKey.ACTIVE_CONFIG_PATH, "") ?: ""
+        get() = preferences.getString(SettingsKey.ACTIVE_CONFIG_PATH, "")!!
         set(value) = preferences.edit().putString(SettingsKey.ACTIVE_CONFIG_PATH, value).apply()
 
     var serviceMode: String
-        get() = preferences.getString(SettingsKey.SERVICE_MODE, ServiceMode.NORMAL)
-            ?: ServiceMode.NORMAL
+        get() = preferences.getString(SettingsKey.SERVICE_MODE, ServiceMode.NORMAL)!!
         set(value) = preferences.edit().putString(SettingsKey.SERVICE_MODE, value).apply()
 
     var configOptions: String
-        get() = preferences.getString(SettingsKey.CONFIG_OPTIONS, "") ?: ""
+        get() = preferences.getString(SettingsKey.CONFIG_OPTIONS, "")!!
         set(value) = preferences.edit().putString(SettingsKey.CONFIG_OPTIONS, value).apply()
 
     var debugMode: Boolean
@@ -47,11 +68,13 @@ object Settings {
 
     var disableMemoryLimit: Boolean
         get() = preferences.getBoolean(SettingsKey.DISABLE_MEMORY_LIMIT, false)
-        set(value) = preferences.edit().putBoolean(SettingsKey.DISABLE_MEMORY_LIMIT, value).apply()
+        set(value) =
+            preferences.edit().putBoolean(SettingsKey.DISABLE_MEMORY_LIMIT, value).apply()
 
     var systemProxyEnabled: Boolean
         get() = preferences.getBoolean(SettingsKey.SYSTEM_PROXY_ENABLED, true)
-        set(value) = preferences.edit().putBoolean(SettingsKey.SYSTEM_PROXY_ENABLED, value).apply()
+        set(value) =
+            preferences.edit().putBoolean(SettingsKey.SYSTEM_PROXY_ENABLED, value).apply()
 
     var startedByUser: Boolean
         get() = preferences.getBoolean(SettingsKey.STARTED_BY_USER, false)
@@ -80,7 +103,7 @@ object Settings {
     }
 
     private suspend fun needVPNService(): Boolean {
-        if(enableTun) return true
+        if (enableTun) return true
         val filePath = activeConfigPath
         if (filePath.isBlank()) return false
         val content = JSONObject(File(filePath).readText())

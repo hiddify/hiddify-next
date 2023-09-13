@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:hiddify/core/router/routes/routes.dart';
+import 'package:hiddify/domain/singbox/singbox.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class AdvancedSettingTiles extends HookConsumerWidget {
@@ -13,6 +16,7 @@ class AdvancedSettingTiles extends HookConsumerWidget {
     final t = ref.watch(translationsProvider);
 
     final debug = ref.watch(debugModeNotifierProvider);
+    final perAppProxy = ref.watch(perAppProxyModeNotifierProvider).enabled;
 
     return Column(
       children: [
@@ -23,6 +27,33 @@ class AdvancedSettingTiles extends HookConsumerWidget {
             await const ConfigOptionsRoute().push(context);
           },
         ),
+        if (Platform.isAndroid) ...[
+          ListTile(
+            title: Text(t.settings.network.perAppProxyPageTitle),
+            leading: const Icon(Icons.apps),
+            trailing: Switch(
+              value: perAppProxy,
+              onChanged: (value) async {
+                final newMode =
+                    perAppProxy ? PerAppProxyMode.off : PerAppProxyMode.exclude;
+                await ref
+                    .read(perAppProxyModeNotifierProvider.notifier)
+                    .update(newMode);
+                if (!perAppProxy && context.mounted) {
+                  await const PerAppProxyRoute().push(context);
+                }
+              },
+            ),
+            onTap: () async {
+              if (!perAppProxy) {
+                await ref
+                    .read(perAppProxyModeNotifierProvider.notifier)
+                    .update(PerAppProxyMode.exclude);
+              }
+              if (context.mounted) await const PerAppProxyRoute().push(context);
+            },
+          ),
+        ],
         SwitchListTile(
           title: Text(t.settings.advanced.debugMode),
           value: debug,
