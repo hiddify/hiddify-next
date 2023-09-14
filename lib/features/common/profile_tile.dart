@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/core_providers.dart';
@@ -48,7 +49,6 @@ class ProfileTile extends HookConsumerWidget {
         profile.active ? theme.colorScheme.outlineVariant : Colors.transparent;
 
     return Card(
-      semanticContainer: false,
       margin: effectiveMargin,
       elevation: effectiveElevation,
       shape: RoundedRectangleBorder(
@@ -62,7 +62,10 @@ class ProfileTile extends HookConsumerWidget {
           children: [
             SizedBox(
               width: 48,
-              child: ProfileActionButton(profile, !isMain),
+              child: Semantics(
+                sortKey: const OrdinalSortKey(1),
+                child: ProfileActionButton(profile, !isMain),
+              ),
             ),
             VerticalDivider(
               width: 1,
@@ -71,9 +74,14 @@ class ProfileTile extends HookConsumerWidget {
             Flexible(
               child: Semantics(
                 button: true,
+                sortKey: isMain ? const OrdinalSortKey(0) : null,
+                focused: isMain,
+                liveRegion: isMain,
+                namesRoute: isMain,
                 label: isMain
-                    ? t.profile.overviewPageTitle
-                    : t.profile.edit.selectActiveTxt,
+                    ? t.profile.activeProfileBtnSemanticLabel
+                    : t.profile
+                        .nonActiveProfileBtnSemanticLabel(name: profile.name),
                 child: InkWell(
                   onTap: () {
                     if (isMain) {
@@ -110,6 +118,10 @@ class ProfileTile extends HookConsumerWidget {
                                   Flexible(
                                     child: Text(
                                       profile.name,
+                                      semanticsLabel: t.profile
+                                          .activeProfileNameSemanticLabel(
+                                        name: profile.name,
+                                      ),
                                       style: theme.textTheme.titleMedium,
                                     ),
                                   ),
@@ -121,6 +133,10 @@ class ProfileTile extends HookConsumerWidget {
                         else
                           Text(
                             profile.name,
+                            semanticsLabel:
+                                t.profile.nonActiveProfileNameSemanticLabel(
+                              name: profile.name,
+                            ),
                             style: theme.textTheme.titleMedium,
                           ),
                         if (subInfo != null) ...[
@@ -320,6 +336,11 @@ class ProfileSubscriptionInfo extends HookConsumerWidget {
             subInfo.total > 10 * 1099511627776 //10TB
                 ? "∞ GiB"
                 : subInfo.consumption.sizeOf(subInfo.total),
+            semanticsLabel:
+                t.profile.subscription.remainingTrafficSemanticLabel(
+              consumed: subInfo.consumption.sizeGB(),
+              total: subInfo.total.sizeGB(),
+            ),
             style: theme.textTheme.bodySmall,
           ),
         ),

@@ -1,4 +1,5 @@
 abstract class Constants {
+  static const appName = "Hiddify Next";
   static const geoipFileName = "geoip.db";
   static const geositeFileName = "geosite.db";
   static const configsFolderName = "configs";

@@ -29,10 +29,15 @@
     "profile": {
         "overviewPageTitle": "پروفایل‌ها",
         "detailsPageTitle": "پروفایل",
+        "activeProfileNameSemanticLabel": "نام پروفایل فعال: ${name}",
+        "nonActiveProfileNameSemanticLabel": "نام پروفایل: ${name}",
+        "activeProfileBtnSemanticLabel": "همه‌ی پروفایل‌ها",
+        "nonActiveProfileBtnSemanticLabel": "انتخاب ${name} به عنوان پروفایل فعال",
         "subscription": {
             "traffic": "ترافیک",
             "updatedTimeAgo": "بروزرسانی شده در ${timeago}",
             "remainingDuration": "${duration} روز باقی مانده",
+            "remainingTrafficSemanticLabel": "${consumed} از ${total} ترافیک مصرف شده",
             "expired": "منقضی شده",
             "noTraffic": "پایان ترافیک"
         },

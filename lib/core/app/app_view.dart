@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:hiddify/core/router/router.dart';
+import 'package:hiddify/domain/constants.dart';
 import 'package:hiddify/features/common/common_controllers.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -20,12 +21,13 @@ class AppView extends HookConsumerWidget with PresLogger {
     ref.watch(commonControllersProvider);
 
     return MaterialApp.router(
-      builder: (context, child) {
-        return AccessibilityTools(
-          checkFontOverflows: true,
-          child: child,
-        );
-      },
+      // builder: (context, child) {
+      //   return AccessibilityTools(
+      //     checkFontOverflows: true,
+      //     child: child,
+      //   );
+      // },
+      // showSemanticsDebugger: true,
       routerConfig: router,
       locale: locale,
       supportedLocales: AppLocaleUtils.supportedLocales,
@@ -34,7 +36,7 @@ class AppView extends HookConsumerWidget with PresLogger {
       themeMode: theme.mode,
       theme: theme.light(),
       darkTheme: theme.dark(),
-      title: 'Hiddify Next',
+      title: Constants.appName,
     );
   }
 }

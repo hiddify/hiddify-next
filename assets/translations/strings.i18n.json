@@ -29,10 +29,15 @@
     "profile": {
         "overviewPageTitle": "Profiles",
         "detailsPageTitle": "Profile",
+        "activeProfileNameSemanticLabel": "Active profile name: ${name}",
+        "nonActiveProfileNameSemanticLabel": "Profile name: ${name}",
+        "activeProfileBtnSemanticLabel": "View all profiles",
+        "nonActiveProfileBtnSemanticLabel": "Select ${name} as active",
         "subscription": {
             "traffic": "Traffic",
             "updatedTimeAgo": "Updated ${timeago}",
             "remainingDuration": "${duration} Days Remaining",
+            "remainingTrafficSemanticLabel": "${consumed} of ${total} traffic consumed",
             "expired": "Expired",
             "noTraffic": "No more traffic"
         },

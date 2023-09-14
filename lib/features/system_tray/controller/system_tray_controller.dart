@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/domain/connectivity/connectivity.dart';
+import 'package:hiddify/domain/constants.dart';
 import 'package:hiddify/features/common/connectivity/connectivity_controller.dart';
 import 'package:hiddify/features/common/window/window_controller.dart';
 import 'package:hiddify/gen/assets.gen.dart';
@@ -22,6 +23,7 @@ class SystemTrayController extends _$SystemTrayController
         _trayIconPath,
         isTemplate: Platform.isMacOS,
       );
+      if (!Platform.isLinux) await trayManager.setToolTip(Constants.appName);
       trayManager.addListener(this);
       _initialized = true;
     }
