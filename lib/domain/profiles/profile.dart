@@ -52,7 +52,12 @@ class Profile with _$Profile {
         }
       }
     }
-
+    if (title.isEmpty) {
+      final part = url.split("#").lastOrNull;
+      if (part != null) {
+        title = part;
+      }
+    }
     if (title.isEmpty) {
       final part = url.split("/").lastOrNull;
       if (part != null) {
