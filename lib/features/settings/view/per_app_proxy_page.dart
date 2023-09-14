@@ -94,8 +94,16 @@ class PerAppProxyPage extends HookConsumerWidget with PresLogger {
               title: TextFormField(
                 onChanged: (value) => searchQuery.value = value,
                 autofocus: true,
-                decoration: InputDecoration.collapsed(
+                decoration: InputDecoration(
                   hintText: "${localizations.searchFieldLabel}...",
+                  isDense: true,
+                  filled: false,
+                  border: InputBorder.none,
+                  focusedBorder: InputBorder.none,
+                  enabledBorder: InputBorder.none,
+                  errorBorder: InputBorder.none,
+                  focusedErrorBorder: InputBorder.none,
+                  disabledBorder: InputBorder.none,
                 ),
               ),
               leading: IconButton(
@@ -179,7 +187,10 @@ class PerAppProxyPage extends HookConsumerWidget with PresLogger {
                       package.name,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    subtitle: Text(package.packageName),
+                    subtitle: Text(
+                      package.packageName,
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
                     value: selected,
                     onChanged: (value) async {
                       final List<String> newSelection;
