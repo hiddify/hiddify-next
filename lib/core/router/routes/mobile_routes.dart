@@ -22,6 +22,7 @@ part 'mobile_routes.g.dart';
           path: SettingsRoute.path,
           routes: [
             TypedGoRoute<ConfigOptionsRoute>(path: ConfigOptionsRoute.path),
+            TypedGoRoute<PerAppProxyRoute>(path: PerAppProxyRoute.path),
           ],
         ),
         TypedGoRoute<AboutRoute>(path: AboutRoute.path),
@@ -80,6 +81,21 @@ class ConfigOptionsRoute extends GoRouteData {
     return const MaterialPage(
       fullscreenDialog: true,
       child: ConfigOptionsPage(),
+    );
+  }
+}
+
+class PerAppProxyRoute extends GoRouteData {
+  const PerAppProxyRoute();
+  static const path = 'per-app-proxy';
+
+  static final GlobalKey<NavigatorState> $parentNavigatorKey = rootNavigatorKey;
+
+  @override
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    return const MaterialPage(
+      fullscreenDialog: true,
+      child: PerAppProxyPage(),
     );
   }
 }

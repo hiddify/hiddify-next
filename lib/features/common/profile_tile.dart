@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:hiddify/core/router/routes/routes.dart';
@@ -32,6 +34,9 @@ class ProfileTile extends HookConsumerWidget {
       initialOnFailure: (err) {
         CustomToast.error(t.printError(err)).show(context);
       },
+      initialOnSuccess: () {
+        if (context.mounted) context.pop();
+      },
     );
 
     final subInfo = profile.subInfo;
@@ -51,86 +56,103 @@ class ProfileTile extends HookConsumerWidget {
         borderRadius: BorderRadius.circular(16),
       ),
       shadowColor: Colors.transparent,
-      child: InkWell(
-        onTap: isMain
-            ? null
-            : () {
-                if (selectActiveMutation.state.isInProgress) return;
-                if (profile.active) return;
-                selectActiveMutation.setFuture(
-                  ref
-                      .read(profilesNotifierProvider.notifier)
-                      .selectActiveProfile(profile.id),
-                );
-              },
-        child: IntrinsicHeight(
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              SizedBox(
-                width: 48,
+      child: IntrinsicHeight(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            SizedBox(
+              width: 48,
+              child: Semantics(
+                sortKey: const OrdinalSortKey(1),
                 child: ProfileActionButton(profile, !isMain),
               ),
-              VerticalDivider(
-                width: 1,
-                color: effectiveOutlineColor,
-              ),
-              Flexible(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 4,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      if (isMain)
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 4),
-                          child: Material(
-                            borderRadius: BorderRadius.circular(8),
-                            color: Colors.transparent,
-                            clipBehavior: Clip.antiAlias,
-                            child: Semantics(
-                              button: true,
-                              label: t.profile.overviewPageTitle,
-                              child: InkWell(
-                                onTap: () => const ProfilesRoute().go(context),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Flexible(
-                                      child: Text(
-                                        profile.name,
-                                        style: theme.textTheme.titleMedium,
+            ),
+            VerticalDivider(
+              width: 1,
+              color: effectiveOutlineColor,
+            ),
+            Flexible(
+              child: Semantics(
+                button: true,
+                sortKey: isMain ? const OrdinalSortKey(0) : null,
+                focused: isMain,
+                liveRegion: isMain,
+                namesRoute: isMain,
+                label: isMain
+                    ? t.profile.activeProfileBtnSemanticLabel
+                    : t.profile
+                        .nonActiveProfileBtnSemanticLabel(name: profile.name),
+                child: InkWell(
+                  onTap: () {
+                    if (isMain) {
+                      const ProfilesRoute().go(context);
+                    } else {
+                      if (selectActiveMutation.state.isInProgress) return;
+                      if (profile.active) return;
+                      selectActiveMutation.setFuture(
+                        ref
+                            .read(profilesNotifierProvider.notifier)
+                            .selectActiveProfile(profile.id),
+                      );
+                    }
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 4,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        if (isMain)
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 4),
+                            child: Material(
+                              borderRadius: BorderRadius.circular(8),
+                              color: Colors.transparent,
+                              clipBehavior: Clip.antiAlias,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Flexible(
+                                    child: Text(
+                                      profile.name,
+                                      semanticsLabel: t.profile
+                                          .activeProfileNameSemanticLabel(
+                                        name: profile.name,
                                       ),
+                                      style: theme.textTheme.titleMedium,
                                     ),
-                                    const Icon(Icons.arrow_drop_down),
-                                  ],
-                                ),
+                                  ),
+                                  const Icon(Icons.arrow_drop_down),
+                                ],
                               ),
                             ),
+                          )
+                        else
+                          Text(
+                            profile.name,
+                            semanticsLabel:
+                                t.profile.nonActiveProfileNameSemanticLabel(
+                              name: profile.name,
+                            ),
+                            style: theme.textTheme.titleMedium,
                           ),
-                        )
-                      else
-                        Text(
-                          profile.name,
-                          style: theme.textTheme.titleMedium,
-                        ),
-                      if (subInfo != null) ...[
-                        const Gap(4),
-                        RemainingTrafficIndicator(subInfo.ratio),
-                        const Gap(4),
-                        ProfileSubscriptionInfo(subInfo),
-                        const Gap(4),
+                        if (subInfo != null) ...[
+                          const Gap(4),
+                          RemainingTrafficIndicator(subInfo.ratio),
+                          const Gap(4),
+                          ProfileSubscriptionInfo(subInfo),
+                          const Gap(4),
+                        ],
                       ],
-                    ],
+                    ),
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -314,6 +336,11 @@ class ProfileSubscriptionInfo extends HookConsumerWidget {
             subInfo.total > 10 * 1099511627776 //10TB
                 ? "∞ GiB"
                 : subInfo.consumption.sizeOf(subInfo.total),
+            semanticsLabel:
+                t.profile.subscription.remainingTrafficSemanticLabel(
+              consumed: subInfo.consumption.sizeGB(),
+              total: subInfo.total.sizeGB(),
+            ),
             style: theme.textTheme.bodySmall,
           ),
         ),

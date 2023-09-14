@@ -22,17 +22,22 @@
         "stats": {
             "traffic": "Live Traffic",
             "trafficTotal": "Total Traffic",
-            "uplink": "↑",
-            "downlink": "↓"
+            "uplink": "Uplink",
+            "downlink": "Downlink"
         }
     },
     "profile": {
         "overviewPageTitle": "Profiles",
         "detailsPageTitle": "Profile",
+        "activeProfileNameSemanticLabel": "Active profile name: ${name}",
+        "nonActiveProfileNameSemanticLabel": "Profile name: ${name}",
+        "activeProfileBtnSemanticLabel": "View all profiles",
+        "nonActiveProfileBtnSemanticLabel": "Select ${name} as active",
         "subscription": {
             "traffic": "Traffic",
             "updatedTimeAgo": "Updated ${timeago}",
-            "remainingDuration": "📅 ${duration} Days Remaining",
+            "remainingDuration": "${duration} Days Remaining",
+            "remainingTrafficSemanticLabel": "${consumed} of ${total} traffic consumed",
             "expired": "Expired",
             "noTraffic": "No more traffic"
         },
@@ -56,7 +61,8 @@
             "successMsg": "Profile updated successfully"
         },
         "edit": {
-            "buttonTxt": "Edit"
+            "buttonTxt": "Edit",
+            "selectActiveTxt": "Select active profile"
         },
         "delete": {
             "buttonTxt": "Delete",
@@ -109,12 +115,26 @@
             "silentStart": "Silent Start",
             "openWorkingDir": "Open Working Directory",
             "ignoreBatteryOptimizations": "Ignore Battery Optimization",
-            "ignoreBatteryOptimizationsMsg": "Remove restrictions for optimal VPN performance"            
+            "ignoreBatteryOptimizationsMsg": "Remove restrictions for optimal VPN performance"
         },
         "advanced": {
             "sectionTitle": "Advanced",
             "debugMode": "Debug Mode",
             "debugModeMsg": "Restart the app for applying this change"
+        },
+        "network": {
+            "perAppProxyPageTitle": "Per-app Proxy",
+            "perAppProxyModes": {
+                "off": "All",
+                "offMsg": "Proxy all apps",
+                "include": "Proxy",
+                "includeMsg": "Proxy only selected apps",
+                "exclude": "Bypass",
+                "excludeMsg": "Do not proxy selected apps"
+            },
+            "showSystemApps": "Show system apps",
+            "hideSystemApps": "Hide system apps",
+            "clearSelection": "Clear selection"
         },
         "config": {
             "section": {

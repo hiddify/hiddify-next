@@ -1,41 +1,35 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:hiddify/data/repository/exception_handlers.dart';
 import 'package:hiddify/domain/app/app.dart';
 import 'package:hiddify/domain/constants.dart';
+import 'package:hiddify/domain/environment.dart';
 import 'package:hiddify/utils/custom_loggers.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
-class UpdateRepositoryImpl
+class AppRepositoryImpl
     with ExceptionHandler, InfraLogger
-    implements UpdateRepository {
-  UpdateRepositoryImpl(this.dio);
+    implements AppRepository {
+  AppRepositoryImpl(this.dio);
 
   final Dio dio;
 
-  @override
-  TaskEither<UpdateFailure, InstalledVersionInfo> getCurrentVersion() {
-    return exceptionHandler(
-      () async {
-        loggy.debug("getting current app version");
-        final packageInfo = await PackageInfo.fromPlatform();
-        return right(
-          InstalledVersionInfo(
-            version: packageInfo.version,
-            buildNumber: packageInfo.buildNumber,
-            installerMedia: packageInfo.installerStore,
-          ),
-        );
-      },
-      (error, stackTrace) {
-        loggy.warning("error getting current app version", error, stackTrace);
-        return UpdateFailure.unexpected(error, stackTrace);
-      },
+  static Future<AppInfo> getAppInfo(Environment environment) async {
+    final packageInfo = await PackageInfo.fromPlatform();
+    return AppInfo(
+      name: packageInfo.appName,
+      version: packageInfo.version,
+      buildNumber: packageInfo.buildNumber,
+      installerMedia: packageInfo.installerStore,
+      operatingSystem: Platform.operatingSystem,
+      environment: environment,
     );
   }
 
   @override
-  TaskEither<UpdateFailure, RemoteVersionInfo> getLatestVersion({
+  TaskEither<AppFailure, RemoteVersionInfo> getLatestVersion({
     bool includePreReleases = false,
   }) {
     return exceptionHandler(
@@ -44,7 +38,7 @@ class UpdateRepositoryImpl
 
         if (response.statusCode != 200 || response.data == null) {
           loggy.warning("failed to fetch latest version info");
-          return left(const UpdateFailure.unexpected());
+          return left(const AppFailure.unexpected());
         }
 
         final releases = response.data!
@@ -57,7 +51,7 @@ class UpdateRepositoryImpl
         }
         return right(latest);
       },
-      UpdateFailure.unexpected,
+      AppFailure.unexpected,
     );
   }
 }

@@ -6,6 +6,8 @@ extension ByteFormatter on int {
   static final _sizeOfFormat =
       InformationSizeFormat(permissibleValueUnits: {InformationUnit.gibibyte});
 
+  String sizeGB() => _sizeOfFormat.format(bytes());
+
   String sizeOf(int total) =>
       "${_sizeOfFormat.format(bytes())} / ${_sizeOfFormat.format(total.bytes())}";
 

@@ -22,17 +22,22 @@
         "stats": {
             "traffic": "مصرف لحظه‌ای",
             "trafficTotal": "مصرف کل",
-            "uplink": "↑",
-            "downlink": "↓"
+            "uplink": "ارسال",
+            "downlink": "دریافت"
         }
     },
     "profile": {
         "overviewPageTitle": "پروفایل‌ها",
         "detailsPageTitle": "پروفایل",
+        "activeProfileNameSemanticLabel": "نام پروفایل فعال: ${name}",
+        "nonActiveProfileNameSemanticLabel": "نام پروفایل: ${name}",
+        "activeProfileBtnSemanticLabel": "همه‌ی پروفایل‌ها",
+        "nonActiveProfileBtnSemanticLabel": "انتخاب ${name} به عنوان پروفایل فعال",
         "subscription": {
             "traffic": "ترافیک",
             "updatedTimeAgo": "بروزرسانی شده در ${timeago}",
-            "remainingDuration": "📅 ${duration} روز باقی مانده",
+            "remainingDuration": "${duration} روز باقی مانده",
+            "remainingTrafficSemanticLabel": "${consumed} از ${total} ترافیک مصرف شده",
             "expired": "منقضی شده",
             "noTraffic": "پایان ترافیک"
         },
@@ -56,7 +61,8 @@
             "successMsg": "پروفایل با موفقیت بروزرسانی شد"
         },
         "edit": {
-            "buttonTxt": "ویرایش"
+            "buttonTxt": "ویرایش",
+            "selectActiveTxt": "انتخاب پروفایل فعال"
         },
         "delete": {
             "buttonTxt": "حذف",
@@ -115,6 +121,20 @@
             "sectionTitle": "پیشرفته",
             "debugMode": "دیباگ مود",
             "debugModeMsg": "برای اعمال این تغییر اپ را ری‌استارت کنید"
+        },
+        "network": {
+            "perAppProxyPageTitle": "پراکسی برنامه‌ها",
+            "perAppProxyModes": {
+                "off": "همه",
+                "offMsg": "همه برنامه‌ها پراکسی میشوند",
+                "include": "پراکسی",
+                "includeMsg": "تنها برنامه‌های انتخاب شده پراکسی میشوند",
+                "exclude": "بایپس",
+                "excludeMsg": "همه بجز برنامه‌های انتخاب شده پراکسی میشوند"
+            },
+            "showSystemApps": "نمایش برنامه‌های سیستمی",
+            "hideSystemApps": "مخفی کردن برنامه‌های سیستمی",
+            "clearSelection": "حذف انتخاب‌ها"
         },
         "config": {
             "section": {

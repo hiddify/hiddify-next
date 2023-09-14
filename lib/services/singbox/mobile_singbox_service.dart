@@ -2,15 +2,36 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:hiddify/domain/connectivity/connection_status.dart';
 import 'package:hiddify/domain/singbox/config_options.dart';
+import 'package:hiddify/services/singbox/shared.dart';
 import 'package:hiddify/services/singbox/singbox_service.dart';
 import 'package:hiddify/utils/utils.dart';
+import 'package:rxdart/rxdart.dart';
 
-class MobileSingboxService with InfraLogger implements SingboxService {
-  late final MethodChannel _methodChannel =
-      const MethodChannel("com.hiddify.app/method");
-  late final EventChannel _logsChannel =
-      const EventChannel("com.hiddify.app/service.logs");
+class MobileSingboxService
+    with ServiceStatus, InfraLogger
+    implements SingboxService {
+  late final _methodChannel = const MethodChannel("com.hiddify.app/method");
+  late final _statusChannel =
+      const EventChannel("com.hiddify.app/service.status");
+  late final _alertsChannel =
+      const EventChannel("com.hiddify.app/service.alerts");
+  late final _logsChannel = const EventChannel("com.hiddify.app/service.logs");
+
+  late final ValueStream<ConnectionStatus> _connectionStatus;
+
+  @override
+  Future<void> init() async {
+    loggy.debug("initializing");
+    final status =
+        _statusChannel.receiveBroadcastStream().map(mapEventToStatus);
+    final alerts =
+        _alertsChannel.receiveBroadcastStream().map(mapEventToStatus);
+    _connectionStatus =
+        ValueConnectableStream(Rx.merge([status, alerts])).autoConnect();
+    await _connectionStatus.first;
+  }
 
   @override
   TaskEither<String, Unit> setup(
@@ -48,25 +69,14 @@ class MobileSingboxService with InfraLogger implements SingboxService {
   }
 
   @override
-  TaskEither<String, Unit> create(String configPath) {
-    return TaskEither(
-      () async {
-        loggy.debug("creating service for: $configPath");
-        await _methodChannel.invokeMethod(
-          "set_active_config_path",
-          {"path": configPath},
-        );
-        return right(unit);
-      },
-    );
-  }
-
-  @override
-  TaskEither<String, Unit> start() {
+  TaskEither<String, Unit> start(String configPath) {
     return TaskEither(
       () async {
         loggy.debug("starting");
-        await _methodChannel.invokeMethod("start");
+        await _methodChannel.invokeMethod(
+          "start",
+          {"path": configPath},
+        );
         return right(unit);
       },
     );
@@ -78,6 +88,20 @@ class MobileSingboxService with InfraLogger implements SingboxService {
       () async {
         loggy.debug("stopping");
         await _methodChannel.invokeMethod("stop");
+        return right(unit);
+      },
+    );
+  }
+
+  @override
+  TaskEither<String, Unit> restart(String configPath) {
+    return TaskEither(
+      () async {
+        loggy.debug("restarting");
+        await _methodChannel.invokeMethod(
+          "restart",
+          {"path": configPath},
+        );
         return right(unit);
       },
     );
@@ -99,7 +123,10 @@ class MobileSingboxService with InfraLogger implements SingboxService {
   }
 
   @override
-  Stream<String> watchStatus() {
+  Stream<ConnectionStatus> watchConnectionStatus() => _connectionStatus;
+
+  @override
+  Stream<String> watchStats() {
     // TODO: implement watchStatus
     return const Stream.empty();
   }

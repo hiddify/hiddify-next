@@ -7,18 +7,25 @@ import 'dart:isolate';
 import 'package:combine/combine.dart';
 import 'package:ffi/ffi.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:hiddify/domain/connectivity/connectivity.dart';
 import 'package:hiddify/domain/singbox/config_options.dart';
 import 'package:hiddify/gen/singbox_generated_bindings.dart';
+import 'package:hiddify/services/singbox/shared.dart';
 import 'package:hiddify/services/singbox/singbox_service.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:loggy/loggy.dart';
 import 'package:path/path.dart' as p;
+import 'package:rxdart/rxdart.dart';
 
 final _logger = Loggy('FFISingboxService');
 
-class FFISingboxService with InfraLogger implements SingboxService {
+class FFISingboxService
+    with ServiceStatus, InfraLogger
+    implements SingboxService {
   static final SingboxNativeLibrary _box = _gen();
 
+  late final ValueStream<ConnectionStatus> _connectionStatus;
+  late final ReceivePort _connectionStatusReceiver;
   Stream<String>? _statusStream;
   Stream<String>? _groupsStream;
 
@@ -40,20 +47,36 @@ class FFISingboxService with InfraLogger implements SingboxService {
   }
 
   @override
+  Future<void> init() async {
+    loggy.debug("initializing");
+    _connectionStatusReceiver = ReceivePort('service status receiver');
+    final source = _connectionStatusReceiver
+        .asBroadcastStream()
+        .map((event) => jsonDecode(event as String) as Map<String, dynamic>)
+        .map(mapEventToStatus);
+    _connectionStatus = ValueConnectableStream.seeded(
+      source,
+      const ConnectionStatus.disconnected(),
+    ).autoConnect();
+  }
+
+  @override
   TaskEither<String, Unit> setup(
     String baseDir,
     String workingDir,
     String tempDir,
   ) {
+    final port = _connectionStatusReceiver.sendPort.nativePort;
     return TaskEither(
       () => CombineWorker().execute(
         () {
+          _box.setupOnce(NativeApi.initializeApiDLData);
           _box.setup(
             baseDir.toNativeUtf8().cast(),
             workingDir.toNativeUtf8().cast(),
             tempDir.toNativeUtf8().cast(),
+            port,
           );
-          _box.setupOnce(NativeApi.initializeApiDLData);
           return right(unit);
         },
       ),
@@ -98,29 +121,14 @@ class FFISingboxService with InfraLogger implements SingboxService {
   }
 
   @override
-  TaskEither<String, Unit> create(String configPath) {
-    return TaskEither(
-      () => CombineWorker().execute(
-        () async {
-          final err = _box
-              .create(configPath.toNativeUtf8().cast())
-              .cast<Utf8>()
-              .toDartString();
-          if (err.isNotEmpty) {
-            return left(err);
-          }
-          return right(unit);
-        },
-      ),
-    );
-  }
-
-  @override
-  TaskEither<String, Unit> start() {
+  TaskEither<String, Unit> start(String configPath) {
     return TaskEither(
       () => CombineWorker().execute(
         () {
-          final err = _box.start().cast<Utf8>().toDartString();
+          final err = _box
+              .start(configPath.toNativeUtf8().cast())
+              .cast<Utf8>()
+              .toDartString();
           if (err.isNotEmpty) {
             return left(err);
           }
@@ -146,7 +154,28 @@ class FFISingboxService with InfraLogger implements SingboxService {
   }
 
   @override
-  Stream<String> watchStatus() {
+  TaskEither<String, Unit> restart(String configPath) {
+    return TaskEither(
+      () => CombineWorker().execute(
+        () {
+          final err = _box
+              .restart(configPath.toNativeUtf8().cast())
+              .cast<Utf8>()
+              .toDartString();
+          if (err.isNotEmpty) {
+            return left(err);
+          }
+          return right(unit);
+        },
+      ),
+    );
+  }
+
+  @override
+  Stream<ConnectionStatus> watchConnectionStatus() => _connectionStatus;
+
+  @override
+  Stream<String> watchStats() {
     if (_statusStream != null) return _statusStream!;
     final receiver = ReceivePort('status receiver');
     final statusStream = receiver.asBroadcastStream(

@@ -2,12 +2,14 @@ package com.hiddify.hiddify
 
 import androidx.annotation.NonNull
 import com.hiddify.hiddify.bg.BoxService
+import com.hiddify.hiddify.constant.Status
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.StandardMethodCodec
 import io.nekohasekai.libbox.Libbox
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class MethodHandler : FlutterPlugin, MethodChannel.MethodCallHandler {
@@ -18,10 +20,10 @@ class MethodHandler : FlutterPlugin, MethodChannel.MethodCallHandler {
 
         enum class Trigger(val method: String) {
             ParseConfig("parse_config"),
-            SetActiveConfigPath("set_active_config_path"),
             ChangeConfigOptions("change_config_options"),
             Start("start"),
             Stop("stop"),
+            Restart("restart"),
             SelectOutbound("select_outbound"),
             UrlTest("url_test"),
         }
@@ -55,12 +57,6 @@ class MethodHandler : FlutterPlugin, MethodChannel.MethodCallHandler {
                 }
             }
 
-            Trigger.SetActiveConfigPath.method -> {
-                val args = call.arguments as Map<*, *>
-                Settings.activeConfigPath = args["path"] as String? ?: ""
-                result.success(true)
-            }
-
             Trigger.ChangeConfigOptions.method -> {
                 result.runCatching {
                     val args = call.arguments as String
@@ -70,6 +66,8 @@ class MethodHandler : FlutterPlugin, MethodChannel.MethodCallHandler {
             }
 
             Trigger.Start.method -> {
+                val args = call.arguments as Map<*, *>
+                Settings.activeConfigPath = args["path"] as String? ?: ""
                 MainActivity.instance.startService()
                 result.success(true)
             }
@@ -77,6 +75,33 @@ class MethodHandler : FlutterPlugin, MethodChannel.MethodCallHandler {
             Trigger.Stop.method -> {
                 BoxService.stop()
                 result.success(true)
+            }
+
+            Trigger.Restart.method -> {
+                GlobalScope.launch {
+                    result.runCatching {
+                        val args = call.arguments as Map<*, *>
+                        Settings.activeConfigPath = args["path"] as String? ?: ""
+                        val mainActivity = MainActivity.instance
+                        val started = mainActivity.serviceStatus.value == Status.Started
+                        if (!started) return@launch success(true)
+                        val restart = Settings.rebuildServiceMode()
+                        if (restart) {
+                            mainActivity.reconnect()
+                            BoxService.stop()
+                            delay(200)
+                            mainActivity.startService()
+                            success(true)
+                            return@launch
+                        }
+                        runCatching {
+                            Libbox.newStandaloneCommandClient().serviceReload()
+                            success(true)
+                        }.onFailure {
+                            error(it)
+                        }
+                    }
+                }
             }
 
             Trigger.SelectOutbound.method -> {

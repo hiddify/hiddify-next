@@ -45,7 +45,7 @@ class Profile with _$Profile {
     if (title.isEmpty) {
       final contentDisposition = headers['content-disposition']?.single;
       if (contentDisposition != null) {
-        final RegExp regExp = RegExp(r'filename="([^"]*)"');
+        final RegExp regExp = RegExp('filename="([^"]*)"');
         final match = regExp.firstMatch(contentDisposition);
         if (match != null && match.groupCount >= 1) {
           title = match.group(1) ?? '';

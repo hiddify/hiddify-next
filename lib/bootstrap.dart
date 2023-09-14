@@ -5,10 +5,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hiddify/core/app/app.dart';
+import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:hiddify/data/data_providers.dart';
+import 'package:hiddify/data/repository/app_repository_impl.dart';
+import 'package:hiddify/domain/environment.dart';
 import 'package:hiddify/features/common/active_profile/active_profile_notifier.dart';
-import 'package:hiddify/features/common/common.dart';
 import 'package:hiddify/features/common/window/window_controller.dart';
 import 'package:hiddify/features/system_tray/system_tray.dart';
 import 'package:hiddify/services/auto_start_service.dart';
@@ -23,15 +25,22 @@ import 'package:window_manager/window_manager.dart';
 final _loggy = Loggy('bootstrap');
 final _stopWatch = Stopwatch();
 
-Future<void> lazyBootstrap(WidgetsBinding widgetsBinding) async {
+Future<void> lazyBootstrap(
+  WidgetsBinding widgetsBinding,
+  Environment env,
+) async {
   _stopWatch.start();
 
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   if (PlatformUtils.isDesktop) await windowManager.ensureInitialized();
 
+  final appInfo = await AppRepositoryImpl.getAppInfo(env);
   final sharedPreferences = await SharedPreferences.getInstance();
   final container = ProviderContainer(
-    overrides: [sharedPreferencesProvider.overrideWithValue(sharedPreferences)],
+    overrides: [
+      appInfoProvider.overrideWithValue(appInfo),
+      sharedPreferencesProvider.overrideWithValue(sharedPreferences),
+    ],
   );
 
   final debug = container.read(debugModeNotifierProvider) || kDebugMode;
@@ -40,7 +49,9 @@ Future<void> lazyBootstrap(WidgetsBinding widgetsBinding) async {
   await filesEditor.init();
 
   initLoggers(container.read, debug);
-  await container.read(runtimeDetailsServiceProvider).init();
+  _loggy.info(
+    "os: [${Platform.operatingSystem}](${Platform.operatingSystemVersion}), processor count [${Platform.numberOfProcessors}]",
+  );
   _loggy.info("basic setup took [${_stopWatch.elapsedMilliseconds}]ms");
 
   final silentStart = container.read(silentStartNotifierProvider);
@@ -90,8 +101,7 @@ Future<void> initAppServices(
   _loggy.debug("initializing app services");
   await Future.wait(
     [
-      read(connectivityServiceProvider).init(),
-      read(notificationServiceProvider).init(),
+      read(singboxServiceProvider).init(),
     ],
   );
   _loggy.debug('initialized app services');
@@ -105,7 +115,6 @@ Future<void> initControllers(
     [
       read(activeProfileProvider.future),
       read(deepLinkServiceProvider.future),
-      read(runtimeDetailsNotifierProvider.future),
       if (PlatformUtils.isDesktop) read(systemTrayControllerProvider.future),
     ],
   );

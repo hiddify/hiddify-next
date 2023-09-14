@@ -24,24 +24,28 @@ class StatsOverview extends HookConsumerWidget {
           _StatCard(
             title: t.home.stats.traffic,
             firstStat: (
-              label: t.home.stats.uplink,
+              label: "↑",
               data: stats.uplink.speed(),
+              semanticLabel: t.home.stats.uplink,
             ),
             secondStat: (
-              label: t.home.stats.downlink,
+              label: "↓",
               data: stats.downlink.speed(),
+              semanticLabel: t.home.stats.downlink,
             ),
           ),
           const Gap(8),
           _StatCard(
             title: t.home.stats.trafficTotal,
             firstStat: (
-              label: t.home.stats.uplink,
+              label: "↑",
               data: stats.uplinkTotal.size(),
+              semanticLabel: t.home.stats.uplink,
             ),
             secondStat: (
-              label: t.home.stats.downlink,
+              label: "↓",
               data: stats.downlinkTotal.size(),
+              semanticLabel: t.home.stats.downlink,
             ),
           ),
         ],
@@ -58,8 +62,8 @@ class _StatCard extends HookConsumerWidget {
   });
 
   final String title;
-  final ({String label, String data}) firstStat;
-  final ({String label, String data}) secondStat;
+  final ({String label, String data, String semanticLabel}) firstStat;
+  final ({String label, String data, String semanticLabel}) secondStat;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -80,7 +84,8 @@ class _StatCard extends HookConsumerWidget {
               children: [
                 Text(
                   firstStat.label,
-                  style: TextStyle(color: Colors.green),
+                  semanticsLabel: firstStat.semanticLabel,
+                  style: const TextStyle(color: Colors.green),
                 ),
                 Text(
                   firstStat.data,
@@ -93,7 +98,8 @@ class _StatCard extends HookConsumerWidget {
               children: [
                 Text(
                   secondStat.label,
-                  style: TextStyle(color: Colors.red),
+                  semanticsLabel: secondStat.semanticLabel,
+                  style: TextStyle(color: theme.colorScheme.error),
                 ),
                 Text(
                   secondStat.data,

@@ -1,3 +1,3 @@
-export 'update_failure.dart';
-export 'update_repository.dart';
-export 'version_info.dart';
+export 'app_failure.dart';
+export 'app_info.dart';
+export 'app_repository.dart';

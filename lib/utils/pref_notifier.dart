@@ -20,7 +20,7 @@ class Pref<T> with InfraLogger {
 
   /// Updates the value asynchronously.
   Future<void> update(T value) async {
-    loggy.debug("updating preference [$key] to [$value]");
+    loggy.debug("updating preference [$key]($T) to [$value]");
     try {
       if (mapTo != null && mapFrom != null) {
         await prefs.setString(key, mapTo!(value));
@@ -45,10 +45,12 @@ class Pref<T> with InfraLogger {
 
   T getValue() {
     try {
-      loggy.debug("getting persisted preference [$key]");
+      loggy.debug("getting persisted preference [$key]($T)");
       if (mapTo != null && mapFrom != null) {
         final persisted = prefs.getString(key);
         return persisted != null ? mapFrom!(persisted) : defaultValue;
+      } else if (T == List<String>) {
+        return prefs.getStringList(key) as T ?? defaultValue;
       }
       return prefs.get(key) as T? ?? defaultValue;
     } catch (e) {

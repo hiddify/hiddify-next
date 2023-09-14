@@ -1,4 +1,5 @@
 import 'package:fpdart/fpdart.dart';
+import 'package:hiddify/domain/connectivity/connectivity.dart';
 import 'package:hiddify/domain/core_service_failure.dart';
 import 'package:hiddify/domain/singbox/config_options.dart';
 import 'package:hiddify/domain/singbox/core_status.dart';
@@ -13,11 +14,11 @@ abstract interface class SingboxFacade {
     ConfigOptions options,
   );
 
-  TaskEither<CoreServiceFailure, Unit> changeConfig(String fileName);
-
-  TaskEither<CoreServiceFailure, Unit> start();
+  TaskEither<CoreServiceFailure, Unit> start(String fileName);
 
   TaskEither<CoreServiceFailure, Unit> stop();
+
+  TaskEither<CoreServiceFailure, Unit> restart(String fileName);
 
   Stream<Either<CoreServiceFailure, List<OutboundGroup>>> watchOutbounds();
 
@@ -27,6 +28,8 @@ abstract interface class SingboxFacade {
   );
 
   TaskEither<CoreServiceFailure, Unit> urlTest(String groupTag);
+
+  Stream<ConnectionStatus> watchConnectionStatus();
 
   Stream<Either<CoreServiceFailure, CoreStatus>> watchCoreStatus();
 

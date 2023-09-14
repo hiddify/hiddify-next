@@ -6,6 +6,7 @@ import android.content.pm.PackageManager.NameNotFoundException
 import android.net.ProxyInfo
 import android.net.VpnService
 import android.os.Build
+import com.hiddify.hiddify.constant.PerAppProxyMode
 import io.nekohasekai.libbox.TunOptions
 
 class VPNService : VpnService(), PlatformInterfaceWrapper {
@@ -87,7 +88,7 @@ class VPNService : VpnService(), PlatformInterfaceWrapper {
 
             if (Settings.perAppProxyEnabled) {
                 val appList = Settings.perAppProxyList
-                if (Settings.perAppProxyMode == Settings.PER_APP_PROXY_INCLUDE) {
+                if (Settings.perAppProxyMode == PerAppProxyMode.INCLUDE) {
                     appList.forEach {
                         try {
                             builder.addAllowedApplication(it)

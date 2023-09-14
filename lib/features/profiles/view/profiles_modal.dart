@@ -125,7 +125,10 @@ class ProfilesSortModal extends HookConsumerWidget {
                               icon: AnimatedRotation(
                                 turns: arrowTurn,
                                 duration: const Duration(milliseconds: 100),
-                                child: const Icon(Icons.arrow_upward),
+                                child: Icon(
+                                  Icons.arrow_upward,
+                                  semanticLabel: sort.mode.name,
+                                ),
                               ),
                             )
                           : null,

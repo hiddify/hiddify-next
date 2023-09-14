@@ -14,7 +14,7 @@
 
 
 ## Support
-- V2Ray Subscription link
+- V2Ray Subscription link (e.g., vless:// vmess:// ss:// trojan:// tuic://)
 - Clash / Clash Meta link
 - Singbox Config
 
