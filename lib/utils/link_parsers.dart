@@ -16,12 +16,12 @@ abstract class LinkParser {
     final uri = Uri.parse(link.trim());
     final params = uri.queryParameters;
     return (
-      url: uri
-          .replace(queryParameters: {})
-          .toString()
-          .removeSuffix('?')
-          .split('&')
-          .first,
+      url: uri.toString(),
+      // .replace(queryParameters: {})
+      // .toString()
+      // .removeSuffix('?')
+      // .split('&')
+      // .first,
       name: params['name'] ?? '',
     );
   }
