@@ -119,7 +119,7 @@ release:          ## Create a new tag for release.
 	# ./update_translations.sh && \
 	# git add assets/translations/* && \
 	git commit -m "release: version $${TAG} 🚀" && \
-	echo "creating git tag : $${TAG}" && \
-	git tag $${TAG} && \
+	echo "creating git tag : v$${TAG}" && \
+	git tag v$${TAG} && \
 	git push -u origin HEAD --tags && \
 	echo "Github Actions will detect the new tag and release the new version."'
