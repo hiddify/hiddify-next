@@ -117,8 +117,8 @@ release:          ## Create a new tag for release.
 	git add pubspec.yaml changelog.md && \
 	# ./update_translations.sh && \
 	# git add assets/translations/* && \
-	#git commit -m "release: version $${TAG} 🚀" && \
+	git commit -m "release: version $${TAG} 🚀" && \
 	echo "creating git tag : $${TAG}" && \
-	#@git tag $${TAG} && \
-	#@git push -u origin HEAD --tags && \
+	@git tag $${TAG} && \
+	@git push -u origin HEAD --tags && \
 	echo "Github Actions will detect the new tag and release the new version."'
