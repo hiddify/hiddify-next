@@ -173,6 +173,15 @@ class ProfilesRepositoryImpl
     );
   }
 
+  final _subInfoHeaders = [
+    'profile-title',
+    'content-disposition',
+    'subscription-userinfo',
+    'profile-update-interval',
+    'support-url',
+    'profile-web-page-url',
+  ];
+
   @visibleForTesting
   TaskEither<ProfileFailure, Profile> fetch(
     String url,
@@ -182,8 +191,7 @@ class ProfilesRepositoryImpl
       () async {
         final path = filesEditor.configPath(fileName);
         final response = await dio.download(url.trim(), path);
-        final content = await File(path).readAsString();
-        final headers = addHeadersFromBody(response.headers.map, content);
+        final headers = await _populateHeaders(response.headers.map, path);
         final parseResult = await singbox.parseConfig(path).run();
         return parseResult.fold(
           (l) async {
@@ -200,33 +208,37 @@ class ProfilesRepositoryImpl
     );
   }
 
-  Map<String, List<String>> addHeadersFromBody(
+  Future<Map<String, List<String>>> _populateHeaders(
     Map<String, List<String>> headers,
-    String responseString,
-  ) {
-    final content = safeDecodeBase64(responseString);
-    final allowedHeaders = [
-      'profile-title',
-      'content-disposition',
-      'subscription-userinfo',
-      'profile-update-interval',
-      'support-url',
-      'profile-web-page-url',
-    ];
-    for (final text in content.split("\n")) {
-      if (text.startsWith("#") || text.startsWith("//")) {
-        final index = text.indexOf(':');
+    String path,
+  ) async {
+    var headersFound = 0;
+    for (final key in _subInfoHeaders) {
+      if (headers.containsKey(key)) headersFound++;
+    }
+    if (headersFound >= 4) return headers;
+
+    loggy.debug(
+      "only [$headersFound] headers found, checking file content for possible information",
+    );
+    var content = await File(path).readAsString();
+    content = safeDecodeBase64(content);
+    final lines = content.split("\n");
+    for (int i = 0; i < 10; i++) {
+      final line = lines[i];
+      if (line.startsWith("#") || line.startsWith("//")) {
+        final index = line.indexOf(':');
         if (index == -1) continue;
-        final headerTitle = text
+        final key = line
             .substring(0, index)
             .replaceFirst(RegExp("^#|//"), "")
             .trim()
             .toLowerCase();
-        final headerValue = text.substring(index + 1).trim();
-        if (!headers.keys.contains(headerTitle) &&
-            allowedHeaders.contains(headerTitle) &&
-            headerValue.isNotEmpty) {
-          headers[headerTitle] = [headerValue];
+        final value = line.substring(index + 1).trim();
+        if (!headers.keys.contains(key) &&
+            _subInfoHeaders.contains(key) &&
+            value.isNotEmpty) {
+          headers[key] = [value];
         }
       }
     }
