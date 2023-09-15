@@ -212,7 +212,7 @@ jobs:
           serviceAccountJson: service_account.json
           packageName: app.hiddify.com
           releaseName: ${{ github.ref }}
-          releaseFiles: ./build/app/outputs/bundle/release/hiddify-android-market.aab
+          releaseFiles: ./build/app/outputs/bundle/release/app-release.aab
           track: internal
 
   upload-prerelease:
