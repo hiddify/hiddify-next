@@ -201,21 +201,8 @@ jobs:
           path: ./out
           retention-days: 2
 
-      - name: Create service_account.json
-        if: matrix.platform == 'android-aab' && github.ref_type=='tag'
-        run: echo '${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}' > service_account.json
 
-      - name: Deploy to Internal Testers
-        if: matrix.platform == 'android-aab' && github.ref_type=='tag'
-        uses: r0adkll/upload-google-play@v1
-        with:
-          serviceAccountJson: service_account.json
-          packageName: app.hiddify.com
-          releaseName: ${{ github.ref }}
-          releaseFiles: ./build/app/outputs/bundle/release/app-release.aab
-          track: internal
-
-  upload-prerelease:
+  upload-draft:
     permissions: write-all
     if: ${{ github.ref_type=='branch' }}
     needs: [build]
@@ -273,3 +260,16 @@ jobs:
           prerelease: ${{ contains(github.ref_name,'dev') }}
           tag_name: ${{ github.ref_name }}
           files: ./out/*
+
+      - name: Create service_account.json
+        if: matrix.platform == 'android-aab' && github.ref_type=='tag'
+        run: echo '${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}' > service_account.json
+
+      - name: Deploy to Internal Testers
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJson: service_account.json
+          packageName: app.hiddify.com
+          releaseName: ${{ github.ref }}
+          releaseFiles: ./out/hiddify-android-market.aab
+          track: internal
