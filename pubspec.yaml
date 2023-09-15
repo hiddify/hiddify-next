@@ -129,7 +129,7 @@ icons_launcher:
       # adaptive_background_color: "#ffffff"
       adaptive_background_image: "assets/images/source/ic_launcher_background.png"
       adaptive_foreground_image: "assets/images/source/ic_launcher_foreground.png"
-      adaptive_round_image: "assets/images/source/ic_launcher_round.png"
+      adaptive_round_image: "assets/images/source/ic_launcher_rounded.png"
       adaptive_monochrome_image: "assets/images/source/ic_launcher_monochrome.png"
     ios:
       enable: true
