@@ -214,7 +214,6 @@ class ProfilesRepositoryImpl
       'profile-web-page-url',
     ];
     for (final text in content.split("\n")) {
-      print(text);
       if (text.startsWith("#") || text.startsWith("//")) {
         final index = text.indexOf(':');
         if (index == -1) continue;
