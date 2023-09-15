@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/core/router/router.dart';
-import 'package:hiddify/domain/environment.dart';
 import 'package:hiddify/domain/failures.dart';
 import 'package:hiddify/features/common/active_profile/active_profile_notifier.dart';
 import 'package:hiddify/features/common/active_profile/has_any_profile_notifier.dart';
@@ -88,11 +87,7 @@ class AppVersionLabel extends HookConsumerWidget {
     final t = ref.watch(translationsProvider);
     final theme = Theme.of(context);
 
-    final appInfo = ref.watch(appInfoProvider);
-    final version = appInfo.version +
-        (appInfo.environment == Environment.prod
-            ? ""
-            : " ${appInfo.environment.name}");
+    final version = ref.watch(appInfoProvider).presentVersion;
     if (version.isBlank) return const SizedBox();
 
     return Semantics(

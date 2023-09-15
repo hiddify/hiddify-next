@@ -21,6 +21,7 @@ else
 FLAVOR=dev
 endif
 TARGET=lib/main_$(FLAVOR).dart
+DISTRIBUTOR_ARGS=$(DISTRIBUTOR_ARGS)
 
 get:
 	flutter pub get
@@ -40,13 +41,13 @@ android-aab-release:
 	flutter build appbundle --target $(TARGET) --dart-define release=google-play
 
 windows-release:
-	flutter_distributor package --platform windows --targets exe --skip-clean --build-target $(TARGET)
+	flutter_distributor package --platform windows --targets exe $(DISTRIBUTOR_ARGS)
 
 linux-release:
-	flutter_distributor package --platform linux --targets appimage --skip-clean --build-target $(TARGET)
+	flutter_distributor package --platform linux --targets appimage $(DISTRIBUTOR_ARGS)
 
 macos-release:
-	flutter_distributor package --platform macos --targets dmg --skip-clean --build-target $(TARGET)
+	flutter_distributor package --platform macos --targets dmg $(DISTRIBUTOR_ARGS)
 
 ios-release: #not tested
 	flutter_distributor package --platform ios --targets ipa --build-export-options-plist  ios/exportOptions.plist --build-target $(TARGET)

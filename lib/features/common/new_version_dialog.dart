@@ -62,7 +62,7 @@ class NewVersionDialog extends HookConsumerWidget {
                   style: theme.textTheme.bodySmall,
                 ),
                 TextSpan(
-                  text: newVersion.fullVersion,
+                  text: newVersion.presentVersion,
                   style: theme.textTheme.labelMedium,
                 ),
               ],

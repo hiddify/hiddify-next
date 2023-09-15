@@ -25,7 +25,7 @@ class AboutPage extends HookConsumerWidget {
         switch (next) {
           case AsyncData(value: final remoteVersion?):
             await NewVersionDialog(
-              appInfo.version,
+              appInfo.presentVersion,
               remoteVersion,
               canIgnore: false,
             ).show(context);
@@ -59,7 +59,7 @@ class AboutPage extends HookConsumerWidget {
                       ),
                       const Gap(4),
                       Text(
-                        "${t.about.version} ${appInfo.version}",
+                        "${t.about.version} ${appInfo.presentVersion}",
                       ),
                     ],
                   ),

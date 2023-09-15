@@ -29,8 +29,7 @@ class AppUpdateNotifier extends _$AppUpdateNotifier with AppLogger {
         throw l;
       },
       (remote) {
-        if (remote.version.replaceAll(".dev", "").compareTo(currentVersion) >
-            0) {
+        if (remote.version.compareTo(currentVersion) > 0) {
           loggy.info("new version available: $remote");
           return remote;
         }
