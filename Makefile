@@ -109,16 +109,17 @@ release:          ## Create a new tag for release.
 	[[ "$$TAG" =~ ^[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{1,2}(\.dev)?$$ ]] || { echo "Incorrect tag. e.g., 1.2.3 or 1.2.3.dev"; exit 1; } && \
 	IFS="." read -r -a VERSION_ARRAY <<< "$$TAG" && \
 	BUILD_NUMBER=$$(( $${VERSION_ARRAY[0]} * 10000 + $${VERSION_ARRAY[1]} * 100 + $${VERSION_ARRAY[2]} )) && \
-	echo "version: $${TAG}+$${BUILD_NUMBER}" && \
-	sed -i "s/version: .*/version: $${TAG}+$${BUILD_NUMBER}/g" pubspec.yaml && \
-	git tag $${TAG} && \
-	gitchangelog > changelog.md || { git tag -d $${TAG}; echo "Please run pip install gitchangelog"; exit 2; } && \
-	git tag -d $${TAG} && \
+	VERSION_STR="$${VERSION_ARRAY[0]}.$${VERSION_ARRAY[1]}.$${VERSION_ARRAY[2]}" && \
+	echo "version: $${VERSION_STR}+$${BUILD_NUMBER}" && \
+	sed -i "s/version: .*/version: $${VERSION_STR}+$${BUILD_NUMBER}/g" pubspec.yaml && \
+	git tag $${TAG} > /dev/null && \
+	gitchangelog > changelog.md || { git tag -d $${TAG}; echo "Please run pip install git gitchangelog pystache mustache markdown"; exit 2; } && \
+	git tag -d $${TAG} > /dev/null && \
 	git add pubspec.yaml changelog.md && \
 	# ./update_translations.sh && \
 	# git add assets/translations/* && \
 	git commit -m "release: version $${TAG} 🚀" && \
 	echo "creating git tag : $${TAG}" && \
-	@git tag $${TAG} && \
-	@git push -u origin HEAD --tags && \
+	git tag $${TAG} && \
+	git push -u origin HEAD --tags && \
 	echo "Github Actions will detect the new tag and release the new version."'
