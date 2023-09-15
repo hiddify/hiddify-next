@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
@@ -190,7 +191,8 @@ class ProfilesRepositoryImpl
           },
           (_) async {
             final responseString = await File(path).readAsString();
-            final headers = addHeadersFromBody(response.headers.map, responseString);
+            final headers =
+                addHeadersFromBody(response.headers.map, responseString);
             final profile = Profile.fromResponse(url, headers);
             return right(profile);
           },
@@ -203,15 +205,16 @@ class ProfilesRepositoryImpl
     Map<String, List<String>> headers,
     String responseString,
   ) {
+    final content = safeDecodeBase64(responseString);
     final allowedHeaders = [
       'profile-title',
       'content-disposition',
       'subscription-userinfo',
       'profile-update-interval',
       'support-url',
-      'profile-web-page-url'
+      'profile-web-page-url',
     ];
-    for (final text in responseString.split("\n")) {
+    for (final text in content.split("\n")) {
       if (text.startsWith("#") || text.startsWith("//")) {
         final index = text.indexOf(':');
         if (index == -1) continue;
@@ -229,5 +232,13 @@ class ProfilesRepositoryImpl
       }
     }
     return headers;
+  }
+
+  String safeDecodeBase64(String str) {
+    try {
+      return utf8.decode(base64.decode(str));
+    } catch (e) {
+      return str;
+    }
   }
 }
