@@ -11,6 +11,8 @@
 
 #### Fix
 
+* Bug ini ci to google play. 
+
 * Tag version issue. 
 
 * Ci bug. 
@@ -20,6 +22,8 @@
 * Bug. 
 
 #### Other
+
+* Better manage the market release. 
 
 * Update. 
 
