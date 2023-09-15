@@ -11,7 +11,15 @@ class AppUpdateNotifier extends _$AppUpdateNotifier with AppLogger {
   @override
   Future<RemoteVersionInfo?> build() async {
     loggy.debug("checking for update");
-    final currentVersion = ref.watch(appInfoProvider).version;
+    final appInfo = ref.watch(appInfoProvider);
+    // TODO use market-specific update checkers
+    if (!appInfo.release.allowCustomUpdateChecker) {
+      loggy.debug(
+        "custom update checkers are not allowed for [${appInfo.release.name}] release",
+      );
+      return null;
+    }
+    final currentVersion = appInfo.version;
     return ref
         .watch(appRepositoryProvider)
         .getLatestVersion(includePreReleases: true)
@@ -27,7 +35,8 @@ class AppUpdateNotifier extends _$AppUpdateNotifier with AppLogger {
           return remote;
         }
         loggy.info(
-            "already using latest version[$currentVersion], remote: $remote");
+          "already using latest version[$currentVersion], remote: $remote",
+        );
         return null;
       },
     ).run();

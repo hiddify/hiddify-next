@@ -22,20 +22,25 @@ class AppRepositoryImpl
       name: packageInfo.appName,
       version: packageInfo.version,
       buildNumber: packageInfo.buildNumber,
+      release: Release.read(),
       installerMedia: packageInfo.installerStore,
       operatingSystem: Platform.operatingSystem,
       environment: environment,
     );
   }
 
+  // TODO add market-specific update checking
   @override
   TaskEither<AppFailure, RemoteVersionInfo> getLatestVersion({
     bool includePreReleases = false,
+    Release release = Release.general,
   }) {
     return exceptionHandler(
       () async {
+        if (!release.allowCustomUpdateChecker) {
+          throw Exception("custom update checkers are not supported");
+        }
         final response = await dio.get<List>(Constants.githubReleasesApiUrl);
-
         if (response.statusCode != 200 || response.data == null) {
           loggy.warning("failed to fetch latest version info");
           return left(const AppFailure.unexpected());

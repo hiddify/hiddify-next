@@ -88,19 +88,20 @@ class AboutPage extends HookConsumerWidget {
                     );
                   },
                 ),
-                ListTile(
-                  title: Text(t.about.checkForUpdate),
-                  trailing: appUpdate.isLoading
-                      ? const SizedBox(
-                          width: 24,
-                          height: 24,
-                          child: CircularProgressIndicator(),
-                        )
-                      : const Icon(Icons.update),
-                  onTap: () {
-                    ref.invalidate(appUpdateNotifierProvider);
-                  },
-                ),
+                if (appInfo.release.allowCustomUpdateChecker)
+                  ListTile(
+                    title: Text(t.about.checkForUpdate),
+                    trailing: appUpdate.isLoading
+                        ? const SizedBox(
+                            width: 24,
+                            height: 24,
+                            child: CircularProgressIndicator(),
+                          )
+                        : const Icon(Icons.update),
+                    onTap: () {
+                      ref.invalidate(appUpdateNotifierProvider);
+                    },
+                  ),
                 ListTile(
                   title: Text(t.settings.general.openWorkingDir),
                   trailing: const Icon(Icons.arrow_outward_outlined),

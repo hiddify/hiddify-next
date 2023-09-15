@@ -13,6 +13,7 @@ class AppInfo with _$AppInfo {
     required String name,
     required String version,
     required String buildNumber,
+    required Release release,
     String? installerMedia,
     required String operatingSystem,
     required Environment environment,

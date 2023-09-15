@@ -33,11 +33,11 @@ translate:
 
 android-release: android-apk-release
 
-android-apk-release: 
+android-apk-release:
 	flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi --target $(TARGET)
 
 android-aab-release:
-	flutter build appbundle --target $(TARGET)
+	flutter build appbundle --target $(TARGET) --dart-define release=google-play
 
 windows-release:
 	flutter_distributor package --platform windows --targets exe --skip-clean --build-target $(TARGET)
