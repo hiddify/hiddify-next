@@ -182,6 +182,8 @@ class ProfilesRepositoryImpl
       () async {
         final path = filesEditor.configPath(fileName);
         final response = await dio.download(url.trim(), path);
+        final content = await File(path).readAsString();
+        final headers = addHeadersFromBody(response.headers.map, content);
         final parseResult = await singbox.parseConfig(path).run();
         return parseResult.fold(
           (l) async {
@@ -190,9 +192,6 @@ class ProfilesRepositoryImpl
             return left(ProfileFailure.invalidConfig(l.msg));
           },
           (_) async {
-            final responseString = await File(path).readAsString();
-            final headers =
-                addHeadersFromBody(response.headers.map, responseString);
             final profile = Profile.fromResponse(url, headers);
             return right(profile);
           },
@@ -215,6 +214,7 @@ class ProfilesRepositoryImpl
       'profile-web-page-url',
     ];
     for (final text in content.split("\n")) {
+      print(text);
       if (text.startsWith("#") || text.startsWith("//")) {
         final index = text.indexOf(':');
         if (index == -1) continue;
