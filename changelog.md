@@ -5,6 +5,8 @@
 
 #### New
 
+* Add support for base64 sublink for header from content. 
+
 * Add profile headers from comments in response! good for hosting in github and show information. 
 
 * Automated version release. 
@@ -12,6 +14,16 @@
 * Send release versions only to play market add pre-release version. 
 
 #### Fix
+
+* If .dev is exist in the version do not show update needed. 
+
+* Keep the link as it is. fix the issue with & 
+
+* Dependency issue. 
+
+* Remove extra print. 
+
+* Bug in get headers from body. 
 
 * Bug ini ci to google play. 
 
