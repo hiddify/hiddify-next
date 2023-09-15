@@ -162,7 +162,7 @@ jobs:
           xcopy /s /v D:\a\hiddify-next\hiddify-next\build\windows\runner\Release\ .\HiddifyNext-portable\
           Compress-Archive HiddifyNext-portable out\hiddify-${{ matrix.platform }}-x64-portable.zip
 
-      - name: Copy to out Android aab
+      - name: Copy to out Android apk
         if: matrix.platform == 'android-apk'
         run: |
           mkdir out
@@ -173,7 +173,7 @@ jobs:
           mv ./build/app/outputs/flutter-apk/app-release.apk out/hiddify-android-universal.apk || echo "no universal apk"
 
       - name: Copy to out Android aab
-        if: matrix.platform == 'android-apk'
+        if: matrix.platform == 'android-aab'
         run: |
           mkdir out
           ls -R ./build/app/outputs
