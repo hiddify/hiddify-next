@@ -19,6 +19,8 @@
 
 #### Other
 
+* Update. 
+
 * Merge branch 'main' of https://github.com/hiddify/hiddify-next. 
 
 * Improve accessability. 
