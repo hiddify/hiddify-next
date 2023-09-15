@@ -21,7 +21,7 @@ else
 FLAVOR=dev
 endif
 TARGET=lib/main_$(FLAVOR).dart
-DISTRIBUTOR_ARGS=$(DISTRIBUTOR_ARGS)
+DISTRIBUTOR_ARGS=--skip-clean --build-target $(TARGET)
 
 get:
 	flutter pub get
@@ -50,7 +50,7 @@ macos-release:
 	flutter_distributor package --platform macos --targets dmg $(DISTRIBUTOR_ARGS)
 
 ios-release: #not tested
-	flutter_distributor package --platform ios --targets ipa --build-export-options-plist  ios/exportOptions.plist --build-target $(TARGET)
+	flutter_distributor package --platform ios --targets ipa --build-export-options-plist  ios/exportOptions.plist $(DISTRIBUTOR_ARGS)
 
 
 android-libs:
