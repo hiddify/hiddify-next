@@ -51,9 +51,13 @@ macos-release:
 ios-release: #not tested
 	flutter_distributor package --platform ios --targets ipa --build-export-options-plist  ios/exportOptions.plist --build-target $(TARGET)
 
+
 android-libs:
 	mkdir -p $(ANDROID_OUT)
 	curl -L $(CORE_URL)/$(CORE_NAME)-android.aar.gz | gunzip > $(ANDROID_OUT)/libcore.aar
+
+android-apk-libs: android-libs
+android-aab-libs: android-libs
 
 windows-libs:
 	mkdir -p $(DESKTOP_OUT)
