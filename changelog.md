@@ -5,6 +5,8 @@
 
 #### New
 
+* Add profile headers from comments in response! good for hosting in github and show information. 
+
 * Automated version release. 
 
 * Send release versions only to play market add pre-release version. 
