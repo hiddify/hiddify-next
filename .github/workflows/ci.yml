@@ -262,10 +262,9 @@ jobs:
           files: ./out/*
 
       - name: Create service_account.json
-        if: matrix.platform == 'android-aab' && github.ref_type=='tag'
         run: echo '${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}' > service_account.json
 
-      - name: Deploy to Internal Testers
+      - name: Deploy to Google Play Internal Testers
         uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJson: service_account.json

@@ -188,12 +188,46 @@ class ProfilesRepositoryImpl
             loggy.warning("error parsing config: $l");
             return left(ProfileFailure.invalidConfig(l.msg));
           },
-          (_) {
-            final profile = Profile.fromResponse(url, response.headers.map);
+          (_) async {
+            final responseString = await File(path).readAsString();
+            final headers = addHeadersFromBody(response.headers.map, responseString);
+            final profile = Profile.fromResponse(url, headers);
             return right(profile);
           },
         );
       },
     );
+  }
+
+  Map<String, List<String>> addHeadersFromBody(
+    Map<String, List<String>> headers,
+    String responseString,
+  ) {
+    final allowedHeaders = [
+      'profile-title',
+      'content-disposition',
+      'subscription-userinfo',
+      'profile-update-interval',
+      'support-url',
+      'profile-web-page-url'
+    ];
+    for (final text in responseString.split("\n")) {
+      if (text.startsWith("#") || text.startsWith("//")) {
+        final index = text.indexOf(':');
+        if (index == -1) continue;
+        final headerTitle = text
+            .substring(0, index)
+            .replaceFirst(RegExp("^#|//"), "")
+            .trim()
+            .toLowerCase();
+        final headerValue = text.substring(index + 1).trim();
+        if (!headers.keys.contains(headerTitle) &&
+            allowedHeaders.contains(headerTitle) &&
+            headerValue.isNotEmpty) {
+          headers[headerTitle] = [headerValue];
+        }
+      }
+    }
+    return headers;
   }
 }

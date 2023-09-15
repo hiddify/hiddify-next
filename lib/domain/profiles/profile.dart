@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:dartx/dartx.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -25,11 +26,9 @@ class Profile with _$Profile {
     ProfileExtra? extra,
   }) = _Profile;
 
-  factory Profile.fromResponse(
-    String url,
-    Map<String, List<String>> headers,
-  ) {
+  factory Profile.fromResponse(String url, Map<String, List<String>> headers) {
     _loggy.debug("Profile Headers: $headers");
+
     final titleHeader = headers['profile-title']?.single;
     var title = '';
     if (titleHeader != null) {
