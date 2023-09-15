@@ -5,7 +5,7 @@ ANDROID_OUT=./android/app/libs
 DESKTOP_OUT=./libcore/bin
 GEO_ASSETS_DIR=./assets/core
 
-BRANCH=$(shell git branch --show-current)
+# BRANCH=$(shell git branch --show-current)
 VERSION=$(shell git describe --tags --abbrev=0 || echo "unknown version")
 
 CORE_NAME=hiddify-libcore

@@ -144,6 +144,8 @@ jobs:
           cd ..
 
       - name: Release ${{ matrix.platform }}
+        env:
+          BRANCH: ${{ github.ref_type == 'tag' && 'RELEASE' || 'DEVELOP' }}
         run: |
           make ${{ matrix.platform }}-release
 
