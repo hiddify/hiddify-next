@@ -42,7 +42,7 @@ jobs:
             targets: AppImage
 
           - platform: macos
-            os: macos-11
+            os: macos-13
             aarch: universal
             targets: dmg
 
@@ -203,7 +203,6 @@ jobs:
           path: ./out
           retention-days: 2
 
-
   upload-draft:
     permissions: write-all
     if: ${{ github.ref_type=='branch' }}
@@ -229,7 +228,7 @@ jobs:
 
       - name: Create or Update Draft Release
         uses: softprops/action-gh-release@v1
-        if: github.ref_type!='tag' 
+        if: github.ref_type!='tag'
         #&& success()
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
