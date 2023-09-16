@@ -114,7 +114,7 @@
             "autoStart": "Start on Boot",
             "silentStart": "Silent Start",
             "openWorkingDir": "Open Working Directory",
-            "ignoreBatteryOptimizations": "Ignore Battery Optimization",
+            "ignoreBatteryOptimizations": "Disable Battery Optimization",
             "ignoreBatteryOptimizationsMsg": "Remove restrictions for optimal VPN performance"
         },
         "advanced": {

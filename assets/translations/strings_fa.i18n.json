@@ -114,7 +114,7 @@
             "autoStart": "اجرا با روشن شدن سیستم",
             "silentStart": "اجرای ساکت",
             "openWorkingDir": "باز کردن دایرکتوری کاری",
-            "ignoreBatteryOptimizations": "نادیده‌گرفتن بهینه‌سازی باتری",
+            "ignoreBatteryOptimizations": "غیرفعال کردن بهینه‌سازی باتری",
             "ignoreBatteryOptimizationsMsg": "حذف محدودیت‌ها برای عملکرد بهتر VPN"
         },
         "advanced": {
