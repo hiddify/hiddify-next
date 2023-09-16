@@ -24,6 +24,13 @@ class ProfilesDao extends DatabaseAccessor<AppDatabase>
         .getSingleOrNull();
   }
 
+  Future<Profile?> getProfileByUrl(String url) async {
+    return (select(profileEntries)..where((tbl) => tbl.url.like('%$url%')))
+        .map(ProfileMapper.fromEntry)
+        .get()
+        .then((value) => value.firstOrNull);
+  }
+
   Stream<Profile?> watchActiveProfile() {
     return (profileEntries.select()..where((tbl) => tbl.active.equals(true)))
         .map(ProfileMapper.fromEntry)
@@ -87,6 +94,11 @@ class ProfilesDao extends DatabaseAccessor<AppDatabase>
   Future<void> edit(Profile patch) async {
     await transaction(
       () async {
+        if (patch.active) {
+          await (update(profileEntries)
+                ..where((tbl) => tbl.id.isNotValue(patch.id)))
+              .write(const ProfileEntriesCompanion(active: Value(false)));
+        }
         await (update(profileEntries)..where((tbl) => tbl.id.equals(patch.id)))
             .write(patch.toCompanion());
       },

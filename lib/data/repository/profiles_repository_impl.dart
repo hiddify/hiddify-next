@@ -71,6 +71,15 @@ class ProfilesRepositoryImpl
   }) {
     return exceptionHandler(
       () async {
+        final existingProfile = await profilesDao.getProfileByUrl(url);
+        if (existingProfile != null) {
+          loggy.info("profile with url[$url] already exists, updating");
+          final baseProfile = markAsActive
+              ? existingProfile.copyWith(active: true)
+              : existingProfile;
+          return update(baseProfile).run();
+        }
+
         final profileId = const Uuid().v4();
         return fetch(url, profileId)
             .flatMap(
