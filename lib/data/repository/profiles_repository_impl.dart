@@ -224,7 +224,8 @@ class ProfilesRepositoryImpl
     var content = await File(path).readAsString();
     content = safeDecodeBase64(content);
     final lines = content.split("\n");
-    for (int i = 0; i < 10; i++) {
+    final linesToProcess = lines.length < 10 ? lines.length : 10;
+    for (int i = 0; i < linesToProcess; i++) {
       final line = lines[i];
       if (line.startsWith("#") || line.startsWith("//")) {
         final index = line.indexOf(':');
