@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hiddify/features/home/view/view.dart';
+import 'package:hiddify/features/intro/view/view.dart';
 import 'package:hiddify/features/profile_detail/view/view.dart';
 import 'package:hiddify/features/profiles/view/view.dart';
 import 'package:hiddify/features/proxies/view/view.dart';
 import 'package:hiddify/utils/utils.dart';
+
+part 'shared_routes.g.dart';
 
 final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
 
@@ -43,6 +46,20 @@ class AddProfileRoute extends GoRouteData {
         url: url,
         scrollController: controller,
       ),
+    );
+  }
+}
+
+@TypedGoRoute<IntroRoute>(path: IntroRoute.path)
+class IntroRoute extends GoRouteData {
+  const IntroRoute();
+  static const path = '/intro';
+
+  @override
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    return const MaterialPage(
+      fullscreenDialog: true,
+      child: IntroPage(),
     );
   }
 }

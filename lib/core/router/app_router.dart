@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:hiddify/core/router/routes/routes.dart';
 import 'package:hiddify/services/deep_link_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -9,6 +10,7 @@ part 'app_router.g.dart';
 // TODO: test and improve handling of deep link
 @riverpod
 GoRouter router(RouterRef ref) {
+  final introCompleted = ref.watch(introCompletedProvider);
   final deepLink = ref.listen(
     deepLinkServiceProvider,
     (_, next) async {
@@ -28,6 +30,12 @@ GoRouter router(RouterRef ref) {
     initialLocation: initialLocation,
     debugLogDiagnostics: true,
     routes: $routes,
+    redirect: (context, state) {
+      if (!introCompleted && state.uri.path != const IntroRoute().location) {
+        return const IntroRoute().location;
+      }
+      return null;
+    },
   );
 }
 
