@@ -39,6 +39,7 @@ class RemoteVersionInfo with _$RemoteVersionInfo {
     required String buildNumber,
     required String releaseTag,
     required bool preRelease,
+    required String url,
     required DateTime publishedAt,
     required Environment flavor,
   }) = _RemoteVersionInfo;
@@ -72,6 +73,7 @@ class RemoteVersionInfo with _$RemoteVersionInfo {
       buildNumber: buildNumber,
       releaseTag: fullTag,
       preRelease: preRelease,
+      url: json["html_url"] as String,
       publishedAt: publishedAt,
       flavor: flavor,
     );

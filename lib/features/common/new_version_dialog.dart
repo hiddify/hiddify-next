@@ -3,7 +3,6 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/domain/app/app.dart';
-import 'package:hiddify/domain/constants.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -85,9 +84,7 @@ class NewVersionDialog extends HookConsumerWidget {
         ),
         TextButton(
           onPressed: () async {
-            await UriUtils.tryLaunch(
-              Uri.parse(Constants.githubLatestReleaseUrl),
-            );
+            await UriUtils.tryLaunch(Uri.parse(newVersion.url));
           },
           child: Text(t.appUpdate.updateNowBtnTxt),
         ),
