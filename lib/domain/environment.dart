@@ -3,6 +3,8 @@ import 'package:dartx/dartx.dart';
 enum Environment {
   prod,
   dev;
+
+  static const sentryDSN = String.fromEnvironment("sentry_dsn");
 }
 
 enum Release {

@@ -9,6 +9,9 @@
         "sort": "Sort",
         "sortBy": "Sort by"
     },
+    "intro": {
+        "start": "Start"
+    },
     "home": {
         "pageTitle": "Home",
         "emptyProfilesMsg": "Begin by adding a subscription profile",
@@ -101,6 +104,7 @@
     },
     "settings": {
         "pageTitle": "Settings",
+        "requiresRestartMsg": "for this to take effect restart the app",
         "general": {
             "sectionTitle": "General",
             "locale": "Language",
@@ -110,6 +114,8 @@
                 "dark": "Dark mode",
                 "light": "Light mode"
             },
+            "enableAnalytics": "Enable Analytics",
+            "enableAnalyticsMsg": "Give permission to collect analytics and send crash reports to improve the app",
             "trueBlack": "Pure Black",
             "autoStart": "Start on Boot",
             "silentStart": "Silent Start",

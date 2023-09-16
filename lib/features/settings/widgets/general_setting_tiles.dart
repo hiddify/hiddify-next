@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localized_locales/flutter_localized_locales.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/core/prefs/prefs.dart';
+import 'package:hiddify/features/common/common.dart';
 import 'package:hiddify/features/settings/widgets/theme_mode_switch_button.dart';
 import 'package:hiddify/services/auto_start_service.dart';
 import 'package:hiddify/utils/utils.dart';
@@ -15,47 +15,31 @@ class GeneralSettingTiles extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final t = ref.watch(translationsProvider);
 
-    final locale = ref.watch(localeNotifierProvider);
-
     final theme = ref.watch(themeProvider);
 
     return Column(
       children: [
-        ListTile(
-          title: Text(t.settings.general.locale),
-          subtitle: Text(
-            LocaleNamesLocalizationsDelegate.nativeLocaleNames[locale.name] ??
-                locale.name,
-          ),
-          leading: const Icon(Icons.language),
-          onTap: () async {
-            final selectedLocale = await showDialog<AppLocale>(
+        const LocalePrefTile(),
+        EnableAnalyticsPrefTile(
+          onChanged: (value) async {
+            await showDialog<bool>(
               context: context,
               builder: (context) {
-                return SimpleDialog(
-                  title: Text(t.settings.general.locale),
-                  children: AppLocale.values
-                      .map(
-                        (e) => RadioListTile(
-                          title: Text(
-                            LocaleNamesLocalizationsDelegate
-                                    .nativeLocaleNames[e.name] ??
-                                e.name,
-                          ),
-                          value: e,
-                          groupValue: locale,
-                          onChanged: (e) => context.pop(e),
-                        ),
-                      )
-                      .toList(),
+                return AlertDialog(
+                  title: Text(t.settings.general.enableAnalytics),
+                  content: Text(t.settings.requiresRestartMsg),
+                  actions: [
+                    TextButton(
+                      onPressed: () => context.pop(true),
+                      child: Text(
+                        MaterialLocalizations.of(context).okButtonLabel,
+                      ),
+                    ),
+                  ],
                 );
               },
             );
-            if (selectedLocale != null) {
-              await ref
-                  .read(localeNotifierProvider.notifier)
-                  .update(selectedLocale);
-            }
+            return ref.read(enableAnalyticsProvider.notifier).update(value);
           },
         ),
         ListTile(

@@ -8,6 +8,9 @@
         },
         "sort": "مرتب‌سازی",
         "sortBy": "مرتب‌سازی براساس"
+    }, 
+    "intro": {
+        "start": "شروع"
     },
     "home": {
         "pageTitle": "خانه",
@@ -101,6 +104,7 @@
     },
     "settings": {
         "pageTitle": "تنظیمات",
+        "requiresRestartMsg": "برای اعمال این تنظیم برنامه را بازنشانی کنید",
         "general": {
             "sectionTitle": "اصلی",
             "locale": "زبان",
@@ -110,6 +114,8 @@
                 "dark": "تم تیره",
                 "light": "تم روشن"
             },
+            "enableAnalytics": "فعال‌سازی آنالیتیکز",
+            "enableAnalyticsMsg": "ارائه دسترسی آنالیز و گزارش خطا برای بهبود عملکرد برنامه",
             "trueBlack": "کاملا سیاه",
             "autoStart": "اجرا با روشن شدن سیستم",
             "silentStart": "اجرای ساکت",

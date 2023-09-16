@@ -8,6 +8,23 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'general_prefs.g.dart';
 
 @Riverpod(keepAlive: true)
+class IntroCompleted extends _$IntroCompleted {
+  late final _pref = Pref(
+    ref.watch(sharedPreferencesProvider),
+    "intro_completed",
+    false,
+  );
+
+  @override
+  bool build() => _pref.getValue();
+
+  Future<void> update(bool value) {
+    state = value;
+    return _pref.update(value);
+  }
+}
+
+@Riverpod(keepAlive: true)
 class SilentStartNotifier extends _$SilentStartNotifier {
   late final _pref =
       Pref(ref.watch(sharedPreferencesProvider), "silent_start", false);
@@ -22,11 +39,11 @@ class SilentStartNotifier extends _$SilentStartNotifier {
 }
 
 @Riverpod(keepAlive: true)
-class AutoCrashReport extends _$AutoCrashReport {
+class EnableAnalytics extends _$EnableAnalytics {
   late final _pref = Pref(
     ref.watch(sharedPreferencesProvider),
-    "auto_crash_report",
-    false,
+    "enable_analytics",
+    true,
   );
 
   @override

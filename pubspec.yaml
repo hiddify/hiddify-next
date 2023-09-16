@@ -54,6 +54,7 @@ dependencies:
   url_launcher: ^6.1.14
   vclibs: ^0.1.0
   launch_at_startup: ^0.2.2
+  sentry_flutter: ^7.10.1
 
   # utils
   combine: ^0.5.6
@@ -78,8 +79,6 @@ dependencies:
   sliver_tools: ^0.2.12
   flutter_adaptive_scaffold: ^0.1.7+1
   humanizer: ^2.2.0
-  firebase_crashlytics: ^3.3.5
-  firebase_core: ^2.15.1
 
 dev_dependencies:
   flutter_test:

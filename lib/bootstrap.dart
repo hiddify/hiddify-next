@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -21,18 +19,17 @@ import 'package:hiddify/services/service_providers.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:loggy/loggy.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:window_manager/window_manager.dart';
 
 final _loggy = Loggy('bootstrap');
-final _stopWatch = Stopwatch();
+const _testCrashReport = false;
 
 Future<void> lazyBootstrap(
   WidgetsBinding widgetsBinding,
   Environment env,
 ) async {
-  _stopWatch.start();
-
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   if (PlatformUtils.isDesktop) await windowManager.ensureInitialized();
 
@@ -45,11 +42,28 @@ Future<void> lazyBootstrap(
     ],
   );
 
-  if (container.read(autoCrashReportProvider) && !kDebugMode) {
-    _loggy.debug("initializing crashlytics");
-    await initCrashlytics();
-  }
+  final enableAnalytics = container.read(enableAnalyticsProvider);
 
+  await SentryFlutter.init(
+    (options) {
+      if ((enableAnalytics && !kDebugMode) || _testCrashReport) {
+        options.dsn = Environment.sentryDSN;
+      } else {
+        options.dsn = "";
+      }
+
+      options.environment = env.toString();
+      options.debug = kDebugMode;
+    },
+    appRunner: () => _lazyBootstrap(widgetsBinding, container, env),
+  );
+}
+
+Future<void> _lazyBootstrap(
+  WidgetsBinding widgetsBinding,
+  ProviderContainer container,
+  Environment env,
+) async {
   final debug = container.read(debugModeNotifierProvider) || kDebugMode;
 
   final filesEditor = container.read(filesEditorServiceProvider);
@@ -59,7 +73,6 @@ Future<void> lazyBootstrap(
   _loggy.info(
     "os: [${Platform.operatingSystem}](${Platform.operatingSystemVersion}), processor count [${Platform.numberOfProcessors}]",
   );
-  _loggy.info("basic setup took [${_stopWatch.elapsedMilliseconds}]ms");
 
   final silentStart = container.read(silentStartNotifierProvider);
   if (silentStart) {
@@ -81,8 +94,6 @@ Future<void> lazyBootstrap(
   );
 
   if (!silentStart) FlutterNativeSplash.remove();
-  _stopWatch.stop();
-  _loggy.info("bootstrapping took [${_stopWatch.elapsedMilliseconds}]ms");
 }
 
 void initLoggers(
@@ -100,18 +111,6 @@ void initLoggers(
     ),
     logOptions: LogOptions(logLevel),
   );
-}
-
-Future<void> initCrashlytics() async {
-  switch (Platform.operatingSystem) {
-    case "android" || "ios" || "macos":
-      await Firebase.initializeApp();
-      FlutterError.onError =
-          FirebaseCrashlytics.instance.recordFlutterFatalError;
-    default:
-      _loggy.debug("platform is not supported for crashlytics");
-      return;
-  }
 }
 
 Future<void> initAppServices(
