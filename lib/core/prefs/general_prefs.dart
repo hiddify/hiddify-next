@@ -22,6 +22,23 @@ class SilentStartNotifier extends _$SilentStartNotifier {
 }
 
 @Riverpod(keepAlive: true)
+class AutoCrashReport extends _$AutoCrashReport {
+  late final _pref = Pref(
+    ref.watch(sharedPreferencesProvider),
+    "auto_crash_report",
+    false,
+  );
+
+  @override
+  bool build() => _pref.getValue();
+
+  Future<void> update(bool value) {
+    state = value;
+    return _pref.update(value);
+  }
+}
+
+@Riverpod(keepAlive: true)
 class DebugModeNotifier extends _$DebugModeNotifier {
   late final _pref = Pref(
     ref.watch(sharedPreferencesProvider),
