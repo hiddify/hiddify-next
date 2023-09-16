@@ -21,7 +21,8 @@ else
 FLAVOR=dev
 endif
 TARGET=lib/main_$(FLAVOR).dart
-DISTRIBUTOR_ARGS=--skip-clean --build-target $(TARGET)
+BUILD_ARGS=--dart-define sentry_dsn=$(SENTRY_DSN)
+DISTRIBUTOR_ARGS=--skip-clean --build-target $(TARGET) --build-dart-define sentry_dsn=$(SENTRY_DSN)
 
 get:
 	flutter pub get
@@ -35,10 +36,10 @@ translate:
 android-release: android-apk-release
 
 android-apk-release:
-	flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi --target $(TARGET)
+	flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi --target $(TARGET) $(BUILD_ARGS)
 
 android-aab-release:
-	flutter build appbundle --target $(TARGET) --dart-define release=google-play
+	flutter build appbundle --target $(TARGET) $(BUILD_ARGS) --dart-define release=google-play
 
 windows-release:
 	flutter_distributor package --platform windows --targets exe $(DISTRIBUTOR_ARGS)
@@ -51,7 +52,6 @@ macos-release:
 
 ios-release: #not tested
 	flutter_distributor package --platform ios --targets ipa --build-export-options-plist  ios/exportOptions.plist $(DISTRIBUTOR_ARGS)
-
 
 android-libs:
 	mkdir -p $(ANDROID_OUT)
