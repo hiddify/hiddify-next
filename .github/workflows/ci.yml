@@ -120,7 +120,6 @@ jobs:
       - name: Get Libs ${{ matrix.platform }}
         env:
           BRANCH: ${{ github.ref_type == 'tag' && 'RELEASE' || 'DEVELOP' }}
-          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
         run: |
           make ${{ matrix.platform }}-libs
 
@@ -147,6 +146,7 @@ jobs:
       - name: Release ${{ matrix.platform }}
         env:
           BRANCH: ${{ github.ref_type == 'tag' && 'RELEASE' || 'DEVELOP' }}
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
         run: |
           make ${{ matrix.platform }}-release
 
