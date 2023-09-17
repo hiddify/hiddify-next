@@ -26,12 +26,24 @@ enum ProxiesSort {
       };
 }
 
-final proxiesSortProvider = AlwaysAlivePrefNotifier.provider(
-  "proxies_sort_mode",
-  ProxiesSort.unsorted,
-  mapFrom: ProxiesSort.values.byName,
-  mapTo: (value) => value.name,
-);
+@Riverpod(keepAlive: true)
+class ProxiesSortNotifier extends _$ProxiesSortNotifier {
+  late final _pref = Pref(
+    ref.watch(sharedPreferencesProvider),
+    "proxies_sort_mode",
+    ProxiesSort.unsorted,
+    mapFrom: ProxiesSort.values.byName,
+    mapTo: (value) => value.name,
+  );
+
+  @override
+  ProxiesSort build() => _pref.getValue();
+
+  Future<void> update(ProxiesSort value) {
+    state = value;
+    return _pref.update(value);
+  }
+}
 
 @riverpod
 class ProxiesNotifier extends _$ProxiesNotifier with AppLogger {
@@ -42,7 +54,7 @@ class ProxiesNotifier extends _$ProxiesNotifier with AppLogger {
     if (!serviceRunning) {
       throw const CoreServiceNotRunning();
     }
-    final sortBy = ref.watch(proxiesSortProvider);
+    final sortBy = ref.watch(proxiesSortNotifierProvider);
     yield* ref
         .watch(coreFacadeProvider)
         .watchOutbounds()

@@ -16,7 +16,7 @@ class ProxiesPage extends HookConsumerWidget with PresLogger {
 
     final asyncProxies = ref.watch(proxiesNotifierProvider);
     final notifier = ref.watch(proxiesNotifierProvider.notifier);
-    final sortBy = ref.watch(proxiesSortProvider);
+    final sortBy = ref.watch(proxiesSortNotifierProvider);
 
     final selectActiveProxyMutation = useMutation(
       initialOnFailure: (error) =>
@@ -55,7 +55,8 @@ class ProxiesPage extends HookConsumerWidget with PresLogger {
                 actions: [
                   PopupMenuButton<ProxiesSort>(
                     initialValue: sortBy,
-                    onSelected: ref.read(proxiesSortProvider.notifier).update,
+                    onSelected:
+                        ref.read(proxiesSortNotifierProvider.notifier).update,
                     icon: const Icon(Icons.sort),
                     tooltip: t.proxies.sortTooltip,
                     itemBuilder: (context) {

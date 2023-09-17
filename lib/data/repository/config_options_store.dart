@@ -51,8 +51,12 @@ final tunImplementationStore = PrefNotifier.provider(
 final mtuStore = PrefNotifier.provider("mtu", _default.mtu);
 final connectionTestUrlStore =
     PrefNotifier.provider("connection-test-url", _default.connectionTestUrl);
-final urlTestIntervalStore =
-    PrefNotifier.provider("url-test-interval", _default.urlTestInterval);
+final urlTestIntervalStore = PrefNotifier.provider<Duration, int>(
+  "url-test-interval",
+  _default.urlTestInterval,
+  mapFrom: (value) => Duration(seconds: value),
+  mapTo: (value) => value.inSeconds,
+);
 final enableClashApiStore =
     PrefNotifier.provider("enable-clash-api", _default.enableClashApi);
 final clashApiPortStore =
