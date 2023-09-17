@@ -228,7 +228,7 @@ jobs:
 
       - name: Create or Update Draft Release
         uses: softprops/action-gh-release@v1
-        if: github.ref_type!='tag'
+        if: github.ref_type != 'tag'
         #&& success()
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
