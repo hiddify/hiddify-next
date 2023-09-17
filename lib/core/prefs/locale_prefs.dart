@@ -13,7 +13,7 @@ class LocaleNotifier extends _$LocaleNotifier {
   late final _pref = Pref(
     ref.watch(sharedPreferencesProvider),
     "locale",
-    AppLocale.en,
+    AppLocaleUtils.findDeviceLocale(),
     mapFrom: AppLocale.values.byName,
     mapTo: (value) => value.name,
   );

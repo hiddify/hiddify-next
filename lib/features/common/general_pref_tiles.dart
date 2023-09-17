@@ -3,6 +3,7 @@ import 'package:flutter_localized_locales/flutter_localized_locales.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/core/prefs/prefs.dart';
+import 'package:hiddify/domain/singbox/singbox.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class LocalePrefTile extends HookConsumerWidget {
@@ -48,6 +49,48 @@ class LocalePrefTile extends HookConsumerWidget {
           await ref
               .read(localeNotifierProvider.notifier)
               .update(selectedLocale);
+        }
+      },
+    );
+  }
+}
+
+class RegionPrefTile extends HookConsumerWidget {
+  const RegionPrefTile({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = ref.watch(translationsProvider);
+
+    final region = ref.watch(regionNotifierProvider);
+
+    return ListTile(
+      title: Text(t.settings.general.region),
+      subtitle: Text(region.present(t)),
+      leading: const Icon(Icons.my_location),
+      onTap: () async {
+        final selectedRegion = await showDialog<Region>(
+          context: context,
+          builder: (context) {
+            return SimpleDialog(
+              title: Text(t.settings.general.region),
+              children: Region.values
+                  .map(
+                    (e) => RadioListTile(
+                      title: Text(e.present(t)),
+                      value: e,
+                      groupValue: region,
+                      onChanged: (e) => context.pop(e),
+                    ),
+                  )
+                  .toList(),
+            );
+          },
+        );
+        if (selectedRegion != null) {
+          await ref
+              .read(regionNotifierProvider.notifier)
+              .update(selectedRegion);
         }
       },
     );

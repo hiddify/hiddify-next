@@ -25,6 +25,25 @@ class IntroCompleted extends _$IntroCompleted {
 }
 
 @Riverpod(keepAlive: true)
+class RegionNotifier extends _$RegionNotifier {
+  late final _pref = Pref(
+    ref.watch(sharedPreferencesProvider),
+    "region",
+    Region.other,
+    mapFrom: Region.values.byName,
+    mapTo: (value) => value.name,
+  );
+
+  @override
+  Region build() => _pref.getValue();
+
+  Future<void> update(Region value) {
+    state = value;
+    return _pref.update(value);
+  }
+}
+
+@Riverpod(keepAlive: true)
 class SilentStartNotifier extends _$SilentStartNotifier {
   late final _pref =
       Pref(ref.watch(sharedPreferencesProvider), "silent_start", false);

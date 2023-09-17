@@ -10,6 +10,7 @@
         "sortBy": "مرتب‌سازی براساس"
     }, 
     "intro": {
+        "termsAndPolicyCaution(rich)": "در صورت ادامه با ${tap(@:about.termsAndConditions)} موافقت میکنید",
         "start": "شروع"
     },
     "home": {
@@ -108,6 +109,13 @@
         "general": {
             "sectionTitle": "اصلی",
             "locale": "زبان",
+            "region": "منطقه",
+            "regionMsg": "به انتخاب تنظیمات پیش‌فرض برای دورزدن آدرس‌های داخلی کمک میکند",
+            "regions": {
+                "ir": "ایران (ir)",
+                "cn": "چین (cn)",
+                "other": "سایر"
+            },
             "themeMode": "تم مود",
             "themeModes": {
                 "system": "پیروی از تم دستگاه",
@@ -182,7 +190,9 @@
         "version": "ورژن",
         "sourceCode": "سورس کد",
         "telegramChannel": "کانال تلگرام",
-        "checkForUpdate": "بررسی آپدیت جدید"
+        "checkForUpdate": "بررسی آپدیت جدید",
+        "privacyPolicy": "سیاست حفظ حریم خصوصی",
+        "termsAndConditions": "شرایط و ضوابط استفاده"
     },
     "appUpdate": {
         "dialogTitle": "نسخه جدید موجود است",

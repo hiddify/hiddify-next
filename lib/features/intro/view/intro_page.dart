@@ -1,7 +1,9 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/core/prefs/prefs.dart';
+import 'package:hiddify/domain/constants.dart';
 import 'package:hiddify/features/common/common.dart';
 import 'package:hiddify/gen/assets.gen.dart';
 import 'package:hiddify/utils/utils.dart';
@@ -37,7 +39,28 @@ class IntroPage extends HookConsumerWidget with PresLogger {
               children: [
                 const LocalePrefTile(),
                 const SliverGap(8),
+                const RegionPrefTile(),
+                const SliverGap(8),
                 const EnableAnalyticsPrefTile(),
+                const SliverGap(8),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Text.rich(
+                    t.intro.termsAndPolicyCaution(
+                      tap: (text) => TextSpan(
+                        text: text,
+                        style: const TextStyle(color: Colors.blue),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () async {
+                            await UriUtils.tryLaunch(
+                              Uri.parse(Constants.termsAndConditionsUrl),
+                            );
+                          },
+                      ),
+                    ),
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 16,
