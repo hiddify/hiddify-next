@@ -104,8 +104,8 @@ class CustomToast extends StatelessWidget {
   }
 
   void show(BuildContext context) {
-    FToast().init(context);
-    FToast().showToast(
+    final fToast = FToast().init(context);
+    fToast.showToast(
       child: this,
       gravity: ToastGravity.BOTTOM,
       toastDuration: duration,

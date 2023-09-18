@@ -3,15 +3,24 @@ import 'dart:io';
 import 'package:loggy/loggy.dart';
 
 class MultiLogPrinter extends LoggyPrinter {
-  MultiLogPrinter(this.consolePrinter, this.filePrinter);
+  MultiLogPrinter(
+    this.consolePrinter,
+    this.otherPrinters,
+  );
 
   final LoggyPrinter consolePrinter;
-  final LoggyPrinter? filePrinter;
+  List<LoggyPrinter> otherPrinters;
+
+  void addPrinter(LoggyPrinter printer) {
+    otherPrinters.add(printer);
+  }
 
   @override
   void onLog(LogRecord record) {
     consolePrinter.onLog(record);
-    filePrinter?.onLog(record);
+    for (final printer in otherPrinters) {
+      printer.onLog(record);
+    }
   }
 }
 

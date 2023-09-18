@@ -23,8 +23,9 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:window_manager/window_manager.dart';
 
-final _loggy = Loggy('bootstrap');
+final _logger = Loggy('bootstrap');
 const _testCrashReport = false;
+final _loggers = MultiLogPrinter(const PrettyPrinter(), []);
 
 Future<void> lazyBootstrap(
   WidgetsBinding widgetsBinding,
@@ -32,6 +33,7 @@ Future<void> lazyBootstrap(
 ) async {
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   if (PlatformUtils.isDesktop) await windowManager.ensureInitialized();
+  Loggy.initLoggy();
 
   final appInfo = await AppRepositoryImpl.getAppInfo(env);
   final sharedPreferences = await SharedPreferences.getInstance();
@@ -43,6 +45,8 @@ Future<void> lazyBootstrap(
   );
 
   final enableAnalytics = container.read(enableAnalyticsProvider);
+  final sentryLogger = SentryLoggyIntegration();
+  _loggers.addPrinter(sentryLogger);
 
   await SentryFlutter.init(
     (options) {
@@ -52,8 +56,14 @@ Future<void> lazyBootstrap(
         options.dsn = "";
       }
 
-      options.environment = env.toString();
+      options.environment = env.name;
+      options.dist = appInfo.release.name;
       options.debug = kDebugMode;
+      options.enableNativeCrashHandling = true;
+      options.enableNdkScopeSync = true;
+      options.attachThreads = true;
+      options.tracesSampleRate = 0.25;
+      options.addIntegration(sentryLogger);
     },
     appRunner: () => _lazyBootstrap(widgetsBinding, container, env),
   );
@@ -70,7 +80,7 @@ Future<void> _lazyBootstrap(
   await filesEditor.init();
 
   initLoggers(container.read, debug);
-  _loggy.info(
+  _logger.info(
     "os: [${Platform.operatingSystem}](${Platform.operatingSystemVersion}), processor count [${Platform.numberOfProcessors}]",
   );
 
@@ -89,7 +99,9 @@ Future<void> _lazyBootstrap(
   runApp(
     ProviderScope(
       parent: container,
-      child: const AppView(),
+      child: SentryUserInteractionWidget(
+        child: const AppView(),
+      ),
     ),
   );
 
@@ -102,13 +114,13 @@ void initLoggers(
 ) {
   final logLevel = debug ? LogLevel.all : LogLevel.info;
   final logToFile = debug || (!Platform.isAndroid && !Platform.isIOS);
+  if (logToFile) {
+    _loggers.addPrinter(
+      FileLogPrinter(read(filesEditorServiceProvider).appLogsPath),
+    );
+  }
   Loggy.initLoggy(
-    logPrinter: MultiLogPrinter(
-      const PrettyPrinter(),
-      logToFile
-          ? FileLogPrinter(read(filesEditorServiceProvider).appLogsPath)
-          : null,
-    ),
+    logPrinter: _loggers,
     logOptions: LogOptions(logLevel),
   );
 }
@@ -116,19 +128,19 @@ void initLoggers(
 Future<void> initAppServices(
   Result Function<Result>(ProviderListenable<Result>) read,
 ) async {
-  _loggy.debug("initializing app services");
+  _logger.debug("initializing app services");
   await Future.wait(
     [
       read(singboxServiceProvider).init(),
     ],
   );
-  _loggy.debug('initialized app services');
+  _logger.debug('initialized app services');
 }
 
 Future<void> initControllers(
   Result Function<Result>(ProviderListenable<Result>) read,
 ) async {
-  _loggy.debug("initializing controllers");
+  _logger.debug("initializing controllers");
   await Future.wait(
     [
       read(activeProfileProvider.future),
@@ -136,5 +148,5 @@ Future<void> initControllers(
       if (PlatformUtils.isDesktop) read(systemTrayControllerProvider.future),
     ],
   );
-  _loggy.debug("initialized base controllers");
+  _logger.debug("initialized base controllers");
 }

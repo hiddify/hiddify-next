@@ -4,6 +4,7 @@ import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:hiddify/core/router/routes/routes.dart';
 import 'package:hiddify/services/deep_link_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 part 'app_router.g.dart';
 
@@ -30,6 +31,9 @@ GoRouter router(RouterRef ref) {
     initialLocation: initialLocation,
     debugLogDiagnostics: true,
     routes: $routes,
+    observers: [
+      SentryNavigatorObserver(),
+    ],
     redirect: (context, state) {
       if (!introCompleted && state.uri.path != const IntroRoute().location) {
         return const IntroRoute().location;

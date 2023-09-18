@@ -1,3 +1,4 @@
+import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:hiddify/domain/singbox/config_options.dart';
 import 'package:hiddify/utils/pref_notifier.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -67,7 +68,9 @@ final setSystemProxyStore =
 
 @riverpod
 ConfigOptions configOptions(ConfigOptionsRef ref) => ConfigOptions(
-      executeConfigAsIs: ref.watch(executeConfigAsIs),
+      executeConfigAsIs: ref.watch(debugModeNotifierProvider)
+          ? ref.watch(executeConfigAsIs)
+          : false,
       logLevel: ref.watch(logLevelStore),
       resolveDestination: ref.watch(resolveDestinationStore),
       ipv6Mode: ref.watch(ipv6ModeStore),

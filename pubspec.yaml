@@ -54,7 +54,10 @@ dependencies:
   url_launcher: ^6.1.14
   vclibs: ^0.1.0
   launch_at_startup: ^0.2.2
+
+  # analytics
   sentry_flutter: ^7.10.1
+  sentry_dio: ^7.10.1
 
   # utils
   combine: ^0.5.6
