@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 class BottomSheetPage extends Page {
   const BottomSheetPage({
+    super.key,
+    super.name,
     required this.builder,
     this.fixed = false,
   });

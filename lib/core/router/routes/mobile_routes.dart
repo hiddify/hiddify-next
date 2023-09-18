@@ -12,23 +12,52 @@ part 'mobile_routes.g.dart';
   routes: [
     TypedGoRoute<HomeRoute>(
       path: HomeRoute.path,
+      name: HomeRoute.name,
       routes: [
-        TypedGoRoute<AddProfileRoute>(path: AddProfileRoute.path),
-        TypedGoRoute<ProfilesRoute>(path: ProfilesRoute.path),
-        TypedGoRoute<NewProfileRoute>(path: NewProfileRoute.path),
-        TypedGoRoute<ProfileDetailsRoute>(path: ProfileDetailsRoute.path),
-        TypedGoRoute<LogsRoute>(path: LogsRoute.path),
+        TypedGoRoute<AddProfileRoute>(
+          path: AddProfileRoute.path,
+          name: AddProfileRoute.name,
+        ),
+        TypedGoRoute<ProfilesRoute>(
+          path: ProfilesRoute.path,
+          name: ProfilesRoute.name,
+        ),
+        TypedGoRoute<NewProfileRoute>(
+          path: NewProfileRoute.path,
+          name: NewProfileRoute.name,
+        ),
+        TypedGoRoute<ProfileDetailsRoute>(
+          path: ProfileDetailsRoute.path,
+          name: ProfileDetailsRoute.name,
+        ),
+        TypedGoRoute<LogsRoute>(
+          path: LogsRoute.path,
+          name: LogsRoute.name,
+        ),
         TypedGoRoute<SettingsRoute>(
           path: SettingsRoute.path,
+          name: SettingsRoute.name,
           routes: [
-            TypedGoRoute<ConfigOptionsRoute>(path: ConfigOptionsRoute.path),
-            TypedGoRoute<PerAppProxyRoute>(path: PerAppProxyRoute.path),
+            TypedGoRoute<ConfigOptionsRoute>(
+              path: ConfigOptionsRoute.path,
+              name: ConfigOptionsRoute.name,
+            ),
+            TypedGoRoute<PerAppProxyRoute>(
+              path: PerAppProxyRoute.path,
+              name: PerAppProxyRoute.name,
+            ),
           ],
         ),
-        TypedGoRoute<AboutRoute>(path: AboutRoute.path),
+        TypedGoRoute<AboutRoute>(
+          path: AboutRoute.path,
+          name: AboutRoute.name,
+        ),
       ],
     ),
-    TypedGoRoute<ProxiesRoute>(path: ProxiesRoute.path),
+    TypedGoRoute<ProxiesRoute>(
+      path: ProxiesRoute.path,
+      name: ProxiesRoute.name,
+    ),
   ],
 )
 class MobileWrapperRoute extends ShellRouteData {
@@ -43,6 +72,7 @@ class MobileWrapperRoute extends ShellRouteData {
 class LogsRoute extends GoRouteData {
   const LogsRoute();
   static const path = 'logs';
+  static const name = 'Logs';
 
   static final GlobalKey<NavigatorState> $parentNavigatorKey = rootNavigatorKey;
 
@@ -50,6 +80,7 @@ class LogsRoute extends GoRouteData {
   Page<void> buildPage(BuildContext context, GoRouterState state) {
     return const MaterialPage(
       fullscreenDialog: true,
+      name: name,
       child: LogsPage(),
     );
   }
@@ -58,6 +89,7 @@ class LogsRoute extends GoRouteData {
 class SettingsRoute extends GoRouteData {
   const SettingsRoute();
   static const path = 'settings';
+  static const name = 'Settings';
 
   static final GlobalKey<NavigatorState> $parentNavigatorKey = rootNavigatorKey;
 
@@ -65,6 +97,7 @@ class SettingsRoute extends GoRouteData {
   Page<void> buildPage(BuildContext context, GoRouterState state) {
     return const MaterialPage(
       fullscreenDialog: true,
+      name: name,
       child: SettingsPage(),
     );
   }
@@ -73,6 +106,7 @@ class SettingsRoute extends GoRouteData {
 class ConfigOptionsRoute extends GoRouteData {
   const ConfigOptionsRoute();
   static const path = 'config-options';
+  static const name = 'Config Options';
 
   static final GlobalKey<NavigatorState> $parentNavigatorKey = rootNavigatorKey;
 
@@ -80,6 +114,7 @@ class ConfigOptionsRoute extends GoRouteData {
   Page<void> buildPage(BuildContext context, GoRouterState state) {
     return const MaterialPage(
       fullscreenDialog: true,
+      name: name,
       child: ConfigOptionsPage(),
     );
   }
@@ -88,6 +123,7 @@ class ConfigOptionsRoute extends GoRouteData {
 class PerAppProxyRoute extends GoRouteData {
   const PerAppProxyRoute();
   static const path = 'per-app-proxy';
+  static const name = 'Per-app Proxy';
 
   static final GlobalKey<NavigatorState> $parentNavigatorKey = rootNavigatorKey;
 
@@ -95,6 +131,7 @@ class PerAppProxyRoute extends GoRouteData {
   Page<void> buildPage(BuildContext context, GoRouterState state) {
     return const MaterialPage(
       fullscreenDialog: true,
+      name: name,
       child: PerAppProxyPage(),
     );
   }
@@ -103,6 +140,7 @@ class PerAppProxyRoute extends GoRouteData {
 class AboutRoute extends GoRouteData {
   const AboutRoute();
   static const path = 'about';
+  static const name = 'About';
 
   static final GlobalKey<NavigatorState> $parentNavigatorKey = rootNavigatorKey;
 
@@ -110,6 +148,7 @@ class AboutRoute extends GoRouteData {
   Page<void> buildPage(BuildContext context, GoRouterState state) {
     return const MaterialPage(
       fullscreenDialog: true,
+      name: name,
       child: AboutPage(),
     );
   }

@@ -14,26 +14,35 @@ final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
 class HomeRoute extends GoRouteData {
   const HomeRoute();
   static const path = '/';
+  static const name = 'Home';
 
   @override
   Page<void> buildPage(BuildContext context, GoRouterState state) {
-    return const NoTransitionPage(child: HomePage());
+    return const NoTransitionPage(
+      name: name,
+      child: HomePage(),
+    );
   }
 }
 
 class ProxiesRoute extends GoRouteData {
   const ProxiesRoute();
   static const path = '/proxies';
+  static const name = 'Proxies';
 
   @override
   Page<void> buildPage(BuildContext context, GoRouterState state) {
-    return const NoTransitionPage(child: ProxiesPage());
+    return const NoTransitionPage(
+      name: name,
+      child: ProxiesPage(),
+    );
   }
 }
 
 class AddProfileRoute extends GoRouteData {
   const AddProfileRoute({this.url});
   static const path = 'add';
+  static const name = 'Add Profile';
   final String? url;
 
   static final GlobalKey<NavigatorState> $parentNavigatorKey = rootNavigatorKey;
@@ -42,6 +51,7 @@ class AddProfileRoute extends GoRouteData {
   Page<void> buildPage(BuildContext context, GoRouterState state) {
     return BottomSheetPage(
       fixed: true,
+      name: name,
       builder: (controller) => AddProfileModal(
         url: url,
         scrollController: controller,
@@ -50,15 +60,17 @@ class AddProfileRoute extends GoRouteData {
   }
 }
 
-@TypedGoRoute<IntroRoute>(path: IntroRoute.path)
+@TypedGoRoute<IntroRoute>(path: IntroRoute.path, name: IntroRoute.name)
 class IntroRoute extends GoRouteData {
   const IntroRoute();
   static const path = '/intro';
+  static const name = 'Intro';
 
   @override
   Page<void> buildPage(BuildContext context, GoRouterState state) {
     return const MaterialPage(
       fullscreenDialog: true,
+      name: name,
       child: IntroPage(),
     );
   }
@@ -67,22 +79,25 @@ class IntroRoute extends GoRouteData {
 class ProfilesRoute extends GoRouteData {
   const ProfilesRoute();
   static const path = 'profiles';
+  static const name = 'Profiles';
 
   static final GlobalKey<NavigatorState> $parentNavigatorKey = rootNavigatorKey;
 
   @override
   Page<void> buildPage(BuildContext context, GoRouterState state) {
     return BottomSheetPage(
+      name: name,
       builder: (controller) => ProfilesModal(scrollController: controller),
     );
   }
 }
 
 class NewProfileRoute extends GoRouteData {
-  const NewProfileRoute({this.url, this.name});
+  const NewProfileRoute({this.url, this.profileName});
   static const path = 'profiles/new';
+  static const name = 'New Profile';
   final String? url;
-  final String? name;
+  final String? profileName;
 
   static final GlobalKey<NavigatorState> $parentNavigatorKey = rootNavigatorKey;
 
@@ -90,10 +105,11 @@ class NewProfileRoute extends GoRouteData {
   Page<void> buildPage(BuildContext context, GoRouterState state) {
     return MaterialPage(
       fullscreenDialog: true,
+      name: name,
       child: ProfileDetailPage(
         "new",
         url: url,
-        name: name,
+        name: profileName,
       ),
     );
   }
@@ -103,6 +119,7 @@ class ProfileDetailsRoute extends GoRouteData {
   const ProfileDetailsRoute(this.id);
   final String id;
   static const path = 'profiles/:id';
+  static const name = 'Profile Details';
 
   static final GlobalKey<NavigatorState> $parentNavigatorKey = rootNavigatorKey;
 
@@ -110,6 +127,7 @@ class ProfileDetailsRoute extends GoRouteData {
   Page<void> buildPage(BuildContext context, GoRouterState state) {
     return MaterialPage(
       fullscreenDialog: true,
+      name: name,
       child: ProfileDetailPage(id),
     );
   }
