@@ -29,8 +29,8 @@ class ClashApi with InfraLogger {
         if (response.statusCode != 200 || response.data == null) {
           return left(response.statusMessage ?? "");
         }
-        final proxies = (jsonDecode(response.data! as String)["proxies"]
-                as Map<String, dynamic>)
+        final proxies = ((jsonDecode(response.data! as String)
+                as Map<String, dynamic>)["proxies"] as Map<String, dynamic>)
             .entries
             .map(
           (e) {

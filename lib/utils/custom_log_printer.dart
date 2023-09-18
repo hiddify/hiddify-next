@@ -25,9 +25,13 @@ class MultiLogPrinter extends LoggyPrinter {
 }
 
 class FileLogPrinter extends LoggyPrinter {
-  FileLogPrinter(String filePath) : _logFile = File(filePath);
+  FileLogPrinter(
+    String filePath, {
+    this.minLevel = LogLevel.debug,
+  }) : _logFile = File(filePath);
 
   final File _logFile;
+  final LogLevel minLevel;
 
   late final _sink = _logFile.openWrite(
     mode: FileMode.writeOnly,

@@ -1,3 +1,4 @@
+// ignore_for_file: avoid_manual_providers_as_generated_provider_dependency
 import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:hiddify/domain/singbox/config_options.dart';
 import 'package:hiddify/utils/pref_notifier.dart';
@@ -68,9 +69,8 @@ final setSystemProxyStore =
 
 @riverpod
 ConfigOptions configOptions(ConfigOptionsRef ref) => ConfigOptions(
-      executeConfigAsIs: ref.watch(debugModeNotifierProvider)
-          ? ref.watch(executeConfigAsIs)
-          : false,
+      executeConfigAsIs:
+          ref.watch(debugModeNotifierProvider) && ref.watch(executeConfigAsIs),
       logLevel: ref.watch(logLevelStore),
       resolveDestination: ref.watch(resolveDestinationStore),
       ipv6Mode: ref.watch(ipv6ModeStore),

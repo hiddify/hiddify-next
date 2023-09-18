@@ -33,6 +33,9 @@ Future<void> lazyBootstrap(
 ) async {
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   if (PlatformUtils.isDesktop) await windowManager.ensureInitialized();
+
+  final sentryLogger = SentryLoggyIntegration();
+  _loggers.addPrinter(sentryLogger);
   Loggy.initLoggy();
 
   final appInfo = await AppRepositoryImpl.getAppInfo(env);
@@ -45,8 +48,6 @@ Future<void> lazyBootstrap(
   );
 
   final enableAnalytics = container.read(enableAnalyticsProvider);
-  final sentryLogger = SentryLoggyIntegration();
-  _loggers.addPrinter(sentryLogger);
 
   await SentryFlutter.init(
     (options) {

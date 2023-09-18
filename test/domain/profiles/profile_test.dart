@@ -32,7 +32,7 @@ void main() {
             "profile-update-interval": ["1"],
             // expire: 2024/1/1
             "subscription-userinfo": [
-              "upload=0;download=1024;total=10240;expire=1704054600"
+              "upload=0;download=1024;total=10240;expire=1704054600",
             ],
             "profile-web-page-url": [validBaseUrl],
             "support-url": [validSupportUrl],
