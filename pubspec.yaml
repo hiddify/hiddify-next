@@ -170,3 +170,4 @@ sentry:
   upload_source_maps: true
   upload_sources: true
   log_level: info
+  ignore_missing: true
