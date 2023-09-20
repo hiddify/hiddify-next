@@ -33,6 +33,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.11.3"
+  ansicolor:
+    dependency: transitive
+    description:
+      name: ansicolor
+      sha256: "607f8fa9786f392043f169898923e6c59b4518242b68b8862eb8a8b7d9c30b4a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
   archive:
     dependency: transitive
     description:
@@ -573,6 +581,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.2"
+  globbing:
+    dependency: transitive
+    description:
+      name: globbing
+      sha256: "4f89cfaf6fa74c9c1740a96259da06bd45411ede56744e28017cc534a12b6e2d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   go_router:
     dependency: "direct main"
     description:
@@ -669,6 +685,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.17"
+  injector:
+    dependency: transitive
+    description:
+      name: injector
+      sha256: ed389bed5b48a699d5b9561c985023d0d5cc88dd5ff2237aadcce5a5ab433e4e
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0"
   intl:
     dependency: "direct main"
     description:
@@ -933,6 +957,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.1"
+  process:
+    dependency: transitive
+    description:
+      name: process
+      sha256: c8298bb2d31a637afd4be38177d1d7fb9a062c985bd8e4558d98e2d9f0c38127
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.0.0"
   protocol_handler:
     dependency: "direct main"
     description:
@@ -1045,6 +1077,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.10.1"
+  sentry_dart_plugin:
+    dependency: "direct main"
+    description:
+      name: sentry_dart_plugin
+      sha256: "5b6607c335830a17224aedb5e5b27baab59928e98dc4582620ecf4a537e78551"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.6.0"
   sentry_dio:
     dependency: "direct main"
     description:
@@ -1282,6 +1322,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  system_info2:
+    dependency: transitive
+    description:
+      name: system_info2
+      sha256: "65206bbef475217008b5827374767550a5420ce70a04d2d7e94d1d2253f3efc9"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.0"
   term_glyph:
     dependency: transitive
     description:

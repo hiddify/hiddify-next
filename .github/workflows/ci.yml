@@ -150,6 +150,15 @@ jobs:
         run: |
           make ${{ matrix.platform }}-release
 
+      - name: Upload Debug Symbols
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+          SENTRY_DIST: ${{ matrix.platform == 'android-aab' && 'google-play' || 'general' }}
+        run: |
+          flutter packages pub run sentry_dart_plugin
+
       - name: Copy to out Windows
         if: matrix.platform == 'windows'
         run: |

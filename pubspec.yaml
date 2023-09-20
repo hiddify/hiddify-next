@@ -57,6 +57,7 @@ dependencies:
 
   # analytics
   sentry_flutter: ^7.10.1
+  sentry_dart_plugin: ^1.6.0
   sentry_dio: ^7.10.1
 
   # utils
@@ -163,3 +164,8 @@ ffigen:
   headers:
     entry-points:
       - "libcore/bin/libcore.h"
+
+sentry:
+  upload_debug_symbols: true
+  upload_source_maps: true
+  upload_sources: true
