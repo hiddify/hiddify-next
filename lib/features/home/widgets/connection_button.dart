@@ -106,6 +106,7 @@ class _ConnectionButton extends StatelessWidget {
             width: 148,
             height: 148,
             child: Material(
+              key: const ValueKey("home_connection_button"),
               shape: const CircleBorder(),
               color: Colors.white,
               child: InkWell(

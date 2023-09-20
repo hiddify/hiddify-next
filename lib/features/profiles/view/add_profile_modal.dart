@@ -96,6 +96,7 @@ class AddProfileModal extends HookConsumerWidget {
                     child: Row(
                       children: [
                         _Button(
+                          key: const ValueKey("add_from_clipboard_button"),
                           label: t.profile.add.fromClipboard,
                           icon: Icons.content_paste,
                           size: buttonWidth,
@@ -124,6 +125,7 @@ class AddProfileModal extends HookConsumerWidget {
                         const Gap(buttonsGap),
                         if (!PlatformUtils.isDesktop)
                           _Button(
+                            key: const ValueKey("add_by_qr_code_button"),
                             label: t.profile.add.scanQr,
                             icon: Icons.qr_code_scanner,
                             size: buttonWidth,
@@ -154,6 +156,7 @@ class AddProfileModal extends HookConsumerWidget {
                           )
                         else
                           _Button(
+                            key: const ValueKey("add_manually_button"),
                             label: t.profile.add.manually,
                             icon: Icons.add,
                             size: buttonWidth,
@@ -176,6 +179,7 @@ class AddProfileModal extends HookConsumerWidget {
                         child: SizedBox(
                           height: 36,
                           child: Material(
+                            key: const ValueKey("add_manually_button"),
                             elevation: 8,
                             color: theme.colorScheme.surface,
                             surfaceTintColor: theme.colorScheme.surfaceTint,
@@ -225,6 +229,7 @@ class AddProfileModal extends HookConsumerWidget {
 
 class _Button extends StatelessWidget {
   const _Button({
+    super.key,
     required this.label,
     required this.icon,
     required this.size,

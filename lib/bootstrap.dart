@@ -64,6 +64,7 @@ Future<void> lazyBootstrap(
       options.enableNdkScopeSync = true;
       options.attachThreads = true;
       options.tracesSampleRate = 0.25;
+      options.enableUserInteractionTracing = true;
       options.addIntegration(sentryLogger);
     },
     appRunner: () => _lazyBootstrap(widgetsBinding, container, env),
@@ -100,6 +101,7 @@ Future<void> _lazyBootstrap(
   runApp(
     ProviderScope(
       parent: container,
+      observers: [SentryRiverpodObserver()],
       child: SentryUserInteractionWidget(
         child: const AppView(),
       ),
