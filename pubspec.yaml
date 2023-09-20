@@ -169,3 +169,4 @@ sentry:
   upload_debug_symbols: true
   upload_source_maps: true
   upload_sources: true
+  log_level: info
