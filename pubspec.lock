@@ -821,6 +821,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.4.1"
+  neat_periodic_task:
+    dependency: "direct main"
+    description:
+      name: neat_periodic_task
+      sha256: e0dda74c996781e154f6145028dbacbcd9dbef242f5a140fa774e39381c2bf97
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
   package_config:
     dependency: transitive
     description:
@@ -1013,6 +1021,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.1.0"
+  retry:
+    dependency: transitive
+    description:
+      name: retry
+      sha256: "822e118d5b3aafed083109c72d5f484c6dc66707885e07c0fbcb8b986bba7efc"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.2"
   riverpod:
     dependency: transitive
     description:
@@ -1234,6 +1250,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.12"
+  slugid:
+    dependency: transitive
+    description:
+      name: slugid
+      sha256: e0cc54637b666c9c590f0d76df76e5e2bbf6234ae398a182aac82fd70ddd60ab
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.2"
   source_gen:
     dependency: transitive
     description:

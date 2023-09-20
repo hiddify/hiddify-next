@@ -22,16 +22,19 @@ class AboutPage extends HookConsumerWidget {
     ref.listen(
       appUpdateNotifierProvider,
       (_, next) async {
+        if (!context.mounted) return;
         switch (next) {
-          case AsyncData(value: final remoteVersion?):
-            await NewVersionDialog(
+          case AppUpdateStateAvailable(:final versionInfo):
+            return NewVersionDialog(
               appInfo.presentVersion,
-              remoteVersion,
+              versionInfo,
               canIgnore: false,
             ).show(context);
-          case AsyncError(:final error):
-            if (!context.mounted) return;
-            CustomToast.error(t.printError(error)).show(context);
+          case AppUpdateStateError(:final error):
+            return CustomToast.error(t.printError(error)).show(context);
+          case AppUpdateStateNotAvailable():
+            return CustomToast.success(t.appUpdate.notAvailableMsg)
+                .show(context);
         }
       },
     );
@@ -91,15 +94,18 @@ class AboutPage extends HookConsumerWidget {
                 if (appInfo.release.allowCustomUpdateChecker)
                   ListTile(
                     title: Text(t.about.checkForUpdate),
-                    trailing: appUpdate.isLoading
-                        ? const SizedBox(
-                            width: 24,
-                            height: 24,
-                            child: CircularProgressIndicator(),
-                          )
-                        : const Icon(Icons.update),
-                    onTap: () {
-                      ref.invalidate(appUpdateNotifierProvider);
+                    trailing: switch (appUpdate) {
+                      AppUpdateStateChecking() => const SizedBox(
+                          width: 24,
+                          height: 24,
+                          child: CircularProgressIndicator(),
+                        ),
+                      _ => const Icon(Icons.update),
+                    },
+                    onTap: () async {
+                      await ref
+                          .read(appUpdateNotifierProvider.notifier)
+                          .check();
                     },
                   ),
                 ListTile(

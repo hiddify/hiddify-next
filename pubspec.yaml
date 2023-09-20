@@ -71,6 +71,7 @@ dependencies:
   uuid: ^3.0.7
   tint: ^2.0.1
   accessibility_tools: ^1.0.0
+  neat_periodic_task: ^2.0.1
 
   # widgets
   go_router: ^10.1.2

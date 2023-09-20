@@ -135,6 +135,7 @@ Future<void> initAppServices(
   await Future.wait(
     [
       read(singboxServiceProvider).init(),
+      read(cronServiceProvider).startScheduler(),
     ],
   );
   _logger.debug('initialized app services');

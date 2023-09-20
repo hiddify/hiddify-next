@@ -195,6 +195,7 @@
         "termsAndConditions": "شرایط و ضوابط استفاده"
     },
     "appUpdate": {
+        "notAvailableMsg": "نسخه جدیدی یافت نشد",
         "dialogTitle": "نسخه جدید موجود است",
         "updateMsg": "نسخه جدیدی از @:general.appTitle موجود است! الان بروزرسانی شود؟",
         "currentVersionLbl": "نسخه فعلی",

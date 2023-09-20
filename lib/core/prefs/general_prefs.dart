@@ -75,6 +75,23 @@ class EnableAnalytics extends _$EnableAnalytics {
 }
 
 @Riverpod(keepAlive: true)
+class CheckForPreReleaseUpdates extends _$CheckForPreReleaseUpdates {
+  late final _pref = Pref(
+    ref.watch(sharedPreferencesProvider),
+    "check_for_pre_release_updates",
+    true,
+  );
+
+  @override
+  bool build() => _pref.getValue();
+
+  Future<void> update(bool value) {
+    state = value;
+    return _pref.update(value);
+  }
+}
+
+@Riverpod(keepAlive: true)
 class DebugModeNotifier extends _$DebugModeNotifier {
   late final _pref = Pref(
     ref.watch(sharedPreferencesProvider),
