@@ -5,6 +5,8 @@
 
 #### New
 
+* Add crashlytics. 
+
 * Add support for base64 sublink for header from content. 
 
 * Add profile headers from comments in response! good for hosting in github and show information. 
@@ -13,7 +15,31 @@
 
 * Send release versions only to play market add pre-release version. 
 
+#### Changes
+
+* Change invalid dns 235.5.5.5 to 8.8.8.8. 
+
 #### Fix
+
+* Improve routing accessibility and logs. 
+
+* Minor bugs. 
+
+* Prefs persistence. 
+
+* Crashlytics. 
+
+* App update url. 
+
+* Small profiles. 
+
+* Makefile vars. 
+
+* Adaptive icon. 
+
+* Pre-release. 
+
+* Typo in adaptive icon. 
 
 * If .dev is exist in the version do not show update needed. 
 
@@ -36,6 +62,56 @@
 * Bug. 
 
 #### Other
+
+* Fix minor bugs. 
+
+* Refactor app update. 
+
+* Fix sentry dart plugin upload. 
+
+* Fix ci debug symbols upload. 
+
+* Add sentry provider observer. 
+
+* Ci: add sentry debug info upload. 
+
+* Update dependencies and general fixes. 
+
+* Chore: bump agp version. 
+
+* Ci: fix env. 
+
+* Ci: add dsn env. 
+
+* Feat: add region and terms to intro. 
+
+* Update ci.yml. 
+
+* Build: add sentry dsn. 
+
+* Feat: add intro screen. 
+
+* Feat: add sentry. 
+
+* Ci: bump macos version. 
+
+* Feat: update profile when adding preexisting url. 
+
+* Publish draft even with error. 
+
+* Update version of core. 
+
+* Merge branch 'main' of hiddify-github:hiddify/hiddify-next. 
+
+* Add firebase. 
+
+* Update translation. 
+
+* Refactor: version presentation. 
+
+* Perf: improve header parser. 
+
+* Feat: remove check for updates in market releases. 
 
 * Better manage the market release. 
 
