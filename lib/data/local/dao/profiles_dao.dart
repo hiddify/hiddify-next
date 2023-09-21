@@ -32,7 +32,9 @@ class ProfilesDao extends DatabaseAccessor<AppDatabase>
   }
 
   Stream<Profile?> watchActiveProfile() {
-    return (profileEntries.select()..where((tbl) => tbl.active.equals(true)))
+    return (profileEntries.select()
+          ..where((tbl) => tbl.active.equals(true))
+          ..limit(1))
         .map(ProfileMapper.fromEntry)
         .watchSingleOrNull();
   }
@@ -82,8 +84,7 @@ class ProfilesDao extends DatabaseAccessor<AppDatabase>
     await transaction(
       () async {
         if (profile.active) {
-          await (update(profileEntries)
-                ..where((tbl) => tbl.id.isNotValue(profile.id)))
+          await update(profileEntries)
               .write(const ProfileEntriesCompanion(active: Value(false)));
         }
         await into(profileEntries).insert(profile.toCompanion());
@@ -95,8 +96,7 @@ class ProfilesDao extends DatabaseAccessor<AppDatabase>
     await transaction(
       () async {
         if (patch.active) {
-          await (update(profileEntries)
-                ..where((tbl) => tbl.id.isNotValue(patch.id)))
+          await update(profileEntries)
               .write(const ProfileEntriesCompanion(active: Value(false)));
         }
         await (update(profileEntries)..where((tbl) => tbl.id.equals(patch.id)))
@@ -108,7 +108,7 @@ class ProfilesDao extends DatabaseAccessor<AppDatabase>
   Future<void> setAsActive(String id) async {
     await transaction(
       () async {
-        await (update(profileEntries)..where((tbl) => tbl.id.isNotValue(id)))
+        await update(profileEntries)
             .write(const ProfileEntriesCompanion(active: Value(false)));
         await (update(profileEntries)..where((tbl) => tbl.id.equals(id)))
             .write(const ProfileEntriesCompanion(active: Value(true)));

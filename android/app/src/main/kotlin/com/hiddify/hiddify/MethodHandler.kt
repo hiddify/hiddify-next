@@ -13,7 +13,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class MethodHandler : FlutterPlugin, MethodChannel.MethodCallHandler {
-    private lateinit var channel: MethodChannel
+    private var channel: MethodChannel? = null
 
     companion object {
         const val channelName = "com.hiddify.app/method"
@@ -37,11 +37,11 @@ class MethodHandler : FlutterPlugin, MethodChannel.MethodCallHandler {
             StandardMethodCodec.INSTANCE,
             taskQueue
         )
-        channel.setMethodCallHandler(this)
+        channel!!.setMethodCallHandler(this)
     }
 
     override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
-        channel.setMethodCallHandler(null)
+        channel?.setMethodCallHandler(null)
     }
 
     override fun onMethodCall(call: MethodCall, result: MethodChannel.Result) {

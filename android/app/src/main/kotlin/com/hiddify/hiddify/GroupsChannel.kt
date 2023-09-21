@@ -20,7 +20,7 @@ class GroupsChannel(private val scope: CoroutineScope) : FlutterPlugin, CommandC
     private val commandClient =
         CommandClient(scope, CommandClient.ConnectionType.Groups, this)
 
-    private lateinit var groupsChannel: EventChannel
+    private var groupsChannel: EventChannel? = null
 
     private var groupsEvent: EventChannel.EventSink? = null
 
@@ -37,7 +37,7 @@ class GroupsChannel(private val scope: CoroutineScope) : FlutterPlugin, CommandC
             GROUP_CHANNEL
         )
 
-        groupsChannel.setStreamHandler(object : EventChannel.StreamHandler {
+        groupsChannel!!.setStreamHandler(object : EventChannel.StreamHandler {
             override fun onListen(arguments: Any?, events: EventChannel.EventSink?) {
                 groupsEvent = events
                 Log.d(TAG, "connecting groups command client")
@@ -55,6 +55,7 @@ class GroupsChannel(private val scope: CoroutineScope) : FlutterPlugin, CommandC
     override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
         groupsEvent = null
         commandClient.disconnect()
+        groupsChannel?.setStreamHandler(null)
     }
 
     data class KOutboundGroup(

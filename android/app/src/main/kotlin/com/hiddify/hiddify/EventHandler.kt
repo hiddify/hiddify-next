@@ -15,17 +15,17 @@ class EventHandler : FlutterPlugin {
         const val SERVICE_ALERTS = "com.hiddify.app/service.alerts"
     }
 
-    private lateinit var statusChannel: EventChannel
-    private lateinit var alertsChannel: EventChannel
+    private var statusChannel: EventChannel? = null
+    private var alertsChannel: EventChannel? = null
 
-    private lateinit var statusObserver: Observer<Status>
-    private lateinit var alertsObserver: Observer<ServiceEvent?>
+    private var statusObserver: Observer<Status>? = null
+    private var alertsObserver: Observer<ServiceEvent?>? = null
 
     override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
         statusChannel = EventChannel(flutterPluginBinding.binaryMessenger, SERVICE_STATUS)
         alertsChannel = EventChannel(flutterPluginBinding.binaryMessenger, SERVICE_ALERTS)
 
-        statusChannel.setStreamHandler(object : EventChannel.StreamHandler {
+        statusChannel!!.setStreamHandler(object : EventChannel.StreamHandler {
             override fun onListen(arguments: Any?, events: EventChannel.EventSink?) {
                 statusObserver = Observer {
                     Log.d(TAG, "new status: $it")
@@ -35,15 +35,16 @@ class EventHandler : FlutterPlugin {
                         .toMap()
                     events?.success(map)
                 }
-                MainActivity.instance.serviceStatus.observeForever(statusObserver)
+                MainActivity.instance.serviceStatus.observeForever(statusObserver!!)
             }
 
             override fun onCancel(arguments: Any?) {
-                MainActivity.instance.serviceStatus.removeObserver(statusObserver)
+                if (statusObserver != null)
+                    MainActivity.instance.serviceStatus.removeObserver(statusObserver!!)
             }
         })
 
-        alertsChannel.setStreamHandler(object : EventChannel.StreamHandler {
+        alertsChannel!!.setStreamHandler(object : EventChannel.StreamHandler {
             override fun onListen(arguments: Any?, events: EventChannel.EventSink?) {
                 alertsObserver = Observer {
                     if (it == null) return@Observer
@@ -57,20 +58,23 @@ class EventHandler : FlutterPlugin {
                         .toMap()
                     events?.success(map)
                 }
-                MainActivity.instance.serviceAlerts.observeForever(alertsObserver)
+                MainActivity.instance.serviceAlerts.observeForever(alertsObserver!!)
             }
 
             override fun onCancel(arguments: Any?) {
-                MainActivity.instance.serviceAlerts.removeObserver(alertsObserver)
+                if (alertsObserver != null)
+                    MainActivity.instance.serviceAlerts.removeObserver(alertsObserver!!)
             }
         })
     }
 
     override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
-        MainActivity.instance.serviceStatus.removeObserver(statusObserver)
-        statusChannel.setStreamHandler(null)
-        MainActivity.instance.serviceAlerts.removeObserver(alertsObserver)
-        alertsChannel.setStreamHandler(null)
+        if (statusObserver != null)
+            MainActivity.instance.serviceStatus.removeObserver(statusObserver!!)
+        statusChannel?.setStreamHandler(null)
+        if (alertsObserver != null)
+            MainActivity.instance.serviceAlerts.removeObserver(alertsObserver!!)
+        alertsChannel?.setStreamHandler(null)
     }
 }
 

@@ -30,7 +30,7 @@ import java.io.ByteArrayOutputStream
 
 class PlatformSettingsHandler : FlutterPlugin, MethodChannel.MethodCallHandler, ActivityAware,
     PluginRegistry.ActivityResultListener {
-    private lateinit var channel: MethodChannel
+    private var channel: MethodChannel? = null
     private var activity: Activity? = null
     private lateinit var ignoreRequestResult: MethodChannel.Result
 
@@ -56,11 +56,11 @@ class PlatformSettingsHandler : FlutterPlugin, MethodChannel.MethodCallHandler, 
             StandardMethodCodec.INSTANCE,
             taskQueue
         )
-        channel.setMethodCallHandler(this)
+        channel!!.setMethodCallHandler(this)
     }
 
     override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
-        channel.setMethodCallHandler(null)
+        channel?.setMethodCallHandler(null)
     }
 
     override fun onAttachedToActivity(binding: ActivityPluginBinding) {
