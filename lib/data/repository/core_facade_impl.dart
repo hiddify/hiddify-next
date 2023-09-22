@@ -57,11 +57,15 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
   }
 
   @override
-  TaskEither<CoreServiceFailure, Unit> parseConfig(String path) {
+  TaskEither<CoreServiceFailure, Unit> parseConfig(
+    String path,
+    String tempPath,
+    bool debug,
+  ) {
     return exceptionHandler(
       () {
         return singbox
-            .parseConfig(path)
+            .parseConfig(path, tempPath, debug)
             .mapLeft(CoreServiceFailure.invalidConfig)
             .run();
       },

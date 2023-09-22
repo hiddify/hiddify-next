@@ -895,17 +895,23 @@ class SingboxNativeLibrary {
 
   ffi.Pointer<ffi.Char> parse(
     ffi.Pointer<ffi.Char> path,
+    ffi.Pointer<ffi.Char> tempPath,
+    int debug,
   ) {
     return _parse(
       path,
+      tempPath,
+      debug,
     );
   }
 
   late final _parsePtr = _lookup<
       ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('parse');
-  late final _parse = _parsePtr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, GoUint8)>>('parse');
+  late final _parse = _parsePtr.asFunction<
+      ffi.Pointer<ffi.Char> Function(
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int)>();
 
   ffi.Pointer<ffi.Char> changeConfigOptions(
     ffi.Pointer<ffi.Char> configOptionsJson,
@@ -1099,6 +1105,7 @@ final class GoSlice extends ffi.Struct {
 
 typedef GoInt = GoInt64;
 typedef GoInt64 = ffi.LongLong;
+typedef GoUint8 = ffi.UnsignedChar;
 
 const int _VCRT_COMPILER_PREPROCESSOR = 1;
 

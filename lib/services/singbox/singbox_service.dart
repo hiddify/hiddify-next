@@ -24,7 +24,11 @@ abstract interface class SingboxService {
     String tempDir,
   );
 
-  TaskEither<String, Unit> parseConfig(String path);
+  TaskEither<String, Unit> parseConfig(
+    String path,
+    String tempPath,
+    bool debug,
+  );
 
   TaskEither<String, Unit> changeConfigOptions(ConfigOptions options);
 

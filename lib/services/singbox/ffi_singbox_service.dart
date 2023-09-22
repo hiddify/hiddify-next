@@ -84,12 +84,20 @@ class FFISingboxService
   }
 
   @override
-  TaskEither<String, Unit> parseConfig(String path) {
+  TaskEither<String, Unit> parseConfig(
+    String path,
+    String tempPath,
+    bool debug,
+  ) {
     return TaskEither(
       () => CombineWorker().execute(
         () {
           final err = _box
-              .parse(path.toNativeUtf8().cast())
+              .parse(
+                path.toNativeUtf8().cast(),
+                tempPath.toNativeUtf8().cast(),
+                debug ? 1 : 0,
+              )
               .cast<Utf8>()
               .toDartString();
           if (err.isNotEmpty) {

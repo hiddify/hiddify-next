@@ -198,21 +198,27 @@ class ProfilesRepositoryImpl
   ) {
     return TaskEither(
       () async {
+        final tempPath = filesEditor.configPath("temp_$fileName");
         final path = filesEditor.configPath(fileName);
-        final response = await dio.download(url.trim(), path);
-        final headers = await _populateHeaders(response.headers.map, path);
-        final parseResult = await singbox.parseConfig(path).run();
-        return parseResult.fold(
-          (l) async {
-            await File(path).delete();
-            loggy.warning("error parsing config: $l");
-            return left(ProfileFailure.invalidConfig(l.msg));
-          },
-          (_) async {
-            final profile = Profile.fromResponse(url, headers);
-            return right(profile);
-          },
-        );
+        try {
+          final response = await dio.download(url.trim(), tempPath);
+          final headers =
+              await _populateHeaders(response.headers.map, tempPath);
+          final parseResult =
+              await singbox.parseConfig(path, tempPath, false).run();
+          return parseResult.fold(
+            (l) async {
+              loggy.warning("error parsing config: $l");
+              return left(ProfileFailure.invalidConfig(l.msg));
+            },
+            (_) async {
+              final profile = Profile.fromResponse(url, headers);
+              return right(profile);
+            },
+          );
+        } finally {
+          if (await File(tempPath).exists()) await File(tempPath).delete();
+        }
       },
     );
   }

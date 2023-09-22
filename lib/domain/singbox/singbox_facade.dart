@@ -8,7 +8,11 @@ import 'package:hiddify/domain/singbox/outbounds.dart';
 abstract interface class SingboxFacade {
   TaskEither<CoreServiceFailure, Unit> setup();
 
-  TaskEither<CoreServiceFailure, Unit> parseConfig(String path);
+  TaskEither<CoreServiceFailure, Unit> parseConfig(
+    String path,
+    String tempPath,
+    bool debug,
+  );
 
   TaskEither<CoreServiceFailure, Unit> changeConfigOptions(
     ConfigOptions options,

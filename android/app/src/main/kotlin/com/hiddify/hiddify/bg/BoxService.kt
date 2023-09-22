@@ -61,9 +61,9 @@ class BoxService(
             return
         }
 
-        fun parseConfig(path: String): String {
+        fun parseConfig(path: String, tempPath: String, debug: Boolean): String {
             return try {
-                Mobile.parse(path)
+                Mobile.parse(path, tempPath, debug)
                 ""
             } catch (e: Exception) {
                 Log.w(TAG, e)
@@ -157,7 +157,7 @@ class BoxService(
                 return
             }
 
-            if(Settings.debugMode) {
+            if (Settings.debugMode) {
                 File(workingDir, "current-config.json").writeText(content)
             }
 

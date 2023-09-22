@@ -42,12 +42,16 @@ class MobileSingboxService
       TaskEither.of(unit);
 
   @override
-  TaskEither<String, Unit> parseConfig(String path) {
+  TaskEither<String, Unit> parseConfig(
+    String path,
+    String tempPath,
+    bool debug,
+  ) {
     return TaskEither(
       () async {
         final message = await _methodChannel.invokeMethod<String>(
           "parse_config",
-          {"path": path},
+          {"path": path, "tempPath": tempPath, "debug": debug},
         );
         if (message == null || message.isEmpty) return right(unit);
         return left(message);

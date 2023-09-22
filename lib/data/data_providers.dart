@@ -24,10 +24,12 @@ AppDatabase appDatabase(AppDatabaseRef ref) => AppDatabase.connect();
 SharedPreferences sharedPreferences(SharedPreferencesRef ref) =>
     throw UnimplementedError('sharedPreferences must be overridden');
 
-// TODO: set options for dio
 @Riverpod(keepAlive: true)
 Dio dio(DioRef ref) => Dio(
       BaseOptions(
+        connectTimeout: const Duration(seconds: 15),
+        sendTimeout: const Duration(seconds: 15),
+        receiveTimeout: const Duration(seconds: 15),
         headers: {
           "User-Agent": ref.watch(appInfoProvider).userAgent,
         },

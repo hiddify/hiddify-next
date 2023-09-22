@@ -50,8 +50,10 @@ class MethodHandler : FlutterPlugin, MethodChannel.MethodCallHandler {
                 GlobalScope.launch {
                     result.runCatching {
                         val args = call.arguments as Map<*, *>
-                        val path = args["path"] as String? ?: ""
-                        val msg = BoxService.parseConfig(path)
+                        val path = args["path"] as String
+                        val tempPath = args["tempPath"] as String
+                        val debug = args["debug"] as Boolean
+                        val msg = BoxService.parseConfig(path, tempPath, debug)
                         success(msg)
                     }
                 }
