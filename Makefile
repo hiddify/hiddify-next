@@ -5,21 +5,19 @@ ANDROID_OUT=./android/app/libs
 DESKTOP_OUT=./libcore/bin
 GEO_ASSETS_DIR=./assets/core
 
-# BRANCH=$(shell git branch --show-current)
-VERSION=$(shell git describe --tags --abbrev=0 || echo "unknown version")
-
 CORE_NAME=hiddify-libcore
-ifeq ($(BRANCH),RELEASE)
+ifeq ($(CHANNEL),prod)
 CORE_URL=https://github.com/hiddify/hiddify-next-core/releases/download/v$(core.version)
 else
 CORE_URL=https://github.com/hiddify/hiddify-next-core/releases/download/draft
 endif
 
-ifeq ($(BRANCH),RELEASE)
+ifeq ($(CHANNEL),prod)
 FLAVOR=prod
 else
 FLAVOR=dev
 endif
+
 TARGET=lib/main_$(FLAVOR).dart
 BUILD_ARGS=--dart-define sentry_dsn=$(SENTRY_DSN)
 DISTRIBUTOR_ARGS=--skip-clean --build-target $(TARGET) --build-dart-define sentry_dsn=$(SENTRY_DSN)
@@ -99,9 +97,7 @@ build-ios-libs: #not tested
 	make -C libcore -f Makefile ios && mv $(BINDIR)/$(CORE_NAME)-ios.xcframework $(DESKTOP_OUT)/libcore.xcframework
 
 
-
-
-release:          ## Create a new tag for release.
+release: # Create a new tag for release.
 	@echo "previous version was $$(git describe --tags $$(git rev-list --tags --max-count=1))"
 	@echo "WARNING: This operation will creates version tag and push to github"
 	@bash -c '\
@@ -109,17 +105,16 @@ release:          ## Create a new tag for release.
 	echo $$TAG &&\
 	[[ "$$TAG" =~ ^[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{1,2}(\.dev)?$$ ]] || { echo "Incorrect tag. e.g., 1.2.3 or 1.2.3.dev"; exit 1; } && \
 	IFS="." read -r -a VERSION_ARRAY <<< "$$TAG" && \
-	BUILD_NUMBER=$$(( $${VERSION_ARRAY[0]} * 10000 + $${VERSION_ARRAY[1]} * 100 + $${VERSION_ARRAY[2]} )) && \
 	VERSION_STR="$${VERSION_ARRAY[0]}.$${VERSION_ARRAY[1]}.$${VERSION_ARRAY[2]}" && \
-	echo "version: $${VERSION_STR}+$${BUILD_NUMBER}" && \
-	sed -i "s/version: .*/version: $${VERSION_STR}+$${BUILD_NUMBER}/g" pubspec.yaml && \
+	echo "version: $${VERSION_STR}" && \
+	sed -i "s/version: .*/version: $${VERSION_STR}/g" pubspec.yaml && \
 	git tag $${TAG} > /dev/null && \
 	gitchangelog > changelog.md || { git tag -d $${TAG}; echo "Please run pip install git gitchangelog pystache mustache markdown"; exit 2; } && \
 	git tag -d $${TAG} > /dev/null && \
 	git add pubspec.yaml changelog.md && \
 	# ./update_translations.sh && \
 	# git add assets/translations/* && \
-	git commit -m "release: version $${TAG} 🚀" && \
+	git commit -m "release: version $${TAG}" && \
 	echo "creating git tag : v$${TAG}" && \
 	git tag v$${TAG} && \
 	git push -u origin HEAD --tags && \

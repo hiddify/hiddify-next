@@ -1,4 +1,4 @@
-name: CI & Build
+name: Build
 on:
   push:
     branches:
@@ -9,13 +9,15 @@ on:
       - '**.md'
       - 'docs/**'
       - '.github/**'
-      - '!.github/workflows/ci.yml'
+      - '!.github/workflows/build.yml'
   pull_request:
     branches:
       - main
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
   cancel-in-progress: true
+env:
+  CHANNEL: ${{ github.ref_type == 'tag' && endsWith(github.ref_name, 'dev') && 'dev' || github.ref_type != 'tag' && 'dev' || 'prod' }}
 jobs:
   build:
     permissions: write-all
@@ -55,20 +57,6 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
-
-      # - name: Cache Flutter dependencies
-      #   uses: actions/cache@v3
-      #   with:
-      #     path: |
-      #       ~/.pub-cache
-      #       ~/.gradle/caches
-      #       ~/.gradle/wrapper
-      #       ~/.npm
-      #       ~/.cache
-      #       ~/go/pkg/mod
-      #     key: ${{ runner.os }}-pub-cache-${{ hashFiles('**/pubspec.lock') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-pub-cache-
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
@@ -118,8 +106,6 @@ jobs:
           make gen
 
       - name: Get Libs ${{ matrix.platform }}
-        env:
-          BRANCH: ${{ github.ref_type == 'tag' && 'RELEASE' || 'DEVELOP' }}
         run: |
           make ${{ matrix.platform }}-libs
 
@@ -145,12 +131,12 @@ jobs:
 
       - name: Release ${{ matrix.platform }}
         env:
-          BRANCH: ${{ github.ref_type == 'tag' && 'RELEASE' || 'DEVELOP' }}
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
         run: |
           make ${{ matrix.platform }}-release
 
       - name: Upload Debug Symbols
+        if: ${{ github.ref_type == 'tag' }}
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
@@ -215,7 +201,7 @@ jobs:
 
   upload-draft:
     permissions: write-all
-    if: ${{ github.ref_type=='branch' }}
+    if: ${{ github.ref_type == 'branch' }}
     needs: [build]
     runs-on: ubuntu-latest
     steps:
@@ -238,8 +224,7 @@ jobs:
 
       - name: Create or Update Draft Release
         uses: softprops/action-gh-release@v1
-        if: github.ref_type != 'tag'
-        #&& success()
+        if: ${{ github.ref_type != 'tag' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -250,7 +235,7 @@ jobs:
 
   upload-release:
     permissions: write-all
-    if: ${{ github.ref_type=='tag' }}
+    if: ${{ github.ref_type == 'tag' }}
     needs: [build]
     runs-on: ubuntu-latest
     steps:
@@ -269,7 +254,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          prerelease: ${{ contains(github.ref_name,'dev') }}
+          prerelease: ${{ CHANNEL == 'dev' }}
           tag_name: ${{ github.ref_name }}
           files: ./out/*
 
