@@ -254,7 +254,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          prerelease: ${{ CHANNEL == 'dev' }}
+          prerelease: ${{ env.CHANNEL == 'dev' }}
           tag_name: ${{ github.ref_name }}
           files: ./out/*
 
