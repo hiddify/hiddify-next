@@ -22,7 +22,7 @@ if (flutterVersionName == null) {
 }
 
 def keystoreProperties = new Properties()
-def keystorePropertiesFile=rootProject.file('release.properties')
+def keystorePropertiesFile = rootProject.file('release.properties')
 if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 }
@@ -49,7 +49,6 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "app.hiddify.com"
         minSdkVersion 21
         targetSdkVersion 33
@@ -57,28 +56,31 @@ android {
         versionName flutterVersionName
         multiDexEnabled true
     }
-    splits {
-      abi {
-        enable true
-        reset()
-        include "x86_64", "armeabi-v7a", "arm64-v8a"
 
-        // Specifies that we do not want to also generate a universal APK that includes all ABIs.
-        universalApk true
-      }
+    splits {
+        abi {
+            enable true
+            reset()
+            include "x86_64", "armeabi-v7a", "arm64-v8a"
+
+            universalApk true
+        }
     }
 
     signingConfigs {
-        release {            
+        release {
             keyAlias keystoreProperties['key.alias']
             keyPassword keystoreProperties['key.password']
-            storeFile keystoreProperties['keystore.path']? file(keystoreProperties['keystore.path']): null
+            storeFile keystoreProperties['keystore.path'] ? file(keystoreProperties['keystore.path']) : null
             storePassword keystoreProperties['keystore.password']
         }
     }
     buildTypes {
         release {
             signingConfig signingConfigs.release
+            ndk {
+                abiFilters "x86_64", "armeabi-v7a", "arm64-v8a"
+            }
         }
     }
 
@@ -86,13 +88,13 @@ android {
         viewBinding true
         aidl true
     }
-    
+
 }
 
 android.applicationVariants.all { variant ->
-  variant.outputs.each { output ->
-      output.versionCodeOverride = android.defaultConfig.versionCode
-  }
+    variant.outputs.each { output ->
+        output.versionCodeOverride = android.defaultConfig.versionCode
+    }
 }
 
 flutter {
@@ -100,7 +102,7 @@ flutter {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
     implementation 'com.google.code.gson:gson:2.10.1'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.10.1'
