@@ -1,7 +1,17 @@
 # Changelog
 
 
-## 0.5.9 (2023-09-22)
+## 0.5.10 (2023-09-22)
+
+#### Other
+
+* Fix minor bugs. 
+
+* Fix profile update bug. 
+
+
+
+## v0.5.9 (2023-09-22)
 
 #### Other
 
