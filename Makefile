@@ -106,8 +106,9 @@ release: # Create a new tag for release.
 	[[ "$$TAG" =~ ^[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{1,2}(\.dev)?$$ ]] || { echo "Incorrect tag. e.g., 1.2.3 or 1.2.3.dev"; exit 1; } && \
 	IFS="." read -r -a VERSION_ARRAY <<< "$$TAG" && \
 	VERSION_STR="$${VERSION_ARRAY[0]}.$${VERSION_ARRAY[1]}.$${VERSION_ARRAY[2]}" && \
-	echo "version: $${VERSION_STR}" && \
-	sed -i "s/version: .*/version: $${VERSION_STR}/g" pubspec.yaml && \
+	BUILD_NUMBER=$$(( $${VERSION_ARRAY[0]} * 10000 + $${VERSION_ARRAY[1]} * 100 + $${VERSION_ARRAY[2]} )) && \
+	echo "version: $${VERSION_STR}+$${BUILD_NUMBER}" && \
+	sed -i "s/version: .*/version: $${VERSION_STR}\+$${BUILD_NUMBER}/g" pubspec.yaml && \
 	git tag $${TAG} > /dev/null && \
 	gitchangelog > changelog.md || { git tag -d $${TAG}; echo "Please run pip install git gitchangelog pystache mustache markdown"; exit 2; } && \
 	git tag -d $${TAG} > /dev/null && \
