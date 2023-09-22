@@ -73,6 +73,11 @@ Future<void> lazyBootstrap(
           _ => event,
         };
       };
+      options.logger = (level, message, {exception, logger, stackTrace}) {
+        if (level == SentryLevel.fatal) {
+          _logger.debug(message);
+        }
+      };
     },
     appRunner: () => _lazyBootstrap(widgetsBinding, container, env),
   );

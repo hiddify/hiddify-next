@@ -35,16 +35,15 @@ class AsyncMutation with _$AsyncMutation {
       useValueNotifier<void Function(Object error)?>(initialOnFailure);
   final successCallBack = useValueNotifier<void Function()?>(initialOnSuccess);
 
-  // map AsyncSnapshot to AsyncMutation which is easier to consume
   final mapped = useMemoized(
-    () => switch (mutationState) {
-      // ignore: unused_local_variable
-      AsyncSnapshot(:final data?) => const Success(),
-      AsyncSnapshot(connectionState: ConnectionState.waiting) =>
-        const InProgress(),
-      AsyncSnapshot(:final error?, :final stackTrace?) =>
-        Fail(error, stackTrace),
-      _ => const Idle(),
+    () {
+      return switch (mutationState.connectionState) {
+        ConnectionState.none => const Idle(),
+        ConnectionState.waiting => const InProgress(),
+        _ => mutationState.hasError
+            ? Fail(mutationState.error!, mutationState.stackTrace!)
+            : const Success(),
+      };
     },
     [mutationState],
   );
