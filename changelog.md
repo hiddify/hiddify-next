@@ -1,7 +1,7 @@
 # Changelog
 
 
-## (unreleased)
+## 0.5.8 (2023-09-22)
 
 #### New
 
@@ -62,6 +62,12 @@
 * Bug. 
 
 #### Other
+
+* Fix ci. 
+
+* Fix false-positive error reports. 
+
+* Change build setup. 
 
 * Fix minor bugs. 
 
