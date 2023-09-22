@@ -1,7 +1,17 @@
 # Changelog
 
 
-## 0.5.10 (2023-09-22)
+## 0.5.11 (2023-09-22)
+
+#### Other
+
+* Fix android bundle abi. 
+
+* Bump core version. 
+
+
+
+## v0.5.10 (2023-09-22)
 
 #### Other
 
