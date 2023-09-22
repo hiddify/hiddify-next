@@ -13,6 +13,7 @@ sealed class CoreServiceFailure with _$CoreServiceFailure, Failure {
     StackTrace stackTrace,
   ) = UnexpectedCoreServiceFailure;
 
+  @With<ExpectedException>()
   const factory CoreServiceFailure.serviceNotRunning([String? message]) =
       CoreServiceNotRunning;
 

@@ -5,6 +5,9 @@ mixin Failure {
   ({String type, String? message}) present(TranslationsEn t);
 }
 
+/// failures ignored by analytics service etc.
+mixin ExpectedException {}
+
 extension ErrorPresenter on TranslationsEn {
   String? _errorToMessage(Object error) {
     switch (error) {
