@@ -93,24 +93,18 @@ class ProfilesRoute extends GoRouteData {
 }
 
 class NewProfileRoute extends GoRouteData {
-  const NewProfileRoute({this.url, this.profileName});
+  const NewProfileRoute();
   static const path = 'profiles/new';
   static const name = 'New Profile';
-  final String? url;
-  final String? profileName;
 
   static final GlobalKey<NavigatorState> $parentNavigatorKey = rootNavigatorKey;
 
   @override
   Page<void> buildPage(BuildContext context, GoRouterState state) {
-    return MaterialPage(
+    return const MaterialPage(
       fullscreenDialog: true,
       name: name,
-      child: ProfileDetailPage(
-        "new",
-        url: url,
-        name: profileName,
-      ),
+      child: ProfileDetailPage("new"),
     );
   }
 }

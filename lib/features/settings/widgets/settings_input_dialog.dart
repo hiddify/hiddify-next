@@ -14,6 +14,7 @@ class SettingsInputDialog<T> extends HookConsumerWidget with PresLogger {
     this.mapTo,
     this.validator,
     this.resetValue,
+    this.optionalAction,
     this.icon,
     this.digitsOnly = false,
   });
@@ -23,6 +24,7 @@ class SettingsInputDialog<T> extends HookConsumerWidget with PresLogger {
   final T? Function(String value)? mapTo;
   final bool Function(String value)? validator;
   final T? resetValue;
+  final (String text, VoidCallback)? optionalAction;
   final IconData? icon;
   final bool digitsOnly;
 
@@ -55,6 +57,15 @@ class SettingsInputDialog<T> extends HookConsumerWidget with PresLogger {
         autovalidateMode: AutovalidateMode.always,
       ),
       actions: [
+        if (optionalAction != null)
+          TextButton(
+            onPressed: () async {
+              optionalAction!.$2();
+              await Navigator.of(context)
+                  .maybePop(T == String ? textController.value.text : null);
+            },
+            child: Text(optionalAction!.$1.toUpperCase()),
+          ),
         if (resetValue != null)
           TextButton(
             onPressed: () async {

@@ -160,6 +160,23 @@ class ProfilesRepositoryImpl
   }
 
   @override
+  TaskEither<ProfileFailure, Unit> edit(Profile profile) {
+    return exceptionHandler(
+      () async {
+        loggy.debug(
+          "editing profile [${profile.name} (${profile.id})]",
+        );
+        await profilesDao.edit(profile);
+        return right(unit);
+      },
+      (error, stackTrace) {
+        loggy.warning("error editing profile", error, stackTrace);
+        return ProfileUnexpectedFailure(error, stackTrace);
+      },
+    );
+  }
+
+  @override
   TaskEither<ProfileFailure, Unit> setAsActive(String id) {
     return TaskEither.tryCatch(
       () async {

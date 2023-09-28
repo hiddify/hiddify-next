@@ -23,6 +23,8 @@ abstract class ProfilesRepository {
 
   TaskEither<ProfileFailure, Unit> update(Profile baseProfile);
 
+  TaskEither<ProfileFailure, Unit> edit(Profile profile);
+
   TaskEither<ProfileFailure, Unit> setAsActive(String id);
 
   TaskEither<ProfileFailure, Unit> delete(String id);

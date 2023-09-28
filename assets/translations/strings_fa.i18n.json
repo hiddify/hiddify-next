@@ -6,6 +6,9 @@
             "enabled": "فعال",
             "disabled": "غیر فعال"
         },
+        "state": {
+            "disable": "غیر فعال"
+        },
         "sort": "مرتب‌سازی",
         "sortBy": "مرتب‌سازی براساس"
     }, 
@@ -78,10 +81,15 @@
             "successMsg": "پروفایل با موفقیت ذخیره شد"
         },
         "detailsForm": {
-            "nameHint": "نام",
-            "urlHint": "لینک",
+            "nameLabel": "نام",
+            "nameHint": "نام پروفایل",
+            "urlLabel": "لینک",
+            "urlHint": "آدرس کامل کانفیگ",
             "emptyNameMsg": "نام نمی‌تواند خالی باشد",
-            "invalidUrlMsg": "لینک نامعتبر"
+            "invalidUrlMsg": "لینک نامعتبر",
+            "lastUpdate": "آخرین بروزرسانی",
+            "updateInterval": "بروزرسانی خودکار",
+            "updateIntervalDialogTitle": "فاصله زمانی بروزرسانی خودکار (ساعت)"
         }
     },
     "proxies": {

@@ -13,10 +13,10 @@ class ProfileDetailState with _$ProfileDetailState {
     @Default(false) bool isEditing,
     @Default(false) bool showErrorMessages,
     @Default(MutationState.initial()) MutationState<ProfileFailure> save,
+    @Default(MutationState.initial()) MutationState<ProfileFailure> update,
     @Default(MutationState.initial()) MutationState<ProfileFailure> delete,
   }) = _ProfileDetailState;
 
   bool get isBusy =>
-      (save.isInProgress || save is MutationSuccess) ||
-      (delete.isInProgress || delete is MutationSuccess);
+      save.isInProgress || delete.isInProgress || update.isInProgress;
 }

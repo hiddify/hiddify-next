@@ -13,7 +13,7 @@ class CustomTextFormField extends HookConsumerWidget {
     this.suffixIcon,
     this.label,
     this.hint,
-    this.maxLines = 1,
+    this.maxLines,
     this.isDense = false,
     this.autoValidate = false,
     this.autoCorrect = false,
@@ -26,7 +26,7 @@ class CustomTextFormField extends HookConsumerWidget {
   final Widget? suffixIcon;
   final String? label;
   final String? hint;
-  final int maxLines;
+  final int? maxLines;
   final bool isDense;
   final bool autoValidate;
   final bool autoCorrect;

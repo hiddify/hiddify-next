@@ -39,23 +39,31 @@ class ProfileDetailNotifier extends _$ProfileDetailNotifier with AppLogger {
           loggy.warning('profile with id: [$id] does not exist');
           throw const ProfileNotFoundFailure();
         }
+        _originalProfile = profile;
         return ProfileDetailState(profile: profile, isEditing: true);
       },
     );
   }
 
   ProfilesRepository get _profilesRepo => ref.read(profilesRepositoryProvider);
+  Profile? _originalProfile;
 
-  void setField({String? name, String? url}) {
+  void setField({String? name, String? url, Option<int>? updateInterval}) {
     if (state case AsyncData(:final value)) {
       state = AsyncData(
         value.copyWith(
           profile: value.profile.copyWith(
             name: name ?? value.profile.name,
             url: url ?? value.profile.url,
+            options: updateInterval == null
+                ? value.profile.options
+                : updateInterval.fold(
+                    () => null,
+                    (t) => ProfileOptions(updateInterval: Duration(hours: t)),
+                  ),
           ),
         ),
-      ).copyWithPrevious(state);
+      );
     }
   }
 
@@ -66,14 +74,18 @@ class ProfileDetailNotifier extends _$ProfileDetailNotifier with AppLogger {
       loggy.debug(
         'saving profile, url: [${profile.url}], name: [${profile.name}]',
       );
-      state = AsyncData(value.copyWith(save: const MutationInProgress()))
-          .copyWithPrevious(state);
+      state = AsyncData(value.copyWith(save: const MutationInProgress()));
       Either<ProfileFailure, Unit>? failureOrSuccess;
       if (profile.name.isBlank || profile.url.isBlank) {
         loggy.debug('profile save: invalid arguments');
       } else if (value.isEditing) {
-        loggy.debug('updating profile');
-        failureOrSuccess = await _profilesRepo.update(profile).run();
+        if (_originalProfile?.url == profile.url) {
+          loggy.debug('editing profile');
+          failureOrSuccess = await _profilesRepo.edit(profile).run();
+        } else {
+          loggy.debug('updating profile');
+          failureOrSuccess = await _profilesRepo.update(profile).run();
+        }
       } else {
         loggy.debug('adding profile, url: [${profile.url}]');
         failureOrSuccess = await _profilesRepo.add(profile).run();
@@ -87,7 +99,32 @@ class ProfileDetailNotifier extends _$ProfileDetailNotifier with AppLogger {
               value.save,
           showErrorMessages: true,
         ),
-      ).copyWithPrevious(state);
+      );
+    }
+  }
+
+  Future<void> updateProfile() async {
+    if (state case AsyncData(:final value)) {
+      if (value.update.isInProgress || !value.isEditing) return;
+      final profile = value.profile;
+      loggy.debug('updating profile');
+      state = AsyncData(value.copyWith(update: const MutationInProgress()));
+      final failureOrUpdatedProfile = await _profilesRepo
+          .update(profile)
+          .flatMap((_) => _profilesRepo.get(id))
+          .run();
+      state = AsyncData(
+        value.copyWith(
+          update: failureOrUpdatedProfile.match(
+            (l) => MutationFailure(l),
+            (_) => const MutationSuccess(),
+          ),
+          profile: failureOrUpdatedProfile.match(
+            (_) => profile,
+            (updatedProfile) => updatedProfile ?? profile,
+          ),
+        ),
+      );
     }
   }
 
@@ -96,9 +133,7 @@ class ProfileDetailNotifier extends _$ProfileDetailNotifier with AppLogger {
       if (value.delete.isInProgress) return;
       final profile = value.profile;
       loggy.debug('deleting profile');
-      state = AsyncData(
-        value.copyWith(delete: const MutationState.inProgress()),
-      ).copyWithPrevious(state);
+      state = AsyncData(value.copyWith(delete: const MutationInProgress()));
       final result = await _profilesRepo.delete(profile.id).run();
       state = AsyncData(
         value.copyWith(
@@ -107,7 +142,7 @@ class ProfileDetailNotifier extends _$ProfileDetailNotifier with AppLogger {
             (_) => const MutationSuccess(),
           ),
         ),
-      ).copyWithPrevious(state);
+      );
     }
   }
 }

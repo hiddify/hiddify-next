@@ -6,6 +6,9 @@
             "enabled": "Enabled",
             "disabled": "Disabled"
         },
+        "state": {
+            "disable": "Disable"
+        },
         "sort": "Sort",
         "sortBy": "Sort by"
     },
@@ -78,10 +81,15 @@
             "successMsg": "Profile saved successfully"
         },
         "detailsForm": {
-            "nameHint": "Name",
-            "urlHint": "URL",
+            "nameLabel": "Name",
+            "nameHint": "Profile name",
+            "urlLabel": "URL",
+            "urlHint": "Full config URL",
             "emptyNameMsg": "Name is required",
-            "invalidUrlMsg": "Invalid URL"
+            "invalidUrlMsg": "Invalid URL",
+            "lastUpdate": "Last Update",
+            "updateInterval": "Auto Update",
+            "updateIntervalDialogTitle": "Auto Update Interval (in hours)"
         }
     },
     "proxies": {
