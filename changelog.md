@@ -1,7 +1,21 @@
 # Changelog
 
 
-## 0.5.11 (2023-09-22)
+## 0.6.0 (2023-09-30)
+
+#### Other
+
+* Fix minor bugs. 
+
+* Add scheduled profile update. 
+
+* Update dependencies. 
+
+* Refactor profile details page. 
+
+
+
+## v0.5.11 (2023-09-22)
 
 #### Other
 
