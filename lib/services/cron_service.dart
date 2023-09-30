@@ -28,7 +28,6 @@ class CronService with InfraLogger {
   }) {
     loggy.debug("scheduling [$key]");
     jobs[key] = (key, duration, callback);
-    _scheduler?.trigger();
   }
 
   Future<void> run(Job job) async {

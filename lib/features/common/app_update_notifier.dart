@@ -66,11 +66,11 @@ class AppUpdateNotifier extends _$AppUpdateNotifier with AppLogger {
     ).run();
   }
 
-  void _schedule() {
+  Future<void> _schedule() async {
     loggy.debug("scheduling app update checker");
-    ref.watch(cronServiceProvider).schedule(
+    return ref.read(cronServiceProvider).schedule(
           key: 'app_update',
-          duration: const Duration(hours: 4),
+          duration: const Duration(hours: 8),
           callback: () async {
             await Future.delayed(const Duration(seconds: 5));
             final updateState = await check();

@@ -37,6 +37,17 @@ class AppView extends HookConsumerWidget with PresLogger {
       theme: theme.light(),
       darkTheme: theme.dark(),
       title: Constants.appName,
+
+      // https://github.com/ponnamkarthik/FlutterToast/issues/393
+      builder: (context, child) => Overlay(
+        initialEntries: [
+          if (child != null) ...[
+            OverlayEntry(
+              builder: (context) => child,
+            ),
+          ],
+        ],
+      ),
     );
   }
 }
