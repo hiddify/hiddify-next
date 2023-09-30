@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:hiddify/core/router/routes/routes.dart';
 import 'package:hiddify/services/deep_link_service.dart';
+import 'package:hiddify/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
@@ -11,7 +12,7 @@ part 'app_router.g.dart';
 // TODO: test and improve handling of deep link
 @riverpod
 GoRouter router(RouterRef ref) {
-  final introCompleted = ref.watch(introCompletedProvider);
+  final notifier = ref.watch(routerListenableProvider.notifier);
   final deepLink = ref.listen(
     deepLinkServiceProvider,
     (_, next) async {
@@ -31,15 +32,11 @@ GoRouter router(RouterRef ref) {
     initialLocation: initialLocation,
     debugLogDiagnostics: true,
     routes: $routes,
+    refreshListenable: notifier,
+    redirect: notifier.redirect,
     observers: [
       SentryNavigatorObserver(),
     ],
-    redirect: (context, state) {
-      if (!introCompleted && state.uri.path != const IntroRoute().location) {
-        return const IntroRoute().location;
-      }
-      return null;
-    },
   );
 }
 
@@ -65,5 +62,48 @@ void switchTab(int index, BuildContext context) {
       const SettingsRoute().go(context);
     case 4:
       const AboutRoute().go(context);
+  }
+}
+
+@riverpod
+class RouterListenable extends _$RouterListenable
+    with AppLogger
+    implements Listenable {
+  VoidCallback? _routerListener;
+  bool _introCompleted = false;
+
+  @override
+  Future<void> build() async {
+    _introCompleted = ref.watch(introCompletedProvider);
+
+    ref.listenSelf((_, __) {
+      if (state.isLoading) return;
+      loggy.debug("triggering listener");
+      _routerListener?.call();
+    });
+  }
+
+  String? redirect(BuildContext context, GoRouterState state) {
+    // if (this.state.isLoading || this.state.hasError) return null;
+
+    final isIntro = state.uri.path == const IntroRoute().location;
+
+    if (!_introCompleted) {
+      return const IntroRoute().location;
+    } else if (isIntro) {
+      return const HomeRoute().location;
+    }
+
+    return null;
+  }
+
+  @override
+  void addListener(VoidCallback listener) {
+    _routerListener = listener;
+  }
+
+  @override
+  void removeListener(VoidCallback listener) {
+    _routerListener = null;
   }
 }

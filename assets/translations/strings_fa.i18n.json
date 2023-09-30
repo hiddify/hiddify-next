@@ -37,7 +37,6 @@
         "overviewPageTitle": "پروفایل‌ها",
         "detailsPageTitle": "پروفایل",
         "activeProfileNameSemanticLabel": "نام پروفایل فعال: ${name}",
-        "nonActiveProfileNameSemanticLabel": "نام پروفایل: ${name}",
         "activeProfileBtnSemanticLabel": "همه‌ی پروفایل‌ها",
         "nonActiveProfileBtnSemanticLabel": "انتخاب ${name} به عنوان پروفایل فعال",
         "subscription": {

@@ -71,17 +71,14 @@ class ProfileTile extends HookConsumerWidget {
               width: 1,
               color: effectiveOutlineColor,
             ),
-            Flexible(
+            Expanded(
               child: Semantics(
                 button: true,
                 sortKey: isMain ? const OrdinalSortKey(0) : null,
                 focused: isMain,
                 liveRegion: isMain,
                 namesRoute: isMain,
-                label: isMain
-                    ? t.profile.activeProfileBtnSemanticLabel
-                    : t.profile
-                        .nonActiveProfileBtnSemanticLabel(name: profile.name),
+                label: isMain ? t.profile.activeProfileBtnSemanticLabel : null,
                 child: InkWell(
                   onTap: () {
                     if (isMain) {
@@ -133,10 +130,13 @@ class ProfileTile extends HookConsumerWidget {
                         else
                           Text(
                             profile.name,
-                            semanticsLabel:
-                                t.profile.nonActiveProfileNameSemanticLabel(
-                              name: profile.name,
-                            ),
+                            semanticsLabel: profile.active
+                                ? t.profile.activeProfileNameSemanticLabel(
+                                    name: profile.name,
+                                  )
+                                : t.profile.nonActiveProfileBtnSemanticLabel(
+                                    name: profile.name,
+                                  ),
                             style: theme.textTheme.titleMedium,
                           ),
                         if (subInfo != null) ...[
@@ -171,7 +171,6 @@ class ProfileActionButton extends HookConsumerWidget {
 
     final updateProfileMutation = useMutation(
       initialOnFailure: (err) {
-        // CustomToast.error(t.printError(err)).show(context);
         CustomAlertDialog.fromErr(t.presentError(err)).show(context);
       },
       initialOnSuccess: () =>
