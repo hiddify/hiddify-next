@@ -159,14 +159,13 @@ class SubscriptionInfo with _$SubscriptionInfo {
 }
 
 int _fromJsonTotal(dynamic total) {
-  if (total == null) {
-    return 9223372036854775807;
-  }
-  return total as int;
+  final totalInt = total as int? ?? -1;
+  return totalInt > 0 ? totalInt : 9223372036854775807;
 }
 
 DateTime _dateTimeFromSecondsSinceEpoch(dynamic expire) {
+  final expireInt = expire as int? ?? -1;
   return DateTime.fromMillisecondsSinceEpoch(
-    (expire as int? ?? 92233720368) * 1000,
+    (expireInt > 0 ? expireInt : 92233720368) * 1000,
   );
 }
