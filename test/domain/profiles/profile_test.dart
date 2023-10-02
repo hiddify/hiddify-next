@@ -19,7 +19,6 @@ void main() {
           expect(profile.url, equals(validExtendedUrl));
           expect(profile.options, isNull);
           expect(profile.subInfo, isNull);
-          expect(profile.extra, isNull);
         },
       );
 
@@ -53,13 +52,6 @@ void main() {
                 download: 1024,
                 total: 10240,
                 expire: DateTime(2024),
-              ),
-            ),
-          );
-          expect(
-            profile.extra,
-            equals(
-              const ProfileExtra(
                 webPageUrl: validBaseUrl,
                 supportUrl: validSupportUrl,
               ),

@@ -15,6 +15,9 @@ sealed class ProfileFailure with _$ProfileFailure, Failure {
 
   const factory ProfileFailure.notFound() = ProfileNotFoundFailure;
 
+  @With<ExpectedException>()
+  const factory ProfileFailure.invalidUrl() = ProfileInvalidUrlFailure;
+
   const factory ProfileFailure.invalidConfig([String? message]) =
       ProfileInvalidConfigFailure;
 
@@ -28,6 +31,10 @@ sealed class ProfileFailure with _$ProfileFailure, Failure {
       ProfileNotFoundFailure() => (
           type: t.failure.profiles.notFound,
           message: null
+        ),
+      ProfileInvalidUrlFailure() => (
+          type: t.failure.profiles.invalidUrl,
+          message: null,
         ),
       ProfileInvalidConfigFailure(:final message) => (
           type: t.failure.profiles.invalidConfig,

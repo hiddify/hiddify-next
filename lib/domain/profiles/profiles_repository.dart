@@ -19,9 +19,15 @@ abstract class ProfilesRepository {
     bool markAsActive = false,
   });
 
-  TaskEither<ProfileFailure, Unit> add(Profile baseProfile);
+  TaskEither<ProfileFailure, Unit> addByContent(
+    String content, {
+    required String name,
+    bool markAsActive = false,
+  });
 
-  TaskEither<ProfileFailure, Unit> update(Profile baseProfile);
+  TaskEither<ProfileFailure, Unit> add(RemoteProfile baseProfile);
+
+  TaskEither<ProfileFailure, Unit> update(RemoteProfile baseProfile);
 
   TaskEither<ProfileFailure, Unit> edit(Profile profile);
 

@@ -39,7 +39,10 @@ class ProfileTile extends HookConsumerWidget {
       },
     );
 
-    final subInfo = profile.subInfo;
+    final subInfo = switch (profile) {
+      RemoteProfile(:final subInfo) => subInfo,
+      _ => null,
+    };
 
     final effectiveMargin = isMain
         ? const EdgeInsets.symmetric(horizontal: 16, vertical: 8)
@@ -60,17 +63,19 @@ class ProfileTile extends HookConsumerWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SizedBox(
-              width: 48,
-              child: Semantics(
-                sortKey: const OrdinalSortKey(1),
-                child: ProfileActionButton(profile, !isMain),
+            if (profile is RemoteProfile || !isMain) ...[
+              SizedBox(
+                width: 48,
+                child: Semantics(
+                  sortKey: const OrdinalSortKey(1),
+                  child: ProfileActionButton(profile, !isMain),
+                ),
               ),
-            ),
-            VerticalDivider(
-              width: 1,
-              color: effectiveOutlineColor,
-            ),
+              VerticalDivider(
+                width: 1,
+                color: effectiveOutlineColor,
+              ),
+            ],
             Expanded(
               child: Semantics(
                 button: true,
@@ -177,7 +182,7 @@ class ProfileActionButton extends HookConsumerWidget {
           CustomToast.success(t.profile.update.successMsg).show(context),
     );
 
-    if (!showAllActions) {
+    if (profile case RemoteProfile() when !showAllActions) {
       return Semantics(
         button: true,
         enabled: !updateProfileMutation.state.isInProgress,
@@ -191,7 +196,7 @@ class ProfileActionButton extends HookConsumerWidget {
               updateProfileMutation.setFuture(
                 ref
                     .read(profilesNotifierProvider.notifier)
-                    .updateProfile(profile),
+                    .updateProfile(profile as RemoteProfile),
               );
             },
             child: const Icon(Icons.update),
@@ -250,20 +255,21 @@ class ProfileActionsMenu extends HookConsumerWidget {
     return MenuAnchor(
       builder: builder,
       menuChildren: [
-        MenuItemButton(
-          leadingIcon: const Icon(Icons.update),
-          child: Text(t.profile.update.buttonTxt),
-          onPressed: () {
-            if (updateProfileMutation.state.isInProgress) {
-              return;
-            }
-            updateProfileMutation.setFuture(
-              ref
-                  .read(profilesNotifierProvider.notifier)
-                  .updateProfile(profile),
-            );
-          },
-        ),
+        if (profile case RemoteProfile())
+          MenuItemButton(
+            leadingIcon: const Icon(Icons.update),
+            child: Text(t.profile.update.buttonTxt),
+            onPressed: () {
+              if (updateProfileMutation.state.isInProgress) {
+                return;
+              }
+              updateProfileMutation.setFuture(
+                ref
+                    .read(profilesNotifierProvider.notifier)
+                    .updateProfile(profile as RemoteProfile),
+              );
+            },
+          ),
         MenuItemButton(
           leadingIcon: const Icon(Icons.edit),
           child: Text(t.profile.edit.buttonTxt),

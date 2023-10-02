@@ -11,7 +11,7 @@
         },
         "sort": "مرتب‌سازی",
         "sortBy": "مرتب‌سازی براساس"
-    }, 
+    },
     "intro": {
         "termsAndPolicyCaution(rich)": "در صورت ادامه با ${tap(@:about.termsAndConditions)} موافقت میکنید",
         "start": "شروع"
@@ -239,6 +239,7 @@
         "profiles": {
             "unexpected": "خطای غیرمنتظره",
             "notFound": "پروفایل یافت نشد",
+            "invalidUrl": "لینک نامعتبر",
             "invalidConfig": "کانفیگ غیر معتبر"
         }
     }
