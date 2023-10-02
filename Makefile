@@ -31,6 +31,11 @@ gen:
 translate:
 	dart run slang
 
+sync_translate:
+
+
+
+
 android-release: android-apk-release
 
 android-apk-release:
