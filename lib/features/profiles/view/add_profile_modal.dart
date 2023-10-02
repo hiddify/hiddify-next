@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/core/router/router.dart';
 import 'package:hiddify/domain/failures.dart';
+import 'package:hiddify/domain/profiles/profiles.dart';
 import 'package:hiddify/features/common/qr_code_scanner_screen.dart';
 import 'package:hiddify/features/profiles/notifier/notifier.dart';
 import 'package:hiddify/utils/utils.dart';
@@ -29,8 +30,13 @@ class AddProfileModal extends HookConsumerWidget {
     final addProfileMutation = useMutation(
       initialOnFailure: (err) {
         mutationTriggered.value = false;
-        // CustomToast.error(t.presentError(err)).show(context);
-        CustomAlertDialog.fromErr(t.presentError(err)).show(context);
+        if (err case ProfileInvalidUrlFailure()) {
+          CustomToast.error(
+            t.profile.add.invalidUrlMsg,
+          ).show(context);
+        } else {
+          CustomAlertDialog.fromErr(t.presentError(err)).show(context);
+        }
       },
       initialOnSuccess: () {
         CustomToast.success(t.profile.save.successMsg).show(context);
@@ -102,24 +108,15 @@ class AddProfileModal extends HookConsumerWidget {
                           size: buttonWidth,
                           onTap: () async {
                             final captureResult =
-                                await Clipboard.getData(Clipboard.kTextPlain);
-                            final link =
-                                LinkParser.parse(captureResult?.text ?? '');
-                            if (link != null && context.mounted) {
-                              if (addProfileMutation.state.isInProgress) return;
-                              mutationTriggered.value = true;
-                              addProfileMutation.setFuture(
-                                ref
-                                    .read(profilesNotifierProvider.notifier)
-                                    .addProfile(link.url),
-                              );
-                            } else {
-                              if (context.mounted) {
-                                CustomToast.error(
-                                  t.profile.add.invalidUrlMsg,
-                                ).show(context);
-                              }
-                            }
+                                await Clipboard.getData(Clipboard.kTextPlain)
+                                    .then((value) => value?.text ?? '');
+                            if (addProfileMutation.state.isInProgress) return;
+                            mutationTriggered.value = true;
+                            addProfileMutation.setFuture(
+                              ref
+                                  .read(profilesNotifierProvider.notifier)
+                                  .addProfile(captureResult),
+                            );
                           },
                         ),
                         const Gap(buttonsGap),
@@ -134,24 +131,15 @@ class AddProfileModal extends HookConsumerWidget {
                                   await const QRCodeScannerScreen()
                                       .open(context);
                               if (captureResult == null) return;
-                              final link = LinkParser.simple(captureResult);
-                              if (link != null && context.mounted) {
-                                if (addProfileMutation.state.isInProgress) {
-                                  return;
-                                }
-                                mutationTriggered.value = true;
-                                addProfileMutation.setFuture(
-                                  ref
-                                      .read(profilesNotifierProvider.notifier)
-                                      .addProfile(link.url),
-                                );
-                              } else {
-                                if (context.mounted) {
-                                  CustomToast.error(
-                                    t.profile.add.invalidUrlMsg,
-                                  ).show(context);
-                                }
+                              if (addProfileMutation.state.isInProgress) {
+                                return;
                               }
+                              mutationTriggered.value = true;
+                              addProfileMutation.setFuture(
+                                ref
+                                    .read(profilesNotifierProvider.notifier)
+                                    .addProfile(captureResult),
+                              );
                             },
                           )
                         else

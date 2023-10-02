@@ -4,20 +4,31 @@ import 'package:hiddify/domain/profiles/profiles.dart';
 
 extension ProfileMapper on Profile {
   ProfileEntriesCompanion toCompanion() {
-    return ProfileEntriesCompanion.insert(
-      id: id,
-      active: active,
-      name: name,
-      url: url,
-      lastUpdate: lastUpdate,
-      updateInterval: Value(options?.updateInterval),
-      upload: Value(subInfo?.upload),
-      download: Value(subInfo?.download),
-      total: Value(subInfo?.total),
-      expire: Value(subInfo?.expire),
-      webPageUrl: Value(extra?.webPageUrl),
-      supportUrl: Value(extra?.supportUrl),
-    );
+    return switch (this) {
+      RemoteProfile(:final url, :final options, :final subInfo) =>
+        ProfileEntriesCompanion.insert(
+          id: id,
+          type: ProfileType.remote,
+          active: active,
+          name: name,
+          url: Value(url),
+          lastUpdate: lastUpdate,
+          updateInterval: Value(options?.updateInterval),
+          upload: Value(subInfo?.upload),
+          download: Value(subInfo?.download),
+          total: Value(subInfo?.total),
+          expire: Value(subInfo?.expire),
+          webPageUrl: Value(subInfo?.webPageUrl),
+          supportUrl: Value(subInfo?.supportUrl),
+        ),
+      LocalProfile() => ProfileEntriesCompanion.insert(
+          id: id,
+          type: ProfileType.local,
+          active: active,
+          name: name,
+          lastUpdate: lastUpdate,
+        ),
+    };
   }
 
   static Profile fromEntry(ProfileEntry e) {
@@ -36,26 +47,27 @@ extension ProfileMapper on Profile {
         download: e.download!,
         total: e.total!,
         expire: e.expire!,
-      );
-    }
-
-    ProfileExtra? extra;
-    if (e.webPageUrl != null || e.supportUrl != null) {
-      extra = ProfileExtra(
         webPageUrl: e.webPageUrl,
         supportUrl: e.supportUrl,
       );
     }
 
-    return Profile(
-      id: e.id,
-      active: e.active,
-      name: e.name,
-      url: e.url,
-      lastUpdate: e.lastUpdate,
-      options: options,
-      subInfo: subInfo,
-      extra: extra,
-    );
+    return switch (e.type) {
+      ProfileType.remote => RemoteProfile(
+          id: e.id,
+          active: e.active,
+          name: e.name,
+          url: e.url!,
+          lastUpdate: e.lastUpdate,
+          options: options,
+          subInfo: subInfo,
+        ),
+      ProfileType.local => LocalProfile(
+          id: e.id,
+          active: e.active,
+          name: e.name,
+          lastUpdate: e.lastUpdate,
+        ),
+    };
   }
 }

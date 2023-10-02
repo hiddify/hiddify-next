@@ -3,6 +3,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/domain/failures.dart';
+import 'package:hiddify/domain/profiles/profiles.dart';
 import 'package:hiddify/features/common/confirmation_dialogs.dart';
 import 'package:hiddify/features/profile_detail/notifier/notifier.dart';
 import 'package:hiddify/features/settings/widgets/widgets.dart';
@@ -93,12 +94,13 @@ class ProfileDetailPage extends HookConsumerWidget with PresLogger {
                         PopupMenuButton(
                           itemBuilder: (context) {
                             return [
-                              PopupMenuItem(
-                                child: Text(t.profile.update.buttonTxt),
-                                onTap: () async {
-                                  await notifier.updateProfile();
-                                },
-                              ),
+                              if (state.profile case RemoteProfile())
+                                PopupMenuItem(
+                                  child: Text(t.profile.update.buttonTxt),
+                                  onTap: () async {
+                                    await notifier.updateProfile();
+                                  },
+                                ),
                               PopupMenuItem(
                                 child: Text(t.profile.delete.buttonTxt),
                                 onTap: () async {
@@ -140,52 +142,55 @@ class ProfileDetailPage extends HookConsumerWidget with PresLogger {
                             hint: t.profile.detailsForm.nameHint,
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 8,
+                        if (state.profile
+                            case RemoteProfile(:final url, :final options)) ...[
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 16,
+                              vertical: 8,
+                            ),
+                            child: CustomTextFormField(
+                              initialValue: url,
+                              onChanged: (value) =>
+                                  notifier.setField(url: value),
+                              validator: (value) =>
+                                  (value != null && !isUrl(value))
+                                      ? t.profile.detailsForm.invalidUrlMsg
+                                      : null,
+                              label: t.profile.detailsForm.urlLabel,
+                              hint: t.profile.detailsForm.urlHint,
+                            ),
                           ),
-                          child: CustomTextFormField(
-                            initialValue: state.profile.url,
-                            onChanged: (value) => notifier.setField(url: value),
-                            validator: (value) =>
-                                (value != null && !isUrl(value))
-                                    ? t.profile.detailsForm.invalidUrlMsg
-                                    : null,
-                            label: t.profile.detailsForm.urlLabel,
-                            hint: t.profile.detailsForm.urlHint,
+                          ListTile(
+                            title: Text(t.profile.detailsForm.updateInterval),
+                            subtitle: Text(
+                              options?.updateInterval.toApproximateTime(
+                                    isRelativeToNow: false,
+                                  ) ??
+                                  t.general.toggle.disabled,
+                            ),
+                            leading: const Icon(Icons.update),
+                            onTap: () async {
+                              final intervalInHours = await SettingsInputDialog(
+                                title: t.profile.detailsForm
+                                    .updateIntervalDialogTitle,
+                                initialValue: options?.updateInterval.inHours,
+                                optionalAction: (
+                                  t.general.state.disable,
+                                  () =>
+                                      notifier.setField(updateInterval: none()),
+                                ),
+                                validator: isPort,
+                                mapTo: int.tryParse,
+                                digitsOnly: true,
+                              ).show(context);
+                              if (intervalInHours == null) return;
+                              notifier.setField(
+                                updateInterval: optionOf(intervalInHours),
+                              );
+                            },
                           ),
-                        ),
-                        ListTile(
-                          title: Text(t.profile.detailsForm.updateInterval),
-                          subtitle: Text(
-                            state.profile.options?.updateInterval
-                                    .toApproximateTime(
-                                  isRelativeToNow: false,
-                                ) ??
-                                t.general.toggle.disabled,
-                          ),
-                          leading: const Icon(Icons.update),
-                          onTap: () async {
-                            final intervalInHours = await SettingsInputDialog(
-                              title: t.profile.detailsForm
-                                  .updateIntervalDialogTitle,
-                              initialValue:
-                                  state.profile.options?.updateInterval.inHours,
-                              optionalAction: (
-                                t.general.state.disable,
-                                () => notifier.setField(updateInterval: none()),
-                              ),
-                              validator: isPort,
-                              mapTo: int.tryParse,
-                              digitsOnly: true,
-                            ).show(context);
-                            if (intervalInHours == null) return;
-                            notifier.setField(
-                              updateInterval: optionOf(intervalInHours),
-                            );
-                          },
-                        ),
+                        ],
                         if (state.isEditing)
                           ListTile(
                             title: Text(t.profile.detailsForm.lastUpdate),

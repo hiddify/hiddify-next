@@ -77,6 +77,8 @@ class FilesEditorService with InfraLogger {
     return p.join(_configsDir.path, "$fileName.json");
   }
 
+  String tempConfigPath(String fileName) => configPath("temp_$fileName");
+
   Future<void> deleteConfig(String fileName) {
     return File(configPath(fileName)).delete();
   }

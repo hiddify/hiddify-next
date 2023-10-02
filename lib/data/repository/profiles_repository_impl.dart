@@ -72,7 +72,7 @@ class ProfilesRepositoryImpl
     return exceptionHandler(
       () async {
         final existingProfile = await profilesDao.getProfileByUrl(url);
-        if (existingProfile != null) {
+        if (existingProfile case RemoteProfile()) {
           loggy.info("profile with url[$url] already exists, updating");
           final baseProfile = markAsActive
               ? existingProfile.copyWith(active: true)
@@ -105,7 +105,49 @@ class ProfilesRepositoryImpl
   }
 
   @override
-  TaskEither<ProfileFailure, Unit> add(Profile baseProfile) {
+  TaskEither<ProfileFailure, Unit> addByContent(
+    String content, {
+    required String name,
+    bool markAsActive = false,
+  }) {
+    return exceptionHandler(
+      () async {
+        final profileId = const Uuid().v4();
+        final tempPath = filesEditor.tempConfigPath(profileId);
+        final path = filesEditor.configPath(profileId);
+        try {
+          await File(tempPath).writeAsString(content);
+          final parseResult =
+              await singbox.parseConfig(path, tempPath, false).run();
+          return parseResult.fold(
+            (l) async {
+              loggy.warning("error parsing config: $l");
+              return left(ProfileFailure.invalidConfig(l.msg));
+            },
+            (_) async {
+              final profile = LocalProfile(
+                id: profileId,
+                active: markAsActive,
+                name: name,
+                lastUpdate: DateTime.now(),
+              );
+              await profilesDao.create(profile);
+              return right(unit);
+            },
+          );
+        } finally {
+          if (await File(tempPath).exists()) await File(tempPath).delete();
+        }
+      },
+      (error, stackTrace) {
+        loggy.warning("error adding profile by content", error, stackTrace);
+        return ProfileUnexpectedFailure(error, stackTrace);
+      },
+    );
+  }
+
+  @override
+  TaskEither<ProfileFailure, Unit> add(RemoteProfile baseProfile) {
     return exceptionHandler(
       () async {
         return fetch(baseProfile.url, baseProfile.id)
@@ -114,7 +156,6 @@ class ProfilesRepositoryImpl
                 await profilesDao.create(
                   baseProfile.copyWith(
                     subInfo: remoteProfile.subInfo,
-                    extra: remoteProfile.extra,
                     lastUpdate: DateTime.now(),
                   ),
                 );
@@ -131,7 +172,7 @@ class ProfilesRepositoryImpl
   }
 
   @override
-  TaskEither<ProfileFailure, Unit> update(Profile baseProfile) {
+  TaskEither<ProfileFailure, Unit> update(RemoteProfile baseProfile) {
     return exceptionHandler(
       () async {
         loggy.debug(
@@ -143,7 +184,6 @@ class ProfilesRepositoryImpl
                 await profilesDao.edit(
                   baseProfile.copyWith(
                     subInfo: remoteProfile.subInfo,
-                    extra: remoteProfile.extra,
                     lastUpdate: DateTime.now(),
                   ),
                 );
@@ -209,13 +249,13 @@ class ProfilesRepositoryImpl
   ];
 
   @visibleForTesting
-  TaskEither<ProfileFailure, Profile> fetch(
+  TaskEither<ProfileFailure, RemoteProfile> fetch(
     String url,
     String fileName,
   ) {
     return TaskEither(
       () async {
-        final tempPath = filesEditor.configPath("temp_$fileName");
+        final tempPath = filesEditor.tempConfigPath(fileName);
         final path = filesEditor.configPath(fileName);
         try {
           final response = await dio.download(url.trim(), tempPath);

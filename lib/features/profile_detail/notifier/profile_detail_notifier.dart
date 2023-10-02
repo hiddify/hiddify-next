@@ -19,7 +19,7 @@ class ProfileDetailNotifier extends _$ProfileDetailNotifier with AppLogger {
   }) async {
     if (id == 'new') {
       return ProfileDetailState(
-        profile: Profile(
+        profile: RemoteProfile(
           id: const Uuid().v4(),
           active: true,
           name: profileName ?? "",
@@ -52,15 +52,20 @@ class ProfileDetailNotifier extends _$ProfileDetailNotifier with AppLogger {
     if (state case AsyncData(:final value)) {
       state = AsyncData(
         value.copyWith(
-          profile: value.profile.copyWith(
-            name: name ?? value.profile.name,
-            url: url ?? value.profile.url,
-            options: updateInterval == null
-                ? value.profile.options
-                : updateInterval.fold(
-                    () => null,
-                    (t) => ProfileOptions(updateInterval: Duration(hours: t)),
-                  ),
+          profile: value.profile.map(
+            remote: (rp) => rp.copyWith(
+              name: name ?? rp.name,
+              url: url ?? rp.url,
+              options: updateInterval == null
+                  ? rp.options
+                  : updateInterval.fold(
+                      () => null,
+                      (t) => ProfileOptions(
+                        updateInterval: Duration(hours: t),
+                      ),
+                    ),
+            ),
+            local: (lp) => lp.copyWith(name: name ?? lp.name),
           ),
         ),
       );
@@ -71,24 +76,33 @@ class ProfileDetailNotifier extends _$ProfileDetailNotifier with AppLogger {
     if (state case AsyncData(:final value)) {
       if (value.save.isInProgress) return;
       final profile = value.profile;
-      loggy.debug(
-        'saving profile, url: [${profile.url}], name: [${profile.name}]',
-      );
-      state = AsyncData(value.copyWith(save: const MutationInProgress()));
       Either<ProfileFailure, Unit>? failureOrSuccess;
-      if (profile.name.isBlank || profile.url.isBlank) {
-        loggy.debug('profile save: invalid arguments');
-      } else if (value.isEditing) {
-        if (_originalProfile?.url == profile.url) {
+      state = AsyncData(value.copyWith(save: const MutationInProgress()));
+      switch (profile) {
+        case RemoteProfile():
+          loggy.debug(
+            'saving profile, url: [${profile.url}], name: [${profile.name}]',
+          );
+          if (profile.name.isBlank || profile.url.isBlank) {
+            loggy.debug('profile save: invalid arguments');
+          } else if (value.isEditing) {
+            if (_originalProfile case RemoteProfile(:final url)
+                when url == profile.url) {
+              loggy.debug('editing profile');
+              failureOrSuccess = await _profilesRepo.edit(profile).run();
+            } else {
+              loggy.debug('updating profile');
+              failureOrSuccess = await _profilesRepo.update(profile).run();
+            }
+          } else {
+            loggy.debug('adding profile, url: [${profile.url}]');
+            failureOrSuccess = await _profilesRepo.add(profile).run();
+          }
+        case LocalProfile() when value.isEditing:
           loggy.debug('editing profile');
           failureOrSuccess = await _profilesRepo.edit(profile).run();
-        } else {
-          loggy.debug('updating profile');
-          failureOrSuccess = await _profilesRepo.update(profile).run();
-        }
-      } else {
-        loggy.debug('adding profile, url: [${profile.url}]');
-        failureOrSuccess = await _profilesRepo.add(profile).run();
+        default:
+          loggy.warning("local profile can't be added manually");
       }
       state = AsyncData(
         value.copyWith(
@@ -105,12 +119,17 @@ class ProfileDetailNotifier extends _$ProfileDetailNotifier with AppLogger {
 
   Future<void> updateProfile() async {
     if (state case AsyncData(:final value)) {
+      loggy.debug('updating profile');
+      if (value.profile case LocalProfile()) {
+        loggy.warning("local profile can't be updated");
+        return;
+      }
       if (value.update.isInProgress || !value.isEditing) return;
       final profile = value.profile;
       loggy.debug('updating profile');
       state = AsyncData(value.copyWith(update: const MutationInProgress()));
       final failureOrUpdatedProfile = await _profilesRepo
-          .update(profile)
+          .update(profile as RemoteProfile)
           .flatMap((_) => _profilesRepo.get(id))
           .run();
       state = AsyncData(

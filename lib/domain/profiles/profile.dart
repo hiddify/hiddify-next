@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dartx/dartx.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hiddify/utils/utils.dart';
 import 'package:loggy/loggy.dart';
 import 'package:uuid/uuid.dart';
 
@@ -10,11 +11,13 @@ part 'profile.g.dart';
 
 final _loggy = Loggy('Profile');
 
+enum ProfileType { remote, local }
+
 @freezed
-class Profile with _$Profile {
+sealed class Profile with _$Profile {
   const Profile._();
 
-  const factory Profile({
+  const factory Profile.remote({
     required String id,
     required bool active,
     required String name,
@@ -22,10 +25,19 @@ class Profile with _$Profile {
     required DateTime lastUpdate,
     ProfileOptions? options,
     SubscriptionInfo? subInfo,
-    ProfileExtra? extra,
-  }) = _Profile;
+  }) = RemoteProfile;
 
-  factory Profile.fromResponse(String url, Map<String, List<String>> headers) {
+  const factory Profile.local({
+    required String id,
+    required bool active,
+    required String name,
+    required DateTime lastUpdate,
+  }) = LocalProfile;
+
+  static RemoteProfile fromResponse(
+    String url,
+    Map<String, List<String>> headers,
+  ) {
     _loggy.debug("Profile Headers: $headers");
 
     final titleHeader = headers['profile-title']?.single;
@@ -59,7 +71,7 @@ class Profile with _$Profile {
     if (title.isEmpty) {
       final part = url.split("/").lastOrNull;
       if (part != null) {
-        final pattern = RegExp(r"\.(yaml|yml|txt)[\s\S]*");
+        final pattern = RegExp(r"\.(json|yaml|yml|txt)[\s\S]*");
         title = part.replaceFirst(pattern, "");
       }
     }
@@ -79,15 +91,14 @@ class Profile with _$Profile {
 
     final webPageUrlHeader = headers['profile-web-page-url']?.single;
     final supportUrlHeader = headers['support-url']?.single;
-    ProfileExtra? extra;
-    if (webPageUrlHeader != null || supportUrlHeader != null) {
-      extra = ProfileExtra(
-        webPageUrl: webPageUrlHeader,
-        supportUrl: supportUrlHeader,
+    if (subInfo != null) {
+      subInfo = subInfo.copyWith(
+        webPageUrl: isUrl(webPageUrlHeader ?? "") ? webPageUrlHeader : null,
+        supportUrl: isUrl(supportUrlHeader ?? "") ? supportUrlHeader : null,
       );
     }
 
-    return Profile(
+    return RemoteProfile(
       id: const Uuid().v4(),
       active: false,
       name: title.isBlank ? "Remote Profile" : title,
@@ -95,7 +106,6 @@ class Profile with _$Profile {
       lastUpdate: DateTime.now(),
       options: options,
       subInfo: subInfo,
-      extra: extra,
     );
   }
 
@@ -114,17 +124,6 @@ class ProfileOptions with _$ProfileOptions {
 }
 
 @freezed
-class ProfileExtra with _$ProfileExtra {
-  const factory ProfileExtra({
-    String? webPageUrl,
-    String? supportUrl,
-  }) = _ProfileExtra;
-
-  factory ProfileExtra.fromJson(Map<String, dynamic> json) =>
-      _$ProfileExtraFromJson(json);
-}
-
-@freezed
 class SubscriptionInfo with _$SubscriptionInfo {
   const SubscriptionInfo._();
 
@@ -134,6 +133,8 @@ class SubscriptionInfo with _$SubscriptionInfo {
     @JsonKey(fromJson: _fromJsonTotal, defaultValue: 9223372036854775807)
     required int total,
     @JsonKey(fromJson: _dateTimeFromSecondsSinceEpoch) required DateTime expire,
+    String? webPageUrl,
+    String? supportUrl,
   }) = _SubscriptionInfo;
 
   bool get isExpired => expire <= DateTime.now();

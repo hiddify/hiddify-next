@@ -50,20 +50,22 @@ class ProfilesUpdateNotifier extends _$ProfilesUpdateNotifier with AppLogger {
                 await ref.read(profilesRepositoryProvider).watchAll().first;
             if (failureOrProfiles case Right(value: final profiles)) {
               for (final profile in profiles) {
-                loggy.debug("checking profile: [${profile.name}]");
-                final updateInterval = profile.options?.updateInterval;
-                if (updateInterval != null &&
-                    updateInterval <=
-                        DateTime.now().difference(profile.lastUpdate)) {
-                  final failureOrSuccess = await ref
-                      .read(profilesRepositoryProvider)
-                      .update(profile)
-                      .run();
-                  state = AsyncData(
-                    (name: profile.name, failureOrSuccess: failureOrSuccess),
-                  );
-                } else {
-                  loggy.debug("skipping profile: [${profile.name}]");
+                if (profile case RemoteProfile()) {
+                  loggy.debug("checking profile: [${profile.name}]");
+                  final updateInterval = profile.options?.updateInterval;
+                  if (updateInterval != null &&
+                      updateInterval <=
+                          DateTime.now().difference(profile.lastUpdate)) {
+                    final failureOrSuccess = await ref
+                        .read(profilesRepositoryProvider)
+                        .update(profile)
+                        .run();
+                    state = AsyncData(
+                      (name: profile.name, failureOrSuccess: failureOrSuccess),
+                    );
+                  } else {
+                    loggy.debug("skipping profile: [${profile.name}]");
+                  }
                 }
               }
             }

@@ -49,21 +49,39 @@ class ProfilesNotifier extends _$ProfilesNotifier with AppLogger {
     }).run();
   }
 
-  Future<Unit> addProfile(String url) async {
+  Future<Unit> addProfile(String rawInput) async {
     final activeProfile = await ref.read(activeProfileProvider.future);
     final markAsActive =
         activeProfile == null || ref.read(markNewProfileActiveProvider);
-    loggy.debug("adding profile, url: [$url]");
-    return ref
-        .read(profilesRepositoryProvider)
-        .addByUrl(url, markAsActive: markAsActive)
-        .getOrElse((l) {
-      loggy.warning("failed to add profile: $l");
-      throw l;
-    }).run();
+    if (LinkParser.parse(rawInput) case (final link)?) {
+      loggy.debug("adding profile, url: [${link.url}]");
+      return ref
+          .read(profilesRepositoryProvider)
+          .addByUrl(link.url, markAsActive: markAsActive)
+          .getOrElse((l) {
+        loggy.warning("failed to add profile: $l");
+        throw l;
+      }).run();
+    } else if (LinkParser.protocol(rawInput) case (final parsed)?) {
+      loggy.debug("adding profile, content");
+      return ref
+          .read(profilesRepositoryProvider)
+          .addByContent(
+            parsed.content,
+            name: parsed.name,
+            markAsActive: markAsActive,
+          )
+          .getOrElse((l) {
+        loggy.warning("failed to add profile: $l");
+        throw l;
+      }).run();
+    } else {
+      loggy.debug("invalid content");
+      throw const ProfileInvalidUrlFailure();
+    }
   }
 
-  Future<Unit?> updateProfile(Profile profile) async {
+  Future<Unit?> updateProfile(RemoteProfile profile) async {
     loggy.debug("updating profile");
     return ref
         .read(profilesRepositoryProvider)

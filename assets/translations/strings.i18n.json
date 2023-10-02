@@ -239,6 +239,7 @@
         "profiles": {
             "unexpected": "Unexpected Error",
             "notFound": "Profile Not Found",
+            "invalidUrl": "Invalid URL",
             "invalidConfig": "Invalid Configs"
         }
     }
