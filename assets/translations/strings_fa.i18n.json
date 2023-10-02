@@ -63,7 +63,7 @@
         "update": {
             "buttonTxt": "بروزرسانی",
             "tooltip": "بروزرسانی پروفایل",
-            "failureMsg": "در بروزرسانی پروفایل خطایی رخ داد: ${reason}",
+            "failureMsg": "در بروزرسانی پروفایل خطایی رخ داد",
             "successMsg": "پروفایل با موفقیت بروزرسانی شد"
         },
         "edit": {
@@ -241,6 +241,13 @@
             "notFound": "پروفایل یافت نشد",
             "invalidUrl": "لینک نامعتبر",
             "invalidConfig": "کانفیگ غیر معتبر"
+        },
+        "connection": {
+            "unexpected": "خطای غیرمنتظره",
+            "timeout": "درخواست بیش از حد مجاز زمان برد",
+            "badCertificate": "خطای اعتبار سنجی",
+            "badResponse": "پاسخ نامعتبر",
+            "connectionError": "خطای اتصال"
         }
     }
 }

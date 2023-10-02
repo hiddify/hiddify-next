@@ -63,7 +63,7 @@
         "update": {
             "buttonTxt": "Update",
             "tooltip": "Update Profile",
-            "failureMsg": "Update Failed: ${reason}",
+            "failureMsg": "Update Failed",
             "successMsg": "Profile updated successfully"
         },
         "edit": {
@@ -241,6 +241,13 @@
             "notFound": "Profile Not Found",
             "invalidUrl": "Invalid URL",
             "invalidConfig": "Invalid Configs"
+        },
+        "connection": {
+            "unexpected": "Unexpected error",
+            "timeout": "Connection timeout",
+            "badCertificate": "Bad certificate",
+            "badResponse": "Bad response",
+            "connectionError": "Connection error"
         }
     }
 }

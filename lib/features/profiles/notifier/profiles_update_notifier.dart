@@ -1,9 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:hiddify/core/core_providers.dart';
-import 'package:hiddify/core/router/router.dart';
 import 'package:hiddify/data/data_providers.dart';
-import 'package:hiddify/domain/failures.dart';
 import 'package:hiddify/domain/profiles/profiles.dart';
 import 'package:hiddify/services/service_providers.dart';
 import 'package:hiddify/utils/utils.dart';
@@ -20,22 +16,6 @@ typedef ProfileUpdateResult = ({
 class ProfilesUpdateNotifier extends _$ProfilesUpdateNotifier with AppLogger {
   @override
   Stream<ProfileUpdateResult> build() {
-    ref.listenSelf(
-      (previous, next) {
-        if (next case AsyncData(value: final result)) {
-          final t = ref.read(translationsProvider);
-          final context = rootNavigatorKey.currentContext;
-          if (context == null || !context.mounted) return;
-          SnackBar(content: Text(t.profile.update.successMsg));
-          switch (result.failureOrSuccess) {
-            case Right():
-              CustomToast.success(t.profile.update.successMsg).show(context);
-            case Left(value: final err):
-              CustomToast.error(t.printError(err)).show(context);
-          }
-        }
-      },
-    );
     _schedule();
     return const Stream.empty();
   }

@@ -176,7 +176,9 @@ class ProfileActionButton extends HookConsumerWidget {
 
     final updateProfileMutation = useMutation(
       initialOnFailure: (err) {
-        CustomAlertDialog.fromErr(t.presentError(err)).show(context);
+        CustomAlertDialog.fromErr(
+          t.presentError(err, action: t.profile.update.failureMsg),
+        ).show(context);
       },
       initialOnSuccess: () =>
           CustomToast.success(t.profile.update.successMsg).show(context),
@@ -241,7 +243,9 @@ class ProfileActionsMenu extends HookConsumerWidget {
 
     final updateProfileMutation = useMutation(
       initialOnFailure: (err) {
-        CustomAlertDialog.fromErr(t.presentError(err)).show(context);
+        CustomAlertDialog.fromErr(
+          t.presentError(err, action: t.profile.update.failureMsg),
+        ).show(context);
       },
       initialOnSuccess: () =>
           CustomToast.success(t.profile.update.successMsg).show(context),
