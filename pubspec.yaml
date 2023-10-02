@@ -72,6 +72,7 @@ dependencies:
   tint: ^2.0.1
   accessibility_tools: ^1.0.0
   neat_periodic_task: ^2.0.1
+  retry: ^3.1.2
 
   # widgets
   go_router: ^11.1.2

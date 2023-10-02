@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -11,6 +10,7 @@ import 'package:hiddify/domain/singbox/singbox.dart';
 import 'package:hiddify/services/files_editor_service.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:meta/meta.dart';
+import 'package:retry/retry.dart';
 import 'package:uuid/uuid.dart';
 
 class ProfilesRepositoryImpl
@@ -258,7 +258,10 @@ class ProfilesRepositoryImpl
         final tempPath = filesEditor.tempConfigPath(fileName);
         final path = filesEditor.configPath(fileName);
         try {
-          final response = await dio.download(url.trim(), tempPath);
+          final response = await retry(
+            () async => dio.download(url.trim(), tempPath),
+            maxAttempts: 3,
+          );
           final headers =
               await _populateHeaders(response.headers.map, tempPath);
           final parseResult =
@@ -316,13 +319,5 @@ class ProfilesRepositoryImpl
       }
     }
     return headers;
-  }
-
-  String safeDecodeBase64(String str) {
-    try {
-      return utf8.decode(base64.decode(str));
-    } catch (e) {
-      return str;
-    }
   }
 }

@@ -1022,7 +1022,7 @@ packages:
     source: hosted
     version: "4.1.0"
   retry:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: retry
       sha256: "822e118d5b3aafed083109c72d5f484c6dc66707885e07c0fbcb8b986bba7efc"
