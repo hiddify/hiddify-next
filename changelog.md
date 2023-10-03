@@ -1,7 +1,15 @@
 # Changelog
 
 
-## 0.7.0 (2023-10-03)
+## 0.7.1 (2023-10-03)
+
+#### Other
+
+* Fix log and analytics bugs. 
+
+
+
+## v0.7.0 (2023-10-03)
 
 #### New
 
