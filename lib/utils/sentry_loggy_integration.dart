@@ -1,3 +1,4 @@
+import 'package:hiddify/utils/sentry_utils.dart';
 import 'package:loggy/loggy.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
@@ -33,6 +34,8 @@ class SentryLoggyIntegration extends LoggyPrinter
 
   @override
   Future<void> onLog(LogRecord record) async {
+    if (!canSendEvent(record.error)) return;
+
     if (_shouldLog(record.level, _minEventLevel)) {
       await _hub.captureEvent(
         record.toEvent(),

@@ -25,9 +25,9 @@ Future<List<InstalledPackageInfo>> installedPackagesInfo(
   return ref
       .watch(platformSettingsProvider)
       .getInstalledPackages()
-      .getOrElse((l) {
-    _logger.warning("error getting installed packages: $l");
-    throw l;
+      .getOrElse((err) {
+    _logger.warning("error getting installed packages", err);
+    throw err;
   }).run();
 }
 
@@ -40,9 +40,9 @@ Future<ImageProvider> packageIcon(
   final bytes = await ref
       .watch(platformSettingsProvider)
       .getPackageIcon(packageName)
-      .getOrElse((l) {
-    _logger.warning("error getting package icon: $l");
-    throw l;
+      .getOrElse((err) {
+    _logger.warning("error getting package icon", err);
+    throw err;
   }).run();
   return MemoryImage(bytes);
 }

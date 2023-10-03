@@ -8,6 +8,7 @@ part 'profiles_failure.freezed.dart';
 sealed class ProfileFailure with _$ProfileFailure, Failure {
   const ProfileFailure._();
 
+  @With<UnexpectedFailure>()
   const factory ProfileFailure.unexpected([
     Object? error,
     StackTrace? stackTrace,

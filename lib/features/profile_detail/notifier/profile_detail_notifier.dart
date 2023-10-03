@@ -30,9 +30,9 @@ class ProfileDetailNotifier extends _$ProfileDetailNotifier with AppLogger {
     }
     final failureOrProfile = await _profilesRepo.get(id).run();
     return failureOrProfile.match(
-      (l) {
-        loggy.warning('failed to load profile, $l');
-        throw l;
+      (err) {
+        loggy.warning('failed to load profile', err);
+        throw err;
       },
       (profile) {
         if (profile == null) {

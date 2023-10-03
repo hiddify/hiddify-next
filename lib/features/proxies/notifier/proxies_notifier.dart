@@ -60,9 +60,9 @@ class ProxiesNotifier extends _$ProxiesNotifier with AppLogger {
         .watchOutbounds()
         .map(
           (event) => event.getOrElse(
-            (f) {
-              loggy.warning("error receiving proxies: $f");
-              throw f;
+            (err) {
+              loggy.warning("error receiving proxies", err);
+              throw err;
             },
           ),
         )
@@ -105,9 +105,9 @@ class ProxiesNotifier extends _$ProxiesNotifier with AppLogger {
       await ref
           .read(coreFacadeProvider)
           .selectOutbound(groupTag, outboundTag)
-          .getOrElse((l) {
-        loggy.warning("error selecting outbound", l);
-        throw l;
+          .getOrElse((err) {
+        loggy.warning("error selecting outbound", err);
+        throw err;
       }).run();
       state = AsyncData(
         [
@@ -122,9 +122,9 @@ class ProxiesNotifier extends _$ProxiesNotifier with AppLogger {
   Future<void> urlTest(String groupTag) async {
     loggy.debug("testing group: [$groupTag]");
     if (state case AsyncData()) {
-      await ref.read(coreFacadeProvider).urlTest(groupTag).getOrElse((l) {
-        loggy.warning("error testing group", l);
-        throw l;
+      await ref.read(coreFacadeProvider).urlTest(groupTag).getOrElse((err) {
+        loggy.warning("error testing group", err);
+        throw err;
       }).run();
     }
   }

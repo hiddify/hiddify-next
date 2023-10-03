@@ -73,7 +73,7 @@ class ProfilesRepositoryImpl
       () async {
         final existingProfile = await profilesDao.getProfileByUrl(url);
         if (existingProfile case RemoteProfile()) {
-          loggy.info("profile with url[$url] already exists, updating");
+          loggy.info("profile with same url already exists, updating");
           final baseProfile = markAsActive
               ? existingProfile.copyWith(active: true)
               : existingProfile;
@@ -120,9 +120,9 @@ class ProfilesRepositoryImpl
           final parseResult =
               await singbox.parseConfig(path, tempPath, false).run();
           return parseResult.fold(
-            (l) async {
-              loggy.warning("error parsing config: $l");
-              return left(ProfileFailure.invalidConfig(l.msg));
+            (err) async {
+              loggy.warning("error parsing config", err);
+              return left(ProfileFailure.invalidConfig(err.msg));
             },
             (_) async {
               final profile = LocalProfile(
@@ -267,9 +267,9 @@ class ProfilesRepositoryImpl
           final parseResult =
               await singbox.parseConfig(path, tempPath, false).run();
           return parseResult.fold(
-            (l) async {
-              loggy.warning("error parsing config: $l");
-              return left(ProfileFailure.invalidConfig(l.msg));
+            (err) async {
+              loggy.warning("error parsing config", err);
+              return left(ProfileFailure.invalidConfig(err.msg));
             },
             (_) async {
               final profile = Profile.fromResponse(url, headers);

@@ -43,9 +43,9 @@ class ProfilesNotifier extends _$ProfilesNotifier with AppLogger {
 
   Future<Unit> selectActiveProfile(String id) async {
     loggy.debug('changing active profile to: [$id]');
-    return _profilesRepo.setAsActive(id).getOrElse((f) {
-      loggy.warning('failed to set [$id] as active profile, $f');
-      throw f;
+    return _profilesRepo.setAsActive(id).getOrElse((err) {
+      loggy.warning('failed to set [$id] as active profile', err);
+      throw err;
     }).run();
   }
 
@@ -58,9 +58,9 @@ class ProfilesNotifier extends _$ProfilesNotifier with AppLogger {
       return ref
           .read(profilesRepositoryProvider)
           .addByUrl(link.url, markAsActive: markAsActive)
-          .getOrElse((l) {
-        loggy.warning("failed to add profile: $l");
-        throw l;
+          .getOrElse((err) {
+        loggy.warning("failed to add profile", err);
+        throw err;
       }).run();
     } else if (LinkParser.protocol(rawInput) case (final parsed)?) {
       loggy.debug("adding profile, content");
@@ -71,9 +71,9 @@ class ProfilesNotifier extends _$ProfilesNotifier with AppLogger {
             name: parsed.name,
             markAsActive: markAsActive,
           )
-          .getOrElse((l) {
-        loggy.warning("failed to add profile: $l");
-        throw l;
+          .getOrElse((err) {
+        loggy.warning("failed to add profile", err);
+        throw err;
       }).run();
     } else {
       loggy.debug("invalid content");
@@ -93,9 +93,9 @@ class ProfilesNotifier extends _$ProfilesNotifier with AppLogger {
   Future<void> deleteProfile(Profile profile) async {
     loggy.debug('deleting profile: ${profile.name}');
     await _profilesRepo.delete(profile.id).mapLeft(
-      (f) {
-        loggy.warning('failed to delete profile, $f');
-        throw f;
+      (err) {
+        loggy.warning('failed to delete profile', err);
+        throw err;
       },
     ).run();
   }

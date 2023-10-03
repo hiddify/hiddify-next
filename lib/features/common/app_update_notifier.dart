@@ -50,16 +50,16 @@ class AppUpdateNotifier extends _$AppUpdateNotifier with AppLogger {
         )
         .match(
       (err) {
-        loggy.warning("failed to get latest version, $err");
+        loggy.warning("failed to get latest version", err);
         return state = AppUpdateState.error(err);
       },
       (remote) {
         if (remote.version.compareTo(currentVersion) > 0) {
-          loggy.info("new version available: $remote");
+          loggy.debug("new version available: $remote");
           return state = AppUpdateState.available(remote);
         }
         loggy.info(
-          "already using latest version[$currentVersion], remote: $remote",
+          "already using latest version[$currentVersion], remote: [${remote.version}]",
         );
         return state = const AppUpdateState.notAvailable();
       },

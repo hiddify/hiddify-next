@@ -67,12 +67,7 @@ Future<void> lazyBootstrap(
       options.tracesSampleRate = 0.25;
       options.enableUserInteractionTracing = true;
       options.addIntegration(sentryLogger);
-      options.beforeSend = (event, {hint}) {
-        return switch (event.throwable) {
-          ExpectedException _ => null,
-          _ => event,
-        };
-      };
+      options.beforeSend = sentryBeforeSend;
       options.logger = (level, message, {exception, logger, stackTrace}) {
         if (level == SentryLevel.fatal) {
           _logger.debug(message);

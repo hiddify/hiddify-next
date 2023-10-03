@@ -8,6 +8,7 @@ part 'app_failure.freezed.dart';
 sealed class AppFailure with _$AppFailure, Failure {
   const AppFailure._();
 
+  @With<UnexpectedFailure>()
   const factory AppFailure.unexpected([
     Object? error,
     StackTrace? stackTrace,

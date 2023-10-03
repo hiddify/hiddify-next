@@ -47,9 +47,9 @@ class ConnectivityController extends _$ConnectivityController with AppLogger {
         return _disconnect();
       }
       loggy.debug("reconnecting, profile: [$profileId]");
-      await _core.restart(profileId).mapLeft((l) {
-        loggy.warning("error reconnecting: $l");
-        state = AsyncError(l, StackTrace.current);
+      await _core.restart(profileId).mapLeft((err) {
+        loggy.warning("error reconnecting", err);
+        state = AsyncError(err, StackTrace.current);
       }).run();
     }
   }
@@ -67,16 +67,16 @@ class ConnectivityController extends _$ConnectivityController with AppLogger {
 
   Future<void> _connect() async {
     final activeProfile = await ref.read(activeProfileProvider.future);
-    await _core.start(activeProfile!.id).mapLeft((l) {
-      loggy.warning("error connecting: $l");
-      state = AsyncError(l, StackTrace.current);
+    await _core.start(activeProfile!.id).mapLeft((err) {
+      loggy.warning("error connecting", err);
+      state = AsyncError(err, StackTrace.current);
     }).run();
   }
 
   Future<void> _disconnect() async {
-    await _core.stop().mapLeft((l) {
-      loggy.warning("error disconnecting: $l");
-      state = AsyncError(l, StackTrace.current);
+    await _core.stop().mapLeft((err) {
+      loggy.warning("error disconnecting", err);
+      state = AsyncError(err, StackTrace.current);
     }).run();
   }
 }

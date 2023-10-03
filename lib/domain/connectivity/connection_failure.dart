@@ -9,6 +9,7 @@ part 'connection_failure.freezed.dart';
 sealed class ConnectionFailure with _$ConnectionFailure, Failure {
   const ConnectionFailure._();
 
+  @With<UnexpectedFailure>()
   const factory ConnectionFailure.unexpected([
     Object? error,
     StackTrace? stackTrace,

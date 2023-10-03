@@ -5,6 +5,11 @@ mixin Failure {
   ({String type, String? message}) present(TranslationsEn t);
 }
 
+mixin UnexpectedFailure {
+  Object? get error;
+  StackTrace? get stackTrace;
+}
+
 /// failures ignored by analytics service etc.
 mixin ExpectedException {}
 

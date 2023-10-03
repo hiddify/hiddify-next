@@ -8,9 +8,10 @@ part 'core_service_failure.freezed.dart';
 sealed class CoreServiceFailure with _$CoreServiceFailure, Failure {
   const CoreServiceFailure._();
 
+  @With<UnexpectedFailure>()
   const factory CoreServiceFailure.unexpected(
-    Object error,
-    StackTrace stackTrace,
+    Object? error,
+    StackTrace? stackTrace,
   ) = UnexpectedCoreServiceFailure;
 
   @With<ExpectedException>()
