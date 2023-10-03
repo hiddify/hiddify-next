@@ -1,7 +1,31 @@
 # Changelog
 
 
-## 0.6.0 (2023-09-30)
+## 0.7.0 (2023-10-03)
+
+#### New
+
+* Add support of some exception panel with zero usage. 
+
+#### Other
+
+* Fix translation bug. 
+
+* Improve error handling and presentation. 
+
+* Add retry for network ops. 
+
+* Merge branch 'main' of hiddify-github:hiddify/hiddify-next. 
+
+* Add local profile. 
+
+* Add auto translator. 
+
+* Add auto translate. 
+
+
+
+## v0.6.0 (2023-09-30)
 
 #### Other
 
