@@ -32,7 +32,7 @@ class AddProfileModal extends HookConsumerWidget {
         mutationTriggered.value = false;
         if (err case ProfileInvalidUrlFailure()) {
           CustomToast.error(
-            t.profile.add.invalidUrlMsg,
+            t.failure.profiles.invalidUrl,
           ).show(context);
         } else {
           CustomAlertDialog.fromErr(t.presentError(err)).show(context);

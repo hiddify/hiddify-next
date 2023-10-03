@@ -57,8 +57,7 @@
             "fromClipboard": "Add From Clipboard",
             "scanQr": "Scan QR code",
             "manually": "Manual Entry",
-            "addingProfileMsg": "Adding Profile",
-            "invalidUrlMsg": "Invalid URL"
+            "addingProfileMsg": "Adding Profile"
         },
         "update": {
             "buttonTxt": "Update",
