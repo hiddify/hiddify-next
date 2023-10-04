@@ -57,12 +57,13 @@
             "fromClipboard": "Add From Clipboard",
             "scanQr": "Scan QR code",
             "manually": "Manual Entry",
-            "addingProfileMsg": "Adding Profile"
+            "addingProfileMsg": "Adding Profile",
+            "failureMsg": "Failed to add profile"
         },
         "update": {
             "buttonTxt": "Update",
             "tooltip": "Update Profile",
-            "failureMsg": "Update Failed",
+            "failureMsg": "Failed to update profile",
             "successMsg": "Profile updated successfully"
         },
         "edit": {
@@ -76,7 +77,8 @@
         },
         "save": {
             "buttonText": "Save",
-            "successMsg": "Profile saved successfully"
+            "successMsg": "Profile saved successfully",
+            "failureMsg": "Failed to save profile"
         },
         "detailsForm": {
             "nameLabel": "Name",
@@ -242,7 +244,7 @@
             "invalidConfig": "Invalid Configs"
         },
         "connection": {
-            "unexpected": "Unexpected error",
+            "unexpected": "Unexpected connection error",
             "timeout": "Connection timeout",
             "badCertificate": "Bad certificate",
             "badResponse": "Bad response",

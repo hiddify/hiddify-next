@@ -35,7 +35,9 @@ class AddProfileModal extends HookConsumerWidget {
             t.failure.profiles.invalidUrl,
           ).show(context);
         } else {
-          CustomAlertDialog.fromErr(t.presentError(err)).show(context);
+          CustomAlertDialog.fromErr(
+            t.presentError(err, action: t.profile.add.failureMsg),
+          ).show(context);
         }
       },
       initialOnSuccess: () {

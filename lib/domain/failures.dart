@@ -1,68 +1,73 @@
 import 'package:dio/dio.dart';
 import 'package:hiddify/core/prefs/prefs.dart';
 
+typedef PresentableError = ({String type, String? message});
+
 mixin Failure {
   ({String type, String? message}) present(TranslationsEn t);
 }
 
+/// failures that are not expected to happen but depending on [error] type might not be relevant (eg network errors)
 mixin UnexpectedFailure {
   Object? get error;
   StackTrace? get stackTrace;
 }
 
+/// failures that are expected to happen and should be handled by the app
+/// and should be logged, eg missing permissions
+mixin ExpectedMeasuredFailure {}
+
 /// failures ignored by analytics service etc.
-mixin ExpectedException {}
+mixin ExpectedFailure {}
 
 extension ErrorPresenter on TranslationsEn {
-  String? _errorToMessage(Object error) {
-    switch (error) {
-      case Failure():
-        final err = error.present(this);
-        return err.type + (err.message == null ? "" : ": ${err.message}");
-      case DioException():
-        return error.present(this);
-      default:
-        return null;
-    }
-  }
+  PresentableError errorToPair(Object error) => switch (error) {
+        UnexpectedFailure(error: final nestedErr?) => errorToPair(nestedErr),
+        Failure() => error.present(this),
+        DioException() => error.present(this),
+        _ => (type: failure.unexpected, message: null),
+      };
 
-  String printError(Object error) =>
-      _errorToMessage(error) ?? failure.unexpected;
-
-  String? mayPrintError(Object? error) =>
-      error != null ? _errorToMessage(error) : null;
-
-  ({String type, String? message}) presentError(
+  PresentableError presentError(
     Object error, {
     String? action,
   }) {
-    final ({String type, String? message}) presentable;
-    if (error case Failure()) {
-      presentable = error.present(this);
-    } else {
-      presentable = (type: failure.unexpected, message: null);
-    }
+    final pair = errorToPair(error);
+    if (action == null) return pair;
     return (
-      type: action == null ? presentable.type : "$action: ${presentable.type}",
-      message: presentable.message,
+      type: action,
+      message: pair.type + (pair.message == null ? "" : "\n${pair.message!}"),
     );
+  }
+
+  String presentShortError(
+    Object error, {
+    String? action,
+  }) {
+    final pair = errorToPair(error);
+    if (action == null) return pair.type;
+    return "$action: ${pair.type}";
   }
 }
 
 extension DioExceptionPresenter on DioException {
-  String presentType(TranslationsEn t) => switch (type) {
+  PresentableError present(TranslationsEn t) => switch (type) {
         DioExceptionType.connectionTimeout ||
         DioExceptionType.sendTimeout ||
         DioExceptionType.receiveTimeout =>
-          t.failure.connection.timeout,
-        DioExceptionType.badCertificate => t.failure.connection.badCertificate,
-        DioExceptionType.badResponse => t.failure.connection.badResponse,
-        DioExceptionType.connectionError =>
-          t.failure.connection.connectionError,
-        _ => t.failure.unexpected,
+          (type: t.failure.connection.timeout, message: null),
+        DioExceptionType.badCertificate => (
+            type: t.failure.connection.badCertificate,
+            message: message,
+          ),
+        DioExceptionType.badResponse => (
+            type: t.failure.connection.badResponse,
+            message: message,
+          ),
+        DioExceptionType.connectionError => (
+            type: t.failure.connection.connectionError,
+            message: message,
+          ),
+        _ => (type: t.failure.connection.unexpected, message: message),
       };
-
-  String present(TranslationsEn t) {
-    return presentType(t) + (message == null ? "" : "\n$message");
-  }
 }

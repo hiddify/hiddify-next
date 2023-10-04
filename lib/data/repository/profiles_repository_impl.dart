@@ -136,7 +136,7 @@ class ProfilesRepositoryImpl
             },
           );
         } finally {
-          if (await File(tempPath).exists()) await File(tempPath).delete();
+          if (File(tempPath).existsSync()) File(tempPath).deleteSync();
         }
       },
       (error, stackTrace) {
@@ -277,7 +277,7 @@ class ProfilesRepositoryImpl
             },
           );
         } finally {
-          if (await File(tempPath).exists()) await File(tempPath).delete();
+          if (File(tempPath).existsSync()) File(tempPath).deleteSync();
         }
       },
     );

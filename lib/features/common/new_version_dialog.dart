@@ -7,23 +7,30 @@ import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // TODO add release notes
-class NewVersionDialog extends HookConsumerWidget {
-  const NewVersionDialog(
+class NewVersionDialog extends HookConsumerWidget with PresLogger {
+  NewVersionDialog(
     this.currentVersion,
     this.newVersion, {
-    super.key,
+    // super.key,
     this.canIgnore = true,
-  });
+  }) : super(key: _dialogKey);
 
   final String currentVersion;
   final RemoteVersionInfo newVersion;
   final bool canIgnore;
 
-  Future<void> show(BuildContext context) {
-    return showDialog(
-      context: context,
-      builder: (context) => this,
-    );
+  static final _dialogKey = GlobalKey(debugLabel: 'new version dialog');
+
+  Future<void> show(BuildContext context) async {
+    if (_dialogKey.currentContext == null) {
+      return showDialog(
+        context: context,
+        useRootNavigator: true,
+        builder: (context) => this,
+      );
+    } else {
+      loggy.warning("new version dialog is already open");
+    }
   }
 
   @override

@@ -15,9 +15,11 @@ sealed class ConnectionFailure with _$ConnectionFailure, Failure {
     StackTrace? stackTrace,
   ]) = UnexpectedConnectionFailure;
 
+  @With<ExpectedMeasuredFailure>()
   const factory ConnectionFailure.missingVpnPermission([String? message]) =
       MissingVpnPermission;
 
+  @With<ExpectedMeasuredFailure>()
   const factory ConnectionFailure.missingNotificationPermission([
     String? message,
   ]) = MissingNotificationPermission;
@@ -28,9 +30,9 @@ sealed class ConnectionFailure with _$ConnectionFailure, Failure {
   @override
   ({String type, String? message}) present(TranslationsEn t) {
     return switch (this) {
-      UnexpectedConnectionFailure(:final error) => (
+      UnexpectedConnectionFailure() => (
           type: t.failure.connectivity.unexpected,
-          message: t.mayPrintError(error),
+          message: null,
         ),
       MissingVpnPermission(:final message) => (
           type: t.failure.connectivity.missingVpnPermission,

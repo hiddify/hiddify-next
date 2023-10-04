@@ -34,6 +34,7 @@ sealed class Profile with _$Profile {
     required DateTime lastUpdate,
   }) = LocalProfile;
 
+  // ignore: prefer_constructors_over_static_methods
   static RemoteProfile fromResponse(
     String url,
     Map<String, List<String>> headers,

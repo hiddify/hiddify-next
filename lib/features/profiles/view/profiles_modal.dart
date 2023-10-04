@@ -37,7 +37,7 @@ class ProfilesModal extends HookConsumerWidget {
                   itemCount: profiles.length,
                 ),
               AsyncError(:final error) => SliverErrorBodyPlaceholder(
-                  t.printError(error),
+                  t.presentShortError(error),
                 ),
               AsyncLoading() => const SliverLoadingBodyPlaceholder(),
               _ => const SliverToBoxAdapter(),

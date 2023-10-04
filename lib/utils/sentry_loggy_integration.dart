@@ -34,7 +34,7 @@ class SentryLoggyIntegration extends LoggyPrinter
 
   @override
   Future<void> onLog(LogRecord record) async {
-    if (!canSendEvent(record.error)) return;
+    if (!canLogEvent(record.error)) return;
 
     if (_shouldLog(record.level, _minEventLevel)) {
       await _hub.captureEvent(

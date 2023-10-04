@@ -15,7 +15,13 @@ bool canSendEvent(dynamic throwable) {
     UnexpectedFailure(:final error) => canSendEvent(error),
     DioException _ => false,
     SocketException _ => false,
-    ExpectedException _ => false,
+    ExpectedFailure _ => false,
+    ExpectedMeasuredFailure _ => false,
     _ => true,
   };
 }
+
+bool canLogEvent(dynamic throwable) => switch (throwable) {
+      ExpectedMeasuredFailure _ => true,
+      _ => canSendEvent(throwable),
+    };

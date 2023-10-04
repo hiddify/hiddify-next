@@ -16,18 +16,19 @@ sealed class ProfileFailure with _$ProfileFailure, Failure {
 
   const factory ProfileFailure.notFound() = ProfileNotFoundFailure;
 
-  @With<ExpectedException>()
+  @With<ExpectedFailure>()
   const factory ProfileFailure.invalidUrl() = ProfileInvalidUrlFailure;
 
+  @With<ExpectedFailure>()
   const factory ProfileFailure.invalidConfig([String? message]) =
       ProfileInvalidConfigFailure;
 
   @override
   ({String type, String? message}) present(TranslationsEn t) {
     return switch (this) {
-      ProfileUnexpectedFailure(:final error) => (
+      ProfileUnexpectedFailure() => (
           type: t.failure.profiles.unexpected,
-          message: t.mayPrintError(error),
+          message: null,
         ),
       ProfileNotFoundFailure() => (
           type: t.failure.profiles.notFound,

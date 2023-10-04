@@ -20,6 +20,7 @@ class CustomAlertDialog extends StatelessWidget {
   Future<void> show(BuildContext context) async {
     await showDialog(
       context: context,
+      useRootNavigator: true,
       builder: (context) => this,
     );
   }

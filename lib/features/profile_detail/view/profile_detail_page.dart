@@ -29,7 +29,15 @@ class ProfileDetailPage extends HookConsumerWidget with PresLogger {
         if (asyncSave case AsyncData(value: final save)) {
           switch (save) {
             case MutationFailure(:final failure):
-              CustomAlertDialog.fromErr(t.presentError(failure)).show(context);
+              final String action;
+              if (ref.read(provider) case AsyncData(value: final data)
+                  when data.isEditing) {
+                action = t.profile.save.failureMsg;
+              } else {
+                action = t.profile.add.failureMsg;
+              }
+              CustomAlertDialog.fromErr(t.presentError(failure, action: action))
+                  .show(context);
             case MutationSuccess():
               CustomToast.success(t.profile.save.successMsg).show(context);
               WidgetsBinding.instance.addPostFrameCallback(
@@ -62,7 +70,7 @@ class ProfileDetailPage extends HookConsumerWidget with PresLogger {
         if (asyncDelete case AsyncData(value: final delete)) {
           switch (delete) {
             case MutationFailure(:final failure):
-              CustomToast.error(t.printError(failure)).show(context);
+              CustomToast.error(t.presentShortError(failure)).show(context);
             case MutationSuccess():
               CustomToast.success(t.profile.delete.successMsg).show(context);
               WidgetsBinding.instance.addPostFrameCallback(
@@ -261,7 +269,7 @@ class ProfileDetailPage extends HookConsumerWidget with PresLogger {
                 title: Text(t.profile.detailsPageTitle),
                 pinned: true,
               ),
-              SliverErrorBodyPlaceholder(t.printError(error)),
+              SliverErrorBodyPlaceholder(t.presentShortError(error)),
             ],
           ),
         );

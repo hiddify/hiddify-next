@@ -12,7 +12,6 @@ import 'package:hiddify/domain/core_facade.dart';
 import 'package:hiddify/domain/profiles/profiles.dart';
 import 'package:hiddify/services/service_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:sentry_dio/sentry_dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'data_providers.g.dart';
@@ -34,7 +33,7 @@ Dio dio(DioRef ref) => Dio(
           "User-Agent": ref.watch(appInfoProvider).userAgent,
         },
       ),
-    )..addSentry();
+    );
 
 @Riverpod(keepAlive: true)
 ProfilesDao profilesDao(ProfilesDaoRef ref) => ProfilesDao(

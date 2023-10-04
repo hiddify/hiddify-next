@@ -55,9 +55,9 @@ class CronService with InfraLogger {
     int runCount = 0;
     _scheduler = NeatPeriodicTaskScheduler(
       name: "cron job scheduler",
-      interval: const Duration(minutes: 5),
-      timeout: const Duration(seconds: 15),
-      minCycle: const Duration(minutes: 1),
+      interval: const Duration(minutes: 10),
+      timeout: const Duration(minutes: 5),
+      minCycle: const Duration(minutes: 2),
       task: () {
         loggy.debug("in run ${runCount++}");
         return Future.wait(jobs.values.map(run));

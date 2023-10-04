@@ -57,7 +57,8 @@
             "fromClipboard": "افزودن از کلیپ‌بورد",
             "scanQr": "اسکن QR کد",
             "manually": "افزودن دستی",
-            "addingProfileMsg": "در حال افزودن پروفایل"
+            "addingProfileMsg": "در حال افزودن پروفایل",
+            "failureMsg": "در افزودن پروفایل خطایی رخ داد"
         },
         "update": {
             "buttonTxt": "بروزرسانی",
@@ -76,7 +77,8 @@
         },
         "save": {
             "buttonText": "ذخیره",
-            "successMsg": "پروفایل با موفقیت ذخیره شد"
+            "successMsg": "پروفایل با موفقیت ذخیره شد",
+            "failureMsg": "خطا در ذخیره پروفایل"
         },
         "detailsForm": {
             "nameLabel": "نام",
@@ -242,7 +244,7 @@
             "invalidConfig": "کانفیگ غیر معتبر"
         },
         "connection": {
-            "unexpected": "خطای غیرمنتظره",
+            "unexpected": " خطای غیرمنتظره در اتصال",
             "timeout": "درخواست بیش از حد مجاز زمان برد",
             "badCertificate": "خطای اعتبار سنجی",
             "badResponse": "پاسخ نامعتبر",

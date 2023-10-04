@@ -69,8 +69,16 @@ class IntroPage extends HookConsumerWidget with PresLogger {
                   child: FilledButton(
                     onPressed: () async {
                       if (!ref.read(enableAnalyticsProvider)) {
-                        loggy.debug("disabling analytics per user request");
-                        await Sentry.close();
+                        loggy.info("disabling analytics per user request");
+                        try {
+                          await Sentry.close();
+                        } catch (error, stackTrace) {
+                          loggy.warning(
+                            "could not disable analytics",
+                            error,
+                            stackTrace,
+                          );
+                        }
                       }
                       await ref
                           .read(introCompletedProvider.notifier)

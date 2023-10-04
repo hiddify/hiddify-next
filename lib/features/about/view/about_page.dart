@@ -31,7 +31,7 @@ class AboutPage extends HookConsumerWidget {
               canIgnore: false,
             ).show(context);
           case AppUpdateStateError(:final error):
-            return CustomToast.error(t.printError(error)).show(context);
+            return CustomToast.error(t.presentShortError(error)).show(context);
           case AppUpdateStateNotAvailable():
             return CustomToast.success(t.appUpdate.notAvailableMsg)
                 .show(context);

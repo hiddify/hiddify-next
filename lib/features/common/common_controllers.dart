@@ -1,4 +1,3 @@
-import 'package:dartx/dartx.dart';
 import 'package:hiddify/core/prefs/general_prefs.dart';
 import 'package:hiddify/features/common/app_update_notifier.dart';
 import 'package:hiddify/features/common/connectivity/connectivity_controller.dart';
@@ -20,8 +19,7 @@ void commonControllers(CommonControllersRef ref) {
     introCompletedProvider,
     (_, completed) async {
       if (completed) {
-        await Future.delayed(5.seconds)
-            .then((_) async => ref.read(cronServiceProvider).startScheduler());
+        await ref.read(cronServiceProvider).startScheduler();
       }
     },
     fireImmediately: true,

@@ -10,7 +10,6 @@ import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:hiddify/data/data_providers.dart';
 import 'package:hiddify/data/repository/app_repository_impl.dart';
 import 'package:hiddify/domain/environment.dart';
-import 'package:hiddify/domain/failures.dart';
 import 'package:hiddify/features/common/active_profile/active_profile_notifier.dart';
 import 'package:hiddify/features/common/window/window_controller.dart';
 import 'package:hiddify/features/system_tray/system_tray.dart';
@@ -108,7 +107,6 @@ Future<void> _lazyBootstrap(
   runApp(
     ProviderScope(
       parent: container,
-      observers: [SentryRiverpodObserver()],
       child: SentryUserInteractionWidget(
         child: const AppView(),
       ),

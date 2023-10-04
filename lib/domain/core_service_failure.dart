@@ -14,7 +14,7 @@ sealed class CoreServiceFailure with _$CoreServiceFailure, Failure {
     StackTrace? stackTrace,
   ) = UnexpectedCoreServiceFailure;
 
-  @With<ExpectedException>()
+  @With<ExpectedFailure>()
   const factory CoreServiceFailure.serviceNotRunning([String? message]) =
       CoreServiceNotRunning;
 
@@ -22,6 +22,7 @@ sealed class CoreServiceFailure with _$CoreServiceFailure, Failure {
     String? message,
   ]) = InvalidConfigOptions;
 
+  @With<ExpectedMeasuredFailure>()
   const factory CoreServiceFailure.invalidConfig([
     String? message,
   ]) = InvalidConfig;
@@ -51,9 +52,9 @@ sealed class CoreServiceFailure with _$CoreServiceFailure, Failure {
   @override
   ({String type, String? message}) present(TranslationsEn t) {
     return switch (this) {
-      UnexpectedCoreServiceFailure(:final error) => (
+      UnexpectedCoreServiceFailure() => (
           type: t.failure.singbox.unexpected,
-          message: t.mayPrintError(error),
+          message: null,
         ),
       CoreServiceNotRunning(:final message) => (
           type: t.failure.singbox.serviceNotRunning,
