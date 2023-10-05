@@ -1,7 +1,31 @@
 # Changelog
 
 
-## 0.7.2 (2023-10-04)
+## 0.8.0 (2023-10-05)
+
+#### New
+
+* Add russian lang. 
+
+#### Other
+
+* Add proxy tag sanitization. 
+
+* Fix bugs. 
+
+* Add ignore app update version. 
+
+* Add new protocols to link parser. 
+
+* Auto update translations on release. 
+
+* Update translation. 
+
+* Remove param in ru translation. 
+
+
+
+## v0.7.2 (2023-10-04)
 
 #### Other
 
