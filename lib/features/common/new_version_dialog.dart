@@ -3,6 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/domain/app/app.dart';
+import 'package:hiddify/features/common/app_update_notifier.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -11,7 +12,6 @@ class NewVersionDialog extends HookConsumerWidget with PresLogger {
   NewVersionDialog(
     this.currentVersion,
     this.newVersion, {
-    // super.key,
     this.canIgnore = true,
   }) : super(key: _dialogKey);
 
@@ -79,9 +79,11 @@ class NewVersionDialog extends HookConsumerWidget with PresLogger {
       actions: [
         if (canIgnore)
           TextButton(
-            onPressed: () {
-              // TODO add prefs for ignoring version
-              context.pop();
+            onPressed: () async {
+              await ref
+                  .read(appUpdateNotifierProvider.notifier)
+                  .ignoreRelease(newVersion);
+              if (context.mounted) context.pop();
             },
             child: Text(t.appUpdate.ignoreBtnTxt),
           ),

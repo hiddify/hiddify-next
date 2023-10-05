@@ -6,6 +6,7 @@ import 'package:hiddify/data/data_providers.dart';
 import 'package:hiddify/domain/app/app.dart';
 import 'package:hiddify/features/common/new_version_dialog.dart';
 import 'package:hiddify/services/service_providers.dart';
+import 'package:hiddify/utils/pref_notifier.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -20,6 +21,8 @@ class AppUpdateState with _$AppUpdateState {
   const factory AppUpdateState.error(AppFailure error) = AppUpdateStateError;
   const factory AppUpdateState.available(RemoteVersionInfo versionInfo) =
       AppUpdateStateAvailable;
+  const factory AppUpdateState.ignored(RemoteVersionInfo versionInfo) =
+      AppUpdateStateIgnored;
   const factory AppUpdateState.notAvailable() = AppUpdateStateNotAvailable;
 }
 
@@ -30,6 +33,12 @@ class AppUpdateNotifier extends _$AppUpdateNotifier with AppLogger {
     _schedule();
     return const AppUpdateState.initial();
   }
+
+  Pref<String?, dynamic> get _ignoreReleasePref => Pref(
+        ref.read(sharedPreferencesProvider),
+        'ignored_release_version',
+        null,
+      );
 
   Future<AppUpdateState> check() async {
     loggy.debug("checking for update");
@@ -54,7 +63,10 @@ class AppUpdateNotifier extends _$AppUpdateNotifier with AppLogger {
         return state = AppUpdateState.error(err);
       },
       (remote) {
-        if (remote.version.compareTo(currentVersion) > 0) {
+        if (remote.version == _ignoreReleasePref.getValue()) {
+          loggy.debug("ignored release [${remote.version}]");
+          return state = AppUpdateStateIgnored(remote);
+        } else if (remote.version.compareTo(currentVersion) > 0) {
           loggy.debug("new version available: $remote");
           return state = AppUpdateState.available(remote);
         }
@@ -64,6 +76,12 @@ class AppUpdateNotifier extends _$AppUpdateNotifier with AppLogger {
         return state = const AppUpdateState.notAvailable();
       },
     ).run();
+  }
+
+  Future<void> ignoreRelease(RemoteVersionInfo versionInfo) async {
+    loggy.debug("ignoring release [${versionInfo.version}]");
+    await _ignoreReleasePref.update(versionInfo.version);
+    state = AppUpdateStateIgnored(versionInfo);
   }
 
   Future<void> _schedule() async {

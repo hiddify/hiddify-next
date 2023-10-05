@@ -24,7 +24,8 @@ class AboutPage extends HookConsumerWidget {
       (_, next) async {
         if (!context.mounted) return;
         switch (next) {
-          case AppUpdateStateAvailable(:final versionInfo):
+          case AppUpdateStateAvailable(:final versionInfo) ||
+                AppUpdateStateIgnored(:final versionInfo):
             return NewVersionDialog(
               appInfo.presentVersion,
               versionInfo,
