@@ -63,7 +63,7 @@
         "update": {
             "buttonTxt": "Обновить",
             "tooltip": "Обновить профиль",
-            "failureMsg": "Ошибка обновления: ${reason}",
+            "failureMsg": "Ошибка обновления",
             "successMsg": "Профиль успешно обновлен"
         },
         "edit": {
