@@ -118,8 +118,8 @@ release: # Create a new tag for release.
 	gitchangelog > changelog.md || { git tag -d $${TAG}; echo "Please run pip install git gitchangelog pystache mustache markdown"; exit 2; } && \
 	git tag -d $${TAG} > /dev/null && \
 	git add pubspec.yaml changelog.md && \
-	# ./update_translations.sh && \
-	# git add assets/translations/* && \
+	make sync_translate && \
+	git add assets/translations/* && \
 	git commit -m "release: version $${TAG}" && \
 	echo "creating git tag : v$${TAG}" && \
 	git tag v$${TAG} && \
