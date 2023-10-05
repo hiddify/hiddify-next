@@ -240,15 +240,15 @@
         "profiles": {
             "unexpected": "Unexpected Error",
             "notFound": "Profile Not Found",
-            "invalidUrl": "Invalid URL",
-            "invalidConfig": "Invalid Configs"
+            "invalidConfig": "Invalid Configs",
+            "invalidUrl": "Invalid URL"
         },
         "connection": {
             "unexpected": "Unexpected connection error",
             "timeout": "Connection timeout",
-            "badCertificate": "Bad certificate",
             "badResponse": "Bad response",
-            "connectionError": "Connection error"
+            "connectionError": "Connection error",
+            "badCertificate": "Bad certificate"
         }
     }
 }

@@ -44,4 +44,4 @@ if __name__ == "__main__":
     recursive_translate(src_pofile, dst_pofile, translator)
 
     with open(get_path(dst), 'w') as df:
-        json.dump(dst_pofile, df)
+        json.dump(dst_pofile, df, ensure_ascii=False, indent=4)

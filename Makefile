@@ -32,8 +32,8 @@ translate:
 	dart run slang
 
 sync_translate:
-
-
+	cd .github && bash sync_translate.sh
+	make translate
 
 
 android-release: android-apk-release

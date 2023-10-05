@@ -240,15 +240,15 @@
         "profiles": {
             "unexpected": "خطای غیرمنتظره",
             "notFound": "پروفایل یافت نشد",
-            "invalidUrl": "لینک نامعتبر",
-            "invalidConfig": "کانفیگ غیر معتبر"
+            "invalidConfig": "کانفیگ غیر معتبر",
+            "invalidUrl": "لینک نامعتبر"
         },
         "connection": {
             "unexpected": " خطای غیرمنتظره در اتصال",
             "timeout": "درخواست بیش از حد مجاز زمان برد",
-            "badCertificate": "خطای اعتبار سنجی",
             "badResponse": "پاسخ نامعتبر",
-            "connectionError": "خطای اتصال"
+            "connectionError": "خطای اتصال",
+            "badCertificate": "خطای اعتبار سنجی"
         }
     }
 }

@@ -1,0 +1,254 @@
+{
+    "general": {
+        "appTitle": "HiddifyNext",
+        "reset": "Сбросить",
+        "toggle": {
+            "enabled": "Включено",
+            "disabled": "Неполноценный"
+        },
+        "state": {
+            "disable": "Запрещать"
+        },
+        "sort": "Сортировать",
+        "sortBy": "Сортировать по"
+    },
+    "intro": {
+        "termsAndPolicyCaution(rich)": "продолжая, вы соглашаетесь с ${tap(@:about.termsAndConditions)}",
+        "start": "Начинать"
+    },
+    "home": {
+        "pageTitle": "Дом",
+        "emptyProfilesMsg": "Начните с добавления профиля подписки",
+        "noActiveProfileMsg": "Выберите профиль",
+        "connection": {
+            "tapToConnect": "Нажмите, для подключения",
+            "connecting": "Подключение",
+            "disconnecting": "Отключение",
+            "connected": "Подключен"
+        },
+        "stats": {
+            "traffic": "Скорость",
+            "trafficTotal": "Всего",
+            "uplink": "восходящая линия связи",
+            "downlink": "Нисходящая линия связи"
+        }
+    },
+    "profile": {
+        "overviewPageTitle": "Профили",
+        "detailsPageTitle": "Профиль",
+        "activeProfileNameSemanticLabel": "Имя активного профиля: «${name}».",
+        "activeProfileBtnSemanticLabel": "Посмотреть все профили.",
+        "nonActiveProfileBtnSemanticLabel": "Выберите «${name}» в качестве активного профиля.",
+        "subscription": {
+            "traffic": "Трафик",
+            "updatedTimeAgo": "Обновлено ${timeago}",
+            "remainingDuration": "Осталось ${duration} дней",
+            "remainingTrafficSemanticLabel": "${consumed} из ${total} потребленного трафика.",
+            "expired": "Истекший",
+            "noTraffic": "Больше никакого трафика"
+        },
+        "sortBy": {
+            "lastUpdate": "Недавно обновленный",
+            "name": "По алфавиту"
+        },
+        "add": {
+            "buttonText": "Новый профиль",
+            "shortBtnTxt": "Новый профиль",
+            "fromClipboard": "Добавить из буфера обмена",
+            "scanQr": "Сканировать QR-код",
+            "manually": "Ручной ввод",
+            "addingProfileMsg": "Добавление профиля",
+            "failureMsg": "Не удалось добавить профиль"
+        },
+        "update": {
+            "buttonTxt": "Обновить",
+            "tooltip": "Обновить профиль",
+            "failureMsg": "Ошибка обновления: ${reason}",
+            "successMsg": "Профиль успешно обновлен"
+        },
+        "edit": {
+            "buttonTxt": "Редактировать",
+            "selectActiveTxt": "Выберите активный профиль"
+        },
+        "delete": {
+            "buttonTxt": "Удалить",
+            "confirmationMsg": "Удалить профиль навсегда?",
+            "successMsg": "Профиль успешно удален"
+        },
+        "save": {
+            "buttonText": "Сохранить",
+            "successMsg": "Профиль успешно сохранен",
+            "failureMsg": "Не удалось сохранить профиль"
+        },
+        "detailsForm": {
+            "nameLabel": "Имя",
+            "nameHint": "Имя профиля",
+            "urlLabel": "URL-адрес",
+            "urlHint": "Полный URL-адрес конфигурации",
+            "emptyNameMsg": "Поле \"Имя\" обязательно",
+            "invalidUrlMsg": "Неверная ссылка",
+            "lastUpdate": "Последнее обновление",
+            "updateInterval": "Автоматическое обновление",
+            "updateIntervalDialogTitle": "Интервал автоматического обновления (в часах)"
+        }
+    },
+    "proxies": {
+        "pageTitle": "Прокси",
+        "emptyProxiesMsg": "Нет доступных прокси",
+        "delayTestTooltip": "Задержка тестирования",
+        "sortTooltip": "Сортировка прокси",
+        "sortOptions": {
+            "unsorted": "По умолчанию",
+            "name": "По алфавиту",
+            "delay": "По задержке"
+        }
+    },
+    "logs": {
+        "pageTitle": "Логи",
+        "clearLogsButtonText": "Очистить логи",
+        "filterHint": "Фильтр",
+        "allLevelsFilter": "Все",
+        "shareCoreLogs": "Поделиться логами ядра",
+        "shareAppLogs": "Делиться логами приложения"
+    },
+    "settings": {
+        "pageTitle": "Настройки",
+        "requiresRestartMsg": "Чтобы это вступило в силу, перезапустите приложение.",
+        "general": {
+            "sectionTitle": "Общий",
+            "locale": "Язык",
+            "region": "Регион",
+            "regionMsg": "Помогает установить параметры по умолчанию для обхода внутренних адресов.",
+            "regions": {
+                "ir": "Иран (ir)",
+                "cn": "Китай (cn)",
+                "other": "Другой"
+            },
+            "themeMode": "Тематический режим",
+            "themeModes": {
+                "system": "Системная тема",
+                "dark": "Темная тема",
+                "light": "Светлая тема"
+            },
+            "enableAnalytics": "Включить аналитику",
+            "enableAnalyticsMsg": "Разрешите собирать аналитику и отправлять отчеты о сбоях для улучшения приложения.",
+            "trueBlack": "Чистый черный",
+            "autoStart": "Запуск при загрузке",
+            "silentStart": "Тихий старт",
+            "openWorkingDir": "Открыть рабочий каталог",
+            "ignoreBatteryOptimizations": "Отключить оптимизацию батареи",
+            "ignoreBatteryOptimizationsMsg": "Снимите ограничения для оптимальной производительности VPN."
+        },
+        "advanced": {
+            "sectionTitle": "Передовой",
+            "debugMode": "Режим отладки",
+            "debugModeMsg": "Перезапустите приложение, чтобы применить это изменение."
+        },
+        "network": {
+            "perAppProxyPageTitle": "Прокси для каждого приложения",
+            "perAppProxyModes": {
+                "off": "Все",
+                "offMsg": "Проксировать все приложения",
+                "include": "Прокси",
+                "includeMsg": "Проксировать только выбранные приложения",
+                "exclude": "Обход",
+                "excludeMsg": "Не использовать проксирование выбранных приложений"
+            },
+            "showSystemApps": "Показать системные приложения",
+            "hideSystemApps": "Скрыть системные приложения",
+            "clearSelection": "Очистить выбор"
+        },
+        "config": {
+            "section": {
+                "route": "Варианты маршрута",
+                "dns": "Параметры DNS",
+                "inbound": "Входящие параметры",
+                "misc": "Разные параметры"
+            },
+            "pageTitle": "Параметры конфигурации",
+            "executeConfigAsIs": "Выполнить конфигурацию как есть",
+            "executeConfigAsIsMsg": "Выполняет конфигурации SingBox с минимальными изменениями.",
+            "logLevel": "Уровень логов",
+            "resolveDestination": "Определить пункт назначения",
+            "ipv6Mode": "IPv6-маршрут",
+            "ipv6Modes": {
+                "disable": "Запрещать",
+                "enable": "Давать возможность",
+                "prefer": "Предпочтительный",
+                "only": "Эксклюзивный"
+            },
+            "remoteDnsAddress": "Удаленный DNS",
+            "remoteDnsDomainStrategy": "Стратегия удаленного домена DNS",
+            "directDnsAddress": "Прямой DNS",
+            "directDnsDomainStrategy": "Стратегия прямого домена DNS",
+            "mixedPort": "Смешанный порт",
+            "localDnsPort": "Локальный DNS-порт",
+            "tunImplementation": "Реализация TUN",
+            "mtu": "MTU",
+            "connectionTestUrl": "URL-адрес проверки подключения",
+            "urlTestInterval": "Интервал проверки URL-адреса",
+            "enableClashApi": "Включить Clash API",
+            "clashApiPort": "Порт Clash API",
+            "enableTun": "Включить TUN",
+            "setSystemProxy": "Установить системный прокси"
+        }
+    },
+    "about": {
+        "pageTitle": "О",
+        "version": "Версия",
+        "sourceCode": "Исходный код",
+        "telegramChannel": "Телеграм-канал",
+        "checkForUpdate": "Проверить обновления",
+        "privacyPolicy": "Политика конфиденциальности",
+        "termsAndConditions": "Условия и положения"
+    },
+    "appUpdate": {
+        "notAvailableMsg": "Уже пользуюсь последней версией",
+        "dialogTitle": "Доступно обновление",
+        "updateMsg": "Доступна новая версия @:general.appTitle. Хотите обновить сейчас?",
+        "currentVersionLbl": "Текущая версия",
+        "newVersionLbl": "Новая версия",
+        "updateNowBtnTxt": "Обновить сейчас",
+        "laterBtnTxt": "Позже",
+        "ignoreBtnTxt": "Игнорировать"
+    },
+    "tray": {
+        "dashboard": "Панель",
+        "quit": "Покидать",
+        "systemProxy": "Системный прокси"
+    },
+    "failure": {
+        "unexpected": "Неожиданная ошибка",
+        "clash": {
+            "unexpected": "Неожиданная ошибка",
+            "core": "Ошибка конфликта ${reason}"
+        },
+        "singbox": {
+            "unexpected": "Неожиданная ошибка службы",
+            "serviceNotRunning": "Служба не запущена",
+            "invalidConfigOptions": "Неверные параметры конфигурации",
+            "invalidConfig": "Неверная конфигурация",
+            "create": "Ошибка создания сервиса",
+            "start": "Ошибка запуска службы"
+        },
+        "connectivity": {
+            "unexpected": "Неожиданный провал",
+            "missingVpnPermission": "Отсутствует разрешение VPN",
+            "missingNotificationPermission": "Отсутствует разрешение на уведомление",
+            "core": "Основная ошибка"
+        },
+        "profiles": {
+            "unexpected": "Неожиданная ошибка",
+            "notFound": "Профиль не найден",
+            "invalidConfig": "Неверная конфигурация",
+            "invalidUrl": "Неверная ссылка"
+        },
+        "connection": {
+            "unexpected": "Неожиданная ошибка подключения",
+            "timeout": "Время соединения вышло",
+            "badResponse": "Плохой ответ",
+            "connectionError": "Ошибка подключения",
+            "badCertificate": "Плохой сертификат"
+        }
+    }
+}
