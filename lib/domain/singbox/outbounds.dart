@@ -21,12 +21,17 @@ class OutboundGroup with _$OutboundGroup {
 
 @freezed
 class OutboundGroupItem with _$OutboundGroupItem {
+  const OutboundGroupItem._();
+
   @JsonSerializable(fieldRename: FieldRename.kebab)
   const factory OutboundGroupItem({
     required String tag,
     @JsonKey(fromJson: _typeFromJson) required ProxyType type,
     required int urlTestDelay,
   }) = _OutboundGroupItem;
+
+  String get sanitizedTag =>
+      tag.replaceFirst(RegExp(r"\§[^]*"), "").trimRight();
 
   factory OutboundGroupItem.fromJson(Map<String, dynamic> json) =>
       _$OutboundGroupItemFromJson(json);
