@@ -7,7 +7,7 @@ class SentryLoggyIntegration extends LoggyPrinter
     implements Integration<SentryOptions> {
   SentryLoggyIntegration({
     LogLevel minBreadcrumbLevel = LogLevel.info,
-    LogLevel minEventLevel = LogLevel.warning,
+    LogLevel minEventLevel = LogLevel.error,
   })  : _minBreadcrumbLevel = minBreadcrumbLevel,
         _minEventLevel = minEventLevel;
 
