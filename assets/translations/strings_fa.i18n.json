@@ -115,7 +115,7 @@
         "pageTitle": "تنظیمات",
         "requiresRestartMsg": "برای اعمال این تنظیم برنامه را بازنشانی کنید",
         "general": {
-            "sectionTitle": "اصلی",
+            "sectionTitle": "عمومی",
             "locale": "زبان",
             "region": "منطقه",
             "regionMsg": "به انتخاب تنظیمات پیش‌فرض برای دورزدن آدرس‌های داخلی کمک میکند",
