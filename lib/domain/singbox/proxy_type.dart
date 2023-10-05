@@ -4,6 +4,7 @@ enum ProxyType {
   dns("DNS"),
   socks("SOCKS"),
   http("HTTP"),
+  shadowsocks("Shadowsocks"),
   vmess("VMess"),
   trojan("Trojan"),
   naive("Naive"),
