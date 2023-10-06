@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:hiddify/utils/platform_utils.dart';
@@ -7,6 +9,8 @@ part 'config_options.g.dart';
 
 @freezed
 class ConfigOptions with _$ConfigOptions {
+  const ConfigOptions._();
+
   @JsonSerializable(fieldRename: FieldRename.kebab)
   const factory ConfigOptions({
     @Default(false) bool executeConfigAsIs,
@@ -35,6 +39,11 @@ class ConfigOptions with _$ConfigOptions {
     enableTun: !PlatformUtils.isDesktop,
     setSystemProxy: PlatformUtils.isDesktop,
   );
+
+  String format() {
+    const encoder = JsonEncoder.withIndent('  ');
+    return encoder.convert(toJson());
+  }
 
   factory ConfigOptions.fromJson(Map<String, dynamic> json) =>
       _$ConfigOptionsFromJson(json);

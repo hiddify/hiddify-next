@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/core/prefs/prefs.dart';
@@ -23,6 +24,22 @@ class ConfigOptionsPage extends HookConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(t.settings.config.pageTitle),
+        actions: [
+          PopupMenuButton(
+            itemBuilder: (context) {
+              return [
+                PopupMenuItem(
+                  child: Text(t.general.addToClipboard),
+                  onTap: () {
+                    Clipboard.setData(
+                      ClipboardData(text: options.format()),
+                    );
+                  },
+                ),
+              ];
+            },
+          ),
+        ],
       ),
       body: ListView(
         children: [

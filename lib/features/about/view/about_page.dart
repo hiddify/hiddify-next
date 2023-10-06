@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/domain/constants.dart';
@@ -45,6 +46,22 @@ class AboutPage extends HookConsumerWidget {
         slivers: [
           SliverAppBar(
             title: Text(t.about.pageTitle),
+            actions: [
+              PopupMenuButton(
+                itemBuilder: (context) {
+                  return [
+                    PopupMenuItem(
+                      child: Text(t.general.addToClipboard),
+                      onTap: () {
+                        Clipboard.setData(
+                          ClipboardData(text: appInfo.format()),
+                        );
+                      },
+                    ),
+                  ];
+                },
+              ),
+            ],
           ),
           SliverToBoxAdapter(
             child: Padding(

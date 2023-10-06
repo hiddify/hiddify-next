@@ -10,7 +10,8 @@
             "disable": "停用"
         },
         "sort": "排序",
-        "sortBy": "排序方式"
+        "sortBy": "排序方式",
+        "addToClipboard": ""
     },
     "intro": {
         "termsAndPolicyCaution(rich)": "继续即表示您同意 ${tap(@:about.termsAndConditions)}",

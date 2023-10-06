@@ -88,9 +88,7 @@ Future<void> _lazyBootstrap(
   await filesEditor.init();
 
   initLoggers(container.read, debug);
-  _logger.info(
-    "os: [${Platform.operatingSystem}](${Platform.operatingSystemVersion}), processor count [${Platform.numberOfProcessors}]",
-  );
+  _logger.info(container.read(appInfoProvider).format());
 
   final silentStart = container.read(silentStartNotifierProvider);
   if (silentStart) {

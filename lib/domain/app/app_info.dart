@@ -16,6 +16,7 @@ class AppInfo with _$AppInfo {
     required Release release,
     String? installerMedia,
     required String operatingSystem,
+    required String operatingSystemVersion,
     required Environment environment,
   }) = _AppInfo;
 
@@ -24,6 +25,12 @@ class AppInfo with _$AppInfo {
   String get presentVersion => environment == Environment.prod
       ? version
       : "$version ${environment.name}";
+
+  /// formats app info for sharing
+  String format() => '''
+$name v$version ($buildNumber) ${environment.name}
+${release.name} release ${installerMedia != null ? "via $installerMedia" : ""}
+$operatingSystem [$operatingSystemVersion]''';
 
   factory AppInfo.fromJson(Map<String, dynamic> json) =>
       _$AppInfoFromJson(json);

@@ -10,7 +10,8 @@
             "disable": "Disable"
         },
         "sort": "Sort",
-        "sortBy": "Sort by"
+        "sortBy": "Sort by",
+        "addToClipboard": "Add to clipboard"
     },
     "intro": {
         "termsAndPolicyCaution(rich)": "by continuing you agree with ${tap(@:about.termsAndConditions)}",
@@ -167,7 +168,7 @@
             },
             "pageTitle": "Config Options",
             "executeConfigAsIs": "Execute Config As Is",
-            "executeConfigAsIsMsg": "Executes the SingBox configs with minimal changes.",
+            "executeConfigAsIsMsg": "Executes the SingBox configs with minimal changes. Can cause problems.",
             "logLevel": "Log Level",
             "resolveDestination": "Resolve Destination",
             "ipv6Mode": "IPv6 Route",

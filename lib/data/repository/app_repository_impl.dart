@@ -25,6 +25,7 @@ class AppRepositoryImpl
       release: Release.read(),
       installerMedia: packageInfo.installerStore,
       operatingSystem: Platform.operatingSystem,
+      operatingSystemVersion: Platform.operatingSystemVersion,
       environment: environment,
     );
   }
