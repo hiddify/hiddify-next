@@ -1,9 +1,10 @@
 key="FRu3eopQWgsvWmnycBXxv2eWpbUwGOu2"
 wget -O ../assets/translations/strings.i18n.json  "https://localise.biz/api/export/locale/en-US.json?index=id&format=i18next4&key=$key"
 wget -O ../assets/translations/strings_fa.i18n.json  "https://localise.biz/api/export/locale/fa.json?index=id&format=i18next4&key=$key"
-wget -O assets/translations/strings_zh.i18n.json  "https://localise.biz/api/export/locale/zh.json?index=id&format=i18next4&key=$key"
-# # wget -O assets/translations/strings_pt.i18n.json  "https://localise.biz/api/export/locale/pt.json?index=id&format=i18next4&key=$key"
+wget -O ../assets/translations/strings_zh.i18n.json  "https://localise.biz/api/export/locale/zh.json?index=id&format=i18next4&key=$key"
+# # wget -O ../assets/translations/strings_pt.i18n.json  "https://localise.biz/api/export/locale/pt.json?index=id&format=i18next4&key=$key"
 wget -O ../assets/translations/strings_ru.i18n.json  "https://localise.biz/api/export/locale/ru.json?index=id&format=i18next4&key=$key"
+
 
 
 pip install polib deep-translator python-i18n

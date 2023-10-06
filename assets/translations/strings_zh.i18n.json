@@ -41,7 +41,7 @@
         "nonActiveProfileBtnSemanticLabel": "选择“${name}”作为活动配置文件。",
         "subscription": {
             "traffic": "交通",
-            "updatedTimeAgo": "更新${时间前}",
+            "updatedTimeAgo": "更新${timeago}",
             "remainingDuration": "剩余 ${duration} 天",
             "remainingTrafficSemanticLabel": "已消耗 ${consumed} 流量，共 ${total} 流量。",
             "expired": "已到期",
@@ -221,7 +221,7 @@
         "unexpected": "意外的错误",
         "clash": {
             "unexpected": "意外的错误",
-            "core": "冲突错误${原因}"
+            "core": "冲突错误${reason}"
         },
         "singbox": {
             "unexpected": "意外的服务错误",
