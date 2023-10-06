@@ -26,12 +26,10 @@ void main() {
         "with all metadata",
         () {
           final headers = <String, List<String>>{
-            // decoded: exampleTitle
             "profile-title": ["base64:ZXhhbXBsZVRpdGxl"],
             "profile-update-interval": ["1"],
-            // expire: 2024/1/1
             "subscription-userinfo": [
-              "upload=0;download=1024;total=10240;expire=1704054600",
+              "upload=0;download=1024;total=10240.5;expire=1704054600.55",
             ],
             "profile-web-page-url": [validBaseUrl],
             "support-url": [validSupportUrl],

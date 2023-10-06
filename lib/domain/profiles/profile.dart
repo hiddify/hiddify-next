@@ -150,7 +150,8 @@ class SubscriptionInfo with _$SubscriptionInfo {
     final values = header.split(';');
     final map = {
       for (final v in values)
-        v.split('=').first.trim(): int.tryParse(v.split('=').second.trim()),
+        v.split('=').first.trim():
+            num.tryParse(v.split('=').second.trim())?.toInt(),
     };
     _loggy.debug("Subscription Info: $map");
     return SubscriptionInfo.fromJson(map);
