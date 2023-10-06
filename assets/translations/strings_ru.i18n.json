@@ -7,7 +7,7 @@
             "disabled": "Неполноценный"
         },
         "state": {
-            "disable": "Запрещать"
+            "disable": "Выключить"
         },
         "sort": "Сортировать",
         "sortBy": "Сортировать по"
@@ -48,7 +48,7 @@
             "noTraffic": "Больше никакого трафика"
         },
         "sortBy": {
-            "lastUpdate": "Недавно обновленный",
+            "lastUpdate": "Последнее обновление",
             "name": "По алфавиту"
         },
         "add": {
@@ -115,7 +115,7 @@
         "pageTitle": "Настройки",
         "requiresRestartMsg": "Чтобы это вступило в силу, перезапустите приложение.",
         "general": {
-            "sectionTitle": "Общий",
+            "sectionTitle": "Основные",
             "locale": "Язык",
             "region": "Регион",
             "regionMsg": "Помогает установить параметры по умолчанию для обхода внутренних адресов.",
@@ -124,7 +124,7 @@
                 "cn": "Китай (cn)",
                 "other": "Другой"
             },
-            "themeMode": "Тематический режим",
+            "themeMode": "Оформление",
             "themeModes": {
                 "system": "Системная тема",
                 "dark": "Темная тема",
@@ -132,7 +132,7 @@
             },
             "enableAnalytics": "Включить аналитику",
             "enableAnalyticsMsg": "Разрешите собирать аналитику и отправлять отчеты о сбоях для улучшения приложения.",
-            "trueBlack": "Чистый черный",
+            "trueBlack": "Настоящий черный",
             "autoStart": "Запуск при загрузке",
             "silentStart": "Тихий старт",
             "openWorkingDir": "Открыть рабочий каталог",
@@ -140,7 +140,7 @@
             "ignoreBatteryOptimizationsMsg": "Снимите ограничения для оптимальной производительности VPN."
         },
         "advanced": {
-            "sectionTitle": "Передовой",
+            "sectionTitle": "Расширенные",
             "debugMode": "Режим отладки",
             "debugModeMsg": "Перезапустите приложение, чтобы применить это изменение."
         },
@@ -172,8 +172,8 @@
             "resolveDestination": "Определить пункт назначения",
             "ipv6Mode": "IPv6-маршрут",
             "ipv6Modes": {
-                "disable": "Запрещать",
-                "enable": "Давать возможность",
+                "disable": "Выключить",
+                "enable": "Включить",
                 "prefer": "Предпочтительный",
                 "only": "Эксклюзивный"
             },
@@ -203,7 +203,7 @@
         "termsAndConditions": "Условия и положения"
     },
     "appUpdate": {
-        "notAvailableMsg": "Уже пользуюсь последней версией",
+        "notAvailableMsg": "У вас установлена последняя версия",
         "dialogTitle": "Доступно обновление",
         "updateMsg": "Доступна новая версия @:general.appTitle. Хотите обновить сейчас?",
         "currentVersionLbl": "Текущая версия",
@@ -214,28 +214,28 @@
     },
     "tray": {
         "dashboard": "Панель",
-        "quit": "Покидать",
+        "quit": "Выход из Hiddify",
         "systemProxy": "Системный прокси"
     },
     "failure": {
         "unexpected": "Неожиданная ошибка",
         "clash": {
-            "unexpected": "Неожиданная ошибка",
-            "core": "Ошибка конфликта ${reason}"
+            "unexpected": "Неожиданная ошибка (clash)",
+            "core": "Ошибка конфликта  ${reason}"
         },
         "singbox": {
-            "unexpected": "Неожиданная ошибка службы",
-            "serviceNotRunning": "Служба не запущена",
+            "unexpected": "Неожиданная ошибка (singBox)",
+            "serviceNotRunning": "Сервис не запущен",
             "invalidConfigOptions": "Неверные параметры конфигурации",
             "invalidConfig": "Неверная конфигурация",
             "create": "Ошибка создания сервиса",
-            "start": "Ошибка запуска службы"
+            "start": "Ошибка запуска сервиса"
         },
         "connectivity": {
-            "unexpected": "Неожиданный провал",
+            "unexpected": "Неожиданная ошибка",
             "missingVpnPermission": "Отсутствует разрешение VPN",
             "missingNotificationPermission": "Отсутствует разрешение на уведомление",
-            "core": "Основная ошибка"
+            "core": "Ошибка ядра"
         },
         "profiles": {
             "unexpected": "Неожиданная ошибка",
@@ -250,5 +250,9 @@
             "connectionError": "Ошибка подключения",
             "badCertificate": "Плохой сертификат"
         }
+    },
+    "play": {
+        "title": "Hiddify Next (Preview)",
+        "short_description": "Auto, SSH, VLESS, Vmess, Trojan, Reality, Sing-Box, Clash, Xray, Shadowsocks"
     }
 }

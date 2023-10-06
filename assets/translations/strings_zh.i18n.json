@@ -250,5 +250,10 @@
             "connectionError": "连接错误",
             "badCertificate": "不良证书"
         }
+    },
+    "play": {
+        "title": "Hiddify Next（预览）",
+        "short_description": "自动、SSH、VLESS、Vmess、木马、Reality、Sing-Box、Clash、Xray、Shadowsocks",
+        "full_description": "HiddifyNext 的主要目标是提供安全、用户友好且高效的隧道客户端。它使您能够利用 VPN 服务权限将所有流量或选定的应用程序流量路由到您选择的远程服务器。\n\n注：我们不提供任何服务器；用户需要使用自己的自托管服务器或受信任的服务器来确保其在线活动的私密性。\n \n我们支持服务器：\n- 普通V2ray/Xray订阅链接\n- 冲突订阅链接\n- Sing-Box 订阅链接\n\n我们的独特之处是什么？\n - 方便使用的\n - 优化且快速\n - 自动选择最低Ping\n - 显示用户使用信息\n - 使用深层链接一键轻松导入子链接\n - 免费且无广告\n - 轻松切换用户子链接\n - 越来越多\n\n支持：\n- Sing-Box 支持的所有协议\n- VLESS + xtls 现实、愿景\n- VMESS\n- 木马\n- ShoadowSocks\n- 现实\n-V2ray\n- 海斯特利亚2\n- TUIC\n- SSH\n- ShadowTLS\n\n\n源代码位于 https://github.com/hiddify/Hiddify-Next\n应用核心基于开源sing-box。\n\n权限说明：\n- VPN 服务：由于此应用程序的目标是提供安全、用户友好且高效的隧道客户端，因此我们需要此权限才能通过隧道将流量路由到远程服务器。\n- 查询所有包：此权限用于允许用户包含或排除隧道的特定应用程序。\n- 接收启动已完成：可以从应用程序设置中启用或禁用此权限，以在设备启动时激活此应用程序。\n- 发布通知：此权限至关重要，因为我们使用前台服务来确保 VPN 服务的持续运行。\n- 该应用程序没有广告。分析和崩溃数据仅在用户首次使用应用程序时明确同意的情况下才会出现。"
     }
 }
