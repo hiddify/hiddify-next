@@ -191,7 +191,7 @@ class FFISingboxService
         _logger.debug("stopping status command client");
         final err = _box.stopCommandClient(1).cast<Utf8>().toDartString();
         if (err.isNotEmpty) {
-          _logger.warning("error stopping status client");
+          _logger.error("error stopping status client");
         }
         receiver.close();
         _statusStream = null;
@@ -200,12 +200,12 @@ class FFISingboxService
       (event) {
         if (event case String _) {
           if (event.startsWith('error:')) {
-            loggy.warning("[status client] error received: $event");
+            loggy.error("[status client] error received: $event");
             throw event.replaceFirst('error:', "");
           }
           return event;
         }
-        loggy.warning("[status client] unexpected type, msg: $event");
+        loggy.error("[status client] unexpected type, msg: $event");
         throw "invalid type";
       },
     );
@@ -215,7 +215,7 @@ class FFISingboxService
         .cast<Utf8>()
         .toDartString();
     if (err.isNotEmpty) {
-      loggy.warning("error starting status command: $err");
+      loggy.error("error starting status command: $err");
       throw err;
     }
 
@@ -231,7 +231,7 @@ class FFISingboxService
         _logger.debug("stopping group command client");
         final err = _box.stopCommandClient(4).cast<Utf8>().toDartString();
         if (err.isNotEmpty) {
-          _logger.warning("error stopping group client");
+          _logger.error("error stopping group client");
         }
         receiver.close();
         _groupsStream = null;
@@ -240,12 +240,12 @@ class FFISingboxService
       (event) {
         if (event case String _) {
           if (event.startsWith('error:')) {
-            loggy.warning("[group client] error received: $event");
+            loggy.error("[group client] error received: $event");
             throw event.replaceFirst('error:', "");
           }
           return event;
         }
-        loggy.warning("[group client] unexpected type, msg: $event");
+        loggy.error("[group client] unexpected type, msg: $event");
         throw "invalid type";
       },
     );
@@ -255,7 +255,7 @@ class FFISingboxService
         .cast<Utf8>()
         .toDartString();
     if (err.isNotEmpty) {
-      loggy.warning("error starting group command: $err");
+      loggy.error("error starting group command: $err");
       throw err;
     }
 

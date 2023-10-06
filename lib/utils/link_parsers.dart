@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:hiddify/domain/clash/clash.dart';
+import 'package:hiddify/domain/singbox/singbox.dart';
 import 'package:hiddify/utils/validators.dart';
 
 typedef ProfileLink = ({String url, String name});
@@ -9,7 +9,15 @@ typedef ProfileLink = ({String url, String name});
 abstract class LinkParser {
   // protocols schemas
   static const protocols = {'clash', 'clashmeta', 'sing-box', 'hiddify'};
-  static const rawProtocols = {'vmess', 'vless', 'trojan', 'ss', 'tuic'};
+  static const rawProtocols = {
+    'ss',
+    'vmess',
+    'vless',
+    'trojan',
+    'tuic',
+    'hysteria2',
+    'ssh',
+  };
 
   static ProfileLink? parse(String link) {
     return simple(link) ?? deep(link);
@@ -32,10 +40,13 @@ abstract class LinkParser {
       final fragment =
           uri.hasFragment ? Uri.decodeComponent(uri.fragment) : null;
       final name = switch (uri.scheme) {
-        'ss' => fragment ?? ProxyType.shadowSocks.label,
-        'vless' => fragment ?? ProxyType.vless.label,
-        'tuic' => fragment ?? ProxyType.tuic.label,
+        'ss' => fragment ?? ProxyType.shadowsocks.label,
         'vmess' => ProxyType.vmess.label,
+        'vless' => fragment ?? ProxyType.vless.label,
+        'trojan' => fragment ?? ProxyType.trojan.label,
+        'tuic' => fragment ?? ProxyType.tuic.label,
+        'hy2' || 'hysteria2' => fragment ?? ProxyType.hysteria.label,
+        'ssh' => fragment ?? ProxyType.ssh.label,
         _ => null,
       };
       if (name != null) {

@@ -26,7 +26,7 @@ Future<List<InstalledPackageInfo>> installedPackagesInfo(
       .watch(platformSettingsProvider)
       .getInstalledPackages()
       .getOrElse((err) {
-    _logger.warning("error getting installed packages", err);
+    _logger.error("error getting installed packages", err);
     throw err;
   }).run();
 }

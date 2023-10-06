@@ -137,7 +137,7 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
       }).toList();
     }).handleExceptions(
       (error, stackTrace) {
-        loggy.warning("error watching outbounds", error, stackTrace);
+        loggy.error("error watching outbounds", error, stackTrace);
         return CoreServiceFailure.unexpected(error, stackTrace);
       },
     );

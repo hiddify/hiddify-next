@@ -73,7 +73,7 @@ class IntroPage extends HookConsumerWidget with PresLogger {
                         try {
                           await Sentry.close();
                         } catch (error, stackTrace) {
-                          loggy.warning(
+                          loggy.error(
                             "could not disable analytics",
                             error,
                             stackTrace,

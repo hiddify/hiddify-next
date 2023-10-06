@@ -24,7 +24,8 @@ class AboutPage extends HookConsumerWidget {
       (_, next) async {
         if (!context.mounted) return;
         switch (next) {
-          case AppUpdateStateAvailable(:final versionInfo):
+          case AppUpdateStateAvailable(:final versionInfo) ||
+                AppUpdateStateIgnored(:final versionInfo):
             return NewVersionDialog(
               appInfo.presentVersion,
               versionInfo,
@@ -108,15 +109,16 @@ class AboutPage extends HookConsumerWidget {
                           .check();
                     },
                   ),
-                ListTile(
-                  title: Text(t.settings.general.openWorkingDir),
-                  trailing: const Icon(Icons.arrow_outward_outlined),
-                  onTap: () async {
-                    final path =
-                        ref.read(filesEditorServiceProvider).workingDir.uri;
-                    await UriUtils.tryLaunch(path);
-                  },
-                ),
+                if (PlatformUtils.isDesktop)
+                  ListTile(
+                    title: Text(t.settings.general.openWorkingDir),
+                    trailing: const Icon(Icons.arrow_outward_outlined),
+                    onTap: () async {
+                      final path =
+                          ref.read(filesEditorServiceProvider).workingDir.uri;
+                      await UriUtils.tryLaunch(path);
+                    },
+                  ),
               ],
             ),
           ),

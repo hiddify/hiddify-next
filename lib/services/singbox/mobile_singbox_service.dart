@@ -120,7 +120,7 @@ class MobileSingboxService
         if (event case String _) {
           return event;
         }
-        loggy.warning("[group client] unexpected type, msg: $event");
+        loggy.error("[group client] unexpected type, msg: $event");
         throw "invalid type";
       },
     );

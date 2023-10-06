@@ -123,7 +123,7 @@ class ProxiesNotifier extends _$ProxiesNotifier with AppLogger {
     loggy.debug("testing group: [$groupTag]");
     if (state case AsyncData()) {
       await ref.read(coreFacadeProvider).urlTest(groupTag).getOrElse((err) {
-        loggy.warning("error testing group", err);
+        loggy.error("error testing group", err);
         throw err;
       }).run();
     }

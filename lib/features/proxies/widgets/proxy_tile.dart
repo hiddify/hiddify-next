@@ -21,7 +21,7 @@ class ProxyTile extends HookConsumerWidget {
     return ListTile(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       title: Text(
-        proxy.tag,
+        proxy.sanitizedTag,
         overflow: TextOverflow.ellipsis,
       ),
       leading: Padding(
