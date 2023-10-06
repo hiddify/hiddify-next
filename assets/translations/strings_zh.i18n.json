@@ -4,12 +4,12 @@
         "reset": "重置",
         "toggle": {
             "enabled": "启用",
-            "disabled": "残疾人"
+            "disabled": "停用"
         },
         "state": {
-            "disable": "禁用"
+            "disable": "停用"
         },
-        "sort": "种类",
+        "sort": "排序",
         "sortBy": "排序方式"
     },
     "intro": {
@@ -17,17 +17,17 @@
         "start": "开始"
     },
     "home": {
-        "pageTitle": "家",
+        "pageTitle": "主页",
         "emptyProfilesMsg": "首先添加订阅配置文件",
-        "noActiveProfileMsg": "选择个人资料",
+        "noActiveProfileMsg": "选择配置文件",
         "connection": {
             "tapToConnect": "点击连接",
             "connecting": "正在连接",
             "disconnecting": "断开连接",
-            "connected": "连接的"
+            "connected": "连接成功"
         },
         "stats": {
-            "traffic": "实时路况",
+            "traffic": "实时流量",
             "trafficTotal": "总流量",
             "uplink": "上行链路",
             "downlink": "下行"
@@ -58,7 +58,7 @@
             "scanQr": "扫描二维码",
             "manually": "手动输入",
             "addingProfileMsg": "添加个人资料",
-            "failureMsg": "添加个人资料失败"
+            "failureMsg": "无法添加配置文件"
         },
         "update": {
             "buttonTxt": "更新",
@@ -78,7 +78,7 @@
         "save": {
             "buttonText": "节省",
             "successMsg": "个人资料保存成功",
-            "failureMsg": "保存个人资料失败"
+            "failureMsg": "保存配置文件失败"
         },
         "detailsForm": {
             "nameLabel": "姓名",
@@ -239,21 +239,21 @@
         },
         "profiles": {
             "unexpected": "意外的错误",
-            "notFound": "未找到个人资料",
+            "notFound": "未找到配置文件",
             "invalidConfig": "无效的配置",
             "invalidUrl": "无效的网址"
         },
         "connection": {
-            "unexpected": "意外的连接错误",
+            "unexpected": "意外连接错误",
             "timeout": "连接超时",
             "badResponse": "反应不佳",
             "connectionError": "连接错误",
-            "badCertificate": "不良证书"
+            "badCertificate": "证书无效"
         }
     },
     "play": {
         "title": "Hiddify Next（预览）",
-        "short_description": "自动、SSH、VLESS、Vmess、木马、Reality、Sing-Box、Clash、Xray、Shadowsocks",
-        "full_description": "HiddifyNext 的主要目标是提供安全、用户友好且高效的隧道客户端。它使您能够利用 VPN 服务权限将所有流量或选定的应用程序流量路由到您选择的远程服务器。\n\n注：我们不提供任何服务器；用户需要使用自己的自托管服务器或受信任的服务器来确保其在线活动的私密性。\n \n我们支持服务器：\n- 普通V2ray/Xray订阅链接\n- 冲突订阅链接\n- Sing-Box 订阅链接\n\n我们的独特之处是什么？\n - 方便使用的\n - 优化且快速\n - 自动选择最低Ping\n - 显示用户使用信息\n - 使用深层链接一键轻松导入子链接\n - 免费且无广告\n - 轻松切换用户子链接\n - 越来越多\n\n支持：\n- Sing-Box 支持的所有协议\n- VLESS + xtls 现实、愿景\n- VMESS\n- 木马\n- ShoadowSocks\n- 现实\n-V2ray\n- 海斯特利亚2\n- TUIC\n- SSH\n- ShadowTLS\n\n\n源代码位于 https://github.com/hiddify/Hiddify-Next\n应用核心基于开源sing-box。\n\n权限说明：\n- VPN 服务：由于此应用程序的目标是提供安全、用户友好且高效的隧道客户端，因此我们需要此权限才能通过隧道将流量路由到远程服务器。\n- 查询所有包：此权限用于允许用户包含或排除隧道的特定应用程序。\n- 接收启动已完成：可以从应用程序设置中启用或禁用此权限，以在设备启动时激活此应用程序。\n- 发布通知：此权限至关重要，因为我们使用前台服务来确保 VPN 服务的持续运行。\n- 该应用程序没有广告。分析和崩溃数据仅在用户首次使用应用程序时明确同意的情况下才会出现。"
+        "short_description": "自动，SSH, VLESS, Vmess, Trojan, Reality, Sing-Box, Clash, Xray, Shadowsocks",
+        "full_description": "HiddifyNext 的主要目标是提供安全、用户友好且高效的隧道客户端。它使您能够利用 VPN 服务权限将所有流量或选定的应用程序流量路由到您选择的远程服务器。\n\n注：我们不提供任何服务器；用户需要使用自己的自托管服务器或受信任的服务器来确保其在线活动的私密性。\n \n我们支持以下类型的服务器：\n- 普通V2ray/Xray订阅链接\n- Clash订阅链接\n- Sing-Box 订阅链接\n\n我们的独特特点是什么？\n\n-用户友好\n-优化和高速\n-自动选择最低延迟\n-显示用户使用信息\n-通过一键深度链接轻松导入子链接\n-免费且无广告\n-轻松切换用户子链接\n-等等\n\n支持：\n- Sing-Box 支持的所有协议\n- VLESS + xtls 现实、愿景\n- VMESS\n- Trojan\n- ShoadowSocks\n- Reality\n-V2ray\n- Hystria2\n- TUIC\n- SSH\n- ShadowTLS\n\n\n源代码位于https://github.com/hiddify/Hiddify-Next\n应用程序核心基于开源的Sing-Box。\n\n权限说明：\n\nVPN服务：由于此应用程序的目标是提供安全、用户友好和高效的隧道客户端，我们需要此权限以能够通过隧道将流量路由到远程服务器。\n查询所有包：此权限用于允许用户包括或排除特定应用程序以进行隧道传输。\n接收启动完成：此权限可以从应用程序设置中启用或禁用，以在设备启动时激活此应用程序。\n发送通知：此权限是必需的，因为我们使用前台服务来确保VPN服务的持续运行。\n此应用程序没有广告。分析和崩溃数据仅在用户在首次使用应用程序时明确同意的情况下发生。"
     }
 }

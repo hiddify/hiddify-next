@@ -1,4 +1,4 @@
-display_name: Hiddify Next
+display_name: HiddifyNext
 
 icon: ./assets/images/source/ic_launcher_border.png
 
@@ -33,10 +33,9 @@ startup_notify: true
 #
 # flutter_distributor automatically detects the shared libraries that your app
 # depends on, but you can also specify them manually here.
-# 
+#
 # The following example shows how to bundle the libcurl library with your app.
 #
 # include:
 #   - libcurl.so.4
 include: []
-

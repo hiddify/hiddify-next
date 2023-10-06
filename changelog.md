@@ -1,7 +1,31 @@
 # Changelog
 
 
-## 0.8.0 (2023-10-05)
+## 0.8.1 (2023-10-06)
+
+#### New
+
+* Add chinese lang. 
+
+#### Fix
+
+* Chinese translation. 
+
+#### Other
+
+* Update core 0.5.1. 
+
+* Fix floating number sub info header. 
+
+* Add russian. 
+
+* Add google play descriptions. 
+
+* Merge branch 'main' of hiddify-github:hiddify/hiddify-next. 
+
+
+
+## v0.8.0 (2023-10-05)
 
 #### New
 
