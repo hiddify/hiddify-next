@@ -15,6 +15,8 @@ bool canSendEvent(dynamic throwable) {
     UnexpectedFailure(:final error) => canSendEvent(error),
     DioException _ => false,
     SocketException _ => false,
+    HttpException _ => false,
+    HandshakeException _ => false,
     ExpectedFailure _ => false,
     ExpectedMeasuredFailure _ => false,
     _ => true,

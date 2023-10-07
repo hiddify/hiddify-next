@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/core/prefs/prefs.dart';
@@ -17,6 +18,8 @@ class IntroPage extends HookConsumerWidget with PresLogger {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = ref.watch(translationsProvider);
+
+    final isStarting = useState(false);
 
     return Scaffold(
       body: CustomScrollView(
@@ -68,6 +71,8 @@ class IntroPage extends HookConsumerWidget with PresLogger {
                   ),
                   child: FilledButton(
                     onPressed: () async {
+                      if (isStarting.value) return;
+                      isStarting.value = true;
                       if (!ref.read(enableAnalyticsProvider)) {
                         loggy.info("disabling analytics per user request");
                         try {
@@ -84,7 +89,12 @@ class IntroPage extends HookConsumerWidget with PresLogger {
                           .read(introCompletedProvider.notifier)
                           .update(true);
                     },
-                    child: Text(t.intro.start),
+                    child: isStarting.value
+                        ? LinearProgressIndicator(
+                            backgroundColor: Colors.transparent,
+                            color: Theme.of(context).colorScheme.onSurface,
+                          )
+                        : Text(t.intro.start),
                   ),
                 ),
               ],
