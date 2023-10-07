@@ -1,5 +1,6 @@
 name: Bug Report
 description: Report a bug encountered while using Hiddify Next
+labels: ['bug']
 body:
   - type: markdown
     attributes:
@@ -13,7 +14,7 @@ body:
     id: confirm-search
     attributes:
       label: Search first
-      description: Please search [existing issues](https://github.com/hiddify/hiddify-next/issuess) before reporting.
+      description: Please search [existing issues](https://github.com/hiddify/hiddify-next/issues) before reporting.
       options:
         - label: I searched and no similar issues were found
           required: true
@@ -46,14 +47,6 @@ body:
         Please tell us what's the behavior you expect.
     validations:
       required: false
-  - type: textarea
-    id: screenshots
-    attributes:
-      label: Screenshots
-      description: |
-        If applicable, add screenshots or screen recordings to help explain your problem.
-    validations:
-      required: false
   - type: input
     id: version
     attributes:
@@ -81,7 +74,7 @@ body:
     attributes:
       label: Additional Context
       description: |
-        If applicable, add additional context to help explain your problem.
+        If applicable, add screenshots, screen recordings or additional context to help explain your problem.
     validations:
       required: false
   - type: textarea
