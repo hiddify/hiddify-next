@@ -15,4 +15,7 @@ or download from below based on your OS:
 
 - **Build from source:** [Build & contribute guide](contribute.md)
 
-**List of all changes:** [ChaneLog](https://github.com/hiddify/hiddify-next/blob/main/changelog.md)
+**List of all changes:** [ChangeLog](https://github.com/hiddify/hiddify-next/blob/main/changelog.md)
+
+
+
