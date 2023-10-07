@@ -61,6 +61,8 @@ Sing-box, V2ray, Xray, Vless, Vmess, Reality, TUIC, Hysteria, Shadowtls, SSH, Cl
 
 - مک (نسخه 10.14 به بالا): [Universal (x64, M series)](https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-macos-universal.dmg)
 
+- بیلد از منبع: [راهنمای بیلد و مشارکت در پروژه](https://github.com/hiddify/hiddify-next/blob/main/contribute.md)
+
 
 ## سپاسگزاری
 
