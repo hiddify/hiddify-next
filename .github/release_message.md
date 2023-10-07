@@ -1,6 +1,6 @@
 
 <div align=left>
-<a href="https://play.google.com/store/apps/details?id=app.hiddify.com"><img width=20% src="./assets/images/google-play-badge.png"></a>
+<a href="https://play.google.com/store/apps/details?id=app.hiddify.com"><img width=20% src="https://github.com/hiddify/hiddify-next/blob/assets/images/google-play-badge.png"></a>
 </div>
 
 or download from below based on your OS:
