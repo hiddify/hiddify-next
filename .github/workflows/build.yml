@@ -149,7 +149,7 @@ jobs:
         if: matrix.platform == 'windows'
         run: |
           New-Item -ItemType Directory -Force -Name "out"
-          New-Item -ItemType Directory -Force -Name "tmp_out"
+          New-Item -ItemType Directory -Force -Name "hiddify-${{ matrix.platform }}-x64-setuph"
           $EXT_ARRAY = "${{ matrix.targets }}" -split ","
           foreach ($EXT in $EXT_ARRAY) {
               # Find all files with this extension in the current directory, and copy them to "out" directory
@@ -195,9 +195,9 @@ jobs:
               find "." -type f -name "*.$EXT" -exec cp {} "out" \;
           done
           mv out/*.AppImage out/hiddify-linux-x64.AppImage || echo "no app image"
-          (chmod +x out/hiddify-linux-x64.AppImage && cp ./.github/help/linux/* out/)||echo "no app image"
-          (mv out/*.dmg out/hiddify-macos-universal.dmg && cp ./.github/help/mac-windows/* out/ )|| echo "no macos dmg"
-          (cd out && 7z a hiddify-${matrix.platform}-x64.zip ./ && rm !(*.zip))
+          chmod +x out/hiddify-linux-x64.AppImage && cp ./.github/help/linux/* out/ ||echo "no app image"
+          mv out/*.dmg out/hiddify-macos-universal.dmg && cp ./.github/help/mac-windows/* out/ || echo "no macos dmg"
+          cd out && 7z a hiddify-${{matrix.platform}}-x64.zip ./ && rm !(*.zip)
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
