@@ -14,7 +14,7 @@
 
 🔍 Auto selection of the best server and config
 
-🚫 Supporting a wide range of protocols: 
+🟡 Supporting a wide range of protocols: 
 Sing-box, V2ray, Xray, Vless, Vmess, Reality, TUIC, Hysteria, Shadowtls, SSH, Clash, Clash meta
 
 🟡 Supporting different subscription links:
