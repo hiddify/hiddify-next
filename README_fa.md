@@ -47,7 +47,7 @@ Sing-box, V2ray, Xray, Vless, Vmess, Reality, TUIC, Hysteria, Shadowtls, SSH, Cl
 
 ⭐ کانفیگ متناسب برای ایران، چین، روسیه و‌ سایر کشورها
 
-💻 انتشار نسخه اندروید در [گوگل پلی](https://play.google.com/store/apps/details?id=app.hiddify.com)
+💻 انتشار نسخه اندروید در [گوگل‌پلی](https://play.google.com/store/apps/details?id=app.hiddify.com)
 
 ## دانلود
 
