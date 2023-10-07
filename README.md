@@ -4,11 +4,40 @@
 
 <p align="center" style="font-size: 16px">Multi-platform, Sing-box (universal proxy toolchain) client</p>
 
-## Features
+## 🚀 Main features:
 
-- Multi-platform support: Android, Windows, Linux and macOS (PRs for iOS are welcome)
-- Easy to use with a simple UI
-- Sing-box, Clash, Clash meta, V2ray configs supported
+⭐  Ease of use with a simple UI
+
+✈️ Multi-platform support: Android, Windows, Linux and macOS (PRs for iOS are welcome)
+
+⚙️ App based on Sing-box
+
+🔍 Auto selection of the best server and config
+
+🚫 Supporting a wide range of protocols: 
+Sing-box, V2ray, Xray, Vless, Vmess, Reality, TUIC, Hysteria, Shadowtls, SSH, Clash, Clash meta
+
+🟡 Supporting different subscription links:
+Clash, Sing-box and Shadowsocks
+
+🔄 Automatic update of subscription link and configurations 
+
+🔎 Display profile information including remaining day and traffic 
+
+📱 Completely free and without any ads and interruptions
+
+🛡 Open source and completely secure
+
+🌙 Dark and light modes
+
+⚙ Compatible with all panels
+
+⭐ Appropriate configuration for Iran, China, Russia and other countries
+
+
+💻 Release of Android version on [Google Play](https://play.google.com/store/apps/details?id=app.hiddify.com)
+
+
 
 ## Download
 
