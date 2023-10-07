@@ -149,22 +149,26 @@ jobs:
         if: matrix.platform == 'windows'
         run: |
           New-Item -ItemType Directory -Force -Name "out"
-          New-Item -ItemType Directory -Force -Name "hiddify-${{ matrix.platform }}-x64-setuph"
+          New-Item -ItemType Directory -Force -Name "tmp_out"
           $EXT_ARRAY = "${{ matrix.targets }}" -split ","
           foreach ($EXT in $EXT_ARRAY) {
               # Find all files with this extension in the current directory, and copy them to "out" directory
               Get-ChildItem -Recurse -File -Filter "*setup.$EXT" | Copy-Item -Destination "out" -ErrorAction SilentlyContinue
-              move out\*setup.$EXT hiddify-${{ matrix.platform }}-x64-setup\setup.$EXT
+              move out\*setup.$EXT tmp_out\setup.$EXT
               Get-ChildItem -Recurse -File -Filter "*.$EXT"
           }
 
           xcopy /s /v '.\.github\help\mac-windows\' .\hiddify-${{ matrix.platform }}-x64-setup\
-          Compress-Archive hiddify-${{ matrix.platform }}-x64-setup out\hiddify-${{ matrix.platform }}-x64-setup.zip
+          cd tmp_out
+          Compress-Archive .\ ..\out\hiddify-${{ matrix.platform }}-x64-setup.zip
+          cd ..
+
 
           mkdir HiddifyNext-portable
           xcopy /s /v D:\a\hiddify-next\hiddify-next\build\windows\runner\Release\ .\HiddifyNext-portable\
           xcopy /s /v '.\.github\help\mac-windows\' .\HiddifyNext-portable\
-          Compress-Archive HiddifyNext-portable out\hiddify-${{ matrix.platform }}-x64-portable.zip
+          cd HiddifyNext-portable
+          Compress-Archive .\ ..\out\hiddify-${{ matrix.platform }}-x64-portable.zip
 
       - name: Copy to out Android apk
         if: matrix.platform == 'android-apk'
@@ -188,16 +192,22 @@ jobs:
         run: |
           ls -R
           mkdir out
+          mkdir tmp_out
           IFS=',' read -r -a EXT_ARRAY <<< "${{ matrix.targets }}"
           # Loop over extensions
           for EXT in "${EXT_ARRAY[@]}"; do
               # Find all files with this extension in SRC_DIR, and copy them to DST_DIR
-              find "." -type f -name "*.$EXT" -exec cp {} "out" \;
+              find "." -type f -name "*.$EXT" -exec cp {} "tmp_out" \;
           done
-          mv out/*.AppImage out/hiddify-linux-x64.AppImage || echo "no app image"
-          chmod +x out/hiddify-linux-x64.AppImage && cp ./.github/help/linux/* out/ ||echo "no app image"
-          mv out/*.dmg out/hiddify-macos-universal.dmg && cp ./.github/help/mac-windows/* out/ || echo "no macos dmg"
-          cd out && 7z a hiddify-${{matrix.platform}}-x64.zip ./ && rm !(*.zip)
+
+          mv tmp_out/*.AppImage tmp_out/hiddify-linux-x64.AppImage &&\ 
+          chmod +x tmp_out/hiddify-linux-x64.AppImage &&\ 
+          cp ./.github/help/linux/* tmp_out/ \  
+          ||echo "no app image"
+          mv tmp_out/*.dmg tmp_out/hiddify-macos-universal.dmg && \ 
+          cp ./.github/help/mac-windows/* tmp_out/ \ 
+          || echo "no macos dmg"
+          cd tmp_out && 7z a hiddify-${{matrix.platform}}-x64.zip ./ && mv *.zip ../out/s
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
