@@ -60,7 +60,7 @@ For latest releases (including pre-releases), visit [releases page](https://gith
 
 - macOS (v10.14+): [Universal (x64, M series)](https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-macos-universal.dmg)
 
-- Build from source: [Read contribute guide here](contribute.md)
+- Build from source: [Build & contribute guide](contribute.md)
 
 ## Acknowledgements
 
