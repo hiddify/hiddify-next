@@ -2,15 +2,14 @@
 
 <p align="center"><img src="assets/images/logo.svg" width="168"/></p>
 
-<p align="center">
+<div align="center">
    
-<!--[![Downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fplay.cuzi.workers.dev%2Fplay%3Fi%3Dhiddifynext%26l%3DAndroid%26m%3D%24version)](https://play.cuzi.workers.dev/play?i=org.mozilla.firefox&l=Android&m=$version)-->
-[![Last Version](https://img.shields.io/github/release/hiddify/hiddify-next/all.svg?style=flat-square)](https://github.com/hiddify/hiddify-server/)[![Last Release Date](https://img.shields.io/github/release-date/hiddify/hiddify-next.svg?style=flat-square)](https://github.com/hiddify/hiddify-next/)![commits](https://img.shields.io/github/commit-activity/m/hiddify/hiddify-next?style=flat-square)[![Youtube](https://img.shields.io/youtube/channel/views/UCxrmeMvVryNfB4XL35lXQNg?label=Youtube&style=flat-square&logo=youtube)](https://www.youtube.com/@hiddify)[![Telegram Channel](https://img.shields.io/endpoint?label=Channel&style=flat-square&url=https%3A%2F%2Ftg.sumanjay.workers.dev%2Fhiddify&color=blue)](https://telegram.dog/hiddify)[![Telegram Group](https://img.shields.io/endpoint?color=neon&label=Support%20Group&style=flat-square&url=https%3A%2F%2Ftg.sumanjay.workers.dev%2Fhiddify_board)](https://telegram.dog/hiddify_board)
+[![Downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fplay.cuzi.workers.dev%2Fplay%3Fi%3Dapp.hiddify.com%26l%3DGooglePlay%26m%3D%24installs)](https://play.cuzi.workers.dev/play?i=app.hiddify.com&l=GooglePlay&m=$installs)[![Last Version](https://img.shields.io/github/release/hiddify/hiddify-next/all.svg?style=flat-square)](https://github.com/hiddify/hiddify-server/)[![Last Release Date](https://img.shields.io/github/release-date/hiddify/hiddify-next.svg?style=flat-square)](https://github.com/hiddify/hiddify-next/)![commits](https://img.shields.io/github/commit-activity/m/hiddify/hiddify-next?style=flat-square)[![Youtube](https://img.shields.io/youtube/channel/views/UCxrmeMvVryNfB4XL35lXQNg?label=Youtube&style=flat-square&logo=youtube)](https://www.youtube.com/@hiddify)[![Telegram Channel](https://img.shields.io/endpoint?label=Channel&style=flat-square&url=https%3A%2F%2Ftg.sumanjay.workers.dev%2Fhiddify&color=blue)](https://telegram.dog/hiddify)[![Telegram Group](https://img.shields.io/endpoint?color=neon&label=Support%20Group&style=flat-square&url=https%3A%2F%2Ftg.sumanjay.workers.dev%2Fhiddify_board)](https://telegram.dog/hiddify_board)
 
-</p>
+</div>
 
 ## What is Hiddify-Next?
-<p align="center" style="font-size: 16px">Multi-platform, Sing-box (universal proxy toolchain) client</p>
+<p dir="ltr" style="font-size: 16px">Multi-platform, Sing-box (universal proxy toolchain) client providing a wide range of fearues. </p>
 
 ## 🚀 Main features:
 
