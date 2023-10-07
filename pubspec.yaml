@@ -1,7 +1,7 @@
 name: hiddify
 description: A Proxy Frontend.
 publish_to: "none"
-version: 0.8.1+801
+version: 0.8.2+802
 
 environment:
   sdk: ">=3.0.5 <4.0.0"

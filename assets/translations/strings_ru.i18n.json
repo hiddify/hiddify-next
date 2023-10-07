@@ -10,8 +10,7 @@
             "disable": "Выключить"
         },
         "sort": "Сортировать",
-        "sortBy": "Сортировать по",
-        "addToClipboard": ""
+        "sortBy": "Сортировать по"
     },
     "intro": {
         "termsAndPolicyCaution(rich)": "продолжая, вы соглашаетесь с ${tap(@:about.termsAndConditions)}",

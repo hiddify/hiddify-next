@@ -1,7 +1,58 @@
 # Changelog
 
 
-## 0.8.1 (2023-10-06)
+## 0.8.2 (2023-10-07)
+
+#### Fix
+
+* Hysteria2 and some links. 
+
+#### Other
+
+* Update README_fa.md. 
+
+* Update README_fa.md. 
+
+* Update README_fa.md. 
+
+* Update README.md. 
+
+* Update README.md. 
+
+* Update README.md. 
+
+* Update README.md. 
+
+* Update README.md. 
+
+* Update README.md. 
+
+* Update README.md. 
+
+* Update README.md. 
+
+* Update README.md. 
+
+* Update README.md. 
+
+* Update README.md. 
+
+* Update README.md. 
+
+* Create README_fa.md. 
+
+* Update README.md. 
+
+* Update README.md. 
+
+* Update README.md. 
+  _Add some features to the readme_
+
+* Add debug export to clipboard. 
+
+
+
+## v0.8.1 (2023-10-06)
 
 #### New
 
