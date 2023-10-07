@@ -51,7 +51,7 @@ Clash, Sing-box and Shadowsocks
 
 For latest releases (including pre-releases), visit [releases page](https://github.com/hiddify/hiddify-next/releases)
 
-- Android: [Universal](https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-universal.apk) - [Arm64](https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-arm64.apk) - [Arm7](https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-arm7.apk) - [x86_64](https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-x86_64.apk)
+- Android: [Universal](https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-universal.apk) - [Arm64](https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-arm64.apk) - [Arm7](https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-arm7.apk) - [x86_64](https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-x86_64.apk) - [Google Play](https://play.google.com/store/apps/details?id=app.hiddify.com)
 
 - Windows: [x64 Setup](https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-windows-x64-setup.exe) - [x64 Portable](https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-windows-x64-portable.zip)
 
