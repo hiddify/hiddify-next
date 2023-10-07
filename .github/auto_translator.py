@@ -22,7 +22,7 @@ def read_translate(lang):
 def recursive_translate(src, dst, translator):
     for sk, sv in src.items():
         if type(sv) == str:
-            if sk not in dst:
+            if sk not in dst or not dst[sk]:
                 dst[sk] = translator.translate(sv)
                 print(sk, sv, dst[sk])
             if not dst[sk]:

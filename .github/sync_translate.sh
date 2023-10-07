@@ -24,7 +24,7 @@ function update_localise(){
 		pat="../assets/translations/strings.i18n.json"
 	fi
 # curl -X POST "https://localise.biz/api/import/json?locale=$lang&key=$LOCALIZ_KEY" \
-curl "https://localise.biz/api/import/json?format=i18next4&delete-absent=true&ignore-existing=false&locale=$lang&flag-new=Provisional&key=$LOCALIZ_KEY" \
+curl "https://localise.biz/api/import/json?format=i18next4&delete-absent=false&ignore-existing=false&locale=$lang&flag-new=Provisional&key=$LOCALIZ_KEY" \
   -H 'Accept: application/json' \
   --data-binary @$pat 
   }
