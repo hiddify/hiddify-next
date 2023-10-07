@@ -130,7 +130,7 @@ We need your collaboration in order to develop this project. If you are speciali
  </p>
  
 <p align=center> 
-<a href="https://github.com/hiddify/hiddify-server/graphs/contributors">
+<a href="https://github.com/hiddify/hiddify-next/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=hiddify/hiddify-next" />
 </a>
 </p>
