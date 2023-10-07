@@ -10,8 +10,7 @@
             "disable": "Disable"
         },
         "sort": "Sort",
-        "sortBy": "Sort by",
-        "addToClipboard": "Add to clipboard"
+        "sortBy": "Sort by"
     },
     "intro": {
         "termsAndPolicyCaution(rich)": "by continuing you agree with ${tap(@:about.termsAndConditions)}",

@@ -1,7 +1,67 @@
 # Changelog
 
 
-## 0.8.2 (2023-10-07)
+## 0.8.3 (2023-10-07)
+
+#### Other
+
+* Add release message  and help. 
+
+* Merge branch 'main' of hiddify-github:hiddify/hiddify-next. 
+
+* Fix bugs. 
+
+* Update release_message.md. 
+
+* Update release_message.md. 
+
+* Update README_fa.md. 
+
+* Update README.md. 
+
+* Update release_message.md. 
+
+* Update release_message.md. 
+
+* Create release_message.md. 
+
+* Add google play badge to assets. 
+
+* Update README.md. 
+
+* Update README_fa.md. 
+
+* Update README_fa.md. 
+
+* Update README.md. 
+
+* Update README.md. 
+
+* Create contribute.md. 
+
+* Update README_fa.md. 
+
+* Update README.md. 
+
+* Update README_fa.md. 
+
+* Update README_fa.md. 
+
+* Update README.md. 
+
+* Update README.md. 
+
+* Update README_fa.md. 
+
+* Add feature request template. 
+
+* Fix issue template. 
+
+* Add issue template. 
+
+
+
+## v0.8.2 (2023-10-07)
 
 #### Fix
 

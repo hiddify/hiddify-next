@@ -10,8 +10,7 @@
             "disable": "غیر فعال"
         },
         "sort": "مرتب‌سازی",
-        "sortBy": "مرتب‌سازی براساس",
-        "addToClipboard": "افزودن به کلیپ‌بورد"
+        "sortBy": "مرتب‌سازی براساس"
     },
     "intro": {
         "termsAndPolicyCaution(rich)": "در صورت ادامه با ${tap(@:about.termsAndConditions)} موافقت میکنید",
