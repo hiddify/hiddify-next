@@ -1,6 +1,12 @@
-# Hiddify Next
+[**![Lang_farsi](https://user-images.githubusercontent.com/125398461/234186932-52f1fa82-52c6-417f-8b37-08fe9250a55f.png) &nbsp;فارسی**](README_fa.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 <p align="center"><img src="assets/images/logo.svg" width="168"/></p>
+
+<p align="center">
+   
+[![Downloads](https://static.pepy.tech/badge/hiddifypanel?style=flat-square&v3)](https://pepy.tech/project/hiddifypanel?display=monthly&versions=2.*&versions=1.*&versions=3.*)[![Last Version](https://img.shields.io/github/release/hiddify/hiddify-next/all.svg?style=flat-square)](https://github.com/hiddify/hiddify-server/)[![Last Release Date](https://img.shields.io/github/release-date/hiddify/hiddify-next.svg?style=flat-square)](https://github.com/hiddify/hiddify-next/)![commits](https://img.shields.io/github/commit-activity/m/hiddify/hiddify-next?style=flat-square)[![Youtube](https://img.shields.io/youtube/channel/views/UCxrmeMvVryNfB4XL35lXQNg?label=Youtube&style=flat-square&logo=youtube)](https://www.youtube.com/@hiddify)[![Telegram Channel](https://img.shields.io/endpoint?label=Channel&style=flat-square&url=https%3A%2F%2Ftg.sumanjay.workers.dev%2Fhiddify&color=blue)](https://telegram.dog/hiddify)[![Telegram Group](https://img.shields.io/endpoint?color=neon&label=Support%20Group&style=flat-square&url=https%3A%2F%2Ftg.sumanjay.workers.dev%2Fhiddify_board)](https://telegram.dog/hiddify_board)
+
+</p>
 
 <p align="center" style="font-size: 16px">Multi-platform, Sing-box (universal proxy toolchain) client</p>
 
