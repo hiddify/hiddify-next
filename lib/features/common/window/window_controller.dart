@@ -13,9 +13,10 @@ class WindowController extends _$WindowController
   @override
   Future<bool> build() async {
     await windowManager.ensureInitialized();
+    const size = Size(868, 668);
     const windowOptions = WindowOptions(
-      size: Size(868, 768),
-      minimumSize: Size(868, 648),
+      size: size,
+      minimumSize: size,
       center: true,
     );
     await windowManager.setPreventClose(true);

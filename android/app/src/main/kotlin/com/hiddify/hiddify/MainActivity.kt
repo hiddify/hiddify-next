@@ -59,7 +59,6 @@ class MainActivity : FlutterFragmentActivity(), ServiceConnection.Callback {
 
     fun startService() {
         if (!ServiceNotification.checkPermission()) {
-//            Log.d(TAG, "missing notification permission")
             grantNotificationPermission()
             return
         }
@@ -81,15 +80,26 @@ class MainActivity : FlutterFragmentActivity(), ServiceConnection.Callback {
         }
     }
 
+    private suspend fun prepare() = withContext(Dispatchers.Main) {
+        try {
+            val intent = VpnService.prepare(this@MainActivity)
+            if (intent != null) {
+                startActivityForResult(intent, VPN_PERMISSION_REQUEST_CODE)
+                true
+            } else {
+                false
+            }
+        } catch (e: Exception) {
+            onServiceAlert(Alert.RequestVPNPermission, e.message)
+            false
+        }
+    }
 
     override fun onServiceStatusChanged(status: Status) {
-        Log.d(TAG, "service status changed: $status")
         serviceStatus.postValue(status)
     }
 
-
     override fun onServiceAlert(type: Alert, message: String?) {
-        Log.d(TAG, "service alert: $type")
         serviceAlerts.postValue(ServiceEvent(Status.Stopped, type, message))
     }
 
@@ -151,22 +161,6 @@ class MainActivity : FlutterFragmentActivity(), ServiceConnection.Callback {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 startService()
             } else onServiceAlert(Alert.RequestNotificationPermission, null)
-        }
-    }
-
-    private suspend fun prepare() = withContext(Dispatchers.Main) {
-        try {
-            val intent = VpnService.prepare(this@MainActivity)
-            if (intent != null) {
-//                prepareLauncher.launch(intent)
-                startActivityForResult(intent, VPN_PERMISSION_REQUEST_CODE)
-                true
-            } else {
-                false
-            }
-        } catch (e: Exception) {
-            onServiceAlert(Alert.RequestVPNPermission, e.message)
-            false
         }
     }
 
