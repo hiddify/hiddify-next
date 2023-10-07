@@ -9,6 +9,7 @@
 
 </p>
 
+## What is Hiddify-Next?
 <p align="center" style="font-size: 16px">Multi-platform, Sing-box (universal proxy toolchain) client</p>
 
 ## 🚀 Main features:
