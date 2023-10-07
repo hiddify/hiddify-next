@@ -53,7 +53,7 @@ Sing-box, V2ray, Xray, Vless, Vmess, Reality, TUIC, Hysteria, Shadowtls, SSH, Cl
 
 برای دریافت آخرین نسخه (شامل نسخه‌های پیش‌انتشار) از [صفحه انتشار](https://github.com/hiddify/hiddify-next/releases) بازدید نمایید.
 
-- اندروید: [Universal](https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-universal.apk) - [Arm64](https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-arm64.apk) - [Arm7](https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-arm7.apk) - [x86_64](https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-x86_64.apk) - [گوگل‌پلی](https://play.google.com/store/apps/details?id=app.hiddify.com)
+- اندروید: [Universal](https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-universal.apk) - [Arm64](https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-arm64.apk) - [Arm7](https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-arm7.apk) - [x86_64](https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-x86_64.apk) 
 
 - ویندوز: [x64 Setup](https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-windows-x64-setup.exe) - [x64 Portable](https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-windows-x64-portable.zip)
 
@@ -62,6 +62,10 @@ Sing-box, V2ray, Xray, Vless, Vmess, Reality, TUIC, Hysteria, Shadowtls, SSH, Cl
 - مک (نسخه 10.14 به بالا): [Universal (x64, M series)](https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-macos-universal.dmg)
 
 - بیلد از منبع: [راهنمای بیلد و مشارکت در پروژه](https://github.com/hiddify/hiddify-next/blob/main/contribute.md)
+
+<div align=center>
+ <a href="https://play.google.com/store/apps/details?id=app.hiddify.com"><img width=20% src="./assets/images/google-play-badge.png"></a>
+</div>
 
 
 ## سپاسگزاری
