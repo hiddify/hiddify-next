@@ -57,7 +57,7 @@ For latest releases (including pre-releases), visit [releases page](https://gith
 
 - Linux: [x64 AppImage](https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-linux-x64.AppImage.zip)
 
-- macOS: [Universal (x64, M series)](https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-macos-universal.dmg)
+- macOS (v10.14+): [Universal (x64, M series)](https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-macos-universal.dmg)
 
 ## Build from source
 
