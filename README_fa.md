@@ -28,7 +28,7 @@
 🔍 انتخاب خودکار بهترین سرور و کانفیگ
 
 🟡 پشتیبانی از رنج وسیعی از پروتکل‌ها
-V2ray, Xray, Vless, Vmess, Reality, TUIC, Hysteria, Shadowtls, SSH
+Sing-box, V2ray, Xray, Vless, Vmess, Reality, TUIC, Hysteria, Shadowtls, SSH, Clash, Clash meta
 
 🟡 پشتیبانی لینک‌های سابسکریپشن‌ مختلف:
 کلش، سینگ‌باکس و شدوساکس
