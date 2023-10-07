@@ -12,8 +12,6 @@
 <p dir="ltr" style="font-size: 16px">A multi-platform client based on Sing-box that serves as a universal proxy toolchain. This app offers a wide range of capabilities, which are listed below. It also supports a large number of protocols. The app is free to use, ad-free, and open-source. It provides a secure and private tool for getting access to the free internet. </p>
 
 
-“A multi-platform client based on Sing-box that serves as a universal proxy toolchain. This app offers a wide range of capabilities, which are listed below. It also supports a large number of protocols. The app is free to use, ad-free, and open-source. It provides a secure and private environment for its users.
-
 ## 🚀 Main features:
 
 ⭐  Ease of use with a simple UI
