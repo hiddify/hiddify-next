@@ -9,7 +9,10 @@
 </div>
 
 ## What is Hiddify-Next?
-<p dir="ltr" style="font-size: 16px">Multi-platform, Sing-box (universal proxy toolchain) client providing a wide range of fearues. </p>
+<p dir="ltr" style="font-size: 16px">A multi-platform client based on Sing-box that serves as a universal proxy toolchain. This app offers a wide range of capabilities, which are listed below. It also supports a large number of protocols. The app is free to use, ad-free, and open-source. It provides a secure and private tool for getting access to the free internet. </p>
+
+
+“A multi-platform client based on Sing-box that serves as a universal proxy toolchain. This app offers a wide range of capabilities, which are listed below. It also supports a large number of protocols. The app is free to use, ad-free, and open-source. It provides a secure and private environment for its users.
 
 ## 🚀 Main features:
 
@@ -40,7 +43,6 @@ Clash, Sing-box and Shadowsocks
 ⚙ Compatible with all panels
 
 ⭐ Appropriate configuration for Iran, China, Russia and other countries
-
 
 💻 Release of Android version on [Google Play](https://play.google.com/store/apps/details?id=app.hiddify.com)
 
