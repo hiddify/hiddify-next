@@ -37,16 +37,19 @@ jobs:
             os: windows-latest
             aarch: amd64
             targets: exe
+            filename: hiddify-windows-x64
 
           - platform: linux
             os: ubuntu-latest
             aarch: amd64
             targets: AppImage
+            filename: hiddify-linux-x64
 
           - platform: macos
             os: macos-13
             aarch: universal
             targets: dmg
+            filename: hiddify-macos-universal
 
           # - platform: ios
           #   os: macos-11
@@ -190,24 +193,43 @@ jobs:
       - name: Copy to out unix
         if: matrix.platform == 'linux' || matrix.platform == 'macos' || matrix.platform == 'ios'
         run: |
-          ls -R
+          ls -R dist/
           mkdir out
           mkdir tmp_out
-          IFS=',' read -r -a EXT_ARRAY <<< "${{ matrix.targets }}"
-          # Loop over extensions
-          for EXT in "${EXT_ARRAY[@]}"; do
-              # Find all files with this extension in SRC_DIR, and copy them to DST_DIR
-              find "." -type f -name "*.$EXT" -exec cp {} "tmp_out" \;
-          done
+          EXT="${{ matrix.targets }}"
+          mv dist/*/*.$EXT tmp_out/${{matrix.filename}}.$EXT
+          chmod +x tmp_out/${{matrix.filename}}.$EXT
+          if [ "${{matrix.platform}}" == "linux" ];then
+            cp ./.github/help/linux/* tmp_out/
+          else
+            cp ./.github/help/mac-windows/* tmp_out/
+          fi
+          
+          cd tmp_out
+          7z a ${{matrix.filename}}.zip ./
+          mv *.zip ../out/
 
-          mv tmp_out/*.AppImage tmp_out/hiddify-linux-x64.AppImage &&\ 
-          chmod +x tmp_out/hiddify-linux-x64.AppImage &&\ 
-          cp ./.github/help/linux/* tmp_out/ \  
-          ||echo "no app image"
-          mv tmp_out/*.dmg tmp_out/hiddify-macos-universal.dmg && \ 
-          cp ./.github/help/mac-windows/* tmp_out/ \ 
-          || echo "no macos dmg"
-          cd tmp_out && 7z a hiddify-${{matrix.platform}}-x64.zip ./ && mv *.zip ../out/s
+      # - name: Copy to out unix
+      #   if: matrix.platform == 'linux' || matrix.platform == 'macos' || matrix.platform == 'ios'
+      #   run: |
+      #     ls -R dist/
+      #     mkdir out
+      #     mkdir tmp_out
+      #     IFS=',' read -r -a EXT_ARRAY <<< "${{ matrix.targets }}"
+      #     # Loop over extensions
+      #     for EXT in "${EXT_ARRAY[@]}"; do
+      #         # Find all files with this extension in SRC_DIR, and copy them to DST_DIR
+      #         find "." -type f -name "*.$EXT" -exec cp {} "tmp_out" \;
+      #     done
+
+      #     mv tmp_out/*.AppImage tmp_out/hiddify-linux-x64.AppImage &&\
+      #     chmod +x tmp_out/hiddify-linux-x64.AppImage &&\
+      #     cp ./.github/help/linux/* tmp_out/ \
+      #     ||echo "no app image"
+      #     mv tmp_out/*.dmg tmp_out/hiddify-macos-universal.dmg && \
+      #     cp ./.github/help/mac-windows/* tmp_out/ \
+      #     || echo "no macos dmg"
+      #     cd tmp_out && 7z a hiddify-${{matrix.platform}}-x64.zip ./ && mv *.zip ../out/
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
