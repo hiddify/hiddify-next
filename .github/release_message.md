@@ -1,8 +1,4 @@
 <p  dir="ltr" style="font-size: 24px"><b>${tag}:</b></p> 
-<!--<div align=left>
-<a href="https://play.google.com/store/apps/details?id=app.hiddify.com"><img width=20% src="https://github.com/hiddify/hiddify-next/blob/main/assets/images/google-play-badge.png"></a>
-</div>
--->
 
 **Download based on your OS:**
 
