@@ -291,7 +291,7 @@ jobs:
 
       - name: prepare_release_message
         run: |
-          pip install gitchangelog
+          pip install gitchangelog pystache mustache markdown
           previous_release=$(curl --silent "https://api.github.com/repos/hiddify/hiddify-next/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")')
           current="${{ github.ref_name }}"
           gitchangelog "${previous_release}..$current" > release.md
