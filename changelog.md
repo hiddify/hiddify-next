@@ -1,7 +1,55 @@
 # Changelog
 
 
-## 0.8.5 (2023-10-07)
+## 0.8.6 (2023-10-08)
+
+#### Fix
+
+* Windows build. 
+
+* Build issue. 
+
+#### Other
+
+* Merge branch 'main' of hiddify-github:hiddify/hiddify-next. 
+
+* Update release_message.md. 
+
+* Merge branch 'main' of hiddify-github:hiddify/hiddify-next. 
+
+* Update release_message.md. 
+
+* Update README.md. 
+
+* Update README_fa.md. 
+
+* Delete docs/note. 
+
+* Add files via upload. 
+
+* Create note. 
+
+* Update contribute.md. 
+
+* Update README.md. 
+
+* Delete assets/images/google-play-badge.png. 
+
+* Update README_fa.md. 
+
+* Update README.md. 
+
+* Update release_message.md. 
+
+* Update release_message.md. 
+
+* Update release_message.md. 
+
+* Fix build. 
+
+
+
+## v0.8.5 (2023-10-07)
 
 #### Fix
 

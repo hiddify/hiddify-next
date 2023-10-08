@@ -1,6 +1,6 @@
 {
     "general": {
-        "appTitle": "下一个",
+        "appTitle": "Hiddify Next",
         "reset": "重置",
         "toggle": {
             "enabled": "启用",
@@ -28,7 +28,7 @@
             "connected": "连接成功"
         },
         "stats": {
-            "traffic": "实时流量",
+            "traffic": "实际流量",
             "trafficTotal": "总流量",
             "uplink": "上行链路",
             "downlink": "下行"
@@ -36,12 +36,12 @@
     },
     "profile": {
         "overviewPageTitle": "型材",
-        "detailsPageTitle": "轮廓",
+        "detailsPageTitle": "配置文件",
         "activeProfileNameSemanticLabel": "活动配置文件名称：“${name}”。",
-        "activeProfileBtnSemanticLabel": "查看所有个人资料。",
+        "activeProfileBtnSemanticLabel": "查看所有配置文件",
         "nonActiveProfileBtnSemanticLabel": "选择“${name}”作为活动配置文件。",
         "subscription": {
-            "traffic": "交通",
+            "traffic": "流量",
             "updatedTimeAgo": "更新${timeago}",
             "remainingDuration": "剩余 ${duration} 天",
             "remainingTrafficSemanticLabel": "已消耗 ${consumed} 流量，共 ${total} 流量。",
@@ -242,7 +242,7 @@
             "unexpected": "意外的错误",
             "notFound": "未找到配置文件",
             "invalidConfig": "无效的配置",
-            "invalidUrl": "无效的网址"
+            "invalidUrl": "网址无效"
         },
         "connection": {
             "unexpected": "意外连接错误",
