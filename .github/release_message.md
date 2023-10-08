@@ -27,4 +27,4 @@
 
 - **مک (نسخه 10.14 به بعد):** [Universal (x64, M series)](https://github.com/hiddify/hiddify-next/releases/download/${tag}/hiddify-macos-universal.dmg)
 
-**لیست همه تغییرات:** [ChangeLog](https://github.com/hiddify/hiddify-next/blob/main/changelog.md)
+**لیست همه تغییرات:** [چنج‌لاگ](https://github.com/hiddify/hiddify-next/blob/main/changelog.md)
