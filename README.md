@@ -4,7 +4,7 @@
 
 <div align="center">
    
-   
+
 [![GP-Intalls](https://img.shields.io/endpoint?color=green&logo=google-play&logoColor=green&url=https%3A%2F%2Fplay.cuzi.workers.dev%2Fplay%3Fi%3Dapp.hiddify.com%26l%3DGoogle%2520Play%26m%3D%24shortinstalls&style=flat-square)](https://play.cuzi.workers.dev/play?i=app.hiddify.com&l=GooglePlay&m=$installs) [![Downloads](https://img.shields.io/github/downloads/hiddify/hiddify-next/total?style=flat-square&logo=github)](https://img.shields.io/github/downloads/Hiddify/Hiddify-Next/total)[![Last Version](https://img.shields.io/github/release/hiddify/hiddify-next/all.svg?style=flat-square)](https://github.com/hiddify/hiddify-server/)[![Last Release Date](https://img.shields.io/github/release-date/hiddify/hiddify-next.svg?style=flat-square)](https://github.com/hiddify/hiddify-next/)![commits](https://img.shields.io/github/commit-activity/m/hiddify/hiddify-next?style=flat-square)
 [![Youtube](https://img.shields.io/youtube/channel/views/UCxrmeMvVryNfB4XL35lXQNg?label=Youtube&style=flat-square&logo=youtube)](https://www.youtube.com/@hiddify)[![Telegram Channel](https://img.shields.io/endpoint?label=Channel&style=flat-square&url=https%3A%2F%2Ftg.sumanjay.workers.dev%2Fhiddify&color=blue)](https://telegram.dog/hiddify)[![Telegram Group](https://img.shields.io/endpoint?color=neon&label=Support%20Group&style=flat-square&url=https%3A%2F%2Ftg.sumanjay.workers.dev%2Fhiddify_board)](https://telegram.dog/hiddify_board)
 
@@ -62,8 +62,9 @@ For latest releases (including pre-releases), visit [releases page](https://gith
 
 - Build from source: [Build & contribute guide](contribute.md)
 
+
 <div align=center>
- <a href="https://play.google.com/store/apps/details?id=app.hiddify.com"><img width=20% src="./assets/images/google-play-badge.png"></a>
+ <a href="https://play.google.com/store/apps/details?id=app.hiddify.com"><img width=20% src="https://github.com/hiddify/hiddify-next/blob/main/docs/google-play-badge.png"></a>
 </div>
 
 
@@ -76,7 +77,7 @@ For latest releases (including pre-releases), visit [releases page](https://gith
 - [FClash](https://github.com/Fclash/Fclash)
 - [Others](./pubspec.yaml)
 
-## Donation And Support 
+## Donation and Support 
 The easiest way to support us is to click on the star (⭐) at the top of this page.
 
 We also need financial support for our services. All of our activities are done voluntarily and financial support will be spent on the development of the project. You can view our support addresses [here](https://github.com/hiddify/hiddify-server/wiki/support). 
