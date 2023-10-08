@@ -76,7 +76,7 @@ For latest releases (including pre-releases), visit [releases page](https://gith
 - [FClash](https://github.com/Fclash/Fclash)
 - [Others](./pubspec.yaml)
 
-## Donation And Support 
+## Donation and Support 
 The easiest way to support us is to click on the star (⭐) at the top of this page.
 
 We also need financial support for our services. All of our activities are done voluntarily and financial support will be spent on the development of the project. You can view our support addresses [here](https://github.com/hiddify/hiddify-server/wiki/support). 
