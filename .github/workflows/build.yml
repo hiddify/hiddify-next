@@ -291,13 +291,14 @@ jobs:
           ls -R ./out
           ls -R ./.github/
           ls -R ./.git/
+          mv out/hiddify-android-market.aab  hiddify-android-market.aab
 
       - name: prepare_release_message
         run: |
           pip install gitchangelog pystache mustache markdown
-          prelease=$(curl --silent "https://api.github.com/repos/hiddify/hiddify-next/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")')
-          current="${{ github.ref_name }}"
-          gitchangelog $prelease..$current > release.md
+          # prelease=$(curl --silent "https://api.github.com/repos/hiddify/hiddify-next/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")')
+          # current="${{ github.ref_name }}"
+          # gitchangelog $prelease..$current > release.md
           sed 's|RELEASE_TAG|${{ github.ref_name }}|g' ./.github/release_message.md >> release.md
 
       - name: Upload Release
@@ -320,5 +321,5 @@ jobs:
           serviceAccountJson: service_account.json
           packageName: app.hiddify.com
           releaseName: ${{ github.ref }}
-          releaseFiles: ./out/hiddify-android-market.aab
+          releaseFiles: ./hiddify-android-market.aab
           track: internal
