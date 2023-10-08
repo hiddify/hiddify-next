@@ -1,7 +1,15 @@
 # Changelog
 
 
-## 0.8.10 (2023-10-08)
+## 0.8.11 (2023-10-08)
+
+#### Changes
+
+* Remove auto release message. 
+
+
+
+## v0.8.10 (2023-10-08)
 
 #### Fix
 
