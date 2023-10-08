@@ -282,17 +282,18 @@ jobs:
         with:
           name: artifact
           path: ./out/
-
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: Display Files Structure
+        run: ls -R
+        working-directory: ./out
       - name: prepare_release_message
         run: |
           pip install gitchangelog
           previous_release=$(curl --silent "https://api.github.com/repos/hiddify/hiddify-next/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")')
           current="${{ github.ref_name }}"
-          gitchangelog "${previous_release}..v$current" > release.md
+          gitchangelog "${previous_release}..$current" > release.md
           sed 's|${tag}|${{ github.ref_name }}|g' ./.github/release_message.md >> release.md
-      - name: Display Files Structure
-        run: ls -R
-        working-directory: ./out
 
       - name: Upload Release
         uses: softprops/action-gh-release@v1
@@ -302,7 +303,7 @@ jobs:
         with:
           prerelease: ${{ env.CHANNEL == 'dev' }}
           tag_name: ${{ github.ref_name }}
-          body_path: "./.github/release_message.md"
+          body_path: "./release.md"
           files: ./out/*
 
       - name: Create service_account.json
