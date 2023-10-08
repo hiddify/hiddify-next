@@ -161,7 +161,7 @@ jobs:
               Get-ChildItem -Recurse -File -Filter "*.$EXT"
           }
 
-          xcopy /s /v '.\.github\help\mac-windows\' .\hiddify-${{ matrix.platform }}-x64-setup\
+          xcopy /s /v '.\.github\help\mac-windows\' .\tmp_out\
           cd tmp_out
           Compress-Archive .\ ..\out\hiddify-${{ matrix.platform }}-x64-setup.zip
           cd ..
@@ -204,7 +204,7 @@ jobs:
           else
             cp ./.github/help/mac-windows/* tmp_out/
           fi
-          
+
           cd tmp_out
           7z a ${{matrix.filename}}.zip ./
           mv *.zip ../out/
