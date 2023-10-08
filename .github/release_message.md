@@ -4,8 +4,8 @@
 </div>
 -->
 
-**Download based on your OS:
-**
+**Download based on your OS:**
+
 - **Android:** [Universal](https://github.com/hiddify/hiddify-next/releases/download/${tag}/hiddify-android-universal.apk) - [Arm64](https://github.com/hiddify/hiddify-next/releases/download/${tag}/hiddify-android-arm64.apk) - [Arm7](https://github.com/hiddify/hiddify-next/releases/download/${tag}/hiddify-android-arm7.apk) - [x86_64](https://github.com/hiddify/hiddify-next/releases/download/${tag}/hiddify-android-x86_64.apk) 
 
 - **Windows:** [x64 Setup](https://github.com/hiddify/hiddify-next/releases/download/${tag}/hiddify-windows-x64-setup.exe) - [x64 Portable](https://github.com/hiddify/hiddify-next/releases/download/${tag}/hiddify-windows-x64-portable.zip)
@@ -16,8 +16,8 @@
 
 **List of all changes:** [ChangeLog](https://github.com/hiddify/hiddify-next/blob/main/changelog.md)
 
-**بر اساس سیستم عامل خود یکی از فایل‌های زیر را دانلود کنید:
-**
+
+**بر اساس سیستم عامل خود یکی از فایل‌های زیر را دانلود کنید:**
 
 - **اندروید:** [Universal](https://github.com/hiddify/hiddify-next/releases/download/${tag}/hiddify-android-universal.apk) - [Arm64](https://github.com/hiddify/hiddify-next/releases/download/${tag}/hiddify-android-arm64.apk) - [Arm7](https://github.com/hiddify/hiddify-next/releases/download/${tag}/hiddify-android-arm7.apk) - [x86_64](https://github.com/hiddify/hiddify-next/releases/download/${tag}/hiddify-android-x86_64.apk) 
 
