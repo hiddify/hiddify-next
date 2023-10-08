@@ -62,8 +62,9 @@ For latest releases (including pre-releases), visit [releases page](https://gith
 
 - Build from source: [Build & contribute guide](contribute.md)
 
+
 <div align=center>
- <a href="https://play.google.com/store/apps/details?id=app.hiddify.com"><img width=20% src="https://github.com/hiddify/hiddify-next/assets/125398461/c390e506-2074-42cc-9fb2-78d62e3e42ab"></a>
+ <a href="https://play.google.com/store/apps/details?id=app.hiddify.com"><img width=20% src="https://github.com/hiddify/hiddify-next/blob/main/docs/google-play-badge.png"></a>
 </div>
 
 
