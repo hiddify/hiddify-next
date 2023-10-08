@@ -278,15 +278,17 @@ jobs:
     needs: [build]
     runs-on: ubuntu-latest
     steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
       - uses: actions/download-artifact@v3
         with:
           name: artifact
           path: ./out/
-      - name: checkout
-        uses: actions/checkout@v3
+
       - name: Display Files Structure
-        run: ls -R
-        working-directory: ./out
+        run: ls -R ./out
+
       - name: prepare_release_message
         run: |
           pip install gitchangelog
