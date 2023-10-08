@@ -64,8 +64,9 @@ Sing-box, V2ray, Xray, Vless, Vmess, Reality, TUIC, Hysteria, Shadowtls, SSH, Cl
 - بیلد از منبع: [راهنمای بیلد و مشارکت در پروژه](https://github.com/hiddify/hiddify-next/blob/main/contribute.md)
 
 <div align=center>
- <a href="https://play.google.com/store/apps/details?id=app.hiddify.com"><img width=20% src="https://github.com/hiddify/hiddify-next/assets/125398461/c390e506-2074-42cc-9fb2-78d62e3e42ab"></a>
+ <a href="https://play.google.com/store/apps/details?id=app.hiddify.com"><img width=20% src="https://github.com/hiddify/hiddify-next/blob/main/docs/google-play-badge.png"></a>
 </div>
+
 
 
 ## سپاسگزاری
