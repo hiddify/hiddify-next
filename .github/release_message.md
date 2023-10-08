@@ -1,11 +1,11 @@
-<div dir="rtl" markdown=1>
-<details>
+<details markdown=1 dir="rtl">
 <summary>تغییرات اصلی به فارسی</summary>
+
 - 
 - 
 -
 </details>
-</div>
+
 
 **Release Highlights:**
 - 
