@@ -287,15 +287,18 @@ jobs:
           path: ./out/
 
       - name: Display Files Structure
-        run: ls -R ./out
+        run: |
+          ls -R ./out
+          ls -R ./.github/
+          ls -R ./.git/
 
       - name: prepare_release_message
         run: |
           pip install gitchangelog pystache mustache markdown
-          previous_release=$(curl --silent "https://api.github.com/repos/hiddify/hiddify-next/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")')
+          prelease=$(curl --silent "https://api.github.com/repos/hiddify/hiddify-next/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")')
           current="${{ github.ref_name }}"
-          gitchangelog "${previous_release}..$current" > release.md
-          sed 's|${tag}|${{ github.ref_name }}|g' ./.github/release_message.md >> release.md
+          gitchangelog $prelease..$current > release.md
+          sed 's|RELEASE_TAG|${{ github.ref_name }}|g' ./.github/release_message.md >> release.md
 
       - name: Upload Release
         uses: softprops/action-gh-release@v1
