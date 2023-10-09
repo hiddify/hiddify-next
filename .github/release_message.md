@@ -1,3 +1,13 @@
+[![Release Downloads](https://img.shields.io/github/downloads/hiddify/hiddify-next/RELEASE_TAG/total?style=flat-square&logo=github)](https://img.shields.io/github/downloads/hiddify/hiddify-next/RELEASE_TAG/)
+
+
+
+
+**Release Highlights:**
+- 
+- 
+
+
 <details markdown=1 dir="rtl">
 <summary>تغییرات اصلی به فارسی</summary>
 
@@ -6,14 +16,11 @@
 -
 </details>
 
-
-**Release Highlights:**
-- 
-- 
-
-
-
-**Download based on your OS:بر اساس سیستم عامل خود دانلود کنید**
+**Download based on your OS:**
+<div dir="rtl">
+  
+**بر اساس سیستم عامل خود دانلود کنید:**
+</div>
 
 
 - **Android:** [Universal](https://github.com/hiddify/hiddify-next/releases/download/RELEASE_TAG/hiddify-android-universal.apk) - [Arm64](https://github.com/hiddify/hiddify-next/releases/download/RELEASE_TAG/hiddify-android-arm64.apk) - [Arm7](https://github.com/hiddify/hiddify-next/releases/download/RELEASE_TAG/hiddify-android-arm7.apk) - [x86_64](https://github.com/hiddify/hiddify-next/releases/download/RELEASE_TAG/hiddify-android-x86_64.apk) 
