@@ -15,11 +15,12 @@
 </div>
 
 ## هیدیفای‌نکست چیست؟
+
 یک کلاینت مالتی‌پلتفرم مبتنی بر Sing-box که به عنوان یک ابزار عمومی برای پروکسی عمل می‌کند. این برنامه طیف گسترده‌ای از قابلیت‌ها را ارائه می‌دهد که در زیر لیست شده است. همچنین از تعداد زیادی پروتکل پشتیبانی می‌کند. این برنامه رایگان، بدون آگهی و منبع باز است. این یک ابزار امن و مطمئن برای دسترسی به اینترنت رایگان فراهم می‌کند.
 
 ## 🚀 امکانات اصلی
 
-⭐  استفاده بسیار آسان با رابط کاربری ساده
+⭐ استفاده بسیار آسان با رابط کاربری ساده
 
 ✈️ پشتیبانی از چند پلتفرم: اندروید، ویندوز، لینوکس و مک (پول رکوئست برای نسخه iOS استقبال می‌شود)
 
@@ -28,7 +29,7 @@
 🔍 انتخاب خودکار بهترین سرور و کانفیگ
 
 🟡 پشتیبانی از رنج وسیعی از پروتکل‌ها
-**ECH, Sing-box, V2ray, Xray, Vless, Vmess, Reality, TUIC, Hysteria, Shadowtls, SSH, Clash, Clash meta**
+**ECH, Sing-box, V2ray, Xray, Vless, Vmess, Reality, TUIC, Hysteria, ShadowTLS, SSH, Clash, Clash meta**
 
 🟡 پشتیبانی لینک‌های سابسکریپشن‌ مختلف:
 **کلش، سینگ‌باکس و شدوساکس**
@@ -53,7 +54,7 @@
 
 برای دریافت آخرین نسخه (شامل نسخه‌های پیش‌انتشار) از [صفحه انتشار](https://github.com/hiddify/hiddify-next/releases) بازدید نمایید.
 
-- اندروید: [Universal](https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-universal.apk) - [Arm64](https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-arm64.apk) - [Arm7](https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-arm7.apk) - [x86_64](https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-x86_64.apk) 
+- اندروید: [Universal](https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-universal.apk) - [Arm64](https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-arm64.apk) - [Arm7](https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-arm7.apk) - [x86_64](https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-x86_64.apk)
 
 - ویندوز: [x64 Setup](https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-windows-x64-setup.exe) - [x64 Portable](https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-windows-x64-portable.zip)
 
@@ -61,13 +62,11 @@
 
 - مک (نسخه 10.14 به بالا): [Universal (x64, M series)](https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-macos-universal.dmg)
 
-- بیلد از منبع: [راهنمای بیلد و مشارکت در پروژه](https://github.com/hiddify/hiddify-next/blob/main/contribute.md)
+- بیلد از منبع: [راهنمای بیلد و مشارکت در پروژه](https://github.com/hiddify/hiddify-next/blob/main/CONTRIBUTING.md)
 
 <div align=center>
  <a href="https://play.google.com/store/apps/details?id=app.hiddify.com"><img width=20% src="https://github.com/hiddify/hiddify-next/blob/main/docs/google-play-badge.png"></a>
 </div>
-
-
 
 ## سپاسگزاری
 
@@ -77,7 +76,6 @@
 - [اف‌کلش](https://github.com/Fclash/Fclash)
 - [سایر](./pubspec.yaml)
 
-
 ## حمایت از پروژه
 
 ساده‌ترین راه حمایت از ما کلیک کردن روی ستاره (⭐) بالای همین صفحه است.
@@ -85,11 +83,13 @@
 ما برای سرویس هایمان به کمک مالی هم نیاز داریم. تمامی فعالیت‌های ما به صورت داوطلبانه انجام می‌شود و حمایت‌های مالی صرف توسعه پروژه می‌شود. اطلاعات و آدرس‌های حمایت‌ از ما را در [این لینک](https://github.com/hiddify/hiddify-server/wiki/support) مشاهده فرمایید.
 
 ## راه‌های همکاری و ارتباط با ما
+
 اگر در هر یک از زمینه‌های زیر توانایی دارید، لطفا با ما در تماس باشید.
-* برنامه‌نویسی فلاتر
-* برنامه‌نویسی سوئیفت
-* برنامه‌نویسی کاتلین
-* برنامه‌نویسی Go
+
+- برنامه‌نویسی فلاتر
+- برنامه‌نویسی سوئیفت
+- برنامه‌نویسی کاتلین
+- برنامه‌نویسی Go
 
 </br>
 <div align=center>
