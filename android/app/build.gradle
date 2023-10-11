@@ -11,6 +11,24 @@ if (flutterRoot == null) {
     throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
 }
 
+boolean hasKeyStore = false
+
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+    hasKeyStore = true
+} else {
+    println "+++"
+    println "No keystore defined. The app will not be signed."
+    println "Create a android/key.properties file with the following properties:"
+    println "storePassword"
+    println "keyPassword"
+    println "keyAlias"
+    println "storeFile"
+    println "+++"
+}
+
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
     flutterVersionCode = '1'
@@ -21,11 +39,6 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
-def keystoreProperties = new Properties()
-def keystorePropertiesFile = rootProject.file('release.properties')
-if (keystorePropertiesFile.exists()) {
-    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-}
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
@@ -61,24 +74,33 @@ android {
         abi {
             enable true
             reset()
+            //noinspection ChromeOsAbiSupport
             include "x86_64", "armeabi-v7a", "arm64-v8a"
 
             universalApk true
         }
     }
 
-    signingConfigs {
-        release {
-            keyAlias keystoreProperties['key.alias']
-            keyPassword keystoreProperties['key.password']
-            storeFile keystoreProperties['keystore.path'] ? file(keystoreProperties['keystore.path']) : null
-            storePassword keystoreProperties['keystore.password']
+    if (hasKeyStore) {
+        signingConfigs {
+            release {
+                keyAlias keystoreProperties['keyAlias']
+                keyPassword keystoreProperties['keyPassword']
+                storeFile file(keystoreProperties['storeFile'])
+                storePassword keystoreProperties['storePassword']
+            }
         }
     }
+
     buildTypes {
         release {
-            signingConfig signingConfigs.release
+            if (hasKeyStore) {
+                signingConfig signingConfigs.release
+            } else {
+                signingConfig signingConfigs.debug
+            }
             ndk {
+                //noinspection ChromeOsAbiSupport
                 abiFilters "x86_64", "armeabi-v7a", "arm64-v8a"
             }
         }

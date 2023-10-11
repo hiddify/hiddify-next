@@ -4,12 +4,12 @@ on:
     branches:
       - main
     tags:
-      - "v*"
+      - 'v*'
     paths-ignore:
-      - "**.md"
-      - "docs/**"
-      - ".github/**"
-      - "!.github/workflows/build.yml"
+      - '**.md'
+      - 'docs/**'
+      - '.github/**'
+      - '!.github/workflows/build.yml'
   pull_request:
     branches:
       - main
@@ -64,15 +64,15 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: "3.13.x"
-          channel: "stable"
+          flutter-version: '3.13.x'
+          channel: 'stable'
           cache: true
 
       - name: Setup Java
         if: startsWith(matrix.platform,'android')
         uses: actions/setup-java@v3
         with:
-          distribution: "zulu"
+          distribution: 'zulu'
           java-version: 11
 
       - name: Setup Flutter Distributor
@@ -114,23 +114,12 @@ jobs:
 
       - name: Setup Signing Properties
         if: startsWith(matrix.platform,'android')
-        env:
-          ANDROID_SIGNING_KEY_ALIAS: ${{ secrets.ANDROID_SIGNING_KEY_ALIAS }}
-          ANDROID_SIGNING_KEY_PASSWORD: ${{ secrets.ANDROID_SIGNING_KEY_PASSWORD }}
-          ANDROID_SIGNING_STORE_PASSWORD: ${{ secrets.ANDROID_SIGNING_STORE_PASSWORD }}
-          ANDROID_SIGNING_KEY: ${{ secrets.ANDROID_SIGNING_KEY }}
         run: |
-          cd android
-          pwd
-          touch signing.properties
-          echo $ANDROID_SIGNING_KEY | base64 -d > release.keystore
-          echo "keystore.path=release.keystore" > release.properties
-          echo keystore.password="$ANDROID_SIGNING_STORE_PASSWORD" >> release.properties
-          echo key.alias="$ANDROID_SIGNING_KEY_ALIAS" >> release.properties
-          echo key.password="$ANDROID_SIGNING_KEY_PASSWORD" >> release.properties
-          cp  release.* app/ 
-          cat release.properties
-          cd ..
+          echo "${{ secrets.ANDROID_SIGNING_KEY }}" | base64 --decode > android/key.jks
+          echo "storeFile=$(pwd)/android/key.jks" > android/key.properties
+          echo "storePassword=${{ secrets.ANDROID_SIGNING_STORE_PASSWORD }}" >> android/key.properties
+          echo "keyPassword=${{ secrets.ANDROID_SIGNING_KEY_PASSWORD }}" >> android/key.properties
+          echo "keyAlias=${{ secrets.ANDROID_SIGNING_KEY_ALIAS }}" >> android/key.properties
 
       - name: Release ${{ matrix.platform }}
         env:
@@ -258,7 +247,7 @@ jobs:
         uses: 8Mi-Tech/delete-release-assets-action@main
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: "draft"
+          tag: 'draft'
           deleteOnlyFromDrafts: false
 
       - name: Create or Update Draft Release
@@ -268,8 +257,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           files: ./out/*
-          name: "draft"
-          tag_name: "draft"
+          name: 'draft'
+          tag_name: 'draft'
           prerelease: true
 
   upload-release:
@@ -309,7 +298,7 @@ jobs:
         with:
           prerelease: ${{ env.CHANNEL == 'dev' }}
           tag_name: ${{ github.ref_name }}
-          body_path: "./release.md"
+          body_path: './release.md'
           files: ./out/*
 
       - name: Create service_account.json
