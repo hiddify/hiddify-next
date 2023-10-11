@@ -23,7 +23,6 @@ class AppRepositoryImpl
       version: packageInfo.version,
       buildNumber: packageInfo.buildNumber,
       release: Release.read(),
-      installerMedia: packageInfo.installerStore,
       operatingSystem: Platform.operatingSystem,
       operatingSystemVersion: Platform.operatingSystemVersion,
       environment: environment,

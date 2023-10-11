@@ -23,6 +23,15 @@ sealed class ConnectionStatus with _$ConnectionStatus {
         _ => false,
       };
 
+  String format() => switch (this) {
+        Disconnected(:final connectionFailure) => connectionFailure != null
+            ? "CONNECTION FAILURE: $connectionFailure"
+            : "DISCONNECTED",
+        Connecting() => "CONNECTING",
+        Connected() => "CONNECTED",
+        Disconnecting() => "DISCONNECTING",
+      };
+
   String present(TranslationsEn t) => switch (this) {
         Disconnected() => t.home.connection.tapToConnect,
         Connecting() => t.home.connection.connecting,

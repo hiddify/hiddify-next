@@ -4,6 +4,7 @@ import 'package:hiddify/domain/core_facade.dart';
 import 'package:hiddify/features/common/active_profile/active_profile_notifier.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:rxdart/rxdart.dart';
 
 part 'connectivity_controller.g.dart';
 
@@ -21,7 +22,9 @@ class ConnectivityController extends _$ConnectivityController with AppLogger {
         }
       },
     );
-    return _core.watchConnectionStatus();
+    return _core.watchConnectionStatus().doOnData((event) {
+      loggy.info("connection status: ${event.format()}");
+    });
   }
 
   CoreFacade get _core => ref.watch(coreFacadeProvider);

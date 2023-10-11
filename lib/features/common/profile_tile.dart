@@ -120,11 +120,13 @@ class ProfileTile extends HookConsumerWidget {
                                   Flexible(
                                     child: Text(
                                       profile.name,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: theme.textTheme.titleMedium,
                                       semanticsLabel: t.profile
                                           .activeProfileNameSemanticLabel(
                                         name: profile.name,
                                       ),
-                                      style: theme.textTheme.titleMedium,
                                     ),
                                   ),
                                   const Icon(Icons.arrow_drop_down),
@@ -135,6 +137,9 @@ class ProfileTile extends HookConsumerWidget {
                         else
                           Text(
                             profile.name,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: theme.textTheme.titleMedium,
                             semanticsLabel: profile.active
                                 ? t.profile.activeProfileNameSemanticLabel(
                                     name: profile.name,
@@ -142,7 +147,6 @@ class ProfileTile extends HookConsumerWidget {
                                 : t.profile.nonActiveProfileBtnSemanticLabel(
                                     name: profile.name,
                                   ),
-                            style: theme.textTheme.titleMedium,
                           ),
                         if (subInfo != null) ...[
                           const Gap(4),
