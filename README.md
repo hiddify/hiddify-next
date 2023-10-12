@@ -133,7 +133,7 @@ The app is developed using [Flutter](https://flutter.dev) and [Go](https://go.de
 </table>
 
 
- <a href="https://play.google.com/store/apps/details?id=app.hiddify.com"><img width=20% src="https://github.com/hiddify/hiddify-next/blob/main/docs/google-play-badge.png"></a>
+ <a href="https://play.google.com/store/apps/details?id=app.hiddify.com"><img width=200 src="https://github.com/hiddify/hiddify-next/blob/main/docs/google-play-badge.png"></a>
 </div>
 
 ## Acknowledgements
