@@ -139,7 +139,7 @@
 </div>
 
 <div align=center>
- <a href="https://play.google.com/store/apps/details?id=app.hiddify.com"><img width=250 src="https://github.com/hiddify/hiddify-next/blob/main/docs/google-play-badge.png"></a>
+ <a href="https://play.google.com/store/apps/details?id=app.hiddify.com"><img width=200 src="https://github.com/hiddify/hiddify-next/blob/main/docs/google-play-badge.png"></a>
 </div>
 
 ## سپاسگزاری
