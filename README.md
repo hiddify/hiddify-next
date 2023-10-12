@@ -138,7 +138,7 @@ The app is developed using [Flutter](https://flutter.dev) and [Go](https://go.de
 
 ## Acknowledgements
 
-- [Singbox](https://github.com/SagerNet/sing-box)
+- [Sing-box](https://github.com/SagerNet/sing-box)
 - [Clash](https://github.com/Dreamacro/clash)
 - [Clash Meta](https://github.com/MetaCubeX/Clash.Meta)
 - [FClash](https://github.com/Fclash/Fclash)
