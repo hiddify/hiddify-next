@@ -20,7 +20,7 @@ The app is developed using [Flutter](https://flutter.dev) and [Go](https://go.de
 
 </div>
 
-***
+
 
 ## 🚀 Main features
 
