@@ -22,6 +22,11 @@
 
 
 
+<div align=center>
+<img width=90% alt="English Demo" src="https://github.com/hiddify/hiddify-next/assets/125398461/9d2a7519-3028-4a9d-8a02-b2ce772c38bc">
+
+</div>
+
 ***
 
 ## 🚀 امکانات اصلی
