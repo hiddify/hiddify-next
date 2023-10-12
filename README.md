@@ -47,6 +47,7 @@ The app is developed using [Flutter](https://flutter.dev) and [Go](https://go.de
 
 ## Download
 
+<div align=center>
 <table>
     <thead>
         <tr>
@@ -131,7 +132,7 @@ The app is developed using [Flutter](https://flutter.dev) and [Go](https://go.de
     </tbody>
 </table>
 
-<div align=center>
+
  <a href="https://play.google.com/store/apps/details?id=app.hiddify.com"><img width=20% src="https://github.com/hiddify/hiddify-next/blob/main/docs/google-play-badge.png"></a>
 </div>
 
