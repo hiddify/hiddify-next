@@ -40,7 +40,7 @@ The app is developed using [Flutter](https://flutter.dev) and [Go](https://go.de
 
 🔎 Display profile information including remaining days and traffic usage
 
-📱 Completely free and without any ads and interruptions
+💻 Completely free and without any ads and interruptions
 
 🛡 Open source and community driven
 
@@ -50,7 +50,7 @@ The app is developed using [Flutter](https://flutter.dev) and [Go](https://go.de
 
 ⭐ Appropriate configuration for Iran, China, Russia and other countries
 
-💻 Available on [Google Play](https://play.google.com/store/apps/details?id=app.hiddify.com)
+📱 Available on [Google Play](https://play.google.com/store/apps/details?id=app.hiddify.com)
 
 ## Download
 
