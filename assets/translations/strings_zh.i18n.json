@@ -56,16 +56,16 @@
             "buttonText": "新的配置文件",
             "shortBtnTxt": "新的配置文件",
             "fromClipboard": "从剪贴板添加",
-            "scanQr": "扫描二维码",
+            "scanQr": "扫二维码",
             "manually": "手动输入",
-            "addingProfileMsg": "添加个人资料",
+            "addingProfileMsg": "添加配置文件",
             "failureMsg": "无法添加配置文件"
         },
         "update": {
             "buttonTxt": "更新",
-            "tooltip": "更新个人信息",
-            "failureMsg": "更新个人资料失败",
-            "successMsg": "个人资料更新成功"
+            "tooltip": "更新配置文件",
+            "failureMsg": "无法更新配置文件",
+            "successMsg": "配置文件已成功更新"
         },
         "edit": {
             "buttonTxt": "编辑",
@@ -73,8 +73,8 @@
         },
         "delete": {
             "buttonTxt": "删除",
-            "confirmationMsg": "永久删除个人资料吗？",
-            "successMsg": "个人资料删除成功"
+            "confirmationMsg": "永久删除配置文件吗？",
+            "successMsg": "配置文件删除成功"
         },
         "save": {
             "buttonText": "节省",
@@ -185,11 +185,11 @@
             "mixedPort": "混合港口",
             "localDnsPort": "本地 DNS 端口",
             "tunImplementation": "TUN实施",
-            "mtu": "最大传输单元",
+            "mtu": "MTU",
             "connectionTestUrl": "连接测试网址",
             "urlTestInterval": "URL 测试间隔",
-            "enableClashApi": "启用冲突API",
-            "clashApiPort": "冲突 API 端口",
+            "enableClashApi": "启用Clash API",
+            "clashApiPort": "Clash API 端口",
             "enableTun": "启用TUN",
             "setSystemProxy": "设置系统代理"
         }
@@ -214,20 +214,20 @@
         "ignoreBtnTxt": "忽略"
     },
     "tray": {
-        "dashboard": "仪表板",
-        "quit": "辞职",
+        "dashboard": "控制面板",
+        "quit": "退出",
         "systemProxy": "系统代理"
     },
     "failure": {
-        "unexpected": "意外的错误",
+        "unexpected": "意外错误",
         "clash": {
-            "unexpected": "意外的错误",
-            "core": "冲突错误${reason}"
+            "unexpected": "意外错误",
+            "core": "Clash错误${reason}"
         },
         "singbox": {
-            "unexpected": "意外的服务错误",
+            "unexpected": "意外服务错误",
             "serviceNotRunning": "服务未运行",
-            "invalidConfigOptions": "无效的配置选项",
+            "invalidConfigOptions": "配置选项无效",
             "invalidConfig": "无效配置",
             "create": "服务创建错误",
             "start": "服务启动错误"
@@ -239,9 +239,9 @@
             "core": "核心错误"
         },
         "profiles": {
-            "unexpected": "意外的错误",
+            "unexpected": "意外错误",
             "notFound": "未找到配置文件",
-            "invalidConfig": "无效的配置",
+            "invalidConfig": "无效配置",
             "invalidUrl": "网址无效"
         },
         "connection": {

@@ -1,55 +1,145 @@
 # Changelog
 
 
-## 0.8.11 (2023-10-08)
+## 0.9.0 (2023-10-13)
+
+#### New
+
+* Add chinese lang. 
 
 #### Changes
 
 * Remove auto release message. 
 
-
-
-## v0.8.10 (2023-10-08)
-
 #### Fix
+
+* Typo. 
+
+* Bug. 
+
+* Release names. 
 
 * Release changelog. 
 
-
-
-## v0.8.9 (2023-10-08)
-
-#### Fix
-
 * Missing libs. 
-
-
-
-## v0.8.8 (2023-10-08)
-
-#### Fix
 
 * Release bug. 
 
-
-
-## v0.8.7 (2023-10-08)
-
-#### Fix
-
 * Release message. 
-
-
-
-## v0.8.6 (2023-10-08)
-
-#### Fix
 
 * Windows build. 
 
 * Build issue. 
 
+* Bug. 
+
+* Translate. 
+
+* Hysteria2 and some links. 
+
+* Chinese translation. 
+
 #### Other
+
+* Update readme. 
+
+* Update core. 
+
+* Update README_fa.md. 
+
+* Update README_fa.md. 
+
+* Update README.md. 
+
+* Merge pull request #56 from solokot/main. 
+  _Improvement of Russian translation_
+
+* Improvement of Russian translation. 
+  _Basically a replacement for machine automatic translation_
+
+* Update README.md. 
+
+* Update README_fa.md. 
+
+* Update README_fa.md. 
+
+* Update README.md. 
+
+* Update README_fa.md. 
+
+* Update README.md. 
+
+* Update README.md. 
+
+* Update README_fa.md. 
+
+* Update README_fa.md. 
+
+* Update README_fa.md. 
+
+* Update README.md. 
+
+* Update README_fa.md. 
+
+* Update README.md. 
+
+* Update README_fa.md. 
+
+* Update README_fa.md. 
+
+* Update README.md. 
+
+* Update README_fa.md. 
+
+* Update README_fa.md. 
+
+* Update README.md. 
+
+* Update README.md. 
+
+* Update README_fa.md. 
+
+* Update README.md. 
+
+* Update README.md. 
+
+* Update README_fa.md. 
+
+* Update README_fa.md. 
+
+* Update README_fa.md. 
+
+* Fix bugs. 
+
+* Change android signing. 
+
+* Update README.md. 
+
+* Update readme. 
+
+* Update contribution guide. 
+
+* Update README_fa.md. 
+
+* Update README.md. 
+
+* Update README_fa.md. 
+
+* Update README_fa.md. 
+
+* Update release_message.md. 
+
+* Update README.md. 
+
+* Update README_fa.md. 
+
+* Update README_fa.md. 
+
+* Update README.md. 
+
+* Update README_fa.md. 
+
+* Update release template. 
 
 * Merge branch 'main' of hiddify-github:hiddify/hiddify-next. 
 
@@ -86,28 +176,6 @@
 * Update release_message.md. 
 
 * Fix build. 
-
-
-
-## v0.8.5 (2023-10-07)
-
-#### Fix
-
-* Bug. 
-
-
-
-## v0.8.4 (2023-10-07)
-
-#### Fix
-
-* Translate. 
-
-
-
-## v0.8.3 (2023-10-07)
-
-#### Other
 
 * Add release message  and help. 
 
@@ -163,16 +231,6 @@
 
 * Add issue template. 
 
-
-
-## v0.8.2 (2023-10-07)
-
-#### Fix
-
-* Hysteria2 and some links. 
-
-#### Other
-
 * Update README_fa.md. 
 
 * Update README_fa.md. 
@@ -213,20 +271,6 @@
   _Add some features to the readme_
 
 * Add debug export to clipboard. 
-
-
-
-## v0.8.1 (2023-10-06)
-
-#### New
-
-* Add chinese lang. 
-
-#### Fix
-
-* Chinese translation. 
-
-#### Other
 
 * Update core 0.5.1. 
 
