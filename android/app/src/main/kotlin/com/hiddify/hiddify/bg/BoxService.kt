@@ -29,6 +29,7 @@ import io.nekohasekai.libbox.SystemProxyStatus
 import io.nekohasekai.mobile.Mobile
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
@@ -133,7 +134,7 @@ class BoxService(
         this.commandServer = commandServer
     }
 
-    private suspend fun startService() {
+    private suspend fun startService(delayStart: Boolean = false) {
         try {
             Log.d(TAG, "starting service")
 
@@ -178,6 +179,10 @@ class BoxService(
                 return
             }
 
+            if (delayStart) {
+                delay(200L)
+            }
+
             newService.start()
             boxService = newService
             commandServer?.setService(boxService)
@@ -206,7 +211,7 @@ class BoxService(
                 Seq.destroyRef(refnum)
             }
             boxService = null
-            startService()
+            startService(true)
         }
     }
 
