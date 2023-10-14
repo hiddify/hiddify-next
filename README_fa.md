@@ -103,6 +103,7 @@
 ## سپاسگزاری
 
 - [سینگ‌باکس](https://github.com/SagerNet/sing-box)
+- [سینگ‌باکس برای اندروید](https://github.com/SagerNet/sing-box-for-android)
 - [کلش](https://github.com/Dreamacro/clash)
 - [کلش‌متا](https://github.com/MetaCubeX/Clash.Meta)
 - [اف‌کلش](https://github.com/Fclash/Fclash)
