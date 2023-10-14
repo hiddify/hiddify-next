@@ -1,6 +1,6 @@
 package com.hiddify.hiddify
 
-import androidx.annotation.NonNull
+import android.util.Log
 import com.hiddify.hiddify.bg.BoxService
 import com.hiddify.hiddify.constant.Status
 import io.flutter.embedding.engine.plugins.FlutterPlugin
@@ -8,14 +8,17 @@ import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.StandardMethodCodec
 import io.nekohasekai.libbox.Libbox
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class MethodHandler : FlutterPlugin, MethodChannel.MethodCallHandler {
+class MethodHandler(private val scope: CoroutineScope) : FlutterPlugin,
+    MethodChannel.MethodCallHandler {
     private var channel: MethodChannel? = null
 
     companion object {
+        const val TAG = "A/MethodHandler"
         const val channelName = "com.hiddify.app/method"
 
         enum class Trigger(val method: String) {
@@ -29,7 +32,7 @@ class MethodHandler : FlutterPlugin, MethodChannel.MethodCallHandler {
         }
     }
 
-    override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
+    override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
         val taskQueue = flutterPluginBinding.binaryMessenger.makeBackgroundTaskQueue()
         channel = MethodChannel(
             flutterPluginBinding.binaryMessenger,
@@ -47,7 +50,7 @@ class MethodHandler : FlutterPlugin, MethodChannel.MethodCallHandler {
     override fun onMethodCall(call: MethodCall, result: MethodChannel.Result) {
         when (call.method) {
             Trigger.ParseConfig.method -> {
-                GlobalScope.launch {
+                scope.launch(Dispatchers.IO) {
                     result.runCatching {
                         val args = call.arguments as Map<*, *>
                         val path = args["path"] as String
@@ -68,19 +71,35 @@ class MethodHandler : FlutterPlugin, MethodChannel.MethodCallHandler {
             }
 
             Trigger.Start.method -> {
-                val args = call.arguments as Map<*, *>
-                Settings.activeConfigPath = args["path"] as String? ?: ""
-                MainActivity.instance.startService()
-                result.success(true)
+                result.runCatching {
+                    val args = call.arguments as Map<*, *>
+                    Settings.activeConfigPath = args["path"] as String? ?: ""
+                    val mainActivity = MainActivity.instance
+                    val started = mainActivity.serviceStatus.value == Status.Started
+                    if (started) {
+                        Log.w(TAG, "service is already running")
+                        return success(true)
+                    }
+                    mainActivity.startService()
+                    success(true)
+                }
             }
 
             Trigger.Stop.method -> {
-                BoxService.stop()
-                result.success(true)
+                result.runCatching {
+                    val mainActivity = MainActivity.instance
+                    val started = mainActivity.serviceStatus.value == Status.Started
+                    if (!started) {
+                        Log.w(TAG, "service is not running")
+                        return success(true)
+                    }
+                    BoxService.stop()
+                    success(true)
+                }
             }
 
             Trigger.Restart.method -> {
-                GlobalScope.launch {
+                scope.launch(Dispatchers.IO) {
                     result.runCatching {
                         val args = call.arguments as Map<*, *>
                         Settings.activeConfigPath = args["path"] as String? ?: ""
@@ -93,8 +112,7 @@ class MethodHandler : FlutterPlugin, MethodChannel.MethodCallHandler {
                             BoxService.stop()
                             delay(200L)
                             mainActivity.startService()
-                            success(true)
-                            return@launch
+                            return@launch success(true)
                         }
                         runCatching {
                             Libbox.newStandaloneCommandClient().serviceReload()
@@ -107,7 +125,7 @@ class MethodHandler : FlutterPlugin, MethodChannel.MethodCallHandler {
             }
 
             Trigger.SelectOutbound.method -> {
-                GlobalScope.launch {
+                scope.launch {
                     result.runCatching {
                         val args = call.arguments as Map<*, *>
                         Libbox.newStandaloneCommandClient()
@@ -121,7 +139,7 @@ class MethodHandler : FlutterPlugin, MethodChannel.MethodCallHandler {
             }
 
             Trigger.UrlTest.method -> {
-                GlobalScope.launch {
+                scope.launch {
                     result.runCatching {
                         val args = call.arguments as Map<*, *>
                         Libbox.newStandaloneCommandClient()

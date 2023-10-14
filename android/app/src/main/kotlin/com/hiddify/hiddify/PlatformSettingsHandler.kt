@@ -1,18 +1,16 @@
 package com.hiddify.hiddify
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
-import android.graphics.drawable.VectorDrawable
 import android.net.Uri
 import android.os.Build
 import android.util.Base64
-import androidx.annotation.NonNull
-import androidx.core.graphics.drawable.toBitmap
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 import com.hiddify.hiddify.Application.Companion.packageManager
@@ -48,7 +46,7 @@ class PlatformSettingsHandler : FlutterPlugin, MethodChannel.MethodCallHandler, 
         }
     }
 
-    override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
+    override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
         val taskQueue = flutterPluginBinding.binaryMessenger.makeBackgroundTaskQueue()
         channel = MethodChannel(
             flutterPluginBinding.binaryMessenger,
@@ -69,7 +67,7 @@ class PlatformSettingsHandler : FlutterPlugin, MethodChannel.MethodCallHandler, 
     }
 
     override fun onDetachedFromActivityForConfigChanges() {
-        activity = null;
+        activity = null
     }
 
     override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
@@ -78,7 +76,7 @@ class PlatformSettingsHandler : FlutterPlugin, MethodChannel.MethodCallHandler, 
     }
 
     override fun onDetachedFromActivity() {
-        activity = null;
+        activity = null
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?): Boolean {
@@ -95,6 +93,7 @@ class PlatformSettingsHandler : FlutterPlugin, MethodChannel.MethodCallHandler, 
         @SerializedName("is-system-app") val isSystemApp: Boolean
     )
 
+    @SuppressLint("BatteryLife")
     override fun onMethodCall(call: MethodCall, result: MethodChannel.Result) {
         when (call.method) {
             Trigger.IsIgnoringBatteryOptimizations.method -> {
@@ -166,7 +165,7 @@ class PlatformSettingsHandler : FlutterPlugin, MethodChannel.MethodCallHandler, 
                 result.runCatching {
                     val args = call.arguments as Map<*, *>
                     val packageName =
-                        args["packageName"] as String? ?: return error("provide packageName")
+                        args["packageName"] as String
                     val drawable = packageManager.getApplicationIcon(packageName)
                     val bitmap = Bitmap.createBitmap(
                         drawable.intrinsicWidth,

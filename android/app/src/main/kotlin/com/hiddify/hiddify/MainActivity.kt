@@ -8,7 +8,6 @@ import android.net.VpnService
 import android.os.Build
 import android.util.Log
 import androidx.core.app.ActivityCompat
-import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
@@ -46,7 +45,7 @@ class MainActivity : FlutterFragmentActivity(), ServiceConnection.Callback {
         super.configureFlutterEngine(flutterEngine)
         instance = this
         reconnect()
-        flutterEngine.plugins.add(MethodHandler())
+        flutterEngine.plugins.add(MethodHandler(lifecycleScope))
         flutterEngine.plugins.add(PlatformSettingsHandler())
         flutterEngine.plugins.add(EventHandler())
         flutterEngine.plugins.add(LogHandler())

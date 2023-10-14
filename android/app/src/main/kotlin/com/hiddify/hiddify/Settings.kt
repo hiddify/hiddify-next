@@ -32,9 +32,9 @@ object Settings {
     val perAppProxyList: List<String>
         get() {
             val stringValue = if (perAppProxyMode == PerAppProxyMode.INCLUDE) {
-                preferences.getString(SettingsKey.PER_APP_PROXY_INCLUDE_LIST, "")!!;
+                preferences.getString(SettingsKey.PER_APP_PROXY_INCLUDE_LIST, "")!!
             } else {
-                preferences.getString(SettingsKey.PER_APP_PROXY_EXCLUDE_LIST, "")!!;
+                preferences.getString(SettingsKey.PER_APP_PROXY_EXCLUDE_LIST, "")!!
             }
             if (!stringValue.startsWith(LIST_IDENTIFIER)) {
                 return emptyList()
