@@ -26,15 +26,15 @@ dependencies:
   json_annotation: ^4.8.1
 
   # state management
-  hooks_riverpod: ^2.4.1
-  flutter_hooks: ^0.20.1
-  riverpod_annotation: ^2.1.6
+  hooks_riverpod: ^2.4.3
+  flutter_hooks: ^0.20.3
+  riverpod_annotation: ^2.2.0
   rxdart: ^0.27.7
 
   # persistence
   drift: ^2.12.1
   sqlite3_flutter_libs: ^0.5.16
-  shared_preferences: ^2.2.1
+  shared_preferences: ^2.2.2
 
   # networking
   dio: ^5.3.3
@@ -46,9 +46,9 @@ dependencies:
   flutter_local_notifications: ^15.1.1
   mobile_scanner: ^3.4.1
   protocol_handler: ^0.1.5
-  flutter_native_splash: ^2.3.2
+  flutter_native_splash: ^2.3.3
   share_plus: ^7.1.0
-  window_manager: ^0.3.6
+  window_manager: ^0.3.7
   tray_manager: ^0.2.0
   package_info_plus: ^4.1.0
   url_launcher: ^6.1.14
@@ -75,7 +75,7 @@ dependencies:
   retry: ^3.1.2
 
   # widgets
-  go_router: ^11.1.2
+  go_router: ^11.1.4
   flex_color_scheme: ^7.3.1
   flutter_animate: ^4.2.0+1
   flutter_svg: ^2.0.7
@@ -92,7 +92,7 @@ dev_dependencies:
   lint: ^2.1.2
   build_runner: ^2.4.6
   json_serializable: ^6.7.1
-  freezed: ^2.4.3
+  freezed: ^2.4.5
   riverpod_generator: ^2.3.3
   drift_dev: ^2.12.1
   ffigen: ^8.0.2
