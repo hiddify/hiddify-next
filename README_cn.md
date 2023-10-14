@@ -10,10 +10,17 @@
 
 </div>
 
+
 ## 什么是 Hiddify-Next？
 基于 [Sing-box](https://github.com/SagerNet/sing-box) 的多平台客户端，用作通用代理工具链。 该应用程序提供了广泛的功能，如下所列。 它还支持大量协议。 该应用程序免费使用、无广告且开源。 它提供了一个安全且私密的工具来访问免费互联网。
 
 该应用程序是使用 [Flutter](https://flutter.dev/) 和 [Go](https://go.dev/) 开发的。 欲了解更多信息，您可以阅读我们的开发贡献指南。
+
+
+<div align=center>
+<img width=90% alt="English Demo" src="https://github.com/hiddify/hiddify-next/assets/125398461/531d6db2-ae7a-4234-addd-1a32b76050b8">
+
+</div>
 
 ## 🚀 主要特点
 ⭐ 简单的用户界面易于使用
