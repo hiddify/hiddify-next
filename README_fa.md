@@ -23,7 +23,7 @@
 
 
 <div align=center>
-<img width=90% alt="English Demo" src="https://github.com/hiddify/hiddify-next/assets/125398461/cfdc4b0e-0a26-42f5-90ef-1d8587d2afd2">
+<img width=90% alt="Farsi Demo" src="https://github.com/hiddify/hiddify-next/assets/125398461/cfdc4b0e-0a26-42f5-90ef-1d8587d2afd2">
 
 </div>
 
