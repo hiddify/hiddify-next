@@ -1,6 +1,6 @@
-<div align="left" markdown="1">
+<div align="left" markdown="1" dir="ltr">
 
-[**![Lang_English](https://user-images.githubusercontent.com/125398461/229074810-599bd7f9-0bc1-44a9-b76e-90bf7e182314.png) English**](README.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**![Lang_Chinese](https://user-images.githubusercontent.com/125398461/236453142-16f3a81e-8f40-403d-a452-34c4c9ed8f64.png) 简体中文**](README_cn.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[**🇺🇸 English**](README.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**🇨🇳 简体中文**](README_cn.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**🇷🇺 Русский**](README_ru.md)
 
 </div>
 
