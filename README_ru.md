@@ -85,7 +85,7 @@
 ## Благодарности
 
 - [Sing-box](https://github.com/SagerNet/sing-box)
-- [Sing-box для Android](https://github.com/SagerNet/sing-box-for-android)
+- [Sing-box для Андроид](https://github.com/SagerNet/sing-box-for-android)
 - [Clash](https://github.com/Dreamacro/clash)
 - [Clash Meta](https://github.com/MetaCubeX/Clash.Meta)
 - [FClash](https://github.com/Fclash/Fclash)
