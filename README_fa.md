@@ -63,94 +63,42 @@
 📱 انتشار نسخه اندروید در [گوگل‌پلی](https://play.google.com/store/apps/details?id=app.hiddify.com)
 
 ## دانلود
-<div dir=rtl align=center>
-<table >
-    <thead>
+<div dir=rtl align=right>
+
+   <table>
+    <thead align=center>
         <tr>
             <th>سیستم عامل</th>
-            <th>توزیع</th>
-            <th>راهنمای نصب</th>
-            <th>سی‌پی‌یو/معماری</th>
-            <th>لینک دانلود</th>
+            <th>دانلود</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody align=center>
         <tr>
-            <td rowspan=5>اندروید</td>
-            <td><code>Google Play</code></td>
-            <td><a href="https://github.com/hiddify/Hiddify-Server/wiki/Tutorial-for-HiddifyNext-app">لینک</a></td>
-            <td dir=ltr>Universal</td>
-            <td><a href="https://play.google.com/store/apps/details?id=app.hiddify.com">لینک</a></td>
+        <td>اندروید</td><td>
+            <a href="https://play.google.com/store/apps/details?id=app.hiddify.com"><img width=150px src="https://github.com/hiddify/hiddify-next/blob/main/docs/google-play-badge.png"></a><br>
+            <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-universal.apk"><img src="https://img.shields.io/badge/APK-Universal-044d29.svg?logo=github"></a><br>
+            <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-arm64.apk"><img src="https://img.shields.io/badge/APK-ArmV8-168039.svg?logo=github"></a><br>
+            <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-arm7.apk"><img src="https://img.shields.io/badge/APK-ArmV7-45bf55.svg?logo=github"></a><br>
+            <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-x86_64.apk"><img src="https://img.shields.io/badge/APK-x86_64-96ed89.svg?logo=github"></a>
+        </td>
         </tr>
         <tr>
-            <td dir=ltr><code>.apk</code></td>
-            <td><a href="https://github.com/hiddify/Hiddify-Server/wiki/Tutorial-for-HiddifyNext-app">لینک</a></td>
-            <td dir=ltr>Universal</td>
-            <td><a
-                    href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-universal.apk">لینک</a>
-            </td>
-        </tr>
-        <tr>
-            <td dir=ltr rowspan=3><code>.apk</code></td>
-            <td rowspan=3><a href="https://github.com/hiddify/Hiddify-Server/wiki/Tutorial-for-HiddifyNext-app">لینک</a>
-            </td>
-            <td dir=ltr>ArmV8</td>
-            <td><a
-                    href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-arm64.apk">لینک</a>
-            </td>
-        <tr>
-            <td>ArmV7</td>
-            <td><a
-                    href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-arm7.apk">لینک</a>
-            </td>
-        </tr>
-        <tr>
-            <td dir=ltr>x86_64</td>
-            <td><a
-                    href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-x86_64.apk">لینک</a>
-            </td>
-        </tr>
-        <tr>
-            <td rowspan=2>ویندوز</td>
-            <td dir=ltr><code>.exe</code></td>
-            <td><a href="https://github.com/hiddify/Hiddify-Server/wiki/Tutorial-for-HiddifyNext-app">لینک</a></td>
-            <td dir=ltr>64-bit</td>
-            <td><a
-                    href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-windows-x64-setup.zip">لینک</a>
-            </td>
-        </tr>
-        <tr>
-            <td><code>portable</code></td>
-            <td><a href="https://github.com/hiddify/Hiddify-Server/wiki/Tutorial-for-HiddifyNext-app">لینک</a></td>
-            <td dir=ltr>64-bit</td>
-            <td><a
-                    href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-windows-x64-portable.zip">لینک</a>
-            </td>
+            <td>ویندوز</td>
+            <td><a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-windows-x64-setup.zip"><img src="https://img.shields.io/badge/Setup-x64-0078d7.svg?logo=github"></a><br>
+            <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-windows-x64-portable.zip"><img src="https://img.shields.io/badge/Portable-x64-2d7d9a.svg?logo=github"></a>
+        </td>
         </tr>
         <tr>
             <td>مک</td>
-            <td dir=ltr><code>.dmg</code></td>
-            <td><a href="https://github.com/hiddify/Hiddify-Server/wiki/Tutorial-for-HiddifyNext-app">لینک</a></td>
-            <td dir=ltr>Apple Silicon & Intel</td>
-            <td><a
-                    href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-macos-universal.zip">لینک</a>
-            </td>
+            <td><a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-macos-universal.zip"><img src="https://img.shields.io/badge/DMG-Universal-ea005e.svg?logo=github"></a></td>
         </tr>
         <tr>
             <td>لینوکس</td>
-            <td dir=ltr ><code>.AppImage</code></td>
-            <td><a href="https://github.com/hiddify/Hiddify-Server/wiki/Tutorial-for-HiddifyNext-app">لینک</a></td>
-            <td dir=ltr>amd64</td>
-            <td><a
-                    href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-linux-x64.zip">لینک</a>
-            </td>
+            <td><a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-linux-x64.zip"><img src="https://img.shields.io/badge/AppImage-amd64-f84e29.svg?logo=github"> </a></td>
         </tr>
     </tbody>
 </table>
 
-
- <a href="https://play.google.com/store/apps/details?id=app.hiddify.com"><img width=200 src="https://github.com/hiddify/hiddify-next/blob/main/docs/google-play-badge.png"></a>
-</div>
 
 ## سپاسگزاری
 
