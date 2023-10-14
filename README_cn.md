@@ -123,7 +123,7 @@
 </a>
 </p>
 <p align=center>
- Made with <a rel="" target="_blank" href="https://contrib.rocks">Contrib.Rocks</a> 
+ 制作与 <a rel="" target="_blank" href="https://contrib.rocks">Contrib.Rocks</a> 
 </p>
 
 
