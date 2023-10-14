@@ -57,70 +57,43 @@ The app is developed using [Flutter](https://flutter.dev) and [Go](https://go.de
     <thead>
         <tr>
             <th>OS</th>
-            <th>CPU/Architecture</th>
-            <th>Download Link</th>
+            <th>Download</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td rowspan=5>Android</td>
-            <td>Universal</td>
-            <td><a href="https://play.google.com/store/apps/details?id=app.hiddify.com">Download from Google play</a></td>
+            <td><a href="https://play.google.com/store/apps/details?id=app.hiddify.com"><img width=150 src="https://github.com/hiddify/hiddify-next/blob/main/docs/google-play-badge.png"></a></td>
         </tr>
         <tr>
-            <td>Universal</td>
-            <td><a
-                    href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-universal.apk">Download APK</a>
-            </td>
+            <td><a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-universal.apk">Universal</a></td>
         </tr>
         <tr>
-            <td>ArmV8</td>
-            <td><a
-                    href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-arm64.apk">Download APK</a>
-            </td>
+            <td><a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-arm64.apk">ArmV8</a></td>
         <tr>
-            <td>ArmV7</td>
-            <td><a
-                    href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-arm7.apk">Download APK</a>
-            </td>
+            <td><a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-arm7.apk">ArmV7</a></td>
         </tr>
         <tr>
-            <td>x86_64</td>
-            <td><a
-                    href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-x86_64.apk">Download APK</a>
-            </td>
+            <td><a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-x86_64.apk">x86_64</a></td>
         </tr>
         <tr>
             <td rowspan=2>Windows</td>
-            <td>64-bit</td>
-            <td><a
-                    href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-windows-x64-setup.zip">Download Executable</a>
-            </td>
+            <td><a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-windows-x64-setup.zip">Setup 64-bit</a></td>
         </tr>
         <tr>
-            <td>64-bit</td>
-            <td><a
-                    href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-windows-x64-portable.zip">Download Portable</a>
-            </td>
+            <td><a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-windows-x64-portable.zip">Portable 64-bit</a></td>
         </tr>
         <tr>
             <td>macOS</td>
-            <td>Universal</td>
-            <td><a
-                    href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-macos-universal.zip">Download DMG</a>
-            </td>
+            <td><a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-macos-universal.zip">Universal</a></td>
         </tr>
         <tr>
             <td>Linux</td>
-            <td>amd64</td>
-            <td><a
-                    href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-linux-x64.zip">Download AppImage</a>
-            </td>
+            <td><a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-linux-x64.zip">amd64 AppImage</a></td>
         </tr>
     </tbody>
 </table>
 
-<a href="https://play.google.com/store/apps/details?id=app.hiddify.com"><img width=200 src="https://github.com/hiddify/hiddify-next/blob/main/docs/google-play-badge.png"></a>
 
 </div>
 
