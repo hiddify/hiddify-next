@@ -53,13 +53,13 @@
 ## Скачать
 <div align=left>
 <table>
-    <thead align=center>
+    <thead align=left>
         <tr>
             <th>Операционная система</th>
             <th>Скачать</th>
         </tr>
     </thead>
-    <tbody align=center>
+    <tbody align=left>
         <tr>
         <td>Андроид</td><td>
             <a href="https://play.google.com/store/apps/details?id=app.hiddify.com"><img width=150px src="https://github.com/hiddify/hiddify-next/blob/main/docs/google-play-badge.png"></a><br>
