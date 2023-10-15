@@ -95,6 +95,9 @@ The app is developed using [Flutter](https://flutter.dev) and [Go](https://go.de
 
 </div>
 
+## Installation and tutorials
+Please find tutorial information on our [wiki page](https://github.com/hiddify/hiddify-server/wiki).
+
 ## Acknowledgements
 
 - [Sing-box](https://github.com/SagerNet/sing-box)
