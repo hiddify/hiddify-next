@@ -1,7 +1,17 @@
 # Changelog
 
 
-## 0.9.1 (2023-10-15)
+## 0.9.2 (2023-10-15)
+
+#### Other
+
+* Fix ndk setup. 
+
+* Fix android arm bug. 
+
+
+
+## v0.9.1 (2023-10-15)
 
 #### Other
 
