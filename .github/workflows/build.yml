@@ -86,7 +86,6 @@ jobs:
           ndk-version: ${{ env.NDK_VERSION }}
           add-to-path: true
           link-to-sdk: true
-          local-cache: true
 
       - name: Setup Flutter Distributor
         if: ${{ !startsWith(matrix.platform,'android') }}
