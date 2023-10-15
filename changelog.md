@@ -1,15 +1,129 @@
 # Changelog
 
 
-## 0.9.0 (2023-10-13)
+## 0.9.1 (2023-10-15)
 
-#### New
+#### Other
 
-* Add chinese lang. 
+* Update README_cn.md. 
 
-#### Changes
+* Update README.md. 
 
-* Remove auto release message. 
+* Update README_fa.md. 
+
+* Update README.md. 
+
+* Update README.md. 
+
+* Update README_ru.md. 
+
+* Update README_cn.md. 
+
+* Update README_fa.md. 
+
+* Update README.md. 
+
+* Delete docs/file. 
+
+* Google play badge. 
+
+* Delete docs/google-play-badge1.png. 
+
+* Upload google play badge. 
+
+* Create file. 
+
+* Delete docs/google-play-badge.png. 
+
+* Fix ci. 
+
+* Change ndk setup. 
+
+* Update dependencies. 
+
+* Update README_ru.md. 
+
+* Update README_cn.md. 
+
+* Update README_ru.md. 
+
+* Update README_ru.md. 
+
+* Change desktop error handling. 
+
+* Fix android bugs. 
+
+* Update README.md. 
+
+* Update README_cn.md. 
+
+* Update README_ru.md. 
+
+* Update README_ru.md. 
+
+* Update README_cn.md. 
+
+* Update README_fa.md. 
+
+* Update README.md. 
+
+* Delete Russian_Flag.png. 
+
+* Add Russian flag. 
+
+* Delete docs/file. 
+
+* Create README_ru.md. 
+
+* Delete REAMME_ru.md. 
+
+* Create REAMME_ru.md. 
+
+* Update README_cn.md. 
+
+* Update README_fa.md. 
+
+* Update README_fa.md. 
+
+* Update README.md. 
+
+* Update README_cn.md. 
+
+* Update README_cn.md. 
+
+* Update README_fa.md. 
+
+* Update README.md. 
+
+* Update README.md. 
+
+* Update file. 
+
+* Uplaod a badge for google play. 
+
+* Delete google-play-badge.png. 
+
+* Add files via upload. 
+
+* Create file. 
+
+* Delete docs/google-play-badge.png. 
+
+* Delete google-play-badge.png. 
+
+* Add files via upload. 
+
+* Update README_fa.md. 
+
+* Update README.md. 
+
+* Update README.md. 
+
+* Create Chinese README_cn.md. 
+
+
+
+## v0.8.12 (2023-10-13)
 
 #### Fix
 
@@ -18,26 +132,6 @@
 * Bug. 
 
 * Release names. 
-
-* Release changelog. 
-
-* Missing libs. 
-
-* Release bug. 
-
-* Release message. 
-
-* Windows build. 
-
-* Build issue. 
-
-* Bug. 
-
-* Translate. 
-
-* Hysteria2 and some links. 
-
-* Chinese translation. 
 
 #### Other
 
@@ -141,6 +235,58 @@
 
 * Update release template. 
 
+
+
+## v0.8.11 (2023-10-08)
+
+#### Changes
+
+* Remove auto release message. 
+
+
+
+## v0.8.10 (2023-10-08)
+
+#### Fix
+
+* Release changelog. 
+
+
+
+## v0.8.9 (2023-10-08)
+
+#### Fix
+
+* Missing libs. 
+
+
+
+## v0.8.8 (2023-10-08)
+
+#### Fix
+
+* Release bug. 
+
+
+
+## v0.8.7 (2023-10-08)
+
+#### Fix
+
+* Release message. 
+
+
+
+## v0.8.6 (2023-10-08)
+
+#### Fix
+
+* Windows build. 
+
+* Build issue. 
+
+#### Other
+
 * Merge branch 'main' of hiddify-github:hiddify/hiddify-next. 
 
 * Update release_message.md. 
@@ -176,6 +322,28 @@
 * Update release_message.md. 
 
 * Fix build. 
+
+
+
+## v0.8.5 (2023-10-07)
+
+#### Fix
+
+* Bug. 
+
+
+
+## v0.8.4 (2023-10-07)
+
+#### Fix
+
+* Translate. 
+
+
+
+## v0.8.3 (2023-10-07)
+
+#### Other
 
 * Add release message  and help. 
 
@@ -231,6 +399,16 @@
 
 * Add issue template. 
 
+
+
+## v0.8.2 (2023-10-07)
+
+#### Fix
+
+* Hysteria2 and some links. 
+
+#### Other
+
 * Update README_fa.md. 
 
 * Update README_fa.md. 
@@ -271,6 +449,20 @@
   _Add some features to the readme_
 
 * Add debug export to clipboard. 
+
+
+
+## v0.8.1 (2023-10-06)
+
+#### New
+
+* Add chinese lang. 
+
+#### Fix
+
+* Chinese translation. 
+
+#### Other
 
 * Update core 0.5.1. 
 

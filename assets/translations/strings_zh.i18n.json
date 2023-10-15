@@ -82,11 +82,11 @@
             "failureMsg": "保存配置文件失败"
         },
         "detailsForm": {
-            "nameLabel": "姓名",
-            "nameHint": "个人资料名称",
+            "nameLabel": "名称",
+            "nameHint": "配置文件名称",
             "urlLabel": "网址",
             "urlHint": "完整配置网址",
-            "emptyNameMsg": "姓名为必填项",
+            "emptyNameMsg": "名称为必填项",
             "invalidUrlMsg": "无效的网址",
             "lastUpdate": "最后更新",
             "updateInterval": "自动更新",
@@ -101,7 +101,7 @@
         "sortOptions": {
             "unsorted": "默认",
             "name": "按字母顺序",
-            "delay": "延迟"
+            "delay": "按延迟顺序"
         }
     },
     "logs": {
@@ -110,7 +110,7 @@
         "filterHint": "筛选",
         "allLevelsFilter": "全部",
         "shareCoreLogs": "分享核心日志",
-        "shareAppLogs": "共享应用程序日志"
+        "shareAppLogs": "分享日志"
     },
     "settings": {
         "pageTitle": "设置",
@@ -174,20 +174,20 @@
             "ipv6Mode": "IPv6路由",
             "ipv6Modes": {
                 "disable": "禁用",
-                "enable": "使能够",
+                "enable": "启用",
                 "prefer": "首选",
                 "only": "独家的"
             },
-            "remoteDnsAddress": "远程域名解析",
-            "remoteDnsDomainStrategy": "远程 DNS 域策略",
-            "directDnsAddress": "直接域名解析",
+            "remoteDnsAddress": "远程DNS解析",
+            "remoteDnsDomainStrategy": "远程 DNS 域名策略",
+            "directDnsAddress": "直接DNS解析",
             "directDnsDomainStrategy": "直接 DNS 域策略",
-            "mixedPort": "混合港口",
+            "mixedPort": "混合端口",
             "localDnsPort": "本地 DNS 端口",
             "tunImplementation": "TUN实施",
             "mtu": "MTU",
             "connectionTestUrl": "连接测试网址",
-            "urlTestInterval": "URL 测试间隔",
+            "urlTestInterval": "网址 测试间隔",
             "enableClashApi": "启用Clash API",
             "clashApiPort": "Clash API 端口",
             "enableTun": "启用TUN",
