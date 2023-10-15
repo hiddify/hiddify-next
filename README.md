@@ -96,7 +96,7 @@ The app is developed using [Flutter](https://flutter.dev) and [Go](https://go.de
 </div>
 
 ## Installation and tutorials
-Please find tutorial information on our [wiki page](https://github.com/hiddify/hiddify-server/wiki).
+Please find tutorial information on the [wiki page](https://github.com/hiddify/hiddify-server/wiki).
 
 ## Acknowledgements
 
