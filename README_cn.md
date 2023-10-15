@@ -20,7 +20,7 @@
 
 
 <div align=center>
-<img width=90% alt="English Demo" src="https://github.com/hiddify/hiddify-next/assets/125398461/531d6db2-ae7a-4234-addd-1a32b76050b8">
+<img width=90% alt="Chinese Demo" src="https://github.com/hiddify/hiddify-next/assets/125398461/531d6db2-ae7a-4234-addd-1a32b76050b8">
 
 </div>
 
@@ -55,13 +55,13 @@
 
 <div align=left>
 <table>
-    <thead align=center>
+    <thead align=left>
         <tr>
             <th>操作系统</th>
             <th>下载</th>
         </tr>
     </thead>
-    <tbody align=center>
+    <tbody align=left>
         <tr>
         <td>安卓</td><td>
             <a href="https://play.google.com/store/apps/details?id=app.hiddify.com"><img width=150px src="https://github.com/hiddify/hiddify-next/blob/main/docs/google-play-badge.png"></a><br>
