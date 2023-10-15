@@ -19,7 +19,7 @@ concurrency:
 
 env:
   CHANNEL: ${{ github.ref_type == 'tag' && endsWith(github.ref_name, 'dev') && 'dev' || github.ref_type != 'tag' && 'dev' || 'prod' }}
-  NDK_VERSION: '26.1.10909125'
+  NDK_VERSION: r26b
 
 jobs:
   build:
@@ -80,12 +80,13 @@ jobs:
 
       - name: Setup NDK
         if: startsWith(matrix.platform,'android')
-        uses: nttld/setup-ndk@v1
+        uses: nttld/setup-ndk@v1.4.1
         id: setup-ndk
         with:
           ndk-version: ${{ env.NDK_VERSION }}
           add-to-path: true
           link-to-sdk: true
+          local-cache: true
 
       - name: Setup Flutter Distributor
         if: ${{ !startsWith(matrix.platform,'android') }}
