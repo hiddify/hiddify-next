@@ -15,7 +15,7 @@
 
 ## What is Hiddify-Next?
 
-<p dir="ltr" style="font-size: 16px">A multi-platform client based on <a href="https://github.com/SagerNet/sing-box">Sing-box</a> that serves as a universal proxy toolchain. This app offers a wide range of capabilities, which are listed below. It also supports a large number of protocols. The app is free to use, ad-free, and open-source. It provides a secure and private tool for getting access to the free internet. </p>
+<p dir="ltr" style="font-size: 16px">A multi-platform client based on <a href="https://github.com/SagerNet/sing-box">Sing-box</a> that serves as a universal proxy tool-chain. This app offers a wide range of capabilities, which are listed below. It also supports a large number of protocols. The app is free to use, ad-free, and open-source. It provides a secure and private tool for getting access to the free internet. </p>
 
 The app is developed using [Flutter](https://flutter.dev) and [Go](https://go.dev). For more information you can read through our [Contribution Guidelines](https://github.com/hiddify/hiddify-next/blob/main/CONTRIBUTING.md) for development.
 
