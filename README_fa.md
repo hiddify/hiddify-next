@@ -66,13 +66,13 @@
 <div dir=rtl align=right>
 
    <table>
-    <thead align=center>
+    <thead align=right>
         <tr>
             <th>سیستم عامل</th>
             <th>دانلود</th>
         </tr>
     </thead>
-    <tbody align=center>
+    <tbody align=right>
         <tr>
         <td>اندروید</td><td>
             <a href="https://play.google.com/store/apps/details?id=app.hiddify.com"><img width=150px src="https://github.com/hiddify/hiddify-next/blob/main/docs/google-play-badge.png"></a><br>
