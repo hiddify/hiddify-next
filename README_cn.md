@@ -90,6 +90,9 @@
 
 </div>
 
+## 安装和教程
+请在 wiki 页面上查找教程信息。
+
 ## 致谢
 - [Sing-box](https://github.com/SagerNet/sing-box)
 - [Sing-box 适用于安卓](https://github.com/SagerNet/sing-box-for-android)
