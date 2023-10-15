@@ -16,8 +16,11 @@ on:
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
   cancel-in-progress: true
+
 env:
   CHANNEL: ${{ github.ref_type == 'tag' && endsWith(github.ref_name, 'dev') && 'dev' || github.ref_type != 'tag' && 'dev' || 'prod' }}
+  NDK_VERSION: '26.1.10909125'
+
 jobs:
   build:
     permissions: write-all
@@ -74,6 +77,15 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: 11
+
+      - name: Setup NDK
+        if: startsWith(matrix.platform,'android')
+        uses: nttld/setup-ndk@v1
+        id: setup-ndk
+        with:
+          ndk-version: ${{ env.NDK_VERSION }}
+          add-to-path: true
+          link-to-sdk: true
 
       - name: Setup Flutter Distributor
         if: ${{ !startsWith(matrix.platform,'android') }}

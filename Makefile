@@ -35,14 +35,15 @@ sync_translate:
 	cd .github && bash sync_translate.sh
 	make translate
 
-
 android-release: android-apk-release
 
 android-apk-release:
 	flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi --target $(TARGET) $(BUILD_ARGS)
+	ls -R build/app/outputs
 
 android-aab-release:
 	flutter build appbundle --target $(TARGET) $(BUILD_ARGS) --dart-define release=google-play
+	ls -R build/app/outputs
 
 windows-release:
 	flutter_distributor package --platform windows --targets exe $(DISTRIBUTOR_ARGS)
