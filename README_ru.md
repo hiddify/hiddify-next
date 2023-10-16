@@ -86,6 +86,9 @@
     </tbody>
 </table>
 
+## Установка и руководства
+Учебную информацию можно найти на [вики-странице](https://github.com/hiddify/hiddify-server/wiki).
+
 ## Благодарности
 
 - [Sing-box](https://github.com/SagerNet/sing-box)
