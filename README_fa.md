@@ -100,7 +100,7 @@
 </table>
 
 ## نصب و آموزش
-برای مشاهده مطالب آموزشی به صفحه [ویکی پروژه](https://github.com/hiddify/hiddify-server/wiki_fa) مراجعه نمایید.
+برای مشاهده مطالب آموزشی به صفحه [ویکی پروژه](https://github.com/hiddify/hiddify-next/wiki_fa) مراجعه نمایید.
 
 ## سپاسگزاری
 
