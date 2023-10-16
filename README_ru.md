@@ -87,7 +87,7 @@
 </table>
 
 ## Установка и руководства
-Учебную информацию можно найти на [вики-странице](https://github.com/hiddify/hiddify-server/wiki).
+Учебную информацию можно найти на [вики-странице](https://github.com/hiddify/hiddify-next/wiki).
 
 ## Благодарности
 
