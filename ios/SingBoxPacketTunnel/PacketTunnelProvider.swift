@@ -7,30 +7,31 @@
 
 import NetworkExtension
 
-class PacketTunnelProvider: NEPacketTunnelProvider {
+class PacketTunnelProvider: ExtensionProvider {
 
-    override func startTunnel(options: [String : NSObject]?, completionHandler: @escaping (Error?) -> Void) {
-        // Add code here to start the process of connecting the tunnel.
-    }
+    private var upload: Int64 = 0
+    private var download: Int64 = 0
+    private var trafficLock: NSLock = NSLock()
     
-    override func stopTunnel(with reason: NEProviderStopReason, completionHandler: @escaping () -> Void) {
-        // Add code here to start the process of stopping the tunnel.
-        completionHandler()
-    }
+    var trafficReader: TrafficReader!
     
-    override func handleAppMessage(_ messageData: Data, completionHandler: ((Data?) -> Void)?) {
-        // Add code here to handle the message.
-        if let handler = completionHandler {
-            handler(messageData)
+    override func startTunnel(options: [String : NSObject]?) async throws {
+        try await super.startTunnel(options: options)
+        trafficReader = TrafficReader { [unowned self] traffic in
+            trafficLock.lock()
+            upload += traffic.up
+            download += traffic.down
+            trafficLock.unlock()
         }
     }
     
-    override func sleep(completionHandler: @escaping () -> Void) {
-        // Add code here to get ready to sleep.
-        completionHandler()
-    }
-    
-    override func wake() {
-        // Add code here to wake up.
+    override func handleAppMessage(_ messageData: Data) async -> Data? {
+        let message = String(data: messageData, encoding: .utf8)
+        switch message {
+        case "stats":
+            return "\(upload),\(download)".data(using: .utf8)!
+        default:
+            return nil
+        }
     }
 }

@@ -5,7 +5,8 @@ ANDROID_OUT=./android/app/libs
 DESKTOP_OUT=./libcore/bin
 GEO_ASSETS_DIR=./assets/core
 
-CORE_NAME=hiddify-libcore
+CORE_PRODUCT_NAME=libcore
+CORE_NAME=hiddify-$(CORE_PRODUCT_NAME)
 ifeq ($(CHANNEL),prod)
 CORE_URL=https://github.com/hiddify/hiddify-next-core/releases/download/v$(core.version)
 else
@@ -100,7 +101,7 @@ build-macos-libs:
 	make -C libcore -f Makefile macos-universal && mv $(BINDIR)/$(CORE_NAME)-macos-universal.dylib $(DESKTOP_OUT)/libcore.dylib
 
 build-ios-libs: #not tested
-	make -C libcore -f Makefile ios && mv $(BINDIR)/$(CORE_NAME)-ios.xcframework $(DESKTOP_OUT)/libcore.xcframework
+	make -C libcore -f Makefile ios # && mv $(BINDIR)/$(CORE_PRODUCT_NAME).xcframework $(DESKTOP_OUT)/libcore.xcframework
 
 
 release: # Create a new tag for release.
