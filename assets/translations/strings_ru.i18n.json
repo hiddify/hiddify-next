@@ -30,8 +30,8 @@
         "stats": {
             "traffic": "Скорость",
             "trafficTotal": "Трафик",
-            "uplink": "Восходящий канал",
-            "downlink": "Нисходящий канал"
+            "uplink": "Входящий канал",
+            "downlink": "Исходящий канал"
         }
     },
     "profile": {
@@ -195,10 +195,10 @@
         }
     },
     "about": {
-        "pageTitle": "Информация",
+        "pageTitle": "О программе",
         "version": "Версия",
         "sourceCode": "Исходный код",
-        "telegramChannel": "Канал Telegram",
+        "telegramChannel": "Telegram канал",
         "checkForUpdate": "Проверка обновления",
         "privacyPolicy": "Политика конфиденциальности",
         "termsAndConditions": "Условия и положения"
@@ -211,7 +211,7 @@
         "newVersionLbl": "Новая версия",
         "updateNowBtnTxt": "Обновить сейчас",
         "laterBtnTxt": "Позже",
-        "ignoreBtnTxt": "Игнорировать"
+        "ignoreBtnTxt": "Пропустить"
     },
     "tray": {
         "dashboard": "Панель",
