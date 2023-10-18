@@ -4,9 +4,8 @@
   "languageTags": [
     "en",
     "fa",
-    "ru-RU",
-    "fr-FR",
-    "zh-CN"
+    "ru",   
+    "zh"
   ],
   "modules": [
     "https://cdn.jsdelivr.net/npm/@inlang/plugin-i18next@4/dist/index.js",
@@ -16,7 +15,7 @@
     "https://cdn.jsdelivr.net/npm/@inlang/message-lint-rule-missing-translation@1/dist/index.js"
   ],
   "plugin.inlang.i18next": {
-    "pathPattern": "./assets/translations/{languageTag}.json",
+    "pathPattern": "./assets/translations/strings_{languageTag}.i18n.json",
     "variableReferencePattern": [
       "@:"
     ]

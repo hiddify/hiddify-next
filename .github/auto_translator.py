@@ -6,8 +6,8 @@ import os
 
 
 def get_path(lang):
-    if lang == 'en':
-        return f'../assets/translations/strings.i18n.json'
+    # if lang == 'en':
+    #     return f'../assets/translations/strings.i18n.json'
     return f'../assets/translations/strings_{lang}.i18n.json'
 
 
