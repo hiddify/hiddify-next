@@ -46,7 +46,7 @@
             "remainingDuration": "${duration} Days Remaining",
             "remainingTrafficSemanticLabel": "${consumed} of ${total} traffic consumed.",
             "expired": "Expired",
-            "noTraffic": "No more traffic"
+            "noTraffic": "Out of Quota"
         },
         "sortBy": {
             "lastUpdate": "Recently updated",
