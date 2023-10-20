@@ -8,7 +8,7 @@ import 'package:combine/combine.dart';
 import 'package:ffi/ffi.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:hiddify/domain/connectivity/connectivity.dart';
-import 'package:hiddify/domain/singbox/config_options.dart';
+import 'package:hiddify/domain/singbox/singbox.dart';
 import 'package:hiddify/gen/singbox_generated_bindings.dart';
 import 'package:hiddify/services/singbox/shared.dart';
 import 'package:hiddify/services/singbox/singbox_service.dart';

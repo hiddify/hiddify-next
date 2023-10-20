@@ -1,6 +1,6 @@
 // ignore_for_file: avoid_manual_providers_as_generated_provider_dependency
 import 'package:hiddify/core/prefs/prefs.dart';
-import 'package:hiddify/domain/singbox/config_options.dart';
+import 'package:hiddify/domain/singbox/singbox.dart';
 import 'package:hiddify/utils/pref_notifier.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -67,6 +67,32 @@ final enableTunStore = PrefNotifier.provider("enable-tun", _default.enableTun);
 final setSystemProxyStore =
     PrefNotifier.provider("set-system-proxy", _default.setSystemProxy);
 
+// HACK temporary
+@riverpod
+List<Rule> rules(RulesRef ref) => switch (ref.watch(regionNotifierProvider)) {
+      Region.ir => [
+          const Rule(
+            id: "id",
+            name: "name",
+            enabled: true,
+            domains: "domain:.ir",
+            ip: "geoip:ir",
+            outbound: RuleOutbound.bypass,
+          ),
+        ],
+      Region.cn => [
+          const Rule(
+            id: "id",
+            name: "name",
+            enabled: true,
+            domains: "domain:.cn,geosite:cn",
+            ip: "geoip:cn",
+            outbound: RuleOutbound.bypass,
+          ),
+        ],
+      _ => [],
+    };
+
 @riverpod
 ConfigOptions configOptions(ConfigOptionsRef ref) => ConfigOptions(
       executeConfigAsIs:
@@ -88,4 +114,5 @@ ConfigOptions configOptions(ConfigOptionsRef ref) => ConfigOptions(
       clashApiPort: ref.watch(clashApiPortStore),
       enableTun: ref.watch(enableTunStore),
       setSystemProxy: ref.watch(setSystemProxyStore),
+      rules: ref.watch(rulesProvider),
     );

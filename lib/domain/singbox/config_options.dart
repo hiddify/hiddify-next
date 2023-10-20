@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hiddify/core/prefs/prefs.dart';
+import 'package:hiddify/domain/singbox/rules.dart';
 import 'package:hiddify/utils/platform_utils.dart';
 
 part 'config_options.freezed.dart';
@@ -19,13 +20,13 @@ class ConfigOptions with _$ConfigOptions {
     @Default(IPv6Mode.disable) IPv6Mode ipv6Mode,
     @Default("tcp://8.8.8.8") String remoteDnsAddress,
     @Default(DomainStrategy.auto) DomainStrategy remoteDnsDomainStrategy,
-    @Default("8.8.8.8") String directDnsAddress,
+    @Default("local") String directDnsAddress,
     @Default(DomainStrategy.auto) DomainStrategy directDnsDomainStrategy,
     @Default(2334) int mixedPort,
     @Default(6450) int localDnsPort,
     @Default(TunImplementation.mixed) TunImplementation tunImplementation,
     @Default(9000) int mtu,
-    @Default("https://www.gstatic.com/generate_204") String connectionTestUrl,
+    @Default("http://cp.cloudflare.com/") String connectionTestUrl,
     @IntervalConverter()
     @Default(Duration(minutes: 10))
     Duration urlTestInterval,
@@ -33,6 +34,9 @@ class ConfigOptions with _$ConfigOptions {
     @Default(6756) int clashApiPort,
     @Default(false) bool enableTun,
     @Default(true) bool setSystemProxy,
+    @Default(false) bool bypassLan,
+    @Default(false) bool enableFakeDns,
+    List<Rule>? rules,
   }) = _ConfigOptions;
 
   static ConfigOptions initial = ConfigOptions(
