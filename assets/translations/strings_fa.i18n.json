@@ -129,11 +129,11 @@
             "themeModes": {
                 "system": "پیروی از تم دستگاه",
                 "dark": "تم تیره",
-                "light": "تم روشن"
+                "light": "تم روشن",
+                "black": "تم سیاه"
             },
             "enableAnalytics": "فعال‌سازی آنالیتیکز",
             "enableAnalyticsMsg": "ارائه دسترسی آنالیز و گزارش خطا برای بهبود عملکرد برنامه",
-            "trueBlack": "کاملا سیاه",
             "autoStart": "اجرا با روشن شدن سیستم",
             "silentStart": "اجرای ساکت",
             "openWorkingDir": "باز کردن دایرکتوری کاری",

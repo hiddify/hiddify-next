@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:hiddify/features/common/common.dart';
-import 'package:hiddify/features/settings/widgets/theme_mode_switch_button.dart';
 import 'package:hiddify/services/auto_start_service.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -44,30 +43,33 @@ class GeneralSettingTiles extends HookConsumerWidget {
         ),
         ListTile(
           title: Text(t.settings.general.themeMode),
-          subtitle: Text(
-            switch (theme.mode) {
-              ThemeMode.system => t.settings.general.themeModes.system,
-              ThemeMode.light => t.settings.general.themeModes.light,
-              ThemeMode.dark => t.settings.general.themeModes.dark,
-            },
-          ),
-          trailing: ThemeModeSwitch(
-            themeMode: theme.mode,
-            onChanged: ref.read(themeModeNotifierProvider.notifier).update,
-          ),
+          subtitle: Text(theme.mode.present(t)),
           leading: const Icon(Icons.light_mode),
           onTap: () async {
-            await ref.read(themeModeNotifierProvider.notifier).update(
-                  Theme.of(context).brightness == Brightness.light
-                      ? ThemeMode.dark
-                      : ThemeMode.light,
+            final selectedThemeMode = await showDialog<AppThemeMode>(
+              context: context,
+              builder: (context) {
+                return SimpleDialog(
+                  title: Text(t.settings.general.themeMode),
+                  children: AppThemeMode.values
+                      .map(
+                        (e) => RadioListTile(
+                          title: Text(e.present(t)),
+                          value: e,
+                          groupValue: theme.mode,
+                          onChanged: (e) => context.pop(e),
+                        ),
+                      )
+                      .toList(),
                 );
+              },
+            );
+            if (selectedThemeMode != null) {
+              await ref
+                  .read(themeModeNotifierProvider.notifier)
+                  .update(selectedThemeMode);
+            }
           },
-        ),
-        SwitchListTile(
-          title: Text(t.settings.general.trueBlack),
-          value: theme.trueBlack,
-          onChanged: ref.read(trueBlackThemeNotifierProvider.notifier).update,
         ),
         if (PlatformUtils.isDesktop) ...[
           SwitchListTile(

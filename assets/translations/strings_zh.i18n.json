@@ -129,11 +129,11 @@
             "themeModes": {
                 "system": "遵循系统主题",
                 "dark": "深色模式",
-                "light": "灯光模式"
+                "light": "灯光模式",
+                "black": "黑色模式"
             },
             "enableAnalytics": "启用分析",
             "enableAnalyticsMsg": "授予收集分析并发送崩溃报告以改进应用程序的权限",
-            "trueBlack": "纯黑",
             "autoStart": "开机启动",
             "silentStart": "无声启动",
             "openWorkingDir": "打开工作目录",
