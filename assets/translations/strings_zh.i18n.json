@@ -123,6 +123,7 @@
             "regions": {
                 "ir": "伊朗 (ir)",
                 "cn": "中国 (cn)",
+                "ru": "俄罗斯 (ru)",
                 "other": "其他"
             },
             "themeMode": "主题模式",

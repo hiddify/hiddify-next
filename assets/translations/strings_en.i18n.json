@@ -123,6 +123,7 @@
             "regions": {
                 "ir": "Iran (ir)",
                 "cn": "China (cn)",
+                "ru": "Russia (ru)",
                 "other": "Other"
             },
             "themeMode": "Theme Mode",

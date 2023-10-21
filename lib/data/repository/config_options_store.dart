@@ -90,6 +90,16 @@ List<Rule> rules(RulesRef ref) => switch (ref.watch(regionNotifierProvider)) {
             outbound: RuleOutbound.bypass,
           ),
         ],
+      Region.ru => [
+          const Rule(
+            id: "id",
+            name: "name",
+            enabled: true,
+            domains: "domain:.ru",
+            ip: "geoip:ru",
+            outbound: RuleOutbound.bypass,
+          ),
+        ],
       _ => [],
     };
 
