@@ -170,3 +170,8 @@ sentry:
   upload_sources: true
   log_level: info
   ignore_missing: true
+
+cider:
+  link_template:
+    tag: https://github.com/hiddify/hiddify-next/releases/tag/%tag%
+    diff: https://github.com/hiddify/hiddify-next/compare/%from%...%to%
