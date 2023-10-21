@@ -25,14 +25,6 @@
 
 The app is developed using [Flutter](https://flutter.dev) and [Go](https://go.dev). For more information you can read through our [Contribution Guidelines](https://github.com/hiddify/hiddify-next/blob/main/CONTRIBUTING.md) for development.
 
-## Improve Translations
-You can easily contribute to this project by using the following links to improve the translations:
- - [English](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en)
-- [Persian](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=fa)
-- [Russian](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=ru)
-- [Chinese](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=zh)
-
-
 
 
 ## 🚀 Main features
@@ -107,6 +99,15 @@ You can easily contribute to this project by using the following links to improv
 
 ## Installation and tutorials
 Please find tutorial information on the [wiki page](https://github.com/hiddify/hiddify-next/wiki).
+
+## Improve Translations
+You can easily contribute to this project by using the following links to improve the translations:
+ - [English](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en)
+- [Persian](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=fa)
+- [Russian](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=ru)
+- [Chinese](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=zh)
+
+
 
 ## Acknowledgements
 
