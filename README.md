@@ -13,11 +13,6 @@
 
 </div>
 
-<div align=center>
-<img width=90% alt="English Demo" src="https://github.com/hiddify/hiddify-next/assets/125398461/ffe5346d-3404-470f-b5e0-4364e23743d2">
-
-
-</div>
 
 ## What is Hiddify-Next?
 
@@ -25,6 +20,11 @@
 
 The app is developed using [Flutter](https://flutter.dev) and [Go](https://go.dev). For more information you can read through our [Contribution Guidelines](https://github.com/hiddify/hiddify-next/blob/main/CONTRIBUTING.md) for development.
 
+<div align=center>
+<img width=90% alt="English Demo" src="https://github.com/hiddify/hiddify-next/assets/125398461/ffe5346d-3404-470f-b5e0-4364e23743d2">
+
+
+</div>
 
 
 ## 🚀 Main features
