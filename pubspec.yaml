@@ -10,8 +10,6 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.6
-
-  # internationalization
   flutter_localizations:
     sdk: flutter
   intl: ^0.18.1
@@ -19,28 +17,18 @@ dependencies:
   slang_flutter: ^3.24.0
   timeago: ^3.5.0
   flutter_localized_locales: ^2.0.5
-
-  # data & serialization
   fpdart: ^1.1.0
   freezed_annotation: ^2.4.1
   json_annotation: ^4.8.1
-
-  # state management
   hooks_riverpod: ^2.4.3
   flutter_hooks: ^0.20.3
   riverpod_annotation: ^2.2.0
   rxdart: ^0.27.7
-
-  # persistence
   drift: ^2.12.1
   sqlite3_flutter_libs: ^0.5.16
   shared_preferences: ^2.2.2
-
-  # networking
   dio: ^5.3.3
   web_socket_channel: ^2.4.0
-
-  # native
   ffi: ^2.1.0
   path_provider: ^2.1.1
   flutter_local_notifications: ^15.1.1
@@ -54,13 +42,9 @@ dependencies:
   url_launcher: ^6.1.14
   vclibs: ^0.1.0
   launch_at_startup: ^0.2.2
-
-  # analytics
   sentry_flutter: ^7.10.1
   sentry_dart_plugin: ^1.6.2
   sentry_dio: ^7.10.1
-
-  # utils
   combine: ^0.5.6
   path: ^1.8.3
   loggy: ^2.0.3
@@ -73,8 +57,7 @@ dependencies:
   accessibility_tools: ^1.0.0
   neat_periodic_task: ^2.0.1
   retry: ^3.1.2
-
-  # widgets
+  watcher: ^1.1.0
   go_router: ^11.1.4
   flex_color_scheme: ^7.3.1
   flutter_animate: ^4.2.0+1

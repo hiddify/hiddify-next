@@ -52,13 +52,13 @@ class ConfigOptionsPage extends HookConsumerWidget {
             ),
           ListTile(
             title: Text(t.settings.config.logLevel),
-            subtitle: Text(options.logLevel.name),
+            subtitle: Text(options.logLevel.name.toUpperCase()),
             onTap: () async {
               final logLevel = await SettingsPickerDialog(
                 title: t.settings.config.logLevel,
                 selected: options.logLevel,
-                options: LogLevel.values,
-                getTitle: (e) => e.name,
+                options: LogLevel.choices,
+                getTitle: (e) => e.name.toUpperCase(),
                 resetValue: _default.logLevel,
               ).show(context);
               if (logLevel == null) return;

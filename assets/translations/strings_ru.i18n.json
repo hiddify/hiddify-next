@@ -106,11 +106,13 @@
     },
     "logs": {
         "pageTitle": "Журналы",
-        "clearLogsButtonText": "Очистить журналы",
         "filterHint": "Фильтр",
         "allLevelsFilter": "Все",
         "shareCoreLogs": "Поделиться журналами ядра",
-        "shareAppLogs": "Поделиться журналами приложения"
+        "shareAppLogs": "Поделиться журналами приложения",
+        "pauseTooltip": "Пауза",
+        "resumeTooltip": "Резюме",
+        "clearTooltip": "Прозрачный"
     },
     "settings": {
         "pageTitle": "Настройки",

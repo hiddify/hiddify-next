@@ -106,11 +106,13 @@
     },
     "logs": {
         "pageTitle": "Logs",
-        "clearLogsButtonText": "Clear Logs",
         "filterHint": "Filter",
         "allLevelsFilter": "All",
         "shareCoreLogs": "Share Core Logs",
-        "shareAppLogs": "Share App logs"
+        "shareAppLogs": "Share App logs",
+        "pauseTooltip": "Pause",
+        "resumeTooltip": "Resume",
+        "clearTooltip": "Clear"
     },
     "settings": {
         "pageTitle": "Settings",

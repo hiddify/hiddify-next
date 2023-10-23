@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hiddify/core/prefs/prefs.dart';
+import 'package:hiddify/domain/singbox/box_log.dart';
 import 'package:hiddify/domain/singbox/rules.dart';
 import 'package:hiddify/utils/platform_utils.dart';
 
@@ -51,13 +52,6 @@ class ConfigOptions with _$ConfigOptions {
 
   factory ConfigOptions.fromJson(Map<String, dynamic> json) =>
       _$ConfigOptionsFromJson(json);
-}
-
-enum LogLevel {
-  warn,
-  info,
-  debug,
-  trace,
 }
 
 @JsonEnum(valueField: 'key')

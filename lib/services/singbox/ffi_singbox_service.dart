@@ -16,6 +16,7 @@ import 'package:hiddify/utils/utils.dart';
 import 'package:loggy/loggy.dart';
 import 'package:path/path.dart' as p;
 import 'package:rxdart/rxdart.dart';
+import 'package:watcher/watcher.dart';
 
 final _logger = Loggy('FFISingboxService');
 
@@ -301,33 +302,47 @@ class FFISingboxService
     );
   }
 
+  final _logBuffer = <String>[];
+  int _logFilePosition = 0;
+
   @override
-  Stream<String> watchLogs(String path) {
-    var linesRead = 0;
-    return Stream.periodic(
-      const Duration(seconds: 1),
-    ).asyncMap((_) async {
-      final result = await _readLogs(path, linesRead);
-      linesRead = result.$2;
-      return result.$1;
-    }).transform(
-      StreamTransformer.fromHandlers(
-        handleData: (data, sink) {
-          for (final item in data) {
-            sink.add(item);
-          }
-        },
-      ),
+  Stream<List<String>> watchLogs(String path) async* {
+    yield await _readLogFile(File(path));
+    yield* Watcher(path, pollingDelay: const Duration(seconds: 1))
+        .events
+        .asyncMap((event) async {
+      if (event.type == ChangeType.MODIFY) {
+        await _readLogFile(File(path));
+      }
+      return _logBuffer;
+    });
+  }
+
+  @override
+  TaskEither<String, Unit> clearLogs() {
+    return TaskEither(
+      () async {
+        _logBuffer.clear();
+        return right(unit);
+      },
     );
   }
 
-  Future<(List<String>, int)> _readLogs(String path, int from) async {
-    return CombineWorker().execute(
-      () async {
-        final lines = await File(path).readAsLines();
-        final to = lines.length;
-        return (lines.sublist(from), to);
-      },
-    );
+  Future<List<String>> _readLogFile(File file) async {
+    if (_logFilePosition == 0 && file.lengthSync() == 0) return [];
+    final content =
+        await file.openRead(_logFilePosition).transform(utf8.decoder).join();
+    _logFilePosition = file.lengthSync();
+    final lines = const LineSplitter().convert(content);
+    if (lines.length > 300) {
+      lines.removeRange(0, lines.length - 300);
+    }
+    for (final line in lines) {
+      _logBuffer.add(line);
+      if (_logBuffer.length > 300) {
+        _logBuffer.removeAt(0);
+      }
+    }
+    return _logBuffer;
   }
 }

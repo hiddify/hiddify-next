@@ -1,5 +1,6 @@
 package com.hiddify.hiddify
 
+import android.util.Log
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.EventChannel
 
@@ -18,13 +19,15 @@ class LogHandler : FlutterPlugin {
 
         logsChannel.setStreamHandler(object : EventChannel.StreamHandler {
             override fun onListen(arguments: Any?, events: EventChannel.EventSink?) {
-                MainActivity.instance.serviceLogs.observeForever {
-                    if (it == null) return@observeForever
-                    events?.success(it)
+                val activity = MainActivity.instance
+                events?.success(activity.logList)
+                activity.logCallback = {
+                    events?.success(activity.logList)
                 }
             }
 
             override fun onCancel(arguments: Any?) {
+                MainActivity.instance.logCallback = null
             }
         })
     }

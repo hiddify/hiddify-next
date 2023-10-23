@@ -106,11 +106,13 @@
     },
     "logs": {
         "pageTitle": "日志",
-        "clearLogsButtonText": "清除日志",
         "filterHint": "筛选",
         "allLevelsFilter": "全部",
         "shareCoreLogs": "分享核心日志",
-        "shareAppLogs": "分享日志"
+        "shareAppLogs": "分享日志",
+        "pauseTooltip": "暂停",
+        "resumeTooltip": "恢复",
+        "clearTooltip": "清除"
     },
     "settings": {
         "pageTitle": "设置",

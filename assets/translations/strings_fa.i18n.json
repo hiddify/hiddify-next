@@ -106,11 +106,13 @@
     },
     "logs": {
         "pageTitle": "لاگ‌ها",
-        "clearLogsButtonText": "پاک‌سازی",
         "filterHint": "فیلتر",
         "allLevelsFilter": "همه",
         "shareCoreLogs": "اشتراک‌گذاری لاگ هسته",
-        "shareAppLogs": "اشتراک‌گذاری لاگ برنامه"
+        "shareAppLogs": "اشتراک‌گذاری لاگ برنامه",
+        "pauseTooltip": "مکث",
+        "resumeTooltip": "از سرگیری",
+        "clearTooltip": "پاک‌سازی"
     },
     "settings": {
         "pageTitle": "تنظیمات",

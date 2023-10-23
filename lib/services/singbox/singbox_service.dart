@@ -48,5 +48,7 @@ abstract interface class SingboxService {
 
   Stream<String> watchStats();
 
-  Stream<String> watchLogs(String path);
+  Stream<List<String>> watchLogs(String path);
+
+  TaskEither<String, Unit> clearLogs();
 }
