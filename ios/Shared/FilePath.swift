@@ -23,8 +23,6 @@ public extension FilePath {
     static let cacheDirectory = sharedDirectory
         .appendingPathComponent("Library", isDirectory: true)
         .appendingPathComponent("Caches", isDirectory: true)
-    
-    static let assetsDirectory = cacheDirectory.appendingPathComponent("Assets", isDirectory: true)
 
     static let workingDirectory = cacheDirectory.appendingPathComponent("Working", isDirectory: true)
 }

@@ -18,8 +18,11 @@ open class ExtensionProvider: NEPacketTunnelProvider {
     private var systemProxyEnabled = false
     private var platformInterface: ExtensionPlatformInterface!
     private var config: String!
-
+    
     override open func startTunnel(options: [String: NSObject]?) async throws {
+        try? FileManager.default.removeItem(at: ExtensionProvider.errorFile)
+        try? FileManager.default.removeItem(at: FilePath.workingDirectory.appendingPathComponent("TestLog"))
+        
         let disableMemoryLimit = (options?["DisableMemoryLimit"] as? NSString as? String ?? "NO") == "YES"
         
         guard let config = options?["Config"] as? NSString as? String else {
@@ -31,8 +34,6 @@ open class ExtensionProvider: NEPacketTunnelProvider {
             return
         }
         self.config = config
-        
-        try? FileManager.default.removeItem(at: ExtensionProvider.errorFile)
 
         do {
             try FileManager.default.createDirectory(at: FilePath.workingDirectory, withIntermediateDirectories: true)
@@ -41,7 +42,12 @@ open class ExtensionProvider: NEPacketTunnelProvider {
             return
         }
 
-        LibboxSetup(FilePath.sharedDirectory.relativePath, FilePath.workingDirectory.relativePath, FilePath.cacheDirectory.relativePath, false)
+        LibboxSetup(
+            FilePath.sharedDirectory.relativePath,
+            FilePath.workingDirectory.relativePath,
+            FilePath.cacheDirectory.relativePath,
+            false
+        )
 
         var error: NSError?
         LibboxRedirectStderr(FilePath.cacheDirectory.appendingPathComponent("stderr.log").relativePath, &error)

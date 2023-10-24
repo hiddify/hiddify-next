@@ -9,6 +9,20 @@ import Foundation
 import Combine
 import NetworkExtension
 
+enum VPNManagerAlertType: String {
+    case RequestVPNPermission
+    case RequestNotificationPermission
+    case EmptyConfiguration
+    case StartCommandServer
+    case CreateService
+    case StartService
+}
+
+struct VPNManagerAlert {
+    let alert: VPNManagerAlertType?
+    let message: String?
+}
+
 class VPNManager: ObservableObject {
     private var cancelBag: Set<AnyCancellable> = []
     
@@ -20,6 +34,7 @@ class VPNManager: ObservableObject {
     static let shared: VPNManager = VPNManager()
         
     @Published private(set) var state: NEVPNStatus = .invalid
+    @Published private(set) var alert: VPNManagerAlert = .init(alert: nil, message: nil)
     
     @Published private(set) var upload: Int64 = 0
     @Published private(set) var download: Int64 = 0

@@ -19,7 +19,7 @@ class SingBox {
         else {
             return nil
         }
-        json["log"] = [
+        /*json["log"] = [
             "disabled": false,
             "level": "info",
             "output": "log",
@@ -50,7 +50,7 @@ class SingBox {
         routing["geosite"] = [
             "path": FilePath.assetsDirectory.appendingPathComponent("geosite.db"),
         ]
-        json["route"] = routing
+        json["route"] = routing*/
         guard let data = try? JSONSerialization.data(withJSONObject: json) else {
             return nil
         }

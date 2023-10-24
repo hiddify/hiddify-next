@@ -10,6 +10,16 @@
 		032158B82ADDF8BF008D943B /* VPNManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032158B72ADDF8BF008D943B /* VPNManager.swift */; };
 		032158BA2ADDFCC9008D943B /* TrafficReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032158B92ADDFCC9008D943B /* TrafficReader.swift */; };
 		032158BC2ADDFD09008D943B /* SingBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032158BB2ADDFD09008D943B /* SingBox.swift */; };
+		03B516672AE6B93A00EA47E2 /* MethodHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B516662AE6B93A00EA47E2 /* MethodHandler.swift */; };
+		03B516692AE7306B00EA47E2 /* StatusEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B516682AE7306B00EA47E2 /* StatusEventHandler.swift */; };
+		03B5166B2AE7315E00EA47E2 /* AlertsEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B5166A2AE7315E00EA47E2 /* AlertsEventHandler.swift */; };
+		03B5166D2AE7325500EA47E2 /* LogsEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B5166C2AE7325500EA47E2 /* LogsEventHandler.swift */; };
+		03B516712AE74CCD00EA47E2 /* VPNConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B516702AE74CCD00EA47E2 /* VPNConfig.swift */; };
+		03B516742AE74D2200EA47E2 /* Stored.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B516732AE74D2200EA47E2 /* Stored.swift */; };
+		03B516762AE762F700EA47E2 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B516752AE762F700EA47E2 /* Logger.swift */; };
+		03B516772AE7634400EA47E2 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B516752AE762F700EA47E2 /* Logger.swift */; };
+		03B5167B2AE79DB400EA47E2 /* FileMethodHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B5167A2AE79DB400EA47E2 /* FileMethodHandler.swift */; };
+		03B5167D2AE7AC6200EA47E2 /* GroupsEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B5167C2AE7AC6200EA47E2 /* GroupsEventHandler.swift */; };
 		03E392B82ADDA00E000ADF15 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E392B72ADDA00E000ADF15 /* NetworkExtension.framework */; };
 		03E392BB2ADDA00F000ADF15 /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E392BA2ADDA00F000ADF15 /* PacketTunnelProvider.swift */; };
 		03E392C02ADDA00F000ADF15 /* SingBoxPacketTunnel.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 03E392B62ADDA00E000ADF15 /* SingBoxPacketTunnel.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -75,6 +85,15 @@
 		032158B72ADDF8BF008D943B /* VPNManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNManager.swift; sourceTree = "<group>"; };
 		032158B92ADDFCC9008D943B /* TrafficReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficReader.swift; sourceTree = "<group>"; };
 		032158BB2ADDFD09008D943B /* SingBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingBox.swift; sourceTree = "<group>"; };
+		03B516662AE6B93A00EA47E2 /* MethodHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodHandler.swift; sourceTree = "<group>"; };
+		03B516682AE7306B00EA47E2 /* StatusEventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusEventHandler.swift; sourceTree = "<group>"; };
+		03B5166A2AE7315E00EA47E2 /* AlertsEventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsEventHandler.swift; sourceTree = "<group>"; };
+		03B5166C2AE7325500EA47E2 /* LogsEventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsEventHandler.swift; sourceTree = "<group>"; };
+		03B516702AE74CCD00EA47E2 /* VPNConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNConfig.swift; sourceTree = "<group>"; };
+		03B516732AE74D2200EA47E2 /* Stored.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stored.swift; sourceTree = "<group>"; };
+		03B516752AE762F700EA47E2 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		03B5167A2AE79DB400EA47E2 /* FileMethodHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileMethodHandler.swift; sourceTree = "<group>"; };
+		03B5167C2AE7AC6200EA47E2 /* GroupsEventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsEventHandler.swift; sourceTree = "<group>"; };
 		03E392B62ADDA00E000ADF15 /* SingBoxPacketTunnel.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SingBoxPacketTunnel.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		03E392B72ADDA00E000ADF15 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		03E392BA2ADDA00F000ADF15 /* PacketTunnelProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketTunnelProvider.swift; sourceTree = "<group>"; };
@@ -144,9 +163,32 @@
 		032158B62ADDF8AF008D943B /* VPN */ = {
 			isa = PBXGroup;
 			children = (
+				03B516722AE74D1700EA47E2 /* Helpers */,
 				032158B72ADDF8BF008D943B /* VPNManager.swift */,
+				03B516702AE74CCD00EA47E2 /* VPNConfig.swift */,
 			);
 			path = VPN;
+			sourceTree = "<group>";
+		};
+		03B5166E2AE7325D00EA47E2 /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				03B516662AE6B93A00EA47E2 /* MethodHandler.swift */,
+				03B5167A2AE79DB400EA47E2 /* FileMethodHandler.swift */,
+				03B516682AE7306B00EA47E2 /* StatusEventHandler.swift */,
+				03B5166A2AE7315E00EA47E2 /* AlertsEventHandler.swift */,
+				03B5166C2AE7325500EA47E2 /* LogsEventHandler.swift */,
+				03B5167C2AE7AC6200EA47E2 /* GroupsEventHandler.swift */,
+			);
+			path = Handlers;
+			sourceTree = "<group>";
+		};
+		03B516722AE74D1700EA47E2 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				03B516732AE74D2200EA47E2 /* Stored.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		03E392B92ADDA00F000ADF15 /* SingBoxPacketTunnel */ = {
@@ -155,6 +197,7 @@
 				03E392CA2ADDE063000ADF15 /* SingBox */,
 				03E392BA2ADDA00F000ADF15 /* PacketTunnelProvider.swift */,
 				032158B92ADDFCC9008D943B /* TrafficReader.swift */,
+				03B516752AE762F700EA47E2 /* Logger.swift */,
 				03E392BC2ADDA00F000ADF15 /* Info.plist */,
 				03E392BD2ADDA00F000ADF15 /* SingBoxPacketTunnel.entitlements */,
 			);
@@ -240,7 +283,9 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				03B5166E2AE7325D00EA47E2 /* Handlers */,
 				032158B62ADDF8AF008D943B /* VPN */,
+				74858FAE1ED2DC5600515810 /* AppDelegate.swift */,
 				03E392C72ADDA26A000ADF15 /* Runner.entitlements */,
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
 				97C146FD1CF9000F007C117D /* Assets.xcassets */,
@@ -248,7 +293,6 @@
 				97C147021CF9000F007C117D /* Info.plist */,
 				1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */,
 				1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */,
-				74858FAE1ED2DC5600515810 /* AppDelegate.swift */,
 				74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */,
 			);
 			path = Runner;
@@ -506,6 +550,7 @@
 				03E392BB2ADDA00F000ADF15 /* PacketTunnelProvider.swift in Sources */,
 				03E392CF2ADDEFC8000ADF15 /* FilePath.swift in Sources */,
 				03E392D42ADDF262000ADF15 /* Extension+RunBlocking.swift in Sources */,
+				03B516762AE762F700EA47E2 /* Logger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,10 +566,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03B516742AE74D2200EA47E2 /* Stored.swift in Sources */,
+				03B5167B2AE79DB400EA47E2 /* FileMethodHandler.swift in Sources */,
+				03B516772AE7634400EA47E2 /* Logger.swift in Sources */,
 				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
+				03B516712AE74CCD00EA47E2 /* VPNConfig.swift in Sources */,
+				03B5166B2AE7315E00EA47E2 /* AlertsEventHandler.swift in Sources */,
+				03B516692AE7306B00EA47E2 /* StatusEventHandler.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
 				032158B82ADDF8BF008D943B /* VPNManager.swift in Sources */,
+				03B516672AE6B93A00EA47E2 /* MethodHandler.swift in Sources */,
+				03B5166D2AE7325500EA47E2 /* LogsEventHandler.swift in Sources */,
 				03E392D02ADDF1BD000ADF15 /* FilePath.swift in Sources */,
+				03B5167D2AE7AC6200EA47E2 /* GroupsEventHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

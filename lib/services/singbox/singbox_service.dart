@@ -8,7 +8,7 @@ import 'package:hiddify/services/singbox/mobile_singbox_service.dart';
 
 abstract interface class SingboxService {
   factory SingboxService() {
-    if (Platform.isAndroid) {
+    if (Platform.isAndroid || Platform.isIOS) {
       return MobileSingboxService();
     } else if (Platform.isLinux || Platform.isWindows || Platform.isMacOS) {
       return FFISingboxService();
