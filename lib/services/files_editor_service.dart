@@ -8,23 +8,43 @@ import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
 class FilesEditorService with InfraLogger {
+
+  late final _methodChannel = const MethodChannel("com.hiddify.app/files.method");
+
   late final Directory baseDir;
   late final Directory workingDir;
   late final Directory tempDir;
   late final Directory logsDir;
   late final Directory _configsDir;
 
-  Future<void> init() async {
-    baseDir = await getApplicationSupportDirectory();
-    if (Platform.isAndroid) {
-      final externalDir = await getExternalStorageDirectory();
-      workingDir = externalDir!;
-    } else if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
-      workingDir = baseDir;
-    } else {
-      workingDir = await getApplicationDocumentsDirectory();
+  Future<Map<String, String>?> getPaths() async {
+    try {
+      final Map<dynamic, dynamic>? directoryMap = await _methodChannel.invokeMethod('get_paths');
+      return directoryMap?.cast<String, String>();
+    } on PlatformException catch (e) {
+      // print("Failed to get shared directory: '${e.message}'.");
+      return null;
     }
-    tempDir = await getTemporaryDirectory();
+  }
+
+  Future<void> init() async {
+    if (Platform.isIOS) {
+      final paths = await getPaths();
+      baseDir = Directory(paths!["base"]!);
+      workingDir = Directory(paths["working"]!);
+      tempDir = Directory(paths["temp"]!);
+    } else {
+      baseDir = await getApplicationSupportDirectory();
+      if (Platform.isAndroid) {
+        final externalDir = await getExternalStorageDirectory();
+        workingDir = externalDir!;
+      } else if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+        workingDir = baseDir;
+      } else {
+        workingDir = await getApplicationDocumentsDirectory();
+      }
+      tempDir = await getTemporaryDirectory();
+    }
     logsDir = workingDir;
 
     loggy.debug("base dir: ${baseDir.path}");
