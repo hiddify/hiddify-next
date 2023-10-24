@@ -13,7 +13,7 @@
 </div>
 
 
-## 什么是 Hiddify-Next？
+## Hiddify-Next 是什么？
 基于 [Sing-box](https://github.com/SagerNet/sing-box) 的多平台客户端，用作通用代理工具链。 该应用程序提供了广泛的功能，如下所列。 它还支持大量协议。 该应用程序免费使用、无广告且开源。 它提供了一个安全且私密的工具来访问免费互联网。
 
 该应用程序是使用 [Flutter](https://flutter.dev/) 和 [Go](https://go.dev/) 开发的。 欲了解更多信息，您可以阅读我们的开发贡献指南。
@@ -31,9 +31,9 @@
 
 🔍 基于延迟的自动选择
 
-🟡 广泛的协议：ECH、Sing-box、V2ray、Xray、Vless、Vmess、Reality、TUIC、Hysteria、ShadowTLS、SSH、Clash、Clash meta
+🟡 广泛的协议支持：ECH、Sing-box、V2ray、Xray、Vless、Vmess、Trojan、Trojan with websocket、Reality、TUIC、Hysteria、Hysteria2、ShadowTLS、SSH、Clash、Clash meta
 
-🟡 订阅链接：Clash、Clash meta、Sing-box 和 Shadowsocks
+🟡 支持多种订阅链接导入：Clash、Clash meta、Sing-box 和 Shadowsocks
 
 🔄 自动订阅更新
 
@@ -45,9 +45,9 @@
 
 🌙 深色和浅色模式
 
-⚙ 与所有代理管理面板兼容
+⚙ 与所有代理管理面板的节点兼容
 
-⭐ 适合伊朗、中国、俄罗斯等国家配置
+⭐ 适用于伊朗、中国、俄罗斯等国家配置
 
 📱 可在 Google Play 上获取
 
@@ -63,7 +63,7 @@
     </thead>
     <tbody align=left>
         <tr>
-        <td>安卓</td><td>
+        <td>Android</td><td>
             <a href="https://play.google.com/store/apps/details?id=app.hiddify.com"><img width=150px src="https://github.com/hiddify/hiddify-next/blob/main/docs/google-play-badge.png"></a><br>
             <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-universal.apk"><img src="https://img.shields.io/badge/APK-Universal-044d29.svg?logo=github"></a><br>
             <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-arm64.apk"><img src="https://img.shields.io/badge/APK-ArmV8-168039.svg?logo=github"></a><br>
@@ -72,13 +72,13 @@
         </td>
         </tr>
         <tr>
-            <td>视窗</td>
+            <td>Windows</td>
             <td><a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-windows-x64-setup.zip"><img src="https://img.shields.io/badge/Setup-x64-0078d7.svg?logo=github"></a><br>
             <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-windows-x64-portable.zip"><img src="https://img.shields.io/badge/Portable-x64-2d7d9a.svg?logo=github"></a>
         </td>
         </tr>
         <tr>
-            <td>苹果系统</td>
+            <td>macOS</td>
             <td><a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-macos-universal.zip"><img src="https://img.shields.io/badge/DMG-Universal-ea005e.svg?logo=github"></a></td>
         </tr>
         <tr>
@@ -95,16 +95,16 @@
 
 ## 致谢
 - [Sing-box](https://github.com/SagerNet/sing-box)
-- [Sing-box 适用于安卓](https://github.com/SagerNet/sing-box-for-android)
+- [Sing-box for Android](https://github.com/SagerNet/sing-box-for-android)
 - [Clash](https://github.com/Dreamacro/clash)
 - [Clash Meta](https://github.com/MetaCubeX/Clash.Meta)
 - [FClash](https://github.com/Fclash/Fclash)
-- [其他的](./pubspec.yaml)
+- [其他](./pubspec.yaml)
 ## 捐赠与支持
 
-支持我们的最简单方法是点击本页顶部的星号 (⭐)。
+支持我们的最简单方法是单击此页面顶部的 Star （⭐）。
 
-我们的服务还需要财政支持。 我们所有的活动都是自愿进行的，财政支持将用于项目的开发。 您可以[此处](https://github.com/hiddify/hiddify-server/wiki/support)查看我们的支持地址
+我们的服务也需要资金支持。我们所有的活动都是自愿进行的，资金支持将用于项目的开发和维护。您可以在 [此处](https://github.com/hiddify/hiddify-manager/wiki/support) 查看我们的支持地址。
 
 <div align=center>
 
@@ -119,7 +119,7 @@
 </div>
 
 <p align=center>
- 我们感谢所有参与该项目的人。 这里有一些人，还有 Github 之外的更多人。 这对我们来说意义重大。 ♥
+ 感谢所有参与该项目的人。包括以下列出的人，和更多其他来自 Github 的人。你们对我们的意义非常重大。 ♥ </p>
  </p>
  
 <p align=center> 
@@ -128,7 +128,7 @@
 </a>
 </p>
 <p align=center>
- 制作与 <a rel="" target="_blank" href="https://contrib.rocks">Contrib.Rocks</a> 
+ 使用 <a rel="" target="_blank" href="https://contrib.rocks">Contrib.Rocks</a> 制作
 </p>
 
 

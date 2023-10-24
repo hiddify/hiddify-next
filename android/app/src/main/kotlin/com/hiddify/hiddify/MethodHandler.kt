@@ -29,6 +29,7 @@ class MethodHandler(private val scope: CoroutineScope) : FlutterPlugin,
             Restart("restart"),
             SelectOutbound("select_outbound"),
             UrlTest("url_test"),
+            ClearLogs("clear_logs"),
         }
     }
 
@@ -63,38 +64,44 @@ class MethodHandler(private val scope: CoroutineScope) : FlutterPlugin,
             }
 
             Trigger.ChangeConfigOptions.method -> {
-                result.runCatching {
-                    val args = call.arguments as String
-                    Settings.configOptions = args
-                    success(true)
+                scope.launch {
+                    result.runCatching {
+                        val args = call.arguments as String
+                        Settings.configOptions = args
+                        success(true)
+                    }
                 }
             }
 
             Trigger.Start.method -> {
-                result.runCatching {
-                    val args = call.arguments as Map<*, *>
-                    Settings.activeConfigPath = args["path"] as String? ?: ""
-                    val mainActivity = MainActivity.instance
-                    val started = mainActivity.serviceStatus.value == Status.Started
-                    if (started) {
-                        Log.w(TAG, "service is already running")
-                        return success(true)
+                scope.launch {
+                    result.runCatching {
+                        val args = call.arguments as Map<*, *>
+                        Settings.activeConfigPath = args["path"] as String? ?: ""
+                        val mainActivity = MainActivity.instance
+                        val started = mainActivity.serviceStatus.value == Status.Started
+                        if (started) {
+                            Log.w(TAG, "service is already running")
+                            return@launch success(true)
+                        }
+                        mainActivity.startService()
+                        success(true)
                     }
-                    mainActivity.startService()
-                    success(true)
                 }
             }
 
             Trigger.Stop.method -> {
-                result.runCatching {
-                    val mainActivity = MainActivity.instance
-                    val started = mainActivity.serviceStatus.value == Status.Started
-                    if (!started) {
-                        Log.w(TAG, "service is not running")
-                        return success(true)
+                scope.launch {
+                    result.runCatching {
+                        val mainActivity = MainActivity.instance
+                        val started = mainActivity.serviceStatus.value == Status.Started
+                        if (!started) {
+                            Log.w(TAG, "service is not running")
+                            return@launch success(true)
+                        }
+                        BoxService.stop()
+                        success(true)
                     }
-                    BoxService.stop()
-                    success(true)
                 }
             }
 
@@ -146,6 +153,15 @@ class MethodHandler(private val scope: CoroutineScope) : FlutterPlugin,
                             .urlTest(
                                 args["groupTag"] as String
                             )
+                        success(true)
+                    }
+                }
+            }
+
+            Trigger.ClearLogs.method -> {
+                scope.launch {
+                    result.runCatching {
+                        MainActivity.instance.onServiceResetLogs(mutableListOf())
                         success(true)
                     }
                 }

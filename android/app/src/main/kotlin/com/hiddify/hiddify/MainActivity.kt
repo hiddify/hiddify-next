@@ -39,7 +39,6 @@ class MainActivity : FlutterFragmentActivity(), ServiceConnection.Callback {
     var logCallback: ((Boolean) -> Unit)? = null
     val serviceStatus = MutableLiveData(Status.Stopped)
     val serviceAlerts = MutableLiveData<ServiceEvent?>(null)
-    val serviceLogs = MutableLiveData<String?>(null)
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
@@ -102,37 +101,18 @@ class MainActivity : FlutterFragmentActivity(), ServiceConnection.Callback {
         serviceAlerts.postValue(ServiceEvent(Status.Stopped, type, message))
     }
 
-    private var paused = false
-    override fun onPause() {
-        super.onPause()
-
-        paused = true
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        paused = false
-        logCallback?.invoke(true)
-    }
-
     override fun onServiceWriteLog(message: String?) {
-        if (paused) {
-            if (logList.size > 300) {
-                logList.removeFirst()
-            }
+        if (logList.size > 300) {
+            logList.removeFirst()
         }
         logList.addLast(message)
-        if (!paused) {
-            logCallback?.invoke(false)
-            serviceLogs.postValue(message)
-        }
+        logCallback?.invoke(false)
     }
 
     override fun onServiceResetLogs(messages: MutableList<String>) {
         logList.clear()
         logList.addAll(messages)
-        if (!paused) logCallback?.invoke(true)
+        logCallback?.invoke(true)
     }
 
     override fun onDestroy() {

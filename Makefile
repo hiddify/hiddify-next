@@ -119,9 +119,8 @@ release: # Create a new tag for release.
 	echo "version: $${VERSION_STR}+$${BUILD_NUMBER}" && \
 	sed -i "s/version: .*/version: $${VERSION_STR}\+$${BUILD_NUMBER}/g" pubspec.yaml && \
 	git tag $${TAG} > /dev/null && \
-	gitchangelog > changelog.md || { git tag -d $${TAG}; echo "Please run pip install git gitchangelog pystache mustache markdown"; exit 2; } && \
 	git tag -d $${TAG} > /dev/null && \
-	git add pubspec.yaml changelog.md && \
+	git add pubspec.yaml CHANGELOG.md && \
 	make sync_translate && \
 	git add assets/translations/* && \
 	git commit -m "release: version $${TAG}" && \

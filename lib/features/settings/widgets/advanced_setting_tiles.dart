@@ -6,6 +6,7 @@ import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:hiddify/core/router/routes/routes.dart';
 import 'package:hiddify/domain/singbox/singbox.dart';
+import 'package:hiddify/features/common/common.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class AdvancedSettingTiles extends HookConsumerWidget {
@@ -20,6 +21,7 @@ class AdvancedSettingTiles extends HookConsumerWidget {
 
     return Column(
       children: [
+        const RegionPrefTile(),
         ListTile(
           title: Text(t.settings.config.pageTitle),
           leading: const Icon(Icons.edit_document),

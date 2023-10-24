@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hiddify/domain/clash/clash.dart';
+import 'package:hiddify/domain/singbox/singbox.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'logs_state.freezed.dart';
 
@@ -8,7 +9,8 @@ class LogsState with _$LogsState {
   const LogsState._();
 
   const factory LogsState({
-    @Default([]) List<String> logs,
+    @Default(AsyncLoading()) AsyncValue<List<BoxLog>> logs,
+    @Default(false) bool paused,
     @Default("") String filter,
     LogLevel? levelFilter,
   }) = _LogsState;

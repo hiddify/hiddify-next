@@ -13,11 +13,6 @@
 
 </div>
 
-<div align=center>
-<img width=90% alt="English Demo" src="https://github.com/hiddify/hiddify-next/assets/125398461/ffe5346d-3404-470f-b5e0-4364e23743d2">
-
-
-</div>
 
 ## What is Hiddify-Next?
 
@@ -25,14 +20,11 @@
 
 The app is developed using [Flutter](https://flutter.dev) and [Go](https://go.dev). For more information you can read through our [Contribution Guidelines](https://github.com/hiddify/hiddify-next/blob/main/CONTRIBUTING.md) for development.
 
-## Improve Translations
-You can easily contribute to this project by using the following links to improve the translations:
- - [English](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en)
-- [Persian](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=fa)
-- [Russian](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=ru)
-- [Chinese](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=zh)
+<div align=center>
+<img width=90% alt="English Demo" src="https://github.com/hiddify/hiddify-next/assets/125398461/ffe5346d-3404-470f-b5e0-4364e23743d2">
 
 
+</div>
 
 
 ## 🚀 Main features
@@ -80,9 +72,9 @@ You can easily contribute to this project by using the following links to improv
         <td>Android</td><td>
             <a href="https://play.google.com/store/apps/details?id=app.hiddify.com"><img width=150px src="https://github.com/hiddify/hiddify-next/blob/main/docs/google-play-badge.png"></a><br>
             <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-universal.apk"><img src="https://img.shields.io/badge/APK-Universal-044d29.svg?logo=github"></a><br>
-            <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-arm64.apk"><img src="https://img.shields.io/badge/APK-ArmV8-168039.svg?logo=github"></a><br>
-            <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-arm7.apk"><img src="https://img.shields.io/badge/APK-ArmV7-45bf55.svg?logo=github"></a><br>
-            <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-x86_64.apk"><img src="https://img.shields.io/badge/APK-x86_64-96ed89.svg?logo=github"></a>
+            <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-arm64.apk"><img src="https://img.shields.io/badge/APK-ARMv8-168039.svg?logo=github"></a><br>
+            <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-arm7.apk"><img src="https://img.shields.io/badge/APK-ARMv7-45bf55.svg?logo=github"></a><br>
+            <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-x86_64.apk"><img src="https://img.shields.io/badge/APK-x64-96ed89.svg?logo=github"></a>
         </td>
         </tr>
         <tr>
@@ -97,7 +89,7 @@ You can easily contribute to this project by using the following links to improv
         </tr>
         <tr>
             <td>Linux</td>
-            <td><a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-linux-x64.zip"><img src="https://img.shields.io/badge/AppImage-amd64-f84e29.svg?logo=github"> </a></td>
+            <td><a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-linux-x64.zip"><img src="https://img.shields.io/badge/AppImage-x64-f84e29.svg?logo=github"> </a></td>
         </tr>
     </tbody>
 </table>
@@ -107,6 +99,15 @@ You can easily contribute to this project by using the following links to improv
 
 ## Installation and tutorials
 Please find tutorial information on the [wiki page](https://github.com/hiddify/hiddify-next/wiki).
+
+## Improve Translations
+You can easily contribute to this project by using the following links to improve the translations:
+ - [English](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en)
+- [Persian](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=fa)
+- [Russian](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=ru)
+- [Chinese](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=zh)
+
+
 
 ## Acknowledgements
 
