@@ -33,7 +33,7 @@ class AppView extends HookConsumerWidget with PresLogger {
       supportedLocales: AppLocaleUtils.supportedLocales,
       localizationsDelegates: GlobalMaterialLocalizations.delegates,
       debugShowCheckedModeBanner: false,
-      themeMode: theme.mode,
+      themeMode: theme.mode.flutterThemeMode,
       theme: theme.light(),
       darkTheme: theme.dark(),
       title: Constants.appName,

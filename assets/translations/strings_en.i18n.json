@@ -46,7 +46,7 @@
             "remainingDuration": "${duration} Days Remaining",
             "remainingTrafficSemanticLabel": "${consumed} of ${total} traffic consumed.",
             "expired": "Expired",
-            "noTraffic": "No more traffic"
+            "noTraffic": "Out of Quota"
         },
         "sortBy": {
             "lastUpdate": "Recently updated",
@@ -106,11 +106,13 @@
     },
     "logs": {
         "pageTitle": "Logs",
-        "clearLogsButtonText": "Clear Logs",
         "filterHint": "Filter",
         "allLevelsFilter": "All",
         "shareCoreLogs": "Share Core Logs",
-        "shareAppLogs": "Share App logs"
+        "shareAppLogs": "Share App logs",
+        "pauseTooltip": "Pause",
+        "resumeTooltip": "Resume",
+        "clearTooltip": "Clear"
     },
     "settings": {
         "pageTitle": "Settings",
@@ -123,17 +125,18 @@
             "regions": {
                 "ir": "Iran (ir)",
                 "cn": "China (cn)",
+                "ru": "Russia (ru)",
                 "other": "Other"
             },
             "themeMode": "Theme Mode",
             "themeModes": {
                 "system": "Follow system theme",
                 "dark": "Dark mode",
-                "light": "Light mode"
+                "light": "Light mode",
+                "black": "Black mode"
             },
             "enableAnalytics": "Enable Analytics",
             "enableAnalyticsMsg": "Give permission to collect analytics and send crash reports to improve the app",
-            "trueBlack": "Pure Black",
             "autoStart": "Start on Boot",
             "silentStart": "Silent Start",
             "openWorkingDir": "Open Working Directory",

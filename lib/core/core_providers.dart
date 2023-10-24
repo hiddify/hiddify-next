@@ -19,6 +19,5 @@ TranslationsEn translations(TranslationsRef ref) =>
 @Riverpod(keepAlive: true)
 AppTheme theme(ThemeRef ref) => AppTheme(
       ref.watch(themeModeNotifierProvider),
-      ref.watch(trueBlackThemeNotifierProvider),
       ref.watch(localeNotifierProvider).preferredFontFamily,
     );

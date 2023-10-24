@@ -106,11 +106,13 @@
     },
     "logs": {
         "pageTitle": "لاگ‌ها",
-        "clearLogsButtonText": "پاک‌سازی",
         "filterHint": "فیلتر",
         "allLevelsFilter": "همه",
         "shareCoreLogs": "اشتراک‌گذاری لاگ هسته",
-        "shareAppLogs": "اشتراک‌گذاری لاگ برنامه"
+        "shareAppLogs": "اشتراک‌گذاری لاگ برنامه",
+        "pauseTooltip": "مکث",
+        "resumeTooltip": "از سرگیری",
+        "clearTooltip": "پاک‌سازی"
     },
     "settings": {
         "pageTitle": "تنظیمات",
@@ -123,17 +125,18 @@
             "regions": {
                 "ir": "ایران (ir)",
                 "cn": "چین (cn)",
+                "ru": "روسیه (ru)",
                 "other": "سایر"
             },
             "themeMode": "تم مود",
             "themeModes": {
                 "system": "پیروی از تم دستگاه",
                 "dark": "تم تیره",
-                "light": "تم روشن"
+                "light": "تم روشن",
+                "black": "تم سیاه"
             },
             "enableAnalytics": "فعال‌سازی آنالیتیکز",
             "enableAnalyticsMsg": "ارائه دسترسی آنالیز و گزارش خطا برای بهبود عملکرد برنامه",
-            "trueBlack": "کاملا سیاه",
             "autoStart": "اجرا با روشن شدن سیستم",
             "silentStart": "اجرای ساکت",
             "openWorkingDir": "باز کردن دایرکتوری کاری",

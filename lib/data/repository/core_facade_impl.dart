@@ -179,10 +179,21 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
   }
 
   @override
-  Stream<Either<CoreServiceFailure, String>> watchLogs() {
-    return singbox
-        .watchLogs(filesEditor.coreLogsPath)
-        .handleExceptions(CoreServiceFailure.unexpected);
+  Stream<Either<CoreServiceFailure, List<String>>> watchLogs() {
+    return singbox.watchLogs(filesEditor.coreLogsPath).handleExceptions(
+      (error, stackTrace) {
+        loggy.warning("error watching logs", error, stackTrace);
+        return CoreServiceFailure.unexpected(error, stackTrace);
+      },
+    );
+  }
+
+  @override
+  TaskEither<CoreServiceFailure, Unit> clearLogs() {
+    return exceptionHandler(
+      () => singbox.clearLogs().mapLeft(CoreServiceFailure.other).run(),
+      CoreServiceFailure.unexpected,
+    );
   }
 
   @override

@@ -37,5 +37,7 @@ abstract interface class SingboxFacade {
 
   Stream<Either<CoreServiceFailure, CoreStatus>> watchCoreStatus();
 
-  Stream<Either<CoreServiceFailure, String>> watchLogs();
+  Stream<Either<CoreServiceFailure, List<String>>> watchLogs();
+
+  TaskEither<CoreServiceFailure, Unit> clearLogs();
 }

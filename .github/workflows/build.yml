@@ -4,12 +4,12 @@ on:
     branches:
       - main
     tags:
-      - 'v*'
+      - "v*"
     paths-ignore:
-      - '**.md'
-      - 'docs/**'
-      - '.github/**'
-      - '!.github/workflows/build.yml'
+      - "**.md"
+      - "docs/**"
+      - ".github/**"
+      - "!.github/workflows/build.yml"
   pull_request:
     branches:
       - main
@@ -57,6 +57,7 @@ jobs:
           # - platform: ios
           #   os: macos-11
           #   aarch: universal
+          #   filename: hiddify-ios-universal
           #   targets: ipa
 
     runs-on: ${{ matrix.os }}
@@ -67,15 +68,15 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.13.x'
-          channel: 'stable'
+          flutter-version: "3.13.x"
+          channel: "stable"
           cache: true
 
       - name: Setup Java
         if: startsWith(matrix.platform,'android')
         uses: actions/setup-java@v3
         with:
-          distribution: 'zulu'
+          distribution: "zulu"
           java-version: 11
 
       - name: Setup NDK
@@ -164,7 +165,7 @@ jobs:
 
           xcopy /s /v '.\.github\help\mac-windows\' .\tmp_out\
           cd tmp_out
-          Compress-Archive .\ ..\out\hiddify-${{ matrix.platform }}-x64-setup.zip
+          Compress-Archive  -Path .\* -DestinationPath  ..\out\hiddify-${{ matrix.platform }}-x64-setup.zip
           cd ..
 
 
@@ -205,10 +206,13 @@ jobs:
           else
             cp ./.github/help/mac-windows/* tmp_out/
           fi
-
-          cd tmp_out
-          7z a ${{matrix.filename}}.zip ./
-          mv *.zip ../out/
+          if [[ "${{matrix.platform}}" == 'ios' ]];then
+            mv tmp_out/${{matrix.filename}}.ipa bin/${{matrix.filename}}.ipa
+          else
+            cd tmp_out
+            7z a ${{matrix.filename}}.zip ./
+            mv *.zip ../out/
+          fi
 
       # - name: Copy to out unix
       #   if: matrix.platform == 'linux' || matrix.platform == 'macos' || matrix.platform == 'ios'
@@ -259,7 +263,7 @@ jobs:
         uses: 8Mi-Tech/delete-release-assets-action@main
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: 'draft'
+          tag: "draft"
           deleteOnlyFromDrafts: false
 
       - name: Create or Update Draft Release
@@ -269,8 +273,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           files: ./out/*
-          name: 'draft'
-          tag_name: 'draft'
+          name: "draft"
+          tag_name: "draft"
           prerelease: true
 
   upload-release:
@@ -310,7 +314,7 @@ jobs:
         with:
           prerelease: ${{ env.CHANNEL == 'dev' }}
           tag_name: ${{ github.ref_name }}
-          body_path: './release.md'
+          body_path: "./release.md"
           files: ./out/*
 
       - name: Create service_account.json
@@ -324,3 +328,11 @@ jobs:
           releaseName: ${{ github.ref }}
           releaseFiles: ./hiddify-android-market.aab
           track: internal
+
+      # - name: 'Upload app to TestFlight'
+      #   uses: apple-actions/upload-testflight-build@v1
+      #   with:
+      #     app-path: './hiddify-ios-universal.ipa'
+      #     issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
+      #     api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
+      #     api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}

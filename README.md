@@ -13,6 +13,7 @@
 
 </div>
 
+
 ## What is Hiddify-Next?
 
 <p dir="ltr" style="font-size: 16px">A multi-platform client based on <a href="https://github.com/SagerNet/sing-box">Sing-box</a> that serves as a universal proxy tool-chain. This app offers a wide range of capabilities, which are listed below. It also supports a large number of protocols. The app is free to use, ad-free, and open-source. It provides a secure and private tool for getting access to the free internet. </p>
@@ -24,6 +25,7 @@ The app is developed using [Flutter](https://flutter.dev) and [Go](https://go.de
 
 
 </div>
+
 
 ## 🚀 Main features
 
@@ -70,9 +72,9 @@ The app is developed using [Flutter](https://flutter.dev) and [Go](https://go.de
         <td>Android</td><td>
             <a href="https://play.google.com/store/apps/details?id=app.hiddify.com"><img width=150px src="https://github.com/hiddify/hiddify-next/blob/main/docs/google-play-badge.png"></a><br>
             <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-universal.apk"><img src="https://img.shields.io/badge/APK-Universal-044d29.svg?logo=github"></a><br>
-            <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-arm64.apk"><img src="https://img.shields.io/badge/APK-ArmV8-168039.svg?logo=github"></a><br>
-            <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-arm7.apk"><img src="https://img.shields.io/badge/APK-ArmV7-45bf55.svg?logo=github"></a><br>
-            <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-x86_64.apk"><img src="https://img.shields.io/badge/APK-x86_64-96ed89.svg?logo=github"></a>
+            <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-arm64.apk"><img src="https://img.shields.io/badge/APK-ARMv8-168039.svg?logo=github"></a><br>
+            <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-arm7.apk"><img src="https://img.shields.io/badge/APK-ARMv7-45bf55.svg?logo=github"></a><br>
+            <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-x86_64.apk"><img src="https://img.shields.io/badge/APK-x64-96ed89.svg?logo=github"></a>
         </td>
         </tr>
         <tr>
@@ -87,7 +89,7 @@ The app is developed using [Flutter](https://flutter.dev) and [Go](https://go.de
         </tr>
         <tr>
             <td>Linux</td>
-            <td><a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-linux-x64.zip"><img src="https://img.shields.io/badge/AppImage-amd64-f84e29.svg?logo=github"> </a></td>
+            <td><a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-linux-x64.zip"><img src="https://img.shields.io/badge/AppImage-x64-f84e29.svg?logo=github"> </a></td>
         </tr>
     </tbody>
 </table>
@@ -96,7 +98,16 @@ The app is developed using [Flutter](https://flutter.dev) and [Go](https://go.de
 </div>
 
 ## Installation and tutorials
-Please find tutorial information on the [wiki page](https://github.com/hiddify/hiddify-server/wiki).
+Please find tutorial information on the [wiki page](https://github.com/hiddify/hiddify-next/wiki).
+
+## Improve Translations
+You can easily contribute to this project by using the following links to improve the translations:
+ - [English](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en)
+- [Persian](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=fa)
+- [Russian](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=ru)
+- [Chinese](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=zh)
+
+
 
 ## Acknowledgements
 

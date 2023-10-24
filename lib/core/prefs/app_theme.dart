@@ -1,16 +1,38 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
+import 'package:hiddify/core/prefs/locale_prefs.dart';
+
+enum AppThemeMode {
+  system,
+  light,
+  dark,
+  black;
+
+  String present(TranslationsEn t) => switch (this) {
+        system => t.settings.general.themeModes.system,
+        light => t.settings.general.themeModes.light,
+        dark => t.settings.general.themeModes.dark,
+        black => t.settings.general.themeModes.black,
+      };
+
+  ThemeMode get flutterThemeMode => switch (this) {
+        system => ThemeMode.system,
+        light => ThemeMode.light,
+        dark => ThemeMode.dark,
+        black => ThemeMode.dark,
+      };
+
+  bool get trueBlack => this == black;
+}
 
 // mostly exact copy of flex color scheme 7.1's fabulous 12 theme
 class AppTheme {
   AppTheme(
     this.mode,
-    this.trueBlack,
     this.fontFamily,
   );
 
-  final ThemeMode mode;
-  final bool trueBlack;
+  final AppThemeMode mode;
   final String fontFamily;
 
   ThemeData light() {
@@ -81,7 +103,7 @@ class AppTheme {
       useMaterial3: true,
       swapLegacyOnMaterial3: true,
       useMaterial3ErrorColors: true,
-      darkIsTrueBlack: trueBlack,
+      darkIsTrueBlack: mode.trueBlack,
       surfaceMode: FlexSurfaceMode.highScaffoldLowSurface,
       // blendLevel: 1,
       subThemesData: const FlexSubThemesData(

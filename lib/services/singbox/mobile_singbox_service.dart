@@ -163,11 +163,18 @@ class MobileSingboxService
   }
 
   @override
-  Stream<String> watchLogs(String path) {
-    return _logsChannel.receiveBroadcastStream().map(
-      (event) {
-        // loggy.debug("received log: $event");
-        return event as String;
+  Stream<List<String>> watchLogs(String path) async* {
+    yield* _logsChannel
+        .receiveBroadcastStream()
+        .map((event) => (event as List).map((e) => e as String).toList());
+  }
+
+  @override
+  TaskEither<String, Unit> clearLogs() {
+    return TaskEither(
+      () async {
+        await _methodChannel.invokeMethod("clear_logs");
+        return right(unit);
       },
     );
   }
