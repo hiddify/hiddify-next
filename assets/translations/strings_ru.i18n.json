@@ -1,6 +1,6 @@
 {
     "general": {
-        "appTitle": "HiddifyNext",
+        "appTitle": "Hiddify Next",
         "reset": "Сброс",
         "toggle": {
             "enabled": "Включено",
@@ -110,9 +110,9 @@
         "allLevelsFilter": "Все",
         "shareCoreLogs": "Поделиться журналами ядра",
         "shareAppLogs": "Поделиться журналами приложения",
-        "pauseTooltip": "Пауза",
-        "resumeTooltip": "Резюме",
-        "clearTooltip": "Прозрачный"
+        "pauseTooltip": "Приостановить",
+        "resumeTooltip": "Возобновить",
+        "clearTooltip": "Очистить"
     },
     "settings": {
         "pageTitle": "Настройки",
@@ -133,7 +133,7 @@
                 "system": "Системная тема",
                 "dark": "Тёмная тема",
                 "light": "Светлая тема",
-                "black": "Черный режим"
+                "black": "Чёрная тема"
             },
             "enableAnalytics": "Сбор аналитики",
             "enableAnalyticsMsg": "Сбор аналитических данных и отправка отчётов о сбоях для улучшения приложения.",
@@ -212,7 +212,7 @@
         "updateMsg": "Доступна новая версия @:general.appTitle. Обновить сейчас?",
         "currentVersionLbl": "Текущая версия",
         "newVersionLbl": "Новая версия",
-        "updateNowBtnTxt": "Обновить сейчас",
+        "updateNowBtnTxt": "Обновить",
         "laterBtnTxt": "Позже",
         "ignoreBtnTxt": "Пропустить"
     },
