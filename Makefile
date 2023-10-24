@@ -2,11 +2,12 @@ include dependencies.properties
 
 BINDIR=./libcore/bin
 ANDROID_OUT=./android/app/libs
-IOS_OUT=./ios/Pods/Frameworks
+IOS_OUT=./libcore/bin
 DESKTOP_OUT=./libcore/bin
 GEO_ASSETS_DIR=./assets/core
 
-CORE_NAME=hiddify-libcore
+CORE_PRODUCT_NAME=libcore
+CORE_NAME=hiddify-$(CORE_PRODUCT_NAME)
 ifeq ($(CHANNEL),prod)
 CORE_URL=https://github.com/hiddify/hiddify-next-core/releases/download/v$(core.version)
 else
@@ -103,8 +104,6 @@ build-macos-libs:
 
 build-ios-libs: 
 	make -C libcore -f Makefile ios  && mv $(BINDIR)/$(CORE_NAME)-ios.xcframework $(IOS_OUT)/libcore.xcframework
-	
-
 
 release: # Create a new tag for release.
 	@echo "previous version was $$(git describe --tags $$(git rev-list --tags --max-count=1))"
