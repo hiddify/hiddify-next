@@ -13,7 +13,7 @@ Future<bool> isIgnoringBatteryOptimizations(
   IsIgnoringBatteryOptimizationsRef ref,
 ) async =>
     ref
-        .watch(platformSettingsProvider)
+        .watch(platformServicesProvider)
         .isIgnoringBatteryOptimizations()
         .getOrElse((l) => false)
         .run();
@@ -35,7 +35,7 @@ class PlatformSettingsTiles extends HookConsumerWidget {
           enabled: enabled,
           onTap: () async {
             await ref
-                .read(platformSettingsProvider)
+                .read(platformServicesProvider)
                 .requestIgnoreBatteryOptimizations()
                 .run();
             await Future.delayed(const Duration(seconds: 1));

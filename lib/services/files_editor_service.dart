@@ -3,82 +3,65 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:hiddify/domain/constants.dart';
 import 'package:hiddify/gen/assets.gen.dart';
+import 'package:hiddify/services/platform_services.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
+typedef Directories = ({
+  Directory baseDir,
+  Directory workingDir,
+  Directory tempDir
+});
+
 class FilesEditorService with InfraLogger {
+  FilesEditorService(this.platformServices);
 
-  late final _methodChannel = const MethodChannel("com.hiddify.app/files.method");
+  final PlatformServices platformServices;
 
-  late final Directory baseDir;
-  late final Directory workingDir;
-  late final Directory tempDir;
-  late final Directory logsDir;
-  late final Directory _configsDir;
+  late final Directories dirs;
 
-  Future<Map<String, String>?> getPaths() async {
-    try {
-      final Map<dynamic, dynamic>? directoryMap = await _methodChannel.invokeMethod('get_paths');
-      return directoryMap?.cast<String, String>();
-    } on PlatformException catch (e) {
-      // print("Failed to get shared directory: '${e.message}'.");
-      return null;
-    }
-  }
+  Directory get workingDir => dirs.workingDir;
+  Directory get configsDir =>
+      Directory(p.join(workingDir.path, Constants.configsFolderName));
+  Directory get logsDir => dirs.workingDir;
+
+  File get appLogsFile => File(p.join(logsDir.path, "app.log"));
+  File get coreLogsFile => File(p.join(logsDir.path, "box.log"));
 
   Future<void> init() async {
-    if (Platform.isIOS) {
-      final paths = await getPaths();
-      baseDir = Directory(paths!["base"]!);
-      workingDir = Directory(paths["working"]!);
-      tempDir = Directory(paths["temp"]!);
+    dirs = await platformServices.getPaths().getOrElse(
+      (error) {
+        loggy.error("error getting paths", error, StackTrace.current);
+        throw error;
+      },
+    ).run();
+
+    loggy.info("directories: $dirs");
+
+    if (!await dirs.baseDir.exists()) {
+      await dirs.baseDir.create(recursive: true);
+    }
+    if (!await dirs.workingDir.exists()) {
+      await dirs.workingDir.create(recursive: true);
+    }
+    if (!await configsDir.exists()) {
+      await configsDir.create(recursive: true);
+    }
+
+    if (await appLogsFile.exists()) {
+      await appLogsFile.writeAsString("");
     } else {
-      baseDir = await getApplicationSupportDirectory();
-      if (Platform.isAndroid) {
-        final externalDir = await getExternalStorageDirectory();
-        workingDir = externalDir!;
-      } else if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
-        workingDir = baseDir;
-      } else {
-        workingDir = await getApplicationDocumentsDirectory();
-      }
-      tempDir = await getTemporaryDirectory();
-    }
-    logsDir = workingDir;
-
-    loggy.debug("base dir: ${baseDir.path}");
-    loggy.debug("working dir: ${workingDir.path}");
-    loggy.debug("temp dir: ${tempDir.path}");
-    loggy.debug("logs dire: ${logsDir.path}");
-
-    _configsDir =
-        Directory(p.join(workingDir.path, Constants.configsFolderName));
-    if (!await baseDir.exists()) {
-      await baseDir.create(recursive: true);
-    }
-    if (!await workingDir.exists()) {
-      await workingDir.create(recursive: true);
-    }
-    if (!await _configsDir.exists()) {
-      await _configsDir.create(recursive: true);
+      await appLogsFile.create(recursive: true);
     }
 
-    final appLogFile = File(appLogsPath);
-    if (await appLogFile.exists()) {
-      await appLogFile.writeAsString("");
+    if (await coreLogsFile.exists()) {
+      await coreLogsFile.writeAsString("");
     } else {
-      await appLogFile.create(recursive: true);
+      await coreLogsFile.create(recursive: true);
     }
 
     await _populateGeoAssets();
-
-    final coreLogFile = File(coreLogsPath);
-    if (await coreLogFile.exists()) {
-      await coreLogFile.writeAsString("");
-    } else {
-      await coreLogFile.create(recursive: true);
-    }
   }
 
   static Future<Directory> getDatabaseDirectory() async {
@@ -90,11 +73,8 @@ class FilesEditorService with InfraLogger {
     return getApplicationDocumentsDirectory();
   }
 
-  String get appLogsPath => p.join(logsDir.path, "app.log");
-  String get coreLogsPath => p.join(logsDir.path, "box.log");
-
   String configPath(String fileName) {
-    return p.join(_configsDir.path, "$fileName.json");
+    return p.join(configsDir.path, "$fileName.json");
   }
 
   String tempConfigPath(String fileName) => configPath("temp_$fileName");

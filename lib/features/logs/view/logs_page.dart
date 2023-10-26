@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:fpdart/fpdart.dart';
@@ -32,7 +31,7 @@ class LogsPage extends HookConsumerWidget with PresLogger {
               child: Text(t.logs.shareCoreLogs),
               onTap: () async {
                 await UriUtils.tryShareOrLaunchFile(
-                  Uri.parse(filesEditor.coreLogsPath),
+                  Uri.parse(filesEditor.coreLogsFile.path),
                   fileOrDir: filesEditor.logsDir.uri,
                 );
               },
@@ -41,7 +40,7 @@ class LogsPage extends HookConsumerWidget with PresLogger {
               child: Text(t.logs.shareAppLogs),
               onTap: () async {
                 await UriUtils.tryShareOrLaunchFile(
-                  Uri.parse(filesEditor.appLogsPath),
+                  Uri.parse(filesEditor.appLogsFile.path),
                   fileOrDir: filesEditor.logsDir.uri,
                 );
               },

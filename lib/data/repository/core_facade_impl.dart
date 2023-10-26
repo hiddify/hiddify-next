@@ -34,15 +34,11 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
     return exceptionHandler(
       () {
         loggy.debug("setting up singbox");
-        loggy.debug("base dir: ${filesEditor.baseDir.path}");
-        loggy.debug("working dir: ${filesEditor.workingDir.path}");
-        loggy.debug("temp dir: ${filesEditor.tempDir.path}");
-
         return singbox
             .setup(
-              filesEditor.baseDir.path,
-              filesEditor.workingDir.path,
-              filesEditor.tempDir.path,
+              filesEditor.dirs.baseDir.path,
+              filesEditor.dirs.workingDir.path,
+              filesEditor.dirs.tempDir.path,
             )
             .map((r) {
               loggy.debug("setup complete");
@@ -180,7 +176,7 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
 
   @override
   Stream<Either<CoreServiceFailure, List<String>>> watchLogs() {
-    return singbox.watchLogs(filesEditor.coreLogsPath).handleExceptions(
+    return singbox.watchLogs(filesEditor.coreLogsFile.path).handleExceptions(
       (error, stackTrace) {
         loggy.warning("error watching logs", error, stackTrace);
         return CoreServiceFailure.unexpected(error, stackTrace);

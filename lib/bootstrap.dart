@@ -122,7 +122,7 @@ void initLoggers(
   final logToFile = debug || (!Platform.isAndroid && !Platform.isIOS);
   if (logToFile) {
     _loggers.addPrinter(
-      FileLogPrinter(read(filesEditorServiceProvider).appLogsPath),
+      FileLogPrinter(read(filesEditorServiceProvider).appLogsFile.path),
     );
   }
   Loggy.initLoggy(

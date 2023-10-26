@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/core/prefs/general_prefs.dart';
 import 'package:hiddify/domain/singbox/rules.dart';
-import 'package:hiddify/services/platform_settings.dart';
+import 'package:hiddify/services/platform_services.dart';
 import 'package:hiddify/services/service_providers.dart';
 import 'package:hiddify/utils/riverpod_utils.dart';
 import 'package:hiddify/utils/utils.dart';
@@ -23,7 +23,7 @@ Future<List<InstalledPackageInfo>> installedPackagesInfo(
   InstalledPackagesInfoRef ref,
 ) async {
   return ref
-      .watch(platformSettingsProvider)
+      .watch(platformServicesProvider)
       .getInstalledPackages()
       .getOrElse((err) {
     _logger.error("error getting installed packages", err);
@@ -38,7 +38,7 @@ Future<ImageProvider> packageIcon(
 ) async {
   ref.disposeDelay(const Duration(seconds: 10));
   final bytes = await ref
-      .watch(platformSettingsProvider)
+      .watch(platformServicesProvider)
       .getPackageIcon(packageName)
       .getOrElse((err) {
     _logger.warning("error getting package icon", err);

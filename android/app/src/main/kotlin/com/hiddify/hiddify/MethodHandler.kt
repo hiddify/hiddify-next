@@ -34,12 +34,9 @@ class MethodHandler(private val scope: CoroutineScope) : FlutterPlugin,
     }
 
     override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-        val taskQueue = flutterPluginBinding.binaryMessenger.makeBackgroundTaskQueue()
         channel = MethodChannel(
             flutterPluginBinding.binaryMessenger,
             channelName,
-            StandardMethodCodec.INSTANCE,
-            taskQueue
         )
         channel!!.setMethodCallHandler(this)
     }
