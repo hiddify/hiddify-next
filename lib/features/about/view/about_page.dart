@@ -41,6 +41,33 @@ class AboutPage extends HookConsumerWidget {
       },
     );
 
+    final conditionalTiles = [
+      if (appInfo.release.allowCustomUpdateChecker)
+        ListTile(
+          title: Text(t.about.checkForUpdate),
+          trailing: switch (appUpdate) {
+            AppUpdateStateChecking() => const SizedBox(
+                width: 24,
+                height: 24,
+                child: CircularProgressIndicator(),
+              ),
+            _ => const Icon(Icons.update),
+          },
+          onTap: () async {
+            await ref.read(appUpdateNotifierProvider.notifier).check();
+          },
+        ),
+      if (PlatformUtils.isDesktop)
+        ListTile(
+          title: Text(t.settings.general.openWorkingDir),
+          trailing: const Icon(Icons.arrow_outward_outlined),
+          onTap: () async {
+            final path = ref.read(filesEditorServiceProvider).workingDir.uri;
+            await UriUtils.tryLaunch(path);
+          },
+        ),
+    ];
+
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -91,6 +118,8 @@ class AboutPage extends HookConsumerWidget {
           SliverList(
             delegate: SliverChildListDelegate(
               [
+                ...conditionalTiles,
+                if (conditionalTiles.isNotEmpty) const Divider(),
                 ListTile(
                   title: Text(t.about.sourceCode),
                   trailing: const Icon(Icons.open_in_new),
@@ -109,33 +138,24 @@ class AboutPage extends HookConsumerWidget {
                     );
                   },
                 ),
-                if (appInfo.release.allowCustomUpdateChecker)
-                  ListTile(
-                    title: Text(t.about.checkForUpdate),
-                    trailing: switch (appUpdate) {
-                      AppUpdateStateChecking() => const SizedBox(
-                          width: 24,
-                          height: 24,
-                          child: CircularProgressIndicator(),
-                        ),
-                      _ => const Icon(Icons.update),
-                    },
-                    onTap: () async {
-                      await ref
-                          .read(appUpdateNotifierProvider.notifier)
-                          .check();
-                    },
-                  ),
-                if (PlatformUtils.isDesktop)
-                  ListTile(
-                    title: Text(t.settings.general.openWorkingDir),
-                    trailing: const Icon(Icons.arrow_outward_outlined),
-                    onTap: () async {
-                      final path =
-                          ref.read(filesEditorServiceProvider).workingDir.uri;
-                      await UriUtils.tryLaunch(path);
-                    },
-                  ),
+                ListTile(
+                  title: Text(t.about.termsAndConditions),
+                  trailing: const Icon(Icons.open_in_new),
+                  onTap: () async {
+                    await UriUtils.tryLaunch(
+                      Uri.parse(Constants.termsAndConditionsUrl),
+                    );
+                  },
+                ),
+                ListTile(
+                  title: Text(t.about.privacyPolicy),
+                  trailing: const Icon(Icons.open_in_new),
+                  onTap: () async {
+                    await UriUtils.tryLaunch(
+                      Uri.parse(Constants.privacyPolicyUrl),
+                    );
+                  },
+                ),
               ],
             ),
           ),
