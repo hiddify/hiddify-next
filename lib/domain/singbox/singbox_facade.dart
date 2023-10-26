@@ -18,11 +18,17 @@ abstract interface class SingboxFacade {
     ConfigOptions options,
   );
 
-  TaskEither<CoreServiceFailure, Unit> start(String fileName);
+  TaskEither<CoreServiceFailure, Unit> start(
+    String fileName,
+    bool disableMemoryLimit,
+  );
 
   TaskEither<CoreServiceFailure, Unit> stop();
 
-  TaskEither<CoreServiceFailure, Unit> restart(String fileName);
+  TaskEither<CoreServiceFailure, Unit> restart(
+    String fileName,
+    bool disableMemoryLimit,
+  );
 
   Stream<Either<CoreServiceFailure, List<OutboundGroup>>> watchOutbounds();
 

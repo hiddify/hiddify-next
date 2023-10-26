@@ -146,7 +146,8 @@
         "advanced": {
             "sectionTitle": "先进的",
             "debugMode": "调试模式",
-            "debugModeMsg": "重新启动应用程序以应用此更改"
+            "debugModeMsg": "重新启动应用程序以应用此更改",
+            "memoryLimit": "内存限制"
         },
         "network": {
             "perAppProxyPageTitle": "每个应用程序代理",

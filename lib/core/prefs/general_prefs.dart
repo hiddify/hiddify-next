@@ -75,6 +75,23 @@ class EnableAnalytics extends _$EnableAnalytics {
 }
 
 @Riverpod(keepAlive: true)
+class DisableMemoryLimit extends _$DisableMemoryLimit {
+  late final _pref = Pref(
+    ref.watch(sharedPreferencesProvider),
+    "disable_memory_limit",
+    false,
+  );
+
+  @override
+  bool build() => _pref.getValue();
+
+  Future<void> update(bool value) {
+    state = value;
+    return _pref.update(value);
+  }
+}
+
+@Riverpod(keepAlive: true)
 class CheckForPreReleaseUpdates extends _$CheckForPreReleaseUpdates {
   late final _pref = Pref(
     ref.watch(sharedPreferencesProvider),

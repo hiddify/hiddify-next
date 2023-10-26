@@ -1,3 +1,4 @@
+import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:hiddify/data/data_providers.dart';
 import 'package:hiddify/domain/connectivity/connectivity.dart';
 import 'package:hiddify/domain/core_facade.dart';
@@ -50,7 +51,9 @@ class ConnectivityController extends _$ConnectivityController with AppLogger {
         return _disconnect();
       }
       loggy.debug("reconnecting, profile: [$profileId]");
-      await _core.restart(profileId).mapLeft((err) {
+      await _core
+          .restart(profileId, ref.read(disableMemoryLimitProvider))
+          .mapLeft((err) {
         loggy.warning("error reconnecting", err);
         state = AsyncError(err, StackTrace.current);
       }).run();
@@ -70,8 +73,10 @@ class ConnectivityController extends _$ConnectivityController with AppLogger {
 
   Future<void> _connect() async {
     final activeProfile = await ref.read(activeProfileProvider.future);
-    await _core.start(activeProfile!.id).mapLeft((err) {
-      loggy.warning("error connecting", err);
+    await _core
+        .start(activeProfile!.id, ref.read(disableMemoryLimitProvider))
+        .mapLeft((err) {
+      loggy.warning("error connecting $err", err);
       state = AsyncError(err, StackTrace.current);
     }).run();
   }

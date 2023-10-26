@@ -73,7 +73,7 @@ class MobileSingboxService
   }
 
   @override
-  TaskEither<String, Unit> start(String configPath) {
+  TaskEither<String, Unit> start(String configPath, bool disableMemoryLimit) {
     return TaskEither(
       () async {
         loggy.debug("starting");
@@ -98,7 +98,7 @@ class MobileSingboxService
   }
 
   @override
-  TaskEither<String, Unit> restart(String configPath) {
+  TaskEither<String, Unit> restart(String configPath, bool disableMemoryLimit) {
     return TaskEither(
       () async {
         loggy.debug("restarting");

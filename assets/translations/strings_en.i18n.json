@@ -146,7 +146,8 @@
         "advanced": {
             "sectionTitle": "Advanced",
             "debugMode": "Debug Mode",
-            "debugModeMsg": "Restart the app for applying this change"
+            "debugModeMsg": "Restart the app for applying this change",
+            "memoryLimit": "Memory Limit"
         },
         "network": {
             "perAppProxyPageTitle": "Per-app Proxy",

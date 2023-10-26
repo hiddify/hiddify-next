@@ -146,7 +146,8 @@
         "advanced": {
             "sectionTitle": "پیشرفته",
             "debugMode": "دیباگ مود",
-            "debugModeMsg": "برای اعمال این تغییر اپ را ری‌استارت کنید"
+            "debugModeMsg": "برای اعمال این تغییر اپ را ری‌استارت کنید",
+            "memoryLimit": "محدودیت مموری"
         },
         "network": {
             "perAppProxyPageTitle": "پراکسی برنامه‌ها",

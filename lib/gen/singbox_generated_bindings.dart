@@ -930,17 +930,20 @@ class SingboxNativeLibrary {
 
   ffi.Pointer<ffi.Char> start(
     ffi.Pointer<ffi.Char> configPath,
+    int disableMemoryLimit,
   ) {
     return _start(
       configPath,
+      disableMemoryLimit,
     );
   }
 
   late final _startPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('start');
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>, GoUint8)>>('start');
   late final _start = _startPtr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
+      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, int)>();
 
   ffi.Pointer<ffi.Char> stop() {
     return _stop();
@@ -952,17 +955,20 @@ class SingboxNativeLibrary {
 
   ffi.Pointer<ffi.Char> restart(
     ffi.Pointer<ffi.Char> configPath,
+    int disableMemoryLimit,
   ) {
     return _restart(
       configPath,
+      disableMemoryLimit,
     );
   }
 
   late final _restartPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>>('restart');
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>, GoUint8)>>('restart');
   late final _restart = _restartPtr
-      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
+      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>, int)>();
 
   ffi.Pointer<ffi.Char> startCommandClient(
     int command,

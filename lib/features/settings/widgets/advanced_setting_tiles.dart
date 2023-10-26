@@ -18,6 +18,7 @@ class AdvancedSettingTiles extends HookConsumerWidget {
 
     final debug = ref.watch(debugModeNotifierProvider);
     final perAppProxy = ref.watch(perAppProxyModeNotifierProvider).enabled;
+    final disableMemoryLimit = ref.watch(disableMemoryLimitProvider);
 
     return Column(
       children: [
@@ -81,6 +82,13 @@ class AdvancedSettingTiles extends HookConsumerWidget {
               );
             }
             await ref.read(debugModeNotifierProvider.notifier).update(value);
+          },
+        ),
+        SwitchListTile(
+          title: Text(t.settings.advanced.memoryLimit),
+          value: !disableMemoryLimit,
+          onChanged: (value) async {
+            await ref.read(disableMemoryLimitProvider.notifier).update(!value);
           },
         ),
       ],

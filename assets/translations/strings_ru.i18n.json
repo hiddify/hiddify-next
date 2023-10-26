@@ -146,7 +146,8 @@
         "advanced": {
             "sectionTitle": "Расширенные",
             "debugMode": "Режим отладки",
-            "debugModeMsg": "Для применения перезапустите приложение."
+            "debugModeMsg": "Для применения перезапустите приложение.",
+            "memoryLimit": "Ограничение памяти"
         },
         "network": {
             "perAppProxyPageTitle": "Раздельное проксирование",

@@ -130,12 +130,16 @@ class FFISingboxService
   }
 
   @override
-  TaskEither<String, Unit> start(String configPath) {
+  TaskEither<String, Unit> start(String configPath, bool disableMemoryLimit) {
+    loggy.debug("starting, memory limit: [${!disableMemoryLimit}]");
     return TaskEither(
       () => CombineWorker().execute(
         () {
           final err = _box
-              .start(configPath.toNativeUtf8().cast())
+              .start(
+                configPath.toNativeUtf8().cast(),
+                disableMemoryLimit ? 1 : 0,
+              )
               .cast<Utf8>()
               .toDartString();
           if (err.isNotEmpty) {
@@ -163,12 +167,16 @@ class FFISingboxService
   }
 
   @override
-  TaskEither<String, Unit> restart(String configPath) {
+  TaskEither<String, Unit> restart(String configPath, bool disableMemoryLimit) {
+    loggy.debug("restarting, memory limit: [${!disableMemoryLimit}]");
     return TaskEither(
       () => CombineWorker().execute(
         () {
           final err = _box
-              .restart(configPath.toNativeUtf8().cast())
+              .restart(
+                configPath.toNativeUtf8().cast(),
+                disableMemoryLimit ? 1 : 0,
+              )
               .cast<Utf8>()
               .toDartString();
           if (err.isNotEmpty) {

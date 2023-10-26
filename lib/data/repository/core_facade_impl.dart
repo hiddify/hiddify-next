@@ -86,14 +86,19 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
   }
 
   @override
-  TaskEither<CoreServiceFailure, Unit> start(String fileName) {
+  TaskEither<CoreServiceFailure, Unit> start(
+    String fileName,
+    bool disableMemoryLimit,
+  ) {
     return exceptionHandler(
       () {
         final configPath = filesEditor.configPath(fileName);
         return setup()
             .andThen(() => changeConfigOptions(configOptions()))
             .andThen(
-              () => singbox.start(configPath).mapLeft(CoreServiceFailure.start),
+              () => singbox
+                  .start(configPath, disableMemoryLimit)
+                  .mapLeft(CoreServiceFailure.start),
             )
             .run();
       },
@@ -110,14 +115,18 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
   }
 
   @override
-  TaskEither<CoreServiceFailure, Unit> restart(String fileName) {
+  TaskEither<CoreServiceFailure, Unit> restart(
+    String fileName,
+    bool disableMemoryLimit,
+  ) {
     return exceptionHandler(
       () {
         final configPath = filesEditor.configPath(fileName);
         return changeConfigOptions(configOptions())
             .andThen(
-              () =>
-                  singbox.restart(configPath).mapLeft(CoreServiceFailure.start),
+              () => singbox
+                  .restart(configPath, disableMemoryLimit)
+                  .mapLeft(CoreServiceFailure.start),
             )
             .run();
       },

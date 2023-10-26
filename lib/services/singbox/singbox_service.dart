@@ -32,11 +32,11 @@ abstract interface class SingboxService {
 
   TaskEither<String, Unit> changeConfigOptions(ConfigOptions options);
 
-  TaskEither<String, Unit> start(String configPath);
+  TaskEither<String, Unit> start(String configPath, bool disableMemoryLimit);
 
   TaskEither<String, Unit> stop();
 
-  TaskEither<String, Unit> restart(String configPath);
+  TaskEither<String, Unit> restart(String configPath, bool disableMemoryLimit);
 
   Stream<String> watchOutbounds();
 
