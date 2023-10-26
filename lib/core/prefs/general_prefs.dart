@@ -96,7 +96,7 @@ class CheckForPreReleaseUpdates extends _$CheckForPreReleaseUpdates {
   late final _pref = Pref(
     ref.watch(sharedPreferencesProvider),
     "check_for_pre_release_updates",
-    true,
+    false,
   );
 
   @override
