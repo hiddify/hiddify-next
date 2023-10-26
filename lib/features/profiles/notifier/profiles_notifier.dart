@@ -53,49 +53,65 @@ class ProfilesNotifier extends _$ProfilesNotifier with AppLogger {
     final activeProfile = await ref.read(activeProfileProvider.future);
     final markAsActive =
         activeProfile == null || ref.read(markNewProfileActiveProvider);
+    final TaskEither<ProfileFailure, Unit> task;
     if (LinkParser.parse(rawInput) case (final link)?) {
       loggy.debug("adding profile, url: [${link.url}]");
-      return ref
+      task = ref
           .read(profilesRepositoryProvider)
-          .addByUrl(link.url, markAsActive: markAsActive)
-          .getOrElse((err) {
-        loggy.warning("failed to add profile", err);
-        throw err;
-      }).run();
+          .addByUrl(link.url, markAsActive: markAsActive);
     } else if (LinkParser.protocol(rawInput) case (final parsed)?) {
       loggy.debug("adding profile, content");
-      return ref
-          .read(profilesRepositoryProvider)
-          .addByContent(
+      task = ref.read(profilesRepositoryProvider).addByContent(
             parsed.content,
             name: parsed.name,
             markAsActive: markAsActive,
-          )
-          .getOrElse((err) {
-        loggy.warning("failed to add profile", err);
-        throw err;
-      }).run();
+          );
     } else {
       loggy.debug("invalid content");
       throw const ProfileInvalidUrlFailure();
     }
+    return task.match(
+      (err) {
+        loggy.warning("failed to add profile", err);
+        throw err;
+      },
+      (_) {
+        loggy.info(
+          "successfully added profile, mark as active? [$markAsActive]",
+        );
+        return unit;
+      },
+    ).run();
   }
 
   Future<Unit?> updateProfile(RemoteProfile profile) async {
     loggy.debug("updating profile");
-    return ref
-        .read(profilesRepositoryProvider)
-        .update(profile)
-        .getOrElse((l) => throw l)
-        .run();
+    return ref.read(profilesRepositoryProvider).update(profile).match(
+      (err) {
+        loggy.warning("failed to update profile", err);
+        throw err;
+      },
+      (_) {
+        loggy.info(
+          'successfully updated profile, was active? [${profile.active}]',
+        );
+        return unit;
+      },
+    ).run();
   }
 
   Future<void> deleteProfile(Profile profile) async {
     loggy.debug('deleting profile: ${profile.name}');
-    await _profilesRepo.delete(profile.id).mapLeft(
+    await _profilesRepo.delete(profile.id).match(
       (err) {
         loggy.warning('failed to delete profile', err);
         throw err;
+      },
+      (_) {
+        loggy.info(
+          'successfully deleted profile, was active? [${profile.active}]',
+        );
+        return unit;
       },
     ).run();
   }

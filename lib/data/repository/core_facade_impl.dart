@@ -75,7 +75,6 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
   ) {
     return exceptionHandler(
       () {
-        loggy.info("changing config options: ${options.format()}");
         return singbox
             .changeConfigOptions(options)
             .mapLeft(CoreServiceFailure.invalidConfigOptions)
@@ -93,8 +92,13 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
     return exceptionHandler(
       () {
         final configPath = filesEditor.configPath(fileName);
+        final options = configOptions();
+        loggy.info(
+          "config options: ${options.format()}\nMemory Limit: ${!disableMemoryLimit}",
+        );
+
         return setup()
-            .andThen(() => changeConfigOptions(configOptions()))
+            .andThen(() => changeConfigOptions(options))
             .andThen(
               () => singbox
                   .start(configPath, disableMemoryLimit)

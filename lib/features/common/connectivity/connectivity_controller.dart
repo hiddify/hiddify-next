@@ -48,9 +48,10 @@ class ConnectivityController extends _$ConnectivityController with AppLogger {
   Future<void> reconnect(String? profileId) async {
     if (state case AsyncData(:final value) when value == const Connected()) {
       if (profileId == null) {
+        loggy.info("no active profile, disconnecting");
         return _disconnect();
       }
-      loggy.debug("reconnecting, profile: [$profileId]");
+      loggy.info("active profile changed, reconnecting");
       await _core
           .restart(profileId, ref.read(disableMemoryLimitProvider))
           .mapLeft((err) {
