@@ -13,38 +13,36 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: ^0.18.1
-  slang: ^3.24.0
-  slang_flutter: ^3.24.0
+  slang: ^3.25.0
+  slang_flutter: ^3.25.0
   timeago: ^3.5.0
   flutter_localized_locales: ^2.0.5
   fpdart: ^1.1.0
   freezed_annotation: ^2.4.1
   json_annotation: ^4.8.1
-  hooks_riverpod: ^2.4.3
+  hooks_riverpod: ^2.4.4
   flutter_hooks: ^0.20.3
-  riverpod_annotation: ^2.2.0
+  riverpod_annotation: ^2.2.1
   rxdart: ^0.27.7
-  drift: ^2.12.1
+  drift: ^2.13.0
   sqlite3_flutter_libs: ^0.5.16
   shared_preferences: ^2.2.2
   dio: ^5.3.3
   web_socket_channel: ^2.4.0
   ffi: ^2.1.0
   path_provider: ^2.1.1
-  flutter_local_notifications: ^15.1.1
-  mobile_scanner: ^3.4.1
+  mobile_scanner: ^3.5.1
   protocol_handler: ^0.1.5
-  flutter_native_splash: ^2.3.3
-  share_plus: ^7.1.0
+  flutter_native_splash: ^2.3.4
+  share_plus: ^7.2.1
   window_manager: ^0.3.7
   tray_manager: ^0.2.0
-  package_info_plus: ^4.1.0
-  url_launcher: ^6.1.14
+  package_info_plus: ^4.2.0
+  url_launcher: ^6.2.1
   vclibs: ^0.1.0
   launch_at_startup: ^0.2.2
-  sentry_flutter: ^7.10.1
+  sentry_flutter: ^7.11.0
   sentry_dart_plugin: ^1.6.2
-  sentry_dio: ^7.10.1
   combine: ^0.5.6
   path: ^1.8.3
   loggy: ^2.0.3
@@ -52,16 +50,16 @@ dependencies:
   meta: ^1.9.1
   stack_trace: ^1.11.0
   dartx: ^1.2.0
-  uuid: ^3.0.7
+  uuid: ^4.1.0
   tint: ^2.0.1
   accessibility_tools: ^1.0.0
   neat_periodic_task: ^2.0.1
   retry: ^3.1.2
   watcher: ^1.1.0
-  go_router: ^11.1.4
+  go_router: ^12.0.0
   flex_color_scheme: ^7.3.1
   flutter_animate: ^4.2.0+1
-  flutter_svg: ^2.0.7
+  flutter_svg: ^2.0.8
   gap: ^3.0.1
   percent_indicator: ^4.2.3
   fluttertoast: ^8.2.2
@@ -77,13 +75,13 @@ dev_dependencies:
   json_serializable: ^6.7.1
   freezed: ^2.4.5
   riverpod_generator: ^2.3.3
-  drift_dev: ^2.12.1
+  drift_dev: ^2.13.0
   ffigen: ^8.0.2
-  slang_build_runner: ^3.24.0
+  slang_build_runner: ^3.25.0
   flutter_gen_runner: ^5.3.2
   go_router_builder: ^2.3.3
-  custom_lint: ^0.5.3
-  riverpod_lint: ^2.1.1
+  custom_lint: ^0.5.5
+  riverpod_lint: ^2.3.2
   icons_launcher: ^2.1.4
 
 flutter:

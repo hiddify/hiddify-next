@@ -1,8 +1,6 @@
 PODS:
-  - flutter_local_notifications (0.0.1):
-    - FlutterMacOS
   - FlutterMacOS (1.0.0)
-  - mobile_scanner (3.0.0):
+  - mobile_scanner (3.5.1):
     - FlutterMacOS
   - package_info_plus (0.0.1):
     - FlutterMacOS
@@ -13,13 +11,13 @@ PODS:
     - FlutterMacOS
   - screen_retriever (0.0.1):
     - FlutterMacOS
-  - Sentry/HybridSDK (8.11.0):
-    - SentryPrivate (= 8.11.0)
+  - Sentry/HybridSDK (8.14.2):
+    - SentryPrivate (= 8.14.2)
   - sentry_flutter (0.0.1):
     - Flutter
     - FlutterMacOS
-    - Sentry/HybridSDK (= 8.11.0)
-  - SentryPrivate (8.11.0)
+    - Sentry/HybridSDK (= 8.14.2)
+  - SentryPrivate (8.14.2)
   - share_plus (0.0.1):
     - FlutterMacOS
   - shared_preferences_foundation (0.0.1):
@@ -48,7 +46,6 @@ PODS:
     - FlutterMacOS
 
 DEPENDENCIES:
-  - flutter_local_notifications (from `Flutter/ephemeral/.symlinks/plugins/flutter_local_notifications/macos`)
   - FlutterMacOS (from `Flutter/ephemeral`)
   - mobile_scanner (from `Flutter/ephemeral/.symlinks/plugins/mobile_scanner/macos`)
   - package_info_plus (from `Flutter/ephemeral/.symlinks/plugins/package_info_plus/macos`)
@@ -70,8 +67,6 @@ SPEC REPOS:
     - sqlite3
 
 EXTERNAL SOURCES:
-  flutter_local_notifications:
-    :path: Flutter/ephemeral/.symlinks/plugins/flutter_local_notifications/macos
   FlutterMacOS:
     :path: Flutter/ephemeral
   mobile_scanner:
@@ -100,24 +95,23 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral/.symlinks/plugins/window_manager/macos
 
 SPEC CHECKSUMS:
-  flutter_local_notifications: 3805ca215b2fb7f397d78b66db91f6a747af52e4
   FlutterMacOS: 8f6f14fa908a6fb3fba0cd85dbd81ec4b251fb24
-  mobile_scanner: ed7618fb749adc6574563e053f3b8e5002c13994
+  mobile_scanner: 7d82279e22e6adb3b2927e94326a0971058c09ba
   package_info_plus: 02d7a575e80f194102bef286361c6c326e4c29ce
   path_provider_foundation: 29f094ae23ebbca9d3d0cec13889cd9060c0e943
   protocol_handler: 587e1caf6c0b92ce351ab14081968dae49cb8cc6
   screen_retriever: 59634572a57080243dd1bf715e55b6c54f241a38
-  Sentry: 39d57e691e311bdb73bc1ab5bbebbd6bc890050d
-  sentry_flutter: b2feefdad5b0f06602347172bc7257e8e9da5562
-  SentryPrivate: 48712023cdfd523735c2edb6b06bedf26c4730a3
+  Sentry: e0ea366f95ebb68f26d6030d8c22d6b2e6d23dd0
+  sentry_flutter: 9a04c51c373d76ee22167bf1e65bc468c0a91fed
+  SentryPrivate: 949a21fa59872427edc73b524c3ec8456761d97f
   share_plus: 76dd39142738f7a68dd57b05093b5e8193f220f7
   shared_preferences_foundation: 5b919d13b803cadd15ed2dc053125c68730e5126
   sqlite3: e0a0623a33a20a47cb5921552aebc6e9e437dc91
-  sqlite3_flutter_libs: a91655e4a75a499364f693041aa1c6d1b36b66d0
+  sqlite3_flutter_libs: 9939d86d0f5a3f8f0e91feb4f333e01c9bb4cd89
   tray_manager: 9064e219c56d75c476e46b9a21182087930baf90
   url_launcher_macos: d2691c7dd33ed713bf3544850a623080ec693d95
   window_manager: 3a1844359a6295ab1e47659b1a777e36773cd6e8
 
-PODFILE CHECKSUM: 0b402b362e66492ff5597cf44bda1a7f782269c6
+PODFILE CHECKSUM: 15674062c2e6d8f1f7ead4db6e1a7e96c717a635
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.14.0
