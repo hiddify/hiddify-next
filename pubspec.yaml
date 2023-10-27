@@ -1,7 +1,7 @@
 name: hiddify
 description: A Proxy Frontend.
 publish_to: "none"
-version: 0.9.2+902
+version: 0.10.0+1000
 
 environment:
   sdk: ">=3.0.5 <4.0.0"
@@ -151,8 +151,3 @@ sentry:
   upload_sources: true
   log_level: info
   ignore_missing: true
-
-cider:
-  link_template:
-    tag: https://github.com/hiddify/hiddify-next/releases/tag/%tag%
-    diff: https://github.com/hiddify/hiddify-next/compare/%from%...%to%
