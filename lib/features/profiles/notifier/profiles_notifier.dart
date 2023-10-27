@@ -6,6 +6,7 @@ import 'package:hiddify/data/data_providers.dart';
 import 'package:hiddify/domain/enums.dart';
 import 'package:hiddify/domain/profiles/profiles.dart';
 import 'package:hiddify/features/common/active_profile/active_profile_notifier.dart';
+import 'package:hiddify/features/common/connectivity/connectivity_controller.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -86,15 +87,23 @@ class ProfilesNotifier extends _$ProfilesNotifier with AppLogger {
 
   Future<Unit?> updateProfile(RemoteProfile profile) async {
     loggy.debug("updating profile");
-    return ref.read(profilesRepositoryProvider).update(profile).match(
+    return await ref.read(profilesRepositoryProvider).update(profile).match(
       (err) {
         loggy.warning("failed to update profile", err);
         throw err;
       },
-      (_) {
+      (_) async {
         loggy.info(
           'successfully updated profile, was active? [${profile.active}]',
         );
+
+        await ref.read(activeProfileProvider.future).then((active) async {
+          if (active != null && active.id == profile.id) {
+            await ref
+                .read(connectivityControllerProvider.notifier)
+                .reconnect(profile.id);
+          }
+        });
         return unit;
       },
     ).run();

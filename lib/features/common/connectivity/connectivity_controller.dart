@@ -17,7 +17,7 @@ class ConnectivityController extends _$ConnectivityController with AppLogger {
       activeProfileProvider.select((value) => value.asData?.value),
       (previous, next) async {
         if (previous == null) return;
-        final shouldReconnect = previous != next;
+        final shouldReconnect = next == null || previous.id != next.id;
         if (shouldReconnect) {
           await reconnect(next?.id);
         }

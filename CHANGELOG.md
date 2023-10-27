@@ -24,3 +24,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Localization mistakes in Russian from [solokot](https://github.com/solokot)
 - Localization mistakes in Russian from [Elshad Guseynov](https://github.com/lifeindarkside)
 - Logs filtering
+
+### Removed
+- Reconnect on auto profile update
