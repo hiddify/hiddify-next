@@ -39,11 +39,30 @@ class ProxyTile extends HookConsumerWidget {
         proxy.type.label,
         overflow: TextOverflow.ellipsis,
       ),
-      trailing:
-          proxy.urlTestDelay != 0 ? Text(proxy.urlTestDelay.toString()) : null,
+      trailing: proxy.urlTestDelay != 0
+          ? Text(
+              proxy.urlTestDelay.toString(),
+              style: TextStyle(color: delayColor(context, proxy.urlTestDelay)),
+            )
+          : null,
       selected: selected,
       onTap: onSelect,
       horizontalTitleGap: 4,
     );
+  }
+
+  Color delayColor(BuildContext context, int delay) {
+    if (Theme.of(context).brightness == Brightness.dark) {
+      return switch (delay) {
+        < 800 => Colors.lightGreen,
+        < 1500 => Colors.orange,
+        _ => Colors.redAccent
+      };
+    }
+    return switch (delay) {
+      < 800 => Colors.green,
+      < 1500 => Colors.deepOrangeAccent,
+      _ => Colors.red
+    };
   }
 }
