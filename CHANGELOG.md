@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Basic region based routing rules
 - Russian region
 - Logs flow control
+- Terms and Conditions and Privacy policy to about page
+- Memory limit option
+- Initial iOS implementation from [GFWFighter](https://github.com/GFWFighter)
+- Url test delay color
+- Core debug options
+- Selected tag for selector outbounds in proxies page
 
 ### Changed
 - Theme preferences
