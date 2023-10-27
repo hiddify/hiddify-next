@@ -18,12 +18,14 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
     this.singbox,
     this.filesEditor,
     this.clash,
+    this.debug,
     this.configOptions,
   );
 
   final SingboxService singbox;
   final FilesEditorService filesEditor;
   final ClashApi clash;
+  final bool debug;
   final ConfigOptions Function() configOptions;
 
   bool _initialized = false;
@@ -39,6 +41,7 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
               filesEditor.dirs.baseDir.path,
               filesEditor.dirs.workingDir.path,
               filesEditor.dirs.tempDir.path,
+              debug,
             )
             .map((r) {
               loggy.debug("setup complete");

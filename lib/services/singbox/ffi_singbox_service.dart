@@ -66,18 +66,26 @@ class FFISingboxService
     String baseDir,
     String workingDir,
     String tempDir,
+    bool debug,
   ) {
     final port = _connectionStatusReceiver.sendPort.nativePort;
     return TaskEither(
       () => CombineWorker().execute(
         () {
           _box.setupOnce(NativeApi.initializeApiDLData);
-          _box.setup(
-            baseDir.toNativeUtf8().cast(),
-            workingDir.toNativeUtf8().cast(),
-            tempDir.toNativeUtf8().cast(),
-            port,
-          );
+          final err = _box
+              .setup(
+                baseDir.toNativeUtf8().cast(),
+                workingDir.toNativeUtf8().cast(),
+                tempDir.toNativeUtf8().cast(),
+                port,
+                debug ? 1 : 0,
+              )
+              .cast<Utf8>()
+              .toDartString();
+          if (err.isNotEmpty) {
+            return left(err);
+          }
           return right(unit);
         },
       ),

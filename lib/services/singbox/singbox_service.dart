@@ -22,6 +22,7 @@ abstract interface class SingboxService {
     String baseDir,
     String workingDir,
     String tempDir,
+    bool debug,
   );
 
   TaskEither<String, Unit> parseConfig(

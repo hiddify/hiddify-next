@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:hiddify/core/core_providers.dart';
+import 'package:hiddify/core/prefs/general_prefs.dart';
 import 'package:hiddify/data/api/clash_api.dart';
 import 'package:hiddify/data/local/dao/dao.dart';
 import 'package:hiddify/data/local/database.dart';
@@ -61,5 +62,6 @@ CoreFacade coreFacade(CoreFacadeRef ref) => CoreFacadeImpl(
       ref.watch(singboxServiceProvider),
       ref.watch(filesEditorServiceProvider),
       ref.watch(clashApiProvider),
+      ref.read(debugModeNotifierProvider),
       () => ref.read(configOptionsProvider),
     );

@@ -38,6 +38,7 @@ class MobileSingboxService
     String baseDir,
     String workingDir,
     String tempDir,
+    bool debug,
   ) =>
       TaskEither.of(unit);
 

@@ -871,27 +871,33 @@ class SingboxNativeLibrary {
   late final _setupOnce =
       _setupOncePtr.asFunction<void Function(ffi.Pointer<ffi.Void>)>();
 
-  void setup(
+  ffi.Pointer<ffi.Char> setup(
     ffi.Pointer<ffi.Char> baseDir,
     ffi.Pointer<ffi.Char> workingDir,
     ffi.Pointer<ffi.Char> tempDir,
     int statusPort,
+    int debug,
   ) {
     return _setup(
       baseDir,
       workingDir,
       tempDir,
       statusPort,
+      debug,
     );
   }
 
   late final _setupPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>, ffi.LongLong)>>('setup');
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.LongLong,
+              GoUint8)>>('setup');
   late final _setup = _setupPtr.asFunction<
-      void Function(ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>,
-          ffi.Pointer<ffi.Char>, int)>();
+      ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>,
+          ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>, int, int)>();
 
   ffi.Pointer<ffi.Char> parse(
     ffi.Pointer<ffi.Char> path,
