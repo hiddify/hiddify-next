@@ -28,10 +28,8 @@ class OutboundGroupItem with _$OutboundGroupItem {
     required String tag,
     @JsonKey(fromJson: _typeFromJson) required ProxyType type,
     required int urlTestDelay,
+    String? selectedTag,
   }) = _OutboundGroupItem;
-
-  String get sanitizedTag =>
-      tag.replaceFirst(RegExp(r"\§[^]*"), "").trimRight();
 
   factory OutboundGroupItem.fromJson(Map<String, dynamic> json) =>
       _$OutboundGroupItemFromJson(json);
@@ -41,3 +39,6 @@ ProxyType _typeFromJson(dynamic type) =>
     ProxyType.values
         .firstOrNullWhere((e) => e.key == (type as String?)?.toLowerCase()) ??
     ProxyType.unknown;
+
+String sanitizedTag(String tag) =>
+    tag.replaceFirst(RegExp(r"\§[^]*"), "").trimRight();

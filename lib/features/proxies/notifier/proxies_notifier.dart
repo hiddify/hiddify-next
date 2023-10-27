@@ -11,6 +11,7 @@ import 'package:hiddify/utils/pref_notifier.dart';
 import 'package:hiddify/utils/riverpod_utils.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:rxdart/rxdart.dart';
 
 part 'proxies_notifier.g.dart';
 
@@ -58,6 +59,11 @@ class ProxiesNotifier extends _$ProxiesNotifier with AppLogger {
     yield* ref
         .watch(coreFacadeProvider)
         .watchOutbounds()
+        .throttleTime(
+          const Duration(milliseconds: 100),
+          leading: false,
+          trailing: true,
+        )
         .map(
           (event) => event.getOrElse(
             (err) {
@@ -75,9 +81,12 @@ class ProxiesNotifier extends _$ProxiesNotifier with AppLogger {
   ) async {
     return CombineWorker().execute(
       () {
+        final groupWithSelected = {
+          for (final o in outbounds) o.tag: o.selected,
+        };
         final sortedOutbounds = <OutboundGroup>[];
         for (final group in outbounds) {
-          final items = switch (sortBy) {
+          final sortedItems = switch (sortBy) {
             ProxiesSort.name => group.items.sortedBy((e) => e.tag),
             ProxiesSort.delay => group.items.sortedWith((a, b) {
                 final ai = a.urlTestDelay;
@@ -90,6 +99,15 @@ class ProxiesNotifier extends _$ProxiesNotifier with AppLogger {
               }),
             ProxiesSort.unsorted => group.items,
           };
+          final items = <OutboundGroupItem>[];
+          for (final item in sortedItems) {
+            if (groupWithSelected.keys.contains(item.tag)) {
+              items
+                  .add(item.copyWith(selectedTag: groupWithSelected[item.tag]));
+            } else {
+              items.add(item);
+            }
+          }
           sortedOutbounds.add(group.copyWith(items: items));
         }
         return sortedOutbounds;

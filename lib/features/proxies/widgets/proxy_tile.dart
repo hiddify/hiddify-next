@@ -21,7 +21,7 @@ class ProxyTile extends HookConsumerWidget {
     return ListTile(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       title: Text(
-        proxy.sanitizedTag,
+        sanitizedTag(proxy.tag),
         overflow: TextOverflow.ellipsis,
       ),
       leading: Padding(
@@ -35,8 +35,17 @@ class ProxyTile extends HookConsumerWidget {
           ),
         ),
       ),
-      subtitle: Text(
-        proxy.type.label,
+      subtitle: Text.rich(
+        TextSpan(
+          text: proxy.type.label,
+          children: [
+            if (proxy.selectedTag != null)
+              TextSpan(
+                text: ' (${sanitizedTag(proxy.selectedTag!)})',
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+          ],
+        ),
         overflow: TextOverflow.ellipsis,
       ),
       trailing: proxy.urlTestDelay != 0
