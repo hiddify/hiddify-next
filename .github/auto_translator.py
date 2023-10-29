@@ -6,9 +6,13 @@ import os
 
 
 def get_path(lang):
-    # if lang == 'en':
-    #     return f'../assets/translations/strings.i18n.json'
-    return f'../assets/translations/strings_{lang}.i18n.json'
+    base_dir = os.path.abspath('../assets/translations')
+    lang_file = f'strings_{lang}.i18n.json'
+    path = os.path.join(base_dir, lang_file)
+    if path.startswith(base_dir):
+        return path
+    else:
+        raise ValueError('Invalid language file path')
 
 
 def read_translate(lang):
@@ -43,5 +47,5 @@ if __name__ == "__main__":
     translator = GoogleTranslator(source=src, target=dst if dst != 'zh' else "zh-CN")
     recursive_translate(src_pofile, dst_pofile, translator)
 
-    with open(get_path(dst), 'w') as df:
+    with open(os.path.abspath(get_path(dst)), 'w') as df:
         json.dump(dst_pofile, df, ensure_ascii=False, indent=4)
