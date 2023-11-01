@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_adaptive_scaffold/flutter_adaptive_scaffold.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/core/router/router.dart';
+import 'package:hiddify/features/common/side_bar_stats_overview.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 abstract interface class RootScaffold {
@@ -55,6 +56,12 @@ class AdaptiveRootScaffold extends HookConsumerWidget {
       drawerDestinationRange: useMobileRouter ? (2, null) : (0, null),
       bottomDestinationRange: (0, 2),
       useBottomSheet: useMobileRouter,
+      sidebarTrailing: const Expanded(
+        child: Align(
+          alignment: Alignment.bottomCenter,
+          child: SideBarStatsOverview(),
+        ),
+      ),
       body: navigator,
     );
   }
@@ -68,6 +75,7 @@ class _CustomAdaptiveScaffold extends HookConsumerWidget {
     required this.drawerDestinationRange,
     required this.bottomDestinationRange,
     this.useBottomSheet = false,
+    this.sidebarTrailing,
     required this.body,
   });
 
@@ -77,6 +85,7 @@ class _CustomAdaptiveScaffold extends HookConsumerWidget {
   final (int, int?) drawerDestinationRange;
   final (int, int?) bottomDestinationRange;
   final bool useBottomSheet;
+  final Widget? sidebarTrailing;
   final Widget body;
 
   List<NavigationDestination> destinationsSlice((int, int?) range) =>
@@ -134,6 +143,7 @@ class _CustomAdaptiveScaffold extends HookConsumerWidget {
                     .map((_) => AdaptiveScaffold.toRailDestination(_))
                     .toList(),
                 onDestinationSelected: onSelectedIndexChange,
+                trailing: sidebarTrailing,
               ),
             ),
           },

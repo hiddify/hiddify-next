@@ -2,19 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/domain/singbox/singbox.dart';
-import 'package:hiddify/features/common/stats/stats_notifier.dart';
+import 'package:hiddify/features/common/stats_provider.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class StatsOverview extends HookConsumerWidget {
-  const StatsOverview({super.key});
+class SideBarStatsOverview extends HookConsumerWidget {
+  const SideBarStatsOverview({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = ref.watch(translationsProvider);
 
-    final stats =
-        ref.watch(statsNotifierProvider).asData?.value ?? CoreStatus.empty();
+    final stats = ref.watch(statsProvider).asData?.value ?? CoreStatus.empty();
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),

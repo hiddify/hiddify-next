@@ -4,10 +4,10 @@ import 'package:hiddify/features/common/connectivity/connectivity_controller.dar
 import 'package:hiddify/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'stats_notifier.g.dart';
+part 'stats_provider.g.dart';
 
 @riverpod
-class StatsNotifier extends _$StatsNotifier with AppLogger {
+class Stats extends _$Stats with AppLogger {
   @override
   Stream<CoreStatus> build() async* {
     final serviceRunning = await ref.watch(serviceRunningProvider.future);
