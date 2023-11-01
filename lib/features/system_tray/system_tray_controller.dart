@@ -1,8 +1,10 @@
 import 'dart:io';
 
 import 'package:hiddify/core/core_providers.dart';
+import 'package:hiddify/data/repository/config_options_store.dart';
 import 'package:hiddify/domain/connectivity/connectivity.dart';
 import 'package:hiddify/domain/constants.dart';
+import 'package:hiddify/domain/singbox/singbox.dart';
 import 'package:hiddify/features/common/connectivity/connectivity_controller.dart';
 import 'package:hiddify/features/common/window/window_controller.dart';
 import 'package:hiddify/gen/assets.gen.dart';
@@ -29,20 +31,12 @@ class SystemTrayController extends _$SystemTrayController
     }
 
     final connection = await ref.watch(connectivityControllerProvider.future);
+    final mode = ref.watch(coreModeStoreProvider);
+
+    final t = ref.watch(translationsProvider);
 
     loggy.debug('updating system tray');
-    await _updateTray(connection);
-  }
 
-  bool _initialized = false;
-
-  String get _trayIconPath {
-    if (Platform.isWindows) return Assets.images.trayIconIco;
-    return Assets.images.trayIconPng.path;
-  }
-
-  Future<void> _updateTray(ConnectionStatus connection) async {
-    final t = ref.watch(translationsProvider);
     final trayMenu = Menu(
       items: [
         MenuItem(
@@ -51,10 +45,36 @@ class SystemTrayController extends _$SystemTrayController
         ),
         MenuItem.separator(),
         MenuItem.checkbox(
-          label: t.tray.systemProxy,
+          label: switch (connection) {
+            Disconnected() => t.tray.status.connect,
+            Connecting() => t.tray.status.connecting,
+            Connected() => t.tray.status.disconnect,
+            Disconnecting() => t.tray.status.disconnecting,
+          },
           checked: connection.isConnected,
           disabled: connection.isSwitching,
           onClick: handleClickSetAsSystemProxy,
+        ),
+        MenuItem.submenu(
+          label: t.settings.config.mode,
+          submenu: Menu(
+            items: [
+              ...CoreMode.values.map(
+                (e) => MenuItem.checkbox(
+                  checked: e == mode,
+                  key: e.name,
+                  label: e.present(t),
+                  onClick: (menuItem) async {
+                    final newMode = CoreMode.values.byName(menuItem.key!);
+                    loggy.debug("switching core mode: [$newMode]");
+                    await ref
+                        .read(coreModeStoreProvider.notifier)
+                        .update(newMode);
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
         MenuItem.separator(),
         MenuItem(
@@ -64,6 +84,13 @@ class SystemTrayController extends _$SystemTrayController
       ],
     );
     await trayManager.setContextMenu(trayMenu);
+  }
+
+  bool _initialized = false;
+
+  String get _trayIconPath {
+    if (Platform.isWindows) return Assets.images.trayIconIco;
+    return Assets.images.trayIconPng.path;
   }
 
   @override

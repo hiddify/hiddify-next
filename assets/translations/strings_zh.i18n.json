@@ -164,6 +164,12 @@
             "clearSelection": "清空选项"
         },
         "config": {
+            "mode": "模式",
+            "modes": {
+                "none": "没有任何",
+                "proxy": "代理人",
+                "tun": "VPN"
+            },
             "section": {
                 "route": "路线选项",
                 "dns": "DNS 选项",
@@ -220,7 +226,12 @@
     "tray": {
         "dashboard": "控制面板",
         "quit": "退出",
-        "systemProxy": "系统代理"
+        "status": {
+            "connect": "连接",
+            "connecting": "正在连接",
+            "disconnect": "断开",
+            "disconnecting": "断开连接"
+        }
     },
     "failure": {
         "unexpected": "意外错误",

@@ -164,6 +164,12 @@
             "clearSelection": "Очистить выбор"
         },
         "config": {
+            "mode": "Режим",
+            "modes": {
+                "none": "Никто",
+                "proxy": "Прокси",
+                "tun": "VPN"
+            },
             "section": {
                 "route": "Варианты маршрутизации",
                 "dns": "Параметры DNS",
@@ -220,7 +226,12 @@
     "tray": {
         "dashboard": "Панель",
         "quit": "Выход",
-        "systemProxy": "Системный прокси"
+        "status": {
+            "connect": "Соединять",
+            "connecting": "Подключение",
+            "disconnect": "Отключить",
+            "disconnecting": "Отключение"
+        }
     },
     "failure": {
         "unexpected": "Неожиданная ошибка",

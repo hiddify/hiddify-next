@@ -3,7 +3,7 @@ import 'package:hiddify/features/common/app_update_notifier.dart';
 import 'package:hiddify/features/common/connectivity/connectivity_controller.dart';
 import 'package:hiddify/features/common/window/window_controller.dart';
 import 'package:hiddify/features/profiles/notifier/notifier.dart';
-import 'package:hiddify/features/system_tray/controller/system_tray_controller.dart';
+import 'package:hiddify/features/system_tray/system_tray_controller.dart';
 import 'package:hiddify/services/service_providers.dart';
 import 'package:hiddify/utils/platform_utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';

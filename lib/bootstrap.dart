@@ -12,7 +12,7 @@ import 'package:hiddify/data/repository/app_repository_impl.dart';
 import 'package:hiddify/domain/environment.dart';
 import 'package:hiddify/features/common/active_profile/active_profile_notifier.dart';
 import 'package:hiddify/features/common/window/window_controller.dart';
-import 'package:hiddify/features/system_tray/system_tray.dart';
+import 'package:hiddify/features/system_tray/system_tray_controller.dart';
 import 'package:hiddify/services/auto_start_service.dart';
 import 'package:hiddify/services/deep_link_service.dart';
 import 'package:hiddify/services/service_providers.dart';

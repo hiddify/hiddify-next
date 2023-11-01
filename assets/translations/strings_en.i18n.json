@@ -164,6 +164,12 @@
             "clearSelection": "Clear selection"
         },
         "config": {
+            "mode": "Mode",
+            "modes": {
+                "none": "None",
+                "proxy": "Proxy",
+                "tun": "VPN"
+            },
             "section": {
                 "route": "Route Options",
                 "dns": "DNS Options",
@@ -220,7 +226,12 @@
     "tray": {
         "dashboard": "Dashboard",
         "quit": "Quit",
-        "systemProxy": "System Proxy"
+        "status": {
+            "connect": "Connect",
+            "connecting": "Connecting",
+            "disconnect": "Disconnect",
+            "disconnecting": "Disconnecting"
+        }
     },
     "failure": {
         "unexpected": "Unexpected Error",

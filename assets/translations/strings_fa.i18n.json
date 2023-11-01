@@ -164,6 +164,12 @@
             "clearSelection": "حذف انتخاب‌ها"
         },
         "config": {
+            "mode": "حالت",
+            "modes": {
+                "none": "هیچ یک",
+                "proxy": "پروکسی",
+                "tun": "VPN"
+            },
             "section": {
                 "route": "تنظیمات مسیریاب",
                 "dns": "تنظیمات DNS",
@@ -220,7 +226,12 @@
     "tray": {
         "dashboard": "داشبورد",
         "quit": "خروج",
-        "systemProxy": "پراکسی سیستم"
+        "status": {
+            "connect": "اتصال",
+            "connecting": "در حال اتصال",
+            "disconnect": "قطع اتصال",
+            "disconnecting": "در حال قطع اتصال"
+        }
     },
     "failure": {
         "unexpected": "خطای غیرمنتظره",
