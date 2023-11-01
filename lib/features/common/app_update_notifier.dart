@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/core/prefs/prefs.dart';
-import 'package:hiddify/core/router/routes/routes.dart';
+import 'package:hiddify/core/router/router.dart';
 import 'package:hiddify/data/data_providers.dart';
 import 'package:hiddify/domain/app/app.dart';
 import 'package:hiddify/features/common/new_version_dialog.dart';

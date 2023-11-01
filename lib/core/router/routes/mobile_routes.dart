@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hiddify/core/router/app_router.dart';
 import 'package:hiddify/core/router/routes/shared_routes.dart';
 import 'package:hiddify/features/about/view/view.dart';
+import 'package:hiddify/features/common/adaptive_root_scaffold.dart';
 import 'package:hiddify/features/logs/view/view.dart';
 import 'package:hiddify/features/settings/view/view.dart';
-import 'package:hiddify/features/wrapper/wrapper.dart';
 
 part 'mobile_routes.g.dart';
 
@@ -65,7 +66,7 @@ class MobileWrapperRoute extends ShellRouteData {
 
   @override
   Widget builder(BuildContext context, GoRouterState state, Widget navigator) {
-    return MobileWrapper(navigator);
+    return AdaptiveRootScaffold(navigator);
   }
 }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hiddify/core/router/app_router.dart';
 import 'package:hiddify/features/home/view/view.dart';
 import 'package:hiddify/features/intro/view/view.dart';
 import 'package:hiddify/features/profile_detail/view/view.dart';
@@ -8,8 +9,6 @@ import 'package:hiddify/features/proxies/view/view.dart';
 import 'package:hiddify/utils/utils.dart';
 
 part 'shared_routes.g.dart';
-
-final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
 
 class HomeRoute extends GoRouteData {
   const HomeRoute();

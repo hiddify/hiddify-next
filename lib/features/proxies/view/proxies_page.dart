@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/domain/failures.dart';
-import 'package:hiddify/features/common/common.dart';
+import 'package:hiddify/features/common/nested_app_bar.dart';
 import 'package:hiddify/features/proxies/notifier/notifier.dart';
 import 'package:hiddify/features/proxies/widgets/widgets.dart';
 import 'package:hiddify/utils/utils.dart';
@@ -29,7 +29,7 @@ class ProxiesPage extends HookConsumerWidget with PresLogger {
           return Scaffold(
             body: CustomScrollView(
               slivers: [
-                NestedTabAppBar(
+                NestedAppBar(
                   title: Text(t.proxies.pageTitle),
                 ),
                 SliverFillRemaining(
@@ -50,7 +50,7 @@ class ProxiesPage extends HookConsumerWidget with PresLogger {
         return Scaffold(
           body: CustomScrollView(
             slivers: [
-              NestedTabAppBar(
+              NestedAppBar(
                 title: Text(t.proxies.pageTitle),
                 actions: [
                   PopupMenuButton<ProxiesSort>(
@@ -140,7 +140,7 @@ class ProxiesPage extends HookConsumerWidget with PresLogger {
         return Scaffold(
           body: CustomScrollView(
             slivers: [
-              NestedTabAppBar(
+              NestedAppBar(
                 title: Text(t.proxies.pageTitle),
               ),
               SliverErrorBodyPlaceholder(
@@ -155,7 +155,7 @@ class ProxiesPage extends HookConsumerWidget with PresLogger {
         return Scaffold(
           body: CustomScrollView(
             slivers: [
-              NestedTabAppBar(
+              NestedAppBar(
                 title: Text(t.proxies.pageTitle),
               ),
               const SliverLoadingBodyPlaceholder(),

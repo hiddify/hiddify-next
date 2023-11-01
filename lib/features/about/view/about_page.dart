@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/domain/constants.dart';
 import 'package:hiddify/domain/failures.dart';
+import 'package:hiddify/features/common/nested_app_bar.dart';
 import 'package:hiddify/features/common/common.dart';
 import 'package:hiddify/features/common/new_version_dialog.dart';
 import 'package:hiddify/gen/assets.gen.dart';
@@ -71,7 +72,7 @@ class AboutPage extends HookConsumerWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          SliverAppBar(
+          NestedAppBar(
             title: Text(t.about.pageTitle),
             actions: [
               PopupMenuButton(

@@ -6,7 +6,8 @@ import 'package:hiddify/core/router/router.dart';
 import 'package:hiddify/domain/failures.dart';
 import 'package:hiddify/features/common/active_profile/active_profile_notifier.dart';
 import 'package:hiddify/features/common/active_profile/has_any_profile_notifier.dart';
-import 'package:hiddify/features/common/common.dart';
+import 'package:hiddify/features/common/nested_app_bar.dart';
+import 'package:hiddify/features/common/profile_tile.dart';
 import 'package:hiddify/features/home/widgets/widgets.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -28,7 +29,7 @@ class HomePage extends HookConsumerWidget {
         children: [
           CustomScrollView(
             slivers: [
-              NestedTabAppBar(
+              NestedAppBar(
                 title: Row(
                   children: [
                     Text(t.general.appTitle),

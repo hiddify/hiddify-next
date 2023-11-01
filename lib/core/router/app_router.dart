@@ -1,13 +1,20 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/prefs/prefs.dart';
-import 'package:hiddify/core/router/routes/routes.dart';
+import 'package:hiddify/core/router/routes.dart';
 import 'package:hiddify/services/deep_link_service.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 part 'app_router.g.dart';
+
+bool _debugMobileRouter = false;
+
+final useMobileRouter =
+    !PlatformUtils.isDesktop || (kDebugMode && _debugMobileRouter);
+final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
 
 // TODO: test and improve handling of deep link
 @riverpod
@@ -31,7 +38,7 @@ GoRouter router(RouterRef ref) {
     navigatorKey: rootNavigatorKey,
     initialLocation: initialLocation,
     debugLogDiagnostics: true,
-    routes: $routes,
+    routes: useMobileRouter ? mobileRoutes : desktopRoutes,
     refreshListenable: notifier,
     redirect: notifier.redirect,
     observers: [
