@@ -138,26 +138,26 @@
             "enableAnalytics": "启用分析",
             "enableAnalyticsMsg": "授予收集分析并发送崩溃报告以改进应用程序的权限",
             "autoStart": "开机启动",
-            "silentStart": "无声启动",
+            "silentStart": "静默启动",
             "openWorkingDir": "打开工作目录",
             "ignoreBatteryOptimizations": "禁用电池优化",
             "ignoreBatteryOptimizationsMsg": "消除限制以获得最佳 VPN 性能"
         },
         "advanced": {
-            "sectionTitle": "先进的",
+            "sectionTitle": "高级",
             "debugMode": "调试模式",
             "debugModeMsg": "重新启动应用程序以应用此更改",
             "memoryLimit": "内存限制"
         },
         "network": {
-            "perAppProxyPageTitle": "每个应用程序代理",
+            "perAppProxyPageTitle": "分应用代理",
             "perAppProxyModes": {
                 "off": "全部",
                 "offMsg": "代理所有应用程序",
                 "include": "代理人",
                 "includeMsg": "仅代理选定的应用程序",
                 "exclude": "旁路",
-                "excludeMsg": "不代理选定的应用程序"
+                "excludeMsg": "不代理选中的应用程序"
             },
             "showSystemApps": "显示系统应用程序",
             "hideSystemApps": "隐藏系统应用程序",
@@ -171,16 +171,16 @@
                 "tun": "VPN"
             },
             "section": {
-                "route": "路线选项",
+                "route": "路由选项",
                 "dns": "DNS 选项",
-                "inbound": "入境选项",
+                "inbound": "入站选项",
                 "misc": "其他选项"
             },
             "pageTitle": "配置选项",
             "executeConfigAsIs": "按原样执行配置",
             "executeConfigAsIsMsg": "只需进行最少的更改即可执行 SingBox 配置。",
             "logLevel": "日志级别",
-            "resolveDestination": "解决目的地",
+            "resolveDestination": "解析目标地址",
             "ipv6Mode": "IPv6路由",
             "ipv6Modes": {
                 "disable": "禁用",
