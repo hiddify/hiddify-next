@@ -262,7 +262,7 @@
         "connection": {
             "unexpected": "意外连接错误",
             "timeout": "连接超时",
-            "badResponse": "错误响应\n",
+            "badResponse": "错误响应",
             "connectionError": "连接错误",
             "badCertificate": "证书无效"
         }
