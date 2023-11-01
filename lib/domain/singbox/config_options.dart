@@ -4,7 +4,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:hiddify/domain/singbox/box_log.dart';
 import 'package:hiddify/domain/singbox/rules.dart';
-import 'package:hiddify/utils/platform_utils.dart';
 
 part 'config_options.freezed.dart';
 part 'config_options.g.dart';
@@ -34,16 +33,13 @@ class ConfigOptions with _$ConfigOptions {
     @Default(true) bool enableClashApi,
     @Default(6756) int clashApiPort,
     @Default(false) bool enableTun,
-    @Default(true) bool setSystemProxy,
+    @Default(false) bool setSystemProxy,
     @Default(false) bool bypassLan,
     @Default(false) bool enableFakeDns,
     List<Rule>? rules,
   }) = _ConfigOptions;
 
-  static ConfigOptions initial = ConfigOptions(
-    enableTun: !PlatformUtils.isDesktop,
-    setSystemProxy: PlatformUtils.isDesktop,
-  );
+  static ConfigOptions initial = const ConfigOptions();
 
   String format() {
     const encoder = JsonEncoder.withIndent('  ');

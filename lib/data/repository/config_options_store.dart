@@ -1,7 +1,9 @@
 // ignore_for_file: avoid_manual_providers_as_generated_provider_dependency
 import 'package:hiddify/core/prefs/prefs.dart';
+import 'package:hiddify/data/data_providers.dart';
 import 'package:hiddify/domain/singbox/singbox.dart';
 import 'package:hiddify/utils/pref_notifier.dart';
+import 'package:hiddify/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'config_options_store.g.dart';
@@ -10,6 +12,25 @@ final _default = ConfigOptions.initial;
 
 final executeConfigAsIs =
     PrefNotifier.provider("execute-config-as-is", _default.executeConfigAsIs);
+
+@Riverpod(keepAlive: true)
+class CoreModeStore extends _$CoreModeStore {
+  late final _pref = Pref(
+    ref.watch(sharedPreferencesProvider),
+    "mode",
+    PlatformUtils.isDesktop ? CoreMode.proxy : CoreMode.tun,
+    mapFrom: CoreMode.values.byName,
+    mapTo: (value) => value.name,
+  );
+
+  @override
+  CoreMode build() => _pref.getValue();
+
+  Future<void> update(CoreMode value) {
+    state = value;
+    return _pref.update(value);
+  }
+}
 
 final logLevelStore = PrefNotifier.provider(
   "log-level",
@@ -104,25 +125,28 @@ List<Rule> rules(RulesRef ref) => switch (ref.watch(regionNotifierProvider)) {
     };
 
 @riverpod
-ConfigOptions configOptions(ConfigOptionsRef ref) => ConfigOptions(
-      executeConfigAsIs:
-          ref.watch(debugModeNotifierProvider) && ref.watch(executeConfigAsIs),
-      logLevel: ref.watch(logLevelStore),
-      resolveDestination: ref.watch(resolveDestinationStore),
-      ipv6Mode: ref.watch(ipv6ModeStore),
-      remoteDnsAddress: ref.watch(remoteDnsAddressStore),
-      remoteDnsDomainStrategy: ref.watch(remoteDnsDomainStrategyStore),
-      directDnsAddress: ref.watch(directDnsAddressStore),
-      directDnsDomainStrategy: ref.watch(directDnsDomainStrategyStore),
-      mixedPort: ref.watch(mixedPortStore),
-      localDnsPort: ref.watch(localDnsPortStore),
-      tunImplementation: ref.watch(tunImplementationStore),
-      mtu: ref.watch(mtuStore),
-      connectionTestUrl: ref.watch(connectionTestUrlStore),
-      urlTestInterval: ref.watch(urlTestIntervalStore),
-      enableClashApi: ref.watch(enableClashApiStore),
-      clashApiPort: ref.watch(clashApiPortStore),
-      enableTun: ref.watch(enableTunStore),
-      setSystemProxy: ref.watch(setSystemProxyStore),
-      rules: ref.watch(rulesProvider),
-    );
+ConfigOptions configOptions(ConfigOptionsRef ref) {
+  final mode = ref.watch(coreModeStoreProvider);
+  return ConfigOptions(
+    executeConfigAsIs:
+        ref.watch(debugModeNotifierProvider) && ref.watch(executeConfigAsIs),
+    logLevel: ref.watch(logLevelStore),
+    resolveDestination: ref.watch(resolveDestinationStore),
+    ipv6Mode: ref.watch(ipv6ModeStore),
+    remoteDnsAddress: ref.watch(remoteDnsAddressStore),
+    remoteDnsDomainStrategy: ref.watch(remoteDnsDomainStrategyStore),
+    directDnsAddress: ref.watch(directDnsAddressStore),
+    directDnsDomainStrategy: ref.watch(directDnsDomainStrategyStore),
+    mixedPort: ref.watch(mixedPortStore),
+    localDnsPort: ref.watch(localDnsPortStore),
+    tunImplementation: ref.watch(tunImplementationStore),
+    mtu: ref.watch(mtuStore),
+    connectionTestUrl: ref.watch(connectionTestUrlStore),
+    urlTestInterval: ref.watch(urlTestIntervalStore),
+    enableClashApi: ref.watch(enableClashApiStore),
+    clashApiPort: ref.watch(clashApiPortStore),
+    enableTun: mode == CoreMode.tun || ref.watch(enableTunStore),
+    setSystemProxy: mode == CoreMode.proxy || ref.watch(setSystemProxyStore),
+    rules: ref.watch(rulesProvider),
+  );
+}
