@@ -4,10 +4,10 @@
         "reset": "重置",
         "toggle": {
             "enabled": "启用",
-            "disabled": "停用"
+            "disabled": "禁用"
         },
         "state": {
-            "disable": "停用"
+            "disable": "禁用"
         },
         "sort": "排序",
         "sortBy": "排序方式",
@@ -42,7 +42,7 @@
         "nonActiveProfileBtnSemanticLabel": "选择“${name}”作为活动配置文件。",
         "subscription": {
             "traffic": "流量",
-            "updatedTimeAgo": "更新${timeago}",
+            "updatedTimeAgo": "更新 ${timeago}",
             "remainingDuration": "剩余 ${duration} 天",
             "remainingTrafficSemanticLabel": "已消耗 ${consumed} 流量，共 ${total} 流量。",
             "expired": "已到期",
@@ -59,12 +59,12 @@
             "scanQr": "扫二维码",
             "manually": "手动输入",
             "addingProfileMsg": "添加配置文件",
-            "failureMsg": "无法添加配置文件"
+            "failureMsg": "添加配置文件失败"
         },
         "update": {
             "buttonTxt": "更新",
             "tooltip": "更新配置文件",
-            "failureMsg": "无法更新配置文件",
+            "failureMsg": "更新配置文件失败",
             "successMsg": "配置文件已成功更新"
         },
         "edit": {
@@ -77,8 +77,8 @@
             "successMsg": "配置文件删除成功"
         },
         "save": {
-            "buttonText": "节省",
-            "successMsg": "个人资料保存成功",
+            "buttonText": "保存",
+            "successMsg": "配置文件保存成功",
             "failureMsg": "保存配置文件失败"
         },
         "detailsForm": {
@@ -156,7 +156,7 @@
                 "offMsg": "代理所有应用程序",
                 "include": "代理人",
                 "includeMsg": "仅代理选定的应用程序",
-                "exclude": "旁路",
+                "exclude": "绕过",
                 "excludeMsg": "不代理选中的应用程序"
             },
             "showSystemApps": "显示系统应用程序",
@@ -181,14 +181,14 @@
             "executeConfigAsIsMsg": "只需进行最少的更改即可执行 SingBox 配置。",
             "logLevel": "日志级别",
             "resolveDestination": "解析目标地址",
-            "ipv6Mode": "IPv6路由",
+            "ipv6Mode": "IPv6 路由",
             "ipv6Modes": {
                 "disable": "禁用",
                 "enable": "启用",
                 "prefer": "首选",
                 "only": "独家的"
             },
-            "remoteDnsAddress": "远程DNS解析",
+            "remoteDnsAddress": "远程 DNS",
             "remoteDnsDomainStrategy": "远程 DNS 域名策略",
             "directDnsAddress": "直连 DNS",
             "directDnsDomainStrategy": "直连 DNS 域名策略",
@@ -237,7 +237,7 @@
         "unexpected": "意外错误",
         "clash": {
             "unexpected": "意外错误",
-            "core": "Clash错误${reason}"
+            "core": "Clash错误 ${reason}"
         },
         "singbox": {
             "unexpected": "意外服务错误",
