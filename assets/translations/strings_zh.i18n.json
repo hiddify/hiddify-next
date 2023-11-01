@@ -28,10 +28,10 @@
             "connected": "连接成功"
         },
         "stats": {
-            "traffic": "实际流量",
+            "traffic": "实时流量",
             "trafficTotal": "总流量",
             "uplink": "上行链路",
-            "downlink": "下行"
+            "downlink": "上行链路"
         }
     },
     "profile": {
@@ -144,7 +144,7 @@
             "ignoreBatteryOptimizationsMsg": "消除限制以获得最佳 VPN 性能"
         },
         "advanced": {
-            "sectionTitle": "高级",
+            "sectionTitle": "高级选项",
             "debugMode": "调试模式",
             "debugModeMsg": "重新启动应用程序以应用此更改",
             "memoryLimit": "内存限制"
@@ -190,17 +190,17 @@
             },
             "remoteDnsAddress": "远程DNS解析",
             "remoteDnsDomainStrategy": "远程 DNS 域名策略",
-            "directDnsAddress": "直接DNS解析",
-            "directDnsDomainStrategy": "直接 DNS 域策略",
+            "directDnsAddress": "直连 DNS",
+            "directDnsDomainStrategy": "直连 DNS 域名策略",
             "mixedPort": "混合端口",
             "localDnsPort": "本地 DNS 端口",
-            "tunImplementation": "TUN实施",
+            "tunImplementation": "TUN 实现",
             "mtu": "MTU",
             "connectionTestUrl": "连接测试网址",
             "urlTestInterval": "网址 测试间隔",
-            "enableClashApi": "启用Clash API",
+            "enableClashApi": "启用 Clash API",
             "clashApiPort": "Clash API 端口",
-            "enableTun": "启用TUN",
+            "enableTun": "启用 TUN",
             "setSystemProxy": "设置系统代理"
         }
     },
@@ -208,7 +208,7 @@
         "pageTitle": "关于",
         "version": "版本",
         "sourceCode": "源代码",
-        "telegramChannel": "电报频道",
+        "telegramChannel": "Telegram 频道",
         "checkForUpdate": "检查更新",
         "privacyPolicy": "隐私政策",
         "termsAndConditions": "条款和条件"
@@ -262,7 +262,7 @@
         "connection": {
             "unexpected": "意外连接错误",
             "timeout": "连接超时",
-            "badResponse": "反应不佳",
+            "badResponse": "错误响应\n",
             "connectionError": "连接错误",
             "badCertificate": "证书无效"
         }
