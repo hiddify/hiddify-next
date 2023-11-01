@@ -31,7 +31,7 @@
             "traffic": "实时流量",
             "trafficTotal": "总流量",
             "uplink": "上行链路",
-            "downlink": "上行链路"
+            "downlink": "下行链路"
         }
     },
     "profile": {
