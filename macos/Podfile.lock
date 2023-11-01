@@ -1,6 +1,6 @@
 PODS:
   - FlutterMacOS (1.0.0)
-  - mobile_scanner (3.5.1):
+  - mobile_scanner (3.5.2):
     - FlutterMacOS
   - package_info_plus (0.0.1):
     - FlutterMacOS
@@ -96,7 +96,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   FlutterMacOS: 8f6f14fa908a6fb3fba0cd85dbd81ec4b251fb24
-  mobile_scanner: 7d82279e22e6adb3b2927e94326a0971058c09ba
+  mobile_scanner: 621cf2c34e1c74ae7ce5c6793638ab600723bdea
   package_info_plus: 02d7a575e80f194102bef286361c6c326e4c29ce
   path_provider_foundation: 29f094ae23ebbca9d3d0cec13889cd9060c0e943
   protocol_handler: 587e1caf6c0b92ce351ab14081968dae49cb8cc6

@@ -53,7 +53,7 @@ PODS:
     - GTMSessionFetcher/Core (< 3.0, >= 1.1)
     - MLImage (= 1.0.0-beta4)
     - MLKitCommon (~> 9.0)
-  - mobile_scanner (3.5.1):
+  - mobile_scanner (3.5.2):
     - Flutter
     - GoogleMLKit/BarcodeScanning (~> 4.0.0)
   - nanopb (2.30909.0):
@@ -173,7 +173,7 @@ SPEC CHECKSUMS:
   MLKitBarcodeScanning: 04e264482c5f3810cb89ebc134ef6b61e67db505
   MLKitCommon: c1b791c3e667091918d91bda4bba69a91011e390
   MLKitVision: 8baa5f46ee3352614169b85250574fde38c36f49
-  mobile_scanner: bc72f3dbabb092d802033d14252795c0f485dd7b
+  mobile_scanner: 5090a13b7a35fc1c25b0d97e18e84f271a6eb605
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   package_info_plus: 115f4ad11e0698c8c1c5d8a689390df880f47e85
   path_provider_foundation: 29f094ae23ebbca9d3d0cec13889cd9060c0e943
