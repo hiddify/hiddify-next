@@ -131,9 +131,9 @@
             "themeMode": "主题模式",
             "themeModes": {
                 "system": "遵循系统主题",
-                "dark": "深色模式",
+                "dark": "黑暗模式",
                 "light": "明亮模式",
-                "black": "黑暗模式"
+                "black": "深色模式"
             },
             "enableAnalytics": "启用分析",
             "enableAnalyticsMsg": "授予收集分析并发送崩溃报告以改进应用程序的权限",
