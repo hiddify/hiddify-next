@@ -1,4 +1,5 @@
 import 'package:hiddify/core/prefs/prefs.dart';
+import 'package:hiddify/core/prefs/service_prefs.dart';
 import 'package:hiddify/data/data_providers.dart';
 import 'package:hiddify/domain/connectivity/connectivity.dart';
 import 'package:hiddify/domain/core_facade.dart';
@@ -24,11 +25,21 @@ class ConnectivityController extends _$ConnectivityController with AppLogger {
       },
     );
     return _core.watchConnectionStatus().doOnData((event) {
+      if (event case Disconnected(:final connectionFailure?)
+          when PlatformUtils.isDesktop) {
+        ref.read(startedByUserProvider.notifier).update(false);
+      }
       loggy.info("connection status: ${event.format()}");
     });
   }
 
   CoreFacade get _core => ref.watch(coreFacadeProvider);
+
+  Future<void> mayConnect() async {
+    if (state case AsyncData(:final value)) {
+      if (value case Disconnected()) return _connect();
+    }
+  }
 
   Future<void> toggleConnection() async {
     if (state case AsyncError()) {
@@ -36,8 +47,10 @@ class ConnectivityController extends _$ConnectivityController with AppLogger {
     } else if (state case AsyncData(:final value)) {
       switch (value) {
         case Disconnected():
+          await ref.read(startedByUserProvider.notifier).update(true);
           await _connect();
         case Connected():
+          await ref.read(startedByUserProvider.notifier).update(false);
           await _disconnect();
         default:
           loggy.warning("switching status, debounce");
@@ -52,6 +65,7 @@ class ConnectivityController extends _$ConnectivityController with AppLogger {
         return _disconnect();
       }
       loggy.info("active profile changed, reconnecting");
+      await ref.read(startedByUserProvider.notifier).update(true);
       await _core
           .restart(profileId, ref.read(disableMemoryLimitProvider))
           .mapLeft((err) {

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hiddify/core/prefs/prefs.dart';
+import 'package:hiddify/core/prefs/service_prefs.dart';
+import 'package:hiddify/features/common/connectivity/connectivity_controller.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:window_manager/window_manager.dart';
@@ -28,6 +30,17 @@ class WindowController extends _$WindowController
           loggy.debug("silent start is enabled, hiding window");
           await windowManager.hide();
         }
+        await Future.delayed(
+          const Duration(seconds: 1),
+          () async {
+            if (ref.read(startedByUserProvider)) {
+              loggy.debug("previously started by user, trying to connect");
+              return ref
+                  .read(connectivityControllerProvider.notifier)
+                  .mayConnect();
+            }
+          },
+        );
       },
     );
     windowManager.addListener(this);
