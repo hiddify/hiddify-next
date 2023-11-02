@@ -185,8 +185,8 @@
             "ipv6Modes": {
                 "disable": "禁用",
                 "enable": "启用",
-                "prefer": "首选",
-                "only": "独家的"
+                "prefer": "优先",
+                "only": "仅"
             },
             "remoteDnsAddress": "远程 DNS",
             "remoteDnsDomainStrategy": "远程 DNS 域名策略",
