@@ -78,7 +78,7 @@
         },
         "save": {
             "buttonText": "Сохранить",
-            "successMsg": "Профиль успешно сохранен",
+            "successMsg": "Профиль успешно сохранён",
             "failureMsg": "Невозможно сохранить профиль"
         },
         "detailsForm": {
@@ -166,7 +166,7 @@
         "config": {
             "mode": "Режим",
             "modes": {
-                "none": "Никто",
+                "none": "Нет",
                 "proxy": "Прокси",
                 "tun": "VPN"
             },
@@ -227,9 +227,9 @@
         "dashboard": "Панель",
         "quit": "Выход",
         "status": {
-            "connect": "Соединять",
+            "connect": "Подключено",
             "connecting": "Подключение",
-            "disconnect": "Отключить",
+            "disconnect": "Отключено",
             "disconnecting": "Отключение"
         }
     },
