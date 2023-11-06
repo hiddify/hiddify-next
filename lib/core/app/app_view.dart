@@ -5,9 +5,11 @@ import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:hiddify/core/router/router.dart';
 import 'package:hiddify/domain/constants.dart';
+import 'package:hiddify/features/common/app_update_notifier.dart';
 import 'package:hiddify/features/common/common_controllers.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:upgrader/upgrader.dart';
 
 class AppView extends HookConsumerWidget with PresLogger {
   const AppView({super.key});
@@ -19,6 +21,8 @@ class AppView extends HookConsumerWidget with PresLogger {
     final theme = ref.watch(themeProvider);
 
     ref.watch(commonControllersProvider);
+
+    final upgrader = ref.watch(upgraderProvider);
 
     return MaterialApp.router(
       // builder: (context, child) {
@@ -37,13 +41,16 @@ class AppView extends HookConsumerWidget with PresLogger {
       theme: theme.light(),
       darkTheme: theme.dark(),
       title: Constants.appName,
-
       // https://github.com/ponnamkarthik/FlutterToast/issues/393
       builder: (context, child) => Overlay(
         initialEntries: [
           if (child != null) ...[
             OverlayEntry(
-              builder: (context) => child,
+              builder: (context) => UpgradeAlert(
+                upgrader: upgrader,
+                navigatorKey: router.routerDelegate.navigatorKey,
+                child: child,
+              ),
             ),
           ],
         ],

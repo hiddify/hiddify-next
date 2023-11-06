@@ -313,6 +313,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.3"
+  device_info_plus:
+    dependency: transitive
+    description:
+      name: device_info_plus
+      sha256: "7035152271ff67b072a211152846e9f1259cf1be41e34cd3e0b5463d2d6b8419"
+      url: "https://pub.dev"
+    source: hosted
+    version: "9.1.0"
+  device_info_plus_platform_interface:
+    dependency: transitive
+    description:
+      name: device_info_plus_platform_interface
+      sha256: d3b01d5868b50ae571cd1dc6e502fc94d956b665756180f7b16ead09e836fd64
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.0.0"
   dio:
     dependency: "direct main"
     description:
@@ -794,6 +810,14 @@ packages:
     description:
       name: neat_periodic_task
       sha256: e0dda74c996781e154f6145028dbacbcd9dbef242f5a140fa774e39381c2bf97
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
+  os_detect:
+    dependency: transitive
+    description:
+      name: os_detect
+      sha256: faf3bcf39515e64da8ff76b2f2805b20a6ff47ae515393e535f8579ff91d6b7f
       url: "https://pub.dev"
     source: hosted
     version: "2.0.1"
@@ -1394,6 +1418,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.2"
+  upgrader:
+    dependency: "direct main"
+    description:
+      name: upgrader
+      sha256: "889c1ece7af143df32e8ee2126f2ef17b2ab6bb7ed8fc3b1b022d7faa4fdab20"
+      url: "https://pub.dev"
+    source: hosted
+    version: "8.2.0"
   url_launcher:
     dependency: "direct main"
     description:
@@ -1506,6 +1538,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
+  version:
+    dependency: transitive
+    description:
+      name: version
+      sha256: "3d4140128e6ea10d83da32fef2fa4003fccbf6852217bb854845802f04191f94"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.2"
   vm_service:
     dependency: transitive
     description:

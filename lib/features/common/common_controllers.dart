@@ -28,11 +28,11 @@ void commonControllers(CommonControllersRef ref) {
     (previous, next) {},
     fireImmediately: true,
   );
-  ref.listen(
-    appUpdateNotifierProvider,
-    (previous, next) {},
-    fireImmediately: true,
-  );
+  // ref.listen(
+  //   appUpdateNotifierProvider,
+  //   (previous, next) {},
+  //   fireImmediately: true,
+  // );
   ref.listen(
     profilesUpdateNotifierProvider,
     (previous, next) {},

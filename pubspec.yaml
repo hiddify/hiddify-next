@@ -66,6 +66,7 @@ dependencies:
   sliver_tools: ^0.2.12
   flutter_adaptive_scaffold: ^0.1.7+1
   humanizer: ^2.2.0
+  upgrader: ^8.2.0
 
 dev_dependencies:
   flutter_test:

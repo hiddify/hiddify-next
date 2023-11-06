@@ -1,17 +1,29 @@
+import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/core/prefs/prefs.dart';
-import 'package:hiddify/core/router/router.dart';
 import 'package:hiddify/data/data_providers.dart';
 import 'package:hiddify/domain/app/app.dart';
-import 'package:hiddify/features/common/new_version_dialog.dart';
-import 'package:hiddify/services/service_providers.dart';
+import 'package:hiddify/domain/constants.dart';
 import 'package:hiddify/utils/pref_notifier.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:upgrader/upgrader.dart';
 
 part 'app_update_notifier.freezed.dart';
 part 'app_update_notifier.g.dart';
+
+const _debugUpgrader = true;
+
+@riverpod
+Upgrader upgrader(UpgraderRef ref) => Upgrader(
+      appcastConfig: AppcastConfiguration(url: Constants.appCastUrl),
+      debugLogging: _debugUpgrader && kDebugMode,
+      durationUntilAlertAgain: const Duration(hours: 12),
+      messages: UpgraderMessages(
+        code: ref.watch(localeNotifierProvider).languageCode,
+      ),
+    );
 
 @freezed
 class AppUpdateState with _$AppUpdateState {
@@ -30,7 +42,7 @@ class AppUpdateState with _$AppUpdateState {
 class AppUpdateNotifier extends _$AppUpdateNotifier with AppLogger {
   @override
   AppUpdateState build() {
-    _schedule();
+    // _schedule();
     return const AppUpdateState.initial();
   }
 
@@ -85,25 +97,25 @@ class AppUpdateNotifier extends _$AppUpdateNotifier with AppLogger {
     state = AppUpdateStateIgnored(versionInfo);
   }
 
-  Future<void> _schedule() async {
-    loggy.debug("scheduling app update checker");
-    return ref.read(cronServiceProvider).schedule(
-          key: 'app_update',
-          duration: const Duration(hours: 8),
-          callback: () async {
-            await Future.delayed(const Duration(seconds: 5));
-            final updateState = await check();
-            final context = rootNavigatorKey.currentContext;
-            if (context != null && context.mounted) {
-              if (updateState
-                  case AppUpdateStateAvailable(:final versionInfo)) {
-                await NewVersionDialog(
-                  ref.read(appInfoProvider).presentVersion,
-                  versionInfo,
-                ).show(context);
-              }
-            }
-          },
-        );
-  }
+  // Future<void> _schedule() async {
+  //   loggy.debug("scheduling app update checker");
+  //   return ref.read(cronServiceProvider).schedule(
+  //         key: 'app_update',
+  //         duration: const Duration(hours: 8),
+  //         callback: () async {
+  //           await Future.delayed(const Duration(seconds: 5));
+  //           final updateState = await check();
+  //           final context = rootNavigatorKey.currentContext;
+  //           if (context != null && context.mounted) {
+  //             if (updateState
+  //                 case AppUpdateStateAvailable(:final versionInfo)) {
+  //               await NewVersionDialog(
+  //                 ref.read(appInfoProvider).presentVersion,
+  //                 versionInfo,
+  //               ).show(context);
+  //             }
+  //           }
+  //         },
+  //       );
+  // }
 }
