@@ -10,7 +10,7 @@ abstract class Constants {
   static const githubLatestReleaseUrl =
       "https://github.com/hiddify/hiddify-next/releases/latest";
   static const appCastUrl =
-      "https://github.com/hiddify/hiddify-next/appcast.xml";
+      "https://raw.githubusercontent.com/hiddify/hiddify-next/main/appcast.xml";
   static const telegramChannelUrl = "https://t.me/hiddify";
   static const privacyPolicyUrl = "https://hiddify.com/en/privacy-policy/";
   static const termsAndConditionsUrl = "https://hiddify.com/terms/";
