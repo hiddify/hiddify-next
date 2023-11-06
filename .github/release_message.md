@@ -60,7 +60,7 @@
 
 <div dir="rtl">
   
-**List of all changes:** [ChangeLog](https://github.com/hiddify/hiddify-next/blob/main/changelog.md)
+**List of all changes:** [ChangeLog](https://github.com/hiddify/hiddify-next/blob/main/CHANGELOG.md)
 
 
 </div>
