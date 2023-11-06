@@ -154,7 +154,7 @@
             "perAppProxyModes": {
                 "off": "全部",
                 "offMsg": "代理所有应用程序",
-                "include": "代理人",
+                "include": "代理",
                 "includeMsg": "仅代理选定的应用程序",
                 "exclude": "绕过",
                 "excludeMsg": "不代理选中的应用程序"
@@ -166,8 +166,8 @@
         "config": {
             "mode": "模式",
             "modes": {
-                "none": "没有任何",
-                "proxy": "代理人",
+                "none": "无",
+                "proxy": "代理",
                 "tun": "VPN"
             },
             "section": {
