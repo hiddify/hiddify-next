@@ -33,6 +33,23 @@ gen:
 translate:
 	dart run slang
 
+prepare: get gen translate
+	@echo "Select a platform:"
+	@echo "1. Android"
+	@echo "2. Windows"
+	@echo "3. Linux"
+	@echo "4. macOS"
+	@echo "5. iOS"
+	@read -p "Enter your choice (1 to 5): " choice; \
+	case $$choice in \
+		1) make android-libs ;; \
+		2) make windows-libs ;; \
+		3) make linux-libs ;; \
+		4) make macos-libs ;; \
+		5) make ios-libs ;; \
+		*) echo "Invalid choice. Please select 1 to 5." ;; \
+	esac
+
 sync_translate:
 	cd .github && bash sync_translate.sh
 	make translate
