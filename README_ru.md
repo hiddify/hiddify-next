@@ -91,10 +91,10 @@
 
 ## Улучшите переводы
 Вы можете легко внести свой вклад в этот проект, используя следующие ссылки для улучшения переводов:
-- [Russian](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=ru)
-- [English](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en)
-- [Persian](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=fa)
-- [Chinese](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=zh)
+- [Русский](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=ru)
+- [Английский](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en)
+- [персидский](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=fa)
+- [Китайский](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=zh)
 
 ## Благодарности
 
