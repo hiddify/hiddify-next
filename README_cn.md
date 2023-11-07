@@ -93,12 +93,12 @@
 ## 安装和教程
 请在 [wiki 页面](https://github.com/hiddify/hiddify-next/wiki) 上查找教程信息。
 
-## Улучшите переводы
-Вы можете легко внести свой вклад в этот проект, используя следующие ссылки для улучшения переводов:
-- [Китайский](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=zh)
-- [Английский](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en)
-- [персидский](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=fa)
-- [Русский](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=ru)
+## 我是
+您可以使用以下链接轻松地为该项目做出贡献以改进翻译：
+- [中国人](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=zh)
+- [英语](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en)
+- [波斯语](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=fa)
+- [俄语](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=ru)
 
 ## 致谢
 - [Sing-box](https://github.com/SagerNet/sing-box)
