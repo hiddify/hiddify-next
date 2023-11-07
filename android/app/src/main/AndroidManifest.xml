@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
+    <uses-feature android:name="android.software.leanback" required="true" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
@@ -16,6 +16,7 @@
     <application
         android:name=".Application"
         android:icon="@mipmap/ic_launcher"
+        android:banner="@mipmap/ic_launcher_banner"
         android:label="Hiddify Next"
         android:roundIcon="@mipmap/ic_launcher_round"
         tools:targetApi="31">
@@ -33,9 +34,6 @@
             android:theme="@style/LaunchTheme"
             android:windowSoftInputMode="adjustResize">
 
-            <meta-data
-                android:name="android.app.shortcuts"
-                android:resource="@xml/shortcuts" />
 
             <!-- Specifies an Android theme to apply to this Activity as soon as
                  the Android process has started. This theme is visible to the user
@@ -48,6 +46,11 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
