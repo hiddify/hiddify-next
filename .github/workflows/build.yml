@@ -339,7 +339,7 @@ jobs:
           ls -R ./.github/
           ls -R ./.git/
           mv out/hiddify-android-market.aab  hiddify-android-market.aab
-          unzip /out/hiddify-windows-x64-setup.zip
+          unzip ./out/hiddify-windows-x64-setup.zip -d ./
 
       - name: Publish to WinGet
         uses: vedantmgoyal2009/winget-releaser@v2
