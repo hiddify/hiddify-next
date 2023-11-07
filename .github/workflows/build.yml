@@ -102,11 +102,14 @@ jobs:
           chmod +x appimagetool
           mv appimagetool /usr/local/bin/
 
-      - name: Build macos dmg
+      - name: Install macos dmg needed tools
         if: matrix.platform == 'macos' || matrix.platform == 'ios'
         run: |
-          brew install create-dmg tree node
+          xcode-select --install
+          brew install create-dmg tree
           npm install -g appdmg
+
+
 
       - name: Get Geo Assets
         run: |
