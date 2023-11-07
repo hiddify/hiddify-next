@@ -10,9 +10,9 @@ on:
       - "docs/**"
       - ".github/**"
       - "!.github/workflows/build.yml"
-  pull_request:
-    branches:
-      - main
+  # pull_request:
+  #   branches:
+  #     - main
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
   cancel-in-progress: true
@@ -339,17 +339,6 @@ jobs:
           ls -R ./.github/
           ls -R ./.git/
           mv out/hiddify-android-market.aab  hiddify-android-market.aab
-          unzip ./out/hiddify-windows-x64-setup.zip -d ./
-
-      - name: Winget Publish
-        uses: isaacrlevin/winget-publish-action@v.5
-        with:
-          publish-type: "Update"
-          user: "Hiddify"
-          package: "Next"
-          version: ${{ github.ref }}
-          url: "https://github.com/hiddify/hiddify-next/releases/download/${{ github.ref }}/hiddify-windows-x64-setup.zip"
-          token: ${{ secrets.WINGET_TOKEN }}
 
       - name: prepare_release_message
         run: |
@@ -389,3 +378,22 @@ jobs:
       #     issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
       #     api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
       #     api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
+
+  upload-winget-release:
+    permissions: write-all
+    if: ${{ github.ref_type == 'tag' }}
+    needs: [upload-release]
+    runs-on: windows-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: Winget Publish
+        uses: isaacrlevin/winget-publish-action@v.5
+        with:
+          publish-type: "Update"
+          user: "Hiddify"
+          package: "Next"
+          version: ${{ github.ref }}
+          url: "https://github.com/hiddify/hiddify-next/releases/download/${{ github.ref }}/hiddify-windows-x64-setup.zip"
+          token: ${{ secrets.WINGET_TOKEN }}
