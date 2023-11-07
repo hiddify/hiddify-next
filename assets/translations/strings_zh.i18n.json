@@ -24,8 +24,8 @@
         "connection": {
             "tapToConnect": "点击连接",
             "connecting": "正在连接",
-            "disconnecting": "断开连接",
-            "connected": "连接成功"
+            "disconnecting": "正在断开连接",
+            "connected": "已连接"
         },
         "stats": {
             "traffic": "实时流量",
@@ -73,7 +73,7 @@
         },
         "delete": {
             "buttonTxt": "删除",
-            "confirmationMsg": "永久删除配置文件吗？",
+            "confirmationMsg": "要永久删除配置文件吗？",
             "successMsg": "配置文件删除成功"
         },
         "save": {
@@ -118,7 +118,7 @@
         "pageTitle": "设置",
         "requiresRestartMsg": "要使其生效，请重新启动应用程序",
         "general": {
-            "sectionTitle": "一般的",
+            "sectionTitle": "一般选项",
             "locale": "语言",
             "region": "地区",
             "regionMsg": "帮助设置默认选项以绕过国内地址",
@@ -214,8 +214,8 @@
         "termsAndConditions": "条款和条件"
     },
     "appUpdate": {
-        "notAvailableMsg": "已经使用最新版本",
-        "dialogTitle": "可用更新",
+        "notAvailableMsg": "已是最新版本",
+        "dialogTitle": "有可用更新",
         "updateMsg": "@:general.appTitle 的新版本现已推出。您想现在更新吗？",
         "currentVersionLbl": "当前版本",
         "newVersionLbl": "新版本",
@@ -229,8 +229,8 @@
         "status": {
             "connect": "连接",
             "connecting": "正在连接",
-            "disconnect": "断开",
-            "disconnecting": "断开连接"
+            "disconnect": "已断开连接",
+            "disconnecting": "正在断开连接"
         }
     },
     "failure": {
