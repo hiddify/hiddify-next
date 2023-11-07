@@ -340,14 +340,15 @@ jobs:
           ls -R ./.git/
           mv out/hiddify-android-market.aab  hiddify-android-market.aab
           unzip ./out/hiddify-windows-x64-setup.zip -d ./
-
-      - name: Publish to WinGet
-        uses: vedantmgoyal2009/winget-releaser@v2
+      
+      - name: Winget Publish
+        uses: isaacrlevin/winget-publish-action@1.0
         with:
-          identifier: Hiddify.Next
-          max-versions-to-keep: 5 # keep only latest 5 versions
+          publish-type: "Update"
+          user: "Hiddify"
+          package: "Next"
           version: ${{ github.ref }}
-          installers-regex: setup.exe
+          url: "https://github.com/hiddify/hiddify-next/releases/download/${{ github.ref }}/hiddify-windows-x64-setup.zip"
           token: ${{ secrets.WINGET_TOKEN }}
 
       - name: prepare_release_message
