@@ -105,11 +105,10 @@ jobs:
       - name: Install macos dmg needed tools
         if: matrix.platform == 'macos' || matrix.platform == 'ios'
         run: |
-          xcode-select --install
+          # xcode-select --install || softwareupdate --all --install --force
+
           brew install create-dmg tree
           npm install -g appdmg
-
-
 
       - name: Get Geo Assets
         run: |
