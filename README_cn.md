@@ -41,7 +41,7 @@
 
 💻 完全免费，没有任何广告和干扰
 
-🛡 开源和社区驱动
+🛡 开源、安全且社区驱动
 
 🌙 深色和浅色模式
 
@@ -93,6 +93,13 @@
 ## 安装和教程
 请在 [wiki 页面](https://github.com/hiddify/hiddify-next/wiki) 上查找教程信息。
 
+## Улучшите переводы
+Вы можете легко внести свой вклад в этот проект, используя следующие ссылки для улучшения переводов:
+- [Китайский](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=zh)
+- [Английский](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en)
+- [персидский](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=fa)
+- [Русский](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=ru)
+
 ## 致谢
 - [Sing-box](https://github.com/SagerNet/sing-box)
 - [Sing-box for Android](https://github.com/SagerNet/sing-box-for-android)
@@ -103,6 +110,12 @@
 ## 捐赠与支持
 
 支持我们的最简单方法是单击此页面顶部的 Star （⭐）。
+
+<div align=center>
+    
+<img alt="Star History Chart" width=50% src="https://api.star-history.com/svg?repos=Hiddify/hiddify-next&type=Date)](https://star-history.com/#Hiddify/hiddify-next&Date" />
+
+</div>
 
 我们的服务也需要资金支持。我们所有的活动都是自愿进行的，资金支持将用于项目的开发和维护。您可以在 [此处](https://github.com/hiddify/hiddify-manager/wiki/support) 查看我们的支持地址。
 
