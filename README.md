@@ -49,7 +49,7 @@ The app is developed using [Flutter](https://flutter.dev) and [Go](https://go.de
 
 💻 Completely free and without any ads and interruptions
 
-🛡 Open source and community driven
+🛡 Open source, secure and community driven
 
 🌙 Dark and light modes
 
