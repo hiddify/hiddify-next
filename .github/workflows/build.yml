@@ -136,6 +136,7 @@ jobs:
           echo "storePassword=${{ secrets.ANDROID_SIGNING_STORE_PASSWORD }}" >> android/key.properties
           echo "keyPassword=${{ secrets.ANDROID_SIGNING_KEY_PASSWORD }}" >> android/key.properties
           echo "keyAlias=${{ secrets.ANDROID_SIGNING_KEY_ALIAS }}" >> android/key.properties
+
       - name: Setup Apple certificate and provisioning profile
         if: startsWith(matrix.os,'macos')
         env:
@@ -273,7 +274,7 @@ jobs:
       #     cd tmp_out && 7z a hiddify-${{matrix.platform}}-x64.zip ./ && mv *.zip ../out/
       # Important! Cleanup: remove the certificate and provisioning profile from the runner!
       - name: Clean up keychain and provisioning profile
-        if: ${{ always() }}
+        if: ${{ always() && startsWith(matrix.os,'macos')}}
         run: |
           security delete-keychain $RUNNER_TEMP/app-signing.keychain-db
           rm ~/Library/MobileDevice/Provisioning\ Profiles/build_pp.mobileprovision
