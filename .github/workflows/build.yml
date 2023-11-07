@@ -54,11 +54,11 @@ jobs:
             targets: dmg
             filename: hiddify-macos-universal
 
-          # - platform: ios
-          #   os: macos-11
-          #   aarch: universal
-          #   filename: hiddify-ios
-          #   targets: ipa
+          - platform: ios
+            os: macos-11
+            aarch: universal
+            filename: hiddify-ios
+            targets: ipa
 
     runs-on: ${{ matrix.os }}
     steps:

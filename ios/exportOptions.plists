@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>method</key>
+	<string>development</string>
+	<key>provisioningProfiles</key>
+	<dict>
+		<key>hiddify</key>
+		<string>iOS Team Provisioning Profile: hiddify</string>
+		<key>hiddify.SingBoxPacketTunnel</key>
+		<string>iOS Team Provisioning Profile: hiddify.SingBoxPacketTunnel</string>
+	</dict>
+	<key>signingCertificate</key>
+	<string>Apple Development</string>
+	<key>signingStyle</key>
+	<string>automatic</string>
+	<key>teamID</key>
+	<string>3JFTY5BP58</string>
+</dict>
+</plist>
