@@ -55,7 +55,7 @@ jobs:
             filename: hiddify-macos-universal
 
           - platform: ios
-            os: macos-11
+            os: macos-13
             aarch: universal
             filename: hiddify-ios
             targets: ipa
@@ -332,10 +332,10 @@ jobs:
           releaseFiles: ./hiddify-android-market.aab
           track: internal
 
-      # - name: 'Upload app to TestFlight'
-      #   uses: apple-actions/upload-testflight-build@v1
-      #   with:
-      #     app-path: './hiddify-ios-universal.ipa'
-      #     issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
-      #     api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
-      #     api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
+      - name: "Upload app to TestFlight"
+        uses: apple-actions/upload-testflight-build@v1
+        with:
+          app-path: "./hiddify-ios-universal.ipa"
+          issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
+          api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
+          api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
