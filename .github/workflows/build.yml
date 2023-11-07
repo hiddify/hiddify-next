@@ -68,8 +68,11 @@ jobs:
         if: matrix.platform == 'macos' || matrix.platform == 'ios'
         run: |
           # xcode-select --install || softwareupdate --all --install --force
-          brew uninstall --force $(brew list | grep python@) && brew cleanup || echo "python not installed"
-          brew install create-dmg tree python@3.10
+          # brew uninstall --force $(brew list | grep python@) && brew cleanup || echo "python not installed"
+          brew uninstall --ignore-dependencies python@3.12
+          brew install python@3.10
+          python3 -m pip install --upgrade distutils
+          brew install create-dmg tree 
           npm install -g appdmg
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
@@ -107,8 +110,6 @@ jobs:
           wget -O appimagetool "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage"
           chmod +x appimagetool
           mv appimagetool /usr/local/bin/
-
-    
 
       - name: Get Geo Assets
         run: |
