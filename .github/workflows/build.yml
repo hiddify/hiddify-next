@@ -106,7 +106,7 @@ jobs:
         if: matrix.platform == 'macos' || matrix.platform == 'ios'
         run: |
           # xcode-select --install || softwareupdate --all --install --force
-
+          python3 -m pip install distutils
           brew install create-dmg tree
           npm install -g appdmg
 
