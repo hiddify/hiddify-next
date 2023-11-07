@@ -384,13 +384,22 @@
 				TargetAttributes = {
 					03E392B52ADDA00E000ADF15 = {
 						CreatedOnToolsVersion = 15.0;
+						DevelopmentTeam = 3JFTY5BP58;
+						DevelopmentTeamName = "Mark Pashmfouroush";
+						ProvisioningStyle = Automatic;
 					};
 					331C8080294A63A400263BE5 = {
+						DevelopmentTeam = 3JFTY5BP58;
+						DevelopmentTeamName = "Mark Pashmfouroush";
+						ProvisioningStyle = Automatic;
 						CreatedOnToolsVersion = 14.0;
 						TestTargetID = 97C146ED1CF9000F007C117D;
 					};
 					97C146ED1CF9000F007C117D = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 3JFTY5BP58;
+						DevelopmentTeamName = "Mark Pashmfouroush";
+						ProvisioningStyle = Automatic;
 						LastSwiftMigration = 1100;
 					};
 				};

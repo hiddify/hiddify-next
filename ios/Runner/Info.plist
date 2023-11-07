@@ -51,5 +51,10 @@
 	<true/>
 	<key>UIStatusBarHidden</key>
 	<false/>
+	<key>EXAppExtensionAttributes</key>
+	<dict>
+		<key>EXExtensionPointIdentifier</key>
+		<string>com.apple.appintents-extension</string>
+	</dict>
 </dict>
 </plist>
