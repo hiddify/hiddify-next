@@ -14,6 +14,8 @@
 </div>
 
 
+
+
 ## What is Hiddify-Next?
 
 <p dir="ltr" style="font-size: 16px">A multi-platform client based on <a href="https://github.com/SagerNet/sing-box">Sing-box</a> that serves as a universal proxy tool-chain. This app offers a wide range of capabilities, which are listed below. It also supports a large number of protocols. The app is free to use, ad-free, and open-source. It provides a secure and private tool for getting access to the free internet. </p>
@@ -121,6 +123,12 @@ You can easily contribute to this project by using the following links to improv
 ## Donation and Support
 
 The easiest way to support us is to click on the star (⭐) at the top of this page.
+
+<div align=center>
+    
+<img alt="Star History Chart" width=50% src="https://api.star-history.com/svg?repos=Hiddify/hiddify-next&type=Date)](https://star-history.com/#Hiddify/hiddify-next&Date" />
+
+</div>
 
 We also need financial support for our services. All of our activities are done voluntarily and financial support will be spent on the development of the project. You can view our support addresses [here](https://github.com/hiddify/hiddify-server/wiki/support).
 
