@@ -95,7 +95,7 @@
 
 ## 改进翻译
 您可以使用以下链接轻松地为该项目做出贡献以改进翻译：
-- [中国人](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=zh)
+- [简体中文](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=zh)
 - [英语](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en)
 - [波斯语](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=fa)
 - [俄语](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=ru)
