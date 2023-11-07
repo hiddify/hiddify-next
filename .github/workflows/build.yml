@@ -71,7 +71,7 @@ jobs:
           # brew uninstall --force $(brew list | grep python@) && brew cleanup || echo "python not installed"
           brew uninstall --ignore-dependencies python@3.12
           brew reinstall python@3.10
-          # python3 -m pip install --upgrade distutils
+          python3 -m pip install --upgrade setuptools pip
           brew install create-dmg tree 
           npm install -g appdmg
       - name: Setup Flutter
