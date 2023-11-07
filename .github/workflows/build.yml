@@ -340,9 +340,9 @@ jobs:
           ls -R ./.git/
           mv out/hiddify-android-market.aab  hiddify-android-market.aab
           unzip ./out/hiddify-windows-x64-setup.zip -d ./
-      
+
       - name: Winget Publish
-        uses: isaacrlevin/winget-publish-action@1.0
+        uses: isaacrlevin/winget-publish-action@v.5
         with:
           publish-type: "Update"
           user: "Hiddify"
