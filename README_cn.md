@@ -117,12 +117,24 @@
 
 </div>
 
-我们的服务也需要资金支持。我们所有的活动都是自愿进行的，资金支持将用于项目的开发和维护。您可以在 [此处](https://github.com/hiddify/hiddify-manager/wiki/support) 查看我们的支持地址并提及你的技能。
+我们的服务也需要资金支持。我们所有的活动都是自愿进行的，资金支持将用于项目的开发和维护。您可以在 [此处](https://github.com/hiddify/hiddify-manager/wiki/support) 查看我们的支持地址。
 
-<div align=center>
+
 
 <br>
 
+## 协作和联系信息
+我们需要您的协作才能继续开发并维护此项目。如果您是这些领域的专家，请随时与我们联系。
+
+* Flutter 开发
+* Swift 开发
+* Kotlin 开发
+* Go 开发
+
+
+
+<div align=center>
+    
 [![Email](https://img.shields.io/badge/Email-contribute@hiddify.com-005FF9?style=flat-square&logo=mail.ru)](mailto:contribute@hiddify.com)
 [![Telegram Channel](https://img.shields.io/endpoint?label=Channel&style=flat-square&url=https%3A%2F%2Ftg.sumanjay.workers.dev%2Fhiddify&color=blue)](https://telegram.dog/hiddify)
 [![Telegram Group](https://img.shields.io/endpoint?color=neon&label=Support%20Group&style=flat-square&url=https%3A%2F%2Ftg.sumanjay.workers.dev%2Fhiddify_board)](https://telegram.dog/hiddify_board)
