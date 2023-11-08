@@ -394,6 +394,6 @@ jobs:
           publish-type: "Update"
           user: "Hiddify"
           package: "Next"
-          version: ${{ github.ref }}
-          url: "https://github.com/hiddify/hiddify-next/releases/download/${{ github.ref }}/hiddify-windows-x64-setup.zip"
+          version: ${{ github.ref_name }}
+          url: "https://github.com/hiddify/hiddify-next/releases/download/${{ github.ref_name }}/hiddify-windows-x64-setup.zip"
           token: ${{ secrets.WINGET_TOKEN }}
