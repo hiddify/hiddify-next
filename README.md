@@ -134,7 +134,7 @@ We also need financial support for our services. All of our activities are done 
 
 ## Collaboration and Contact Information
 
-We need your collaboration in order to develop this project. If you are specialists in these areas, please do not hesitate to contact us.
+We need your collaboration in order to develop this project. If you are specialists in these areas, please do not hesitate to contact us and mention your skill.
 
 - Flutter Developing
 - Swift Developing
