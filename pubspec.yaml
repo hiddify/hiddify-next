@@ -62,11 +62,11 @@ dependencies:
   flutter_svg: ^2.0.9
   gap: ^3.0.1
   percent_indicator: ^4.2.3
-  fluttertoast: ^8.2.3
   sliver_tools: ^0.2.12
   flutter_adaptive_scaffold: ^0.1.7+1
   humanizer: ^2.2.0
   upgrader: ^8.2.0
+  toastification: ^1.1.0
 
 dev_dependencies:
   flutter_test:

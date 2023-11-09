@@ -1,4 +1,5 @@
-// import 'package:accessibility_tools/accessibility_tools.dart';
+import 'package:accessibility_tools/accessibility_tools.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hiddify/core/core_providers.dart';
@@ -10,6 +11,8 @@ import 'package:hiddify/features/common/common_controllers.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:upgrader/upgrader.dart';
+
+bool _debugAccessibility = false;
 
 class AppView extends HookConsumerWidget with PresLogger {
   const AppView({super.key});
@@ -25,13 +28,6 @@ class AppView extends HookConsumerWidget with PresLogger {
     final upgrader = ref.watch(upgraderProvider);
 
     return MaterialApp.router(
-      // builder: (context, child) {
-      //   return AccessibilityTools(
-      //     checkFontOverflows: true,
-      //     child: child,
-      //   );
-      // },
-      // showSemanticsDebugger: true,
       routerConfig: router,
       locale: locale,
       supportedLocales: AppLocaleUtils.supportedLocales,
@@ -41,20 +37,20 @@ class AppView extends HookConsumerWidget with PresLogger {
       theme: theme.light(),
       darkTheme: theme.dark(),
       title: Constants.appName,
-      // https://github.com/ponnamkarthik/FlutterToast/issues/393
-      builder: (context, child) => Overlay(
-        initialEntries: [
-          if (child != null) ...[
-            OverlayEntry(
-              builder: (context) => UpgradeAlert(
-                upgrader: upgrader,
-                navigatorKey: router.routerDelegate.navigatorKey,
-                child: child,
-              ),
-            ),
-          ],
-        ],
-      ),
+      builder: (context, child) {
+        child = UpgradeAlert(
+          upgrader: upgrader,
+          navigatorKey: router.routerDelegate.navigatorKey,
+          child: child ?? const SizedBox(),
+        );
+        if (kDebugMode && _debugAccessibility) {
+          return AccessibilityTools(
+            checkFontOverflows: true,
+            child: child,
+          );
+        }
+        return child;
+      },
     );
   }
 }
