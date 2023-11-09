@@ -177,8 +177,6 @@
                 "misc": "其他选项"
             },
             "pageTitle": "配置选项",
-            "executeConfigAsIs": "按原样执行配置",
-            "executeConfigAsIsMsg": "以最小的修改执行 SingBox 配置。可能会导致问题。",
             "logLevel": "日志级别",
             "resolveDestination": "解析目标地址",
             "ipv6Mode": "IPv6 路由",

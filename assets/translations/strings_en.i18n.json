@@ -177,8 +177,6 @@
                 "misc": "Misc Options"
             },
             "pageTitle": "Config Options",
-            "executeConfigAsIs": "Execute Config As Is",
-            "executeConfigAsIsMsg": "Executes the SingBox configs with minimal changes. Can cause problems.",
             "logLevel": "Log Level",
             "resolveDestination": "Resolve Destination",
             "ipv6Mode": "IPv6 Route",

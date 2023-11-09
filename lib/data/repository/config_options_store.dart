@@ -1,4 +1,5 @@
 // ignore_for_file: avoid_manual_providers_as_generated_provider_dependency
+import 'package:flutter/foundation.dart';
 import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:hiddify/data/data_providers.dart';
 import 'package:hiddify/domain/singbox/singbox.dart';
@@ -8,10 +9,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'config_options_store.g.dart';
 
+bool _debugConfigBuilder = false;
 final _default = ConfigOptions.initial;
-
-final executeConfigAsIs =
-    PrefNotifier.provider("execute-config-as-is", _default.executeConfigAsIs);
 
 @Riverpod(keepAlive: true)
 class CoreModeStore extends _$CoreModeStore {
@@ -128,8 +127,7 @@ List<Rule> rules(RulesRef ref) => switch (ref.watch(regionNotifierProvider)) {
 ConfigOptions configOptions(ConfigOptionsRef ref) {
   final mode = ref.watch(coreModeStoreProvider);
   return ConfigOptions(
-    executeConfigAsIs:
-        ref.watch(debugModeNotifierProvider) && ref.watch(executeConfigAsIs),
+    executeConfigAsIs: kDebugMode && _debugConfigBuilder,
     logLevel: ref.watch(logLevelStore),
     resolveDestination: ref.watch(resolveDestinationStore),
     ipv6Mode: ref.watch(ipv6ModeStore),

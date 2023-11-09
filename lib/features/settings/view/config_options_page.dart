@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
 import 'package:hiddify/core/core_providers.dart';
-import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:hiddify/data/repository/config_options_store.dart';
 import 'package:hiddify/domain/singbox/singbox.dart';
 import 'package:hiddify/features/settings/widgets/widgets.dart';
@@ -43,13 +42,6 @@ class ConfigOptionsPage extends HookConsumerWidget {
       ),
       body: ListView(
         children: [
-          if (ref.watch(debugModeNotifierProvider))
-            SwitchListTile(
-              title: Text(t.settings.config.executeConfigAsIs),
-              subtitle: Text(t.settings.config.executeConfigAsIsMsg),
-              value: options.executeConfigAsIs,
-              onChanged: ref.read(executeConfigAsIs.notifier).update,
-            ),
           ListTile(
             title: Text(t.settings.config.logLevel),
             subtitle: Text(options.logLevel.name.toUpperCase()),
