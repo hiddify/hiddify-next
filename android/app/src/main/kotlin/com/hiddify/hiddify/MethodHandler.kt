@@ -114,7 +114,7 @@ class MethodHandler(private val scope: CoroutineScope) : FlutterPlugin,
                         if (restart) {
                             mainActivity.reconnect()
                             BoxService.stop()
-                            delay(200L)
+                            delay(1000L)
                             mainActivity.startService()
                             return@launch success(true)
                         }

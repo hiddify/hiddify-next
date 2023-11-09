@@ -180,7 +180,7 @@ class BoxService(
             }
 
             if (delayStart) {
-                delay(200L)
+                delay(1000L)
             }
 
             newService.start()
@@ -195,7 +195,7 @@ class BoxService(
 
     override fun serviceReload() {
         status.postValue(Status.Starting)
-        GlobalScope.launch(Dispatchers.IO) {
+        runBlocking {
             val pfd = fileDescriptor
             if (pfd != null) {
                 pfd.close()
