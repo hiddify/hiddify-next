@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/router/app_router.dart';
 import 'package:hiddify/features/home/view/view.dart';
-import 'package:hiddify/features/intro/view/view.dart';
+import 'package:hiddify/features/intro/intro_page.dart';
 import 'package:hiddify/features/profile_detail/view/view.dart';
 import 'package:hiddify/features/profiles/view/view.dart';
 import 'package:hiddify/features/proxies/view/view.dart';

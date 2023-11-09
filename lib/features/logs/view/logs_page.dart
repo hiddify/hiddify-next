@@ -175,7 +175,8 @@ class LogsPage extends HookConsumerWidget with PresLogger {
                                               .textTheme
                                               .labelMedium
                                               ?.copyWith(
-                                                  color: log.level!.color),
+                                                color: log.level!.color,
+                                              ),
                                         ),
                                         if (log.time != null)
                                           Text(

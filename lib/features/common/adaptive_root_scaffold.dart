@@ -113,7 +113,7 @@ class _CustomAdaptiveScaffold extends HookConsumerWidget {
                   extended: true,
                   selectedIndex: selectedWithOffset(drawerDestinationRange),
                   destinations: destinationsSlice(drawerDestinationRange)
-                      .map((_) => AdaptiveScaffold.toRailDestination(_))
+                      .map((dest) => AdaptiveScaffold.toRailDestination(dest))
                       .toList(),
                   onDestinationSelected: (index) =>
                       selectWithOffset(index, drawerDestinationRange),
@@ -129,7 +129,7 @@ class _CustomAdaptiveScaffold extends HookConsumerWidget {
               builder: (_) => AdaptiveScaffold.standardNavigationRail(
                 selectedIndex: selectedIndex,
                 destinations: destinations
-                    .map((_) => AdaptiveScaffold.toRailDestination(_))
+                    .map((dest) => AdaptiveScaffold.toRailDestination(dest))
                     .toList(),
                 onDestinationSelected: onSelectedIndexChange,
               ),
@@ -140,7 +140,7 @@ class _CustomAdaptiveScaffold extends HookConsumerWidget {
                 extended: true,
                 selectedIndex: selectedIndex,
                 destinations: destinations
-                    .map((_) => AdaptiveScaffold.toRailDestination(_))
+                    .map((dest) => AdaptiveScaffold.toRailDestination(dest))
                     .toList(),
                 onDestinationSelected: onSelectedIndexChange,
                 trailing: sidebarTrailing,

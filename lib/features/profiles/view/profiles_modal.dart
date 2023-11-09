@@ -5,7 +5,7 @@ import 'package:hiddify/core/router/router.dart';
 import 'package:hiddify/domain/enums.dart';
 import 'package:hiddify/domain/failures.dart';
 import 'package:hiddify/domain/profiles/profiles.dart';
-import 'package:hiddify/features/common/common.dart';
+import 'package:hiddify/features/common/profile_tile.dart';
 import 'package:hiddify/features/profiles/notifier/notifier.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

@@ -1,5 +1,4 @@
 import 'package:hiddify/core/prefs/general_prefs.dart';
-import 'package:hiddify/features/common/app_update_notifier.dart';
 import 'package:hiddify/features/common/connectivity/connectivity_controller.dart';
 import 'package:hiddify/features/common/window/window_controller.dart';
 import 'package:hiddify/features/profiles/notifier/notifier.dart';
@@ -28,11 +27,6 @@ void commonControllers(CommonControllersRef ref) {
     (previous, next) {},
     fireImmediately: true,
   );
-  // ref.listen(
-  //   appUpdateNotifierProvider,
-  //   (previous, next) {},
-  //   fireImmediately: true,
-  // );
   ref.listen(
     profilesUpdateNotifierProvider,
     (previous, next) {},
