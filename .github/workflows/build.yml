@@ -369,7 +369,7 @@ jobs:
           packageName: app.hiddify.com
           releaseName: ${{ github.ref }}
           releaseFiles: ./hiddify-android-market.aab
-          track: internal
+          track: ${{ env.CHANNEL == 'dev' && 'beta' || 'internal' }}
 
       # - name: "Upload app to TestFlight"
       #   uses: apple-actions/upload-testflight-build@v1
@@ -385,15 +385,32 @@ jobs:
     needs: [upload-release]
     runs-on: windows-latest
     steps:
-      - name: checkout
-        uses: actions/checkout@v3
-
+      - name: Find & Replace
+        id: version
+        uses: ashley-taylor/regex-property-action@v1.3
+        with:
+          value: "${{ github.ref_name }}"
+          regex: "^v|\.dev$"
+          flags: "" # Optional, defaults to "g"
+          replacement: ""
       - name: Winget Publish
+        if: ${{ env.CHANNEL != 'dev' }}
         uses: isaacrlevin/winget-publish-action@v.5
         with:
           publish-type: "Update"
           user: "Hiddify"
           package: "Next"
-          version: ${{ github.ref_name }}
+          version: ${{ steps.version.outputs.value }}
+          url: "https://github.com/hiddify/hiddify-next/releases/download/${{ github.ref_name }}/hiddify-windows-x64-setup.zip"
+          token: ${{ secrets.WINGET_TOKEN }}
+
+
+      - name: Winget Publish Beta
+        uses: isaacrlevin/winget-publish-action@v.5
+        with:
+          publish-type: "Update"
+          user: "Hiddify"
+          package: "Next"
+          version: ${{ steps.version.outputs.value }}
           url: "https://github.com/hiddify/hiddify-next/releases/download/${{ github.ref_name }}/hiddify-windows-x64-setup.zip"
           token: ${{ secrets.WINGET_TOKEN }}
