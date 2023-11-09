@@ -1,4 +1,6 @@
 PODS:
+  - device_info_plus (0.0.1):
+    - FlutterMacOS
   - FlutterMacOS (1.0.0)
   - mobile_scanner (3.5.2):
     - FlutterMacOS
@@ -23,18 +25,18 @@ PODS:
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
-  - sqlite3 (3.43.1):
-    - sqlite3/common (= 3.43.1)
-  - sqlite3/common (3.43.1)
-  - sqlite3/fts5 (3.43.1):
+  - sqlite3 (3.44.0):
+    - sqlite3/common (= 3.44.0)
+  - sqlite3/common (3.44.0)
+  - sqlite3/fts5 (3.44.0):
     - sqlite3/common
-  - sqlite3/perf-threadsafe (3.43.1):
+  - sqlite3/perf-threadsafe (3.44.0):
     - sqlite3/common
-  - sqlite3/rtree (3.43.1):
+  - sqlite3/rtree (3.44.0):
     - sqlite3/common
   - sqlite3_flutter_libs (0.0.1):
     - FlutterMacOS
-    - sqlite3 (~> 3.43.1)
+    - sqlite3 (~> 3.44.0)
     - sqlite3/fts5
     - sqlite3/perf-threadsafe
     - sqlite3/rtree
@@ -46,6 +48,7 @@ PODS:
     - FlutterMacOS
 
 DEPENDENCIES:
+  - device_info_plus (from `Flutter/ephemeral/.symlinks/plugins/device_info_plus/macos`)
   - FlutterMacOS (from `Flutter/ephemeral`)
   - mobile_scanner (from `Flutter/ephemeral/.symlinks/plugins/mobile_scanner/macos`)
   - package_info_plus (from `Flutter/ephemeral/.symlinks/plugins/package_info_plus/macos`)
@@ -67,6 +70,8 @@ SPEC REPOS:
     - sqlite3
 
 EXTERNAL SOURCES:
+  device_info_plus:
+    :path: Flutter/ephemeral/.symlinks/plugins/device_info_plus/macos
   FlutterMacOS:
     :path: Flutter/ephemeral
   mobile_scanner:
@@ -95,6 +100,7 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral/.symlinks/plugins/window_manager/macos
 
 SPEC CHECKSUMS:
+  device_info_plus: 5401765fde0b8d062a2f8eb65510fb17e77cf07f
   FlutterMacOS: 8f6f14fa908a6fb3fba0cd85dbd81ec4b251fb24
   mobile_scanner: 621cf2c34e1c74ae7ce5c6793638ab600723bdea
   package_info_plus: 02d7a575e80f194102bef286361c6c326e4c29ce
@@ -106,12 +112,12 @@ SPEC CHECKSUMS:
   SentryPrivate: 949a21fa59872427edc73b524c3ec8456761d97f
   share_plus: 76dd39142738f7a68dd57b05093b5e8193f220f7
   shared_preferences_foundation: 5b919d13b803cadd15ed2dc053125c68730e5126
-  sqlite3: e0a0623a33a20a47cb5921552aebc6e9e437dc91
-  sqlite3_flutter_libs: 9939d86d0f5a3f8f0e91feb4f333e01c9bb4cd89
+  sqlite3: 6e2d4a4879854d0ec86b476bf3c3e30870bac273
+  sqlite3_flutter_libs: a25f3a0f522fdcd8fef6a4a50a3d681dd43d8dea
   tray_manager: 9064e219c56d75c476e46b9a21182087930baf90
   url_launcher_macos: d2691c7dd33ed713bf3544850a623080ec693d95
   window_manager: 3a1844359a6295ab1e47659b1a777e36773cd6e8
 
 PODFILE CHECKSUM: 15674062c2e6d8f1f7ead4db6e1a7e96c717a635
 
-COCOAPODS: 1.14.0
+COCOAPODS: 1.14.2
