@@ -390,7 +390,7 @@ jobs:
         uses: ashley-taylor/regex-property-action@v1.3
         with:
           value: "${{ github.ref_name }}"
-          regex: "^v|\.dev$"
+          regex: "^v|.dev$"
           flags: "" # Optional, defaults to "g"
           replacement: ""
       - name: Winget Publish
