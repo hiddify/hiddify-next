@@ -345,21 +345,27 @@ class ProfileSubscriptionInfo extends HookConsumerWidget {
       children: [
         Directionality(
           textDirection: TextDirection.ltr,
-          child: Text(
-            subInfo.total > 10 * 1099511627776 //10TB
-                ? "∞ GiB"
-                : subInfo.consumption.sizeOf(subInfo.total),
-            semanticsLabel:
-                t.profile.subscription.remainingTrafficSemanticLabel(
-              consumed: subInfo.consumption.sizeGB(),
-              total: subInfo.total.sizeGB(),
+          child: Flexible(
+            child: Text(
+              subInfo.total > 10 * 1099511627776 //10TB
+                  ? "∞ GiB"
+                  : subInfo.consumption.sizeOf(subInfo.total),
+              semanticsLabel:
+                  t.profile.subscription.remainingTrafficSemanticLabel(
+                consumed: subInfo.consumption.sizeGB(),
+                total: subInfo.total.sizeGB(),
+              ),
+              style: theme.textTheme.bodySmall,
+              overflow: TextOverflow.ellipsis,
             ),
-            style: theme.textTheme.bodySmall,
           ),
         ),
-        Text(
-          remaining.$1,
-          style: theme.textTheme.bodySmall?.copyWith(color: remaining.$2),
+        Flexible(
+          child: Text(
+            remaining.$1,
+            style: theme.textTheme.bodySmall?.copyWith(color: remaining.$2),
+            overflow: TextOverflow.ellipsis,
+          ),
         ),
       ],
     );

@@ -1,6 +1,5 @@
 import 'package:dartx/dartx.dart';
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/core/router/router.dart';
 import 'package:hiddify/domain/failures.dart';
@@ -30,12 +29,17 @@ class HomePage extends HookConsumerWidget {
           CustomScrollView(
             slivers: [
               NestedAppBar(
-                title: Row(
-                  children: [
-                    Text(t.general.appTitle),
-                    const Gap(4),
-                    const AppVersionLabel(),
-                  ],
+                title: Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(text: t.general.appTitle),
+                      const TextSpan(text: " "),
+                      const WidgetSpan(
+                        child: AppVersionLabel(),
+                        alignment: PlaceholderAlignment.middle,
+                      ),
+                    ],
+                  ),
                 ),
                 actions: [
                   IconButton(

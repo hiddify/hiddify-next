@@ -15,7 +15,7 @@ class BottomSheetPage extends Page {
   Route<void> createRoute(BuildContext context) {
     return ModalBottomSheetRoute(
       settings: this,
-      isScrollControlled: !fixed,
+      isScrollControlled: true,
       useSafeArea: true,
       showDragHandle: true,
       builder: (_) {
