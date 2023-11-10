@@ -9,6 +9,7 @@ import 'package:hiddify/utils/pref_notifier.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:upgrader/upgrader.dart';
+import 'package:version/version.dart';
 
 part 'app_update_notifier.freezed.dart';
 part 'app_update_notifier.g.dart';
@@ -63,7 +64,6 @@ class AppUpdateNotifier extends _$AppUpdateNotifier with AppLogger {
       );
       return state = const AppUpdateState.disabled();
     }
-    final currentVersion = appInfo.version;
     return ref
         .watch(appRepositoryProvider)
         .getLatestVersion(
@@ -75,18 +75,27 @@ class AppUpdateNotifier extends _$AppUpdateNotifier with AppLogger {
         return state = AppUpdateState.error(err);
       },
       (remote) {
-        if (remote.version.compareTo(currentVersion) > 0) {
-          if (remote.version == _ignoreReleasePref.getValue()) {
-            loggy.debug("ignored release [${remote.version}]");
-            return state = AppUpdateStateIgnored(remote);
+        try {
+          final latestVersion = Version.parse(remote.version);
+          final currentVersion = Version.parse(appInfo.version);
+          if (latestVersion > currentVersion) {
+            if (remote.version == _ignoreReleasePref.getValue()) {
+              loggy.debug("ignored release [${remote.version}]");
+              return state = AppUpdateStateIgnored(remote);
+            }
+            loggy.debug("new version available: $remote");
+            return state = AppUpdateState.available(remote);
           }
-          loggy.debug("new version available: $remote");
-          return state = AppUpdateState.available(remote);
+          loggy.info(
+            "already using latest version[$currentVersion], remote: [${remote.version}]",
+          );
+          return state = const AppUpdateState.notAvailable();
+        } catch (error, stackTrace) {
+          loggy.warning("error parsing versions", error, stackTrace);
+          return state = AppUpdateState.error(
+            AppFailure.unexpected(error, stackTrace),
+          );
         }
-        loggy.info(
-          "already using latest version[$currentVersion], remote: [${remote.version}]",
-        );
-        return state = const AppUpdateState.notAvailable();
       },
     ).run();
   }

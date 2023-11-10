@@ -1563,7 +1563,7 @@ packages:
     source: hosted
     version: "2.1.4"
   version:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: version
       sha256: "3d4140128e6ea10d83da32fef2fa4003fccbf6852217bb854845802f04191f94"
