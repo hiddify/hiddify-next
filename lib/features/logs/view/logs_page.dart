@@ -145,6 +145,7 @@ class LogsPage extends HookConsumerWidget with PresLogger {
         body: Builder(
           builder: (context) {
             return CustomScrollView(
+              primary: false,
               reverse: true,
               slivers: <Widget>[
                 switch (state.logs) {
