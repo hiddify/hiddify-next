@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/data/data_providers.dart';
 import 'package:hiddify/domain/environment.dart';
@@ -6,6 +7,8 @@ import 'package:hiddify/utils/pref_notifier.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'general_prefs.g.dart';
+
+bool _debugIntroPage = false;
 
 @Riverpod(keepAlive: true)
 class IntroCompleted extends _$IntroCompleted {
@@ -16,7 +19,10 @@ class IntroCompleted extends _$IntroCompleted {
   );
 
   @override
-  bool build() => _pref.getValue();
+  bool build() {
+    if (_debugIntroPage && kDebugMode) return false;
+    return _pref.getValue();
+  }
 
   Future<void> update(bool value) {
     state = value;
@@ -79,23 +85,6 @@ class DisableMemoryLimit extends _$DisableMemoryLimit {
   late final _pref = Pref(
     ref.watch(sharedPreferencesProvider),
     "disable_memory_limit",
-    false,
-  );
-
-  @override
-  bool build() => _pref.getValue();
-
-  Future<void> update(bool value) {
-    state = value;
-    return _pref.update(value);
-  }
-}
-
-@Riverpod(keepAlive: true)
-class CheckForPreReleaseUpdates extends _$CheckForPreReleaseUpdates {
-  late final _pref = Pref(
-    ref.watch(sharedPreferencesProvider),
-    "check_for_pre_release_updates",
     false,
   );
 

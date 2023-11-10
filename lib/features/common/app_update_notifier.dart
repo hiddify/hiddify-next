@@ -64,12 +64,7 @@ class AppUpdateNotifier extends _$AppUpdateNotifier with AppLogger {
       );
       return state = const AppUpdateState.disabled();
     }
-    return ref
-        .watch(appRepositoryProvider)
-        .getLatestVersion(
-          includePreReleases: ref.read(checkForPreReleaseUpdatesProvider),
-        )
-        .match(
+    return ref.watch(appRepositoryProvider).getLatestVersion().match(
       (err) {
         loggy.warning("failed to get latest version", err);
         return state = AppUpdateState.error(err);
