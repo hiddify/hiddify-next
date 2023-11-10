@@ -18,7 +18,7 @@ class ConfigOptionsPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final t = ref.watch(translationsProvider);
 
-    final options = ref.watch(configOptionsProvider);
+    final options = ref.watch(configPreferencesProvider);
 
     return Scaffold(
       appBar: AppBar(

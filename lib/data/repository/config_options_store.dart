@@ -124,6 +124,31 @@ List<Rule> rules(RulesRef ref) => switch (ref.watch(regionNotifierProvider)) {
     };
 
 @riverpod
+ConfigOptions configPreferences(ConfigPreferencesRef ref) {
+  return ConfigOptions(
+    executeConfigAsIs: kDebugMode && _debugConfigBuilder,
+    logLevel: ref.watch(logLevelStore),
+    resolveDestination: ref.watch(resolveDestinationStore),
+    ipv6Mode: ref.watch(ipv6ModeStore),
+    remoteDnsAddress: ref.watch(remoteDnsAddressStore),
+    remoteDnsDomainStrategy: ref.watch(remoteDnsDomainStrategyStore),
+    directDnsAddress: ref.watch(directDnsAddressStore),
+    directDnsDomainStrategy: ref.watch(directDnsDomainStrategyStore),
+    mixedPort: ref.watch(mixedPortStore),
+    localDnsPort: ref.watch(localDnsPortStore),
+    tunImplementation: ref.watch(tunImplementationStore),
+    mtu: ref.watch(mtuStore),
+    connectionTestUrl: ref.watch(connectionTestUrlStore),
+    urlTestInterval: ref.watch(urlTestIntervalStore),
+    enableClashApi: ref.watch(enableClashApiStore),
+    clashApiPort: ref.watch(clashApiPortStore),
+    enableTun: ref.watch(enableTunStore),
+    setSystemProxy: ref.watch(setSystemProxyStore),
+    rules: ref.watch(rulesProvider),
+  );
+}
+
+@riverpod
 ConfigOptions configOptions(ConfigOptionsRef ref) {
   final mode = ref.watch(coreModeStoreProvider);
   return ConfigOptions(
