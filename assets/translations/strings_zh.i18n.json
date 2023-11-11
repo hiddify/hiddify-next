@@ -164,10 +164,10 @@
             "clearSelection": "清空选项"
         },
         "config": {
-            "mode": "模式",
-            "modes": {
-                "none": "无",
-                "proxy": "代理",
+            "serviceMode": "服务方式",
+            "serviceModes": {
+                "proxy": "代理人",
+                "systemProxy": "系统代理",
                 "tun": "VPN"
             },
             "section": {
@@ -199,7 +199,10 @@
             "enableClashApi": "启用 Clash API",
             "clashApiPort": "Clash API 端口",
             "enableTun": "启用 TUN",
-            "setSystemProxy": "设置系统代理"
+            "setSystemProxy": "设置系统代理",
+            "enableFakeDns": "Enable Fake DNS",
+            "bypassLan": "Bypass Lan",
+            "strictRoute": "Strict Route"
         }
     },
     "about": {

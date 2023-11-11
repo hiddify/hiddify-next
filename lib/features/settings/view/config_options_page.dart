@@ -19,6 +19,7 @@ class ConfigOptionsPage extends HookConsumerWidget {
     final t = ref.watch(translationsProvider);
 
     final options = ref.watch(configPreferencesProvider);
+    final serviceMode = ref.watch(serviceModeStoreProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -59,6 +60,11 @@ class ConfigOptionsPage extends HookConsumerWidget {
           ),
           const SettingsDivider(),
           SettingsSection(t.settings.config.section.route),
+          // SwitchListTile(
+          //   title: Text(t.settings.config.bypassLan),
+          //   value: options.bypassLan,
+          //   onChanged: ref.read(bypassLanStore.notifier).update,
+          // ),
           SwitchListTile(
             title: Text(t.settings.config.resolveDestination),
             value: options.resolveDestination,
@@ -141,20 +147,47 @@ class ConfigOptionsPage extends HookConsumerWidget {
                   .update(domainStrategy);
             },
           ),
+          // SwitchListTile(
+          //   title: Text(t.settings.config.enableFakeDns),
+          //   value: options.enableFakeDns,
+          //   onChanged: ref.read(enableFakeDnsStore.notifier).update,
+          // ),
           const SettingsDivider(),
           SettingsSection(t.settings.config.section.inbound),
-          if (PlatformUtils.isDesktop) ...[
-            SwitchListTile(
-              title: Text(t.settings.config.enableTun),
-              value: options.enableTun,
-              onChanged: ref.read(enableTunStore.notifier).update,
-            ),
-            SwitchListTile(
-              title: Text(t.settings.config.setSystemProxy),
-              value: options.setSystemProxy,
-              onChanged: ref.read(setSystemProxyStore.notifier).update,
-            ),
-          ],
+          // if (PlatformUtils.isDesktop) ...[
+          //   SwitchListTile(
+          //     title: Text(t.settings.config.enableTun),
+          //     value: options.enableTun,
+          //     onChanged: ref.read(enableTunStore.notifier).update,
+          //   ),
+          //   SwitchListTile(
+          //     title: Text(t.settings.config.setSystemProxy),
+          //     value: options.setSystemProxy,
+          //     onChanged: ref.read(setSystemProxyStore.notifier).update,
+          //   ),
+          // ],
+          ListTile(
+            title: Text(t.settings.config.serviceMode),
+            subtitle: Text(serviceMode.present(t)),
+            onTap: () async {
+              final pickedMode = await SettingsPickerDialog(
+                title: t.settings.config.serviceMode,
+                selected: serviceMode,
+                options: ServiceMode.choices,
+                getTitle: (e) => e.present(t),
+                resetValue: ServiceMode.defaultMode,
+              ).show(context);
+              if (pickedMode == null) return;
+              await ref
+                  .read(serviceModeStoreProvider.notifier)
+                  .update(pickedMode);
+            },
+          ),
+          SwitchListTile(
+            title: Text(t.settings.config.strictRoute),
+            value: options.strictRoute,
+            onChanged: ref.read(strictRouteStore.notifier).update,
+          ),
           ListTile(
             title: Text(t.settings.config.tunImplementation),
             subtitle: Text(options.tunImplementation.name),

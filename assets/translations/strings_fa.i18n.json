@@ -164,10 +164,10 @@
             "clearSelection": "حذف انتخاب‌ها"
         },
         "config": {
-            "mode": "حالت",
-            "modes": {
-                "none": "هیچ یک",
+            "serviceMode": "حالت سرویس",
+            "serviceModes": {
                 "proxy": "پروکسی",
+                "systemProxy": "پروکسی سیستم",
                 "tun": "VPN"
             },
             "section": {
@@ -199,7 +199,10 @@
             "enableClashApi": "فعالسازی کلش",
             "clashApiPort": "پورت کلش",
             "enableTun": "فعال سازی تونل",
-            "setSystemProxy": "تنظیم پروکسی سیستم"
+            "setSystemProxy": "تنظیم پروکسی سیستم",
+            "enableFakeDns": "Enable Fake DNS",
+            "bypassLan": "Bypass Lan",
+            "strictRoute": "Strict Route"
         }
     },
     "about": {

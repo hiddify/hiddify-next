@@ -164,10 +164,10 @@
             "clearSelection": "Очистить выбор"
         },
         "config": {
-            "mode": "Режим",
-            "modes": {
-                "none": "Нет",
+            "serviceMode": "Сервисный режим",
+            "serviceModes": {
                 "proxy": "Прокси",
+                "systemProxy": "Системный прокси",
                 "tun": "VPN"
             },
             "section": {
@@ -199,7 +199,10 @@
             "enableClashApi": "Использовать Clash API",
             "clashApiPort": "Порт Clash API",
             "enableTun": "Использовать TUN",
-            "setSystemProxy": "Установить системный прокси"
+            "setSystemProxy": "Установить системный прокси",
+            "enableFakeDns": "Enable Fake DNS",
+            "bypassLan": "Bypass Lan",
+            "strictRoute": "Strict Route"
         }
     },
     "about": {

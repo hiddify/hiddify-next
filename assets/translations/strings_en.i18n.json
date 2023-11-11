@@ -164,10 +164,10 @@
             "clearSelection": "Clear selection"
         },
         "config": {
-            "mode": "Mode",
-            "modes": {
-                "none": "None",
+            "serviceMode": "Service Mode",
+            "serviceModes": {
                 "proxy": "Proxy",
+                "systemProxy": "System Proxy",
                 "tun": "VPN"
             },
             "section": {
@@ -199,7 +199,10 @@
             "enableClashApi": "Enable Clash API",
             "clashApiPort": "Clash API Port",
             "enableTun": "Enable TUN",
-            "setSystemProxy": "Set System Proxy"
+            "setSystemProxy": "Set System Proxy",
+            "enableFakeDns": "Enable Fake DNS",
+            "bypassLan": "Bypass Lan",
+            "strictRoute": "Strict Route"
         }
     },
     "about": {

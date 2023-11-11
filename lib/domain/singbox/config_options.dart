@@ -26,6 +26,7 @@ class ConfigOptions with _$ConfigOptions {
     @Default(6450) int localDnsPort,
     @Default(TunImplementation.mixed) TunImplementation tunImplementation,
     @Default(9000) int mtu,
+    @Default(true) bool strictRoute,
     @Default("http://cp.cloudflare.com/") String connectionTestUrl,
     @IntervalConverter()
     @Default(Duration(minutes: 10))

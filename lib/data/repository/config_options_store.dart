@@ -4,7 +4,6 @@ import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:hiddify/data/data_providers.dart';
 import 'package:hiddify/domain/singbox/singbox.dart';
 import 'package:hiddify/utils/pref_notifier.dart';
-import 'package:hiddify/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'config_options_store.g.dart';
@@ -13,19 +12,19 @@ bool _debugConfigBuilder = false;
 final _default = ConfigOptions.initial;
 
 @Riverpod(keepAlive: true)
-class CoreModeStore extends _$CoreModeStore {
+class ServiceModeStore extends _$ServiceModeStore {
   late final _pref = Pref(
     ref.watch(sharedPreferencesProvider),
-    "mode",
-    PlatformUtils.isDesktop ? CoreMode.proxy : CoreMode.tun,
-    mapFrom: CoreMode.values.byName,
+    "service-mode",
+    ServiceMode.defaultMode,
+    mapFrom: ServiceMode.values.byName,
     mapTo: (value) => value.name,
   );
 
   @override
-  CoreMode build() => _pref.getValue();
+  ServiceMode build() => _pref.getValue();
 
-  Future<void> update(CoreMode value) {
+  Future<void> update(ServiceMode value) {
     state = value;
     return _pref.update(value);
   }
@@ -83,9 +82,14 @@ final enableClashApiStore =
     PrefNotifier.provider("enable-clash-api", _default.enableClashApi);
 final clashApiPortStore =
     PrefNotifier.provider("clash-api-port", _default.clashApiPort);
-final enableTunStore = PrefNotifier.provider("enable-tun", _default.enableTun);
-final setSystemProxyStore =
-    PrefNotifier.provider("set-system-proxy", _default.setSystemProxy);
+// final enableTunStore = PrefNotifier.provider("enable-tun", _default.enableTun);
+// final setSystemProxyStore =
+//     PrefNotifier.provider("set-system-proxy", _default.setSystemProxy);
+final strictRouteStore =
+    PrefNotifier.provider("strict-route", _default.strictRoute);
+final bypassLanStore = PrefNotifier.provider("bypass-lan", _default.bypassLan);
+final enableFakeDnsStore =
+    PrefNotifier.provider("enable-fake-dns", _default.enableFakeDns);
 
 // HACK temporary
 @riverpod
@@ -138,38 +142,24 @@ ConfigOptions configPreferences(ConfigPreferencesRef ref) {
     localDnsPort: ref.watch(localDnsPortStore),
     tunImplementation: ref.watch(tunImplementationStore),
     mtu: ref.watch(mtuStore),
+    strictRoute: ref.watch(strictRouteStore),
     connectionTestUrl: ref.watch(connectionTestUrlStore),
     urlTestInterval: ref.watch(urlTestIntervalStore),
     enableClashApi: ref.watch(enableClashApiStore),
     clashApiPort: ref.watch(clashApiPortStore),
-    enableTun: ref.watch(enableTunStore),
-    setSystemProxy: ref.watch(setSystemProxyStore),
+    // enableTun: ref.watch(enableTunStore),
+    // setSystemProxy: ref.watch(setSystemProxyStore),
+    bypassLan: ref.watch(bypassLanStore),
+    enableFakeDns: ref.watch(enableFakeDnsStore),
     rules: ref.watch(rulesProvider),
   );
 }
 
 @riverpod
 ConfigOptions configOptions(ConfigOptionsRef ref) {
-  final mode = ref.watch(coreModeStoreProvider);
-  return ConfigOptions(
-    executeConfigAsIs: kDebugMode && _debugConfigBuilder,
-    logLevel: ref.watch(logLevelStore),
-    resolveDestination: ref.watch(resolveDestinationStore),
-    ipv6Mode: ref.watch(ipv6ModeStore),
-    remoteDnsAddress: ref.watch(remoteDnsAddressStore),
-    remoteDnsDomainStrategy: ref.watch(remoteDnsDomainStrategyStore),
-    directDnsAddress: ref.watch(directDnsAddressStore),
-    directDnsDomainStrategy: ref.watch(directDnsDomainStrategyStore),
-    mixedPort: ref.watch(mixedPortStore),
-    localDnsPort: ref.watch(localDnsPortStore),
-    tunImplementation: ref.watch(tunImplementationStore),
-    mtu: ref.watch(mtuStore),
-    connectionTestUrl: ref.watch(connectionTestUrlStore),
-    urlTestInterval: ref.watch(urlTestIntervalStore),
-    enableClashApi: ref.watch(enableClashApiStore),
-    clashApiPort: ref.watch(clashApiPortStore),
-    enableTun: mode == CoreMode.tun || ref.watch(enableTunStore),
-    setSystemProxy: mode == CoreMode.proxy || ref.watch(setSystemProxyStore),
-    rules: ref.watch(rulesProvider),
-  );
+  final serviceMode = ref.watch(serviceModeStoreProvider);
+  return ref.watch(configPreferencesProvider).copyWith(
+        enableTun: serviceMode == ServiceMode.tun,
+        setSystemProxy: serviceMode == ServiceMode.systemProxy,
+      );
 }
