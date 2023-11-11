@@ -243,7 +243,9 @@
             "invalidConfigOptions": "配置选项无效",
             "invalidConfig": "无效配置",
             "create": "服务创建错误",
-            "start": "服务启动错误"
+            "start": "服务启动错误",
+            "missingPrivilege": "缺少特权",
+            "missingPrivilegeMsg": "VPN 模式需要管理员权限。以管理员身份重新启动应用程序或更改服务模式"
         },
         "connectivity": {
             "unexpected": "意外失败",

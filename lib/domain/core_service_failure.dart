@@ -18,6 +18,9 @@ sealed class CoreServiceFailure with _$CoreServiceFailure, Failure {
   const factory CoreServiceFailure.serviceNotRunning([String? message]) =
       CoreServiceNotRunning;
 
+  @With<ExpectedFailure>()
+  const factory CoreServiceFailure.missingPrivilege() = CoreMissingPrivilege;
+
   const factory CoreServiceFailure.invalidConfigOptions([
     String? message,
   ]) = InvalidConfigOptions;
@@ -42,6 +45,7 @@ sealed class CoreServiceFailure with _$CoreServiceFailure, Failure {
   String? get msg => switch (this) {
         UnexpectedCoreServiceFailure() => null,
         CoreServiceNotRunning(:final message) => message,
+        CoreMissingPrivilege() => null,
         InvalidConfigOptions(:final message) => message,
         InvalidConfig(:final message) => message,
         CoreServiceCreateFailure(:final message) => message,
@@ -59,6 +63,10 @@ sealed class CoreServiceFailure with _$CoreServiceFailure, Failure {
       CoreServiceNotRunning(:final message) => (
           type: t.failure.singbox.serviceNotRunning,
           message: message
+        ),
+      CoreMissingPrivilege() => (
+          type: t.failure.singbox.missingPrivilege,
+          message: t.failure.singbox.missingPrivilegeMsg,
         ),
       InvalidConfigOptions(:final message) => (
           type: t.failure.singbox.invalidConfigOptions,

@@ -61,6 +61,7 @@ ClashApi clashApi(ClashApiRef ref) => ClashApi(Defaults.clashApiPort);
 CoreFacade coreFacade(CoreFacadeRef ref) => CoreFacadeImpl(
       ref.watch(singboxServiceProvider),
       ref.watch(filesEditorServiceProvider),
+      ref.watch(platformServicesProvider),
       ref.watch(clashApiProvider),
       ref.read(debugModeNotifierProvider),
       () => ref.read(configOptionsProvider),

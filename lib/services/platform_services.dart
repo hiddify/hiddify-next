@@ -1,12 +1,16 @@
 import 'dart:convert';
+import 'dart:ffi';
 import 'dart:io';
 
 import 'package:flutter/services.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hiddify/services/files_editor_service.dart';
+import 'package:hiddify/utils/ffi_utils.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:posix/posix.dart';
+import 'package:win32/win32.dart';
 
 part 'platform_services.freezed.dart';
 part 'platform_services.g.dart';
@@ -42,6 +46,50 @@ class PlatformServices with InfraLogger {
         return right(dirs);
       },
     );
+  }
+
+  Future<bool> hasPrivilege() async {
+    try {
+      if (Platform.isWindows) {
+        bool isElevated = false;
+        withMemory<void, Uint32>(sizeOf<Uint32>(), (phToken) {
+          withMemory<void, Uint32>(sizeOf<Uint32>(), (pReturnedSize) {
+            withMemory<void, _TokenElevation>(sizeOf<_TokenElevation>(),
+                (pElevation) {
+              if (OpenProcessToken(
+                    GetCurrentProcess(),
+                    TOKEN_QUERY,
+                    phToken.cast(),
+                  ) ==
+                  1) {
+                if (GetTokenInformation(
+                      phToken.value,
+                      TOKEN_INFORMATION_CLASS.TokenElevation,
+                      pElevation,
+                      sizeOf<_TokenElevation>(),
+                      pReturnedSize,
+                    ) ==
+                    1) {
+                  isElevated = pElevation.ref.tokenIsElevated != 0;
+                }
+              }
+              if (phToken.value != 0) {
+                CloseHandle(phToken.value);
+              }
+            });
+          });
+        });
+        return isElevated;
+      } else if (Platform.isLinux || Platform.isMacOS) {
+        final euid = geteuid();
+        return euid == 0;
+      } else {
+        return true;
+      }
+    } catch (e) {
+      loggy.warning("error checking privilege", e);
+      return true; // return true so core handles it
+    }
   }
 
   TaskEither<String, bool> isIgnoringBatteryOptimizations() {
@@ -118,4 +166,11 @@ class InstalledPackageInfo with _$InstalledPackageInfo {
 
   factory InstalledPackageInfo.fromJson(Map<String, dynamic> json) =>
       _$InstalledPackageInfoFromJson(json);
+}
+
+sealed class _TokenElevation extends Struct {
+  /// A nonzero value if the token has elevated privileges;
+  /// otherwise, a zero value.
+  @Int32()
+  external int tokenIsElevated;
 }
