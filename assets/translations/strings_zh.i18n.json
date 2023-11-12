@@ -69,6 +69,8 @@
         },
         "share": {
             "buttonText": "分享",
+            "exportToClipboardSuccess": "导出到剪贴板",
+            "exportSubLinkToClipboard": "将订阅链接导出到剪贴板",
             "exportConfigToClipboard": "将配置导出到剪贴板",
             "exportConfigToClipboardSuccess": "配置已复制到剪贴板"
         },

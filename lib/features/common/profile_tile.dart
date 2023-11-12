@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/core_providers.dart';
@@ -288,6 +289,20 @@ class ProfileActionsMenu extends HookConsumerWidget {
           ),
         SubmenuButton(
           menuChildren: [
+            if (profile case RemoteProfile(:final url, :final name))
+              MenuItemButton(
+                child: Text(t.profile.share.exportSubLinkToClipboard),
+                onPressed: () async {
+                  final link = LinkParser.generateSubShareLink(url, name);
+                  if (link.isNotEmpty) {
+                    await Clipboard.setData(ClipboardData(text: link));
+                    if (context.mounted) {
+                      CustomToast(t.profile.share.exportToClipboardSuccess)
+                          .show(context);
+                    }
+                  }
+                },
+              ),
             MenuItemButton(
               child: Text(t.profile.share.exportConfigToClipboard),
               onPressed: () async {

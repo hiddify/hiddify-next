@@ -69,6 +69,8 @@
         },
         "share": {
             "buttonText": "اشتراک گذاری",
+            "exportToClipboardSuccess": "به کلیپ بورد اضافه شد",
+            "exportSubLinkToClipboard": "افزودن لینک اشتراک به کلیپ بورد",
             "exportConfigToClipboard": "افزودن پیکربندی به کلیپ بورد",
             "exportConfigToClipboardSuccess": "پیکربندی در کلیپ بورد کپی شد"
         },

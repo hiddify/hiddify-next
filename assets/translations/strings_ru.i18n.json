@@ -69,6 +69,8 @@
         },
         "share": {
             "buttonText": "Делиться",
+            "exportToClipboardSuccess": "Экспортировано в буфер обмена",
+            "exportSubLinkToClipboard": "Экспортировать ссылку на подписку в буфер обмена",
             "exportConfigToClipboard": "Экспортировать конфигурацию в буфер обмена",
             "exportConfigToClipboardSuccess": "Конфигурация скопирована в буфер обмена."
         },

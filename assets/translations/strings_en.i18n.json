@@ -69,6 +69,8 @@
         },
         "share": {
             "buttonText": "Share",
+            "exportToClipboardSuccess": "Exported to clipboard",
+            "exportSubLinkToClipboard": "Export subscription link to clipboard",
             "exportConfigToClipboard": "Export configuration to clipboard",
             "exportConfigToClipboardSuccess": "Configuration copied to clipboard"
         },
