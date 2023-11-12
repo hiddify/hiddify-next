@@ -164,7 +164,7 @@
             "clearSelection": "Очистить выбор"
         },
         "config": {
-            "serviceMode": "Сервисный режим",
+            "serviceMode": "Режим сервиса",
             "serviceModes": {
                 "proxy": "Прокси",
                 "systemProxy": "Системный прокси",
@@ -199,10 +199,10 @@
             "enableClashApi": "Использовать Clash API",
             "clashApiPort": "Порт Clash API",
             "enableTun": "Использовать TUN",
-            "setSystemProxy": "Установить системный прокси",
-            "enableFakeDns": "Enable Fake DNS",
-            "bypassLan": "Bypass Lan",
-            "strictRoute": "Strict Route"
+            "setSystemProxy": "Использовать системный прокси",
+            "enableFakeDns": "Использовать поддельную DNS",
+            "bypassLan": "Обход локальной сети",
+            "strictRoute": "Строгая маршрутизация"
         }
     },
     "about": {
@@ -215,7 +215,7 @@
         "termsAndConditions": "Условия и положения"
     },
     "appUpdate": {
-        "notAvailableMsg": "У вас установлена последняя версия",
+        "notAvailableMsg": "Установлена последняя версия",
         "dialogTitle": "Доступно обновление",
         "updateMsg": "Доступна новая версия @:general.appTitle. Обновить сейчас?",
         "currentVersionLbl": "Текущая версия",
