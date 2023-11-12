@@ -30,7 +30,10 @@ class SystemTrayController extends _$SystemTrayController
       _initialized = true;
     }
 
-    final connection = await ref.watch(connectivityControllerProvider.future);
+    final connection = switch (ref.watch(connectivityControllerProvider)) {
+      AsyncData(:final value) => value,
+      _ => const Disconnected(),
+    };
     final serviceMode = ref.watch(serviceModeStoreProvider);
 
     final t = ref.watch(translationsProvider);

@@ -90,8 +90,9 @@ class ConnectivityController extends _$ConnectivityController with AppLogger {
     final activeProfile = await ref.read(activeProfileProvider.future);
     await _core
         .start(activeProfile!.id, ref.read(disableMemoryLimitProvider))
-        .mapLeft((err) {
-      loggy.warning("error connecting $err", err);
+        .mapLeft((err) async {
+      loggy.warning("error connecting", err);
+      await ref.read(startedByUserProvider.notifier).update(false);
       state = AsyncError(err, StackTrace.current);
     }).run();
   }

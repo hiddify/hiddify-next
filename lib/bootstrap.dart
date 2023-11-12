@@ -94,13 +94,32 @@ Future<void> _lazyBootstrap(
   if (silentStart) {
     FlutterNativeSplash.remove();
   }
+
   if (PlatformUtils.isDesktop) {
+    _logger.debug("initializing [Auto Start Service] and [Window Controller]");
     await container.read(autoStartServiceProvider.future);
     await container.read(windowControllerProvider.future);
   }
 
-  await initAppServices(container.read);
-  await initControllers(container.read);
+  await container.read(singboxServiceProvider).init();
+  _logger.debug("initialized [Singbox Service]");
+
+  await container.read(activeProfileProvider.future);
+  await container.read(deepLinkServiceProvider.future);
+  if (PlatformUtils.isDesktop) {
+    try {
+      await container
+          .read(systemTrayControllerProvider.future)
+          .timeout(const Duration(seconds: 1));
+      _logger.debug("initialized [System Tray Controller]");
+    } catch (error, stackTrace) {
+      _logger.warning(
+        "error initializing [System Tray Controller]",
+        error,
+        stackTrace,
+      );
+    }
+  }
 
   runApp(
     ProviderScope(
@@ -129,30 +148,4 @@ void initLoggers(
     logPrinter: _loggers,
     logOptions: LogOptions(logLevel),
   );
-}
-
-Future<void> initAppServices(
-  Result Function<Result>(ProviderListenable<Result>) read,
-) async {
-  _logger.debug("initializing app services");
-  await Future.wait(
-    [
-      read(singboxServiceProvider).init(),
-    ],
-  );
-  _logger.debug('initialized app services');
-}
-
-Future<void> initControllers(
-  Result Function<Result>(ProviderListenable<Result>) read,
-) async {
-  _logger.debug("initializing controllers");
-  await Future.wait(
-    [
-      read(activeProfileProvider.future),
-      read(deepLinkServiceProvider.future),
-      if (PlatformUtils.isDesktop) read(systemTrayControllerProvider.future),
-    ],
-  );
-  _logger.debug("initialized base controllers");
 }

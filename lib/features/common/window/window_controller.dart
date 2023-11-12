@@ -31,7 +31,7 @@ class WindowController extends _$WindowController
           await windowManager.hide();
         }
         await Future.delayed(
-          const Duration(seconds: 1),
+          const Duration(seconds: 3),
           () async {
             if (ref.read(startedByUserProvider)) {
               loggy.debug("previously started by user, trying to connect");
