@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hiddify/domain/singbox/singbox.dart';
+import 'package:hiddify/utils/custom_loggers.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ProxyTile extends HookConsumerWidget {
+class ProxyTile extends HookConsumerWidget with PresLogger {
   const ProxyTile(
     this.proxy, {
     super.key,
@@ -56,6 +57,20 @@ class ProxyTile extends HookConsumerWidget {
           : null,
       selected: selected,
       onTap: onSelect,
+      onLongPress: () async {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            content: SelectionArea(child: Text(sanitizedTag(proxy.tag))),
+            actions: [
+              TextButton(
+                onPressed: Navigator.of(context).pop,
+                child: Text(MaterialLocalizations.of(context).closeButtonLabel),
+              ),
+            ],
+          ),
+        );
+      },
       horizontalTitleGap: 4,
     );
   }
