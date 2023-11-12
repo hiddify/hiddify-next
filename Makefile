@@ -33,7 +33,7 @@ gen:
 translate:
 	dart run slang
 
-prepare: get gen translate
+prepare: get-geo-assets get gen translate
 	@echo "Select a platform:"
 	@echo "1. Android"
 	@echo "2. Windows"
