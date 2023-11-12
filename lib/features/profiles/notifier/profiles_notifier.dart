@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/services.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:hiddify/data/data_providers.dart';
@@ -121,6 +122,18 @@ class ProfilesNotifier extends _$ProfilesNotifier with AppLogger {
           'successfully deleted profile, was active? [${profile.active}]',
         );
         return unit;
+      },
+    ).run();
+  }
+
+  Future<void> exportConfigToClipboard(Profile profile) async {
+    await ref.read(coreFacadeProvider).generateConfig(profile.id).match(
+      (err) {
+        loggy.warning('error generating config', err);
+        throw err;
+      },
+      (configJson) async {
+        await Clipboard.setData(ClipboardData(text: configJson));
       },
     ).run();
   }

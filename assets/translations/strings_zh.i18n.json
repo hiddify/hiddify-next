@@ -67,6 +67,11 @@
             "failureMsg": "更新配置文件失败",
             "successMsg": "配置文件更新成功"
         },
+        "share": {
+            "buttonText": "分享",
+            "exportConfigToClipboard": "将配置导出到剪贴板",
+            "exportConfigToClipboardSuccess": "配置已复制到剪贴板"
+        },
         "edit": {
             "buttonTxt": "编辑",
             "selectActiveTxt": "选择活动配置文件"

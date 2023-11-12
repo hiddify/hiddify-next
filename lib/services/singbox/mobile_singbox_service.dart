@@ -74,6 +74,24 @@ class MobileSingboxService
   }
 
   @override
+  TaskEither<String, String> generateConfig(
+    String path,
+  ) {
+    return TaskEither(
+      () async {
+        final configJson = await _methodChannel.invokeMethod<String>(
+          "generate_config",
+          {"path": path},
+        );
+        if (configJson == null || configJson.isEmpty) {
+          return left("null response");
+        }
+        return right(configJson);
+      },
+    );
+  }
+
+  @override
   TaskEither<String, Unit> start(String configPath, bool disableMemoryLimit) {
     return TaskEither(
       () async {

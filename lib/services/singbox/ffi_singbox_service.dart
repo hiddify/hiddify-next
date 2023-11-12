@@ -5,6 +5,7 @@ import 'dart:io';
 import 'dart:isolate';
 
 import 'package:combine/combine.dart';
+import 'package:dartx/dartx.dart';
 import 'package:ffi/ffi.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:hiddify/domain/connectivity/connectivity.dart';
@@ -132,6 +133,28 @@ class FFISingboxService
             return left(err);
           }
           return right(unit);
+        },
+      ),
+    );
+  }
+
+  @override
+  TaskEither<String, String> generateConfig(
+    String path,
+  ) {
+    return TaskEither(
+      () => CombineWorker().execute(
+        () {
+          final response = _box
+              .generateConfig(
+                path.toNativeUtf8().cast(),
+              )
+              .cast<Utf8>()
+              .toDartString();
+          if (response.startsWith("error")) {
+            return left(response.removePrefix("error"));
+          }
+          return right(response);
         },
       ),
     );

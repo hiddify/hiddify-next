@@ -67,6 +67,11 @@
             "failureMsg": "در بروزرسانی پروفایل خطایی رخ داد",
             "successMsg": "پروفایل با موفقیت بروزرسانی شد"
         },
+        "share": {
+            "buttonText": "اشتراک گذاری",
+            "exportConfigToClipboard": "افزودن پیکربندی به کلیپ بورد",
+            "exportConfigToClipboardSuccess": "پیکربندی در کلیپ بورد کپی شد"
+        },
         "edit": {
             "buttonTxt": "ویرایش",
             "selectActiveTxt": "انتخاب پروفایل فعال"

@@ -254,6 +254,14 @@ class ProfileActionsMenu extends HookConsumerWidget {
       initialOnSuccess: () =>
           CustomToast.success(t.profile.update.successMsg).show(context),
     );
+    final exportConfigMutation = useMutation(
+      initialOnFailure: (err) {
+        CustomToast.error(t.presentShortError(err)).show(context);
+      },
+      initialOnSuccess: () =>
+          CustomToast.success(t.profile.share.exportConfigToClipboardSuccess)
+              .show(context),
+    );
     final deleteProfileMutation = useMutation(
       initialOnFailure: (err) {
         CustomAlertDialog.fromErr(t.presentError(err)).show(context);
@@ -278,6 +286,25 @@ class ProfileActionsMenu extends HookConsumerWidget {
               );
             },
           ),
+        SubmenuButton(
+          menuChildren: [
+            MenuItemButton(
+              child: Text(t.profile.share.exportConfigToClipboard),
+              onPressed: () async {
+                if (exportConfigMutation.state.isInProgress) {
+                  return;
+                }
+                exportConfigMutation.setFuture(
+                  ref
+                      .read(profilesNotifierProvider.notifier)
+                      .exportConfigToClipboard(profile),
+                );
+              },
+            ),
+          ],
+          leadingIcon: const Icon(Icons.share),
+          child: Text(t.profile.share.buttonText),
+        ),
         MenuItemButton(
           leadingIcon: const Icon(Icons.edit),
           child: Text(t.profile.edit.buttonTxt),

@@ -91,6 +91,27 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
   }
 
   @override
+  TaskEither<CoreServiceFailure, String> generateConfig(
+    String fileName,
+  ) {
+    return exceptionHandler(
+      () {
+        final configPath = filesEditor.configPath(fileName);
+        final options = configOptions();
+        return setup()
+            .andThen(() => changeConfigOptions(options))
+            .andThen(
+              () => singbox
+                  .generateConfig(configPath)
+                  .mapLeft(CoreServiceFailure.other),
+            )
+            .run();
+      },
+      CoreServiceFailure.unexpected,
+    );
+  }
+
+  @override
   TaskEither<CoreServiceFailure, Unit> start(
     String fileName,
     bool disableMemoryLimit,

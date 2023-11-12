@@ -934,6 +934,21 @@ class SingboxNativeLibrary {
   late final _changeConfigOptions = _changeConfigOptionsPtr
       .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
 
+  ffi.Pointer<ffi.Char> generateConfig(
+    ffi.Pointer<ffi.Char> path,
+  ) {
+    return _generateConfig(
+      path,
+    );
+  }
+
+  late final _generateConfigPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Char> Function(
+              ffi.Pointer<ffi.Char>)>>('generateConfig');
+  late final _generateConfig = _generateConfigPtr
+      .asFunction<ffi.Pointer<ffi.Char> Function(ffi.Pointer<ffi.Char>)>();
+
   ffi.Pointer<ffi.Char> start(
     ffi.Pointer<ffi.Char> configPath,
     int disableMemoryLimit,

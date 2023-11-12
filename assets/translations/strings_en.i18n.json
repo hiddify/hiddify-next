@@ -67,6 +67,11 @@
             "failureMsg": "Failed to update profile",
             "successMsg": "Profile updated successfully"
         },
+        "share": {
+            "buttonText": "Share",
+            "exportConfigToClipboard": "Export configuration to clipboard",
+            "exportConfigToClipboardSuccess": "Configuration copied to clipboard"
+        },
         "edit": {
             "buttonTxt": "Edit",
             "selectActiveTxt": "Select active profile"

@@ -18,6 +18,10 @@ abstract interface class SingboxFacade {
     ConfigOptions options,
   );
 
+  TaskEither<CoreServiceFailure, String> generateConfig(
+    String fileName,
+  );
+
   TaskEither<CoreServiceFailure, Unit> start(
     String fileName,
     bool disableMemoryLimit,

@@ -67,6 +67,11 @@
             "failureMsg": "Ошибка обновления",
             "successMsg": "Профиль успешно обновлён"
         },
+        "share": {
+            "buttonText": "Делиться",
+            "exportConfigToClipboard": "Экспортировать конфигурацию в буфер обмена",
+            "exportConfigToClipboardSuccess": "Конфигурация скопирована в буфер обмена."
+        },
         "edit": {
             "buttonTxt": "Изменить",
             "selectActiveTxt": "Выберите активный профиль"
