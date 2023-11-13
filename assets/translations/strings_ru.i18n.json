@@ -68,11 +68,11 @@
             "successMsg": "Профиль успешно обновлён"
         },
         "share": {
-            "buttonText": "Делиться",
-            "exportToClipboardSuccess": "Экспортировано в буфер обмена",
-            "exportSubLinkToClipboard": "Экспортировать ссылку на подписку в буфер обмена",
-            "exportConfigToClipboard": "Экспортировать конфигурацию в буфер обмена",
-            "exportConfigToClipboardSuccess": "Конфигурация скопирована в буфер обмена."
+            "buttonText": "Поделиться",
+            "exportToClipboardSuccess": "Ссылка скопирована в буфер обмена",
+            "exportSubLinkToClipboard": "Копировать ссылку на подписку в буфер обмена",
+            "exportConfigToClipboard": "Копировать конфигурацию в буфер обмена",
+            "exportConfigToClipboardSuccess": "Конфигурация скопирована в буфер обмена"
         },
         "edit": {
             "buttonTxt": "Изменить",
