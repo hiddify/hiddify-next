@@ -59,7 +59,13 @@
             "scanQr": "扫二维码",
             "manually": "手动输入",
             "addingProfileMsg": "添加配置文件",
-            "failureMsg": "添加配置文件失败"
+            "failureMsg": "添加配置文件失败",
+            "qrScanner": {
+                "permissionDeniedError": "没有权限",
+                "unexpectedError": "出了些问题",
+                "torchSemanticLabel": "手电筒",
+                "facingSemanticLabel": "相机朝向"
+            }
         },
         "update": {
             "buttonTxt": "更新",

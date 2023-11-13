@@ -59,7 +59,13 @@
             "scanQr": "Сканировать QR-код",
             "manually": "Ввести вручную",
             "addingProfileMsg": "Добавление профиля",
-            "failureMsg": "Не удалось добавить профиль"
+            "failureMsg": "Не удалось добавить профиль",
+            "qrScanner": {
+                "permissionDeniedError": "Доступ запрещен",
+                "unexpectedError": "Что-то пошло не так",
+                "torchSemanticLabel": "Вспышка",
+                "facingSemanticLabel": "Перед камерой"
+            }
         },
         "update": {
             "buttonTxt": "Обновить",

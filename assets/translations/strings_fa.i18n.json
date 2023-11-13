@@ -59,7 +59,13 @@
             "scanQr": "اسکن QR کد",
             "manually": "افزودن دستی",
             "addingProfileMsg": "در حال افزودن پروفایل",
-            "failureMsg": "در افزودن پروفایل خطایی رخ داد"
+            "failureMsg": "در افزودن پروفایل خطایی رخ داد",
+            "qrScanner": {
+                "permissionDeniedError": "اجازه رد شد",
+                "unexpectedError": "خطایی رخ داده",
+                "torchSemanticLabel": "چراغ فلاش",
+                "facingSemanticLabel": "جهت دوربین"
+            }
         },
         "update": {
             "buttonTxt": "بروزرسانی",

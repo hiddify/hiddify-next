@@ -57,6 +57,12 @@
             "shortBtnTxt": "New Profile",
             "fromClipboard": "Add From Clipboard",
             "scanQr": "Scan QR code",
+            "qrScanner": {
+                "permissionDeniedError": "Permission denied",
+                "unexpectedError": "Something went wrong",
+                "torchSemanticLabel": "Flash light",
+                "facingSemanticLabel": "Camera facing"
+            },
             "manually": "Manual Entry",
             "addingProfileMsg": "Adding Profile",
             "failureMsg": "Failed to add profile"
