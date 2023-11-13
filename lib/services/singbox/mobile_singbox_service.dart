@@ -13,7 +13,7 @@ class MobileSingboxService
     with ServiceStatus, InfraLogger
     implements SingboxService {
   late final _methodChannel = const MethodChannel("com.hiddify.app/method");
-  late final _statusChannel =
+  late final _connectionStatusChannel =
       const EventChannel("com.hiddify.app/service.status");
   late final _alertsChannel =
       const EventChannel("com.hiddify.app/service.alerts");
@@ -25,7 +25,7 @@ class MobileSingboxService
   Future<void> init() async {
     loggy.debug("initializing");
     final status =
-        _statusChannel.receiveBroadcastStream().map(mapEventToStatus);
+        _connectionStatusChannel.receiveBroadcastStream().map(mapEventToStatus);
     final alerts =
         _alertsChannel.receiveBroadcastStream().map(mapEventToStatus);
     _connectionStatus =

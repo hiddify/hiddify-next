@@ -5,7 +5,6 @@ import 'dart:io';
 import 'dart:isolate';
 
 import 'package:combine/combine.dart';
-import 'package:dartx/dartx.dart';
 import 'package:ffi/ffi.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:hiddify/domain/connectivity/connectivity.dart';
@@ -28,8 +27,8 @@ class FFISingboxService
 
   late final ValueStream<ConnectionStatus> _connectionStatus;
   late final ReceivePort _connectionStatusReceiver;
-  Stream<String>? _statusStream;
-  Stream<String>? _groupsStream;
+  Stream<String>? _serviceStatsStream;
+  Stream<String>? _outboundsStream;
 
   static SingboxNativeLibrary _gen() {
     String fullPath = "";
@@ -152,7 +151,7 @@ class FFISingboxService
               .cast<Utf8>()
               .toDartString();
           if (response.startsWith("error")) {
-            return left(response.removePrefix("error"));
+            return left(response.replaceFirst("error", ""));
           }
           return right(response);
         },
@@ -224,28 +223,28 @@ class FFISingboxService
 
   @override
   Stream<String> watchStats() {
-    if (_statusStream != null) return _statusStream!;
-    final receiver = ReceivePort('status receiver');
+    if (_serviceStatsStream != null) return _serviceStatsStream!;
+    final receiver = ReceivePort('service stats receiver');
     final statusStream = receiver.asBroadcastStream(
       onCancel: (_) {
-        _logger.debug("stopping status command client");
+        _logger.debug("stopping stats command client");
         final err = _box.stopCommandClient(1).cast<Utf8>().toDartString();
         if (err.isNotEmpty) {
-          _logger.error("error stopping status client");
+          _logger.error("error stopping stats client");
         }
         receiver.close();
-        _statusStream = null;
+        _serviceStatsStream = null;
       },
     ).map(
       (event) {
         if (event case String _) {
           if (event.startsWith('error:')) {
-            loggy.error("[status client] error received: $event");
+            loggy.error("[service stats client] error received: $event");
             throw event.replaceFirst('error:', "");
           }
           return event;
         }
-        loggy.error("[status client] unexpected type, msg: $event");
+        loggy.error("[service status client] unexpected type, msg: $event");
         throw "invalid type";
       },
     );
@@ -259,14 +258,14 @@ class FFISingboxService
       throw err;
     }
 
-    return _statusStream = statusStream;
+    return _serviceStatsStream = statusStream;
   }
 
   @override
   Stream<String> watchOutbounds() {
-    if (_groupsStream != null) return _groupsStream!;
+    if (_outboundsStream != null) return _outboundsStream!;
     final receiver = ReceivePort('outbounds receiver');
-    final groupsStream = receiver.asBroadcastStream(
+    final outboundsStream = receiver.asBroadcastStream(
       onCancel: (_) {
         _logger.debug("stopping group command client");
         final err = _box.stopCommandClient(4).cast<Utf8>().toDartString();
@@ -274,7 +273,7 @@ class FFISingboxService
           _logger.error("error stopping group client");
         }
         receiver.close();
-        _groupsStream = null;
+        _outboundsStream = null;
       },
     ).map(
       (event) {
@@ -299,7 +298,7 @@ class FFISingboxService
       throw err;
     }
 
-    return _groupsStream = groupsStream;
+    return _outboundsStream = outboundsStream;
   }
 
   @override
