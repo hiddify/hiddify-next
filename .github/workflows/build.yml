@@ -4,12 +4,13 @@ on:
     branches:
       - main
     tags:
-      - "v*"
+      - 'v*'
     paths-ignore:
-      - "**.md"
-      - "docs/**"
-      - ".github/**"
-      - "!.github/workflows/build.yml"
+      - '**.md'
+      - 'docs/**'
+      - '.github/**'
+      - '!.github/workflows/build.yml'
+      - 'appcast.xml'
   # pull_request:
   #   branches:
   #     - main
@@ -77,15 +78,15 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: "3.13.x"
-          channel: "stable"
+          flutter-version: '3.13.x'
+          channel: 'stable'
           cache: true
 
       - name: Setup Java
         if: startsWith(matrix.platform,'android')
         uses: actions/setup-java@v3
         with:
-          distribution: "zulu"
+          distribution: 'zulu'
           java-version: 11
 
       - name: Setup NDK
@@ -305,7 +306,7 @@ jobs:
         uses: 8Mi-Tech/delete-release-assets-action@main
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: "draft"
+          tag: 'draft'
           deleteOnlyFromDrafts: false
 
       - name: Create or Update Draft Release
@@ -315,8 +316,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           files: ./out/*
-          name: "draft"
-          tag_name: "draft"
+          name: 'draft'
+          tag_name: 'draft'
           prerelease: true
 
   upload-release:
@@ -356,7 +357,7 @@ jobs:
         with:
           prerelease: ${{ env.CHANNEL == 'dev' }}
           tag_name: ${{ github.ref_name }}
-          body_path: "./release.md"
+          body_path: './release.md'
           files: ./out/*
 
       - name: Create service_account.json
@@ -389,28 +390,27 @@ jobs:
         id: version
         uses: ashley-taylor/regex-property-action@v1.3
         with:
-          value: "${{ github.ref_name }}"
-          regex: "^v|.dev$"
-          flags: "" # Optional, defaults to "g"
-          replacement: ""
+          value: '${{ github.ref_name }}'
+          regex: '^v|.dev$'
+          flags: '' # Optional, defaults to "g"
+          replacement: ''
       - name: Winget Publish
         if: ${{ env.CHANNEL != 'dev' }}
         uses: isaacrlevin/winget-publish-action@v.5
         with:
-          publish-type: "Update"
-          user: "Hiddify"
-          package: "Next"
+          publish-type: 'Update'
+          user: 'Hiddify'
+          package: 'Next'
           version: ${{ steps.version.outputs.value }}
-          url: "https://github.com/hiddify/hiddify-next/releases/download/${{ github.ref_name }}/hiddify-windows-x64-setup.zip"
+          url: 'https://github.com/hiddify/hiddify-next/releases/download/${{ github.ref_name }}/hiddify-windows-x64-setup.zip'
           token: ${{ secrets.WINGET_TOKEN }}
-
 
       - name: Winget Publish Beta
         uses: isaacrlevin/winget-publish-action@v.5
         with:
-          publish-type: "Update"
-          user: "Hiddify"
-          package: "Next"
+          publish-type: 'Update'
+          user: 'Hiddify'
+          package: 'Next'
           version: ${{ steps.version.outputs.value }}
-          url: "https://github.com/hiddify/hiddify-next/releases/download/${{ github.ref_name }}/hiddify-windows-x64-setup.zip"
+          url: 'https://github.com/hiddify/hiddify-next/releases/download/${{ github.ref_name }}/hiddify-windows-x64-setup.zip'
           token: ${{ secrets.WINGET_TOKEN }}
