@@ -57,15 +57,15 @@
             "shortBtnTxt": "Новый профиль",
             "fromClipboard": "Добавить из буфера обмена",
             "scanQr": "Сканировать QR-код",
-            "manually": "Ввести вручную",
-            "addingProfileMsg": "Добавление профиля",
-            "failureMsg": "Не удалось добавить профиль",
             "qrScanner": {
                 "permissionDeniedError": "Доступ запрещен",
                 "unexpectedError": "Что-то пошло не так",
                 "torchSemanticLabel": "Вспышка",
                 "facingSemanticLabel": "Перед камерой"
-            }
+            },
+            "manually": "Ввести вручную",
+            "addingProfileMsg": "Добавление профиля",
+            "failureMsg": "Не удалось добавить профиль"
         },
         "update": {
             "buttonTxt": "Обновить",
@@ -77,9 +77,9 @@
             "buttonText": "Поделиться",
             "exportToClipboardSuccess": "Скопировано в буфер обмена",
             "exportSubLinkToClipboard": "Скопировать ссылку на подписку в буфер обмена",
+            "subLinkQrCode": "QR-код ссылки на подписку",
             "exportConfigToClipboard": "Скопировать конфигурацию в буфер обмена",
-            "exportConfigToClipboardSuccess": "Конфигурация скопирована в буфер обмена",
-            "subLinkQrCode": "QR-код ссылки на подписку"
+            "exportConfigToClipboardSuccess": "Конфигурация скопирована в буфер обмена"
         },
         "edit": {
             "buttonTxt": "Изменить",
