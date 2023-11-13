@@ -133,12 +133,10 @@ release: # Create a new tag for release.
 	VERSION_STR="$${VERSION_ARRAY[0]}.$${VERSION_ARRAY[1]}.$${VERSION_ARRAY[2]}" && \
 	BUILD_NUMBER=$$(( $${VERSION_ARRAY[0]} * 10000 + $${VERSION_ARRAY[1]} * 100 + $${VERSION_ARRAY[2]} )) && \
 	echo "version: $${VERSION_STR}+$${BUILD_NUMBER}" && \
-	sed -i "s/version: .*/version: $${VERSION_STR}\+$${BUILD_NUMBER}/g" pubspec.yaml && \
+	sed -i "s/^version: .*/version: $${VERSION_STR}\+$${BUILD_NUMBER}/g" pubspec.yaml && \
 	git tag $${TAG} > /dev/null && \
 	git tag -d $${TAG} > /dev/null && \
 	git add pubspec.yaml CHANGELOG.md && \
-	make sync_translate && \
-	git add assets/translations/* && \
 	git commit -m "release: version $${TAG}" && \
 	echo "creating git tag : v$${TAG}" && \
 	git tag v$${TAG} && \
