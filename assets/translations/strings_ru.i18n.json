@@ -78,7 +78,8 @@
             "exportToClipboardSuccess": "Скопировано в буфер обмена",
             "exportSubLinkToClipboard": "Скопировать ссылку на подписку в буфер обмена",
             "exportConfigToClipboard": "Скопировать конфигурацию в буфер обмена",
-            "exportConfigToClipboardSuccess": "Конфигурация скопирована в буфер обмена"
+            "exportConfigToClipboardSuccess": "Конфигурация скопирована в буфер обмена",
+            "subLinkQrCode": "QR-код ссылки на подписку"
         },
         "edit": {
             "buttonTxt": "Изменить",

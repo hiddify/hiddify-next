@@ -9,6 +9,7 @@ import 'package:hiddify/core/router/router.dart';
 import 'package:hiddify/domain/failures.dart';
 import 'package:hiddify/domain/profiles/profiles.dart';
 import 'package:hiddify/features/common/confirmation_dialogs.dart';
+import 'package:hiddify/features/common/qr_code_dialog.dart';
 import 'package:hiddify/features/profiles/notifier/notifier.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -289,7 +290,7 @@ class ProfileActionsMenu extends HookConsumerWidget {
           ),
         SubmenuButton(
           menuChildren: [
-            if (profile case RemoteProfile(:final url, :final name))
+            if (profile case RemoteProfile(:final url, :final name)) ...[
               MenuItemButton(
                 child: Text(t.profile.share.exportSubLinkToClipboard),
                 onPressed: () async {
@@ -303,6 +304,19 @@ class ProfileActionsMenu extends HookConsumerWidget {
                   }
                 },
               ),
+              MenuItemButton(
+                child: Text(t.profile.share.subLinkQrCode),
+                onPressed: () async {
+                  final link = LinkParser.generateSubShareLink(url, name);
+                  if (link.isNotEmpty) {
+                    await QrCodeDialog(
+                      link,
+                      message: name,
+                    ).show(context);
+                  }
+                },
+              ),
+            ],
             MenuItemButton(
               child: Text(t.profile.share.exportConfigToClipboard),
               onPressed: () async {

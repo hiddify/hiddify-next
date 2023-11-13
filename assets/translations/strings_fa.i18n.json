@@ -78,7 +78,8 @@
             "exportToClipboardSuccess": "به کلیپ بورد اضافه شد",
             "exportSubLinkToClipboard": "افزودن لینک اشتراک به کلیپ بورد",
             "exportConfigToClipboard": "افزودن پیکربندی به کلیپ بورد",
-            "exportConfigToClipboardSuccess": "پیکربندی در کلیپ بورد کپی شد"
+            "exportConfigToClipboardSuccess": "پیکربندی در کلیپ بورد کپی شد",
+            "subLinkQrCode": "کد QR لینک اشتراک"
         },
         "edit": {
             "buttonTxt": "ویرایش",

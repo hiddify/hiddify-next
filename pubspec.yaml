@@ -70,6 +70,7 @@ dependencies:
   version: ^3.0.2
   posix: ^5.0.0
   win32: ^5.0.9
+  qr_flutter: ^4.1.0
 
 dev_dependencies:
   flutter_test:
