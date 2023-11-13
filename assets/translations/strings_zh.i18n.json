@@ -216,7 +216,7 @@
             "setSystemProxy": "设置系统代理",
             "enableFakeDns": "Enable Fake DNS",
             "bypassLan": "Bypass Lan",
-            "strictRoute": "Strict Route"
+            "strictRoute": "严格路由"
         }
     },
     "about": {
