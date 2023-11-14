@@ -58,7 +58,7 @@
 </div>
 
 
-<div dir="rtl">
+<div dir="ltr">
   
 **List of all changes:** [ChangeLog](https://github.com/hiddify/hiddify-next/blob/main/CHANGELOG.md)
 
