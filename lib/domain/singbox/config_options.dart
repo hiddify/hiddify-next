@@ -37,6 +37,7 @@ class ConfigOptions with _$ConfigOptions {
     @Default(false) bool setSystemProxy,
     @Default(false) bool bypassLan,
     @Default(false) bool enableFakeDns,
+    @Default(true) bool independentDnsCache,
     List<Rule>? rules,
   }) = _ConfigOptions;
 
