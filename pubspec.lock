@@ -225,6 +225,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.1"
+  cronet_http:
+    dependency: transitive
+    description:
+      name: cronet_http
+      sha256: "567170c4bb3d237991b852f446c1b52a3325de8b584a82d195f31dd76310d7d1"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.4.1"
   cross_file:
     dependency: transitive
     description:
@@ -257,6 +265,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.0.2"
+  cupertino_http:
+    dependency: transitive
+    description:
+      name: cupertino_http
+      sha256: "93cdb8a3aa8bc71caf62fdaca66e613871a6aa1388c7cd7f39b6366b5d2f5af6"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -701,6 +717,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.4"
+  jni:
+    dependency: transitive
+    description:
+      name: jni
+      sha256: "0d88790bdf7e298aa65a9094c62b58ea231169a2deb84f23defc7d7955885b43"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.7.2"
   js:
     dependency: transitive
     description:
@@ -813,6 +837,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.5.2"
+  native_dio_adapter:
+    dependency: "direct main"
+    description:
+      name: native_dio_adapter
+      sha256: "1967cabe3e9ea68ea5ad6da7a0ed25fa75cf335ec6b92cdf6f32185efa93364b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
   neat_periodic_task:
     dependency: "direct main"
     description:

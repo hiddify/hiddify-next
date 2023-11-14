@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/core/prefs/general_prefs.dart';
@@ -12,6 +14,7 @@ import 'package:hiddify/domain/constants.dart';
 import 'package:hiddify/domain/core_facade.dart';
 import 'package:hiddify/domain/profiles/profiles.dart';
 import 'package:hiddify/services/service_providers.dart';
+import 'package:native_dio_adapter/native_dio_adapter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -25,16 +28,23 @@ SharedPreferences sharedPreferences(SharedPreferencesRef ref) =>
     throw UnimplementedError('sharedPreferences must be overridden');
 
 @Riverpod(keepAlive: true)
-Dio dio(DioRef ref) => Dio(
-      BaseOptions(
-        connectTimeout: const Duration(seconds: 15),
-        sendTimeout: const Duration(seconds: 15),
-        receiveTimeout: const Duration(seconds: 15),
-        headers: {
-          "User-Agent": ref.watch(appInfoProvider).userAgent,
-        },
-      ),
-    );
+Dio dio(DioRef ref) {
+  final dio = Dio(
+    BaseOptions(
+      connectTimeout: const Duration(seconds: 15),
+      sendTimeout: const Duration(seconds: 15),
+      receiveTimeout: const Duration(seconds: 15),
+      headers: {
+        "User-Agent": ref.watch(appInfoProvider).userAgent,
+      },
+    ),
+  );
+  final debug = ref.read(debugModeNotifierProvider);
+  if (debug && (Platform.isAndroid || Platform.isIOS || Platform.isMacOS)) {
+    dio.httpClientAdapter = NativeAdapter();
+  }
+  return dio;
+}
 
 @Riverpod(keepAlive: true)
 ProfilesDao profilesDao(ProfilesDaoRef ref) => ProfilesDao(

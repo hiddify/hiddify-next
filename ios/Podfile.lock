@@ -1,4 +1,6 @@
 PODS:
+  - cupertino_http (0.0.1):
+    - Flutter
   - device_info_plus (0.0.1):
     - Flutter
   - Flutter (1.0.0)
@@ -99,6 +101,7 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
+  - cupertino_http (from `.symlinks/plugins/cupertino_http/ios`)
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - Flutter (from `Flutter`)
   - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
@@ -131,6 +134,8 @@ SPEC REPOS:
     - sqlite3
 
 EXTERNAL SOURCES:
+  cupertino_http:
+    :path: ".symlinks/plugins/cupertino_http/ios"
   device_info_plus:
     :path: ".symlinks/plugins/device_info_plus/ios"
   Flutter:
@@ -157,6 +162,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
+  cupertino_http: 5f8b1161107fe6c8d94a0c618735a033d93fa7db
   device_info_plus: c6fb39579d0f423935b0c9ce7ee2f44b71b9fce6
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   flutter_native_splash: 52501b97d1c0a5f898d687f1646226c1f93c56ef
