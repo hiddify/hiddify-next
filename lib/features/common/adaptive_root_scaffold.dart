@@ -148,23 +148,6 @@ class _CustomAdaptiveScaffold extends HookConsumerWidget {
             ),
           },
         ),
-        bottomNavigation: useBottomSheet ||
-                Breakpoints.smallMobile.isActive(context)
-            ? SlotLayout(
-                config: <Breakpoint, SlotLayoutConfig>{
-                  Breakpoints.small: SlotLayout.from(
-                    key: const Key('bottomNavigation'),
-                    builder: (_) =>
-                        AdaptiveScaffold.standardBottomNavigationBar(
-                      currentIndex: selectedWithOffset(bottomDestinationRange),
-                      destinations: destinationsSlice(bottomDestinationRange),
-                      onDestinationSelected: (index) =>
-                          selectWithOffset(index, bottomDestinationRange),
-                    ),
-                  ),
-                },
-              )
-            : null,
         body: SlotLayout(
           config: <Breakpoint, SlotLayoutConfig?>{
             Breakpoints.standard: SlotLayout.from(
@@ -176,6 +159,15 @@ class _CustomAdaptiveScaffold extends HookConsumerWidget {
           },
         ),
       ),
+      // AdaptiveLayout bottom sheet has accessibility issues
+      bottomNavigationBar: useBottomSheet && Breakpoints.small.isActive(context)
+          ? NavigationBar(
+              selectedIndex: selectedWithOffset(bottomDestinationRange) ?? 0,
+              destinations: destinationsSlice(bottomDestinationRange),
+              onDestinationSelected: (index) =>
+                  selectWithOffset(index, bottomDestinationRange),
+            )
+          : null,
     );
   }
 }
