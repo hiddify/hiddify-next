@@ -57,15 +57,15 @@
             "shortBtnTxt": "新的配置文件",
             "fromClipboard": "从剪贴板添加",
             "scanQr": "扫二维码",
-            "manually": "手动输入",
-            "addingProfileMsg": "添加配置文件",
-            "failureMsg": "添加配置文件失败",
             "qrScanner": {
-                "permissionDeniedError": "没有权限",
+                "permissionDeniedError": "权限不足",
                 "unexpectedError": "出了些问题",
                 "torchSemanticLabel": "手电筒",
                 "facingSemanticLabel": "相机朝向"
-            }
+            },
+            "manually": "手动输入",
+            "addingProfileMsg": "添加配置文件",
+            "failureMsg": "添加配置文件失败"
         },
         "update": {
             "buttonTxt": "更新",
@@ -77,9 +77,9 @@
             "buttonText": "分享",
             "exportToClipboardSuccess": "导出到剪贴板",
             "exportSubLinkToClipboard": "将订阅链接导出到剪贴板",
+            "subLinkQrCode": "订阅链接二维码",
             "exportConfigToClipboard": "将配置导出到剪贴板",
-            "exportConfigToClipboardSuccess": "配置已复制到剪贴板",
-            "subLinkQrCode": "订阅链接二维码"
+            "exportConfigToClipboardSuccess": "配置已复制到剪贴板"
         },
         "edit": {
             "buttonTxt": "编辑",
@@ -180,7 +180,7 @@
         "config": {
             "serviceMode": "服务方式",
             "serviceModes": {
-                "proxy": "代理人",
+                "proxy": "仅代理",
                 "systemProxy": "系统代理",
                 "tun": "VPN"
             },
@@ -214,9 +214,9 @@
             "clashApiPort": "Clash API 端口",
             "enableTun": "启用 TUN",
             "setSystemProxy": "设置系统代理",
-            "enableFakeDns": "Enable Fake DNS",
-            "bypassLan": "Bypass Lan",
-            "strictRoute": "Strict Route"
+            "enableFakeDns": "启用 Fake DNS",
+            "bypassLan": "绕过局域网",
+            "strictRoute": "严格路由"
         }
     },
     "about": {
@@ -257,12 +257,12 @@
         "singbox": {
             "unexpected": "意外服务错误",
             "serviceNotRunning": "服务未运行",
+            "missingPrivilege": "缺少特权",
+            "missingPrivilegeMsg": "VPN 模式需要管理员权限。以管理员身份重新启动应用程序或更改服务模式",
             "invalidConfigOptions": "配置选项无效",
             "invalidConfig": "无效配置",
             "create": "服务创建错误",
-            "start": "服务启动错误",
-            "missingPrivilege": "缺少特权",
-            "missingPrivilegeMsg": "VPN 模式需要管理员权限。以管理员身份重新启动应用程序或更改服务模式"
+            "start": "服务启动错误"
         },
         "connectivity": {
             "unexpected": "意外失败",

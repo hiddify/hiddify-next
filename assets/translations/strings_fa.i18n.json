@@ -57,15 +57,15 @@
             "shortBtnTxt": "افزودن",
             "fromClipboard": "افزودن از کلیپ‌بورد",
             "scanQr": "اسکن QR کد",
-            "manually": "افزودن دستی",
-            "addingProfileMsg": "در حال افزودن پروفایل",
-            "failureMsg": "در افزودن پروفایل خطایی رخ داد",
             "qrScanner": {
                 "permissionDeniedError": "اجازه رد شد",
                 "unexpectedError": "خطایی رخ داده",
                 "torchSemanticLabel": "چراغ فلاش",
                 "facingSemanticLabel": "جهت دوربین"
-            }
+            },
+            "manually": "افزودن دستی",
+            "addingProfileMsg": "در حال افزودن پروفایل",
+            "failureMsg": "در افزودن پروفایل خطایی رخ داد"
         },
         "update": {
             "buttonTxt": "بروزرسانی",
@@ -77,9 +77,9 @@
             "buttonText": "اشتراک گذاری",
             "exportToClipboardSuccess": "به کلیپ بورد اضافه شد",
             "exportSubLinkToClipboard": "افزودن لینک اشتراک به کلیپ بورد",
+            "subLinkQrCode": "کد QR لینک اشتراک",
             "exportConfigToClipboard": "افزودن پیکربندی به کلیپ بورد",
-            "exportConfigToClipboardSuccess": "پیکربندی در کلیپ بورد کپی شد",
-            "subLinkQrCode": "کد QR لینک اشتراک"
+            "exportConfigToClipboardSuccess": "پیکربندی در کلیپ بورد کپی شد"
         },
         "edit": {
             "buttonTxt": "ویرایش",
