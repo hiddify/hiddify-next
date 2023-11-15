@@ -28,8 +28,8 @@
             "connected": "Подключено"
         },
         "stats": {
-            "traffic": "Текущий траффик",
-            "trafficTotal": "Траффик",
+            "traffic": "Текущий трафик",
+            "trafficTotal": "Трафик",
             "uplink": "Скорость отправки",
             "downlink": "Скорость загрузки"
         }
@@ -242,9 +242,9 @@
         "dashboard": "Панель",
         "quit": "Выход",
         "status": {
-            "connect": "Подключено",
+            "connect": "Подключиться",
             "connecting": "Подключение",
-            "disconnect": "Отключено",
+            "disconnect": "Отключиться",
             "disconnecting": "Отключение"
         }
     },
