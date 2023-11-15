@@ -241,6 +241,7 @@
     "tray": {
         "dashboard": "Dashboard",
         "quit": "Quit",
+        "open": "Open",
         "status": {
             "connect": "Connect",
             "connecting": "Connecting",

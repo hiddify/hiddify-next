@@ -246,7 +246,8 @@
             "connecting": "در حال اتصال",
             "disconnect": "قطع اتصال",
             "disconnecting": "در حال قطع اتصال"
-        }
+        },
+        "open": "باز کن"
     },
     "failure": {
         "unexpected": "خطای غیرمنتظره",

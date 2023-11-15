@@ -246,7 +246,8 @@
             "connecting": "正在连接",
             "disconnect": "已断开连接",
             "disconnecting": "正在断开连接"
-        }
+        },
+        "open": "打开"
     },
     "failure": {
         "unexpected": "意外错误",

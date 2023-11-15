@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:hiddify/core/core_providers.dart';
+import 'package:hiddify/core/router/router.dart';
 import 'package:hiddify/data/repository/config_options_store.dart';
 import 'package:hiddify/domain/connectivity/connectivity.dart';
 import 'package:hiddify/domain/constants.dart';
@@ -37,6 +38,13 @@ class SystemTrayController extends _$SystemTrayController
     final serviceMode = ref.watch(serviceModeStoreProvider);
 
     final t = ref.watch(translationsProvider);
+    final destinations = <(String label, String location)>[
+      (t.home.pageTitle, const HomeRoute().location),
+      (t.proxies.pageTitle, const ProxiesRoute().location),
+      (t.logs.pageTitle, const LogsRoute().location),
+      (t.settings.pageTitle, const SettingsRoute().location),
+      (t.about.pageTitle, const AboutRoute().location),
+    ];
 
     loggy.debug('updating system tray');
 
@@ -73,6 +81,22 @@ class SystemTrayController extends _$SystemTrayController
                     await ref
                         .read(serviceModeStoreProvider.notifier)
                         .update(newMode);
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+        MenuItem.submenu(
+          label: t.tray.open,
+          submenu: Menu(
+            items: [
+              ...destinations.map(
+                (e) => MenuItem(
+                  label: e.$1,
+                  onClick: (_) async {
+                    await ref.read(windowControllerProvider.notifier).show();
+                    ref.read(routerProvider).go(e.$2);
                   },
                 ),
               ),

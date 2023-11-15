@@ -246,7 +246,8 @@
             "connecting": "Подключение",
             "disconnect": "Отключено",
             "disconnecting": "Отключение"
-        }
+        },
+        "open": "Открыть"
     },
     "failure": {
         "unexpected": "Непредвиденная ошибка",
