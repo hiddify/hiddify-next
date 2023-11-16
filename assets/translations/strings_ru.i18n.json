@@ -241,13 +241,13 @@
     "tray": {
         "dashboard": "Панель",
         "quit": "Выход",
+        "open": "Открыть",
         "status": {
             "connect": "Подключиться",
             "connecting": "Подключение",
             "disconnect": "Отключиться",
             "disconnecting": "Отключение"
-        },
-        "open": "Открыть"
+        }
     },
     "failure": {
         "unexpected": "Неожиданная ошибка",

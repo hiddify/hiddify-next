@@ -4,7 +4,8 @@
   "languageTags": [
     "en",
     "fa",
-    "ru",   
+    "ru",
+    "tr",
     "zh"
   ],
   "modules": [
@@ -21,4 +22,3 @@
     ]
   }
 }
-
