@@ -28,10 +28,10 @@
             "connected": "Подключено"
         },
         "stats": {
-            "traffic": "Скорость",
+            "traffic": "Текущий трафик",
             "trafficTotal": "Трафик",
-            "uplink": "Исходящий канал",
-            "downlink": "Входящий канал"
+            "uplink": "Скорость отправки",
+            "downlink": "Скорость загрузки"
         }
     },
     "profile": {
@@ -242,11 +242,12 @@
         "dashboard": "Панель",
         "quit": "Выход",
         "status": {
-            "connect": "Подключено",
+            "connect": "Подключиться",
             "connecting": "Подключение",
-            "disconnect": "Отключено",
+            "disconnect": "Отключиться",
             "disconnecting": "Отключение"
-        }
+        },
+        "open": "Открыть"
     },
     "failure": {
         "unexpected": "Неожиданная ошибка",

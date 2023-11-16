@@ -392,7 +392,7 @@ jobs:
         with:
           value: '${{ github.ref_name }}'
           regex: '^v|.dev$'
-          flags: '' # Optional, defaults to "g"
+          flags: 'gi' # Optional, defaults to "g"
           replacement: ''
       - name: Winget Publish
         if: ${{ env.CHANNEL != 'dev' }}
@@ -410,7 +410,7 @@ jobs:
         with:
           publish-type: 'Update'
           user: 'Hiddify'
-          package: 'Next'
+          package: 'Next.Beta'
           version: ${{ steps.version.outputs.value }}
           url: 'https://github.com/hiddify/hiddify-next/releases/download/${{ github.ref_name }}/hiddify-windows-x64-setup.zip'
           token: ${{ secrets.WINGET_TOKEN }}
