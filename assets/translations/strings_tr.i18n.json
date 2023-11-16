@@ -231,7 +231,7 @@
     "appUpdate": {
         "notAvailableMsg": " En son sürümü kullanıyorsunuz",
         "dialogTitle": "Yeni Güncell",
-        "updateMsg": "@:general .appTitle'ın yeni bir sürümü mevcut. Şimdi güncellemek ister misiniz?",
+        "updateMsg": "@:general.appTitle'ın yeni bir sürümü mevcut. Şimdi güncellemek ister misiniz?",
         "currentVersionLbl": "Şimdiki versiyon",
         "newVersionLbl": "Yeni versiyon",
         "updateNowBtnTxt": "Şimdi güncelle",
