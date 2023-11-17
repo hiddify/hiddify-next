@@ -29,7 +29,7 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
   final PlatformServices platformServices;
   final ClashApi clash;
   final bool debug;
-  final ConfigOptions Function() configOptions;
+  final Future<ConfigOptions> Function() configOptions;
 
   bool _initialized = false;
 
@@ -95,9 +95,9 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
     String fileName,
   ) {
     return exceptionHandler(
-      () {
+      () async {
         final configPath = filesEditor.configPath(fileName);
-        final options = configOptions();
+        final options = await configOptions();
         return setup()
             .andThen(() => changeConfigOptions(options))
             .andThen(
@@ -119,7 +119,7 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
     return exceptionHandler(
       () async {
         final configPath = filesEditor.configPath(fileName);
-        final options = configOptions();
+        final options = await configOptions();
         loggy.info(
           "config options: ${options.format()}\nMemory Limit: ${!disableMemoryLimit}",
         );
@@ -159,9 +159,9 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
     bool disableMemoryLimit,
   ) {
     return exceptionHandler(
-      () {
+      () async {
         final configPath = filesEditor.configPath(fileName);
-        return changeConfigOptions(configOptions())
+        return changeConfigOptions(await configOptions())
             .andThen(
               () => singbox
                   .restart(configPath, disableMemoryLimit)

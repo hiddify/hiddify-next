@@ -8,11 +8,14 @@ import 'package:hiddify/data/local/dao/dao.dart';
 import 'package:hiddify/data/local/database.dart';
 import 'package:hiddify/data/repository/app_repository_impl.dart';
 import 'package:hiddify/data/repository/config_options_store.dart';
+import 'package:hiddify/data/repository/geo_assets_repository.dart';
 import 'package:hiddify/data/repository/repository.dart';
 import 'package:hiddify/domain/app/app.dart';
 import 'package:hiddify/domain/constants.dart';
 import 'package:hiddify/domain/core_facade.dart';
 import 'package:hiddify/domain/profiles/profiles.dart';
+import 'package:hiddify/domain/rules/geo_assets_repository.dart';
+import 'package:hiddify/domain/singbox/singbox.dart';
 import 'package:hiddify/services/service_providers.dart';
 import 'package:native_dio_adapter/native_dio_adapter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -68,11 +71,49 @@ AppRepository appRepository(AppRepositoryRef ref) =>
 ClashApi clashApi(ClashApiRef ref) => ClashApi(Defaults.clashApiPort);
 
 @Riverpod(keepAlive: true)
+GeoAssetsDao geoAssetsDao(GeoAssetsDaoRef ref) => GeoAssetsDao(
+      ref.watch(appDatabaseProvider),
+    );
+
+@Riverpod(keepAlive: true)
+GeoAssetsRepository geoAssetsRepository(GeoAssetsRepositoryRef ref) {
+  return GeoAssetsRepositoryImpl(
+    geoAssetsDao: ref.watch(geoAssetsDaoProvider),
+    dio: ref.watch(dioProvider),
+    filesEditor: ref.watch(filesEditorServiceProvider),
+  );
+}
+
+@riverpod
+Future<ConfigOptions> configOptions(ConfigOptionsRef ref) async {
+  final geoAssets = await ref
+      .watch(geoAssetsRepositoryProvider)
+      .getActivePair()
+      .getOrElse((l) => throw l)
+      .run();
+  final filesEditor = ref.watch(filesEditorServiceProvider);
+
+  final serviceMode = ref.watch(serviceModeStoreProvider);
+  return ref.watch(configPreferencesProvider).copyWith(
+        enableTun: serviceMode == ServiceMode.tun,
+        setSystemProxy: serviceMode == ServiceMode.systemProxy,
+        geoipPath: filesEditor.geoAssetRelativePath(
+          geoAssets.geoip.providerName,
+          geoAssets.geoip.fileName,
+        ),
+        geositePath: filesEditor.geoAssetRelativePath(
+          geoAssets.geosite.providerName,
+          geoAssets.geosite.fileName,
+        ),
+      );
+}
+
+@Riverpod(keepAlive: true)
 CoreFacade coreFacade(CoreFacadeRef ref) => CoreFacadeImpl(
       ref.watch(singboxServiceProvider),
       ref.watch(filesEditorServiceProvider),
       ref.watch(platformServicesProvider),
       ref.watch(clashApiProvider),
       ref.read(debugModeNotifierProvider),
-      () => ref.read(configOptionsProvider),
+      () => ref.read(configOptionsProvider.future),
     );

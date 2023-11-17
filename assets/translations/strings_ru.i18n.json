@@ -217,6 +217,15 @@
             "enableFakeDns": "Использовать поддельную DNS",
             "bypassLan": "Обход локальной сети",
             "strictRoute": "Строгая маршрутизация"
+        },
+        "geoAssets": {
+            "pageTitle": "Активы маршрутизации",
+            "version": "Версия ${version}",
+            "fileMissing": "Файл отсутствует",
+            "update": "Обновлять",
+            "download": "Скачать",
+            "failureMsg": "Не удалось обновить объект.",
+            "successMsg": "Объект успешно обновлен."
         }
     },
     "about": {
@@ -283,6 +292,11 @@
             "badResponse": "Неправильный ответ",
             "connectionError": "Ошибка подключения",
             "badCertificate": "Неправильный сертификат"
+        },
+        "geoAssets": {
+            "unexpected": "Неожиданная ошибка",
+            "notUpdate": "Нет доступных обновлений",
+            "activeNotFound": "Активный географический актив не найден"
         }
     },
     "play": {

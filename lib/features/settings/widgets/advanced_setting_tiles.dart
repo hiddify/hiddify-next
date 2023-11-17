@@ -30,6 +30,13 @@ class AdvancedSettingTiles extends HookConsumerWidget {
             await const ConfigOptionsRoute().push(context);
           },
         ),
+        ListTile(
+          title: Text(t.settings.geoAssets.pageTitle),
+          leading: const Icon(Icons.folder),
+          onTap: () async {
+            await const GeoAssetsRoute().push(context);
+          },
+        ),
         if (Platform.isAndroid) ...[
           ListTile(
             title: Text(t.settings.network.perAppProxyPageTitle),

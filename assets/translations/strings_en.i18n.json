@@ -217,6 +217,15 @@
             "enableFakeDns": "Enable Fake DNS",
             "bypassLan": "Bypass Lan",
             "strictRoute": "Strict Route"
+        },
+        "geoAssets": {
+            "pageTitle": "Routing Assets",
+            "version": "Version ${version}",
+            "fileMissing": "File Missing",
+            "update": "Update",
+            "download": "Download",
+            "failureMsg": "Failed to update asset",
+            "successMsg": "Successfully updated asset"
         }
     },
     "about": {
@@ -283,6 +292,11 @@
             "badResponse": "Bad response",
             "connectionError": "Connection error",
             "badCertificate": "Bad certificate"
+        },
+        "geoAssets": {
+            "unexpected": "Unexpected Error",
+            "notUpdate": "No Update Available",
+            "activeNotFound": "Active Geo Asset Not Found"
         }
     },
     "play": {

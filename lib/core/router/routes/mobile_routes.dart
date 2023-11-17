@@ -5,6 +5,7 @@ import 'package:hiddify/core/router/routes/shared_routes.dart';
 import 'package:hiddify/features/about/view/view.dart';
 import 'package:hiddify/features/common/adaptive_root_scaffold.dart';
 import 'package:hiddify/features/logs/view/view.dart';
+import 'package:hiddify/features/settings/geo_assets/geo_assets_page.dart';
 import 'package:hiddify/features/settings/view/view.dart';
 
 part 'mobile_routes.g.dart';
@@ -46,6 +47,10 @@ part 'mobile_routes.g.dart';
             TypedGoRoute<PerAppProxyRoute>(
               path: PerAppProxyRoute.path,
               name: PerAppProxyRoute.name,
+            ),
+            TypedGoRoute<GeoAssetsRoute>(
+              path: GeoAssetsRoute.path,
+              name: GeoAssetsRoute.name,
             ),
           ],
         ),
@@ -134,6 +139,23 @@ class PerAppProxyRoute extends GoRouteData {
       fullscreenDialog: true,
       name: name,
       child: PerAppProxyPage(),
+    );
+  }
+}
+
+class GeoAssetsRoute extends GoRouteData {
+  const GeoAssetsRoute();
+  static const path = 'routing-assets';
+  static const name = 'Routing Assets';
+
+  static final GlobalKey<NavigatorState> $parentNavigatorKey = rootNavigatorKey;
+
+  @override
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    return const MaterialPage(
+      fullscreenDialog: true,
+      name: name,
+      child: GeoAssetsPage(),
     );
   }
 }

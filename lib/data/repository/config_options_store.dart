@@ -147,19 +147,8 @@ ConfigOptions configPreferences(ConfigPreferencesRef ref) {
     urlTestInterval: ref.watch(urlTestIntervalStore),
     enableClashApi: ref.watch(enableClashApiStore),
     clashApiPort: ref.watch(clashApiPortStore),
-    // enableTun: ref.watch(enableTunStore),
-    // setSystemProxy: ref.watch(setSystemProxyStore),
     bypassLan: ref.watch(bypassLanStore),
     enableFakeDns: ref.watch(enableFakeDnsStore),
     rules: ref.watch(rulesProvider),
   );
-}
-
-@riverpod
-ConfigOptions configOptions(ConfigOptionsRef ref) {
-  final serviceMode = ref.watch(serviceModeStoreProvider);
-  return ref.watch(configPreferencesProvider).copyWith(
-        enableTun: serviceMode == ServiceMode.tun,
-        setSystemProxy: serviceMode == ServiceMode.systemProxy,
-      );
 }

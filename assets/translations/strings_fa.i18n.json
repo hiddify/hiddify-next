@@ -217,6 +217,15 @@
             "enableFakeDns": "Enable Fake DNS",
             "bypassLan": "Bypass Lan",
             "strictRoute": "Strict Route"
+        },
+        "geoAssets": {
+            "pageTitle": "فایل‌های مسیریابی",
+            "version": "نسخه ${version}",
+            "fileMissing": "فایل موجود نیست",
+            "update": "به روز رسانی",
+            "download": "دانلود",
+            "failureMsg": "دارایی به روز نشد",
+            "successMsg": "دارایی با موفقیت به روز شد"
         }
     },
     "about": {
@@ -283,6 +292,11 @@
             "badResponse": "پاسخ نامعتبر",
             "connectionError": "خطای اتصال",
             "badCertificate": "خطای اعتبار سنجی"
+        },
+        "geoAssets": {
+            "unexpected": "خطای غیرمنتظره",
+            "notUpdate": "به روز رسانی موجود نیست",
+            "activeNotFound": "Active Geo Asset یافت نشد"
         }
     },
     "play": {

@@ -38,6 +38,8 @@ class ConfigOptions with _$ConfigOptions {
     @Default(false) bool bypassLan,
     @Default(false) bool enableFakeDns,
     @Default(true) bool independentDnsCache,
+    @Default("geoip.db") String geoipPath,
+    @Default("geosite.db") String geositePath,
     List<Rule>? rules,
   }) = _ConfigOptions;
 

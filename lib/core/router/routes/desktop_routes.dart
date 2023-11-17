@@ -4,6 +4,7 @@ import 'package:hiddify/core/router/routes/shared_routes.dart';
 import 'package:hiddify/features/about/view/view.dart';
 import 'package:hiddify/features/common/adaptive_root_scaffold.dart';
 import 'package:hiddify/features/logs/view/view.dart';
+import 'package:hiddify/features/settings/geo_assets/geo_assets_page.dart';
 import 'package:hiddify/features/settings/view/view.dart';
 
 part 'desktop_routes.g.dart';
@@ -47,6 +48,10 @@ part 'desktop_routes.g.dart';
         TypedGoRoute<ConfigOptionsRoute>(
           path: ConfigOptionsRoute.path,
           name: ConfigOptionsRoute.name,
+        ),
+        TypedGoRoute<GeoAssetsRoute>(
+          path: GeoAssetsRoute.path,
+          name: GeoAssetsRoute.name,
         ),
       ],
     ),
@@ -98,6 +103,21 @@ class ConfigOptionsRoute extends GoRouteData {
       fullscreenDialog: true,
       name: name,
       child: ConfigOptionsPage(),
+    );
+  }
+}
+
+class GeoAssetsRoute extends GoRouteData {
+  const GeoAssetsRoute();
+  static const path = 'routing-assets';
+  static const name = 'Routing Assets';
+
+  @override
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    return const MaterialPage(
+      fullscreenDialog: true,
+      name: name,
+      child: GeoAssetsPage(),
     );
   }
 }
