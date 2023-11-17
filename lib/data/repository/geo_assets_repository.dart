@@ -146,4 +146,23 @@ class GeoAssetsRepositoryImpl
       GeoAssetFailure.unexpected,
     );
   }
+
+  @override
+  TaskEither<GeoAssetFailure, Unit> addRecommended() {
+    return exceptionHandler(
+      () async {
+        final persistedIds = await geoAssetsDao
+            .watchAll()
+            .first
+            .then((value) => value.map((e) => e.id));
+        final missing =
+            recommendedGeoAssets.where((e) => !persistedIds.contains(e.id));
+        for (final geoAsset in missing) {
+          await geoAssetsDao.add(geoAsset);
+        }
+        return right(unit);
+      },
+      GeoAssetFailure.unexpected,
+    );
+  }
 }

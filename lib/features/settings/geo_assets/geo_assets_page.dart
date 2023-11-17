@@ -17,6 +17,22 @@ class GeoAssetsPage extends HookConsumerWidget {
         slivers: [
           SliverAppBar(
             title: Text(t.settings.geoAssets.pageTitle),
+            actions: [
+              PopupMenuButton(
+                itemBuilder: (context) {
+                  return [
+                    PopupMenuItem(
+                      child: Text(t.settings.geoAssets.addRecommended),
+                      onTap: () {
+                        ref
+                            .read(geoAssetsNotifierProvider.notifier)
+                            .addRecommended();
+                      },
+                    ),
+                  ];
+                },
+              ),
+            ],
           ),
           switch (state) {
             AsyncData(value: final geoAssets) => SliverList.builder(

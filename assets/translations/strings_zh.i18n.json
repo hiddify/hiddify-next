@@ -225,7 +225,8 @@
             "update": "更新",
             "download": "下载",
             "failureMsg": "更新资产失败",
-            "successMsg": "已成功更新资产"
+            "successMsg": "已成功更新资产",
+            "addRecommended": "添加推荐资产"
         }
     },
     "about": {

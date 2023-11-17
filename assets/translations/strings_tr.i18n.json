@@ -225,7 +225,8 @@
             "update": "Güncelleme",
             "download": "İndirmek",
             "failureMsg": "Öğe güncellenemedi",
-            "successMsg": "Öğe başarıyla güncellendi"
+            "successMsg": "Öğe başarıyla güncellendi",
+            "addRecommended": "Önerilen Varlıkları Ekle"
         }
     },
     "about": {

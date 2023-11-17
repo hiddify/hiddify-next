@@ -225,7 +225,8 @@
             "update": "Update",
             "download": "Download",
             "failureMsg": "Failed to update asset",
-            "successMsg": "Successfully updated asset"
+            "successMsg": "Successfully updated asset",
+            "addRecommended": "Add Recommended Assets"
         }
     },
     "about": {

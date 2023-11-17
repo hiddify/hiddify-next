@@ -49,3 +49,21 @@ const defaultGeosite = GeoAsset(
 );
 
 const defaultGeoAssets = [defaultGeoip, defaultGeosite];
+
+const recommendedGeoAssets = [
+  ...defaultGeoAssets,
+  GeoAsset(
+    id: "chocolate4U-geoip",
+    name: "geoip.db",
+    type: GeoAssetType.geoip,
+    active: false,
+    providerName: "Chocolate4U/Iran-sing-box-rules",
+  ),
+  GeoAsset(
+    id: "chocolate4U-geosite",
+    name: "geosite.db",
+    type: GeoAssetType.geosite,
+    active: false,
+    providerName: "Chocolate4U/Iran-sing-box-rules",
+  ),
+];

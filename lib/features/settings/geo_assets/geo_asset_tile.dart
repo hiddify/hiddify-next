@@ -89,6 +89,11 @@ class GeoAssetTile extends HookConsumerWidget {
               ],
             ),
       selected: geoAsset.active,
+      onTap: () async {
+        await ref
+            .read(geoAssetsNotifierProvider.notifier)
+            .markAsActive(geoAsset);
+      },
       trailing: PopupMenuButton(
         itemBuilder: (context) {
           return [

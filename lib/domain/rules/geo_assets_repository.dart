@@ -11,4 +11,6 @@ abstract interface class GeoAssetsRepository {
   TaskEither<GeoAssetFailure, Unit> update(GeoAsset geoAsset);
 
   TaskEither<GeoAssetFailure, Unit> markAsActive(GeoAsset geoAsset);
+
+  TaskEither<GeoAssetFailure, Unit> addRecommended();
 }

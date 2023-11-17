@@ -12,6 +12,10 @@ class GeoAssetsDao extends DatabaseAccessor<AppDatabase>
     with _$GeoAssetsDaoMixin, InfraLogger {
   GeoAssetsDao(super.db);
 
+  Future<void> add(GeoAsset geoAsset) async {
+    await into(geoAssetEntries).insert(geoAsset.toCompanion());
+  }
+
   Future<GeoAsset?> getActive(GeoAssetType type) async {
     return (geoAssetEntries.select()
           ..where((tbl) => tbl.active.equals(true))

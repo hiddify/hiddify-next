@@ -20,7 +20,28 @@ class GeoAssetsNotifier extends _$GeoAssetsNotifier with AppLogger {
   Future<void> updateGeoAsset(GeoAsset geoAsset) async {
     await ref.read(geoAssetsRepositoryProvider).update(geoAsset).getOrElse(
       (f) {
-        loggy.warning("error updating profile", f);
+        loggy.warning("error updating geo asset", f);
+        throw f;
+      },
+    ).run();
+  }
+
+  Future<void> markAsActive(GeoAsset geoAsset) async {
+    await ref
+        .read(geoAssetsRepositoryProvider)
+        .markAsActive(geoAsset)
+        .getOrElse(
+      (f) {
+        loggy.warning("error marking geo asset as active", f);
+        throw f;
+      },
+    ).run();
+  }
+
+  Future<void> addRecommended() async {
+    await ref.read(geoAssetsRepositoryProvider).addRecommended().getOrElse(
+      (f) {
+        loggy.warning("error adding recommended geo assets", f);
         throw f;
       },
     ).run();
