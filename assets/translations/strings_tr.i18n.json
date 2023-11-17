@@ -217,6 +217,15 @@
             "enableFakeDns": "Sahte DNS'yi Etkinleştir",
             "bypassLan": "Lan'ı Atla",
             "strictRoute": "Kesin Rota"
+        },
+        "geoAssets": {
+            "pageTitle": "Varlıkları Yönlendirme",
+            "version": "Sürüm ${version}",
+            "fileMissing": "Eksik dosya",
+            "update": "Güncelleme",
+            "download": "İndirmek",
+            "failureMsg": "Öğe güncellenemedi",
+            "successMsg": "Öğe başarıyla güncellendi"
         }
     },
     "about": {
@@ -283,6 +292,11 @@
             "badResponse": "Kötü yanıt",
             "connectionError": "Bağlantı hatası",
             "badCertificate": "Kötü sertifika"
+        },
+        "geoAssets": {
+            "unexpected": "Beklenmeyen hata",
+            "notUpdate": "Güncelleme mevcut değil",
+            "activeNotFound": "Etkin Coğrafi Varlık Bulunamadı"
         }
     },
     "play": {
