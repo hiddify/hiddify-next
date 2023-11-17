@@ -272,7 +272,9 @@
             "invalidConfigOptions": "Geçersiz yapılandırma seçenekleri",
             "invalidConfig": "Geçersiz Yapılandırma",
             "create": "Servis oluşturma hatası",
-            "start": "Servis başlatma hatası"
+            "start": "Servis başlatma hatası",
+            "missingGeoAssets": "Eksik Coğrafi Varlıklar",
+            "missingGeoAssetsMsg": "Coğrafi öğeler eksik. Aktif varlığı değiştirmeyi veya ayarlarda seçileni indirmeyi düşünün."
         },
         "connectivity": {
             "unexpected": "Beklenmedik Hata",

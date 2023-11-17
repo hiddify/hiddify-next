@@ -21,6 +21,9 @@ sealed class CoreServiceFailure with _$CoreServiceFailure, Failure {
   @With<ExpectedFailure>()
   const factory CoreServiceFailure.missingPrivilege() = CoreMissingPrivilege;
 
+  @With<ExpectedFailure>()
+  const factory CoreServiceFailure.missingGeoAssets() = CoreMissingGeoAssets;
+
   const factory CoreServiceFailure.invalidConfigOptions([
     String? message,
   ]) = InvalidConfigOptions;
@@ -46,6 +49,7 @@ sealed class CoreServiceFailure with _$CoreServiceFailure, Failure {
         UnexpectedCoreServiceFailure() => null,
         CoreServiceNotRunning(:final message) => message,
         CoreMissingPrivilege() => null,
+        CoreMissingGeoAssets() => null,
         InvalidConfigOptions(:final message) => message,
         InvalidConfig(:final message) => message,
         CoreServiceCreateFailure(:final message) => message,
@@ -67,6 +71,10 @@ sealed class CoreServiceFailure with _$CoreServiceFailure, Failure {
       CoreMissingPrivilege() => (
           type: t.failure.singbox.missingPrivilege,
           message: t.failure.singbox.missingPrivilegeMsg,
+        ),
+      CoreMissingGeoAssets() => (
+          type: t.failure.singbox.missingGeoAssets,
+          message: t.failure.singbox.missingGeoAssetsMsg,
         ),
       InvalidConfigOptions(:final message) => (
           type: t.failure.singbox.invalidConfigOptions,

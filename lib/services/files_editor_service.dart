@@ -99,6 +99,10 @@ class FilesEditorService with InfraLogger {
     return p.relative(fullPath, from: workingDir.path);
   }
 
+  String resolveGeoAssetPath(String path) {
+    return p.absolute(workingDir.path, path);
+  }
+
   String tempConfigPath(String fileName) => configPath("temp_$fileName");
 
   Future<void> deleteConfig(String fileName) {

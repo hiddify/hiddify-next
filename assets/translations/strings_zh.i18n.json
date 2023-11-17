@@ -272,7 +272,9 @@
             "invalidConfigOptions": "配置选项无效",
             "invalidConfig": "无效配置",
             "create": "服务创建错误",
-            "start": "服务启动错误"
+            "start": "服务启动错误",
+            "missingGeoAssets": "缺少地理资产",
+            "missingGeoAssetsMsg": "地理资产缺失。考虑更改活动资产或下载设置中选定的资产。"
         },
         "connectivity": {
             "unexpected": "意外失败",

@@ -68,9 +68,7 @@ class GeoAssetsRepositoryImpl
       filesEditor.geoAssetsDir.path,
       pollingDelay: const Duration(seconds: 1),
     ).events.asyncMap((event) async {
-      if (event.type == ChangeType.MODIFY) {
-        await _readGeoFiles();
-      }
+      await _readGeoFiles();
       return _geoFiles;
     });
   }
@@ -132,6 +130,17 @@ class GeoAssetsRepositoryImpl
           ),
         );
 
+        return right(unit);
+      },
+      GeoAssetFailure.unexpected,
+    );
+  }
+
+  @override
+  TaskEither<GeoAssetFailure, Unit> markAsActive(GeoAsset geoAsset) {
+    return exceptionHandler(
+      () async {
+        await geoAssetsDao.edit(geoAsset.copyWith(active: true));
         return right(unit);
       },
       GeoAssetFailure.unexpected,

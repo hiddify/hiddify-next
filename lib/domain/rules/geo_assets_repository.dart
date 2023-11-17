@@ -9,4 +9,6 @@ abstract interface class GeoAssetsRepository {
   Stream<Either<GeoAssetFailure, List<GeoAssetWithFileSize>>> watchAll();
 
   TaskEither<GeoAssetFailure, Unit> update(GeoAsset geoAsset);
+
+  TaskEither<GeoAssetFailure, Unit> markAsActive(GeoAsset geoAsset);
 }

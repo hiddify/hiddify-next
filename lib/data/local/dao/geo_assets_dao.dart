@@ -28,6 +28,12 @@ class GeoAssetsDao extends DatabaseAccessor<AppDatabase>
   Future<void> edit(GeoAsset patch) async {
     await transaction(
       () async {
+        if (patch.active) {
+          await (update(geoAssetEntries)
+                ..where((tbl) => tbl.active.equals(true))
+                ..where((tbl) => tbl.type.equalsValue(patch.type)))
+              .write(const GeoAssetEntriesCompanion(active: Value(false)));
+        }
         await (update(geoAssetEntries)..where((tbl) => tbl.id.equals(patch.id)))
             .write(patch.toCompanion());
       },

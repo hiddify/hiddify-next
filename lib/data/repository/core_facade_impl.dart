@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:fpdart/fpdart.dart';
 import 'package:hiddify/data/api/clash_api.dart';
@@ -32,6 +33,21 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
   final Future<ConfigOptions> Function() configOptions;
 
   bool _initialized = false;
+
+  TaskEither<CoreServiceFailure, ConfigOptions> _getConfigOptions() {
+    return exceptionHandler(
+      () async {
+        final options = await configOptions();
+        final geoip = filesEditor.resolveGeoAssetPath(options.geoipPath);
+        final geosite = filesEditor.resolveGeoAssetPath(options.geositePath);
+        if (!await File(geoip).exists() || !await File(geosite).exists()) {
+          return left(const CoreMissingGeoAssets());
+        }
+        return right(options);
+      },
+      CoreServiceFailure.unexpected,
+    );
+  }
 
   @override
   TaskEither<CoreServiceFailure, Unit> setup() {
@@ -94,21 +110,17 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
   TaskEither<CoreServiceFailure, String> generateConfig(
     String fileName,
   ) {
-    return exceptionHandler(
-      () async {
+    return TaskEither<CoreServiceFailure, String>.Do(
+      ($) async {
         final configPath = filesEditor.configPath(fileName);
-        final options = await configOptions();
-        return setup()
-            .andThen(() => changeConfigOptions(options))
-            .andThen(
-              () => singbox
-                  .generateConfig(configPath)
-                  .mapLeft(CoreServiceFailure.other),
-            )
-            .run();
+        final options = await $(_getConfigOptions());
+        await $(setup());
+        await $(changeConfigOptions(options));
+        return await $(
+          singbox.generateConfig(configPath).mapLeft(CoreServiceFailure.other),
+        );
       },
-      CoreServiceFailure.unexpected,
-    );
+    ).handleExceptions(CoreServiceFailure.unexpected);
   }
 
   @override
@@ -116,33 +128,35 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
     String fileName,
     bool disableMemoryLimit,
   ) {
-    return exceptionHandler(
-      () async {
+    return TaskEither<CoreServiceFailure, Unit>.Do(
+      ($) async {
         final configPath = filesEditor.configPath(fileName);
-        final options = await configOptions();
+        final options = await $(_getConfigOptions());
         loggy.info(
           "config options: ${options.format()}\nMemory Limit: ${!disableMemoryLimit}",
         );
 
-        if (options.enableTun) {
-          final hasPrivilege = await platformServices.hasPrivilege();
-          if (!hasPrivilege) {
-            loggy.warning("missing privileges for tun mode");
-            return left(const CoreMissingPrivilege());
-          }
-        }
-
-        return setup()
-            .andThen(() => changeConfigOptions(options))
-            .andThen(
-              () => singbox
-                  .start(configPath, disableMemoryLimit)
-                  .mapLeft(CoreServiceFailure.start),
-            )
-            .run();
+        await $(
+          TaskEither(() async {
+            if (options.enableTun) {
+              final hasPrivilege = await platformServices.hasPrivilege();
+              if (!hasPrivilege) {
+                loggy.warning("missing privileges for tun mode");
+                return left(const CoreMissingPrivilege());
+              }
+            }
+            return right(unit);
+          }),
+        );
+        await $(setup());
+        await $(changeConfigOptions(options));
+        return await $(
+          singbox
+              .start(configPath, disableMemoryLimit)
+              .mapLeft(CoreServiceFailure.start),
+        );
       },
-      CoreServiceFailure.unexpected,
-    );
+    ).handleExceptions(CoreServiceFailure.unexpected);
   }
 
   @override
@@ -161,7 +175,8 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
     return exceptionHandler(
       () async {
         final configPath = filesEditor.configPath(fileName);
-        return changeConfigOptions(await configOptions())
+        return _getConfigOptions()
+            .flatMap((options) => changeConfigOptions(options))
             .andThen(
               () => singbox
                   .restart(configPath, disableMemoryLimit)

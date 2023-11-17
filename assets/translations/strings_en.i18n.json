@@ -269,6 +269,8 @@
             "serviceNotRunning": "Service is not running",
             "missingPrivilege": "Missing Privilege",
             "missingPrivilegeMsg": "VPN mode requires administrator privileges. Either relaunch the app as administrator or change service mode.",
+            "missingGeoAssets": "Missing Geo Assets",
+            "missingGeoAssetsMsg": "Geo assets are missing. consider changing active asset or download selected one in the settings.",
             "invalidConfigOptions": "Invalid configuration options",
             "invalidConfig": "Invalid Configuration",
             "create": "Service creation error",

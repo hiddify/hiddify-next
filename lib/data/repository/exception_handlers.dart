@@ -30,3 +30,19 @@ extension StreamExceptionHandler<R extends Object?> on Stream<R> {
     );
   }
 }
+
+extension TaskEitherExceptionHandler<F, R> on TaskEither<F, R> {
+  TaskEither<F, R> handleExceptions(
+    F Function(Object error, StackTrace stackTrace) onError,
+  ) {
+    return TaskEither(
+      () async {
+        try {
+          return await run();
+        } catch (error, stackTrace) {
+          return Left(onError(error, stackTrace));
+        }
+      },
+    );
+  }
+}
