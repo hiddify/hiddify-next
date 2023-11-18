@@ -17,8 +17,11 @@
   - On desktop, app will try to connect to the last used profile on startup. (if last session was not explicitly disconnected by the user)
 - Added AppCast Update Checker
   - Checking for new versions of the app will use a more reliable approach on all platforms.
+- Added Geo Asset Settings
+  - Update geo assets and use recommended providers
 - Added **winget** Release
   - Now you're able to install and update Hiddify Next on Windows using [winget](https://learn.microsoft.com/en-us/windows/package-manager/winget/).
+- Added Turkish Translations. [PR#173](https://github.com/hiddify/hiddify-next/pull/173) by [Hasan Karlı](https://github.com/hasankarli)
 - Changed in-app Toasts
 - Updated Core Sing-box Version to 1.7.0
 - Improved Network Reliability While Adding/Updating Subscriptions
@@ -33,9 +36,11 @@
 - Fixed localization mistakes in Chinese. [PR#113](https://github.com/hiddify/hiddify-next/pull/113) and [PR#123](https://github.com/hiddify/hiddify-next/pull/123) by [Nyar233](https://github.com/Nyar233)
 - Fixed localization mistakes in Chinese Readme. [PR#137](https://github.com/hiddify/hiddify-next/pull/137) by [wldjdjsks](https://github.com/huajizhige)
 - Fixed localization mistakes in Chinese. [PR#138](https://github.com/hiddify/hiddify-next/pull/138) and [PR#165](https://github.com/hiddify/hiddify-next/pull/165) by [wldjdjsks](https://github.com/huajizhige)
-- Fixed localization mistakes in Russian. [PR#155](https://github.com/hiddify/hiddify-next/pull/155) and [PR#162](https://github.com/hiddify/hiddify-next/pull/162) by [solokot](https://github.com/solokot)
+- Fixed localization mistakes in Russian. [PR#155](https://github.com/hiddify/hiddify-next/pull/155), [PR#162](https://github.com/hiddify/hiddify-next/pull/162) and [PR#169](https://github.com/hiddify/hiddify-next/pull/169) by [solokot](https://github.com/solokot)
 - Fixed linux build libs command. [PR#161](https://github.com/hiddify/hiddify-next/pull/161) by [Aloxaf](https://github.com/Aloxaf)
-- Fixed localization mistakes in Russian. [PR#164](https://github.com/hiddify/hiddify-next/pull/164) by [jomertix](https://github.com/jomertix)
+- Fixed localization mistakes in Russian. [PR#164](https://github.com/hiddify/hiddify-next/pull/164) and [PR#168](https://github.com/hiddify/hiddify-next/pull/168) by [jomertix](https://github.com/jomertix)
+- Fixed localization mistakes in Chinese. [PR#179](https://github.com/hiddify/hiddify-next/pull/179) by [betaxab](https://github.com/betaxab)
+- Fixed localization mistakes in Chinese Readme. [PR#172](https://github.com/hiddify/hiddify-next/pull/172) by [Locas](https://github.com/Locas56227)
 
 ## [0.10.0] - 2023-10-27
 
