@@ -45,7 +45,7 @@
             "updatedTimeAgo": "更新 ${timeago}",
             "remainingDuration": "剩余 ${duration} 天",
             "remainingTrafficSemanticLabel": "已消耗 ${consumed} 流量，共 ${total} 流量。",
-            "expired": "已到期",
+            "expired": "已过期",
             "noTraffic": "超出配额"
         },
         "sortBy": {
@@ -56,7 +56,7 @@
             "buttonText": "新的配置文件",
             "shortBtnTxt": "新的配置文件",
             "fromClipboard": "从剪贴板添加",
-            "scanQr": "扫二维码",
+            "scanQr": "扫描二维码",
             "qrScanner": {
                 "permissionDeniedError": "权限不足",
                 "unexpectedError": "出了些问题",
@@ -83,7 +83,7 @@
         },
         "edit": {
             "buttonTxt": "编辑",
-            "selectActiveTxt": "选择活动配置文件"
+            "selectActiveTxt": "选择并激活配置文件"
         },
         "delete": {
             "buttonTxt": "删除",
@@ -93,7 +93,7 @@
         "save": {
             "buttonText": "保存",
             "successMsg": "配置文件保存成功",
-            "failureMsg": "保存配置文件失败"
+            "failureMsg": "配置文件保存失败"
         },
         "detailsForm": {
             "nameLabel": "名称",
@@ -104,7 +104,7 @@
             "invalidUrlMsg": "无效的网址",
             "lastUpdate": "最后更新",
             "updateInterval": "自动更新",
-            "updateIntervalDialogTitle": "自动更新间隔（以小时为单位）"
+            "updateIntervalDialogTitle": "自动更新间隔（小时）"
         }
     },
     "proxies": {
@@ -140,13 +140,13 @@
                 "ir": "伊朗 (ir)",
                 "cn": "中国 (cn)",
                 "ru": "俄罗斯 (ru)",
-                "other": "其他"
+                "other": "其它"
             },
             "themeMode": "主题模式",
             "themeModes": {
                 "system": "遵循系统主题",
                 "dark": "黑暗模式",
-                "light": "明亮模式",
+                "light": "浅色模式",
                 "black": "深色模式"
             },
             "enableAnalytics": "启用分析",
@@ -188,7 +188,7 @@
                 "route": "路由选项",
                 "dns": "DNS 选项",
                 "inbound": "入站选项",
-                "misc": "其他选项"
+                "misc": "其它选项"
             },
             "pageTitle": "配置选项",
             "logLevel": "日志级别",
@@ -219,14 +219,14 @@
             "strictRoute": "严格路由"
         },
         "geoAssets": {
-            "pageTitle": "路由资产",
-            "version": "版本${version}",
+            "pageTitle": "路由资源文件",
+            "version": "版本 ${version}",
             "fileMissing": "文件丢失",
             "update": "更新",
             "download": "下载",
-            "failureMsg": "更新资产失败",
-            "successMsg": "已成功更新资产",
-            "addRecommended": "添加推荐资产"
+            "failureMsg": "更新资源文件失败",
+            "successMsg": "已成功更新资源文件",
+            "addRecommended": "添加建议的资源文件"
         }
     },
     "about": {
@@ -245,7 +245,7 @@
         "currentVersionLbl": "当前版本",
         "newVersionLbl": "新版本",
         "updateNowBtnTxt": "现在更新",
-        "laterBtnTxt": "之后",
+        "laterBtnTxt": "以后再说",
         "ignoreBtnTxt": "忽略"
     },
     "tray": {
@@ -263,19 +263,19 @@
         "unexpected": "意外错误",
         "clash": {
             "unexpected": "意外错误",
-            "core": "Clash错误 ${reason}"
+            "core": "Clash 错误 ${reason}"
         },
         "singbox": {
             "unexpected": "意外服务错误",
             "serviceNotRunning": "服务未运行",
-            "missingPrivilege": "缺少特权",
+            "missingPrivilege": "缺少权限",
             "missingPrivilegeMsg": "VPN 模式需要管理员权限。以管理员身份重新启动应用程序或更改服务模式",
+            "missingGeoAssets": "缺失 GEO 资源文件",
+            "missingGeoAssetsMsg": "缺失 GEO 资源文件。请考虑更改激活的资源文件或在设置中下载所选资源文件。",
             "invalidConfigOptions": "配置选项无效",
             "invalidConfig": "无效配置",
             "create": "服务创建错误",
-            "start": "服务启动错误",
-            "missingGeoAssets": "缺少地理资产",
-            "missingGeoAssetsMsg": "地理资产缺失。考虑更改活动资产或下载设置中选定的资产。"
+            "start": "服务启动错误"
         },
         "connectivity": {
             "unexpected": "意外失败",
@@ -299,12 +299,12 @@
         "geoAssets": {
             "unexpected": "意外的错误",
             "notUpdate": "无可用更新",
-            "activeNotFound": "未找到活动地理资产"
+            "activeNotFound": "未找到激活的 GEO 资源文件"
         }
     },
     "play": {
         "title": "Hiddify Next（预览）",
         "short_description": "自动，SSH, VLESS, Vmess, Trojan, Reality, Sing-Box, Clash, Xray, Shadowsocks",
-        "full_description": "HiddifyNext 的主要目标是提供安全、用户友好且高效的隧道客户端。它使您能够利用 VPN 服务权限将所有流量或选定的应用程序流量路由到您选择的远程服务器。\n\n注：我们不提供任何服务器；用户需要使用自己的自托管服务器或受信任的服务器来确保其在线活动的私密性。\n \n我们支持以下类型的服务器：\n- 普通V2ray/Xray订阅链接\n- Clash订阅链接\n- Sing-Box 订阅链接\n\n我们的独特特点是什么？\n\n-用户友好\n-优化和高速\n-自动选择最低延迟\n-显示用户使用信息\n-通过一键深度链接轻松导入子链接\n-免费且无广告\n-轻松切换用户子链接\n-等等\n\n支持：\n- Sing-Box 支持的所有协议\n- VLESS + xtls 现实、愿景\n- VMESS\n- Trojan\n- ShoadowSocks\n- Reality\n-V2ray\n- Hystria2\n- TUIC\n- SSH\n- ShadowTLS\n\n\n源代码位于https://github.com/hiddify/Hiddify-Next\n应用程序核心基于开源的Sing-Box。\n\n权限说明：\n\nVPN服务：由于此应用程序的目标是提供安全、用户友好和高效的隧道客户端，我们需要此权限以能够通过隧道将流量路由到远程服务器。\n查询所有包：此权限用于允许用户包括或排除特定应用程序以进行隧道传输。\n接收启动完成：此权限可以从应用程序设置中启用或禁用，以在设备启动时激活此应用程序。\n发送通知：此权限是必需的，因为我们使用前台服务来确保VPN服务的持续运行。\n此应用程序没有广告。分析和崩溃数据仅在用户在首次使用应用程序时明确同意的情况下发生。"
+        "full_description": "HiddifyNext 的主要目标是提供安全、用户友好且高效的隧道客户端。它使您能够利用 VPN 服务权限将所有流量或选定的应用程序流量路由到您选择的远程服务器。\n\n注：我们不提供任何服务器；用户需要使用自己托管的服务器或可信的服务器来确保您在线活动的私密性。\n \n我们支持以下类型的服务器：\n- 普通 V2ray/Xray 订阅链接\n- Clash 订阅链接\n- Sing-Box 订阅链接\n\n我们的特色是什么？\n\n- 用户友好\n- 优化和高速\n- 自动选择最低延迟\n- 显示用户使用信息\n- 通过一键链接轻松导入\n- 免费且无广告\n- 轻松切换线路\n- 等等\n\n支持：\n- Sing-Box 支持的所有协议\n- VLESS + XTLS Reality、Vision 协议\n- VMESS\n- Trojan\n- Shoadowsocks\n- Reality\n- V2ray\n- Hystria2\n- TUIC\n- SSH\n- ShadowTLS\n\n\n源代码位于 https://github.com/hiddify/Hiddify-Next\n应用程序核心基于开源的 Sing-Box。\n\n权限说明：\n\n- VPN 服务：由于此应用程序的目标是提供安全、用户友好和高效的隧道客户端，我们需要此权限以能够通过隧道将流量路由到远程服务器。\n获取应用程序列表：此权限用于允许用户包括或排除特定应用程序以进行隧道传输。\n- 接收开机广播：可以从应用程序设置中启用或禁用此权限，以便在设备启动时激活此应用程序。\n- 发送通知：此权限是必需的，因为我们使用前台服务来确保 VPN 服务的持续运行。\n- 本应用程序没有广告。分析和崩溃数据仅在首次使用应用程序时经用户明确同意的情况下发生。"
     }
 }
