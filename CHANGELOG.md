@@ -67,5 +67,5 @@
 - Fixed localization mistakes in Russian. [PR#95](https://github.com/hiddify/hiddify-next/pull/95) by [solokot](https://github.com/solokot)
 - Fixed localization mistakes in Russian. [PR#74](https://github.com/hiddify/hiddify-next/pull/74) by [Elshad Guseynov](https://github.com/lifeindarkside)
 
-[0.11.0]: https://github.com/hiddify/hiddify-next/releases/tag/0.11.0
-[0.10.0]: https://github.com/hiddify/hiddify-next/releases/tag/0.10.0
+[0.11.0]: https://github.com/hiddify/hiddify-next/releases/tag/v0.11.0
+[0.10.0]: https://github.com/hiddify/hiddify-next/releases/tag/v0.10.0

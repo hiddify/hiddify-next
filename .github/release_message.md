@@ -1,19 +1,17 @@
 [![Release Downloads](https://img.shields.io/github/downloads/hiddify/hiddify-next/RELEASE_TAG/total?style=flat-square&logo=github)](https://img.shields.io/github/downloads/hiddify/hiddify-next/RELEASE_TAG/)
 
-
-
-
 **Release Highlights:**
-- 
-- 
 
+-
+-
 
 <details markdown=1 dir="rtl">
 <summary>تغییرات اصلی به فارسی</summary>
 
-- 
-- 
 -
+-
+-
+
 </details>
 
 **Download based on your OS:**
@@ -21,6 +19,7 @@
 <div dir="rtl">
 
 **بر اساس سیستم عامل خود دانلود کنید:**
+
 </div>
 
 <div align=left>
@@ -48,7 +47,7 @@
         </tr>
         <tr>
             <td>macOS (v10.14+)</td>
-            <td><a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-macos-universal.zip"><img src="https://img.shields.io/badge/DMG-Universal-ea005e.svg?logo=github"></a></td>
+            <td><a href="https://github.com/hiddify/hiddify-next/releases/download/RELEASE_TAG/hiddify-macos-universal.zip"><img src="https://img.shields.io/badge/DMG-Universal-ea005e.svg?logo=github"></a></td>
         </tr>
         <tr>
             <td>Linux</td>
@@ -57,18 +56,10 @@
     </tbody>
 </table>
 
-
 </div>
-
 
 <div dir="ltr">
   
 **List of all changes:** [ChangeLog](https://github.com/hiddify/hiddify-next/blob/main/CHANGELOG.md)
 
-
 </div>
-
-
-
-
-
