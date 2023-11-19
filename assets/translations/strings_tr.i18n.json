@@ -270,12 +270,12 @@
             "serviceNotRunning": "Servis çalışmıyor",
             "missingPrivilege": "Eksik Ayrıcalık",
             "missingPrivilegeMsg": "VPN modu yönetici ayrıcalıkları gerektirir. Uygulamayı yönetici olarak yeniden başlatın veya hizmet modunu değiştirin.",
+            "missingGeoAssets": "Eksik Coğrafi Varlıklar",
+            "missingGeoAssetsMsg": "Coğrafi öğeler eksik. Aktif varlığı değiştirmeyi veya ayarlarda seçileni indirmeyi düşünün.",
             "invalidConfigOptions": "Geçersiz yapılandırma seçenekleri",
             "invalidConfig": "Geçersiz Yapılandırma",
             "create": "Servis oluşturma hatası",
-            "start": "Servis başlatma hatası",
-            "missingGeoAssets": "Eksik Coğrafi Varlıklar",
-            "missingGeoAssetsMsg": "Coğrafi öğeler eksik. Aktif varlığı değiştirmeyi veya ayarlarda seçileni indirmeyi düşünün."
+            "start": "Servis başlatma hatası"
         },
         "connectivity": {
             "unexpected": "Beklenmedik Hata",
