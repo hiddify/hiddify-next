@@ -8,9 +8,9 @@ part 'rules.g.dart';
 class Rule with _$Rule {
   @JsonSerializable(fieldRename: FieldRename.kebab)
   const factory Rule({
-    required String id,
-    required String name,
-    @Default(false) bool enabled,
+    @JsonKey(includeToJson: false) required String id,
+    @JsonKey(includeToJson: false) required String name,
+    @JsonKey(includeToJson: false) @Default(false) bool enabled,
     String? domains,
     String? ip,
     String? port,

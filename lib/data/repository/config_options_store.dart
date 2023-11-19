@@ -99,7 +99,7 @@ List<Rule> rules(RulesRef ref) => switch (ref.watch(regionNotifierProvider)) {
             id: "id",
             name: "name",
             enabled: true,
-            domains: "domain:.ir",
+            domains: "domain:.ir,geosite:ir",
             ip: "geoip:ir",
             outbound: RuleOutbound.bypass,
           ),
