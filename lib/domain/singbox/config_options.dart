@@ -20,7 +20,7 @@ class ConfigOptions with _$ConfigOptions {
     @Default(IPv6Mode.disable) IPv6Mode ipv6Mode,
     @Default("tcp://8.8.8.8") String remoteDnsAddress,
     @Default(DomainStrategy.auto) DomainStrategy remoteDnsDomainStrategy,
-    @Default("local") String directDnsAddress,
+    @Default("8.8.8.8") String directDnsAddress,
     @Default(DomainStrategy.auto) DomainStrategy directDnsDomainStrategy,
     @Default(2334) int mixedPort,
     @Default(6450) int localDnsPort,
