@@ -30,8 +30,18 @@ class AppView extends HookConsumerWidget with PresLogger {
     return MaterialApp.router(
       routerConfig: router,
       locale: locale,
-      supportedLocales: AppLocaleUtils.supportedLocales,
-      localizationsDelegates: GlobalMaterialLocalizations.delegates,
+      supportedLocales: const [
+        Locale("en", "US"),
+        Locale("fa", "IR"),
+        Locale("ru", "RU"),
+        Locale("tr", "TR"),
+        Locale("zh", "CN"),
+      ],
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
       debugShowCheckedModeBanner: false,
       themeMode: theme.mode.flutterThemeMode,
       theme: theme.light(),
