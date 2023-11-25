@@ -10,6 +10,7 @@ import 'package:hiddify/domain/constants.dart';
 import 'package:hiddify/domain/core_facade.dart';
 import 'package:hiddify/domain/core_service_failure.dart';
 import 'package:hiddify/domain/singbox/singbox.dart';
+import 'package:hiddify/features/geo_asset/data/geo_asset_path_resolver.dart';
 import 'package:hiddify/services/files_editor_service.dart';
 import 'package:hiddify/services/platform_services.dart';
 import 'package:hiddify/services/singbox/singbox_service.dart';
@@ -19,6 +20,7 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
   CoreFacadeImpl(
     this.singbox,
     this.filesEditor,
+    this.geoAssetPathResolver,
     this.platformServices,
     this.clash,
     this.debug,
@@ -27,6 +29,7 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
 
   final SingboxService singbox;
   final FilesEditorService filesEditor;
+  final GeoAssetPathResolver geoAssetPathResolver;
   final PlatformServices platformServices;
   final ClashApi clash;
   final bool debug;
@@ -38,8 +41,8 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
     return exceptionHandler(
       () async {
         final options = await configOptions();
-        final geoip = filesEditor.resolveGeoAssetPath(options.geoipPath);
-        final geosite = filesEditor.resolveGeoAssetPath(options.geositePath);
+        final geoip = geoAssetPathResolver.resolvePath(options.geoipPath);
+        final geosite = geoAssetPathResolver.resolvePath(options.geositePath);
         if (!await File(geoip).exists() || !await File(geosite).exists()) {
           return left(const CoreMissingGeoAssets());
         }

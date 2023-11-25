@@ -12,6 +12,7 @@ import 'package:hiddify/data/repository/app_repository_impl.dart';
 import 'package:hiddify/domain/environment.dart';
 import 'package:hiddify/features/common/active_profile/active_profile_notifier.dart';
 import 'package:hiddify/features/common/window/window_controller.dart';
+import 'package:hiddify/features/geo_asset/data/geo_asset_data_providers.dart';
 import 'package:hiddify/features/system_tray/system_tray_controller.dart';
 import 'package:hiddify/services/auto_start_service.dart';
 import 'package:hiddify/services/deep_link_service.dart';
@@ -86,6 +87,7 @@ Future<void> _lazyBootstrap(
 
   final filesEditor = container.read(filesEditorServiceProvider);
   await filesEditor.init();
+  await container.read(geoAssetRepositoryProvider.future);
 
   initLoggers(container.read, debug);
   _logger.info(container.read(appInfoProvider).format());

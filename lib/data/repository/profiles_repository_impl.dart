@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:hiddify/data/local/dao/dao.dart';
+import 'package:hiddify/data/local/dao/profiles_dao.dart';
 import 'package:hiddify/data/repository/exception_handlers.dart';
 import 'package:hiddify/domain/enums.dart';
 import 'package:hiddify/domain/profiles/profiles.dart';

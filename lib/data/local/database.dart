@@ -2,22 +2,19 @@ import 'dart:io';
 
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
-import 'package:hiddify/data/local/dao/dao.dart';
-import 'package:hiddify/data/local/data_mappers.dart';
 import 'package:hiddify/data/local/schema_versions.dart';
 import 'package:hiddify/data/local/tables.dart';
 import 'package:hiddify/data/local/type_converters.dart';
 import 'package:hiddify/domain/profiles/profiles.dart';
-import 'package:hiddify/domain/rules/geo_asset.dart';
+import 'package:hiddify/features/geo_asset/data/geo_asset_data_mapper.dart';
+import 'package:hiddify/features/geo_asset/model/default_geo_assets.dart';
+import 'package:hiddify/features/geo_asset/model/geo_asset_entity.dart';
 import 'package:hiddify/services/files_editor_service.dart';
 import 'package:path/path.dart' as p;
 
 part 'database.g.dart';
 
-@DriftDatabase(
-  tables: [ProfileEntries, GeoAssetEntries],
-  daos: [ProfilesDao, GeoAssetsDao],
-)
+@DriftDatabase(tables: [ProfileEntries, GeoAssetEntries])
 class AppDatabase extends _$AppDatabase {
   AppDatabase({required QueryExecutor connection}) : super(connection);
 
@@ -57,7 +54,7 @@ class AppDatabase extends _$AppDatabase {
 
   Future<void> _prePopulateGeoAssets() async {
     await transaction(() async {
-      final geoAssets = defaultGeoAssets.map((e) => e.toCompanion());
+      final geoAssets = defaultGeoAssets.map((e) => e.toEntry());
       for (final geoAsset in geoAssets) {
         await into(geoAssetEntries).insert(geoAsset);
       }

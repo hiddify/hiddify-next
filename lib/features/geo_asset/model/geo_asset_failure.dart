@@ -6,7 +6,7 @@ part 'geo_asset_failure.freezed.dart';
 
 @freezed
 sealed class GeoAssetFailure with _$GeoAssetFailure, Failure {
-    const GeoAssetFailure._();
+  const GeoAssetFailure._();
 
   const factory GeoAssetFailure.unexpected([
     Object? error,

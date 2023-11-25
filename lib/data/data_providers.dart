@@ -4,18 +4,17 @@ import 'package:dio/dio.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/core/prefs/general_prefs.dart';
 import 'package:hiddify/data/api/clash_api.dart';
-import 'package:hiddify/data/local/dao/dao.dart';
+import 'package:hiddify/data/local/dao/profiles_dao.dart';
 import 'package:hiddify/data/local/database.dart';
 import 'package:hiddify/data/repository/app_repository_impl.dart';
 import 'package:hiddify/data/repository/config_options_store.dart';
-import 'package:hiddify/data/repository/geo_assets_repository.dart';
 import 'package:hiddify/data/repository/repository.dart';
 import 'package:hiddify/domain/app/app.dart';
 import 'package:hiddify/domain/constants.dart';
 import 'package:hiddify/domain/core_facade.dart';
 import 'package:hiddify/domain/profiles/profiles.dart';
-import 'package:hiddify/domain/rules/geo_assets_repository.dart';
 import 'package:hiddify/domain/singbox/singbox.dart';
+import 'package:hiddify/features/geo_asset/data/geo_asset_data_providers.dart';
 import 'package:hiddify/services/service_providers.dart';
 import 'package:native_dio_adapter/native_dio_adapter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -70,38 +69,25 @@ AppRepository appRepository(AppRepositoryRef ref) =>
 @Riverpod(keepAlive: true)
 ClashApi clashApi(ClashApiRef ref) => ClashApi(Defaults.clashApiPort);
 
-@Riverpod(keepAlive: true)
-GeoAssetsDao geoAssetsDao(GeoAssetsDaoRef ref) => GeoAssetsDao(
-      ref.watch(appDatabaseProvider),
-    );
-
-@Riverpod(keepAlive: true)
-GeoAssetsRepository geoAssetsRepository(GeoAssetsRepositoryRef ref) {
-  return GeoAssetsRepositoryImpl(
-    geoAssetsDao: ref.watch(geoAssetsDaoProvider),
-    dio: ref.watch(dioProvider),
-    filesEditor: ref.watch(filesEditorServiceProvider),
-  );
-}
-
 @riverpod
 Future<ConfigOptions> configOptions(ConfigOptionsRef ref) async {
   final geoAssets = await ref
-      .watch(geoAssetsRepositoryProvider)
+      .watch(geoAssetRepositoryProvider)
+      .requireValue
       .getActivePair()
       .getOrElse((l) => throw l)
       .run();
-  final filesEditor = ref.watch(filesEditorServiceProvider);
+  final geoAssetsPathResolver = ref.watch(geoAssetPathResolverProvider);
 
   final serviceMode = ref.watch(serviceModeStoreProvider);
   return ref.watch(configPreferencesProvider).copyWith(
         enableTun: serviceMode == ServiceMode.tun,
         setSystemProxy: serviceMode == ServiceMode.systemProxy,
-        geoipPath: filesEditor.geoAssetRelativePath(
+        geoipPath: geoAssetsPathResolver.relativePath(
           geoAssets.geoip.providerName,
           geoAssets.geoip.fileName,
         ),
-        geositePath: filesEditor.geoAssetRelativePath(
+        geositePath: geoAssetsPathResolver.relativePath(
           geoAssets.geosite.providerName,
           geoAssets.geosite.fileName,
         ),
@@ -112,6 +98,7 @@ Future<ConfigOptions> configOptions(ConfigOptionsRef ref) async {
 CoreFacade coreFacade(CoreFacadeRef ref) => CoreFacadeImpl(
       ref.watch(singboxServiceProvider),
       ref.watch(filesEditorServiceProvider),
+      ref.watch(geoAssetPathResolverProvider),
       ref.watch(platformServicesProvider),
       ref.watch(clashApiProvider),
       ref.read(debugModeNotifierProvider),

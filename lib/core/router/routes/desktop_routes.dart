@@ -3,8 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/router/routes/shared_routes.dart';
 import 'package:hiddify/features/about/view/view.dart';
 import 'package:hiddify/features/common/adaptive_root_scaffold.dart';
+import 'package:hiddify/features/geo_asset/overview/geo_assets_overview_page.dart';
 import 'package:hiddify/features/logs/view/view.dart';
-import 'package:hiddify/features/settings/geo_assets/geo_assets_page.dart';
 import 'package:hiddify/features/settings/view/view.dart';
 
 part 'desktop_routes.g.dart';
@@ -117,7 +117,7 @@ class GeoAssetsRoute extends GoRouteData {
     return const MaterialPage(
       fullscreenDialog: true,
       name: name,
-      child: GeoAssetsPage(),
+      child: GeoAssetsOverviewPage(),
     );
   }
 }

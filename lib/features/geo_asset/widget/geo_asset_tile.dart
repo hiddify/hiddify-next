@@ -2,40 +2,44 @@ import 'package:dartx/dartx.dart';
 import 'package:flutter/material.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/domain/failures.dart';
-import 'package:hiddify/domain/rules/geo_asset.dart';
-import 'package:hiddify/domain/rules/geo_asset_failure.dart';
-import 'package:hiddify/features/settings/geo_assets/geo_assets_notifier.dart';
-import 'package:hiddify/utils/alerts.dart';
-import 'package:hiddify/utils/async_mutation.dart';
-import 'package:hiddify/utils/date_time_formatter.dart';
+import 'package:hiddify/features/geo_asset/model/geo_asset_entity.dart';
+import 'package:hiddify/features/geo_asset/model/geo_asset_failure.dart';
+import 'package:hiddify/features/geo_asset/notifier/geo_asset_notifier.dart';
+import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:humanizer/humanizer.dart';
 
 class GeoAssetTile extends HookConsumerWidget {
-  GeoAssetTile(GeoAssetWithFileSize geoAssetWithFileSize, {super.key})
-      : geoAsset = geoAssetWithFileSize.$1,
+  GeoAssetTile(
+    GeoAssetWithFileSize geoAssetWithFileSize, {
+    super.key,
+    required this.onMarkAsActive,
+  })  : geoAsset = geoAssetWithFileSize.$1,
         size = geoAssetWithFileSize.$2;
 
-  final GeoAsset geoAsset;
+  final GeoAssetEntity geoAsset;
   final int? size;
+  final VoidCallback onMarkAsActive;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = ref.watch(translationsProvider);
+    final fetchState = ref.watch(fetchGeoAssetProvider(geoAsset.id));
     final fileMissing = size == null;
 
-    final updateMutation = useMutation(
-      initialOnFailure: (err) {
-        if (err case GeoAssetNoUpdateAvailable()) {
-          CustomToast(t.failure.geoAssets.notUpdate).show(context);
-        } else {
-          CustomAlertDialog.fromErr(
-            t.presentError(err, action: t.settings.geoAssets.failureMsg),
-          ).show(context);
+    ref.listen(
+      fetchGeoAssetProvider(geoAsset.id),
+      (_, next) {
+        switch (next) {
+          case AsyncError(:final error):
+            if (error case GeoAssetNoUpdateAvailable()) {
+              return CustomToast(t.failure.geoAssets.notUpdate).show(context);
+            }
+            CustomAlertDialog.fromErr(t.presentError(error)).show(context);
+          case AsyncData(value: final _?):
+            CustomToast.success(t.settings.geoAssets.successMsg).show(context);
         }
       },
-      initialOnSuccess: () =>
-          CustomToast.success(t.settings.geoAssets.successMsg).show(context),
     );
 
     return ListTile(
@@ -49,7 +53,7 @@ class GeoAssetTile extends HookConsumerWidget {
         ),
       ),
       isThreeLine: true,
-      subtitle: updateMutation.state.isInProgress
+      subtitle: fetchState.isLoading
           ? const LinearProgressIndicator()
           : Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -89,26 +93,15 @@ class GeoAssetTile extends HookConsumerWidget {
               ],
             ),
       selected: geoAsset.active,
-      onTap: () async {
-        await ref
-            .read(geoAssetsNotifierProvider.notifier)
-            .markAsActive(geoAsset);
-      },
+      onTap: onMarkAsActive,
       trailing: PopupMenuButton(
         itemBuilder: (context) {
           return [
             PopupMenuItem(
-              enabled: !updateMutation.state.isInProgress,
-              onTap: () {
-                if (updateMutation.state.isInProgress) {
-                  return;
-                }
-                updateMutation.setFuture(
-                  ref
-                      .read(geoAssetsNotifierProvider.notifier)
-                      .updateGeoAsset(geoAsset),
-                );
-              },
+              enabled: !fetchState.isLoading,
+              onTap: () => ref
+                  .read(FetchGeoAssetProvider(geoAsset.id).notifier)
+                  .fetch(geoAsset),
               child: fileMissing
                   ? Text(t.settings.geoAssets.download)
                   : Text(t.settings.geoAssets.update),

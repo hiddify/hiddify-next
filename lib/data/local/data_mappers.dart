@@ -1,7 +1,6 @@
 import 'package:drift/drift.dart';
 import 'package:hiddify/data/local/database.dart';
 import 'package:hiddify/domain/profiles/profiles.dart';
-import 'package:hiddify/domain/rules/geo_asset.dart';
 
 extension ProfileMapper on Profile {
   ProfileEntriesCompanion toCompanion() {
@@ -70,31 +69,5 @@ extension ProfileMapper on Profile {
           lastUpdate: e.lastUpdate,
         ),
     };
-  }
-}
-
-extension GeoAssetMapper on GeoAsset {
-  GeoAssetEntriesCompanion toCompanion() {
-    return GeoAssetEntriesCompanion.insert(
-      id: id,
-      type: type,
-      active: active,
-      name: name,
-      providerName: providerName,
-      version: Value(version),
-      lastCheck: Value(lastCheck),
-    );
-  }
-
-  static GeoAsset fromEntry(GeoAssetEntry e) {
-    return GeoAsset(
-      id: e.id,
-      name: e.name,
-      type: e.type,
-      active: e.active,
-      providerName: e.providerName,
-      version: e.version,
-      lastCheck: e.lastCheck,
-    );
   }
 }
