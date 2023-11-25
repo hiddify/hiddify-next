@@ -36,4 +36,18 @@ const recommendedGeoAssets = [
     active: false,
     providerName: "Chocolate4U/Iran-sing-box-rules",
   ),
+  GeoAssetEntity(
+    id: "soffchen-geoip",
+    name: "geoip.db",
+    type: GeoAssetType.geoip,
+    active: false,
+    providerName: "soffchen/sing-geoip",
+  ),
+  GeoAssetEntity(
+    id: "soffchen-geosite",
+    name: "geosite.db",
+    type: GeoAssetType.geosite,
+    active: false,
+    providerName: "soffchen/sing-geosite",
+  ),
 ];
