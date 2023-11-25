@@ -1,5 +1,17 @@
 # Changelog
 
+## Unreleased
+
+### New Features and Improvements
+
+- Added soffchen to recommended geo assets
+
+### Bug Fixes
+
+- Fixed geo assets bug where assets were deactivated
+- Fixed Chinese typography bug (thanks to [betaxab](https://github.com/betaxab))
+- Fixed localization mistakes in Russian. [PR#189](https://github.com/hiddify/hiddify-next/pull/189) by [jomertix](https://github.com/jomertix)
+
 ## [0.11.1] - 2023-11-19
 
 ### Bug Fixes
