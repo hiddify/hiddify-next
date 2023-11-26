@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:hiddify/domain/constants.dart';
 import 'package:hiddify/services/platform_services.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:path/path.dart' as p;
@@ -20,8 +19,6 @@ class FilesEditorService with InfraLogger {
   late final Directories dirs;
 
   Directory get workingDir => dirs.workingDir;
-  Directory get configsDir =>
-      Directory(p.join(workingDir.path, Constants.configsFolderName));
   Directory get logsDir => dirs.workingDir;
 
   File get appLogsFile => File(p.join(logsDir.path, "app.log"));
@@ -42,9 +39,6 @@ class FilesEditorService with InfraLogger {
     }
     if (!await dirs.workingDir.exists()) {
       await dirs.workingDir.create(recursive: true);
-    }
-    if (!await configsDir.exists()) {
-      await configsDir.create(recursive: true);
     }
 
     if (await appLogsFile.exists()) {
@@ -67,15 +61,5 @@ class FilesEditorService with InfraLogger {
       return getApplicationSupportDirectory();
     }
     return getApplicationDocumentsDirectory();
-  }
-
-  String configPath(String fileName) {
-    return p.join(configsDir.path, "$fileName.json");
-  }
-
-  String tempConfigPath(String fileName) => configPath("temp_$fileName");
-
-  Future<void> deleteConfig(String fileName) {
-    return File(configPath(fileName)).delete();
   }
 }

@@ -3,8 +3,9 @@ import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/router/app_router.dart';
 import 'package:hiddify/features/home/view/view.dart';
 import 'package:hiddify/features/intro/intro_page.dart';
-import 'package:hiddify/features/profile_detail/view/view.dart';
-import 'package:hiddify/features/profiles/view/view.dart';
+import 'package:hiddify/features/profile/add/add_profile_modal.dart';
+import 'package:hiddify/features/profile/details/profile_details_page.dart';
+import 'package:hiddify/features/profile/overview/profiles_overview_page.dart';
 import 'package:hiddify/features/proxies/view/view.dart';
 import 'package:hiddify/utils/utils.dart';
 
@@ -86,7 +87,8 @@ class ProfilesRoute extends GoRouteData {
   Page<void> buildPage(BuildContext context, GoRouterState state) {
     return BottomSheetPage(
       name: name,
-      builder: (controller) => ProfilesModal(scrollController: controller),
+      builder: (controller) =>
+          ProfilesOverviewModal(scrollController: controller),
     );
   }
 }
@@ -103,7 +105,7 @@ class NewProfileRoute extends GoRouteData {
     return const MaterialPage(
       fullscreenDialog: true,
       name: name,
-      child: ProfileDetailPage("new"),
+      child: ProfileDetailsPage("new"),
     );
   }
 }
@@ -121,7 +123,7 @@ class ProfileDetailsRoute extends GoRouteData {
     return MaterialPage(
       fullscreenDialog: true,
       name: name,
-      child: ProfileDetailPage(id),
+      child: ProfileDetailsPage(id),
     );
   }
 }

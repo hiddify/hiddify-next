@@ -100,26 +100,4 @@ class AppUpdateNotifier extends _$AppUpdateNotifier with AppLogger {
     await _ignoreReleasePref.update(versionInfo.version);
     state = AppUpdateStateIgnored(versionInfo);
   }
-
-  // Future<void> _schedule() async {
-  //   loggy.debug("scheduling app update checker");
-  //   return ref.read(cronServiceProvider).schedule(
-  //         key: 'app_update',
-  //         duration: const Duration(hours: 8),
-  //         callback: () async {
-  //           await Future.delayed(const Duration(seconds: 5));
-  //           final updateState = await check();
-  //           final context = rootNavigatorKey.currentContext;
-  //           if (context != null && context.mounted) {
-  //             if (updateState
-  //                 case AppUpdateStateAvailable(:final versionInfo)) {
-  //               await NewVersionDialog(
-  //                 ref.read(appInfoProvider).presentVersion,
-  //                 versionInfo,
-  //               ).show(context);
-  //             }
-  //           }
-  //         },
-  //       );
-  // }
 }

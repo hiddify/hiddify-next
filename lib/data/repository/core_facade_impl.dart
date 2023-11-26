@@ -11,6 +11,7 @@ import 'package:hiddify/domain/core_facade.dart';
 import 'package:hiddify/domain/core_service_failure.dart';
 import 'package:hiddify/domain/singbox/singbox.dart';
 import 'package:hiddify/features/geo_asset/data/geo_asset_path_resolver.dart';
+import 'package:hiddify/features/profile/data/profile_path_resolver.dart';
 import 'package:hiddify/services/files_editor_service.dart';
 import 'package:hiddify/services/platform_services.dart';
 import 'package:hiddify/services/singbox/singbox_service.dart';
@@ -21,6 +22,7 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
     this.singbox,
     this.filesEditor,
     this.geoAssetPathResolver,
+    this.profilePathResolver,
     this.platformServices,
     this.clash,
     this.debug,
@@ -30,6 +32,7 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
   final SingboxService singbox;
   final FilesEditorService filesEditor;
   final GeoAssetPathResolver geoAssetPathResolver;
+  final ProfilePathResolver profilePathResolver;
   final PlatformServices platformServices;
   final ClashApi clash;
   final bool debug;
@@ -115,12 +118,14 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
   ) {
     return TaskEither<CoreServiceFailure, String>.Do(
       ($) async {
-        final configPath = filesEditor.configPath(fileName);
+        final configFile = profilePathResolver.file(fileName);
         final options = await $(_getConfigOptions());
         await $(setup());
         await $(changeConfigOptions(options));
         return await $(
-          singbox.generateConfig(configPath).mapLeft(CoreServiceFailure.other),
+          singbox
+              .generateConfig(configFile.path)
+              .mapLeft(CoreServiceFailure.other),
         );
       },
     ).handleExceptions(CoreServiceFailure.unexpected);
@@ -133,7 +138,7 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
   ) {
     return TaskEither<CoreServiceFailure, Unit>.Do(
       ($) async {
-        final configPath = filesEditor.configPath(fileName);
+        final configFile = profilePathResolver.file(fileName);
         final options = await $(_getConfigOptions());
         loggy.info(
           "config options: ${options.format()}\nMemory Limit: ${!disableMemoryLimit}",
@@ -155,7 +160,7 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
         await $(changeConfigOptions(options));
         return await $(
           singbox
-              .start(configPath, disableMemoryLimit)
+              .start(configFile.path, disableMemoryLimit)
               .mapLeft(CoreServiceFailure.start),
         );
       },
@@ -177,12 +182,12 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
   ) {
     return exceptionHandler(
       () async {
-        final configPath = filesEditor.configPath(fileName);
+        final configFile = profilePathResolver.file(fileName);
         return _getConfigOptions()
             .flatMap((options) => changeConfigOptions(options))
             .andThen(
               () => singbox
-                  .restart(configPath, disableMemoryLimit)
+                  .restart(configFile.path, disableMemoryLimit)
                   .mapLeft(CoreServiceFailure.start),
             )
             .run();

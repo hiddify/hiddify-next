@@ -3,7 +3,7 @@ import 'package:hiddify/core/prefs/service_prefs.dart';
 import 'package:hiddify/data/data_providers.dart';
 import 'package:hiddify/domain/connectivity/connectivity.dart';
 import 'package:hiddify/domain/core_facade.dart';
-import 'package:hiddify/features/common/active_profile/active_profile_notifier.dart';
+import 'package:hiddify/features/profile/notifier/active_profile_notifier.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:rxdart/rxdart.dart';
@@ -25,7 +25,7 @@ class ConnectivityController extends _$ConnectivityController with AppLogger {
       },
     );
     return _core.watchConnectionStatus().doOnData((event) {
-      if (event case Disconnected(:final connectionFailure?)
+      if (event case Disconnected(connectionFailure: final _?)
           when PlatformUtils.isDesktop) {
         ref.read(startedByUserProvider.notifier).update(false);
       }
