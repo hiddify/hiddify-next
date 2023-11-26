@@ -90,7 +90,7 @@ class ProfileTile extends HookConsumerWidget {
                 child: InkWell(
                   onTap: () {
                     if (isMain) {
-                      const ProfilesRoute().go(context);
+                      const ProfilesOverviewRoute().go(context);
                     } else {
                       if (selectActiveMutation.state.isInProgress) return;
                       if (profile.active) return;
