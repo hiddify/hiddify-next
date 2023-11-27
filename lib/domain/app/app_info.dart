@@ -19,7 +19,7 @@ class AppInfo with _$AppInfo {
     required Environment environment,
   }) = _AppInfo;
 
-  String get userAgent => "HiddifyNext/$version ($operatingSystem)";
+  String get userAgent => "HiddifyNext/$version ($operatingSystem) like ClashMeta v2ray sing-box";
 
   String get presentVersion => environment == Environment.prod
       ? version
