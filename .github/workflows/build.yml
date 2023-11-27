@@ -370,7 +370,8 @@ jobs:
           packageName: app.hiddify.com
           releaseName: ${{ github.ref }}
           releaseFiles: ./hiddify-android-market.aab
-          track: ${{ env.CHANNEL == 'dev' && 'beta' || 'internal' }}
+          # track: ${{ env.CHANNEL == 'dev' && 'beta' || 'internal' }}
+          track:  'beta'
 
       # - name: "Upload app to TestFlight"
       #   uses: apple-actions/upload-testflight-build@v1
