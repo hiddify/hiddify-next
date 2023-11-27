@@ -2,11 +2,8 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:fpdart/fpdart.dart';
-import 'package:hiddify/data/api/clash_api.dart';
 import 'package:hiddify/data/repository/exception_handlers.dart';
-import 'package:hiddify/domain/clash/clash.dart';
 import 'package:hiddify/domain/connectivity/connection_status.dart';
-import 'package:hiddify/domain/constants.dart';
 import 'package:hiddify/domain/core_facade.dart';
 import 'package:hiddify/domain/core_service_failure.dart';
 import 'package:hiddify/domain/singbox/singbox.dart';
@@ -24,7 +21,6 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
     this.geoAssetPathResolver,
     this.profilePathResolver,
     this.platformServices,
-    this.clash,
     this.debug,
     this.configOptions,
   );
@@ -34,7 +30,6 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
   final GeoAssetPathResolver geoAssetPathResolver;
   final ProfilePathResolver profilePathResolver;
   final PlatformServices platformServices;
-  final ClashApi clash;
   final bool debug;
   final Future<ConfigOptions> Function() configOptions;
 
@@ -259,67 +254,6 @@ class CoreFacadeImpl with ExceptionHandler, InfraLogger implements CoreFacade {
   TaskEither<CoreServiceFailure, Unit> clearLogs() {
     return exceptionHandler(
       () => singbox.clearLogs().mapLeft(CoreServiceFailure.other).run(),
-      CoreServiceFailure.unexpected,
-    );
-  }
-
-  @override
-  TaskEither<CoreServiceFailure, ClashConfig> getConfigs() {
-    return exceptionHandler(
-      () async => clash.getConfigs().mapLeft(CoreServiceFailure.other).run(),
-      CoreServiceFailure.unexpected,
-    );
-  }
-
-  @override
-  TaskEither<CoreServiceFailure, Unit> patchOverrides(ClashConfig overrides) {
-    return exceptionHandler(
-      () async =>
-          clash.patchConfigs(overrides).mapLeft(CoreServiceFailure.other).run(),
-      CoreServiceFailure.unexpected,
-    );
-  }
-
-  @override
-  TaskEither<CoreServiceFailure, List<ClashProxy>> getProxies() {
-    return exceptionHandler(
-      () async => clash.getProxies().mapLeft(CoreServiceFailure.other).run(),
-      CoreServiceFailure.unexpected,
-    );
-  }
-
-  @override
-  TaskEither<CoreServiceFailure, Unit> changeProxy(
-    String selectorName,
-    String proxyName,
-  ) {
-    return exceptionHandler(
-      () async => clash
-          .changeProxy(selectorName, proxyName)
-          .mapLeft(CoreServiceFailure.other)
-          .run(),
-      CoreServiceFailure.unexpected,
-    );
-  }
-
-  @override
-  Stream<Either<CoreServiceFailure, ClashTraffic>> watchTraffic() {
-    return clash.watchTraffic().handleExceptions(CoreServiceFailure.unexpected);
-  }
-
-  @override
-  TaskEither<CoreServiceFailure, int> testDelay(
-    String proxyName, {
-    String testUrl = Defaults.connectionTestUrl,
-  }) {
-    return exceptionHandler(
-      () async {
-        final result = clash
-            .getProxyDelay(proxyName, testUrl)
-            .mapLeft(CoreServiceFailure.other)
-            .run();
-        return result;
-      },
       CoreServiceFailure.unexpected,
     );
   }
