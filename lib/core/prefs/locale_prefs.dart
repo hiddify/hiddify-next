@@ -1,3 +1,4 @@
+import 'package:flutter_localized_locales/flutter_localized_locales.dart';
 import 'package:hiddify/data/data_providers.dart';
 import 'package:hiddify/gen/fonts.gen.dart';
 import 'package:hiddify/gen/translations.g.dart';
@@ -14,7 +15,13 @@ class LocaleNotifier extends _$LocaleNotifier {
     ref.watch(sharedPreferencesProvider),
     "locale",
     AppLocaleUtils.findDeviceLocale(),
-    mapFrom: AppLocale.values.byName,
+    mapFrom: (String value) {
+      // keep backward compatibility with chinese after changing zh to zh_CN
+      if (value == "zh") {
+        return AppLocale.zhCn;
+      }
+      return AppLocale.values.byName(value);
+    },
     mapTo: (value) => value.name,
   );
 
@@ -30,4 +37,9 @@ class LocaleNotifier extends _$LocaleNotifier {
 extension AppLocaleX on AppLocale {
   String get preferredFontFamily =>
       this == AppLocale.fa ? FontFamily.shabnam : "";
+
+  String get localeName =>
+      LocaleNamesLocalizationsDelegate
+          .nativeLocaleNames[flutterLocale.toString()] ??
+      name;
 }

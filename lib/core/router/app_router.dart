@@ -38,7 +38,9 @@ GoRouter router(RouterRef ref) {
     navigatorKey: rootNavigatorKey,
     initialLocation: initialLocation,
     debugLogDiagnostics: true,
-    routes: useMobileRouter ? mobileRoutes : desktopRoutes,
+    routes: [
+      if (useMobileRouter) $mobileWrapperRoute else $desktopWrapperRoute,
+    ],
     refreshListenable: notifier,
     redirect: notifier.redirect,
     observers: [

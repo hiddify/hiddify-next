@@ -51,7 +51,7 @@
         </tr>
         <tr>
             <td>Linux</td>
-            <td><a href="https://github.com/hiddify/hiddify-next/releases/download/RELEASE_TAG/hiddify-macos-universal.zip"><img src="https://img.shields.io/badge/AppImage-x64-f84e29.svg?logo=github"> </a></td>
+            <td><a href="https://github.com/hiddify/hiddify-next/releases/download/RELEASE_TAG/hiddify-linux-x64.zip"><img src="https://img.shields.io/badge/AppImage-x64-f84e29.svg?logo=github"> </a></td>
         </tr>
     </tbody>
 </table>

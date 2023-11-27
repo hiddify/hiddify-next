@@ -44,7 +44,7 @@ class EmptyActiveProfileHomeBody extends HookConsumerWidget {
           Text(t.home.noActiveProfileMsg),
           const Gap(16),
           OutlinedButton(
-            onPressed: () => const ProfilesRoute().push(context),
+            onPressed: () => const ProfilesOverviewRoute().push(context),
             child: Text(t.profile.overviewPageTitle),
           ),
         ],

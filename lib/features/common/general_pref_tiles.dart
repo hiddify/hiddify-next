@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localized_locales/flutter_localized_locales.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/core/prefs/prefs.dart';
@@ -17,10 +16,7 @@ class LocalePrefTile extends HookConsumerWidget {
 
     return ListTile(
       title: Text(t.settings.general.locale),
-      subtitle: Text(
-        LocaleNamesLocalizationsDelegate.nativeLocaleNames[locale.name] ??
-            locale.name,
-      ),
+      subtitle: Text(locale.localeName),
       leading: const Icon(Icons.language),
       onTap: () async {
         final selectedLocale = await showDialog<AppLocale>(
@@ -31,11 +27,7 @@ class LocalePrefTile extends HookConsumerWidget {
               children: AppLocale.values
                   .map(
                     (e) => RadioListTile(
-                      title: Text(
-                        LocaleNamesLocalizationsDelegate
-                                .nativeLocaleNames[e.name] ??
-                            e.name,
-                      ),
+                      title: Text(e.localeName),
                       value: e,
                       groupValue: locale,
                       onChanged: (e) => context.pop(e),

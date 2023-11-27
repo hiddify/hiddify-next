@@ -20,7 +20,7 @@
 
 <p dir="ltr" style="font-size: 16px">一个基于 <a href="https://github.com/SagerNet/sing-box">Sing-box</a> 的跨平台自动客户端，用作通用代理工具链。该应用提供了广泛的功能，如下所列。它还支持大量协议。该应用免费使用、无广告且开源。它为访问自由互联网提供了一个安全且私密的工具。</p>
 
-该应用是使用 [Flutter](https://flutter.dev/) 和 [Go](https://go.dev/) 开发的。 欲了解更多信息，您可以参阅我们的开发贡献指南。
+该应用是使用 [Flutter](https://flutter.dev/) 和 [Go](https://go.dev/) 开发的。 有关开发的更多信息，您可以阅读我们的[贡献指南](CONTRIBUTING.md)。
 
 <div align=center>
 <img width=90% alt="English Demo" src="https://github.com/hiddify/hiddify-next/assets/125398461/ffe5346d-3404-470f-b5e0-4364e23743d2">

@@ -1,10 +1,5 @@
 import 'dart:io';
 
-import 'package:dartx/dartx.dart';
-import 'package:flutter/services.dart';
-import 'package:hiddify/domain/constants.dart';
-import 'package:hiddify/domain/rules/geo_asset.dart';
-import 'package:hiddify/gen/assets.gen.dart';
 import 'package:hiddify/services/platform_services.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:path/path.dart' as p;
@@ -24,12 +19,7 @@ class FilesEditorService with InfraLogger {
   late final Directories dirs;
 
   Directory get workingDir => dirs.workingDir;
-  Directory get configsDir =>
-      Directory(p.join(workingDir.path, Constants.configsFolderName));
   Directory get logsDir => dirs.workingDir;
-
-  Directory get geoAssetsDir =>
-      Directory(p.join(workingDir.path, "geo-assets"));
 
   File get appLogsFile => File(p.join(logsDir.path, "app.log"));
   File get coreLogsFile => File(p.join(logsDir.path, "box.log"));
@@ -50,12 +40,6 @@ class FilesEditorService with InfraLogger {
     if (!await dirs.workingDir.exists()) {
       await dirs.workingDir.create(recursive: true);
     }
-    if (!await configsDir.exists()) {
-      await configsDir.create(recursive: true);
-    }
-    if (!await geoAssetsDir.exists()) {
-      await geoAssetsDir.create(recursive: true);
-    }
 
     if (await appLogsFile.exists()) {
       await appLogsFile.writeAsString("");
@@ -68,8 +52,6 @@ class FilesEditorService with InfraLogger {
     } else {
       await coreLogsFile.create(recursive: true);
     }
-
-    await _populateGeoAssets();
   }
 
   static Future<Directory> getDatabaseDirectory() async {
@@ -79,50 +61,5 @@ class FilesEditorService with InfraLogger {
       return getApplicationSupportDirectory();
     }
     return getApplicationDocumentsDirectory();
-  }
-
-  String configPath(String fileName) {
-    return p.join(configsDir.path, "$fileName.json");
-  }
-
-  String geoAssetPath(String providerName, String fileName) {
-    final prefix = providerName.replaceAll("/", "-").toLowerCase();
-    return p.join(
-      geoAssetsDir.path,
-      "$prefix${prefix.isBlank ? "" : "-"}$fileName",
-    );
-  }
-
-  /// geoasset's path relative to working directory
-  String geoAssetRelativePath(String providerName, String fileName) {
-    final fullPath = geoAssetPath(providerName, fileName);
-    return p.relative(fullPath, from: workingDir.path);
-  }
-
-  String resolveGeoAssetPath(String path) {
-    return p.absolute(workingDir.path, path);
-  }
-
-  String tempConfigPath(String fileName) => configPath("temp_$fileName");
-
-  Future<void> deleteConfig(String fileName) {
-    return File(configPath(fileName)).delete();
-  }
-
-  Future<void> _populateGeoAssets() async {
-    loggy.debug('populating geo assets');
-    final geoipPath =
-        geoAssetPath(defaultGeoip.providerName, defaultGeoip.fileName);
-    if (!await File(geoipPath).exists()) {
-      final bundledGeoip = await rootBundle.load(Assets.core.geoip);
-      await File(geoipPath).writeAsBytes(bundledGeoip.buffer.asInt8List());
-    }
-
-    final geositePath =
-        geoAssetPath(defaultGeosite.providerName, defaultGeosite.fileName);
-    if (!await File(geositePath).exists()) {
-      final bundledGeosite = await rootBundle.load(Assets.core.geosite);
-      await File(geositePath).writeAsBytes(bundledGeosite.buffer.asInt8List());
-    }
   }
 }
