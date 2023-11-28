@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/data/repository/config_options_store.dart';
 import 'package:hiddify/domain/singbox/singbox.dart';
+import 'package:hiddify/features/log/model/log_level.dart';
 import 'package:hiddify/features/settings/widgets/widgets.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

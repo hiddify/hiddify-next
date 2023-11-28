@@ -1,21 +1,22 @@
 import 'dart:async';
 
-import 'package:hiddify/data/data_providers.dart';
-import 'package:hiddify/domain/singbox/singbox.dart';
-import 'package:hiddify/features/logs/notifier/logs_state.dart';
+import 'package:hiddify/features/log/data/log_data_providers.dart';
+import 'package:hiddify/features/log/model/log_entity.dart';
+import 'package:hiddify/features/log/model/log_level.dart';
+import 'package:hiddify/features/log/overview/logs_overview_state.dart';
 import 'package:hiddify/utils/riverpod_utils.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:rxdart/rxdart.dart';
 
-part 'logs_notifier.g.dart';
+part 'logs_overview_notifier.g.dart';
 
 @riverpod
-class LogsNotifier extends _$LogsNotifier with AppLogger {
+class LogsOverviewNotifier extends _$LogsOverviewNotifier with AppLogger {
   @override
-  LogsState build() {
+  LogsOverviewState build() {
     ref.disposeDelay(const Duration(seconds: 20));
-    state = const LogsState();
+    state = const LogsOverviewState();
     ref.onDispose(
       () {
         loggy.debug("disposing");
@@ -41,7 +42,7 @@ class LogsNotifier extends _$LogsNotifier with AppLogger {
     );
 
     _addListeners();
-    return const LogsState();
+    return const LogsOverviewState();
   }
 
   StreamSubscription? _listener;
@@ -50,7 +51,8 @@ class LogsNotifier extends _$LogsNotifier with AppLogger {
     loggy.debug("adding listeners");
     await _listener?.cancel();
     _listener = ref
-        .read(coreFacadeProvider)
+        .read(logRepositoryProvider)
+        .requireValue
         .watchLogs()
         .throttle(
           (_) => Stream.value(_listener?.isPaused ?? false),
@@ -78,15 +80,14 @@ class LogsNotifier extends _$LogsNotifier with AppLogger {
     ).listen((event) {});
   }
 
-  Iterable<String> _logs = [];
+  Iterable<LogEntity> _logs = [];
   final _debouncer = CallbackDebouncer(const Duration(milliseconds: 200));
   LogLevel? _levelFilter;
   String _filter = "";
 
-  Future<List<BoxLog>> _computeLogs() async {
-    final logs = _logs.map(BoxLog.parse);
-    if (_levelFilter == null && _filter.isEmpty) return logs.toList();
-    return logs.where((e) {
+  Future<List<LogEntity>> _computeLogs() async {
+    if (_levelFilter == null && _filter.isEmpty) return _logs.toList();
+    return _logs.where((e) {
       return (_filter.isEmpty || e.message.contains(_filter)) &&
           (_levelFilter == null ||
               e.level == null ||
@@ -108,7 +109,7 @@ class LogsNotifier extends _$LogsNotifier with AppLogger {
 
   Future<void> clear() async {
     loggy.debug("clearing");
-    await ref.read(coreFacadeProvider).clearLogs().match(
+    await ref.read(logRepositoryProvider).requireValue.clearLogs().match(
       (l) {
         loggy.warning("error clearing logs", l);
       },

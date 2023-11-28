@@ -6,7 +6,7 @@ import 'package:hiddify/features/common/adaptive_root_scaffold.dart';
 import 'package:hiddify/features/geo_asset/overview/geo_assets_overview_page.dart';
 import 'package:hiddify/features/home/view/view.dart';
 import 'package:hiddify/features/intro/intro_page.dart';
-import 'package:hiddify/features/logs/view/logs_page.dart';
+import 'package:hiddify/features/log/overview/logs_overview_page.dart';
 import 'package:hiddify/features/profile/add/add_profile_modal.dart';
 import 'package:hiddify/features/profile/details/profile_details_page.dart';
 import 'package:hiddify/features/profile/overview/profiles_overview_page.dart';
@@ -44,9 +44,9 @@ GlobalKey<NavigatorState>? _dynamicRootKey =
           path: "profiles/:id",
           name: ProfileDetailsRoute.name,
         ),
-        TypedGoRoute<LogsRoute>(
+        TypedGoRoute<LogsOverviewRoute>(
           path: "logs",
-          name: LogsRoute.name,
+          name: LogsOverviewRoute.name,
         ),
         TypedGoRoute<SettingsRoute>(
           path: "settings",
@@ -116,9 +116,9 @@ class MobileWrapperRoute extends ShellRouteData {
       path: "/proxies",
       name: ProxiesRoute.name,
     ),
-    TypedGoRoute<LogsRoute>(
+    TypedGoRoute<LogsOverviewRoute>(
       path: "/logs",
-      name: LogsRoute.name,
+      name: LogsOverviewRoute.name,
     ),
     TypedGoRoute<SettingsRoute>(
       path: "/settings",
@@ -260,8 +260,8 @@ class ProfileDetailsRoute extends GoRouteData {
   }
 }
 
-class LogsRoute extends GoRouteData {
-  const LogsRoute();
+class LogsOverviewRoute extends GoRouteData {
+  const LogsOverviewRoute();
   static const name = "Logs";
 
   static final GlobalKey<NavigatorState>? $parentNavigatorKey = _dynamicRootKey;
@@ -272,10 +272,10 @@ class LogsRoute extends GoRouteData {
       return const MaterialPage(
         fullscreenDialog: true,
         name: name,
-        child: LogsPage(),
+        child: LogsOverviewPage(),
       );
     }
-    return const NoTransitionPage(name: name, child: LogsPage());
+    return const NoTransitionPage(name: name, child: LogsOverviewPage());
   }
 }
 

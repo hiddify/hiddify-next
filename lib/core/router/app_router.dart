@@ -53,7 +53,7 @@ int getCurrentIndex(BuildContext context) {
   final String location = GoRouterState.of(context).uri.path;
   if (location == const HomeRoute().location) return 0;
   if (location.startsWith(const ProxiesRoute().location)) return 1;
-  if (location.startsWith(const LogsRoute().location)) return 2;
+  if (location.startsWith(const LogsOverviewRoute().location)) return 2;
   if (location.startsWith(const SettingsRoute().location)) return 3;
   if (location.startsWith(const AboutRoute().location)) return 4;
   return 0;
@@ -66,7 +66,7 @@ void switchTab(int index, BuildContext context) {
     case 1:
       const ProxiesRoute().go(context);
     case 2:
-      const LogsRoute().go(context);
+      const LogsOverviewRoute().go(context);
     case 3:
       const SettingsRoute().go(context);
     case 4:

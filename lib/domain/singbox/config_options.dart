@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hiddify/core/prefs/prefs.dart';
-import 'package:hiddify/domain/singbox/box_log.dart';
 import 'package:hiddify/domain/singbox/rules.dart';
+import 'package:hiddify/features/log/model/log_level.dart';
 
 part 'config_options.freezed.dart';
 part 'config_options.g.dart';

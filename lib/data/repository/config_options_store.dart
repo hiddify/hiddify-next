@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:hiddify/data/data_providers.dart';
 import 'package:hiddify/domain/singbox/singbox.dart';
+import 'package:hiddify/features/log/model/log_level.dart';
 import 'package:hiddify/utils/pref_notifier.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

@@ -12,6 +12,7 @@ import 'package:hiddify/data/repository/app_repository_impl.dart';
 import 'package:hiddify/domain/environment.dart';
 import 'package:hiddify/features/common/window/window_controller.dart';
 import 'package:hiddify/features/geo_asset/data/geo_asset_data_providers.dart';
+import 'package:hiddify/features/log/data/log_data_providers.dart';
 import 'package:hiddify/features/profile/data/profile_data_providers.dart';
 import 'package:hiddify/features/profile/notifier/active_profile_notifier.dart';
 import 'package:hiddify/features/system_tray/system_tray_controller.dart';
@@ -88,6 +89,7 @@ Future<void> _lazyBootstrap(
 
   final filesEditor = container.read(filesEditorServiceProvider);
   await filesEditor.init();
+  await container.read(logRepositoryProvider.future);
   await container.read(geoAssetRepositoryProvider.future);
   await container.read(profileRepositoryProvider.future);
 
@@ -145,7 +147,7 @@ void initLoggers(
   final logToFile = debug || (!Platform.isAndroid && !Platform.isIOS);
   if (logToFile) {
     _loggers.addPrinter(
-      FileLogPrinter(read(filesEditorServiceProvider).appLogsFile.path),
+      FileLogPrinter(read(logPathResolverProvider).appFile().path),
     );
   }
   Loggy.initLoggy(

@@ -5,25 +5,25 @@ import 'package:gap/gap.dart';
 import 'package:hiddify/core/core_providers.dart';
 import 'package:hiddify/core/prefs/prefs.dart';
 import 'package:hiddify/domain/failures.dart';
-import 'package:hiddify/domain/singbox/singbox.dart';
 import 'package:hiddify/features/common/nested_app_bar.dart';
-import 'package:hiddify/features/logs/notifier/notifier.dart';
-import 'package:hiddify/services/service_providers.dart';
+import 'package:hiddify/features/log/data/log_data_providers.dart';
+import 'package:hiddify/features/log/model/log_level.dart';
+import 'package:hiddify/features/log/overview/logs_overview_notifier.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
-class LogsPage extends HookConsumerWidget with PresLogger {
-  const LogsPage({super.key});
+class LogsOverviewPage extends HookConsumerWidget with PresLogger {
+  const LogsOverviewPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = ref.watch(translationsProvider);
-    final state = ref.watch(logsNotifierProvider);
-    final notifier = ref.watch(logsNotifierProvider.notifier);
+    final state = ref.watch(logsOverviewNotifierProvider);
+    final notifier = ref.watch(logsOverviewNotifierProvider.notifier);
 
     final debug = ref.watch(debugModeNotifierProvider);
-    final filesEditor = ref.watch(filesEditorServiceProvider);
+    final pathResolver = ref.watch(logPathResolverProvider);
 
     final filterController = useTextEditingController(text: state.filter);
 
@@ -33,8 +33,8 @@ class LogsPage extends HookConsumerWidget with PresLogger {
               child: Text(t.logs.shareCoreLogs),
               onTap: () async {
                 await UriUtils.tryShareOrLaunchFile(
-                  Uri.parse(filesEditor.coreLogsFile.path),
-                  fileOrDir: filesEditor.logsDir.uri,
+                  Uri.parse(pathResolver.coreFile().path),
+                  fileOrDir: pathResolver.directory.uri,
                 );
               },
             ),
@@ -42,8 +42,8 @@ class LogsPage extends HookConsumerWidget with PresLogger {
               child: Text(t.logs.shareAppLogs),
               onTap: () async {
                 await UriUtils.tryShareOrLaunchFile(
-                  Uri.parse(filesEditor.appLogsFile.path),
-                  fileOrDir: filesEditor.logsDir.uri,
+                  Uri.parse(pathResolver.appFile().path),
+                  fileOrDir: pathResolver.directory.uri,
                 );
               },
             ),

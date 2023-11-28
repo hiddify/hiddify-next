@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:hiddify/services/platform_services.dart';
 import 'package:hiddify/utils/utils.dart';
-import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
 typedef Directories = ({
@@ -19,10 +18,6 @@ class FilesEditorService with InfraLogger {
   late final Directories dirs;
 
   Directory get workingDir => dirs.workingDir;
-  Directory get logsDir => dirs.workingDir;
-
-  File get appLogsFile => File(p.join(logsDir.path, "app.log"));
-  File get coreLogsFile => File(p.join(logsDir.path, "box.log"));
 
   Future<void> init() async {
     dirs = await platformServices.getPaths().getOrElse(
@@ -39,18 +34,6 @@ class FilesEditorService with InfraLogger {
     }
     if (!await dirs.workingDir.exists()) {
       await dirs.workingDir.create(recursive: true);
-    }
-
-    if (await appLogsFile.exists()) {
-      await appLogsFile.writeAsString("");
-    } else {
-      await appLogsFile.create(recursive: true);
-    }
-
-    if (await coreLogsFile.exists()) {
-      await coreLogsFile.writeAsString("");
-    } else {
-      await coreLogsFile.create(recursive: true);
     }
   }
 
