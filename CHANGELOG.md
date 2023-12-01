@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## [0.12.0.dev] - 2023-12-01
 
 ### New Features and Improvements
 
@@ -8,7 +8,10 @@
 
 ### Bug Fixes
 
+- Refactored significant portions of the app
+- Fixed incorrect profile parsing when missing headers
 - Fixed geo assets bug where assets were deactivated
+- Updated sing-box to version 1.7.0
 - Fixed Chinese typography bug (thanks to [betaxab](https://github.com/betaxab))
 - Fixed localization mistakes in Russian. [PR#189](https://github.com/hiddify/hiddify-next/pull/189) by [jomertix](https://github.com/jomertix)
 
@@ -85,6 +88,7 @@
 - Fixed localization mistakes in Russian. [PR#95](https://github.com/hiddify/hiddify-next/pull/95) by [solokot](https://github.com/solokot)
 - Fixed localization mistakes in Russian. [PR#74](https://github.com/hiddify/hiddify-next/pull/74) by [Elshad Guseynov](https://github.com/lifeindarkside)
 
+[0.12.0.dev]: https://github.com/hiddify/hiddify-next/releases/tag/v0.12.0.dev
 [0.11.1]: https://github.com/hiddify/hiddify-next/releases/tag/v0.11.1
 [0.11.0]: https://github.com/hiddify/hiddify-next/releases/tag/v0.11.0
 [0.10.0]: https://github.com/hiddify/hiddify-next/releases/tag/v0.10.0
