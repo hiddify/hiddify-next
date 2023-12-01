@@ -1,6 +1,7 @@
 import 'package:hiddify/features/log/data/log_path_resolver.dart';
 import 'package:hiddify/features/log/data/log_repository.dart';
 import 'package:hiddify/services/service_providers.dart';
+import 'package:hiddify/singbox/service/singbox_service_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'log_data_providers.g.dart';

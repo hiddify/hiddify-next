@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hiddify/core/prefs/prefs.dart';
-import 'package:hiddify/domain/failures.dart';
+import 'package:hiddify/core/localization/translations.dart';
+import 'package:hiddify/core/model/failures.dart';
 
 part 'geo_asset_failure.freezed.dart';
 
@@ -8,6 +8,7 @@ part 'geo_asset_failure.freezed.dart';
 sealed class GeoAssetFailure with _$GeoAssetFailure, Failure {
   const GeoAssetFailure._();
 
+  @With<UnexpectedFailure>()
   const factory GeoAssetFailure.unexpected([
     Object? error,
     StackTrace? stackTrace,
@@ -16,6 +17,7 @@ sealed class GeoAssetFailure with _$GeoAssetFailure, Failure {
   @With<ExpectedFailure>()
   const factory GeoAssetFailure.noUpdateAvailable() = GeoAssetNoUpdateAvailable;
 
+  @With<ExpectedMeasuredFailure>()
   const factory GeoAssetFailure.activeAssetNotFound() =
       GeoAssetActiveAssetNotFound;
 

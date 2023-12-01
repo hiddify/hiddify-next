@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hiddify/core/prefs/locale_prefs.dart';
-import 'package:hiddify/domain/failures.dart';
+import 'package:hiddify/core/localization/translations.dart';
+import 'package:hiddify/core/model/failures.dart';
 
 part 'log_failure.freezed.dart';
 
@@ -8,6 +8,7 @@ part 'log_failure.freezed.dart';
 sealed class LogFailure with _$LogFailure, Failure {
   const LogFailure._();
 
+  @With<UnexpectedFailure>()
   const factory LogFailure.unexpected([
     Object? error,
     StackTrace? stackTrace,
@@ -17,7 +18,7 @@ sealed class LogFailure with _$LogFailure, Failure {
   ({String type, String? message}) present(TranslationsEn t) {
     return switch (this) {
       LogUnexpectedFailure() => (
-          type: "unexpected",
+          type: t.failure.unexpected,
           message: null,
         ),
     };

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:hiddify/domain/singbox/singbox.dart';
+import 'package:hiddify/singbox/model/singbox_proxy_type.dart';
 import 'package:hiddify/utils/validators.dart';
 
 typedef ProfileLink = ({String url, String name});

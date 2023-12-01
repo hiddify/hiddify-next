@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hiddify/core/core_providers.dart';
+import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/features/geo_asset/overview/geo_assets_overview_notifier.dart';
 import 'package:hiddify/features/geo_asset/widget/geo_asset_tile.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

@@ -1,4 +1,5 @@
-import 'package:hiddify/data/data_providers.dart';
+import 'package:hiddify/core/database/database_provider.dart';
+import 'package:hiddify/core/http_client/http_client_provider.dart';
 import 'package:hiddify/features/geo_asset/data/geo_asset_data_source.dart';
 import 'package:hiddify/features/geo_asset/data/geo_asset_path_resolver.dart';
 import 'package:hiddify/features/geo_asset/data/geo_asset_repository.dart';
@@ -12,7 +13,7 @@ Future<GeoAssetRepository> geoAssetRepository(GeoAssetRepositoryRef ref) async {
   final repo = GeoAssetRepositoryImpl(
     geoAssetDataSource: ref.watch(geoAssetDataSourceProvider),
     geoAssetPathResolver: ref.watch(geoAssetPathResolverProvider),
-    dio: ref.watch(dioProvider),
+    dio: ref.watch(httpClientProvider),
   );
   await repo.init().getOrElse((l) => throw l).run();
   return repo;

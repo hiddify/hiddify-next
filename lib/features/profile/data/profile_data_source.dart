@@ -1,6 +1,6 @@
 import 'package:drift/drift.dart';
-import 'package:hiddify/data/local/database.dart';
-import 'package:hiddify/data/local/tables.dart';
+import 'package:hiddify/core/database/app_database.dart';
+import 'package:hiddify/core/database/tables/database_tables.dart';
 import 'package:hiddify/features/profile/model/profile_sort_enum.dart';
 import 'package:hiddify/utils/utils.dart';
 

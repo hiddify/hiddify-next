@@ -3,9 +3,8 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:drift/drift.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:hiddify/data/local/database.dart';
-import 'package:hiddify/data/repository/exception_handlers.dart';
-import 'package:hiddify/domain/core_service_failure.dart';
+import 'package:hiddify/core/database/app_database.dart';
+import 'package:hiddify/core/utils/exception_handler.dart';
 import 'package:hiddify/features/profile/data/profile_data_mapper.dart';
 import 'package:hiddify/features/profile/data/profile_data_source.dart';
 import 'package:hiddify/features/profile/data/profile_parser.dart';
@@ -13,6 +12,7 @@ import 'package:hiddify/features/profile/data/profile_path_resolver.dart';
 import 'package:hiddify/features/profile/model/profile_entity.dart';
 import 'package:hiddify/features/profile/model/profile_failure.dart';
 import 'package:hiddify/features/profile/model/profile_sort_enum.dart';
+import 'package:hiddify/singbox/service/singbox_service.dart';
 import 'package:hiddify/utils/custom_loggers.dart';
 import 'package:hiddify/utils/link_parsers.dart';
 import 'package:meta/meta.dart';
@@ -43,6 +43,8 @@ abstract interface class ProfileRepository {
 
   TaskEither<ProfileFailure, Unit> add(RemoteProfileEntity baseProfile);
 
+  TaskEither<ProfileFailure, String> generateConfig(String id);
+
   TaskEither<ProfileFailure, Unit> updateSubscription(
     RemoteProfileEntity baseProfile,
   );
@@ -58,17 +60,13 @@ class ProfileRepositoryImpl
   ProfileRepositoryImpl({
     required this.profileDataSource,
     required this.profilePathResolver,
-    required this.configValidator,
+    required this.singbox,
     required this.dio,
   });
 
   final ProfileDataSource profileDataSource;
   final ProfilePathResolver profilePathResolver;
-  final TaskEither<CoreServiceFailure, Unit> Function(
-    String path,
-    String tempPath,
-    bool debug,
-  ) configValidator;
+  final SingboxService singbox;
   final Dio dio;
 
   @override
@@ -165,6 +163,23 @@ class ProfileRepositoryImpl
     );
   }
 
+  @visibleForTesting
+  TaskEither<ProfileFailure, Unit> validateConfig(
+    String path,
+    String tempPath,
+    bool debug,
+  ) {
+    return exceptionHandler(
+      () {
+        return singbox
+            .validateConfigByPath(path, tempPath, debug)
+            .mapLeft(ProfileFailure.invalidConfig)
+            .run();
+      },
+      ProfileUnexpectedFailure.new,
+    );
+  }
+
   @override
   TaskEither<ProfileFailure, Unit> addByContent(
     String content, {
@@ -179,24 +194,20 @@ class ProfileRepositoryImpl
 
         try {
           await tempFile.writeAsString(content);
-          final parseResult =
-              await configValidator(file.path, tempFile.path, false).run();
-          return parseResult.fold(
-            (err) async {
-              loggy.warning("error parsing config", err);
-              return left(ProfileFailure.invalidConfig(err.msg));
-            },
-            (_) async {
-              final profile = LocalProfileEntity(
-                id: profileId,
-                active: markAsActive,
-                name: name,
-                lastUpdate: DateTime.now(),
-              );
-              await profileDataSource.insert(profile.toEntry());
-              return right(unit);
-            },
-          );
+          return await validateConfig(file.path, tempFile.path, false)
+              .andThen(
+                () => TaskEither(() async {
+                  final profile = LocalProfileEntity(
+                    id: profileId,
+                    active: markAsActive,
+                    name: name,
+                    lastUpdate: DateTime.now(),
+                  );
+                  await profileDataSource.insert(profile.toEntry());
+                  return right(unit);
+                }),
+              )
+              .run();
         } finally {
           if (tempFile.existsSync()) tempFile.deleteSync();
         }
@@ -233,6 +244,21 @@ class ProfileRepositoryImpl
         return ProfileUnexpectedFailure(error, stackTrace);
       },
     );
+  }
+
+  @override
+  TaskEither<ProfileFailure, String> generateConfig(String id) {
+    return TaskEither<ProfileFailure, String>.Do(
+      ($) async {
+        final configFile = profilePathResolver.file(id);
+        // TODO pass options
+        return await $(
+          singbox
+              .generateFullConfigByPath(configFile.path)
+              .mapLeft(ProfileFailure.unexpected),
+        );
+      },
+    ).handleExceptions(ProfileFailure.unexpected);
   }
 
   @override
@@ -333,18 +359,14 @@ class ProfileRepositoryImpl
           );
           final headers =
               await _populateHeaders(response.headers.map, tempFile.path);
-          final parseResult =
-              await configValidator(file.path, tempFile.path, false).run();
-          return parseResult.fold(
-            (err) async {
-              loggy.warning("error parsing config", err);
-              return left(ProfileFailure.invalidConfig(err.msg));
-            },
-            (_) async {
-              final profile = ProfileParser.parse(url, headers);
-              return right(profile);
-            },
-          );
+          return await validateConfig(file.path, tempFile.path, false)
+              .andThen(
+                () => TaskEither(() async {
+                  final profile = ProfileParser.parse(url, headers);
+                  return right(profile);
+                }),
+              )
+              .run();
         } finally {
           if (tempFile.existsSync()) tempFile.deleteSync();
         }

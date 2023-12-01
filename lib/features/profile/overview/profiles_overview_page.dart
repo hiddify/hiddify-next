@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:hiddify/core/core_providers.dart';
+import 'package:hiddify/core/localization/translations.dart';
+import 'package:hiddify/core/model/failures.dart';
 import 'package:hiddify/core/router/router.dart';
-import 'package:hiddify/domain/failures.dart';
 import 'package:hiddify/features/profile/model/profile_sort_enum.dart';
 import 'package:hiddify/features/profile/overview/profiles_overview_notifier.dart';
 import 'package:hiddify/features/profile/widget/profile_tile.dart';

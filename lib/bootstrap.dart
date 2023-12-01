@@ -4,12 +4,11 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:hiddify/core/app/app_view.dart';
-import 'package:hiddify/core/core_providers.dart';
-import 'package:hiddify/core/prefs/prefs.dart';
-import 'package:hiddify/data/data_providers.dart';
-import 'package:hiddify/data/repository/app_repository_impl.dart';
-import 'package:hiddify/domain/environment.dart';
+import 'package:hiddify/core/app_info/app_info_provider.dart';
+import 'package:hiddify/core/model/environment.dart';
+import 'package:hiddify/core/preferences/general_preferences.dart';
+import 'package:hiddify/core/preferences/preferences_provider.dart';
+import 'package:hiddify/features/app/widget/app.dart';
 import 'package:hiddify/features/common/window/window_controller.dart';
 import 'package:hiddify/features/geo_asset/data/geo_asset_data_providers.dart';
 import 'package:hiddify/features/log/data/log_data_providers.dart';
@@ -19,11 +18,11 @@ import 'package:hiddify/features/system_tray/system_tray_controller.dart';
 import 'package:hiddify/services/auto_start_service.dart';
 import 'package:hiddify/services/deep_link_service.dart';
 import 'package:hiddify/services/service_providers.dart';
+import 'package:hiddify/singbox/service/singbox_service_provider.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:loggy/loggy.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:window_manager/window_manager.dart';
 
 final _logger = Loggy('bootstrap');
@@ -41,15 +40,14 @@ Future<void> lazyBootstrap(
   _loggers.addPrinter(sentryLogger);
   Loggy.initLoggy();
 
-  final appInfo = await AppRepositoryImpl.getAppInfo(env);
-  final sharedPreferences = await SharedPreferences.getInstance();
   final container = ProviderContainer(
     overrides: [
-      appInfoProvider.overrideWithValue(appInfo),
-      sharedPreferencesProvider.overrideWithValue(sharedPreferences),
+      environmentProvider.overrideWithValue(env),
     ],
   );
 
+  final appInfo = await container.read(appInfoProvider.future);
+  await container.read(sharedPreferencesProvider.future);
   final enableAnalytics = container.read(enableAnalyticsProvider);
 
   await SentryFlutter.init(
@@ -94,7 +92,7 @@ Future<void> _lazyBootstrap(
   await container.read(profileRepositoryProvider.future);
 
   initLoggers(container.read, debug);
-  _logger.info(container.read(appInfoProvider).format());
+  _logger.info(container.read(appInfoProvider).requireValue.format());
 
   final silentStart = container.read(silentStartNotifierProvider);
   if (silentStart) {
@@ -131,7 +129,7 @@ Future<void> _lazyBootstrap(
     ProviderScope(
       parent: container,
       child: SentryUserInteractionWidget(
-        child: const AppView(),
+        child: const App(),
       ),
     ),
   );

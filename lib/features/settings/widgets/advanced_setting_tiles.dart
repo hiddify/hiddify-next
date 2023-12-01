@@ -2,11 +2,11 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hiddify/core/core_providers.dart';
-import 'package:hiddify/core/prefs/prefs.dart';
+import 'package:hiddify/core/localization/translations.dart';
+import 'package:hiddify/core/preferences/general_preferences.dart';
 import 'package:hiddify/core/router/router.dart';
-import 'package:hiddify/domain/singbox/singbox.dart';
 import 'package:hiddify/features/common/general_pref_tiles.dart';
+import 'package:hiddify/features/per_app_proxy/model/per_app_proxy_mode.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class AdvancedSettingTiles extends HookConsumerWidget {

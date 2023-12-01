@@ -1,4 +1,4 @@
-import 'package:hiddify/data/data_providers.dart';
+import 'package:hiddify/core/preferences/preferences_provider.dart';
 import 'package:hiddify/utils/custom_loggers.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -75,7 +75,7 @@ class PrefNotifier<T, P> extends AutoDisposeNotifier<T> with InfraLogger {
   final P Function(T)? _mapTo;
 
   late final Pref<T, P> _pref = Pref(
-    ref.watch(sharedPreferencesProvider),
+    ref.watch(sharedPreferencesProvider).requireValue,
     _key,
     _defaultValue,
     mapFrom: _mapFrom,

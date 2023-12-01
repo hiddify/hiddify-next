@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hiddify/core/prefs/prefs.dart';
+import 'package:hiddify/core/preferences/general_preferences.dart';
 import 'package:hiddify/core/router/routes.dart';
 import 'package:hiddify/services/deep_link_service.dart';
 import 'package:hiddify/utils/utils.dart';
@@ -92,6 +92,7 @@ class RouterListenable extends _$RouterListenable
     });
   }
 
+// ignore: avoid_build_context_in_providers
   String? redirect(BuildContext context, GoRouterState state) {
     // if (this.state.isLoading || this.state.hasError) return null;
 

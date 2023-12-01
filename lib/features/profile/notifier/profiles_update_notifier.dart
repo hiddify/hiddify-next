@@ -1,5 +1,5 @@
 import 'package:dartx/dartx.dart';
-import 'package:hiddify/data/data_providers.dart';
+import 'package:hiddify/core/preferences/preferences_provider.dart';
 import 'package:hiddify/features/profile/data/profile_data_providers.dart';
 import 'package:hiddify/features/profile/model/profile_entity.dart';
 import 'package:hiddify/utils/custom_loggers.dart';
@@ -40,7 +40,8 @@ class ForegroundProfilesUpdateNotifier
   Future<void> updateProfiles() async {
     try {
       final previousRun = DateTime.tryParse(
-        ref.read(sharedPreferencesProvider).getString(prefKey) ?? "",
+        ref.read(sharedPreferencesProvider).requireValue.getString(prefKey) ??
+            "",
       );
 
       if (previousRun != null && previousRun.add(interval) > DateTime.now()) {
@@ -86,6 +87,7 @@ class ForegroundProfilesUpdateNotifier
     } finally {
       await ref
           .read(sharedPreferencesProvider)
+          .requireValue
           .setString(prefKey, DateTime.now().toIso8601String());
     }
   }

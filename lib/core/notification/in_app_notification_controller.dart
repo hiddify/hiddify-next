@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hiddify/domain/failures.dart';
+import 'package:hiddify/core/model/failures.dart';
 import 'package:hiddify/features/common/adaptive_root_scaffold.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';

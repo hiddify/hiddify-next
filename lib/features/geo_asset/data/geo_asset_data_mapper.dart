@@ -1,5 +1,5 @@
 import 'package:drift/drift.dart';
-import 'package:hiddify/data/local/database.dart';
+import 'package:hiddify/core/database/app_database.dart';
 import 'package:hiddify/features/geo_asset/model/geo_asset_entity.dart';
 
 extension GeoAssetEntityMapper on GeoAssetEntity {

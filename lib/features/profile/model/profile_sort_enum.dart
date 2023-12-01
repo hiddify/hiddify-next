@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hiddify/core/prefs/prefs.dart';
+import 'package:hiddify/core/localization/translations.dart';
 
 enum ProfilesSort {
   lastUpdate,

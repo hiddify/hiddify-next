@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:hiddify/data/data_providers.dart';
 import 'package:hiddify/features/profile/data/profile_data_providers.dart';
 import 'package:hiddify/features/profile/data/profile_repository.dart';
 import 'package:hiddify/features/profile/model/profile_entity.dart';
@@ -70,7 +69,7 @@ class ProfilesOverviewNotifier extends _$ProfilesOverviewNotifier
   }
 
   Future<void> exportConfigToClipboard(ProfileEntity profile) async {
-    await ref.read(coreFacadeProvider).generateConfig(profile.id).match(
+    await _profilesRepo.generateConfig(profile.id).match(
       (err) {
         loggy.warning('error generating config', err);
         throw err;

@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/router/app_router.dart';
-import 'package:hiddify/features/about/view/about_page.dart';
 import 'package:hiddify/features/common/adaptive_root_scaffold.dart';
+import 'package:hiddify/features/config_option/overview/config_options_page.dart';
 import 'package:hiddify/features/geo_asset/overview/geo_assets_overview_page.dart';
-import 'package:hiddify/features/home/view/view.dart';
-import 'package:hiddify/features/intro/intro_page.dart';
+import 'package:hiddify/features/home/widget/home_page.dart';
+import 'package:hiddify/features/intro/widget/intro_page.dart';
 import 'package:hiddify/features/log/overview/logs_overview_page.dart';
+import 'package:hiddify/features/per_app_proxy/overview/per_app_proxy_page.dart';
 import 'package:hiddify/features/profile/add/add_profile_modal.dart';
 import 'package:hiddify/features/profile/details/profile_details_page.dart';
 import 'package:hiddify/features/profile/overview/profiles_overview_page.dart';
-import 'package:hiddify/features/proxies/view/view.dart';
-import 'package:hiddify/features/settings/view/config_options_page.dart';
-import 'package:hiddify/features/settings/view/per_app_proxy_page.dart';
-import 'package:hiddify/features/settings/view/settings_page.dart';
+import 'package:hiddify/features/proxy/overview/proxies_overview_page.dart';
+import 'package:hiddify/features/settings/about/about_page.dart';
+import 'package:hiddify/features/settings/overview/settings_overview_page.dart';
 import 'package:hiddify/utils/utils.dart';
 
 part 'routes.g.dart';
@@ -184,7 +184,7 @@ class ProxiesRoute extends GoRouteData {
   Page<void> buildPage(BuildContext context, GoRouterState state) {
     return const NoTransitionPage(
       name: name,
-      child: ProxiesPage(),
+      child: ProxiesOverviewPage(),
     );
   }
 }
@@ -291,10 +291,10 @@ class SettingsRoute extends GoRouteData {
       return const MaterialPage(
         fullscreenDialog: true,
         name: name,
-        child: SettingsPage(),
+        child: SettingsOverviewPage(),
       );
     }
-    return const NoTransitionPage(name: name, child: SettingsPage());
+    return const NoTransitionPage(name: name, child: SettingsOverviewPage());
   }
 }
 

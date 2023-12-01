@@ -1,6 +1,6 @@
-import 'package:hiddify/core/prefs/general_prefs.dart';
-import 'package:hiddify/features/common/connectivity/connectivity_controller.dart';
+import 'package:hiddify/core/preferences/general_preferences.dart';
 import 'package:hiddify/features/common/window/window_controller.dart';
+import 'package:hiddify/features/connection/notifier/connection_notifier.dart';
 import 'package:hiddify/features/profile/notifier/profiles_update_notifier.dart';
 import 'package:hiddify/features/system_tray/system_tray_controller.dart';
 import 'package:hiddify/utils/platform_utils.dart';
@@ -22,7 +22,7 @@ void commonControllers(CommonControllersRef ref) {
     fireImmediately: true,
   );
   ref.listen(
-    connectivityControllerProvider,
+    connectionNotifierProvider,
     (previous, next) {},
     fireImmediately: true,
   );

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_adaptive_scaffold/flutter_adaptive_scaffold.dart';
-import 'package:hiddify/core/core_providers.dart';
+import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/router/router.dart';
-import 'package:hiddify/features/common/side_bar_stats_overview.dart';
+import 'package:hiddify/features/stats/widget/side_bar_stats_overview.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 abstract interface class RootScaffold {

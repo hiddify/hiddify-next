@@ -1,9 +1,9 @@
 import 'package:fpdart/fpdart.dart';
-import 'package:hiddify/core/core_providers.dart';
+import 'package:hiddify/core/localization/translations.dart';
+import 'package:hiddify/core/model/failures.dart';
 import 'package:hiddify/core/notification/in_app_notification_controller.dart';
-import 'package:hiddify/core/prefs/general_prefs.dart';
-import 'package:hiddify/domain/failures.dart';
-import 'package:hiddify/features/common/connectivity/connectivity_controller.dart';
+import 'package:hiddify/core/preferences/general_preferences.dart';
+import 'package:hiddify/features/connection/notifier/connection_notifier.dart';
 import 'package:hiddify/features/profile/data/profile_data_providers.dart';
 import 'package:hiddify/features/profile/data/profile_repository.dart';
 import 'package:hiddify/features/profile/model/profile_entity.dart';
@@ -127,7 +127,7 @@ class UpdateProfile extends _$UpdateProfile with AppLogger {
             await ref.read(activeProfileProvider.future).then((active) async {
               if (active != null && active.id == profile.id) {
                 await ref
-                    .read(connectivityControllerProvider.notifier)
+                    .read(connectionNotifierProvider.notifier)
                     .reconnect(profile.id);
               }
             });

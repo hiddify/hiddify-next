@@ -1,8 +1,10 @@
-import 'package:hiddify/data/data_providers.dart';
+import 'package:hiddify/core/database/database_provider.dart';
+import 'package:hiddify/core/http_client/http_client_provider.dart';
 import 'package:hiddify/features/profile/data/profile_data_source.dart';
 import 'package:hiddify/features/profile/data/profile_path_resolver.dart';
 import 'package:hiddify/features/profile/data/profile_repository.dart';
 import 'package:hiddify/services/service_providers.dart';
+import 'package:hiddify/singbox/service/singbox_service_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'profile_data_providers.g.dart';
@@ -12,8 +14,8 @@ Future<ProfileRepository> profileRepository(ProfileRepositoryRef ref) async {
   final repo = ProfileRepositoryImpl(
     profileDataSource: ref.watch(profileDataSourceProvider),
     profilePathResolver: ref.watch(profilePathResolverProvider),
-    configValidator: ref.watch(coreFacadeProvider).parseConfig,
-    dio: ref.watch(dioProvider),
+    singbox: ref.watch(singboxServiceProvider),
+    dio: ref.watch(httpClientProvider),
   );
   await repo.init().getOrElse((l) => throw l).run();
   return repo;
