@@ -26,6 +26,8 @@ sealed class SingboxStatus with _$SingboxStatus {
           (e) => alertStr?.toLowerCase() == e.name.toLowerCase(),
         );
         return SingboxStatus.stopped(alert: alert, message: messageStr);
+      case {"status": "Stopped"}:
+        return const SingboxStatus.stopped();
       case {"status": "Starting"}:
         return const SingboxStarting();
       case {"status": "Started"}:

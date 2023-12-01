@@ -14,9 +14,9 @@ import 'package:rxdart/rxdart.dart';
 class PlatformSingboxService with InfraLogger implements SingboxService {
   late final _methodChannel = const MethodChannel("com.hiddify.app/method");
   late final _statusChannel =
-      const EventChannel("com.hiddify.app/service.status");
+      const EventChannel("com.hiddify.app/service.status", JSONMethodCodec());
   late final _alertsChannel =
-      const EventChannel("com.hiddify.app/service.alerts");
+      const EventChannel("com.hiddify.app/service.alerts", JSONMethodCodec());
   late final _logsChannel = const EventChannel("com.hiddify.app/service.logs");
 
   late final ValueStream<SingboxStatus> _status;
@@ -24,16 +24,10 @@ class PlatformSingboxService with InfraLogger implements SingboxService {
   @override
   Future<void> init() async {
     loggy.debug("initializing");
-    final status = _statusChannel.receiveBroadcastStream().map(
-      (event) {
-        return SingboxStatus.fromEvent(event);
-      },
-    );
-    final alerts = _alertsChannel.receiveBroadcastStream().map(
-      (event) {
-        return SingboxStatus.fromEvent(event);
-      },
-    );
+    final status =
+        _statusChannel.receiveBroadcastStream().map(SingboxStatus.fromEvent);
+    final alerts =
+        _alertsChannel.receiveBroadcastStream().map(SingboxStatus.fromEvent);
     _status = ValueConnectableStream(Rx.merge([status, alerts])).autoConnect();
     await _status.first;
   }
