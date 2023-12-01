@@ -24,20 +24,20 @@ dependencies:
   flutter_hooks: ^0.20.3
   riverpod_annotation: ^2.3.2
   rxdart: ^0.27.7
-  drift: ^2.13.1
+  drift: ^2.13.2
   sqlite3_flutter_libs: ^0.5.18
   shared_preferences: ^2.2.2
-  dio: ^5.3.4
+  dio: ^5.4.0
   web_socket_channel: ^2.4.0
   ffi: ^2.1.0
   path_provider: ^2.1.1
-  mobile_scanner: ^3.5.4
+  mobile_scanner: ^3.5.5
   protocol_handler: ^0.1.5
   flutter_native_splash: ^2.3.6
   share_plus: ^7.2.1
   window_manager: ^0.3.7
   tray_manager: ^0.2.0
-  package_info_plus: ^4.2.0
+  package_info_plus: ^5.0.1
   url_launcher: ^6.2.1
   vclibs: ^0.1.0
   launch_at_startup: ^0.2.2
@@ -68,15 +68,15 @@ dependencies:
   toastification: ^1.1.0
   version: ^3.0.2
   posix: ^6.0.1
-  win32: ^5.1.0
+  win32: ^5.1.1
   qr_flutter: ^4.1.0
-  native_dio_adapter: ^1.1.1
+  native_dio_adapter: ^1.2.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   lint: ^2.2.0
-  build_runner: ^2.4.6
+  build_runner: ^2.4.7
   json_serializable: ^6.7.1
   freezed: ^2.4.5
   riverpod_generator: ^2.3.8
