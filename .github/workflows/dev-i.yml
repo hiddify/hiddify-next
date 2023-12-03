@@ -75,6 +75,9 @@ jobs:
           python3 -m pip install --upgrade setuptools pip
           brew install create-dmg tree 
           npm install -g appdmg
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: '15.0.1'
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
