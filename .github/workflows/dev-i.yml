@@ -9,7 +9,7 @@ on:
       - '**.md'
       - 'docs/**'
       - '.github/**'
-      - '!.github/workflows/build.yml'
+      - '!.github/workflows/*'
       - 'appcast.xml'
   # pull_request:
   #   branches:
