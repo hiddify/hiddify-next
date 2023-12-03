@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:hiddify/bootstrap.dart';
-import 'package:hiddify/domain/environment.dart';
+import 'package:hiddify/core/model/environment.dart';
 
 void main() async {
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();

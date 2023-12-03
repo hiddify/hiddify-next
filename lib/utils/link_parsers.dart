@@ -1,12 +1,25 @@
 import 'dart:convert';
 
-import 'package:hiddify/domain/singbox/singbox.dart';
+import 'package:hiddify/singbox/model/singbox_proxy_type.dart';
 import 'package:hiddify/utils/validators.dart';
 
 typedef ProfileLink = ({String url, String name});
 
 // TODO: test and improve
 abstract class LinkParser {
+  static String generateSubShareLink(String url, [String? name]) {
+    final uri = Uri.tryParse(url);
+    if (uri == null) return '';
+    return Uri(
+      scheme: 'hiddify',
+      host: 'install-sub',
+      queryParameters: {
+        "url": uri.toString(),
+        if (name != null) "name": name,
+      },
+    ).toString();
+  }
+
   // protocols schemas
   static const protocols = {'clash', 'clashmeta', 'sing-box', 'hiddify'};
   static const rawProtocols = {

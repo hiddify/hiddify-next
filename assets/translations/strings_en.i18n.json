@@ -57,6 +57,12 @@
             "shortBtnTxt": "New Profile",
             "fromClipboard": "Add From Clipboard",
             "scanQr": "Scan QR code",
+            "qrScanner": {
+                "permissionDeniedError": "Permission denied",
+                "unexpectedError": "Something went wrong",
+                "torchSemanticLabel": "Flash light",
+                "facingSemanticLabel": "Camera facing"
+            },
             "manually": "Manual Entry",
             "addingProfileMsg": "Adding Profile",
             "failureMsg": "Failed to add profile"
@@ -66,6 +72,14 @@
             "tooltip": "Update Profile",
             "failureMsg": "Failed to update profile",
             "successMsg": "Profile updated successfully"
+        },
+        "share": {
+            "buttonText": "Share",
+            "exportToClipboardSuccess": "Exported to clipboard",
+            "exportSubLinkToClipboard": "Export subscription link to clipboard",
+            "subLinkQrCode": "Subscription link QR code",
+            "exportConfigToClipboard": "Export configuration to clipboard",
+            "exportConfigToClipboardSuccess": "Configuration copied to clipboard"
         },
         "edit": {
             "buttonTxt": "Edit",
@@ -203,6 +217,16 @@
             "enableFakeDns": "Enable Fake DNS",
             "bypassLan": "Bypass Lan",
             "strictRoute": "Strict Route"
+        },
+        "geoAssets": {
+            "pageTitle": "Routing Assets",
+            "version": "Version ${version}",
+            "fileMissing": "File Missing",
+            "update": "Update",
+            "download": "Download",
+            "failureMsg": "Failed to update asset",
+            "successMsg": "Successfully updated asset",
+            "addRecommended": "Add Recommended Assets"
         }
     },
     "about": {
@@ -227,6 +251,7 @@
     "tray": {
         "dashboard": "Dashboard",
         "quit": "Quit",
+        "open": "Open",
         "status": {
             "connect": "Connect",
             "connecting": "Connecting",
@@ -245,6 +270,8 @@
             "serviceNotRunning": "Service is not running",
             "missingPrivilege": "Missing Privilege",
             "missingPrivilegeMsg": "VPN mode requires administrator privileges. Either relaunch the app as administrator or change service mode.",
+            "missingGeoAssets": "Missing Geo Assets",
+            "missingGeoAssetsMsg": "Geo assets are missing. consider changing active asset or download selected one in the settings.",
             "invalidConfigOptions": "Invalid configuration options",
             "invalidConfig": "Invalid Configuration",
             "create": "Service creation error",
@@ -268,6 +295,11 @@
             "badResponse": "Bad response",
             "connectionError": "Connection error",
             "badCertificate": "Bad certificate"
+        },
+        "geoAssets": {
+            "unexpected": "Unexpected Error",
+            "notUpdate": "No Update Available",
+            "activeNotFound": "Active Geo Asset Not Found"
         }
     },
     "play": {

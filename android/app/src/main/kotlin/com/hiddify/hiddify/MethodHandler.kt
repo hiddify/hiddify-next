@@ -2,6 +2,7 @@ package com.hiddify.hiddify
 
 import android.util.Log
 import com.hiddify.hiddify.bg.BoxService
+import com.hiddify.hiddify.constant.Alert
 import com.hiddify.hiddify.constant.Status
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
@@ -24,6 +25,7 @@ class MethodHandler(private val scope: CoroutineScope) : FlutterPlugin,
         enum class Trigger(val method: String) {
             ParseConfig("parse_config"),
             ChangeConfigOptions("change_config_options"),
+            GenerateConfig("generate_config"),
             Start("start"),
             Stop("stop"),
             Restart("restart"),
@@ -66,6 +68,21 @@ class MethodHandler(private val scope: CoroutineScope) : FlutterPlugin,
                         val args = call.arguments as String
                         Settings.configOptions = args
                         success(true)
+                    }
+                }
+            }
+
+            Trigger.GenerateConfig.method -> {
+                scope.launch {
+                    result.runCatching {
+                        val args = call.arguments as Map<*, *>
+                        val path = args["path"] as String
+                        val options = Settings.configOptions
+                        if (options.isBlank() || path.isBlank()) {
+                            error("blank properties")
+                        }
+                        val config = BoxService.buildConfig(path, options)
+                        success(config)
                     }
                 }
             }

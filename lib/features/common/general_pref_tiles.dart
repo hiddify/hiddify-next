@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localized_locales/flutter_localized_locales.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hiddify/core/core_providers.dart';
-import 'package:hiddify/core/prefs/prefs.dart';
-import 'package:hiddify/domain/singbox/singbox.dart';
+import 'package:hiddify/core/localization/locale_extensions.dart';
+import 'package:hiddify/core/localization/locale_preferences.dart';
+import 'package:hiddify/core/localization/translations.dart';
+import 'package:hiddify/core/model/region.dart';
+import 'package:hiddify/core/preferences/general_preferences.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class LocalePrefTile extends HookConsumerWidget {
@@ -13,14 +14,11 @@ class LocalePrefTile extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final t = ref.watch(translationsProvider);
 
-    final locale = ref.watch(localeNotifierProvider);
+    final locale = ref.watch(localePreferencesProvider);
 
     return ListTile(
       title: Text(t.settings.general.locale),
-      subtitle: Text(
-        LocaleNamesLocalizationsDelegate.nativeLocaleNames[locale.name] ??
-            locale.name,
-      ),
+      subtitle: Text(locale.localeName),
       leading: const Icon(Icons.language),
       onTap: () async {
         final selectedLocale = await showDialog<AppLocale>(
@@ -31,11 +29,7 @@ class LocalePrefTile extends HookConsumerWidget {
               children: AppLocale.values
                   .map(
                     (e) => RadioListTile(
-                      title: Text(
-                        LocaleNamesLocalizationsDelegate
-                                .nativeLocaleNames[e.name] ??
-                            e.name,
-                      ),
+                      title: Text(e.localeName),
                       value: e,
                       groupValue: locale,
                       onChanged: (e) => context.pop(e),
@@ -47,8 +41,8 @@ class LocalePrefTile extends HookConsumerWidget {
         );
         if (selectedLocale != null) {
           await ref
-              .read(localeNotifierProvider.notifier)
-              .update(selectedLocale);
+              .read(localePreferencesProvider.notifier)
+              .changeLocale(selectedLocale);
         }
       },
     );

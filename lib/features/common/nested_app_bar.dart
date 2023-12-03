@@ -7,7 +7,7 @@ bool showDrawerButton(BuildContext context) {
   if (!useMobileRouter) return true;
   final String location = GoRouterState.of(context).uri.path;
   if (location == const HomeRoute().location ||
-      location == const ProfilesRoute().location) return true;
+      location == const ProfilesOverviewRoute().location) return true;
   if (location.startsWith(const ProxiesRoute().location)) return true;
   return false;
 }

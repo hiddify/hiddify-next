@@ -57,6 +57,12 @@
             "shortBtnTxt": "افزودن",
             "fromClipboard": "افزودن از کلیپ‌بورد",
             "scanQr": "اسکن QR کد",
+            "qrScanner": {
+                "permissionDeniedError": "اجازه رد شد",
+                "unexpectedError": "خطایی رخ داده",
+                "torchSemanticLabel": "چراغ فلاش",
+                "facingSemanticLabel": "جهت دوربین"
+            },
             "manually": "افزودن دستی",
             "addingProfileMsg": "در حال افزودن پروفایل",
             "failureMsg": "در افزودن پروفایل خطایی رخ داد"
@@ -66,6 +72,14 @@
             "tooltip": "بروزرسانی پروفایل",
             "failureMsg": "در بروزرسانی پروفایل خطایی رخ داد",
             "successMsg": "پروفایل با موفقیت بروزرسانی شد"
+        },
+        "share": {
+            "buttonText": "اشتراک گذاری",
+            "exportToClipboardSuccess": "به کلیپ بورد اضافه شد",
+            "exportSubLinkToClipboard": "افزودن لینک اشتراک به کلیپ بورد",
+            "subLinkQrCode": "کد QR لینک اشتراک",
+            "exportConfigToClipboard": "افزودن پیکربندی به کلیپ بورد",
+            "exportConfigToClipboardSuccess": "پیکربندی در کلیپ بورد کپی شد"
         },
         "edit": {
             "buttonTxt": "ویرایش",
@@ -203,6 +217,16 @@
             "enableFakeDns": "Enable Fake DNS",
             "bypassLan": "Bypass Lan",
             "strictRoute": "Strict Route"
+        },
+        "geoAssets": {
+            "pageTitle": "فایل‌های مسیریابی",
+            "version": "نسخه ${version}",
+            "fileMissing": "فایل موجود نیست",
+            "update": "به روز رسانی",
+            "download": "دانلود",
+            "failureMsg": "دارایی به روز نشد",
+            "successMsg": "دارایی با موفقیت به روز شد",
+            "addRecommended": "اضافه کردن دارایی های توصیه شده"
         }
     },
     "about": {
@@ -227,6 +251,7 @@
     "tray": {
         "dashboard": "داشبورد",
         "quit": "خروج",
+        "open": "باز کن",
         "status": {
             "connect": "اتصال",
             "connecting": "در حال اتصال",
@@ -248,7 +273,9 @@
             "invalidConfigOptions": "تنظیمات کانفیگ نامعتبر",
             "invalidConfig": "کانفیگ غیر معتبر",
             "create": "در ایجاد سرویس خطایی رخ داده",
-            "start": "در راه‌اندازی سرویس خطایی رخ داده"
+            "start": "در راه‌اندازی سرویس خطایی رخ داده",
+            "missingGeoAssets": "دارایی های جغرافیایی از دست رفته",
+            "missingGeoAssetsMsg": "دارایی های جغرافیایی گم شده اند. تغییر دارایی فعال را در نظر بگیرید یا یکی را در تنظیمات دانلود کنید."
         },
         "connectivity": {
             "unexpected": "خطای غیرمنتظره",
@@ -268,6 +295,11 @@
             "badResponse": "پاسخ نامعتبر",
             "connectionError": "خطای اتصال",
             "badCertificate": "خطای اعتبار سنجی"
+        },
+        "geoAssets": {
+            "unexpected": "خطای غیرمنتظره",
+            "notUpdate": "به روز رسانی موجود نیست",
+            "activeNotFound": "Active Geo Asset یافت نشد"
         }
     },
     "play": {

@@ -6,6 +6,7 @@ import com.hiddify.hiddify.constant.Alert
 import com.hiddify.hiddify.constant.Status
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.EventChannel
+import io.flutter.plugin.common.JSONMethodCodec
 
 class EventHandler : FlutterPlugin {
 
@@ -22,8 +23,8 @@ class EventHandler : FlutterPlugin {
     private var alertsObserver: Observer<ServiceEvent?>? = null
 
     override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-        statusChannel = EventChannel(flutterPluginBinding.binaryMessenger, SERVICE_STATUS)
-        alertsChannel = EventChannel(flutterPluginBinding.binaryMessenger, SERVICE_ALERTS)
+        statusChannel = EventChannel(flutterPluginBinding.binaryMessenger, SERVICE_STATUS, JSONMethodCodec.INSTANCE)
+        alertsChannel = EventChannel(flutterPluginBinding.binaryMessenger, SERVICE_ALERTS, JSONMethodCodec.INSTANCE)
 
         statusChannel!!.setStreamHandler(object : EventChannel.StreamHandler {
             override fun onListen(arguments: Any?, events: EventChannel.EventSink?) {

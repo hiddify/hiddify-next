@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hiddify/core/prefs/prefs.dart';
+import 'package:hiddify/core/preferences/general_preferences.dart';
 import 'package:hiddify/core/router/routes.dart';
 import 'package:hiddify/services/deep_link_service.dart';
 import 'package:hiddify/utils/utils.dart';
@@ -38,7 +38,9 @@ GoRouter router(RouterRef ref) {
     navigatorKey: rootNavigatorKey,
     initialLocation: initialLocation,
     debugLogDiagnostics: true,
-    routes: useMobileRouter ? mobileRoutes : desktopRoutes,
+    routes: [
+      if (useMobileRouter) $mobileWrapperRoute else $desktopWrapperRoute,
+    ],
     refreshListenable: notifier,
     redirect: notifier.redirect,
     observers: [
@@ -51,7 +53,7 @@ int getCurrentIndex(BuildContext context) {
   final String location = GoRouterState.of(context).uri.path;
   if (location == const HomeRoute().location) return 0;
   if (location.startsWith(const ProxiesRoute().location)) return 1;
-  if (location.startsWith(const LogsRoute().location)) return 2;
+  if (location.startsWith(const LogsOverviewRoute().location)) return 2;
   if (location.startsWith(const SettingsRoute().location)) return 3;
   if (location.startsWith(const AboutRoute().location)) return 4;
   return 0;
@@ -64,7 +66,7 @@ void switchTab(int index, BuildContext context) {
     case 1:
       const ProxiesRoute().go(context);
     case 2:
-      const LogsRoute().go(context);
+      const LogsOverviewRoute().go(context);
     case 3:
       const SettingsRoute().go(context);
     case 4:
@@ -90,6 +92,7 @@ class RouterListenable extends _$RouterListenable
     });
   }
 
+// ignore: avoid_build_context_in_providers
   String? redirect(BuildContext context, GoRouterState state) {
     // if (this.state.isLoading || this.state.hasError) return null;
 

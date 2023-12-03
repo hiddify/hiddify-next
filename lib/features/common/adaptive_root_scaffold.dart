@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_adaptive_scaffold/flutter_adaptive_scaffold.dart';
-import 'package:hiddify/core/core_providers.dart';
+import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/router/router.dart';
-import 'package:hiddify/features/common/side_bar_stats_overview.dart';
+import 'package:hiddify/features/stats/widget/side_bar_stats_overview.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 abstract interface class RootScaffold {
@@ -148,23 +148,6 @@ class _CustomAdaptiveScaffold extends HookConsumerWidget {
             ),
           },
         ),
-        bottomNavigation: useBottomSheet ||
-                Breakpoints.smallMobile.isActive(context)
-            ? SlotLayout(
-                config: <Breakpoint, SlotLayoutConfig>{
-                  Breakpoints.small: SlotLayout.from(
-                    key: const Key('bottomNavigation'),
-                    builder: (_) =>
-                        AdaptiveScaffold.standardBottomNavigationBar(
-                      currentIndex: selectedWithOffset(bottomDestinationRange),
-                      destinations: destinationsSlice(bottomDestinationRange),
-                      onDestinationSelected: (index) =>
-                          selectWithOffset(index, bottomDestinationRange),
-                    ),
-                  ),
-                },
-              )
-            : null,
         body: SlotLayout(
           config: <Breakpoint, SlotLayoutConfig?>{
             Breakpoints.standard: SlotLayout.from(
@@ -176,6 +159,15 @@ class _CustomAdaptiveScaffold extends HookConsumerWidget {
           },
         ),
       ),
+      // AdaptiveLayout bottom sheet has accessibility issues
+      bottomNavigationBar: useBottomSheet && Breakpoints.small.isActive(context)
+          ? NavigationBar(
+              selectedIndex: selectedWithOffset(bottomDestinationRange) ?? 0,
+              destinations: destinationsSlice(bottomDestinationRange),
+              onDestinationSelected: (index) =>
+                  selectWithOffset(index, bottomDestinationRange),
+            )
+          : null,
     );
   }
 }

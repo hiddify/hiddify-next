@@ -72,6 +72,10 @@ class BoxService(
             }
         }
 
+        fun buildConfig(path: String, options: String):String {
+              return  Mobile.buildConfig(path, options)
+        }
+
         fun start() {
             val intent = runBlocking {
                 withContext(Dispatchers.IO) {

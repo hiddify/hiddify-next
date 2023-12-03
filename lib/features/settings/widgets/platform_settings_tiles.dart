@@ -1,22 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:hiddify/core/core_providers.dart';
-import 'package:hiddify/services/service_providers.dart';
+import 'package:hiddify/core/localization/translations.dart';
+import 'package:hiddify/features/settings/notifier/platform_settings_notifier.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-part 'platform_settings_tiles.g.dart';
-
-@riverpod
-Future<bool> isIgnoringBatteryOptimizations(
-  IsIgnoringBatteryOptimizationsRef ref,
-) async =>
-    ref
-        .watch(platformServicesProvider)
-        .isIgnoringBatteryOptimizations()
-        .getOrElse((l) => false)
-        .run();
 
 class PlatformSettingsTiles extends HookConsumerWidget {
   const PlatformSettingsTiles({super.key});
@@ -26,7 +13,7 @@ class PlatformSettingsTiles extends HookConsumerWidget {
     final t = ref.watch(translationsProvider);
 
     final isIgnoringBatteryOptimizations =
-        ref.watch(isIgnoringBatteryOptimizationsProvider);
+        ref.watch(ignoreBatteryOptimizationsProvider);
 
     ListTile buildIgnoreTile(bool enabled) => ListTile(
           title: Text(t.settings.general.ignoreBatteryOptimizations),
@@ -35,11 +22,8 @@ class PlatformSettingsTiles extends HookConsumerWidget {
           enabled: enabled,
           onTap: () async {
             await ref
-                .read(platformServicesProvider)
-                .requestIgnoreBatteryOptimizations()
-                .run();
-            await Future.delayed(const Duration(seconds: 1));
-            ref.invalidate(isIgnoringBatteryOptimizationsProvider);
+                .read(ignoreBatteryOptimizationsProvider.notifier)
+                .request();
           },
         );
 

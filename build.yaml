@@ -2,8 +2,6 @@ targets:
   $default:
     builders:
       drift_dev:
-        generate_for:
-          - "lib/data/local/**"
         options:
           store_date_time_values_as_text: true
       slang_build_runner:

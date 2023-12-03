@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hiddify/core/prefs/prefs.dart';
-import 'package:hiddify/core/prefs/service_prefs.dart';
-import 'package:hiddify/features/common/connectivity/connectivity_controller.dart';
+import 'package:hiddify/core/preferences/general_preferences.dart';
+import 'package:hiddify/core/preferences/service_preferences.dart';
+import 'package:hiddify/features/connection/notifier/connection_notifier.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:window_manager/window_manager.dart';
@@ -16,10 +16,10 @@ class WindowController extends _$WindowController
   Future<bool> build() async {
     await windowManager.ensureInitialized();
     const size = Size(868, 668);
-    const minumumSize = Size(368, 568);
+    const minimumSize = Size(368, 568);
     const windowOptions = WindowOptions(
       size: size,
-      minimumSize: minumumSize,
+      minimumSize: minimumSize,
       center: true,
     );
     await windowManager.setPreventClose(true);
@@ -31,13 +31,11 @@ class WindowController extends _$WindowController
           await windowManager.hide();
         }
         await Future.delayed(
-          const Duration(seconds: 1),
+          const Duration(seconds: 3),
           () async {
             if (ref.read(startedByUserProvider)) {
               loggy.debug("previously started by user, trying to connect");
-              return ref
-                  .read(connectivityControllerProvider.notifier)
-                  .mayConnect();
+              return ref.read(connectionNotifierProvider.notifier).mayConnect();
             }
           },
         );

@@ -1,13 +1,15 @@
 import 'dart:io';
 
-import 'package:hiddify/core/core_providers.dart';
-import 'package:hiddify/data/repository/config_options_store.dart';
-import 'package:hiddify/domain/connectivity/connectivity.dart';
-import 'package:hiddify/domain/constants.dart';
-import 'package:hiddify/domain/singbox/singbox.dart';
-import 'package:hiddify/features/common/connectivity/connectivity_controller.dart';
+import 'package:hiddify/core/localization/translations.dart';
+import 'package:hiddify/core/model/constants.dart';
+import 'package:hiddify/core/router/router.dart';
 import 'package:hiddify/features/common/window/window_controller.dart';
+import 'package:hiddify/features/config_option/model/config_option_patch.dart';
+import 'package:hiddify/features/config_option/notifier/config_option_notifier.dart';
+import 'package:hiddify/features/connection/model/connection_status.dart';
+import 'package:hiddify/features/connection/notifier/connection_notifier.dart';
 import 'package:hiddify/gen/assets.gen.dart';
+import 'package:hiddify/singbox/model/singbox_config_enum.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:tray_manager/tray_manager.dart';
@@ -30,10 +32,22 @@ class SystemTrayController extends _$SystemTrayController
       _initialized = true;
     }
 
-    final connection = await ref.watch(connectivityControllerProvider.future);
-    final serviceMode = ref.watch(serviceModeStoreProvider);
+    final connection = switch (ref.watch(connectionNotifierProvider)) {
+      AsyncData(:final value) => value,
+      _ => const Disconnected(),
+    };
+    final serviceMode = await ref
+        .watch(configOptionNotifierProvider.future)
+        .then((value) => value.serviceMode);
 
     final t = ref.watch(translationsProvider);
+    final destinations = <(String label, String location)>[
+      (t.home.pageTitle, const HomeRoute().location),
+      (t.proxies.pageTitle, const ProxiesRoute().location),
+      (t.logs.pageTitle, const LogsOverviewRoute().location),
+      (t.settings.pageTitle, const SettingsRoute().location),
+      (t.about.pageTitle, const AboutRoute().location),
+    ];
 
     loggy.debug('updating system tray');
 
@@ -68,8 +82,24 @@ class SystemTrayController extends _$SystemTrayController
                     final newMode = ServiceMode.values.byName(menuItem.key!);
                     loggy.debug("switching service mode: [$newMode]");
                     await ref
-                        .read(serviceModeStoreProvider.notifier)
-                        .update(newMode);
+                        .read(configOptionNotifierProvider.notifier)
+                        .updateOption(ConfigOptionPatch(serviceMode: newMode));
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+        MenuItem.submenu(
+          label: t.tray.open,
+          submenu: Menu(
+            items: [
+              ...destinations.map(
+                (e) => MenuItem(
+                  label: e.$1,
+                  onClick: (_) async {
+                    await ref.read(windowControllerProvider.notifier).show();
+                    ref.read(routerProvider).go(e.$2);
                   },
                 ),
               ),
@@ -110,11 +140,11 @@ class SystemTrayController extends _$SystemTrayController
   }
 
   Future<void> handleClickSetAsSystemProxy(MenuItem menuItem) async {
-    return ref.read(connectivityControllerProvider.notifier).toggleConnection();
+    return ref.read(connectionNotifierProvider.notifier).toggleConnection();
   }
 
   Future<void> handleClickExitApp(MenuItem menuItem) async {
-    await ref.read(connectivityControllerProvider.notifier).abortConnection();
+    await ref.read(connectionNotifierProvider.notifier).abortConnection();
     await trayManager.destroy();
     return ref.read(windowControllerProvider.notifier).quit();
   }
