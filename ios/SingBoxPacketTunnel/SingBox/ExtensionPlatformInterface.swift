@@ -10,6 +10,10 @@ import Libcore
 import NetworkExtension
 
 public class ExtensionPlatformInterface: NSObject, LibboxPlatformInterfaceProtocol, LibboxCommandServerHandlerProtocol {
+    public func readWIFIState() -> LibboxWIFIState? {
+        return nil;
+    }
+    
     private let tunnel: ExtensionProvider
     private var networkSettings: NEPacketTunnelNetworkSettings?
 
