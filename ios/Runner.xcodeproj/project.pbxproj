@@ -20,21 +20,30 @@
 		03B516772AE7634400EA47E2 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B516752AE762F700EA47E2 /* Logger.swift */; };
 		03B5167B2AE79DB400EA47E2 /* FileMethodHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B5167A2AE79DB400EA47E2 /* FileMethodHandler.swift */; };
 		03B5167D2AE7AC6200EA47E2 /* GroupsEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B5167C2AE7AC6200EA47E2 /* GroupsEventHandler.swift */; };
-		03E392B82ADDA00E000ADF15 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E392B72ADDA00E000ADF15 /* NetworkExtension.framework */; };
 		03E392BB2ADDA00F000ADF15 /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E392BA2ADDA00F000ADF15 /* PacketTunnelProvider.swift */; };
 		03E392C02ADDA00F000ADF15 /* SingBoxPacketTunnel.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 03E392B62ADDA00E000ADF15 /* SingBoxPacketTunnel.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		03E392C92ADDA713000ADF15 /* libcore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E392C82ADDA713000ADF15 /* libcore.xcframework */; };
 		03E392CC2ADDE078000ADF15 /* ExtensionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E392CB2ADDE078000ADF15 /* ExtensionProvider.swift */; };
 		03E392CF2ADDEFC8000ADF15 /* FilePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E392CE2ADDEFC8000ADF15 /* FilePath.swift */; };
 		03E392D02ADDF1BD000ADF15 /* FilePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E392CE2ADDEFC8000ADF15 /* FilePath.swift */; };
 		03E392D22ADDF1F4000ADF15 /* ExtensionPlatformInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E392D12ADDF1F4000ADF15 /* ExtensionPlatformInterface.swift */; };
 		03E392D42ADDF262000ADF15 /* Extension+RunBlocking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E392D32ADDF262000ADF15 /* Extension+RunBlocking.swift */; };
+		075637B82B015836005AFB8E /* libcore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 075637B22B0157CB005AFB8E /* libcore.xcframework */; };
+		075637B92B015836005AFB8E /* libcore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 075637B22B0157CB005AFB8E /* libcore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		075637BA2B01583F005AFB8E /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F1D4AAC33ACF5C8307310D /* Pods_Runner.framework */; };
+		075637BB2B01583F005AFB8E /* Pods_Runner.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 60F1D4AAC33ACF5C8307310D /* Pods_Runner.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		075637BC2B015864005AFB8E /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E392B72ADDA00E000ADF15 /* NetworkExtension.framework */; };
+		075637BD2B015864005AFB8E /* NetworkExtension.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03E392B72ADDA00E000ADF15 /* NetworkExtension.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		075637BF2B01588D005AFB8E /* libcore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 075637B22B0157CB005AFB8E /* libcore.xcframework */; };
+		075637C02B01588D005AFB8E /* libcore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 075637B22B0157CB005AFB8E /* libcore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		075637C12B015899005AFB8E /* libcore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 075637B22B0157CB005AFB8E /* libcore.xcframework */; };
+		075637C22B015899005AFB8E /* libcore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 075637B22B0157CB005AFB8E /* libcore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		075637C42B015962005AFB8E /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F1D4AAC33ACF5C8307310D /* Pods_Runner.framework */; };
+		075637C52B015989005AFB8E /* Runner.app in Resources */ = {isa = PBXBuildFile; fileRef = 97C146EE1CF9000F007C117D /* Runner.app */; };
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		331C808B294A63AB00263BE5 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C807B294A618700263BE5 /* RunnerTests.swift */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
 		54EA599BF9C050F2827533D5 /* Pods_RunnerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDA50BDF2E5E5DDA3995F24D /* Pods_RunnerTests.framework */; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
-		8387F5E3B7CDC68F5506057F /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F1D4AAC33ACF5C8307310D /* Pods_Runner.framework */; };
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
@@ -69,12 +78,37 @@
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		075637B72B015816005AFB8E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				075637C02B01588D005AFB8E /* libcore.xcframework in Embed Frameworks */,
+				075637BD2B015864005AFB8E /* NetworkExtension.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		075637C32B015899005AFB8E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				075637C22B015899005AFB8E /* libcore.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9705A1C41CF9048500538489 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				075637BB2B01583F005AFB8E /* Pods_Runner.framework in Embed Frameworks */,
+				075637B92B015836005AFB8E /* libcore.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -101,11 +135,11 @@
 		03E392BD2ADDA00F000ADF15 /* SingBoxPacketTunnel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SingBoxPacketTunnel.entitlements; sourceTree = "<group>"; };
 		03E392C62ADDA064000ADF15 /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
 		03E392C72ADDA26A000ADF15 /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
-		03E392C82ADDA713000ADF15 /* libcore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = libcore.xcframework; path = ../libcore/bin/libcore.xcframework; sourceTree = "<group>"; };
 		03E392CB2ADDE078000ADF15 /* ExtensionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionProvider.swift; sourceTree = "<group>"; };
 		03E392CE2ADDEFC8000ADF15 /* FilePath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePath.swift; sourceTree = "<group>"; };
 		03E392D12ADDF1F4000ADF15 /* ExtensionPlatformInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionPlatformInterface.swift; sourceTree = "<group>"; };
 		03E392D32ADDF262000ADF15 /* Extension+RunBlocking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+RunBlocking.swift"; sourceTree = "<group>"; };
+		075637B22B0157CB005AFB8E /* libcore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = libcore.xcframework; path = ../libcore/bin/libcore.xcframework; sourceTree = "<group>"; };
 		0F7E04B7207513677AF77112 /* Pods-RunnerTests.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.profile.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.profile.xcconfig"; sourceTree = "<group>"; };
 		1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
@@ -136,8 +170,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03E392C92ADDA713000ADF15 /* libcore.xcframework in Frameworks */,
-				03E392B82ADDA00E000ADF15 /* NetworkExtension.framework in Frameworks */,
+				075637BF2B01588D005AFB8E /* libcore.xcframework in Frameworks */,
+				075637BC2B015864005AFB8E /* NetworkExtension.framework in Frameworks */,
+				075637C42B015962005AFB8E /* Pods_Runner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +180,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				075637C12B015899005AFB8E /* libcore.xcframework in Frameworks */,
 				54EA599BF9C050F2827533D5 /* Pods_RunnerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -153,7 +189,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8387F5E3B7CDC68F5506057F /* Pods_Runner.framework in Frameworks */,
+				075637BA2B01583F005AFB8E /* Pods_Runner.framework in Frameworks */,
+				075637B82B015836005AFB8E /* libcore.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,10 +338,10 @@
 		B8133545EEE13EDD5549E6A3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				075637B22B0157CB005AFB8E /* libcore.xcframework */,
 				60F1D4AAC33ACF5C8307310D /* Pods_Runner.framework */,
 				DDA50BDF2E5E5DDA3995F24D /* Pods_RunnerTests.framework */,
 				03E392B72ADDA00E000ADF15 /* NetworkExtension.framework */,
-				03E392C82ADDA713000ADF15 /* libcore.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -319,6 +356,7 @@
 				03E392B22ADDA00E000ADF15 /* Sources */,
 				03E392B32ADDA00E000ADF15 /* Frameworks */,
 				03E392B42ADDA00E000ADF15 /* Resources */,
+				075637B72B015816005AFB8E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -337,6 +375,7 @@
 				331C807D294A63A400263BE5 /* Sources */,
 				331C807F294A63A400263BE5 /* Resources */,
 				531FE8242BCD501C24C8E9FA /* Frameworks */,
+				075637C32B015899005AFB8E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -389,18 +428,18 @@
 						ProvisioningStyle = Automatic;
 					};
 					331C8080294A63A400263BE5 = {
+						CreatedOnToolsVersion = 14.0;
 						DevelopmentTeam = 3JFTY5BP58;
 						DevelopmentTeamName = "Mark Pashmfouroush";
 						ProvisioningStyle = Automatic;
-						CreatedOnToolsVersion = 14.0;
 						TestTargetID = 97C146ED1CF9000F007C117D;
 					};
 					97C146ED1CF9000F007C117D = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 3JFTY5BP58;
 						DevelopmentTeamName = "Mark Pashmfouroush";
-						ProvisioningStyle = Automatic;
 						LastSwiftMigration = 1100;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -444,6 +483,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */,
+				075637C52B015989005AFB8E /* Runner.app in Resources */,
 				3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */,
 				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
 				97C146FC1CF9000F007C117D /* Main.storyboard in Resources */,
@@ -651,12 +691,14 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
+					"@executable_path/../libcore/",
+					"@executable_path/libcore/",
 				);
-				OTHER_LDFLAGS = "-lresolv";
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-lresolv";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BASE_BUNDLE_IDENTIFIER).SingBoxPacketTunnel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -693,11 +735,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
+					"@executable_path/../libcore/",
+					"@executable_path/libcore/",
 				);
-				OTHER_LDFLAGS = "-lresolv";
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-lresolv";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BASE_BUNDLE_IDENTIFIER).SingBoxPacketTunnel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -732,11 +776,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
+					"@executable_path/../libcore/",
+					"@executable_path/libcore/",
 				);
-				OTHER_LDFLAGS = "-lresolv";
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-lresolv";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BASE_BUNDLE_IDENTIFIER).SingBoxPacketTunnel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -810,6 +856,8 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+					"@executable_path/../libcore/",
+					"@executable_path/libcore",
 				);
 				OTHER_LDFLAGS = "-lresolv";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BASE_BUNDLE_IDENTIFIER)";
@@ -991,6 +1039,8 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+					"@executable_path/../libcore/",
+					"@executable_path/libcore",
 				);
 				OTHER_LDFLAGS = "-lresolv";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BASE_BUNDLE_IDENTIFIER)";
@@ -1016,6 +1066,8 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+					"@executable_path/../libcore/",
+					"@executable_path/libcore",
 				);
 				OTHER_LDFLAGS = "-lresolv";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BASE_BUNDLE_IDENTIFIER)";
