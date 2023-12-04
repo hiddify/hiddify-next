@@ -188,6 +188,7 @@
                 "route": "Rota Seçenekleri",
                 "dns": "DNS Seçenekleri",
                 "inbound": "Gelen Seçenekler",
+                "outbound": "Outbound Options",
                 "misc": "Çeşitli Seçenekler"
             },
             "pageTitle": "Yapılandırma Seçenekleri",
@@ -216,7 +217,13 @@
             "setSystemProxy": "Sistem Proxy'sini Ayarla",
             "enableFakeDns": "Sahte DNS'yi Etkinleştir",
             "bypassLan": "Lan'ı Atla",
-            "strictRoute": "Kesin Rota"
+            "strictRoute": "Kesin Rota",
+            "enableTlsFragment": "Enable TLS Fragment",
+            "tlsFragmentSize": "TLS Fragment Size",
+            "tlsFragmentSleep": "TLS Fragment Sleep",
+            "enableTlsMixedSniCase": "Enable TLS Mixed SNI Case",
+            "enableTlsPadding": "Enable TLS Padding",
+            "tlsPaddingSize": "TLS Padding"
         },
         "geoAssets": {
             "pageTitle": "Varlıkları Yönlendirme",

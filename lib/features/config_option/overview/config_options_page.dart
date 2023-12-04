@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
 import 'package:hiddify/core/localization/translations.dart';
+import 'package:hiddify/core/model/range.dart';
 import 'package:hiddify/features/config_option/model/config_option_entity.dart';
 import 'package:hiddify/features/config_option/model/config_option_patch.dart';
 import 'package:hiddify/features/config_option/notifier/config_option_notifier.dart';
@@ -164,18 +165,6 @@ class ConfigOptionsPage extends HookConsumerWidget {
               // ),
               const SettingsDivider(),
               SettingsSection(t.settings.config.section.inbound),
-              // if (PlatformUtils.isDesktop) ...[
-              //   SwitchListTile(
-              //     title: Text(t.settings.config.enableTun),
-              //     value: options.enableTun,
-              //     onChanged: ref.read(enableTunStore.notifier).update,
-              //   ),
-              //   SwitchListTile(
-              //     title: Text(t.settings.config.setSystemProxy),
-              //     value: options.setSystemProxy,
-              //     onChanged: ref.read(setSystemProxyStore.notifier).update,
-              //   ),
-              // ],
               ListTile(
                 title: Text(t.settings.config.serviceMode),
                 subtitle: Text(options.serviceMode.present(t)),
@@ -247,6 +236,79 @@ class ConfigOptionsPage extends HookConsumerWidget {
                   if (localDnsPort == null) return;
                   await changeOption(
                     ConfigOptionPatch(localDnsPort: localDnsPort),
+                  );
+                },
+              ),
+              const SettingsDivider(),
+              SettingsSection(t.settings.config.section.outbound),
+              SwitchListTile(
+                title: Text(t.settings.config.enableTlsFragment),
+                value: options.enableTlsFragment,
+                onChanged: (value) async =>
+                    changeOption(ConfigOptionPatch(enableTlsFragment: value)),
+              ),
+              ListTile(
+                title: Text(t.settings.config.tlsFragmentSize),
+                subtitle: Text(options.tlsFragmentSize.format()),
+                onTap: () async {
+                  final range = await SettingsInputDialog(
+                    title: t.settings.config.tlsFragmentSize,
+                    initialValue: options.tlsFragmentSize.format(),
+                    resetValue: defaultOptions.tlsFragmentSize.format(),
+                  ).show(context);
+                  if (range == null) return;
+                  await changeOption(
+                    ConfigOptionPatch(
+                      tlsFragmentSize: RangeWithOptionalCeil.tryParse(range),
+                    ),
+                  );
+                },
+              ),
+              ListTile(
+                title: Text(t.settings.config.tlsFragmentSleep),
+                subtitle: Text(options.tlsFragmentSleep.format()),
+                onTap: () async {
+                  final range = await SettingsInputDialog(
+                    title: t.settings.config.tlsFragmentSleep,
+                    initialValue: options.tlsFragmentSleep.format(),
+                    resetValue: defaultOptions.tlsFragmentSleep.format(),
+                  ).show(context);
+                  if (range == null) return;
+                  await changeOption(
+                    ConfigOptionPatch(
+                      tlsFragmentSleep: RangeWithOptionalCeil.tryParse(range),
+                    ),
+                  );
+                },
+              ),
+              SwitchListTile(
+                title: Text(t.settings.config.enableTlsMixedSniCase),
+                value: options.enableTlsMixedSniCase,
+                onChanged: (value) async => changeOption(
+                  ConfigOptionPatch(enableTlsMixedSniCase: value),
+                ),
+              ),
+              SwitchListTile(
+                title: Text(t.settings.config.enableTlsPadding),
+                value: options.enableTlsPadding,
+                onChanged: (value) async => changeOption(
+                  ConfigOptionPatch(enableTlsPadding: value),
+                ),
+              ),
+              ListTile(
+                title: Text(t.settings.config.tlsPaddingSize),
+                subtitle: Text(options.tlsPaddingSize.format()),
+                onTap: () async {
+                  final range = await SettingsInputDialog(
+                    title: t.settings.config.tlsPaddingSize,
+                    initialValue: options.tlsPaddingSize.format(),
+                    resetValue: defaultOptions.tlsPaddingSize.format(),
+                  ).show(context);
+                  if (range == null) return;
+                  await changeOption(
+                    ConfigOptionPatch(
+                      tlsPaddingSize: RangeWithOptionalCeil.tryParse(range),
+                    ),
                   );
                 },
               ),

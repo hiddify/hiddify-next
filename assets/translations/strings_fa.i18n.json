@@ -188,6 +188,7 @@
                 "route": "تنظیمات مسیریاب",
                 "dns": "تنظیمات DNS",
                 "inbound": "تنظیمات ورودی",
+                "outbound": "Outbound Options",
                 "misc": "تنظیمات متفرقه"
             },
             "pageTitle": "تنظیمات کانفیگ",
@@ -216,7 +217,13 @@
             "setSystemProxy": "تنظیم پروکسی سیستم",
             "enableFakeDns": "Enable Fake DNS",
             "bypassLan": "Bypass Lan",
-            "strictRoute": "Strict Route"
+            "strictRoute": "Strict Route",
+            "enableTlsFragment": "Enable TLS Fragment",
+            "tlsFragmentSize": "TLS Fragment Size",
+            "tlsFragmentSleep": "TLS Fragment Sleep",
+            "enableTlsMixedSniCase": "Enable TLS Mixed SNI Case",
+            "enableTlsPadding": "Enable TLS Padding",
+            "tlsPaddingSize": "TLS Padding"
         },
         "geoAssets": {
             "pageTitle": "فایل‌های مسیریابی",

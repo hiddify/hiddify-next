@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hiddify/core/model/range.dart';
 import 'package:hiddify/features/log/model/log_level.dart';
 import 'package:hiddify/singbox/model/singbox_config_enum.dart';
 import 'package:hiddify/singbox/model/singbox_rule.dart';
@@ -36,6 +37,15 @@ class SingboxConfigOption with _$SingboxConfigOption {
     required bool bypassLan,
     required bool enableFakeDns,
     required bool independentDnsCache,
+    required bool enableTlsFragment,
+    @RangeWithOptionalCeilJsonConverter()
+    required RangeWithOptionalCeil tlsFragmentSize,
+    @RangeWithOptionalCeilJsonConverter()
+    required RangeWithOptionalCeil tlsFragmentSleep,
+    required bool enableTlsMixedSniCase,
+    required bool enableTlsPadding,
+    @RangeWithOptionalCeilJsonConverter()
+    required RangeWithOptionalCeil tlsPaddingSize,
     required String geoipPath,
     required String geositePath,
     required List<SingboxRule> rules,

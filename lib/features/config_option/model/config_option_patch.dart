@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hiddify/core/model/range.dart';
 import 'package:hiddify/core/utils/json_converters.dart';
 import 'package:hiddify/features/log/model/log_level.dart';
 import 'package:hiddify/singbox/model/singbox_config_enum.dart';
@@ -32,6 +33,14 @@ class ConfigOptionPatch with _$ConfigOptionPatch {
     bool? bypassLan,
     bool? enableFakeDns,
     bool? independentDnsCache,
+    bool? enableTlsFragment,
+    @RangeWithOptionalCeilJsonConverter()
+    RangeWithOptionalCeil? tlsFragmentSize,
+    @RangeWithOptionalCeilJsonConverter()
+    RangeWithOptionalCeil? tlsFragmentSleep,
+    bool? enableTlsMixedSniCase,
+    bool? enableTlsPadding,
+    @RangeWithOptionalCeilJsonConverter() RangeWithOptionalCeil? tlsPaddingSize,
   }) = _ConfigOptionPatch;
 
   factory ConfigOptionPatch.fromJson(Map<String, dynamic> json) =>
