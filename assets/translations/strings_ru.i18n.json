@@ -188,6 +188,7 @@
                 "route": "Варианты маршрутизации",
                 "dns": "Параметры DNS",
                 "inbound": "Входящие параметры",
+                "outbound": "Outbound Options",
                 "misc": "Разные параметры"
             },
             "pageTitle": "Параметры конфигурации",
@@ -216,7 +217,13 @@
             "setSystemProxy": "Использовать системный прокси",
             "enableFakeDns": "Использовать поддельную DNS",
             "bypassLan": "Обход локальной сети",
-            "strictRoute": "Строгая маршрутизация"
+            "strictRoute": "Строгая маршрутизация",
+            "enableTlsFragment": "Enable TLS Fragment",
+            "tlsFragmentSize": "TLS Fragment Size",
+            "tlsFragmentSleep": "TLS Fragment Sleep",
+            "enableTlsMixedSniCase": "Enable TLS Mixed SNI Case",
+            "enableTlsPadding": "Enable TLS Padding",
+            "tlsPaddingSize": "TLS Padding"
         },
         "geoAssets": {
             "pageTitle": "Активы маршрутизации",

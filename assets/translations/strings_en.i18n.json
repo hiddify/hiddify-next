@@ -188,6 +188,7 @@
                 "route": "Route Options",
                 "dns": "DNS Options",
                 "inbound": "Inbound Options",
+                "outbound": "Outbound Options",
                 "misc": "Misc Options"
             },
             "pageTitle": "Config Options",
@@ -216,7 +217,13 @@
             "setSystemProxy": "Set System Proxy",
             "enableFakeDns": "Enable Fake DNS",
             "bypassLan": "Bypass Lan",
-            "strictRoute": "Strict Route"
+            "strictRoute": "Strict Route",
+            "enableTlsFragment": "Enable TLS Fragment",
+            "tlsFragmentSize": "TLS Fragment Size",
+            "tlsFragmentSleep": "TLS Fragment Sleep",
+            "enableTlsMixedSniCase": "Enable TLS Mixed SNI Case",
+            "enableTlsPadding": "Enable TLS Padding",
+            "tlsPaddingSize": "TLS Padding"
         },
         "geoAssets": {
             "pageTitle": "Routing Assets",

@@ -96,6 +96,12 @@ class ConfigOptionRepositoryImpl
           bypassLan: persisted.bypassLan,
           enableFakeDns: persisted.enableFakeDns,
           independentDnsCache: persisted.independentDnsCache,
+          enableTlsFragment: persisted.enableTlsFragment,
+          tlsFragmentSize: persisted.tlsFragmentSize,
+          tlsFragmentSleep: persisted.tlsFragmentSleep,
+          enableTlsMixedSniCase: persisted.enableTlsMixedSniCase,
+          enableTlsPadding: persisted.enableTlsPadding,
+          tlsPaddingSize: persisted.tlsPaddingSize,
           geoipPath: geoAssetPathResolver.relativePath(
             geoAssets.geoip.providerName,
             geoAssets.geoip.fileName,

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hiddify/core/model/range.dart';
 import 'package:hiddify/core/utils/json_converters.dart';
 import 'package:hiddify/features/config_option/model/config_option_patch.dart';
 import 'package:hiddify/features/log/model/log_level.dart';
@@ -37,6 +38,18 @@ class ConfigOptionEntity with _$ConfigOptionEntity {
     @Default(false) bool bypassLan,
     @Default(false) bool enableFakeDns,
     @Default(true) bool independentDnsCache,
+    @Default(false) bool enableTlsFragment,
+    @RangeWithOptionalCeilJsonConverter()
+    @Default(RangeWithOptionalCeil(min: 10, max: 100))
+    RangeWithOptionalCeil tlsFragmentSize,
+    @RangeWithOptionalCeilJsonConverter()
+    @Default(RangeWithOptionalCeil(min: 50, max: 200))
+    RangeWithOptionalCeil tlsFragmentSleep,
+    @Default(false) bool enableTlsMixedSniCase,
+    @Default(false) bool enableTlsPadding,
+    @RangeWithOptionalCeilJsonConverter()
+    @Default(RangeWithOptionalCeil(min: 100, max: 200))
+    RangeWithOptionalCeil tlsPaddingSize,
   }) = _ConfigOptionEntity;
 
   static ConfigOptionEntity initial = ConfigOptionEntity(
@@ -72,6 +85,13 @@ class ConfigOptionEntity with _$ConfigOptionEntity {
       bypassLan: patch.bypassLan ?? bypassLan,
       enableFakeDns: patch.enableFakeDns ?? enableFakeDns,
       independentDnsCache: patch.independentDnsCache ?? independentDnsCache,
+      enableTlsFragment: patch.enableTlsFragment ?? enableTlsFragment,
+      tlsFragmentSize: patch.tlsFragmentSize ?? tlsFragmentSize,
+      tlsFragmentSleep: patch.tlsFragmentSleep ?? tlsFragmentSleep,
+      enableTlsMixedSniCase:
+          patch.enableTlsMixedSniCase ?? enableTlsMixedSniCase,
+      enableTlsPadding: patch.enableTlsPadding ?? enableTlsPadding,
+      tlsPaddingSize: patch.tlsPaddingSize ?? tlsPaddingSize,
     );
   }
 

@@ -188,6 +188,7 @@
                 "route": "路由选项",
                 "dns": "DNS 选项",
                 "inbound": "入站选项",
+                "outbound": "Outbound Options",
                 "misc": "其它选项"
             },
             "pageTitle": "配置选项",
@@ -216,7 +217,13 @@
             "setSystemProxy": "设置系统代理",
             "enableFakeDns": "启用 Fake DNS",
             "bypassLan": "绕过局域网",
-            "strictRoute": "严格路由"
+            "strictRoute": "严格路由",
+            "enableTlsFragment": "Enable TLS Fragment",
+            "tlsFragmentSize": "TLS Fragment Size",
+            "tlsFragmentSleep": "TLS Fragment Sleep",
+            "enableTlsMixedSniCase": "Enable TLS Mixed SNI Case",
+            "enableTlsPadding": "Enable TLS Padding",
+            "tlsPaddingSize": "TLS Padding"
         },
         "geoAssets": {
             "pageTitle": "路由资源文件",

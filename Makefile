@@ -15,12 +15,11 @@ CORE_URL=https://github.com/hiddify/hiddify-next-core/releases/download/draft
 endif
 
 ifeq ($(CHANNEL),prod)
-FLAVOR=prod
+TARGET=lib/main_prod.dart
 else
-FLAVOR=dev
+TARGET=lib/main.dart
 endif
 
-TARGET=lib/main_$(FLAVOR).dart
 BUILD_ARGS=--dart-define sentry_dsn=$(SENTRY_DSN)
 DISTRIBUTOR_ARGS=--skip-clean --build-target $(TARGET) --build-dart-define sentry_dsn=$(SENTRY_DSN)
 
