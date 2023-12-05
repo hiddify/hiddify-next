@@ -33,21 +33,18 @@ translate:
 	dart run slang
 
 prepare: get-geo-assets get gen translate
-	@echo "Select a platform:"
-	@echo "1. Android"
-	@echo "2. Windows"
-	@echo "3. Linux"
-	@echo "4. macOS"
-	@echo "5. iOS"
-	@read -p "Enter your choice (1 to 5): " choice; \
-	case $$choice in \
-		1) make android-libs ;; \
-		2) make windows-libs ;; \
-		3) make linux-libs ;; \
-		4) make macos-libs ;; \
-		5) make ios-libs ;; \
-		*) echo "Invalid choice. Please select 1 to 5." ;; \
-	esac
+	@echo "Available platforms:"
+	@echo "android"
+	@echo "windows"
+	@echo "linux"
+	@echo "macos"
+	@echo "ios"
+	if [ -z "$$platform" ]; then \
+		read -p "run make prepare platform=ios or Enter platform name: " choice; \
+	else \
+		choice=$$platform; \
+	fi; \
+	make $$choice-libs
 
 sync_translate:
 	cd .github && bash sync_translate.sh
@@ -96,6 +93,7 @@ macos-libs:
 
 ios-libs: #not tested
 	mkdir -p $(DESKTOP_OUT)/ &&\
+	rm -rf $(IOS_OUT)/libcore.xcframework
 	curl -L $(CORE_URL)/$(CORE_NAME)-ios.xcframework.tar.gz | tar xz -C "$(IOS_OUT)" && \
 	mv $(IOS_OUT)/$(CORE_NAME)-ios.xcframework $(IOS_OUT)/libcore.xcframework
 
@@ -141,3 +139,64 @@ release: # Create a new tag for release.
 	git tag v$${TAG} && \
 	git push -u origin HEAD --tags && \
 	echo "Github Actions will detect the new tag and release the new version."'
+
+
+
+ios-temp-preapre: 
+	flutter upgrade
+	flutter pub upgrade
+	make prepare platform=ios
+	flutter build ios-framework
+	cd ios
+	pod install
+	cd ..
+	flutter run
+	#Link the built App and Flutter and url_launcher_ios frameworks (or all created frameworks? i dunno, but i tried) from Release folder to Xcode project in Runner target’s Build Phases as Linked
+
+	#change ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES  to $(inherited)
+
+	#also add $(inherited) as 1st option to OTHER_LDFLAGS (Other Linker Flags)
+
+
+	#add $(PROJECT_DIR)/Flutter/$(CONFIGURATION) to framework search path as 2nd
+
+	#in Runner target go to Build Phases in Copy Bundle Resources section remove Runner.app
+
+	# right click on Runner.xcodeproj click on Show Package Content open project.pbxproj  replace
+	#Flutter/Release/App.xcframework
+	#Flutter/Release/Flutter.xcframework
+	# Flutter/Release/url_launcher_ios.xcframework
+	# with
+	# "Flutter/$(CONFIGURATION)/App.xcframework"
+	# "Flutter/$(CONFIGURATION)/Flutter.xcframework"
+	# "Flutter/$(CONFIGURATION)/url_launcher_ios.xcframework"
+	# (if you added all frameworks, you should do this pattern for all of them too, you need this step to be able to run on simulators)
+
+	# done remove	# GeneratedPluginRegistrant.h 	# GeneratedPluginRegistrant.m 	# from Runner folder and add newly generated ones from build/ios/framework folder to Xcode and also check the copy box
+
+	# done in pod file 	# remove comment from line 2 and change it to 	# platform :ios, '12.1' 	# and add
+
+	#	 target.build_configurations.each do |config|
+	#	 config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.1'
+	#	 end
+
+	# before 1st ‘end’ in post_install function
+
+	# add
+	# -fcxx-modules
+	# to
+	# OTHER_CPLUSPLUSFLAGS
+	# in Build Settings
+	# as 1st option
+
+	# flutter upgrade
+	# flutter pub upgrade
+	# cd ios
+	# pod install
+
+	# (note: i removed group and network extensions from targets to be able to build with free account)
+
+	# now build
+	# it will build (even on simulator)
+	# but for some not known reason, it will not run for me on my device and will refuse to install on simulator, maybe because the removed extensions? i dunno
+	# even now it can be an arsehole and return failed with exit code 1 so don’t panic
