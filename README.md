@@ -117,13 +117,14 @@ You can easily contribute to this project by using the following links to improv
 
 
 ## Acknowledgements
-
+We would like to express our sincere appreciation to the contributors of the following projects, whose robust foundation and innovative features have significantly enhanced the success and functionality of thid project.”
 - [Sing-box](https://github.com/SagerNet/sing-box)
 - [Sing-box for Android](https://github.com/SagerNet/sing-box-for-android)
 - [Clash](https://github.com/Dreamacro/clash)
 - [Clash Meta](https://github.com/MetaCubeX/Clash.Meta)
 - [FClash](https://github.com/Fclash/Fclash)
 - [Others](./pubspec.yaml)
+- Font: Vazir by Saber Rasti
 
 ## Donation and Support
 
