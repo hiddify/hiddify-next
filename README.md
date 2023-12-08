@@ -124,7 +124,7 @@ We would like to express our sincere appreciation to the contributors of the fol
 - [Clash Meta](https://github.com/MetaCubeX/Clash.Meta)
 - [FClash](https://github.com/Fclash/Fclash)
 - [Others](./pubspec.yaml)
-- Font: Vazir by Saber Rasti
+- Font: [Vazirmatn by Saber Rastikerdar](https://github.com/rastikerdar/vazirmatn)
 
 ## Donation and Support
 
