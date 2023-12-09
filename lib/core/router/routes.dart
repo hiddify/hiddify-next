@@ -23,7 +23,6 @@ GlobalKey<NavigatorState>? _dynamicRootKey =
 
 @TypedShellRoute<MobileWrapperRoute>(
   routes: [
-    TypedGoRoute<IntroRoute>(path: "/intro", name: IntroRoute.name),
     TypedGoRoute<HomeRoute>(
       path: "/",
       name: HomeRoute.name,
@@ -89,7 +88,6 @@ class MobileWrapperRoute extends ShellRouteData {
 
 @TypedShellRoute<DesktopWrapperRoute>(
   routes: [
-    TypedGoRoute<IntroRoute>(path: "/intro", name: IntroRoute.name),
     TypedGoRoute<HomeRoute>(
       path: "/",
       name: HomeRoute.name,
@@ -149,6 +147,7 @@ class DesktopWrapperRoute extends ShellRouteData {
   }
 }
 
+@TypedGoRoute<IntroRoute>(path: "/intro", name: IntroRoute.name)
 class IntroRoute extends GoRouteData {
   const IntroRoute();
   static const name = "Intro";

@@ -40,6 +40,7 @@ GoRouter router(RouterRef ref) {
     debugLogDiagnostics: true,
     routes: [
       if (useMobileRouter) $mobileWrapperRoute else $desktopWrapperRoute,
+      $introRoute,
     ],
     refreshListenable: notifier,
     redirect: notifier.redirect,
