@@ -52,6 +52,7 @@ class WindowController extends _$WindowController
 
   Future<void> show() async {
     await windowManager.show();
+    await windowManager.focus();
     state = const AsyncData(true);
   }
 

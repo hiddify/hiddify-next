@@ -125,7 +125,11 @@ class SystemTrayController extends _$SystemTrayController
 
   @override
   Future<void> onTrayIconMouseDown() async {
-    await ref.read(windowControllerProvider.notifier).show();
+    if (Platform.isMacOS) {
+      await trayManager.popUpContextMenu();
+    } else {
+      await ref.read(windowControllerProvider.notifier).show();
+    }
   }
 
   @override
@@ -135,7 +139,6 @@ class SystemTrayController extends _$SystemTrayController
   }
 
   Future<void> handleClickShowApp(MenuItem menuItem) async {
-    if (await ref.read(windowControllerProvider.future)) return;
     await ref.read(windowControllerProvider.notifier).show();
   }
 
