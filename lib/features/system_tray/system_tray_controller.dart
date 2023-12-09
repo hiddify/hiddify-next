@@ -32,10 +32,14 @@ class SystemTrayController extends _$SystemTrayController
       _initialized = true;
     }
 
-    final connection = switch (ref.watch(connectionNotifierProvider)) {
-      AsyncData(:final value) => value,
-      _ => const Disconnected(),
-    };
+    ConnectionStatus connection;
+    try {
+      connection = await ref.watch(connectionNotifierProvider.future);
+    } catch (e) {
+      loggy.warning("error getting connection status", e);
+      connection = const ConnectionStatus.disconnected();
+    }
+
     final serviceMode = await ref
         .watch(configOptionNotifierProvider.future)
         .then((value) => value.serviceMode);
