@@ -7,6 +7,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hiddify/core/app_info/app_info_provider.dart';
 import 'package:hiddify/core/model/environment.dart';
 import 'package:hiddify/core/preferences/general_preferences.dart';
+import 'package:hiddify/core/preferences/preferences_migration.dart';
 import 'package:hiddify/core/preferences/preferences_provider.dart';
 import 'package:hiddify/features/app/widget/app.dart';
 import 'package:hiddify/features/common/window/window_controller.dart';
@@ -47,7 +48,12 @@ Future<void> lazyBootstrap(
   );
 
   final appInfo = await container.read(appInfoProvider.future);
+
   await container.read(sharedPreferencesProvider.future);
+  await PreferencesMigration(
+    sharedPreferences: container.read(sharedPreferencesProvider).requireValue,
+  ).migrate();
+
   final enableAnalytics = container.read(enableAnalyticsProvider);
 
   await SentryFlutter.init(
