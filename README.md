@@ -123,8 +123,8 @@ We would like to express our sincere appreciation to the contributors of the fol
 - [Clash](https://github.com/Dreamacro/clash)
 - [Clash Meta](https://github.com/MetaCubeX/Clash.Meta)
 - [FClash](https://github.com/Fclash/Fclash)
-- [Others](./pubspec.yaml)
 - Font: [Vazirmatn by Saber Rastikerdar](https://github.com/rastikerdar/vazirmatn)
+- [Others](./pubspec.yaml)
 
 ## Donation and Support
 
