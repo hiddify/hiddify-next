@@ -109,13 +109,16 @@
 - [简体中文](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=zh)
 
 ## 致谢
-
+我们谨向以下项目的贡献者表示诚挚的谢意，他们坚实的基础和创新的功能显着增强了该项目的成功和功能。
 - [Sing-box](https://github.com/SagerNet/sing-box)
-- [Sing-box for Android](https://github.com/SagerNet/sing-box-for-android)
-- [Clash](https://github.com/Dreamacro/clash)
-- [Clash Meta](https://github.com/MetaCubeX/Clash.Meta)
+- [Android 版 Sing-box](https://github.com/SagerNet/sing-box-for-android)
+- [冲突](https://github.com/Dreamacro/clash)
+- [冲突元](https://github.com/MetaCubeX/Clash.Meta)
 - [FClash](https://github.com/Fclash/Fclash)
-- [Others](./pubspec.yaml)
+- 字体：[Vazirmatn by Saber Rastikerdar](https://github.com/rastikerdar/vazirmatn)
+- [其他](./pubspec.yaml)
+
+
 
 ## 捐赠和支持
 
