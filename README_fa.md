@@ -108,14 +108,17 @@
 - [روسی](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=ru)
 - [چینی](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=zh)
 
-## سپاسگزاری
+## سپاسگزاری‌ها
+مایلیم از دست‌اندرکاران پروژه‌های زیر صمیمانه قدردانی کنیم که پایه قوی و ویژگی‌های نوآورانه آنها موفقیت و عملکرد این پروژه را به میزان قابل توجهی افزایش داده است.
 
 - [سینگ‌باکس](https://github.com/SagerNet/sing-box)
 - [سینگ‌باکس برای اندروید](https://github.com/SagerNet/sing-box-for-android)
 - [کلش](https://github.com/Dreamacro/clash)
 - [کلش‌متا](https://github.com/MetaCubeX/Clash.Meta)
 - [اف‌کلش](https://github.com/Fclash/Fclash)
-- [سایر](./pubspec.yaml)
+- فونت: [وزیرمتن صابر راستی‌کردار](https://github.com/rastikerdar/vazirmatn)
+- [سایر] (./pubspec.yaml)
+
 
 ## حمایت از پروژه
 
