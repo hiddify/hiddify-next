@@ -117,7 +117,7 @@
 - [کلش‌متا](https://github.com/MetaCubeX/Clash.Meta)
 - [اف‌کلش](https://github.com/Fclash/Fclash)
 - فونت: [وزیرمتن صابر راستی‌کردار](https://github.com/rastikerdar/vazirmatn)
-- [سایر] (./pubspec.yaml)
+- [سایر](./pubspec.yaml)
 
 
 ## حمایت از پروژه
