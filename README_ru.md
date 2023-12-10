@@ -97,13 +97,15 @@
 - [Китайский](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=zh)
 
 ## Благодарности
-
+Мы хотели бы выразить нашу искреннюю признательность участникам следующих проектов, чья прочная основа и инновационные функции значительно повысили успех и функциональность этого проекта.
 - [Sing-box](https://github.com/SagerNet/sing-box)
-- [Sing-box для Андроид](https://github.com/SagerNet/sing-box-for-android)
+- [Sing-box для Android](https://github.com/SagerNet/sing-box-for-android)
 - [Clash](https://github.com/Dreamacro/clash)
-- [Clash Meta](https://github.com/MetaCubeX/Clash.Meta)
+- [Мета Clash](https://github.com/MetaCubeX/Clash.Meta)
 - [FClash](https://github.com/Fclash/Fclash)
+- Шрифт: [Vazirmatn от Sabre Rastikerdar] (https://github.com/rastikerdar/vazirmatn)
 - [Другие](./pubspec.yaml)
+
 
 ## Пожертвования и поддержка
 Самый простой способ поддержать нас — нажать на звездочку (⭐) вверху этой страницы.
