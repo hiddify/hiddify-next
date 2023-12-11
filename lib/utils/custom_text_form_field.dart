@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hiddify/utils/text_utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -6,9 +7,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class CustomTextFormField extends HookConsumerWidget {
   const CustomTextFormField({
     super.key,
-    required this.onChanged,
+    this.onChanged,
     this.validator,
     this.controller,
+    this.inputFormatters,
     this.initialValue = '',
     this.suffixIcon,
     this.label,
@@ -19,9 +21,10 @@ class CustomTextFormField extends HookConsumerWidget {
     this.autoCorrect = false,
   });
 
-  final ValueChanged<String> onChanged;
+  final ValueChanged<String>? onChanged;
   final String? Function(String? value)? validator;
   final TextEditingController? controller;
+  final List<TextInputFormatter>? inputFormatters;
   final String initialValue;
   final Widget? suffixIcon;
   final String? label;
@@ -51,6 +54,8 @@ class CustomTextFormField extends HookConsumerWidget {
       onChanged: onChanged,
       textDirection: textController.textDirection,
       validator: validator,
+      textInputAction: TextInputAction.next,
+      inputFormatters: inputFormatters,
       autovalidateMode:
           autoValidate ? AutovalidateMode.always : AutovalidateMode.disabled,
       autocorrect: autoCorrect,

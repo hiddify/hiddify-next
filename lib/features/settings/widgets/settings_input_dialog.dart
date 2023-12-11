@@ -45,55 +45,74 @@ class SettingsInputDialog<T> extends HookConsumerWidget with PresLogger {
       text: initialValue?.toString(),
     );
 
-    return AlertDialog(
-      title: Text(title),
-      icon: icon != null ? Icon(icon) : null,
-      content: TextFormField(
-        controller: textController,
-        inputFormatters: [
-          FilteringTextInputFormatter.singleLineFormatter,
-          if (digitsOnly) FilteringTextInputFormatter.digitsOnly,
+    return FocusTraversalGroup(
+      policy: OrderedTraversalPolicy(),
+      child: AlertDialog(
+        title: Text(title),
+        icon: icon != null ? Icon(icon) : null,
+        content: FocusTraversalOrder(
+          order: const NumericFocusOrder(1),
+          child: CustomTextFormField(
+            controller: textController,
+            inputFormatters: [
+              FilteringTextInputFormatter.singleLineFormatter,
+              if (digitsOnly) FilteringTextInputFormatter.digitsOnly,
+            ],
+            autoCorrect: true,
+            hint: title,
+          ),
+        ),
+        actions: [
+          if (optionalAction != null)
+            FocusTraversalOrder(
+              order: const NumericFocusOrder(5),
+              child: TextButton(
+                onPressed: () async {
+                  optionalAction!.$2();
+                  await Navigator.of(context)
+                      .maybePop(T == String ? textController.value.text : null);
+                },
+                child: Text(optionalAction!.$1.toUpperCase()),
+              ),
+            ),
+          if (resetValue != null)
+            FocusTraversalOrder(
+              order: const NumericFocusOrder(4),
+              child: TextButton(
+                onPressed: () async {
+                  await Navigator.of(context).maybePop(resetValue);
+                },
+                child: Text(t.general.reset.toUpperCase()),
+              ),
+            ),
+          FocusTraversalOrder(
+            order: const NumericFocusOrder(3),
+            child: TextButton(
+              onPressed: () async {
+                await Navigator.of(context).maybePop();
+              },
+              child: Text(localizations.cancelButtonLabel.toUpperCase()),
+            ),
+          ),
+          FocusTraversalOrder(
+            order: const NumericFocusOrder(2),
+            child: TextButton(
+              onPressed: () async {
+                if (validator?.call(textController.value.text) == false) {
+                  await Navigator.of(context).maybePop(null);
+                } else if (mapTo != null) {
+                  await Navigator.of(context)
+                      .maybePop(mapTo!.call(textController.value.text));
+                } else {
+                  await Navigator.of(context)
+                      .maybePop(T == String ? textController.value.text : null);
+                }
+              },
+              child: Text(localizations.okButtonLabel.toUpperCase()),
+            ),
+          ),
         ],
-        autovalidateMode: AutovalidateMode.always,
       ),
-      actions: [
-        if (optionalAction != null)
-          TextButton(
-            onPressed: () async {
-              optionalAction!.$2();
-              await Navigator.of(context)
-                  .maybePop(T == String ? textController.value.text : null);
-            },
-            child: Text(optionalAction!.$1.toUpperCase()),
-          ),
-        if (resetValue != null)
-          TextButton(
-            onPressed: () async {
-              await Navigator.of(context).maybePop(resetValue);
-            },
-            child: Text(t.general.reset.toUpperCase()),
-          ),
-        TextButton(
-          onPressed: () async {
-            await Navigator.of(context).maybePop();
-          },
-          child: Text(localizations.cancelButtonLabel.toUpperCase()),
-        ),
-        TextButton(
-          onPressed: () async {
-            if (validator?.call(textController.value.text) == false) {
-              await Navigator.of(context).maybePop(null);
-            } else if (mapTo != null) {
-              await Navigator.of(context)
-                  .maybePop(mapTo!.call(textController.value.text));
-            } else {
-              await Navigator.of(context)
-                  .maybePop(T == String ? textController.value.text : null);
-            }
-          },
-          child: Text(localizations.okButtonLabel.toUpperCase()),
-        ),
-      ],
     );
   }
 }
