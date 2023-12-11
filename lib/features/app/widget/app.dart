@@ -1,6 +1,7 @@
 import 'package:accessibility_tools/accessibility_tools.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hiddify/core/localization/locale_extensions.dart';
 import 'package:hiddify/core/localization/locale_preferences.dart';
@@ -31,30 +32,35 @@ class App extends HookConsumerWidget with PresLogger {
 
     final upgrader = ref.watch(upgraderProvider);
 
-    return MaterialApp.router(
-      routerConfig: router,
-      locale: locale.flutterLocale,
-      supportedLocales: AppLocaleUtils.supportedLocales,
-      localizationsDelegates: GlobalMaterialLocalizations.delegates,
-      debugShowCheckedModeBanner: false,
-      themeMode: themeMode.flutterThemeMode,
-      theme: theme.light(),
-      darkTheme: theme.dark(),
-      title: Constants.appName,
-      builder: (context, child) {
-        child = UpgradeAlert(
-          upgrader: upgrader,
-          navigatorKey: router.routerDelegate.navigatorKey,
-          child: child ?? const SizedBox(),
-        );
-        if (kDebugMode && _debugAccessibility) {
-          return AccessibilityTools(
-            checkFontOverflows: true,
-            child: child,
-          );
-        }
-        return child;
+    return Shortcuts(
+      shortcuts: {
+        LogicalKeySet(LogicalKeyboardKey.select): const ActivateIntent(),
       },
+      child: MaterialApp.router(
+        routerConfig: router,
+        locale: locale.flutterLocale,
+        supportedLocales: AppLocaleUtils.supportedLocales,
+        localizationsDelegates: GlobalMaterialLocalizations.delegates,
+        debugShowCheckedModeBanner: false,
+        themeMode: themeMode.flutterThemeMode,
+        theme: theme.light(),
+        darkTheme: theme.dark(),
+        title: Constants.appName,
+        builder: (context, child) {
+          child = UpgradeAlert(
+            upgrader: upgrader,
+            navigatorKey: router.routerDelegate.navigatorKey,
+            child: child ?? const SizedBox(),
+          );
+          if (kDebugMode && _debugAccessibility) {
+            return AccessibilityTools(
+              checkFontOverflows: true,
+              child: child,
+            );
+          }
+          return child;
+        },
+      ),
     );
   }
 }
