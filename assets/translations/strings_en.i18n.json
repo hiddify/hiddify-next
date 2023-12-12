@@ -233,7 +233,8 @@
             "download": "Download",
             "failureMsg": "Failed to update asset",
             "successMsg": "Successfully updated asset",
-            "addRecommended": "Add Recommended Assets"
+            "addRecommended": "Add Recommended Assets",
+            "missingGeoAssetsMsg": "Selected routing assets' files are missing. Either download them or choose existing ones."
         }
     },
     "about": {

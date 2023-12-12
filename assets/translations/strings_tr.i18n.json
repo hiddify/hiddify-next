@@ -233,7 +233,8 @@
             "download": "İndirmek",
             "failureMsg": "Öğe güncellenemedi",
             "successMsg": "Öğe başarıyla güncellendi",
-            "addRecommended": "Önerilen Varlıkları Ekle"
+            "addRecommended": "Önerilen Varlıkları Ekle",
+            "missingGeoAssetsMsg": "Seçilen yönlendirme varlıklarının dosyaları eksik. Bunları indirin veya mevcut olanları seçin."
         }
     },
     "about": {

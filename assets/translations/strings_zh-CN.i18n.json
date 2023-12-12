@@ -233,7 +233,8 @@
             "download": "下载",
             "failureMsg": "更新资源文件失败",
             "successMsg": "已成功更新资源文件",
-            "addRecommended": "添加建议的资源文件"
+            "addRecommended": "添加建议的资源文件",
+            "missingGeoAssetsMsg": "所选路由资源的文件丢失。下载它们或选择现有的。"
         }
     },
     "about": {
