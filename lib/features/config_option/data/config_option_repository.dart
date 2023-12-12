@@ -10,6 +10,7 @@ import 'package:hiddify/singbox/model/singbox_config_enum.dart';
 import 'package:hiddify/singbox/model/singbox_config_option.dart';
 import 'package:hiddify/singbox/model/singbox_rule.dart';
 import 'package:hiddify/utils/utils.dart';
+import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract interface class ConfigOptionRepository {
@@ -19,6 +20,7 @@ abstract interface class ConfigOptionRepository {
   TaskEither<ConfigOptionFailure, Unit> updateConfigOption(
     ConfigOptionPatch patch,
   );
+  TaskEither<ConfigOptionFailure, Unit> resetConfigOption();
 }
 
 class ConfigOptionRepositoryImpl
@@ -151,28 +153,48 @@ class ConfigOptionRepositoryImpl
     return exceptionHandler(
       () async {
         final map = patch.toJson();
-        for (final key in map.keys) {
-          final value = map[key];
-          if (value != null) {
-            loggy.debug("updating [$key] to [$value]");
-
-            switch (value) {
-              case bool _:
-                await preferences.setBool(key, value);
-              case String _:
-                await preferences.setString(key, value);
-              case int _:
-                await preferences.setInt(key, value);
-              case double _:
-                await preferences.setDouble(key, value);
-              default:
-                loggy.warning("unexpected type");
-            }
-          }
-        }
+        await updateByJson(map);
         return right(unit);
       },
       ConfigOptionUnexpectedFailure.new,
     );
+  }
+
+  @override
+  TaskEither<ConfigOptionFailure, Unit> resetConfigOption() {
+    return exceptionHandler(
+      () async {
+        final map = ConfigOptionEntity.initial.toJson();
+        await updateByJson(map);
+        return right(unit);
+      },
+      ConfigOptionUnexpectedFailure.new,
+    );
+  }
+
+  @visibleForTesting
+  Future<void> updateByJson(
+    Map<String, dynamic> options,
+  ) async {
+    final map = ConfigOptionEntity.initial.toJson();
+    for (final key in map.keys) {
+      final value = options[key];
+      if (value != null) {
+        loggy.debug("updating [$key] to [$value]");
+
+        switch (value) {
+          case bool _:
+            await preferences.setBool(key, value);
+          case String _:
+            await preferences.setString(key, value);
+          case int _:
+            await preferences.setInt(key, value);
+          case double _:
+            await preferences.setDouble(key, value);
+          default:
+            loggy.warning("unexpected type");
+        }
+      }
+    }
   }
 }

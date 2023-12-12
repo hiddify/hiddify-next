@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
 import 'package:hiddify/core/localization/translations.dart';
+import 'package:hiddify/core/model/failures.dart';
 import 'package:hiddify/core/model/range.dart';
 import 'package:hiddify/features/config_option/model/config_option_entity.dart';
 import 'package:hiddify/features/config_option/model/config_option_patch.dart';
@@ -43,6 +44,14 @@ class ConfigOptionsPage extends HookConsumerWidget {
                       Clipboard.setData(
                         ClipboardData(text: options.format()),
                       );
+                    },
+                  ),
+                  PopupMenuItem(
+                    child: Text(t.settings.config.resetBtn),
+                    onTap: () async {
+                      await ref
+                          .read(configOptionNotifierProvider.notifier)
+                          .resetOption();
                     },
                   ),
                 ];
@@ -377,7 +386,26 @@ class ConfigOptionsPage extends HookConsumerWidget {
               const Gap(24),
             ],
           ),
-        // TODO show appropriate error/loading widgets
+        AsyncError(:final error) => Center(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  const Icon(Icons.error),
+                  const Gap(2),
+                  Text(t.presentShortError(error)),
+                  const Gap(2),
+                  TextButton(
+                    onPressed: () async {
+                      await ref
+                          .read(configOptionNotifierProvider.notifier)
+                          .resetOption();
+                    },
+                    child: Text(t.settings.config.resetBtn),
+                  ),
+                ],
+              ),
+            ),
+          ),
         _ => const SizedBox(),
       },
     );

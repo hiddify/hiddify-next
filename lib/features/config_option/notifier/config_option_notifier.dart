@@ -28,4 +28,9 @@ class ConfigOptionNotifier extends _$ConfigOptionNotifier with AppLogger {
           .run();
     }
   }
+
+  Future<void> resetOption() async {
+    await ref.read(configOptionRepositoryProvider).resetConfigOption().run();
+    ref.invalidateSelf();
+  }
 }

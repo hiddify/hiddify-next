@@ -223,7 +223,8 @@
             "tlsFragmentSleep": "TLS Fragment Sleep",
             "enableTlsMixedSniCase": "Enable TLS Mixed SNI Case",
             "enableTlsPadding": "Enable TLS Padding",
-            "tlsPaddingSize": "TLS Padding"
+            "tlsPaddingSize": "TLS Padding",
+            "resetBtn": "重置选项"
         },
         "geoAssets": {
             "pageTitle": "路由资源文件",

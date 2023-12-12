@@ -178,6 +178,7 @@
             "clearSelection": "Clear selection"
         },
         "config": {
+            "resetBtn": "Reset options",
             "serviceMode": "Service Mode",
             "serviceModes": {
                 "proxy": "Proxy",
