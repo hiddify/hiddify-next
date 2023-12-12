@@ -11,7 +11,7 @@ pip install polib deep-translator python-i18n
 
 # python3 auto_translator.py fa en
 python3 auto_translator.py en fa
-python3 auto_translator.py en zh
+python3 auto_translator.py en zh-CN
 # python3 auto_translator.py en pt
 python3 auto_translator.py en ru
 python3 auto_translator.py en tr
