@@ -16,7 +16,6 @@ dependencies:
   slang: ^3.25.0
   slang_flutter: ^3.25.0
   timeago: ^3.6.0
-  flutter_localized_locales: ^2.0.5
   fpdart: ^1.1.0
   freezed_annotation: ^2.4.1
   json_annotation: ^4.8.1
