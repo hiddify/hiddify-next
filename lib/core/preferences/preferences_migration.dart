@@ -48,6 +48,20 @@ class PreferencesVersion1Migration extends PreferencesMigrationStep
 
   @override
   Future<void> migrate() async {
+    if (sharedPreferences.getString("service-mode")
+        case final String serviceMode) {
+      final newMode = switch (serviceMode) {
+        "proxy" || "system-proxy" || "vpn" => serviceMode,
+        "systemProxy" => "system-proxy",
+        "tun" => "vpn",
+        _ => PlatformUtils.isDesktop ? "system-proxy" : "vpn",
+      };
+      loggy.debug(
+        "changing service-mode from [$serviceMode] to [$newMode]",
+      );
+      await sharedPreferences.setString("service-mode", newMode);
+    }
+
     if (sharedPreferences.getString("ipv6-mode") case final String ipv6Mode) {
       loggy.debug(
         "changing ipv6-mode from [$ipv6Mode] to [${_ipv6Mapper(ipv6Mode)}]",

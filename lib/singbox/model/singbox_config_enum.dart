@@ -2,10 +2,15 @@ import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/utils/platform_utils.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+@JsonEnum(valueField: 'key')
 enum ServiceMode {
-  proxy,
-  systemProxy,
-  tun;
+  proxy("proxy"),
+  systemProxy("system-proxy"),
+  tun("vpn");
+
+  const ServiceMode(this.key);
+
+  final String key;
 
   static ServiceMode get defaultMode =>
       PlatformUtils.isDesktop ? systemProxy : tun;

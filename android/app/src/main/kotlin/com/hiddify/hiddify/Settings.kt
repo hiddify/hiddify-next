@@ -12,7 +12,6 @@ import java.io.ByteArrayInputStream
 import java.io.File
 import java.io.ObjectInputStream
 
-
 object Settings {
 
     private val preferences by lazy {
@@ -67,9 +66,6 @@ object Settings {
         get() = preferences.getBoolean(SettingsKey.DEBUG_MODE, false)
         set(value) = preferences.edit().putBoolean(SettingsKey.DEBUG_MODE, value).apply()
 
-    val enableTun: Boolean
-        get() = preferences.getBoolean(SettingsKey.ENABLE_TUN, true)
-
     var disableMemoryLimit: Boolean
         get() = preferences.getBoolean(SettingsKey.DISABLE_MEMORY_LIMIT, false)
         set(value) =
@@ -112,7 +108,7 @@ object Settings {
     }
 
     private suspend fun needVPNService(): Boolean {
-        if (enableTun) return true
+        if (serviceMode == ServiceMode.VPN) return true
         val filePath = activeConfigPath
         if (filePath.isBlank()) return false
         val content = JSONObject(File(filePath).readText())
