@@ -4,13 +4,24 @@
 
 ### New Features and Improvements
 
+- Added TLS Tricks (experimental)
+  - Including TLS fragments and Mixed SNI case. This feature might effect performance and battery life
+- Added dynamic notification on Android
+  - Active profile name and transfer speed are now shown in notification
+- Added basic D-pad support for Android TV
 - Added soffchen to recommended geo assets
+- Added option to reset Config Options
+- Improved text input field's accessibility and traversal
 
 ### Bug Fixes
 
 - Refactored significant portions of the app
 - Fixed incorrect profile parsing when missing headers
 - Fixed geo assets bug where assets were deactivated
+- Changed default memory limit option on desktop, fixing out of memory bug on macOS
+- Fixed macOS icon
+- Fixed system tray behavior
+- Fixed incorrect casing of locale names
 - Updated sing-box to version 1.7.0
 - Fixed Chinese typography bug (thanks to [betaxab](https://github.com/betaxab))
 - Fixed localization mistakes in Russian. [PR#189](https://github.com/hiddify/hiddify-next/pull/189) by [jomertix](https://github.com/jomertix)
