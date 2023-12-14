@@ -4,6 +4,7 @@ import 'package:hiddify/core/model/environment.dart';
 import 'package:hiddify/core/model/region.dart';
 import 'package:hiddify/core/preferences/preferences_provider.dart';
 import 'package:hiddify/features/per_app_proxy/model/per_app_proxy_mode.dart';
+import 'package:hiddify/utils/platform_utils.dart';
 import 'package:hiddify/utils/pref_notifier.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -91,7 +92,8 @@ class DisableMemoryLimit extends _$DisableMemoryLimit {
   late final _pref = Pref(
     ref.watch(sharedPreferencesProvider).requireValue,
     "disable_memory_limit",
-    false,
+    // disable memory limit on desktop by default
+    PlatformUtils.isDesktop,
   );
 
   @override
