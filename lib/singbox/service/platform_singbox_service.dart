@@ -149,8 +149,17 @@ class PlatformSingboxService with InfraLogger implements SingboxService {
 
   @override
   Stream<SingboxStats> watchStats() {
-    // TODO: implement watchStats
-    return const Stream.empty();
+    const channel = EventChannel("com.hiddify.app/stats", JSONMethodCodec());
+    loggy.debug("watching stats");
+    return channel.receiveBroadcastStream().map(
+      (event) {
+        if (event case Map<String, dynamic> _) {
+          return SingboxStats.fromJson(event);
+        }
+        loggy.error("[stats client] unexpected type, msg: $event");
+        throw "invalid type";
+      },
+    );
   }
 
   @override
