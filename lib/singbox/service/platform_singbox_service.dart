@@ -89,13 +89,17 @@ class PlatformSingboxService with InfraLogger implements SingboxService {
   }
 
   @override
-  TaskEither<String, Unit> start(String path, bool disableMemoryLimit) {
+  TaskEither<String, Unit> start(
+    String path,
+    String name,
+    bool disableMemoryLimit,
+  ) {
     return TaskEither(
       () async {
         loggy.debug("starting");
         await _methodChannel.invokeMethod(
           "start",
-          {"path": path},
+          {"path": path, "name": name},
         );
         return right(unit);
       },
@@ -114,13 +118,17 @@ class PlatformSingboxService with InfraLogger implements SingboxService {
   }
 
   @override
-  TaskEither<String, Unit> restart(String path, bool disableMemoryLimit) {
+  TaskEither<String, Unit> restart(
+    String path,
+    String name,
+    bool disableMemoryLimit,
+  ) {
     return TaskEither(
       () async {
         loggy.debug("restarting");
         await _methodChannel.invokeMethod(
           "restart",
-          {"path": path},
+          {"path": path, "name": name},
         );
         return right(unit);
       },

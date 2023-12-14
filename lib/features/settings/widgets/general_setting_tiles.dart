@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/localization/translations.dart';
@@ -73,6 +75,17 @@ class GeneralSettingTiles extends HookConsumerWidget {
             }
           },
         ),
+        if (Platform.isAndroid)
+          SwitchListTile(
+            title: Text(t.settings.general.dynamicNotification),
+            secondary: const Icon(Icons.speed),
+            value: ref.watch(dynamicNotificationProvider),
+            onChanged: (value) async {
+              await ref
+                  .read(dynamicNotificationProvider.notifier)
+                  .update(value);
+            },
+          ),
         if (PlatformUtils.isDesktop) ...[
           SwitchListTile(
             title: Text(t.settings.general.autoStart),

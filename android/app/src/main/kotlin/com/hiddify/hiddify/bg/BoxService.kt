@@ -23,7 +23,6 @@ import io.nekohasekai.libbox.BoxService
 import io.nekohasekai.libbox.CommandServer
 import io.nekohasekai.libbox.CommandServerHandler
 import io.nekohasekai.libbox.Libbox
-import io.nekohasekai.libbox.PProfServer
 import io.nekohasekai.libbox.PlatformInterface
 import io.nekohasekai.libbox.SystemProxyStatus
 import io.nekohasekai.mobile.Mobile
@@ -36,8 +35,8 @@ import kotlinx.coroutines.withContext
 import java.io.File
 
 class BoxService(
-    private val service: Service,
-    private val platformInterface: PlatformInterface
+        private val service: Service,
+        private val platformInterface: PlatformInterface
 ) : CommandServerHandler {
 
     companion object {
@@ -72,8 +71,8 @@ class BoxService(
             }
         }
 
-        fun buildConfig(path: String, options: String):String {
-              return  Mobile.buildConfig(path, options)
+        fun buildConfig(path: String, options: String): String {
+            return Mobile.buildConfig(path, options)
         }
 
         fun start() {
@@ -87,17 +86,17 @@ class BoxService(
 
         fun stop() {
             Application.application.sendBroadcast(
-                Intent(Action.SERVICE_CLOSE).setPackage(
-                    Application.application.packageName
-                )
+                    Intent(Action.SERVICE_CLOSE).setPackage(
+                            Application.application.packageName
+                    )
             )
         }
 
         fun reload() {
             Application.application.sendBroadcast(
-                Intent(Action.SERVICE_RELOAD).setPackage(
-                    Application.application.packageName
-                )
+                    Intent(Action.SERVICE_RELOAD).setPackage(
+                            Application.application.packageName
+                    )
             )
         }
     }
@@ -106,10 +105,9 @@ class BoxService(
 
     private val status = MutableLiveData(Status.Stopped)
     private val binder = ServiceBinder(status)
-    private val notification = ServiceNotification(service)
+    private val notification = ServiceNotification(status, service)
     private var boxService: BoxService? = null
     private var commandServer: CommandServer? = null
-    private var pprofServer: PProfServer? = null
     private var receiverRegistered = false
     private val receiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
@@ -133,11 +131,12 @@ class BoxService(
 
     private fun startCommandServer() {
         val commandServer =
-            CommandServer(this, 300)
+                CommandServer(this, 300)
         commandServer.start()
         this.commandServer = commandServer
     }
 
+    private var activeProfileName = ""
     private suspend fun startService(delayStart: Boolean = false) {
         try {
             Log.d(TAG, "starting service")
@@ -147,6 +146,8 @@ class BoxService(
                 stopAndAlert(Alert.EmptyConfiguration)
                 return
             }
+
+            activeProfileName = Settings.activeProfileName
 
             val configOptions = Settings.configOptions
             if (configOptions.isBlank()) {
@@ -191,6 +192,10 @@ class BoxService(
             boxService = newService
             commandServer?.setService(boxService)
             status.postValue(Status.Started)
+
+            withContext(Dispatchers.Main) {
+                notification.show(activeProfileName)
+            }
         } catch (e: Exception) {
             stopAndAlert(Alert.StartService, e.message)
             return
@@ -198,23 +203,24 @@ class BoxService(
     }
 
     override fun serviceReload() {
+        notification.close()
         status.postValue(Status.Starting)
+        val pfd = fileDescriptor
+        if (pfd != null) {
+            pfd.close()
+            fileDescriptor = null
+        }
+        commandServer?.setService(null)
+        boxService?.apply {
+            runCatching {
+                close()
+            }.onFailure {
+                writeLog("service: error when closing: $it")
+            }
+            Seq.destroyRef(refnum)
+        }
+        boxService = null
         runBlocking {
-            val pfd = fileDescriptor
-            if (pfd != null) {
-                pfd.close()
-                fileDescriptor = null
-            }
-            commandServer?.setService(null)
-            boxService?.apply {
-                runCatching {
-                    close()
-                }.onFailure {
-                    writeLog("service: error when closing: $it")
-                }
-                Seq.destroyRef(refnum)
-            }
-            boxService = null
             startService(true)
         }
     }
@@ -311,7 +317,6 @@ class BoxService(
             receiverRegistered = true
         }
 
-        notification.show()
         GlobalScope.launch(Dispatchers.IO) {
             Settings.startedByUser = true
             initialize()

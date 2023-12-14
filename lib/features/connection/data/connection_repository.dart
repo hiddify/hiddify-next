@@ -19,11 +19,13 @@ abstract interface class ConnectionRepository {
   Stream<ConnectionStatus> watchConnectionStatus();
   TaskEither<ConnectionFailure, Unit> connect(
     String fileName,
+    String profileName,
     bool disableMemoryLimit,
   );
   TaskEither<ConnectionFailure, Unit> disconnect();
   TaskEither<ConnectionFailure, Unit> reconnect(
     String fileName,
+    String profileName,
     bool disableMemoryLimit,
   );
 }
@@ -144,6 +146,7 @@ class ConnectionRepositoryImpl
   @override
   TaskEither<ConnectionFailure, Unit> connect(
     String fileName,
+    String profileName,
     bool disableMemoryLimit,
   ) {
     return TaskEither<ConnectionFailure, Unit>.Do(
@@ -173,6 +176,7 @@ class ConnectionRepositoryImpl
           singbox
               .start(
                 profilePathResolver.file(fileName).path,
+                profileName,
                 disableMemoryLimit,
               )
               .mapLeft(UnexpectedConnectionFailure.new),
@@ -192,6 +196,7 @@ class ConnectionRepositoryImpl
   @override
   TaskEither<ConnectionFailure, Unit> reconnect(
     String fileName,
+    String profileName,
     bool disableMemoryLimit,
   ) {
     return exceptionHandler(
@@ -202,6 +207,7 @@ class ConnectionRepositoryImpl
               () => singbox
                   .restart(
                     profilePathResolver.file(fileName).path,
+                    profileName,
                     disableMemoryLimit,
                   )
                   .mapLeft(UnexpectedConnectionFailure.new),

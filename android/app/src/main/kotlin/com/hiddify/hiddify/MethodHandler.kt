@@ -2,12 +2,10 @@ package com.hiddify.hiddify
 
 import android.util.Log
 import com.hiddify.hiddify.bg.BoxService
-import com.hiddify.hiddify.constant.Alert
 import com.hiddify.hiddify.constant.Status
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
-import io.flutter.plugin.common.StandardMethodCodec
 import io.nekohasekai.libbox.Libbox
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -15,7 +13,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class MethodHandler(private val scope: CoroutineScope) : FlutterPlugin,
-    MethodChannel.MethodCallHandler {
+        MethodChannel.MethodCallHandler {
     private var channel: MethodChannel? = null
 
     companion object {
@@ -37,8 +35,8 @@ class MethodHandler(private val scope: CoroutineScope) : FlutterPlugin,
 
     override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
         channel = MethodChannel(
-            flutterPluginBinding.binaryMessenger,
-            channelName,
+                flutterPluginBinding.binaryMessenger,
+                channelName,
         )
         channel!!.setMethodCallHandler(this)
     }
@@ -92,6 +90,7 @@ class MethodHandler(private val scope: CoroutineScope) : FlutterPlugin,
                     result.runCatching {
                         val args = call.arguments as Map<*, *>
                         Settings.activeConfigPath = args["path"] as String? ?: ""
+                        Settings.activeProfileName = args["name"] as String? ?: ""
                         val mainActivity = MainActivity.instance
                         val started = mainActivity.serviceStatus.value == Status.Started
                         if (started) {
@@ -124,6 +123,7 @@ class MethodHandler(private val scope: CoroutineScope) : FlutterPlugin,
                     result.runCatching {
                         val args = call.arguments as Map<*, *>
                         Settings.activeConfigPath = args["path"] as String? ?: ""
+                        Settings.activeProfileName = args["name"] as String? ?: ""
                         val mainActivity = MainActivity.instance
                         val started = mainActivity.serviceStatus.value == Status.Started
                         if (!started) return@launch success(true)
@@ -150,10 +150,10 @@ class MethodHandler(private val scope: CoroutineScope) : FlutterPlugin,
                     result.runCatching {
                         val args = call.arguments as Map<*, *>
                         Libbox.newStandaloneCommandClient()
-                            .selectOutbound(
-                                args["groupTag"] as String,
-                                args["outboundTag"] as String
-                            )
+                                .selectOutbound(
+                                        args["groupTag"] as String,
+                                        args["outboundTag"] as String
+                                )
                         success(true)
                     }
                 }
@@ -164,9 +164,9 @@ class MethodHandler(private val scope: CoroutineScope) : FlutterPlugin,
                     result.runCatching {
                         val args = call.arguments as Map<*, *>
                         Libbox.newStandaloneCommandClient()
-                            .urlTest(
-                                args["groupTag"] as String
-                            )
+                                .urlTest(
+                                        args["groupTag"] as String
+                                )
                         success(true)
                     }
                 }

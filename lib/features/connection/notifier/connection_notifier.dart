@@ -3,6 +3,7 @@ import 'package:hiddify/core/preferences/service_preferences.dart';
 import 'package:hiddify/features/connection/data/connection_data_providers.dart';
 import 'package:hiddify/features/connection/data/connection_repository.dart';
 import 'package:hiddify/features/connection/model/connection_status.dart';
+import 'package:hiddify/features/profile/model/profile_entity.dart';
 import 'package:hiddify/features/profile/notifier/active_profile_notifier.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -20,7 +21,7 @@ class ConnectionNotifier extends _$ConnectionNotifier with AppLogger {
         if (previous == null) return;
         final shouldReconnect = next == null || previous.id != next.id;
         if (shouldReconnect) {
-          await reconnect(next?.id);
+          await reconnect(next);
         }
       },
     );
@@ -59,16 +60,20 @@ class ConnectionNotifier extends _$ConnectionNotifier with AppLogger {
     }
   }
 
-  Future<void> reconnect(String? profileId) async {
+  Future<void> reconnect(ProfileEntity? profile) async {
     if (state case AsyncData(:final value) when value == const Connected()) {
-      if (profileId == null) {
+      if (profile == null) {
         loggy.info("no active profile, disconnecting");
         return _disconnect();
       }
       loggy.info("active profile changed, reconnecting");
       await ref.read(startedByUserProvider.notifier).update(true);
       await _connectionRepo
-          .reconnect(profileId, ref.read(disableMemoryLimitProvider))
+          .reconnect(
+        profile.id,
+        profile.name,
+        ref.read(disableMemoryLimitProvider),
+      )
           .mapLeft((err) {
         loggy.warning("error reconnecting", err);
         state = AsyncError(err, StackTrace.current);
@@ -90,7 +95,11 @@ class ConnectionNotifier extends _$ConnectionNotifier with AppLogger {
   Future<void> _connect() async {
     final activeProfile = await ref.read(activeProfileProvider.future);
     await _connectionRepo
-        .connect(activeProfile!.id, ref.read(disableMemoryLimitProvider))
+        .connect(
+      activeProfile!.id,
+      activeProfile.name,
+      ref.read(disableMemoryLimitProvider),
+    )
         .mapLeft((err) async {
       loggy.warning("error connecting", err);
       await ref.read(startedByUserProvider.notifier).update(false);

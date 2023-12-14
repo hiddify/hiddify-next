@@ -4,6 +4,7 @@ object SettingsKey {
     private const val KEY_PREFIX = "flutter."
 
     const val ACTIVE_CONFIG_PATH = "${KEY_PREFIX}active_config_path"
+    const val ACTIVE_PROFILE_NAME = "${KEY_PREFIX}active_profile_name"
     const val SERVICE_MODE = "${KEY_PREFIX}service_mode"
 
     const val CONFIG_OPTIONS = "config_options_json"
@@ -15,6 +16,7 @@ object SettingsKey {
     const val DEBUG_MODE = "${KEY_PREFIX}debug_mode"
     const val ENABLE_TUN = "${KEY_PREFIX}enable-tun"
     const val DISABLE_MEMORY_LIMIT = "${KEY_PREFIX}disable_memory_limit"
+    const val DYNAMIC_NOTIFICATION = "${KEY_PREFIX}dynamic_notification"
     const val SYSTEM_PROXY_ENABLED = "${KEY_PREFIX}system_proxy_enabled"
 
     // cache

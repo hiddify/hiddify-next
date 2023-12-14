@@ -37,6 +37,7 @@ class Application : Application() {
         val connectivity by lazy { application.getSystemService<ConnectivityManager>()!! }
         val packageManager by lazy { application.packageManager }
         val powerManager by lazy { application.getSystemService<PowerManager>()!! }
+        val notificationManager by lazy { application.getSystemService<NotificationManager>()!! }
     }
 
 }

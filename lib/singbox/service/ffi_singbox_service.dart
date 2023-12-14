@@ -158,7 +158,11 @@ class FFISingboxService with InfraLogger implements SingboxService {
   }
 
   @override
-  TaskEither<String, Unit> start(String configPath, bool disableMemoryLimit) {
+  TaskEither<String, Unit> start(
+    String configPath,
+    String name,
+    bool disableMemoryLimit,
+  ) {
     loggy.debug("starting, memory limit: [${!disableMemoryLimit}]");
     return TaskEither(
       () => CombineWorker().execute(
@@ -195,7 +199,11 @@ class FFISingboxService with InfraLogger implements SingboxService {
   }
 
   @override
-  TaskEither<String, Unit> restart(String configPath, bool disableMemoryLimit) {
+  TaskEither<String, Unit> restart(
+    String configPath,
+    String name,
+    bool disableMemoryLimit,
+  ) {
     loggy.debug("restarting, memory limit: [${!disableMemoryLimit}]");
     return TaskEither(
       () => CombineWorker().execute(

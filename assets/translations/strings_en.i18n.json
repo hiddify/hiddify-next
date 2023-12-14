@@ -155,7 +155,8 @@
             "silentStart": "Silent Start",
             "openWorkingDir": "Open Working Directory",
             "ignoreBatteryOptimizations": "Disable Battery Optimization",
-            "ignoreBatteryOptimizationsMsg": "Remove restrictions for optimal VPN performance"
+            "ignoreBatteryOptimizationsMsg": "Remove restrictions for optimal VPN performance",
+            "dynamicNotification": "Display speed in notification"
         },
         "advanced": {
             "sectionTitle": "Advanced",

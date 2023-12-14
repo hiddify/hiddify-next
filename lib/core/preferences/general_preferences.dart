@@ -184,3 +184,20 @@ class MarkNewProfileActive extends _$MarkNewProfileActive {
     return _pref.update(value);
   }
 }
+
+@riverpod
+class DynamicNotification extends _$DynamicNotification {
+  late final _pref = Pref(
+    ref.watch(sharedPreferencesProvider).requireValue,
+    "dynamic_notification",
+    true,
+  );
+
+  @override
+  bool build() => _pref.getValue();
+
+  Future<void> update(bool value) {
+    state = value;
+    return _pref.update(value);
+  }
+}

@@ -128,7 +128,7 @@ class UpdateProfile extends _$UpdateProfile with AppLogger {
               if (active != null && active.id == profile.id) {
                 await ref
                     .read(connectionNotifierProvider.notifier)
-                    .reconnect(profile.id);
+                    .reconnect(profile);
               }
             });
             return unit;

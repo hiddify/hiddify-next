@@ -155,7 +155,8 @@
             "silentStart": "Sessiz Başlatma",
             "openWorkingDir": "Çalışma Dizinini Aç",
             "ignoreBatteryOptimizations": "Pil Optimizasyonunu Devre Dışı Bırak",
-            "ignoreBatteryOptimizationsMsg": "Optimum VPN performansı için kısıtlamaları kaldırın"
+            "ignoreBatteryOptimizationsMsg": "Optimum VPN performansı için kısıtlamaları kaldırın",
+            "dynamicNotification": "Bildirimde hızı göster"
         },
         "advanced": {
             "sectionTitle": "Gelişmiş",

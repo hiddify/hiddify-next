@@ -155,7 +155,8 @@
             "silentStart": "اجرای ساکت",
             "openWorkingDir": "باز کردن دایرکتوری کاری",
             "ignoreBatteryOptimizations": "غیرفعال کردن بهینه‌سازی باتری",
-            "ignoreBatteryOptimizationsMsg": "حذف محدودیت‌ها برای عملکرد بهتر VPN"
+            "ignoreBatteryOptimizationsMsg": "حذف محدودیت‌ها برای عملکرد بهتر VPN",
+            "dynamicNotification": "نمایش سرعت در نوتیفیکیشن"
         },
         "advanced": {
             "sectionTitle": "پیشرفته",

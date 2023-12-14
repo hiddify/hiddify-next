@@ -38,11 +38,19 @@ abstract interface class SingboxService {
     String path,
   );
 
-  TaskEither<String, Unit> start(String path, bool disableMemoryLimit);
+  TaskEither<String, Unit> start(
+    String path,
+    String name,
+    bool disableMemoryLimit,
+  );
 
   TaskEither<String, Unit> stop();
 
-  TaskEither<String, Unit> restart(String path, bool disableMemoryLimit);
+  TaskEither<String, Unit> restart(
+    String path,
+    String name,
+    bool disableMemoryLimit,
+  );
 
   Stream<List<SingboxOutboundGroup>> watchOutbounds();
 

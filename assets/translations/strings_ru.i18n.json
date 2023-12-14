@@ -155,7 +155,8 @@
             "silentStart": "Тихий запуск",
             "openWorkingDir": "Открыть рабочую папку",
             "ignoreBatteryOptimizations": "Отключить оптимизацию батареи",
-            "ignoreBatteryOptimizationsMsg": "Отключение ограничений для оптимальной производительности VPN."
+            "ignoreBatteryOptimizationsMsg": "Отключение ограничений для оптимальной производительности VPN.",
+            "dynamicNotification": "Отображение скорости в уведомлении"
         },
         "advanced": {
             "sectionTitle": "Расширенные",

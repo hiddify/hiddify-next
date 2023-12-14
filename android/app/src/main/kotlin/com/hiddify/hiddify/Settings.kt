@@ -51,6 +51,10 @@ object Settings {
         get() = preferences.getString(SettingsKey.ACTIVE_CONFIG_PATH, "")!!
         set(value) = preferences.edit().putString(SettingsKey.ACTIVE_CONFIG_PATH, value).apply()
 
+    var activeProfileName: String
+        get() = preferences.getString(SettingsKey.ACTIVE_PROFILE_NAME, "")!!
+        set(value) = preferences.edit().putString(SettingsKey.ACTIVE_PROFILE_NAME, value).apply()
+
     var serviceMode: String
         get() = preferences.getString(SettingsKey.SERVICE_MODE, ServiceMode.NORMAL)!!
         set(value) = preferences.edit().putString(SettingsKey.SERVICE_MODE, value).apply()
@@ -70,6 +74,11 @@ object Settings {
         get() = preferences.getBoolean(SettingsKey.DISABLE_MEMORY_LIMIT, false)
         set(value) =
             preferences.edit().putBoolean(SettingsKey.DISABLE_MEMORY_LIMIT, value).apply()
+
+    var dynamicNotification: Boolean
+        get() = preferences.getBoolean(SettingsKey.DYNAMIC_NOTIFICATION, true)
+        set(value) =
+            preferences.edit().putBoolean(SettingsKey.DYNAMIC_NOTIFICATION, value).apply()
 
     var systemProxyEnabled: Boolean
         get() = preferences.getBoolean(SettingsKey.SYSTEM_PROXY_ENABLED, true)

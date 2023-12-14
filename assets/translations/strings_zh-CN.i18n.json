@@ -155,7 +155,8 @@
             "silentStart": "静默启动",
             "openWorkingDir": "打开工作目录",
             "ignoreBatteryOptimizations": "禁用电池优化",
-            "ignoreBatteryOptimizationsMsg": "消除限制以获得最佳 VPN 性能"
+            "ignoreBatteryOptimizationsMsg": "消除限制以获得最佳 VPN 性能",
+            "dynamicNotification": "在通知中显示速度"
         },
         "advanced": {
             "sectionTitle": "高级选项",
