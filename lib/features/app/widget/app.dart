@@ -1,7 +1,6 @@
 import 'package:accessibility_tools/accessibility_tools.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hiddify/core/localization/locale_extensions.dart';
 import 'package:hiddify/core/localization/locale_preferences.dart';
@@ -12,6 +11,7 @@ import 'package:hiddify/core/theme/app_theme.dart';
 import 'package:hiddify/core/theme/theme_preferences.dart';
 import 'package:hiddify/features/app_update/notifier/app_update_notifier.dart';
 import 'package:hiddify/features/common/common_controllers.dart';
+import 'package:hiddify/features/wrapper/shortcut/shortcut_wrapper.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:upgrader/upgrader.dart';
@@ -32,11 +32,8 @@ class App extends HookConsumerWidget with PresLogger {
 
     final upgrader = ref.watch(upgraderProvider);
 
-    return Shortcuts(
-      shortcuts: {
-        LogicalKeySet(LogicalKeyboardKey.select): const ActivateIntent(),
-      },
-      child: MaterialApp.router(
+    return ShortcutWrapper(
+      MaterialApp.router(
         routerConfig: router,
         locale: locale.flutterLocale,
         supportedLocales: AppLocaleUtils.supportedLocales,
