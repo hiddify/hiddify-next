@@ -103,7 +103,7 @@
 
 <div align=center>
  
-<a href="https://github.com/hiddify/hiddify-next/wiki"><img width="100%" alt="Wiki 上的所有教程" src="https://github.com/hiddify/hiddify-next/assets/125398461/e2a19a61-ecaa-4e3b-aacd-f34990fae887" /></a>
+<a href="https://github.com/hiddify/hiddify-next/wiki"><img width="100%" alt="Wiki 上的所有教程" src="https://github.com/hiddify/hiddify-next/assets/125398461/317be77a-33d4-4f07-a4d0-aea83e034712" /></a>
 
 
  </div>
