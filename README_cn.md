@@ -99,7 +99,15 @@
 </div>
 
 ## 安装和教程
-请在 [wiki 页面](https://github.com/hiddify/hiddify-next/wiki) 上获取教程信息。
+**请单击下面的图片，在我们的维基页面上找到相关信息。**
+
+<div align=center>
+ 
+<a href="https://github.com/hiddify/hiddify-next/wiki"><img width="100%" alt="Wiki 上的所有教程" src="https://github.com/hiddify/hiddify-next/assets/125398461/e2a19a61-ecaa-4e3b-aacd-f34990fae887" /></a>
+
+
+ </div>
+ 
 
 ## 改进翻译
 您可以使用以下链接轻松地为该项目改进翻译以做出贡献：
