@@ -100,6 +100,13 @@
 
 ## نصب و آموزش
 برای مشاهده مطالب آموزشی به صفحه [ویکی پروژه](https://github.com/hiddify/hiddify-next/wiki/Home_fa) مراجعه نمایید.
+<div align="center">
+
+[![همه آموزش‌ها در ویکی](https://github.com/hiddify/hiddify-next/assets/125398461/3b9ec2fe-9057-45fc-b19f-a1356e94525f)](https://github.com/hiddify/hiddify-next/wiki/Home_fa)
+
+</div>
+
+
 
 ## بهبود ترجمه
 شما به راحتی می توانید با استفاده از لینک‌های زیر برای بهبود ترجمه‌ها به این پروژه کمک کنید:
