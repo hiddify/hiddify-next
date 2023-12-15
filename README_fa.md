@@ -99,7 +99,7 @@
 </table>
 
 ## نصب و آموزش
-برای مشاهده مطالب آموزشی به صفحه [ویکی پروژه](https://github.com/hiddify/hiddify-next/wiki/Home_fa) مراجعه نمایید.
+برای مطالعه و مشاهده همه مطالب آموزشی در مورد این برنامه، با کلیک روی تصویر زیر به صفحه ویکی پروژه مراجعه کنید.
 <div align="center">
 
 [![همه آموزش‌ها در ویکی](https://github.com/hiddify/hiddify-next/assets/125398461/3b9ec2fe-9057-45fc-b19f-a1356e94525f)](https://github.com/hiddify/hiddify-next/wiki/Home_fa)
