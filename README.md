@@ -109,7 +109,7 @@ The app is developed using [Flutter](https://flutter.dev) and [Go](https://go.de
 
 <div align="center">
 
-[![Tutorials on Wiki](https://github.com/hiddify/hiddify-next/assets/125398461/491485c2-085f-41eb-ba65-d28f19f11786)](https://github.com/hiddify/hiddify-next/wiki)
+[![Tutorials on Wiki](https://github.com/hiddify/hiddify-next/assets/125398461/5fcef17d-477f-497a-9bf0-ddeb3b4b5d5a)](https://github.com/hiddify/hiddify-next/wiki)
 
 </div>
 
