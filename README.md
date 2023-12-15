@@ -105,7 +105,13 @@ The app is developed using [Flutter](https://flutter.dev) and [Go](https://go.de
 </div>
 
 ## Installation and tutorials
-Please find tutorial information on the [wiki page](https://github.com/hiddify/hiddify-next/wiki).
+**Please find related information on our wiki page by clicking on image below.**
+
+<div align="center">
+
+[![Tutorials on Wiki](https://github.com/hiddify/hiddify-next/assets/125398461/a6acf567-3497-47c6-9f00-faf62748a5b5)](https://github.com/hiddify/hiddify-next/wiki)
+
+</div>
 
 ## Improve Translations
 You can easily contribute to this project by using the following links to improve the translations:
