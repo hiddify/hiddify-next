@@ -105,7 +105,7 @@ The app is developed using [Flutter](https://flutter.dev) and [Go](https://go.de
 </div>
 
 ## Installation and tutorials
-**Please find related information on our wiki page by clicking on image below.**
+**Please find tutorial information on our wiki page by clicking on image below.**
 
 <div align="center">
 
