@@ -114,13 +114,14 @@ The app is developed using [Flutter](https://flutter.dev) and [Go](https://go.de
 </div>
 
 ## Improve Translations
+[![inlang status badge](https://inlang.com/badge?url=github.com/hiddify/hiddify-next)](https://inlang.com/editor/github.com/hiddify/hiddify-next?ref=badge)
+
 You can easily contribute to this project by using the following links to improve the translations:
- - [English](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en)
+- [English](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en)
 - [Persian](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=fa)
 - [Russian](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=ru)
-- [Chinese](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=zh)
-
-
+- [Chinese](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=zh-CN)
+- [Turkish](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=tr)
 
 ## Acknowledgements
 We would like to express our sincere appreciation to the contributors of the following projects, whose robust foundation and innovative features have significantly enhanced the success and functionality of this project.

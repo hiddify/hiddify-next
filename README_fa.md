@@ -114,7 +114,7 @@
 - [فارسی](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=fa)
 - [انگلیسی](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en)
 - [روسی](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=ru)
-- [چینی](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=zh)
+- [چینی](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=zh-CN)
 
 ## سپاسگزاری‌ها
 مایلیم از دست‌اندرکاران پروژه‌های زیر صمیمانه قدردانی کنیم که پایه قوی و ویژگی‌های نوآورانه آنها موفقیت و عملکرد این پروژه را به میزان قابل توجهی افزایش داده است.

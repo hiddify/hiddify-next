@@ -101,7 +101,7 @@
 - [Русский](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=ru)
 - [Английский](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en)
 - [персидский](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=fa)
-- [Китайский](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=zh)
+- [Китайский](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=zh-CN)
 
 ## Благодарности
 Мы хотели бы выразить нашу искреннюю признательность участникам следующих проектов, чья прочная основа и инновационные функции значительно повысили успех и функциональность этого проекта.

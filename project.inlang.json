@@ -6,7 +6,7 @@
     "fa",
     "ru",
     "tr",
-    "zh"
+    "zh-CN"
   ],
   "modules": [
     "https://cdn.jsdelivr.net/npm/@inlang/plugin-i18next@4/dist/index.js",

@@ -114,7 +114,7 @@
  - [英语](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en)
 - [波斯语](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=fa)
 - [俄语](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=ru)
-- [简体中文](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=zh)
+- [简体中文](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=zh-CN)
 
 ## 致谢
 我们谨向以下项目的贡献者表示诚挚的谢意，他们坚实的基础和创新的功能显着增强了该项目的成功和功能。
