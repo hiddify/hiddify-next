@@ -80,7 +80,7 @@ abstract class LinkParser {
         return (url: queryParams['url']!, name: queryParams['name'] ?? '');
       case 'hiddify':
       if (uri.authority=="import") {
-        return (url: uri.path+(uri.hasQuery?"?${uri.query}":""), name: uri.fragment);
+        return (url: uri.path.substring(1)+(uri.hasQuery?"?${uri.query}":""), name: uri.fragment);
       }
         //for backward compatibility
         if ((uri.authority != 'install-config' &&
