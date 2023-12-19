@@ -66,6 +66,8 @@
                 <data android:scheme="clashmeta" />
                 <data android:scheme="hiddify" />
                 <data android:host="install-sub" />
+                <data android:scheme="hiddify" />
+                <data android:host="import" />
             </intent-filter>
 
             <intent-filter>

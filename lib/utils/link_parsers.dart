@@ -10,27 +10,20 @@ abstract class LinkParser {
   static String generateSubShareLink(String url, [String? name]) {
     final uri = Uri.tryParse(url);
     if (uri == null) return '';
-    return Uri(
-      scheme: 'hiddify',
-      host: 'install-sub',
-      queryParameters: {
-        "url": uri.toString(),
-        if (name != null) "name": name,
-      },
-    ).toString();
+    final modifiedUri = Uri(
+      scheme: uri.scheme,
+      host: uri.host,
+      path: uri.path,
+      query: uri.query,
+      fragment: name??uri.fragment,
+    );
+    return 'hiddify://import/$modifiedUri';
+
   }
 
   // protocols schemas
   static const protocols = {'clash', 'clashmeta', 'sing-box', 'hiddify'};
-  static const rawProtocols = {
-    'ss',
-    'vmess',
-    'vless',
-    'trojan',
-    'tuic',
-    'hysteria2',
-    'ssh',
-  };
+  
 
   static ProfileLink? parse(String link) {
     return simple(link) ?? deep(link);
@@ -86,6 +79,10 @@ abstract class LinkParser {
             !queryParams.containsKey('url')) return null;
         return (url: queryParams['url']!, name: queryParams['name'] ?? '');
       case 'hiddify':
+      if (uri.authority=="import") {
+        return (url: uri.path+(uri.hasQuery?"?${uri.query}":""), name: uri.fragment);
+      }
+        //for backward compatibility
         if ((uri.authority != 'install-config' &&
                 uri.authority != 'install-sub') ||
             !queryParams.containsKey('url')) return null;
