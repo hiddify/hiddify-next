@@ -54,12 +54,15 @@ abstract class LinkParser {
           uri.hasFragment ? Uri.decodeComponent(uri.fragment) : null;
       final name = switch (uri.scheme) {
         'ss' => fragment ?? ProxyType.shadowsocks.label,
+        'ssconf' => fragment ?? ProxyType.shadowsocks.label,
         'vmess' => ProxyType.vmess.label,
         'vless' => fragment ?? ProxyType.vless.label,
         'trojan' => fragment ?? ProxyType.trojan.label,
         'tuic' => fragment ?? ProxyType.tuic.label,
-        'hy2' || 'hysteria2' => fragment ?? ProxyType.hysteria.label,
+        'hy2' || 'hysteria2' => fragment ?? ProxyType.hysteria2.label,
+        'hy' || 'hysteria' => fragment ?? ProxyType.hysteria.label,
         'ssh' => fragment ?? ProxyType.ssh.label,
+        'wg' => fragment ?? ProxyType.wireguard.label,
         _ => null,
       };
       if (name != null) {
