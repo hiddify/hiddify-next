@@ -191,6 +191,7 @@ jobs:
       - name: Copy to out Windows
         if: matrix.platform == 'windows'
         run: |
+          tree
           New-Item -ItemType Directory -Force -Name "out"
           New-Item -ItemType Directory -Force -Name "tmp_out"
           $EXT_ARRAY = "${{ matrix.targets }}" -split ","
@@ -208,7 +209,7 @@ jobs:
 
 
           mkdir HiddifyNext-portable
-          xcopy /s /v D:\a\hiddify-next\hiddify-next\build\windows\runner\Release\ .\HiddifyNext-portable\
+          xcopy /s /v D:\a\hiddify-next\hiddify-next\build\windows\x64\runner\Release\HiddifyNext.exe .\HiddifyNext-portable\
           xcopy /s /v '.\.github\help\mac-windows\' .\HiddifyNext-portable\
           cd HiddifyNext-portable
           Compress-Archive .\ ..\out\hiddify-${{ matrix.platform }}-x64-portable.zip
