@@ -50,10 +50,6 @@ Future<void> lazyBootstrap(
   final appInfo = await container.read(appInfoProvider.future);
 
   await container.read(sharedPreferencesProvider.future);
-  await PreferencesMigration(
-    sharedPreferences: container.read(sharedPreferencesProvider).requireValue,
-  ).migrate();
-
   final enableAnalytics = container.read(enableAnalyticsProvider);
 
   await SentryFlutter.init(
@@ -89,6 +85,17 @@ Future<void> _lazyBootstrap(
   ProviderContainer container,
   Environment env,
 ) async {
+  try {
+    await PreferencesMigration(
+      sharedPreferences: container.read(sharedPreferencesProvider).requireValue,
+    ).migrate();
+  } catch (e) {
+    _logger.error("preferences migration failed", e);
+    if (env == Environment.dev) rethrow;
+    _logger.info("clearing preferences");
+    await container.read(sharedPreferencesProvider).requireValue.clear();
+  }
+
   final debug = container.read(debugModeNotifierProvider) || kDebugMode;
 
   final filesEditor = container.read(filesEditorServiceProvider);
