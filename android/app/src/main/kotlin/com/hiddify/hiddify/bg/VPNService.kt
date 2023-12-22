@@ -8,6 +8,7 @@ import android.net.VpnService
 import android.os.Build
 import android.os.IBinder
 import com.hiddify.hiddify.constant.PerAppProxyMode
+import com.hiddify.hiddify.ktx.toIpPrefix
 import io.nekohasekai.libbox.TunOptions
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
@@ -31,6 +32,7 @@ class VPNService : VpnService(), PlatformInterfaceWrapper {
         }
         return service.onBind(intent)
     }
+
     override fun onDestroy() {
         service.onDestroy()
     }
@@ -62,42 +64,64 @@ class VPNService : VpnService(), PlatformInterfaceWrapper {
         }
 
         val inet4Address = options.inet4Address
-        if (inet4Address.hasNext()) {
-            while (inet4Address.hasNext()) {
-                val address = inet4Address.next()
-                builder.addAddress(address.address, address.prefix)
-            }
+        while (inet4Address.hasNext()) {
+            val address = inet4Address.next()
+            builder.addAddress(address.address(), address.prefix())
         }
 
         val inet6Address = options.inet6Address
-        if (inet6Address.hasNext()) {
-            while (inet6Address.hasNext()) {
-                val address = inet6Address.next()
-                builder.addAddress(address.address, address.prefix)
-            }
+        while (inet6Address.hasNext()) {
+            val address = inet6Address.next()
+            builder.addAddress(address.address(), address.prefix())
         }
 
         if (options.autoRoute) {
             builder.addDnsServer(options.dnsServerAddress)
 
-            val inet4RouteAddress = options.inet4RouteAddress
-            if (inet4RouteAddress.hasNext()) {
-                while (inet4RouteAddress.hasNext()) {
-                    val address = inet4RouteAddress.next()
-                    builder.addRoute(address.address, address.prefix)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                val inet4RouteAddress = options.inet4RouteAddress
+                if (inet4RouteAddress.hasNext()) {
+                    while (inet4RouteAddress.hasNext()) {
+                        builder.addRoute(inet4RouteAddress.next().toIpPrefix())
+                    }
+                } else {
+                    builder.addRoute("0.0.0.0", 0)
                 }
-            } else {
-                builder.addRoute("0.0.0.0", 0)
-            }
 
-            val inet6RouteAddress = options.inet6RouteAddress
-            if (inet6RouteAddress.hasNext()) {
-                while (inet6RouteAddress.hasNext()) {
-                    val address = inet6RouteAddress.next()
-                    builder.addRoute(address.address, address.prefix)
+                val inet6RouteAddress = options.inet6RouteAddress
+                if (inet6RouteAddress.hasNext()) {
+                    while (inet6RouteAddress.hasNext()) {
+                        builder.addRoute(inet6RouteAddress.next().toIpPrefix())
+                    }
+                } else {
+                    builder.addRoute("::", 0)
+                }
+
+                val inet4RouteExcludeAddress = options.inet4RouteExcludeAddress
+                while (inet4RouteExcludeAddress.hasNext()) {
+                    builder.excludeRoute(inet4RouteExcludeAddress.next().toIpPrefix())
+                }
+
+                val inet6RouteExcludeAddress = options.inet6RouteExcludeAddress
+                while (inet6RouteExcludeAddress.hasNext()) {
+                    builder.excludeRoute(inet6RouteExcludeAddress.next().toIpPrefix())
                 }
             } else {
-                builder.addRoute("::", 0)
+                val inet4RouteAddress = options.inet4RouteRange
+                if (inet4RouteAddress.hasNext()) {
+                    while (inet4RouteAddress.hasNext()) {
+                        val address = inet4RouteAddress.next()
+                        builder.addRoute(address.address(), address.prefix())
+                    }
+                }
+
+                val inet6RouteAddress = options.inet6RouteRange
+                if (inet6RouteAddress.hasNext()) {
+                    while (inet6RouteAddress.hasNext()) {
+                        val address = inet6RouteAddress.next()
+                        builder.addRoute(address.address(), address.prefix())
+                    }
+                }
             }
 
             if (Settings.perAppProxyEnabled) {
