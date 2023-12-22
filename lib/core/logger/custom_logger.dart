@@ -2,28 +2,6 @@ import 'dart:io';
 
 import 'package:loggy/loggy.dart';
 
-class MultiLogPrinter extends LoggyPrinter {
-  MultiLogPrinter(
-    this.consolePrinter,
-    this.otherPrinters,
-  );
-
-  final LoggyPrinter consolePrinter;
-  List<LoggyPrinter> otherPrinters;
-
-  void addPrinter(LoggyPrinter printer) {
-    otherPrinters.add(printer);
-  }
-
-  @override
-  void onLog(LogRecord record) {
-    consolePrinter.onLog(record);
-    for (final printer in otherPrinters) {
-      printer.onLog(record);
-    }
-  }
-}
-
 class FileLogPrinter extends LoggyPrinter {
   FileLogPrinter(
     String filePath, {
@@ -41,5 +19,15 @@ class FileLogPrinter extends LoggyPrinter {
   void onLog(LogRecord record) {
     final time = record.time.toIso8601String().split('T')[1];
     _sink.writeln("$time - $record");
+    if (record.error != null) {
+      _sink.writeln(record.error);
+    }
+    if (record.stackTrace != null) {
+      _sink.writeln(record.stackTrace);
+    }
+  }
+
+  void dispose() {
+    _sink.close();
   }
 }

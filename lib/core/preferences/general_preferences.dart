@@ -71,23 +71,6 @@ class SilentStartNotifier extends _$SilentStartNotifier {
 }
 
 @Riverpod(keepAlive: true)
-class EnableAnalytics extends _$EnableAnalytics {
-  late final _pref = Pref(
-    ref.watch(sharedPreferencesProvider).requireValue,
-    "enable_analytics",
-    true,
-  );
-
-  @override
-  bool build() => _pref.getValue();
-
-  Future<void> update(bool value) {
-    state = value;
-    return _pref.update(value);
-  }
-}
-
-@Riverpod(keepAlive: true)
 class DisableMemoryLimit extends _$DisableMemoryLimit {
   late final _pref = Pref(
     ref.watch(sharedPreferencesProvider).requireValue,

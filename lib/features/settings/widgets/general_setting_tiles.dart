@@ -23,28 +23,7 @@ class GeneralSettingTiles extends HookConsumerWidget {
     return Column(
       children: [
         const LocalePrefTile(),
-        EnableAnalyticsPrefTile(
-          onChanged: (value) async {
-            await showDialog<bool>(
-              context: context,
-              builder: (context) {
-                return AlertDialog(
-                  title: Text(t.settings.general.enableAnalytics),
-                  content: Text(t.settings.requiresRestartMsg),
-                  actions: [
-                    TextButton(
-                      onPressed: () => context.pop(true),
-                      child: Text(
-                        MaterialLocalizations.of(context).okButtonLabel,
-                      ),
-                    ),
-                  ],
-                );
-              },
-            );
-            return ref.read(enableAnalyticsProvider.notifier).update(value);
-          },
-        ),
+        const EnableAnalyticsPrefTile(),
         ListTile(
           title: Text(t.settings.general.themeMode),
           subtitle: Text(themeMode.present(t)),

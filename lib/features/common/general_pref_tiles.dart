@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hiddify/core/analytics/analytics_controller.dart';
 import 'package:hiddify/core/localization/locale_extensions.dart';
 import 'package:hiddify/core/localization/locale_preferences.dart';
 import 'package:hiddify/core/localization/translations.dart';
@@ -103,7 +104,7 @@ class EnableAnalyticsPrefTile extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final t = ref.watch(translationsProvider);
 
-    final autoReport = ref.watch(enableAnalyticsProvider);
+    final autoReport = ref.watch(analyticsControllerProvider);
 
     return SwitchListTile(
       title: Text(t.settings.general.enableAnalytics),
@@ -117,7 +118,15 @@ class EnableAnalyticsPrefTile extends HookConsumerWidget {
         if (onChanged != null) {
           return onChanged!(value);
         }
-        return ref.read(enableAnalyticsProvider.notifier).update(value);
+        if (autoReport) {
+          await ref
+              .read(analyticsControllerProvider.notifier)
+              .disableAnalytics();
+        } else {
+          await ref
+              .read(analyticsControllerProvider.notifier)
+              .enableAnalytics();
+        }
       },
     );
   }

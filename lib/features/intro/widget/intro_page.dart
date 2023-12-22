@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
+import 'package:hiddify/core/analytics/analytics_controller.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/model/constants.dart';
 import 'package:hiddify/core/preferences/general_preferences.dart';
@@ -9,7 +10,6 @@ import 'package:hiddify/features/common/general_pref_tiles.dart';
 import 'package:hiddify/gen/assets.gen.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 class IntroPage extends HookConsumerWidget with PresLogger {
@@ -73,10 +73,12 @@ class IntroPage extends HookConsumerWidget with PresLogger {
                       onPressed: () async {
                         if (isStarting.value) return;
                         isStarting.value = true;
-                        if (!ref.read(enableAnalyticsProvider)) {
+                        if (!ref.read(analyticsControllerProvider)) {
                           loggy.info("disabling analytics per user request");
                           try {
-                            await Sentry.close();
+                            await ref
+                                .read(analyticsControllerProvider.notifier)
+                                .disableAnalytics();
                           } catch (error, stackTrace) {
                             loggy.error(
                               "could not disable analytics",

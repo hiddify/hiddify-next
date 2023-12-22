@@ -1,6 +1,6 @@
+import 'package:hiddify/core/directories/directories_provider.dart';
 import 'package:hiddify/features/log/data/log_path_resolver.dart';
 import 'package:hiddify/features/log/data/log_repository.dart';
-import 'package:hiddify/services/service_providers.dart';
 import 'package:hiddify/singbox/service/singbox_service_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -19,6 +19,6 @@ Future<LogRepository> logRepository(LogRepositoryRef ref) async {
 @Riverpod(keepAlive: true)
 LogPathResolver logPathResolver(LogPathResolverRef ref) {
   return LogPathResolver(
-    ref.watch(filesEditorServiceProvider).dirs.workingDir,
+    ref.watch(appDirectoriesProvider).requireValue.workingDir,
   );
 }
