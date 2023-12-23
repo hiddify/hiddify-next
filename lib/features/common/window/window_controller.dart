@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hiddify/core/app_info/app_info_provider.dart';
+import 'package:hiddify/core/model/constants.dart';
 import 'package:hiddify/core/preferences/general_preferences.dart';
 import 'package:hiddify/core/preferences/service_preferences.dart';
 import 'package:hiddify/features/connection/notifier/connection_notifier.dart';
@@ -26,6 +28,10 @@ class WindowController extends _$WindowController
     await windowManager.waitUntilReadyToShow(
       windowOptions,
       () async {
+        final version = await ref.watch(appInfoProvider.future);
+        await windowManager
+            .setTitle("${Constants.appName} ${version.presentVersion}");
+
         if (ref.read(silentStartNotifierProvider)) {
           loggy.debug("silent start is enabled, hiding window");
           await windowManager.hide();
