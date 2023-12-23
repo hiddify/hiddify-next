@@ -27,12 +27,7 @@
 		03E392D02ADDF1BD000ADF15 /* FilePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E392CE2ADDEFC8000ADF15 /* FilePath.swift */; };
 		03E392D22ADDF1F4000ADF15 /* ExtensionPlatformInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E392D12ADDF1F4000ADF15 /* ExtensionPlatformInterface.swift */; };
 		03E392D42ADDF262000ADF15 /* Extension+RunBlocking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E392D32ADDF262000ADF15 /* Extension+RunBlocking.swift */; };
-		073695372B1FD5A8007249BE /* libcore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 075637B22B0157CB005AFB8E /* libcore.xcframework */; };
-		073695382B1FD5A8007249BE /* libcore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 075637B22B0157CB005AFB8E /* libcore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		073695502B1FED8C007249BE /* App.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A63A842B1E72AE00CAFA4D /* App.xcframework */; };
-		073695512B1FED8C007249BE /* App.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07A63A842B1E72AE00CAFA4D /* App.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		073695562B1FEDC2007249BE /* Flutter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A63A872B1E72C800CAFA4D /* Flutter.xcframework */; };
-		073695572B1FEDC2007249BE /* Flutter.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07A63A872B1E72C800CAFA4D /* Flutter.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		073695582B36B248007249BE /* libcore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 075637B22B0157CB005AFB8E /* libcore.xcframework */; };
 		075637BA2B01583F005AFB8E /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F1D4AAC33ACF5C8307310D /* Pods_Runner.framework */; };
 		075637BB2B01583F005AFB8E /* Pods_Runner.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 60F1D4AAC33ACF5C8307310D /* Pods_Runner.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		075637BC2B015864005AFB8E /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E392B72ADDA00E000ADF15 /* NetworkExtension.framework */; };
@@ -53,13 +48,6 @@
 
 /* Begin PBXContainerItemProxy section */
 		03E392BE2ADDA00F000ADF15 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 97C146E61CF9000F007C117D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 03E392B52ADDA00E000ADF15;
-			remoteInfo = SingBoxPacketTunnel;
-		};
-		07EE83022B1E682800086BF6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 97C146E61CF9000F007C117D /* Project object */;
 			proxyType = 1;
@@ -116,10 +104,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				073695572B1FEDC2007249BE /* Flutter.xcframework in Embed Frameworks */,
-				073695382B1FD5A8007249BE /* libcore.xcframework in Embed Frameworks */,
 				075637BB2B01583F005AFB8E /* Pods_Runner.framework in Embed Frameworks */,
-				073695512B1FED8C007249BE /* App.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -226,9 +211,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				073695502B1FED8C007249BE /* App.xcframework in Frameworks */,
-				073695372B1FD5A8007249BE /* libcore.xcframework in Frameworks */,
-				073695562B1FEDC2007249BE /* Flutter.xcframework in Frameworks */,
+				073695582B36B248007249BE /* libcore.xcframework in Frameworks */,
 				075637BA2B01583F005AFB8E /* Pods_Runner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -471,7 +454,6 @@
 			);
 			dependencies = (
 				03E392BF2ADDA00F000ADF15 /* PBXTargetDependency */,
-				07EE83032B1E682800086BF6 /* PBXTargetDependency */,
 			);
 			name = Runner;
 			productName = Runner;
@@ -703,11 +685,6 @@
 			isa = PBXTargetDependency;
 			target = 03E392B52ADDA00E000ADF15 /* SingBoxPacketTunnel */;
 			targetProxy = 03E392BE2ADDA00F000ADF15 /* PBXContainerItemProxy */;
-		};
-		07EE83032B1E682800086BF6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 03E392B52ADDA00E000ADF15 /* SingBoxPacketTunnel */;
-			targetProxy = 07EE83022B1E682800086BF6 /* PBXContainerItemProxy */;
 		};
 		331C8086294A63A400263BE5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

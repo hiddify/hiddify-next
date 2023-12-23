@@ -51,7 +51,7 @@ public class ExtensionPlatformInterface: NSObject, LibboxPlatformInterfaceProtoc
             let ipv4AddressIterator = options.getInet4Address()!
             while ipv4AddressIterator.hasNext() {
                 let ipv4Prefix = ipv4AddressIterator.next()!
-                ipv4Address.append(ipv4Prefix.address)
+                ipv4Address.append(ipv4Prefix.address())
                 ipv4Mask.append(ipv4Prefix.mask())
             }
             let ipv4Settings = NEIPv4Settings(addresses: ipv4Address, subnetMasks: ipv4Mask)
@@ -60,7 +60,7 @@ public class ExtensionPlatformInterface: NSObject, LibboxPlatformInterfaceProtoc
             if inet4RouteAddressIterator.hasNext() {
                 while inet4RouteAddressIterator.hasNext() {
                     let ipv4RoutePrefix = inet4RouteAddressIterator.next()!
-                    ipv4Routes.append(NEIPv4Route(destinationAddress: ipv4RoutePrefix.address, subnetMask: ipv4RoutePrefix.mask()))
+                    ipv4Routes.append(NEIPv4Route(destinationAddress: ipv4RoutePrefix.address(), subnetMask: ipv4RoutePrefix.mask()))
                 }
             } else {
                 ipv4Routes.append(NEIPv4Route.default())
@@ -76,8 +76,8 @@ public class ExtensionPlatformInterface: NSObject, LibboxPlatformInterfaceProtoc
             let ipv6AddressIterator = options.getInet6Address()!
             while ipv6AddressIterator.hasNext() {
                 let ipv6Prefix = ipv6AddressIterator.next()!
-                ipv6Address.append(ipv6Prefix.address)
-                ipv6Prefixes.append(NSNumber(value: ipv6Prefix.prefix))
+                ipv6Address.append(ipv6Prefix.address())
+                ipv6Prefixes.append(NSNumber(value: ipv6Prefix.prefix()))
             }
             let ipv6Settings = NEIPv6Settings(addresses: ipv6Address, networkPrefixLengths: ipv6Prefixes)
             var ipv6Routes: [NEIPv6Route] = []
@@ -85,7 +85,7 @@ public class ExtensionPlatformInterface: NSObject, LibboxPlatformInterfaceProtoc
             if inet6RouteAddressIterator.hasNext() {
                 while inet6RouteAddressIterator.hasNext() {
                     let ipv6RoutePrefix = inet4RouteAddressIterator.next()!
-                    ipv6Routes.append(NEIPv6Route(destinationAddress: ipv6RoutePrefix.description, networkPrefixLength: NSNumber(value: ipv6RoutePrefix.prefix)))
+                    ipv6Routes.append(NEIPv6Route(destinationAddress: ipv6RoutePrefix.description, networkPrefixLength: NSNumber(value: ipv6RoutePrefix.prefix())))
                 }
             } else {
                 ipv6Routes.append(NEIPv6Route.default())
