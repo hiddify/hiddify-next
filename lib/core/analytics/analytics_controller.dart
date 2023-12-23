@@ -19,7 +19,7 @@ bool _testCrashReport = false;
 @Riverpod(keepAlive: true)
 class AnalyticsController extends _$AnalyticsController with AppLogger {
   @override
-  bool build() {
+  Future<bool> build() async {
     return _preferences.getBool(enableAnalyticsPrefKey) ?? true;
   }
 
@@ -27,41 +27,47 @@ class AnalyticsController extends _$AnalyticsController with AppLogger {
       ref.read(sharedPreferencesProvider).requireValue;
 
   Future<void> enableAnalytics() async {
-    loggy.debug("enabling analytics");
-    if (!state) {
-      await _preferences.setBool(enableAnalyticsPrefKey, true);
+    if (state case AsyncData(value: final enabled)) {
+      loggy.debug("enabling analytics");
+      state = const AsyncLoading();
+      if (!enabled) {
+        await _preferences.setBool(enableAnalyticsPrefKey, true);
+      }
+
+      final env = ref.read(environmentProvider);
+      final appInfo = await ref.read(appInfoProvider.future);
+      final dsn = !kDebugMode || _testCrashReport ? Environment.sentryDSN : "";
+      final sentryLogger = SentryLoggyIntegration();
+      LoggerController.instance.addPrinter("analytics", sentryLogger);
+
+      await SentryFlutter.init(
+        (options) {
+          options.dsn = dsn;
+          options.environment = env.name;
+          options.dist = appInfo.release.name;
+          options.debug = kDebugMode;
+          options.enableNativeCrashHandling = true;
+          options.enableNdkScopeSync = true;
+          options.attachThreads = true;
+          options.tracesSampleRate = 0.20;
+          options.enableUserInteractionTracing = true;
+          options.addIntegration(sentryLogger);
+          options.beforeSend = sentryBeforeSend;
+        },
+      );
+
+      state = const AsyncData(true);
     }
-
-    final env = ref.read(environmentProvider);
-    final appInfo = await ref.read(appInfoProvider.future);
-    final dsn = !kDebugMode || _testCrashReport ? Environment.sentryDSN : "";
-    final sentryLogger = SentryLoggyIntegration();
-    LoggerController.instance.addPrinter("analytics", sentryLogger);
-
-    await SentryFlutter.init(
-      (options) {
-        options.dsn = dsn;
-        options.environment = env.name;
-        options.dist = appInfo.release.name;
-        options.debug = kDebugMode;
-        options.enableNativeCrashHandling = true;
-        options.enableNdkScopeSync = true;
-        options.attachThreads = true;
-        options.tracesSampleRate = 0.20;
-        options.enableUserInteractionTracing = true;
-        options.addIntegration(sentryLogger);
-        options.beforeSend = sentryBeforeSend;
-      },
-    );
-
-    state = true;
   }
 
   Future<void> disableAnalytics() async {
-    loggy.debug("disabling analytics");
-    await _preferences.setBool(enableAnalyticsPrefKey, false);
-    await Sentry.close();
-    LoggerController.instance.removePrinter("analytics");
-    state = false;
+    if (state case AsyncData()) {
+      loggy.debug("disabling analytics");
+      state = const AsyncLoading();
+      await _preferences.setBool(enableAnalyticsPrefKey, false);
+      await Sentry.close();
+      LoggerController.instance.removePrinter("analytics");
+      state = const AsyncData(false);
+    }
   }
 }

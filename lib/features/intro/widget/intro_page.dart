@@ -73,7 +73,9 @@ class IntroPage extends HookConsumerWidget with PresLogger {
                       onPressed: () async {
                         if (isStarting.value) return;
                         isStarting.value = true;
-                        if (!ref.read(analyticsControllerProvider)) {
+                        if (!ref
+                            .read(analyticsControllerProvider)
+                            .requireValue) {
                           loggy.info("disabling analytics per user request");
                           try {
                             await ref
