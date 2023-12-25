@@ -951,7 +951,8 @@
 					"\"${PODS_ROOT}/MLKitCommon/Frameworks\"",
 					"\"${PODS_ROOT}/MLKitVision/Frameworks\"",
 					"$(PROJECT_DIR)/Flutter",
-					"$(PROJECT_DIR)/Frameworks",
+					"$(PROJECT_DIR)/Frameworks/**",
+					"$(PROJECT_DIR)/..",
 				);
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1163,7 +1164,7 @@
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = 3JFTY5BP58;
 				ENABLE_BITCODE = NO;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "i386 arm64";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "i386 arm64 amd64";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/GTMSessionFetcher\"",
@@ -1193,7 +1194,8 @@
 					"\"${PODS_ROOT}/MLKitCommon/Frameworks\"",
 					"\"${PODS_ROOT}/MLKitVision/Frameworks\"",
 					"$(PROJECT_DIR)/Flutter",
-					"$(PROJECT_DIR)/Frameworks",
+					"$(PROJECT_DIR)/Frameworks/**",
+					"$(PROJECT_DIR)/..",
 				);
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1266,7 +1268,8 @@
 					"\"${PODS_ROOT}/MLKitCommon/Frameworks\"",
 					"\"${PODS_ROOT}/MLKitVision/Frameworks\"",
 					"$(PROJECT_DIR)/Flutter",
-					"$(PROJECT_DIR)/Frameworks",
+					"$(PROJECT_DIR)/Frameworks/**",
+					"$(PROJECT_DIR)/..",
 				);
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

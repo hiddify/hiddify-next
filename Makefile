@@ -93,9 +93,9 @@ macos-libs:
 
 ios-libs: #not tested
 	mkdir -p $(DESKTOP_OUT)/ &&\
-	rm -rf $(IOS_OUT)/libcore.xcframework
+	rm -rf $(IOS_OUT)/Libcore.xcframework
 	curl -L $(CORE_URL)/$(CORE_NAME)-ios.xcframework.tar.gz | tar xz -C "$(IOS_OUT)" && \
-	mv $(IOS_OUT)/$(CORE_NAME)-ios.xcframework $(IOS_OUT)/libcore.xcframework
+	mv $(IOS_OUT)/$(CORE_NAME)-ios.xcframework $(IOS_OUT)/Libcore.xcframework
 
 get-geo-assets:
 	curl -L https://github.com/SagerNet/sing-geoip/releases/latest/download/geoip.db -o $(GEO_ASSETS_DIR)/geoip.db
@@ -142,7 +142,7 @@ release: # Create a new tag for release.
 
 
 
-ios-temp-preapre: 
+ios-temp-prepare: 
 	flutter upgrade
 	flutter pub upgrade
 	make prepare platform=ios
