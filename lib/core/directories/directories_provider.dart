@@ -15,7 +15,8 @@ class AppDirectories extends _$AppDirectories with InfraLogger {
   @override
   Future<Directories> build() async {
     final Directories dirs;
-    if (Platform.isIOS) {
+    if (false&&Platform.isIOS) {
+      
       final paths = await _methodChannel.invokeMethod<Map>("get_paths");
       loggy.debug("paths: $paths");
       dirs = (

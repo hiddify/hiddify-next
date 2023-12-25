@@ -35,6 +35,8 @@ target 'Runner' do
   target 'RunnerTests' do
     inherit! :search_paths
   end
+  pod 'Libcore', :path => './Frameworks/Libcore.xcframework'
+
 end
 
 # post_install do |installer|

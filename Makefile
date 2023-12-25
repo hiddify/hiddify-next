@@ -2,7 +2,7 @@ include dependencies.properties
 
 BINDIR=./libcore/bin
 ANDROID_OUT=./android/app/libs
-IOS_OUT=./libcore/bin
+IOS_OUT=./ios/Frameworks
 DESKTOP_OUT=./libcore/bin
 GEO_ASSETS_DIR=./assets/core
 
@@ -117,7 +117,7 @@ build-macos-libs:
 	make -C libcore -f Makefile macos-universal && mv $(BINDIR)/$(CORE_NAME)-macos-universal.dylib $(DESKTOP_OUT)/libcore.dylib
 
 build-ios-libs: 
-	make -C libcore -f Makefile ios  && mv $(BINDIR)/$(CORE_NAME)-ios.xcframework $(IOS_OUT)/libcore.xcframework
+	make -C libcore -f Makefile ios  && mv $(BINDIR)/$(CORE_NAME)-ios.xcframework $(IOS_OUT)/Libcore.xcframework
 
 release: # Create a new tag for release.
 	@echo "previous version was $$(git describe --tags $$(git rev-list --tags --max-count=1))"

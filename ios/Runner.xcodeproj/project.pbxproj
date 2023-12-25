@@ -27,13 +27,14 @@
 		03E392D02ADDF1BD000ADF15 /* FilePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E392CE2ADDEFC8000ADF15 /* FilePath.swift */; };
 		03E392D22ADDF1F4000ADF15 /* ExtensionPlatformInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E392D12ADDF1F4000ADF15 /* ExtensionPlatformInterface.swift */; };
 		03E392D42ADDF262000ADF15 /* Extension+RunBlocking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E392D32ADDF262000ADF15 /* Extension+RunBlocking.swift */; };
-		073695582B36B248007249BE /* libcore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 075637B22B0157CB005AFB8E /* libcore.xcframework */; };
+		073695732B39DA23007249BE /* Libcore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 073695722B39DA23007249BE /* Libcore.xcframework */; };
+		073695782B39DB2B007249BE /* Libcore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 073695722B39DA23007249BE /* Libcore.xcframework */; };
+		0736957B2B39DE78007249BE /* Libcore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0736957A2B39DE78007249BE /* Libcore.xcframework */; };
+		0736957C2B39DE78007249BE /* Libcore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0736957A2B39DE78007249BE /* Libcore.xcframework */; };
 		075637BA2B01583F005AFB8E /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F1D4AAC33ACF5C8307310D /* Pods_Runner.framework */; };
-		075637BB2B01583F005AFB8E /* Pods_Runner.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 60F1D4AAC33ACF5C8307310D /* Pods_Runner.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		075637BB2B01583F005AFB8E /* Pods_Runner.framework in Embed Frameworks (2 items) */ = {isa = PBXBuildFile; fileRef = 60F1D4AAC33ACF5C8307310D /* Pods_Runner.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		075637BC2B015864005AFB8E /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E392B72ADDA00E000ADF15 /* NetworkExtension.framework */; };
 		075637BD2B015864005AFB8E /* NetworkExtension.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03E392B72ADDA00E000ADF15 /* NetworkExtension.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		075637BF2B01588D005AFB8E /* libcore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 075637B22B0157CB005AFB8E /* libcore.xcframework */; };
-		075637C02B01588D005AFB8E /* libcore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 075637B22B0157CB005AFB8E /* libcore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		075637C12B015899005AFB8E /* libcore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 075637B22B0157CB005AFB8E /* libcore.xcframework */; };
 		075637C22B015899005AFB8E /* libcore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 075637B22B0157CB005AFB8E /* libcore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		07A63AD52B1E961E00CAFA4D /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A63AD42B1E961E00CAFA4D /* GeneratedPluginRegistrant.m */; };
@@ -81,7 +82,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				075637C02B01588D005AFB8E /* libcore.xcframework in Embed Frameworks */,
 				075637BD2B015864005AFB8E /* NetworkExtension.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -98,15 +98,15 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9705A1C41CF9048500538489 /* Embed Frameworks */ = {
+		9705A1C41CF9048500538489 /* Embed Frameworks (2 items) */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				075637BB2B01583F005AFB8E /* Pods_Runner.framework in Embed Frameworks */,
+				075637BB2B01583F005AFB8E /* Pods_Runner.framework in Embed Frameworks (2 items) */,
 			);
-			name = "Embed Frameworks";
+			name = "Embed Frameworks (2 items)";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -137,6 +137,11 @@
 		03E392D32ADDF262000ADF15 /* Extension+RunBlocking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+RunBlocking.swift"; sourceTree = "<group>"; };
 		073695362B1FD56C007249BE /* libcore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = libcore; path = ../libcore; sourceTree = "<group>"; };
 		0736954E2B1FEB3E007249BE /* mobile_scanner.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = mobile_scanner.xcframework; path = ../build/ios/framework/Release/mobile_scanner.xcframework; sourceTree = "<group>"; };
+		0736955C2B384217007249BE /* libcore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = libcore.xcframework; sourceTree = "<group>"; };
+		0736956A2B39814F007249BE /* libcore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = libcore.xcframework; path = Framework/libcore.xcframework; sourceTree = "<group>"; };
+		0736956E2B3998A2007249BE /* libcore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = libcore.xcframework; path = Frameworks/libcore.xcframework; sourceTree = "<group>"; };
+		073695722B39DA23007249BE /* Libcore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Libcore.xcframework; path = Frameworks/Libcore.xcframework; sourceTree = "<group>"; };
+		0736957A2B39DE78007249BE /* Libcore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Libcore.xcframework; path = Frameworks/Libcore.xcframework; sourceTree = "<group>"; };
 		075637B22B0157CB005AFB8E /* libcore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = libcore.xcframework; path = ../libcore/bin/libcore.xcframework; sourceTree = "<group>"; };
 		07A63A832B1E728C00CAFA4D /* Release */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Release; path = ../build/ios/framework/release; sourceTree = "<group>"; };
 		07A63A842B1E72AE00CAFA4D /* App.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = App.xcframework; path = ../build/ios/framework/release/App.xcframework; sourceTree = "<group>"; };
@@ -193,7 +198,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				075637BF2B01588D005AFB8E /* libcore.xcframework in Frameworks */,
+				073695782B39DB2B007249BE /* Libcore.xcframework in Frameworks */,
+				0736957C2B39DE78007249BE /* Libcore.xcframework in Frameworks */,
 				075637BC2B015864005AFB8E /* NetworkExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -211,7 +217,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				073695582B36B248007249BE /* libcore.xcframework in Frameworks */,
+				073695732B39DA23007249BE /* Libcore.xcframework in Frameworks */,
+				0736957B2B39DE78007249BE /* Libcore.xcframework in Frameworks */,
 				075637BA2B01583F005AFB8E /* Pods_Runner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,6 +325,7 @@
 		97C146E51CF9000F007C117D = {
 			isa = PBXGroup;
 			children = (
+				0736957A2B39DE78007249BE /* Libcore.xcframework */,
 				03E392CD2ADDE103000ADF15 /* Shared */,
 				9740EEB11CF90186004384FC /* Flutter */,
 				97C146F01CF9000F007C117D /* Runner */,
@@ -360,6 +368,10 @@
 		B8133545EEE13EDD5549E6A3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				073695722B39DA23007249BE /* Libcore.xcframework */,
+				0736955C2B384217007249BE /* libcore.xcframework */,
+				0736956A2B39814F007249BE /* libcore.xcframework */,
+				0736956E2B3998A2007249BE /* libcore.xcframework */,
 				0736954E2B1FEB3E007249BE /* mobile_scanner.xcframework */,
 				073695362B1FD56C007249BE /* libcore */,
 				07A63A932B1E72FB00CAFA4D /* cupertino_http.xcframework */,
@@ -446,7 +458,7 @@
 				97C146EA1CF9000F007C117D /* Sources */,
 				97C146EB1CF9000F007C117D /* Frameworks */,
 				97C146EC1CF9000F007C117D /* Resources */,
-				9705A1C41CF9048500538489 /* Embed Frameworks */,
+				9705A1C41CF9048500538489 /* Embed Frameworks (2 items) */,
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
 				FBEFD3291AEA65EDE2F5AEF6 /* [CP] Embed Pods Frameworks */,
 			);
@@ -466,6 +478,7 @@
 		97C146E61CF9000F007C117D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1430;
 				ORGANIZATIONNAME = "";
@@ -864,6 +877,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -908,6 +922,37 @@
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = 3JFTY5BP58;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GTMSessionFetcher\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleDataTransport\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleToolboxForMac\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilitiesComponents\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Sentry\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SentryPrivate\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/cupertino_http\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/device_info_plus\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/flutter_native_splash\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/mobile_scanner\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/nanopb\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/package_info_plus\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/path_provider_foundation\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/protocol_handler\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/sentry_flutter\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/share_plus\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/shared_preferences_foundation\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/sqlite3\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/sqlite3_flutter_libs\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/url_launcher_ios\"",
+					"\"${PODS_ROOT}/MLImage/Frameworks\"",
+					"\"${PODS_ROOT}/MLKitBarcodeScanning/Frameworks\"",
+					"\"${PODS_ROOT}/MLKitCommon/Frameworks\"",
+					"\"${PODS_ROOT}/MLKitVision/Frameworks\"",
+					"$(PROJECT_DIR)/Flutter",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1010,6 +1055,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1070,6 +1116,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1117,6 +1164,37 @@
 				DEVELOPMENT_TEAM = 3JFTY5BP58;
 				ENABLE_BITCODE = NO;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "i386 arm64";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GTMSessionFetcher\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleDataTransport\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleToolboxForMac\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilitiesComponents\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Sentry\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SentryPrivate\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/cupertino_http\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/device_info_plus\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/flutter_native_splash\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/mobile_scanner\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/nanopb\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/package_info_plus\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/path_provider_foundation\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/protocol_handler\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/sentry_flutter\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/share_plus\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/shared_preferences_foundation\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/sqlite3\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/sqlite3_flutter_libs\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/url_launcher_ios\"",
+					"\"${PODS_ROOT}/MLImage/Frameworks\"",
+					"\"${PODS_ROOT}/MLKitBarcodeScanning/Frameworks\"",
+					"\"${PODS_ROOT}/MLKitCommon/Frameworks\"",
+					"\"${PODS_ROOT}/MLKitVision/Frameworks\"",
+					"$(PROJECT_DIR)/Flutter",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1159,6 +1237,37 @@
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = 3JFTY5BP58;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GTMSessionFetcher\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleDataTransport\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleToolboxForMac\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilitiesComponents\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Sentry\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SentryPrivate\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/cupertino_http\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/device_info_plus\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/flutter_native_splash\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/mobile_scanner\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/nanopb\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/package_info_plus\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/path_provider_foundation\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/protocol_handler\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/sentry_flutter\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/share_plus\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/shared_preferences_foundation\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/sqlite3\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/sqlite3_flutter_libs\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/url_launcher_ios\"",
+					"\"${PODS_ROOT}/MLImage/Frameworks\"",
+					"\"${PODS_ROOT}/MLKitBarcodeScanning/Frameworks\"",
+					"\"${PODS_ROOT}/MLKitCommon/Frameworks\"",
+					"\"${PODS_ROOT}/MLKitVision/Frameworks\"",
+					"$(PROJECT_DIR)/Flutter",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

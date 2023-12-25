@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 public class StatusEventHandler: NSObject, FlutterPlugin, FlutterStreamHandler {
-    static let name = "\(FilePath.packageName)/service.status"
+    static let name = "com.hiddify.app//service.status"
     
     private var channel: FlutterEventChannel?
     
