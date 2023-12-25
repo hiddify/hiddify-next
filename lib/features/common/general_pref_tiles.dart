@@ -104,7 +104,7 @@ class EnableAnalyticsPrefTile extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final t = ref.watch(translationsProvider);
 
-    final autoReport = ref.watch(analyticsControllerProvider);
+    final enabled = ref.watch(analyticsControllerProvider).requireValue;
 
     return SwitchListTile(
       title: Text(t.settings.general.enableAnalytics),
@@ -113,12 +113,12 @@ class EnableAnalyticsPrefTile extends HookConsumerWidget {
         style: Theme.of(context).textTheme.bodySmall,
       ),
       secondary: const Icon(Icons.bug_report),
-      value: autoReport,
+      value: enabled,
       onChanged: (value) async {
         if (onChanged != null) {
           return onChanged!(value);
         }
-        if (autoReport) {
+        if (enabled) {
           await ref
               .read(analyticsControllerProvider.notifier)
               .disableAnalytics();

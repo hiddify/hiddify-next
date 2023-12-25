@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.12.2] - 2023-12-23
+
+### New Features and Improvements
+
+- Updated Sing-box to Version 1.7.6
+
+### Bug Fixes
+
+- Fixed app log file not including stacktrace
+- Fixed initialization process failing for non-essential dependencies
+- Fixed analytics preferences requiring app restart
+
+## [0.12.1] - 2023-12-21
+
+### Bug Fixes
+
+- Fixed Android service mode
+- Fixed [preferences initialization error on Windows and Linux](https://github.com/flutter/flutter/issues/89211)
+- Fixed incorrect privacy policy URL
+- Bumped Android compile and target SDK version (34)
+
 ## [0.12.0] - 2023-12-20
 
 ### New Features and Improvements
@@ -99,6 +120,8 @@
 - Fixed localization mistakes in Russian. [PR#95](https://github.com/hiddify/hiddify-next/pull/95) by [solokot](https://github.com/solokot)
 - Fixed localization mistakes in Russian. [PR#74](https://github.com/hiddify/hiddify-next/pull/74) by [Elshad Guseynov](https://github.com/lifeindarkside)
 
+[0.12.2]: https://github.com/hiddify/hiddify-next/releases/tag/v0.12.2
+[0.12.1]: https://github.com/hiddify/hiddify-next/releases/tag/v0.12.1
 [0.12.0]: https://github.com/hiddify/hiddify-next/releases/tag/v0.12.0
 [0.11.1]: https://github.com/hiddify/hiddify-next/releases/tag/v0.11.1
 [0.11.0]: https://github.com/hiddify/hiddify-next/releases/tag/v0.11.0

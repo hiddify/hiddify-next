@@ -65,7 +65,8 @@ Future<void> lazyBootstrap(
     () => container.read(sharedPreferencesProvider.future),
   );
 
-  final enableAnalytics = container.read(analyticsControllerProvider);
+  final enableAnalytics =
+      await container.read(analyticsControllerProvider.future);
   if (enableAnalytics) {
     await _init(
       "analytics",
