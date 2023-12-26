@@ -155,7 +155,9 @@ class SettingsPickerDialog<T> extends HookConsumerWidget with PresLogger {
                 title: Text(getTitle(e)),
                 value: e,
                 groupValue: selected,
-                onChanged: (value) => context.pop(e),
+                onChanged: (value) async {
+                  await Navigator.of(context).maybePop(e);
+                },
               ),
             )
             .toList(),
