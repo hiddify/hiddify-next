@@ -33,7 +33,7 @@ class PlatformSettingsHandler : FlutterPlugin, MethodChannel.MethodCallHandler, 
     private lateinit var ignoreRequestResult: MethodChannel.Result
 
     companion object {
-        const val channelName = "app.hiddify.com/platform"
+        const val channelName = "com.hiddify.app/platform"
 
         const val REQUEST_IGNORE_BATTERY_OPTIMIZATIONS = 44
         val gson = Gson()
