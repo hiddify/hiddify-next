@@ -29,7 +29,7 @@ struct SBGroup: Codable {
 
 public class GroupsEventHandler: NSObject, FlutterPlugin, FlutterStreamHandler, LibboxCommandClientHandlerProtocol {
     
-    static let name = "\(FilePath.packageName)/groups"
+    static let name = "\(Bundle.main.serviceIdentifier)/groups"
     
     private var channel: FlutterEventChannel?
     

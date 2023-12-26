@@ -27,16 +27,13 @@
 		03E392D02ADDF1BD000ADF15 /* FilePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E392CE2ADDEFC8000ADF15 /* FilePath.swift */; };
 		03E392D22ADDF1F4000ADF15 /* ExtensionPlatformInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E392D12ADDF1F4000ADF15 /* ExtensionPlatformInterface.swift */; };
 		03E392D42ADDF262000ADF15 /* Extension+RunBlocking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E392D32ADDF262000ADF15 /* Extension+RunBlocking.swift */; };
-		073695732B39DA23007249BE /* Libcore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 073695722B39DA23007249BE /* Libcore.xcframework */; };
 		073695782B39DB2B007249BE /* Libcore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 073695722B39DA23007249BE /* Libcore.xcframework */; };
-		0736957B2B39DE78007249BE /* Libcore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0736957A2B39DE78007249BE /* Libcore.xcframework */; };
-		0736957C2B39DE78007249BE /* Libcore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0736957A2B39DE78007249BE /* Libcore.xcframework */; };
+		073695882B3AC757007249BE /* Libcore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 073695722B39DA23007249BE /* Libcore.xcframework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		0736958B2B3AC96D007249BE /* Bundle+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0736958A2B3AC96D007249BE /* Bundle+Properties.swift */; };
 		075637BA2B01583F005AFB8E /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F1D4AAC33ACF5C8307310D /* Pods_Runner.framework */; };
 		075637BB2B01583F005AFB8E /* Pods_Runner.framework in Embed Frameworks (2 items) */ = {isa = PBXBuildFile; fileRef = 60F1D4AAC33ACF5C8307310D /* Pods_Runner.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		075637BC2B015864005AFB8E /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E392B72ADDA00E000ADF15 /* NetworkExtension.framework */; };
 		075637BD2B015864005AFB8E /* NetworkExtension.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03E392B72ADDA00E000ADF15 /* NetworkExtension.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		075637C12B015899005AFB8E /* libcore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 075637B22B0157CB005AFB8E /* libcore.xcframework */; };
-		075637C22B015899005AFB8E /* libcore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 075637B22B0157CB005AFB8E /* libcore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		07A63AD52B1E961E00CAFA4D /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A63AD42B1E961E00CAFA4D /* GeneratedPluginRegistrant.m */; };
 		331C808B294A63AB00263BE5 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C807B294A618700263BE5 /* RunnerTests.swift */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
@@ -82,18 +79,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				073695882B3AC757007249BE /* Libcore.xcframework in Embed Frameworks */,
 				075637BD2B015864005AFB8E /* NetworkExtension.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		075637C32B015899005AFB8E /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				075637C22B015899005AFB8E /* libcore.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -142,6 +129,7 @@
 		0736956E2B3998A2007249BE /* libcore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = libcore.xcframework; path = Frameworks/libcore.xcframework; sourceTree = "<group>"; };
 		073695722B39DA23007249BE /* Libcore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Libcore.xcframework; path = Frameworks/Libcore.xcframework; sourceTree = "<group>"; };
 		0736957A2B39DE78007249BE /* Libcore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Libcore.xcframework; path = Frameworks/Libcore.xcframework; sourceTree = "<group>"; };
+		0736958A2B3AC96D007249BE /* Bundle+Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Properties.swift"; sourceTree = "<group>"; };
 		075637B22B0157CB005AFB8E /* libcore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = libcore.xcframework; path = ../libcore/bin/libcore.xcframework; sourceTree = "<group>"; };
 		07A63A832B1E728C00CAFA4D /* Release */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Release; path = ../build/ios/framework/release; sourceTree = "<group>"; };
 		07A63A842B1E72AE00CAFA4D /* App.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = App.xcframework; path = ../build/ios/framework/release/App.xcframework; sourceTree = "<group>"; };
@@ -199,7 +187,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				073695782B39DB2B007249BE /* Libcore.xcframework in Frameworks */,
-				0736957C2B39DE78007249BE /* Libcore.xcframework in Frameworks */,
 				075637BC2B015864005AFB8E /* NetworkExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -208,7 +195,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				075637C12B015899005AFB8E /* libcore.xcframework in Frameworks */,
 				54EA599BF9C050F2827533D5 /* Pods_RunnerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -217,8 +203,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				073695732B39DA23007249BE /* Libcore.xcframework in Frameworks */,
-				0736957B2B39DE78007249BE /* Libcore.xcframework in Frameworks */,
 				075637BA2B01583F005AFB8E /* Pods_Runner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -240,8 +224,8 @@
 			isa = PBXGroup;
 			children = (
 				03B516662AE6B93A00EA47E2 /* MethodHandler.swift */,
-				03B5167A2AE79DB400EA47E2 /* FileMethodHandler.swift */,
 				03B516682AE7306B00EA47E2 /* StatusEventHandler.swift */,
+				03B5167A2AE79DB400EA47E2 /* FileMethodHandler.swift */,
 				03B5166A2AE7315E00EA47E2 /* AlertsEventHandler.swift */,
 				03B5166C2AE7325500EA47E2 /* LogsEventHandler.swift */,
 				03B5167C2AE7AC6200EA47E2 /* GroupsEventHandler.swift */,
@@ -287,6 +271,14 @@
 				03E392CE2ADDEFC8000ADF15 /* FilePath.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		073695892B3AC954007249BE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0736958A2B3AC96D007249BE /* Bundle+Properties.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		311A4F4314861E02331B8DAC /* Pods */ = {
@@ -350,6 +342,7 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				073695892B3AC954007249BE /* Extensions */,
 				03B5166E2AE7325D00EA47E2 /* Handlers */,
 				032158B62ADDF8AF008D943B /* VPN */,
 				74858FAE1ED2DC5600515810 /* AppDelegate.swift */,
@@ -436,7 +429,6 @@
 				331C807D294A63A400263BE5 /* Sources */,
 				331C807F294A63A400263BE5 /* Resources */,
 				531FE8242BCD501C24C8E9FA /* Frameworks */,
-				075637C32B015899005AFB8E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -681,6 +673,7 @@
 				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
 				03B516712AE74CCD00EA47E2 /* VPNConfig.swift in Sources */,
 				03B5166B2AE7315E00EA47E2 /* AlertsEventHandler.swift in Sources */,
+				0736958B2B3AC96D007249BE /* Bundle+Properties.swift in Sources */,
 				03B516692AE7306B00EA47E2 /* StatusEventHandler.swift in Sources */,
 				032158B82ADDF8BF008D943B /* VPNManager.swift in Sources */,
 				03B516672AE6B93A00EA47E2 /* MethodHandler.swift in Sources */,

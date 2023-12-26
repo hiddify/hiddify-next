@@ -9,7 +9,7 @@ import Foundation
 
 public class FileMethodHandler: NSObject, FlutterPlugin {
         
-    public static let name = "\(FilePath.packageName)/files.method"
+    public static let name = "\(Bundle.main.serviceIdentifier)/files.method"
     
     public static func register(with registrar: FlutterPluginRegistrar) {
         let channel = FlutterMethodChannel(name: Self.name, binaryMessenger: registrar.messenger())
@@ -21,6 +21,8 @@ public class FileMethodHandler: NSObject, FlutterPlugin {
     private var channel: FlutterMethodChannel?
     
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
+        NSLog("[TLOG] handle start method \(call.method)")
+        defer { NSLog("[TLOG] handler end method \(call.method)") }
         switch call.method {
         case "get_paths":
             result([

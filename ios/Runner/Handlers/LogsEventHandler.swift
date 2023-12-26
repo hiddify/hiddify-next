@@ -8,7 +8,7 @@
 import Foundation
 
 public class LogsEventHandler: NSObject, FlutterPlugin, FlutterStreamHandler {
-    static let name = "\(FilePath.packageName)/service.logs"
+    static let name = "\(Bundle.main.serviceIdentifier)/service.logs"
     
     private var channel: FlutterEventChannel?
     

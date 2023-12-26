@@ -13,23 +13,32 @@ public class MethodHandler: NSObject, FlutterPlugin {
     
     private var cancelBag: Set<AnyCancellable> = []
     
-    public static let name = "\(FilePath.packageName)/method"
+    public static let name = "\(Bundle.main.serviceIdentifier)/method"
     
     public static func register(with registrar: FlutterPluginRegistrar) {
         let channel = FlutterMethodChannel(name: Self.name, binaryMessenger: registrar.messenger())
         let instance = MethodHandler()
         registrar.addMethodCallDelegate(instance, channel: channel)
-        instance.channel = channel
+        instance.channel = channel	
     }
     
     private var channel: FlutterMethodChannel?
     
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
+        NSLog("[TLOG] handle start method \(call.method)")
+        defer { NSLog("[TLOG] handler end method \(call.method)") }
         switch call.method {
         case "parse_config":
             result(parseConfig(args: call.arguments))
         case "change_config_options":
             result(changeConfigOptions(args: call.arguments))
+        case "setup":
+            Task { [unowned self] in
+                let res = await setup(args: call.arguments)
+                await MainActor.run {
+                    result(res)
+                }
+            }
         case "start":
             Task { [unowned self] in
                 let res = await start(args: call.arguments)
@@ -77,6 +86,15 @@ public class MethodHandler: NSObject, FlutterPlugin {
             return false
         }
         VPNConfig.shared.configOptions = options
+        return true
+    }
+    
+    public func setup(args: Any?) async -> Bool {
+        do {
+            try await VPNManager.shared.setup()
+        } catch {
+            return false
+        }
         return true
     }
     

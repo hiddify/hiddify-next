@@ -94,7 +94,7 @@ class VPNManager: ObservableObject {
         }
         let newManager = NETunnelProviderManager()
         let `protocol` = NETunnelProviderProtocol()
-        `protocol`.providerBundleIdentifier = "\(FilePath.packageName).SingBoxPacketTunnel"
+        `protocol`.providerBundleIdentifier = "\(Bundle.main.baseBundleIdentifier).SingBoxPacketTunnel"
         `protocol`.serverAddress = "Hiddify"
         newManager.protocolConfiguration = `protocol`
         newManager.localizedDescription = "Hiddify"
