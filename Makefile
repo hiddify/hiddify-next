@@ -144,11 +144,16 @@ release: # Create a new tag for release.
 
 ios-temp-prepare: 
 	flutter upgrade
+	flutter clean
 	flutter pub upgrade
-	make prepare platform=ios
+	#make prepare platform=ios
+	make get-geo-assets 
+	make get 
+	make gen 
+	make translate
 	flutter build ios-framework
 	cd ios
-	pod install
+	#pod install
 	cd ..
 	flutter run
 	#Link the built App and Flutter and url_launcher_ios frameworks (or all created frameworks? i dunno, but i tried) from Release folder to Xcode project in Runner target’s Build Phases as Linked
