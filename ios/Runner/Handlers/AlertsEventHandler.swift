@@ -14,22 +14,15 @@ public class AlertsEventHandler: NSObject, FlutterPlugin, FlutterStreamHandler {
     private var channel: FlutterEventChannel?
     
     private var cancellable: AnyCancellable?
-    private var cancelBag: Set<AnyCancellable> = []
     
     public static func register(with registrar: FlutterPluginRegistrar) {
         let instance = AlertsEventHandler()
-        instance.channel = FlutterEventChannel(name: Self.name, binaryMessenger: registrar.messenger())
+        instance.channel = FlutterEventChannel(name: Self.name, binaryMessenger: registrar.messenger(), codec: FlutterJSONMethodCodec())
         instance.channel?.setStreamHandler(instance)
     }
     
     public func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
-        print("[TLOG] handle start method \(AlertsEventHandler.name)")
-        NSLog("[TLOG] handle start method \(AlertsEventHandler.name)")
-        defer {
-            print("[TLOG] handler end method \(AlertsEventHandler.name)")
-            NSLog("[TLOG] handler end method \(AlertsEventHandler.name)")
-        }
-        VPNManager.shared.$alert.sink { [events] alert in
+        cancellable = VPNManager.shared.$alert.sink { [events] alert in
             var data = [
                 "status": "Stopped",
                 "alert": alert.alert?.rawValue,
@@ -41,12 +34,12 @@ public class AlertsEventHandler: NSObject, FlutterPlugin, FlutterStreamHandler {
                 }
             }
             events(data)
-        }.store(in: &cancelBag)
+        }
         return nil
     }
     
     public func onCancel(withArguments arguments: Any?) -> FlutterError? {
-        // cancellable?.cancel()
+        cancellable?.cancel()
         return nil
     }
 }

@@ -25,8 +25,6 @@ public class MethodHandler: NSObject, FlutterPlugin {
     private var channel: FlutterMethodChannel?
     
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-        NSLog("[TLOG] handle start method \(call.method)")
-        defer { NSLog("[TLOG] handler end method \(call.method)") }
         switch call.method {
         case "parse_config":
             result(parseConfig(args: call.arguments))

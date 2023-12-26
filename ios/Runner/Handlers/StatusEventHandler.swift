@@ -14,22 +14,15 @@ public class StatusEventHandler: NSObject, FlutterPlugin, FlutterStreamHandler {
     private var channel: FlutterEventChannel?
     
     private var cancellable: AnyCancellable?
-    private var cancelBag: Set<AnyCancellable> = []
     
     public static func register(with registrar: FlutterPluginRegistrar) {
         let instance = StatusEventHandler()
-        instance.channel = FlutterEventChannel(name: Self.name, binaryMessenger: registrar.messenger())
+        instance.channel = FlutterEventChannel(name: Self.name, binaryMessenger: registrar.messenger(), codec: FlutterJSONMethodCodec())
         instance.channel?.setStreamHandler(instance)
     }
     
     public func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
-        print("[TLOG] handle start method \(StatusEventHandler.name)")
-        NSLog("[TLOG] handle start method \(StatusEventHandler.name)")
-        defer {
-            print("[TLOG] handler end method \(StatusEventHandler.name)")
-            NSLog("[TLOG] handler end method \(StatusEventHandler.name)")
-        }
-        VPNManager.shared.$state.sink { [events] status in
+        cancellable = VPNManager.shared.$state.sink { [events] status in
             switch status {
             case .reasserting, .connecting:
                 events(["status": "Starting"])
@@ -42,12 +35,12 @@ public class StatusEventHandler: NSObject, FlutterPlugin, FlutterStreamHandler {
             @unknown default:
                 events(["status": "Stopped"])
             }
-        }.store(in: &cancelBag)
+        }
         return nil
     }
     
     public func onCancel(withArguments arguments: Any?) -> FlutterError? {
-        // cancellable?.cancel()
+        cancellable?.cancel()
         return nil
     }
 }
