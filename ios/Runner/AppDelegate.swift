@@ -27,6 +27,7 @@ import Libcore
         AlertsEventHandler.register(with: self.registrar(forPlugin: AlertsEventHandler.name)!)
         LogsEventHandler.register(with: self.registrar(forPlugin: LogsEventHandler.name)!)
         GroupsEventHandler.register(with: self.registrar(forPlugin: GroupsEventHandler.name)!)
+        StatsEventHandler.register(with: self.registrar(forPlugin: StatsEventHandler.name)!)
     }
 }
 

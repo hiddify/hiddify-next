@@ -30,6 +30,7 @@
 		073695782B39DB2B007249BE /* Libcore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 073695722B39DA23007249BE /* Libcore.xcframework */; };
 		073695882B3AC757007249BE /* Libcore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 073695722B39DA23007249BE /* Libcore.xcframework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		0736958B2B3AC96D007249BE /* Bundle+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0736958A2B3AC96D007249BE /* Bundle+Properties.swift */; };
+		0736958D2B3B79E0007249BE /* StatsEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0736958C2B3B79E0007249BE /* StatsEventHandler.swift */; };
 		075637BA2B01583F005AFB8E /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F1D4AAC33ACF5C8307310D /* Pods_Runner.framework */; };
 		075637BB2B01583F005AFB8E /* Pods_Runner.framework in Embed Frameworks (2 items) */ = {isa = PBXBuildFile; fileRef = 60F1D4AAC33ACF5C8307310D /* Pods_Runner.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		075637BC2B015864005AFB8E /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E392B72ADDA00E000ADF15 /* NetworkExtension.framework */; };
@@ -130,6 +131,7 @@
 		073695722B39DA23007249BE /* Libcore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Libcore.xcframework; path = Frameworks/Libcore.xcframework; sourceTree = "<group>"; };
 		0736957A2B39DE78007249BE /* Libcore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Libcore.xcframework; path = Frameworks/Libcore.xcframework; sourceTree = "<group>"; };
 		0736958A2B3AC96D007249BE /* Bundle+Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Properties.swift"; sourceTree = "<group>"; };
+		0736958C2B3B79E0007249BE /* StatsEventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsEventHandler.swift; sourceTree = "<group>"; };
 		075637B22B0157CB005AFB8E /* libcore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = libcore.xcframework; path = ../libcore/bin/libcore.xcframework; sourceTree = "<group>"; };
 		07A63A832B1E728C00CAFA4D /* Release */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Release; path = ../build/ios/framework/release; sourceTree = "<group>"; };
 		07A63A842B1E72AE00CAFA4D /* App.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = App.xcframework; path = ../build/ios/framework/release/App.xcframework; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				03B5166A2AE7315E00EA47E2 /* AlertsEventHandler.swift */,
 				03B5166C2AE7325500EA47E2 /* LogsEventHandler.swift */,
 				03B5167C2AE7AC6200EA47E2 /* GroupsEventHandler.swift */,
+				0736958C2B3B79E0007249BE /* StatsEventHandler.swift */,
 			);
 			path = Handlers;
 			sourceTree = "<group>";
@@ -674,6 +677,7 @@
 				03B516712AE74CCD00EA47E2 /* VPNConfig.swift in Sources */,
 				03B5166B2AE7315E00EA47E2 /* AlertsEventHandler.swift in Sources */,
 				0736958B2B3AC96D007249BE /* Bundle+Properties.swift in Sources */,
+				0736958D2B3B79E0007249BE /* StatsEventHandler.swift in Sources */,
 				03B516692AE7306B00EA47E2 /* StatusEventHandler.swift in Sources */,
 				032158B82ADDF8BF008D943B /* VPNManager.swift in Sources */,
 				03B516672AE6B93A00EA47E2 /* MethodHandler.swift in Sources */,

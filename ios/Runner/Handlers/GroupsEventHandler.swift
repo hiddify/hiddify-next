@@ -33,8 +33,8 @@ public class GroupsEventHandler: NSObject, FlutterPlugin, FlutterStreamHandler, 
     
     private var channel: FlutterEventChannel?
     
-    var commandClient: LibboxCommandClient?
-    var events: FlutterEventSink?
+    private var commandClient: LibboxCommandClient?
+    private var events: FlutterEventSink?
     
     public static func register(with registrar: FlutterPluginRegistrar) {
         let instance = GroupsEventHandler()
