@@ -65,6 +65,13 @@ class ConfigOptionRepositoryImpl
                 outbound: RuleOutbound.bypass,
               ),
             ],
+          Region.af => [
+              const SingboxRule(
+                domains: "domain:.af,geosite:af",
+                ip: "geoip:af",
+                outbound: RuleOutbound.bypass,
+              ),
+            ],
           _ => <SingboxRule>[],
         };
 
