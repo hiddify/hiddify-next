@@ -5,8 +5,8 @@ import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/preferences/general_preferences.dart';
 import 'package:hiddify/core/theme/app_theme_mode.dart';
 import 'package:hiddify/core/theme/theme_preferences.dart';
+import 'package:hiddify/features/auto_start/notifier/auto_start_notifier.dart';
 import 'package:hiddify/features/common/general_pref_tiles.dart';
-import 'package:hiddify/services/auto_start_service.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -67,12 +67,12 @@ class GeneralSettingTiles extends HookConsumerWidget {
         if (PlatformUtils.isDesktop) ...[
           SwitchListTile(
             title: Text(t.settings.general.autoStart),
-            value: ref.watch(autoStartServiceProvider).asData!.value,
+            value: ref.watch(autoStartNotifierProvider).asData!.value,
             onChanged: (value) async {
               if (value) {
-                await ref.read(autoStartServiceProvider.notifier).enable();
+                await ref.read(autoStartNotifierProvider.notifier).enable();
               } else {
-                await ref.read(autoStartServiceProvider.notifier).disable();
+                await ref.read(autoStartNotifierProvider.notifier).disable();
               }
             },
           ),

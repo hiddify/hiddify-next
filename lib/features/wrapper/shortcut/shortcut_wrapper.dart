@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hiddify/core/router/router.dart';
-import 'package:hiddify/features/common/window/window_controller.dart';
+import 'package:hiddify/features/window/notifier/window_notifier.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ShortcutWrapper extends HookConsumerWidget {
@@ -44,13 +44,13 @@ class ShortcutWrapper extends HookConsumerWidget {
         actions: {
           CloseWindowIntent: CallbackAction(
             onInvoke: (_) async {
-              await ref.read(windowControllerProvider.notifier).hide();
+              await ref.read(windowNotifierProvider.notifier).close();
               return null;
             },
           ),
           QuitAppIntent: CallbackAction(
             onInvoke: (_) async {
-              await ref.read(windowControllerProvider.notifier).quit();
+              await ref.read(windowNotifierProvider.notifier).quit();
               return null;
             },
           ),

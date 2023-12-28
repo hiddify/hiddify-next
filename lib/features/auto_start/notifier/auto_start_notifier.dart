@@ -5,14 +5,14 @@ import 'package:hiddify/utils/utils.dart';
 import 'package:launch_at_startup/launch_at_startup.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'auto_start_service.g.dart';
+part 'auto_start_notifier.g.dart';
 
 @Riverpod(keepAlive: true)
-class AutoStartService extends _$AutoStartService with InfraLogger {
+class AutoStartNotifier extends _$AutoStartNotifier with InfraLogger {
   @override
   Future<bool> build() async {
-    loggy.debug("initializing");
     if (!PlatformUtils.isDesktop) return false;
+
     final appInfo = ref.watch(appInfoProvider).requireValue;
     launchAtStartup.setup(
       appName: appInfo.name,

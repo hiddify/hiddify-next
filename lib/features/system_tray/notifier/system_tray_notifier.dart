@@ -3,34 +3,30 @@ import 'dart:io';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/model/constants.dart';
 import 'package:hiddify/core/router/router.dart';
-import 'package:hiddify/features/common/window/window_controller.dart';
 import 'package:hiddify/features/config_option/model/config_option_patch.dart';
 import 'package:hiddify/features/config_option/notifier/config_option_notifier.dart';
 import 'package:hiddify/features/connection/model/connection_status.dart';
 import 'package:hiddify/features/connection/notifier/connection_notifier.dart';
+import 'package:hiddify/features/window/notifier/window_notifier.dart';
 import 'package:hiddify/gen/assets.gen.dart';
 import 'package:hiddify/singbox/model/singbox_config_enum.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:tray_manager/tray_manager.dart';
 
-part 'system_tray_controller.g.dart';
+part 'system_tray_notifier.g.dart';
 
 @Riverpod(keepAlive: true)
-class SystemTrayController extends _$SystemTrayController
-    with TrayListener, AppLogger {
+class SystemTrayNotifier extends _$SystemTrayNotifier with AppLogger {
   @override
   Future<void> build() async {
-    if (!_initialized) {
-      loggy.debug('initializing');
-      await trayManager.setIcon(
-        _trayIconPath,
-        isTemplate: Platform.isMacOS,
-      );
-      if (!Platform.isLinux) await trayManager.setToolTip(Constants.appName);
-      trayManager.addListener(this);
-      _initialized = true;
-    }
+    if (!PlatformUtils.isDesktop) return;
+
+    await trayManager.setIcon(
+      _trayIconPath,
+      isTemplate: Platform.isMacOS,
+    );
+    if (!Platform.isLinux) await trayManager.setToolTip(Constants.appName);
 
     ConnectionStatus connection;
     try {
@@ -55,11 +51,13 @@ class SystemTrayController extends _$SystemTrayController
 
     loggy.debug('updating system tray');
 
-    final trayMenu = Menu(
+    final menu = Menu(
       items: [
         MenuItem(
           label: t.tray.dashboard,
-          onClick: handleClickShowApp,
+          onClick: (_) async {
+            await ref.read(windowNotifierProvider.notifier).open();
+          },
         ),
         MenuItem.separator(),
         MenuItem.checkbox(
@@ -71,7 +69,11 @@ class SystemTrayController extends _$SystemTrayController
           },
           checked: connection.isConnected,
           disabled: connection.isSwitching,
-          onClick: handleClickSetAsSystemProxy,
+          onClick: (_) async {
+            await ref
+                .read(connectionNotifierProvider.notifier)
+                .toggleConnection();
+          },
         ),
         MenuItem.submenu(
           label: t.settings.config.serviceMode,
@@ -102,7 +104,7 @@ class SystemTrayController extends _$SystemTrayController
                 (e) => MenuItem(
                   label: e.$1,
                   onClick: (_) async {
-                    await ref.read(windowControllerProvider.notifier).show();
+                    await ref.read(windowNotifierProvider.notifier).open();
                     ref.read(routerProvider).go(e.$2);
                   },
                 ),
@@ -113,46 +115,18 @@ class SystemTrayController extends _$SystemTrayController
         MenuItem.separator(),
         MenuItem(
           label: t.tray.quit,
-          onClick: handleClickExitApp,
+          onClick: (_) async {
+            return ref.read(windowNotifierProvider.notifier).quit();
+          },
         ),
       ],
     );
-    await trayManager.setContextMenu(trayMenu);
+
+    await trayManager.setContextMenu(menu);
   }
 
-  bool _initialized = false;
-
-  String get _trayIconPath {
+  static String get _trayIconPath {
     if (Platform.isWindows) return Assets.images.trayIconIco;
     return Assets.images.trayIconPng.path;
-  }
-
-  @override
-  Future<void> onTrayIconMouseDown() async {
-    if (Platform.isMacOS) {
-      await trayManager.popUpContextMenu();
-    } else {
-      await ref.read(windowControllerProvider.notifier).show();
-    }
-  }
-
-  @override
-  Future<void> onTrayIconRightMouseDown() async {
-    super.onTrayIconRightMouseDown();
-    await trayManager.popUpContextMenu();
-  }
-
-  Future<void> handleClickShowApp(MenuItem menuItem) async {
-    await ref.read(windowControllerProvider.notifier).show();
-  }
-
-  Future<void> handleClickSetAsSystemProxy(MenuItem menuItem) async {
-    return ref.read(connectionNotifierProvider.notifier).toggleConnection();
-  }
-
-  Future<void> handleClickExitApp(MenuItem menuItem) async {
-    await ref.read(connectionNotifierProvider.notifier).abortConnection();
-    await trayManager.destroy();
-    return ref.read(windowControllerProvider.notifier).quit();
   }
 }
