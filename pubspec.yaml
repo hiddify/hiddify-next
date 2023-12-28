@@ -70,6 +70,7 @@ dependencies:
   win32: ^5.1.1
   qr_flutter: ^4.1.0
   native_dio_adapter: ^1.2.0
+  flutter_displaymode: ^0.6.0
 
 dev_dependencies:
   flutter_test:
