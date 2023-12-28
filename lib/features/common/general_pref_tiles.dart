@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/analytics/analytics_controller.dart';
 import 'package:hiddify/core/localization/locale_extensions.dart';
 import 'package:hiddify/core/localization/locale_preferences.dart';
@@ -33,7 +32,7 @@ class LocalePrefTile extends HookConsumerWidget {
                       title: Text(e.localeName),
                       value: e,
                       groupValue: locale,
-                      onChanged: (e) => context.pop(e),
+                      onChanged: Navigator.of(context).maybePop,
                     ),
                   )
                   .toList(),
@@ -75,7 +74,7 @@ class RegionPrefTile extends HookConsumerWidget {
                       title: Text(e.present(t)),
                       value: e,
                       groupValue: region,
-                      onChanged: (e) => context.pop(e),
+                      onChanged: Navigator.of(context).maybePop,
                     ),
                   )
                   .toList(),

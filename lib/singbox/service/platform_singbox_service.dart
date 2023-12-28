@@ -29,15 +29,7 @@ class PlatformSingboxService with InfraLogger implements SingboxService {
     final alerts =
         _alertsChannel.receiveBroadcastStream().map(SingboxStatus.fromEvent);
 
-    loggy.debug("[TLOG] Status first recieved");
-    final _2 = await alerts.first;
-    loggy.debug("[TLOG] alert First recieved");
-
-    final _1 = await status.first;
-    loggy.debug("[TLOG] Waiting for first entry");
-
     _status = ValueConnectableStream(Rx.merge([status, alerts])).autoConnect();
-    
     await _status.first;
   }
 

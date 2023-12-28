@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/preferences/general_preferences.dart';
 import 'package:hiddify/core/router/router.dart';
@@ -78,7 +77,7 @@ class AdvancedSettingTiles extends HookConsumerWidget {
                     content: Text(t.settings.advanced.debugModeMsg),
                     actions: [
                       TextButton(
-                        onPressed: () => context.pop(true),
+                        onPressed: () => Navigator.of(context).maybePop(true),
                         child: Text(
                           MaterialLocalizations.of(context).okButtonLabel,
                         ),

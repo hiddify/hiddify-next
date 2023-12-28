@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/preferences/general_preferences.dart';
 import 'package:hiddify/core/theme/app_theme_mode.dart';
@@ -40,7 +39,7 @@ class GeneralSettingTiles extends HookConsumerWidget {
                           title: Text(e.present(t)),
                           value: e,
                           groupValue: themeMode,
-                          onChanged: (e) => context.pop(e),
+                          onChanged: Navigator.of(context).maybePop,
                         ),
                       )
                       .toList(),
