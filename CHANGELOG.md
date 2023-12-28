@@ -1,5 +1,21 @@
 # Changelog
 
+## Unreleased
+
+### New Features and Improvements
+
+- Added desktop shortcuts
+  - Add profile from clipboard by pressing `CTRL+V` (`CMD+V` on macOS)
+  - Close App window by pressing `CTRL+W` (`CMD+W` on macOS)
+  - Quit App by pressing `CTRL+Q` (`CMD+Q` on macOS)
+  - Open settings page by pressing `CMD+,` on macOS
+- Added Android high refresh rate screen support
+
+### Bug Fixes
+
+- Fixed silent start bug where screen would blink
+- Refactored Window management and system tray, fixing minor bugs
+
 ## [0.12.3] - 2023-12-28
 
 ### New Features and Improvements
