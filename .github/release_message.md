@@ -46,7 +46,7 @@
         </td>
         </tr>
         <tr>
-            <td>macOS (v10.14+)</td>
+            <td>macOS (v10.15+)</td>
             <td><a href="https://github.com/hiddify/hiddify-next/releases/download/RELEASE_TAG/hiddify-macos-universal.zip"><img src="https://img.shields.io/badge/DMG-Universal-ea005e.svg?logo=github"></a></td>
         </tr>
         <tr>
