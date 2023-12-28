@@ -112,6 +112,8 @@ Future<void> lazyBootstrap(
   );
 
   final silentStart = container.read(silentStartNotifierProvider);
+  Logger.bootstrap
+      .debug("silent start [${silentStart ? "Enabled" : "Disabled"}]");
   if (silentStart) {
     FlutterNativeSplash.remove();
   }

@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.12.3] - 2023-12-28
+
+### New Features and Improvements
+
+- Added version number in window title on desktop
+- Added Afghanistan (af) region with default bypass rules
+
+### Bug Fixes
+
+- Fixed modal bug where config options were unmodifiable. [PR#267](https://github.com/hiddify/hiddify-next/pull/267) by [在7楼](https://github.com/RayWangQvQ)
+- Fixed windows portable release
+
 ## [0.12.2] - 2023-12-23
 
 ### New Features and Improvements
@@ -120,6 +132,7 @@
 - Fixed localization mistakes in Russian. [PR#95](https://github.com/hiddify/hiddify-next/pull/95) by [solokot](https://github.com/solokot)
 - Fixed localization mistakes in Russian. [PR#74](https://github.com/hiddify/hiddify-next/pull/74) by [Elshad Guseynov](https://github.com/lifeindarkside)
 
+[0.12.3]: https://github.com/hiddify/hiddify-next/releases/tag/v0.12.3
 [0.12.2]: https://github.com/hiddify/hiddify-next/releases/tag/v0.12.2
 [0.12.1]: https://github.com/hiddify/hiddify-next/releases/tag/v0.12.1
 [0.12.0]: https://github.com/hiddify/hiddify-next/releases/tag/v0.12.0
