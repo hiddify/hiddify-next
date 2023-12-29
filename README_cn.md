@@ -120,8 +120,8 @@
 我们谨向以下项目的贡献者表示诚挚的谢意，他们坚实的基础和创新的功能显着增强了该项目的成功和功能。
 - [Sing-box](https://github.com/SagerNet/sing-box)
 - [Android 版 Sing-box](https://github.com/SagerNet/sing-box-for-android)
-- [冲突](https://github.com/Dreamacro/clash)
-- [冲突元](https://github.com/MetaCubeX/Clash.Meta)
+- [clash](https://github.com/Dreamacro/clash)
+- [clash meta](https://github.com/MetaCubeX/Clash.Meta)
 - [FClash](https://github.com/Fclash/Fclash)
 - 字体：[Vazirmatn by Saber Rastikerdar](https://github.com/rastikerdar/vazirmatn)
 - [其他](./pubspec.yaml)
