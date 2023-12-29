@@ -29,7 +29,7 @@ bool FlutterWindow::OnCreate() {
 
   flutter_controller_->engine()->SetNextFrameCallback([&]() {
     // this->Show(); window_manager hidden at launch
-    ""
+    "";
   });
 
   // Flutter can complete the first frame before the "show window" callback is
