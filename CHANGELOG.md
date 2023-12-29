@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## [0.13.0.dev] - 2023-12-29
 
 ### New Features and Improvements
 
@@ -15,6 +15,7 @@
 
 - Fixed silent start bug where screen would blink
 - Refactored Window management and system tray, fixing minor bugs
+- Fixed windows portable release again!
 
 ## [0.12.3] - 2023-12-28
 
@@ -148,6 +149,7 @@
 - Fixed localization mistakes in Russian. [PR#95](https://github.com/hiddify/hiddify-next/pull/95) by [solokot](https://github.com/solokot)
 - Fixed localization mistakes in Russian. [PR#74](https://github.com/hiddify/hiddify-next/pull/74) by [Elshad Guseynov](https://github.com/lifeindarkside)
 
+[0.13.0.dev]: https://github.com/hiddify/hiddify-next/releases/tag/v0.13.0.dev
 [0.12.3]: https://github.com/hiddify/hiddify-next/releases/tag/v0.12.3
 [0.12.2]: https://github.com/hiddify/hiddify-next/releases/tag/v0.12.2
 [0.12.1]: https://github.com/hiddify/hiddify-next/releases/tag/v0.12.1
