@@ -140,7 +140,7 @@
                 "ir": "伊朗 (ir)",
                 "cn": "中国 (cn)",
                 "ru": "俄罗斯 (ru)",
-                "af": "Afghanistan (af)",
+                "af": "阿富汗",
                 "other": "其它"
             },
             "themeMode": "主题模式",
@@ -180,6 +180,7 @@
             "clearSelection": "清空选项"
         },
         "config": {
+            "resetBtn": "重置选项",
             "serviceMode": "服务方式",
             "serviceModes": {
                 "proxy": "仅代理",
@@ -190,7 +191,7 @@
                 "route": "路由选项",
                 "dns": "DNS 选项",
                 "inbound": "入站选项",
-                "outbound": "Outbound Options",
+                "outbound": "出站选项",
                 "misc": "其它选项"
             },
             "pageTitle": "配置选项",
@@ -220,13 +221,12 @@
             "enableFakeDns": "启用 Fake DNS",
             "bypassLan": "绕过局域网",
             "strictRoute": "严格路由",
-            "enableTlsFragment": "Enable TLS Fragment",
-            "tlsFragmentSize": "TLS Fragment Size",
-            "tlsFragmentSleep": "TLS Fragment Sleep",
-            "enableTlsMixedSniCase": "Enable TLS Mixed SNI Case",
-            "enableTlsPadding": "Enable TLS Padding",
-            "tlsPaddingSize": "TLS Padding",
-            "resetBtn": "重置选项"
+            "enableTlsFragment": "启用 TLS 数据分段",
+            "tlsFragmentSize": "TLS 分段大小",
+            "tlsFragmentSleep": "TLS 分段休眠",
+            "enableTlsMixedSniCase": "启用 TLS 混合 SNI 情形",
+            "enableTlsPadding": "启用 TLS 填充",
+            "tlsPaddingSize": "TLS 填充"
         },
         "geoAssets": {
             "pageTitle": "路由资源文件",
