@@ -25,7 +25,8 @@ enum ServiceMode {
   String present(TranslationsEn t) => switch (this) {
         proxy => t.settings.config.serviceModes.proxy,
         systemProxy => t.settings.config.serviceModes.systemProxy,
-        tun => t.settings.config.serviceModes.tun,
+        tun =>
+          "${t.settings.config.serviceModes.tun}${PlatformUtils.isDesktop ? " (${t.settings.experimental})" : ""}",
       };
 }
 

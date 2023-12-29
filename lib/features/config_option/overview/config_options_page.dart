@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/model/failures.dart';
 import 'package:hiddify/core/model/range.dart';
+import 'package:hiddify/core/widget/tip_card.dart';
 import 'package:hiddify/features/config_option/model/config_option_entity.dart';
 import 'package:hiddify/features/config_option/model/config_option_patch.dart';
 import 'package:hiddify/features/config_option/notifier/config_option_notifier.dart';
@@ -28,6 +29,10 @@ class ConfigOptionsPage extends HookConsumerWidget {
 
     Future<void> changeOption(ConfigOptionPatch patch) async {
       await ref.read(configOptionNotifierProvider.notifier).updateOption(patch);
+    }
+
+    String experimental(String txt) {
+      return "$txt (${t.settings.experimental})";
     }
 
     return Scaffold(
@@ -62,6 +67,7 @@ class ConfigOptionsPage extends HookConsumerWidget {
       body: switch (asyncOptions) {
         AsyncData(value: final options) => ListView(
             children: [
+              TipCard(message: t.settings.experimentalMsg),
               ListTile(
                 title: Text(t.settings.config.logLevel),
                 subtitle: Text(options.logLevel.name.toUpperCase()),
@@ -251,7 +257,7 @@ class ConfigOptionsPage extends HookConsumerWidget {
               const SettingsDivider(),
               SettingsSection(t.settings.config.section.outbound),
               SwitchListTile(
-                title: Text(t.settings.config.enableTlsFragment),
+                title: Text(experimental(t.settings.config.enableTlsFragment)),
                 value: options.enableTlsFragment,
                 onChanged: (value) async =>
                     changeOption(ConfigOptionPatch(enableTlsFragment: value)),
@@ -291,14 +297,15 @@ class ConfigOptionsPage extends HookConsumerWidget {
                 },
               ),
               SwitchListTile(
-                title: Text(t.settings.config.enableTlsMixedSniCase),
+                title:
+                    Text(experimental(t.settings.config.enableTlsMixedSniCase)),
                 value: options.enableTlsMixedSniCase,
                 onChanged: (value) async => changeOption(
                   ConfigOptionPatch(enableTlsMixedSniCase: value),
                 ),
               ),
               SwitchListTile(
-                title: Text(t.settings.config.enableTlsPadding),
+                title: Text(experimental(t.settings.config.enableTlsPadding)),
                 value: options.enableTlsPadding,
                 onChanged: (value) async => changeOption(
                   ConfigOptionPatch(enableTlsPadding: value),

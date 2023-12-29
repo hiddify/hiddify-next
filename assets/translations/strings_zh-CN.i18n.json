@@ -238,7 +238,9 @@
             "successMsg": "已成功更新资源文件",
             "addRecommended": "添加建议的资源文件",
             "missingGeoAssetsMsg": "所选路由资源的文件丢失。下载它们或选择现有的。"
-        }
+        },
+        "experimental": "实验性的",
+        "experimentalMsg": "带有实验标志的功能仍在开发中，可能会导致问题。"
     },
     "about": {
         "pageTitle": "关于",

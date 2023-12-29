@@ -131,6 +131,8 @@
     "settings": {
         "pageTitle": "Settings",
         "requiresRestartMsg": "For this to take effect restart the app",
+        "experimental": "Experimental",
+        "experimentalMsg": "Features with Experimental flag are still in development and might cause issues.",
         "general": {
             "sectionTitle": "General",
             "locale": "Language",

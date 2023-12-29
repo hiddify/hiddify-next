@@ -238,7 +238,9 @@
             "successMsg": "Öğe başarıyla güncellendi",
             "addRecommended": "Önerilen Varlıkları Ekle",
             "missingGeoAssetsMsg": "Seçilen yönlendirme varlıklarının dosyaları eksik. Bunları indirin veya mevcut olanları seçin."
-        }
+        },
+        "experimental": "Deneysel",
+        "experimentalMsg": "Deneysel işaretli özellikler hâlâ geliştirilme aşamasındadır ve sorunlara neden olabilir."
     },
     "about": {
         "pageTitle": "Hakkında",
