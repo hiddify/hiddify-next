@@ -180,6 +180,7 @@
             "clearSelection": "Очистить выбор"
         },
         "config": {
+            "resetBtn": "Сбросить параметры",
             "serviceMode": "Режим работы",
             "serviceModes": {
                 "proxy": "Прокси",
@@ -225,8 +226,7 @@
             "tlsFragmentSleep": "TLS Fragment Sleep",
             "enableTlsMixedSniCase": "Enable TLS Mixed SNI Case",
             "enableTlsPadding": "Enable TLS Padding",
-            "tlsPaddingSize": "TLS Padding",
-            "resetBtn": "Сбросить параметры"
+            "tlsPaddingSize": "TLS Padding"
         },
         "geoAssets": {
             "pageTitle": "Активы маршрутизации",
