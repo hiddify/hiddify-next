@@ -15,6 +15,7 @@
 #include <url_launcher_windows/url_launcher_windows.h>
 #include <vclibs/vclibs_plugin.h>
 #include <window_manager/window_manager_plugin.h>
+#include <windows_single_instance/windows_single_instance_plugin.h>
 
 void RegisterPlugins(flutter::PluginRegistry* registry) {
   ProtocolHandlerPluginRegisterWithRegistrar(
@@ -35,4 +36,6 @@ void RegisterPlugins(flutter::PluginRegistry* registry) {
       registry->GetRegistrarForPlugin("VclibsPlugin"));
   WindowManagerPluginRegisterWithRegistrar(
       registry->GetRegistrarForPlugin("WindowManagerPlugin"));
+  WindowsSingleInstancePluginRegisterWithRegistrar(
+      registry->GetRegistrarForPlugin("WindowsSingleInstancePlugin"));
 }

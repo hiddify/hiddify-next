@@ -12,6 +12,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   url_launcher_windows
   vclibs
   window_manager
+  windows_single_instance
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST

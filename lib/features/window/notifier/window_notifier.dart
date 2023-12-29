@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:hiddify/core/app_info/app_info_provider.dart';
@@ -7,6 +8,7 @@ import 'package:hiddify/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:tray_manager/tray_manager.dart';
 import 'package:window_manager/window_manager.dart';
+import 'package:windows_single_instance/windows_single_instance.dart';
 
 part 'window_notifier.g.dart';
 
@@ -18,6 +20,11 @@ class WindowNotifier extends _$WindowNotifier with AppLogger {
   @override
   Future<void> build() async {
     if (!PlatformUtils.isDesktop) return;
+
+    if (Platform.isWindows) {
+      loggy.debug("ensuring single instance");
+      await WindowsSingleInstance.ensureSingleInstance([], "app.hiddify.com");
+    }
 
     await windowManager.ensureInitialized();
     await windowManager.setMinimumSize(minimumWindowSize);

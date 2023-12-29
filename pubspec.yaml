@@ -71,6 +71,7 @@ dependencies:
   qr_flutter: ^4.1.0
   native_dio_adapter: ^1.2.0
   flutter_displaymode: ^0.6.0
+  windows_single_instance: ^1.0.1
 
 dev_dependencies:
   flutter_test:
