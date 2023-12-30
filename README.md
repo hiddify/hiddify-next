@@ -115,7 +115,11 @@ The app is developed using [Flutter](https://flutter.dev) and [Go](https://go.de
 </div>
 
 ## Improve Translations
+
+<div align=center>
+    
 [![inlang status badge](https://inlang.com/badge?url=github.com/hiddify/hiddify-next)](https://inlang.com/editor/github.com/hiddify/hiddify-next?ref=badge)
+</div>
 
 You can easily contribute to this project by using the following links to improve the translations:
 - [English](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en)
