@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.13.2.dev] - 2023-12-31
+
+### Bug Fixes
+
+- Fixed db migration bug
+
 ## [0.13.1.dev] - 2023-12-31
 
 ### New Features and Improvements
