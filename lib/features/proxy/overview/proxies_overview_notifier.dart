@@ -29,7 +29,7 @@ enum ProxiesSort {
 }
 
 @Riverpod(keepAlive: true)
-class ProxiesSortNotifier extends _$ProxiesSortNotifier {
+class ProxiesSortNotifier extends _$ProxiesSortNotifier with AppLogger {
   late final _pref = Pref(
     ref.watch(sharedPreferencesProvider).requireValue,
     "proxies_sort_mode",
@@ -39,7 +39,11 @@ class ProxiesSortNotifier extends _$ProxiesSortNotifier {
   );
 
   @override
-  ProxiesSort build() => _pref.getValue();
+  ProxiesSort build() {
+    final sortBy = _pref.getValue();
+    loggy.info("sort proxies by: [${sortBy.name}]");
+    return sortBy;
+  }
 
   Future<void> update(ProxiesSort value) {
     state = value;

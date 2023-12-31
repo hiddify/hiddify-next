@@ -23,15 +23,35 @@ class ProxiesOverviewPage extends HookConsumerWidget with PresLogger {
           CustomToast.error(t.presentShortError(error)).show(context),
     );
 
+    final appBar = NestedAppBar(
+      title: Text(t.proxies.pageTitle),
+      actions: [
+        PopupMenuButton<ProxiesSort>(
+          initialValue: sortBy,
+          onSelected: ref.read(proxiesSortNotifierProvider.notifier).update,
+          icon: const Icon(Icons.sort),
+          tooltip: t.proxies.sortTooltip,
+          itemBuilder: (context) {
+            return [
+              ...ProxiesSort.values.map(
+                (e) => PopupMenuItem(
+                  value: e,
+                  child: Text(e.present(t)),
+                ),
+              ),
+            ];
+          },
+        ),
+      ],
+    );
+
     switch (asyncProxies) {
       case AsyncData(value: final groups):
         if (groups.isEmpty) {
           return Scaffold(
             body: CustomScrollView(
               slivers: [
-                NestedAppBar(
-                  title: Text(t.proxies.pageTitle),
-                ),
+                appBar,
                 SliverFillRemaining(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -50,28 +70,7 @@ class ProxiesOverviewPage extends HookConsumerWidget with PresLogger {
         return Scaffold(
           body: CustomScrollView(
             slivers: [
-              NestedAppBar(
-                title: Text(t.proxies.pageTitle),
-                actions: [
-                  PopupMenuButton<ProxiesSort>(
-                    initialValue: sortBy,
-                    onSelected:
-                        ref.read(proxiesSortNotifierProvider.notifier).update,
-                    icon: const Icon(Icons.sort),
-                    tooltip: t.proxies.sortTooltip,
-                    itemBuilder: (context) {
-                      return [
-                        ...ProxiesSort.values.map(
-                          (e) => PopupMenuItem(
-                            value: e,
-                            child: Text(e.present(t)),
-                          ),
-                        ),
-                      ];
-                    },
-                  ),
-                ],
-              ),
+              appBar,
               SliverLayoutBuilder(
                 builder: (context, constraints) {
                   final width = constraints.crossAxisExtent;
@@ -140,9 +139,7 @@ class ProxiesOverviewPage extends HookConsumerWidget with PresLogger {
         return Scaffold(
           body: CustomScrollView(
             slivers: [
-              NestedAppBar(
-                title: Text(t.proxies.pageTitle),
-              ),
+              appBar,
               SliverErrorBodyPlaceholder(
                 t.presentShortError(error),
                 icon: null,
@@ -155,9 +152,7 @@ class ProxiesOverviewPage extends HookConsumerWidget with PresLogger {
         return Scaffold(
           body: CustomScrollView(
             slivers: [
-              NestedAppBar(
-                title: Text(t.proxies.pageTitle),
-              ),
+              appBar,
               const SliverLoadingBodyPlaceholder(),
             ],
           ),

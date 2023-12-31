@@ -132,7 +132,6 @@ class ConnectionRepositoryImpl
               false,
             )
             .map((r) {
-              loggy.debug("setup complete");
               _initialized = true;
               return r;
             })
@@ -169,9 +168,7 @@ class ConnectionRepositoryImpl
           }),
         );
         await $(setup());
-        loggy.debug("after setup");
         await $(applyConfigOption(options));
-        loggy.debug("after apply");
         return await $(
           singbox
               .start(
