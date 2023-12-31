@@ -4,8 +4,10 @@ import 'package:gap/gap.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/model/failures.dart';
 import 'package:hiddify/core/theme/theme_extensions.dart';
+import 'package:hiddify/features/config_option/notifier/config_option_notifier.dart';
 import 'package:hiddify/features/connection/model/connection_status.dart';
 import 'package:hiddify/features/connection/notifier/connection_notifier.dart';
+import 'package:hiddify/features/connection/widget/experimental_feature_notice.dart';
 import 'package:hiddify/gen/assets.gen.dart';
 import 'package:hiddify/utils/alerts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -42,8 +44,30 @@ class ConnectionButton extends HookConsumerWidget {
             : buttonTheme.idleColor!;
 
         return _ConnectionButton(
-          onTap: () =>
-              ref.read(connectionNotifierProvider.notifier).toggleConnection(),
+          onTap: () async {
+            var canConnect = true;
+            if (status case Disconnected()) {
+              final hasExperimental =
+                  await ref.read(configOptionNotifierProvider.future).then(
+                        (value) => value.hasExperimentalOptions(),
+                        onError: (_) => false,
+                      );
+              final canShowNotice =
+                  !ref.read(disableExperimentalFeatureNoticeProvider);
+
+              if (hasExperimental && canShowNotice && context.mounted) {
+                canConnect = await const ExperimentalFeatureNoticeDialog()
+                        .show(context) ??
+                    true;
+              }
+            }
+
+            if (canConnect) {
+              await ref
+                  .read(connectionNotifierProvider.notifier)
+                  .toggleConnection();
+            }
+          },
           enabled: !status.isSwitching,
           label: status.present(t),
           buttonColor: connectionLogoColor,

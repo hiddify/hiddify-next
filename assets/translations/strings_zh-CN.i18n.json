@@ -25,7 +25,10 @@
             "tapToConnect": "点击连接",
             "connecting": "正在连接",
             "disconnecting": "正在断开连接",
-            "connected": "已连接"
+            "connected": "已连接",
+            "experimentalNotice": "使用中的实验功能",
+            "experimentalNoticeMsg": "您启用了一些实验性功能，这些功能可能会影响连接质量并导致意外错误。您始终可以从“配置选项”页面更改或重置这些选项。",
+            "disableExperimentalNotice": "不再显示"
         },
         "stats": {
             "traffic": "实时流量",

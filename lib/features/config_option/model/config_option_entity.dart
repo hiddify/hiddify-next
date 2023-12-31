@@ -6,6 +6,7 @@ import 'package:hiddify/core/utils/json_converters.dart';
 import 'package:hiddify/features/config_option/model/config_option_patch.dart';
 import 'package:hiddify/features/log/model/log_level.dart';
 import 'package:hiddify/singbox/model/singbox_config_enum.dart';
+import 'package:hiddify/utils/platform_utils.dart';
 
 part 'config_option_entity.freezed.dart';
 part 'config_option_entity.g.dart';
@@ -55,6 +56,17 @@ class ConfigOptionEntity with _$ConfigOptionEntity {
   static ConfigOptionEntity initial = ConfigOptionEntity(
     serviceMode: ServiceMode.defaultMode,
   );
+
+  bool hasExperimentalOptions() {
+    if (PlatformUtils.isDesktop && serviceMode == ServiceMode.tun) {
+      return true;
+    }
+    if (enableTlsFragment || enableTlsMixedSniCase || enableTlsPadding) {
+      return true;
+    }
+
+    return false;
+  }
 
   String format() {
     const encoder = JsonEncoder.withIndent('  ');

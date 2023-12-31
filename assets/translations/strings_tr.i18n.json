@@ -25,7 +25,10 @@
             "tapToConnect": "Bağlanmak için dokunun",
             "connecting": "Bağlanıyor",
             "disconnecting": "Bağlantı kesiliyor",
-            "connected": "Bağlandı"
+            "connected": "Bağlandı",
+            "experimentalNotice": "Kullanımdaki Deneysel Özellikler",
+            "experimentalNoticeMsg": "Bağlantı kalitesini etkileyebilecek ve beklenmeyen hatalara neden olabilecek bazı deneysel özellikleri etkinleştirdiniz. Bu seçenekleri istediğiniz zaman Yapılandırma seçenekleri sayfasından değiştirebilir veya sıfırlayabilirsiniz.",
+            "disableExperimentalNotice": "Bir daha gösterme"
         },
         "stats": {
             "traffic": "Canlı Trafik",
