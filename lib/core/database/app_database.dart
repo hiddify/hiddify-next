@@ -1,4 +1,7 @@
 import 'package:drift/drift.dart';
+// ignore: depend_on_referenced_packages
+import 'package:drift_dev/api/migrations.dart';
+import 'package:flutter/foundation.dart';
 import 'package:hiddify/core/database/connection/database_connection.dart';
 import 'package:hiddify/core/database/converters/duration_converter.dart';
 import 'package:hiddify/core/database/schema_versions.dart';
@@ -7,11 +10,12 @@ import 'package:hiddify/features/geo_asset/data/geo_asset_data_mapper.dart';
 import 'package:hiddify/features/geo_asset/model/default_geo_assets.dart';
 import 'package:hiddify/features/geo_asset/model/geo_asset_entity.dart';
 import 'package:hiddify/features/profile/model/profile_entity.dart';
+import 'package:hiddify/utils/custom_loggers.dart';
 
 part 'app_database.g.dart';
 
 @DriftDatabase(tables: [ProfileEntries, GeoAssetEntries])
-class AppDatabase extends _$AppDatabase {
+class AppDatabase extends _$AppDatabase with InfraLogger {
   AppDatabase({required QueryExecutor connection}) : super(connection);
 
   AppDatabase.connect() : super(openConnection());
@@ -45,14 +49,21 @@ class AppDatabase extends _$AppDatabase {
           await _prePopulateGeoAssets();
         },
       ),
+      beforeOpen: (details) async {
+        if (kDebugMode) {
+          await validateDatabaseSchema();
+        }
+      },
     );
   }
 
   Future<void> _prePopulateGeoAssets() async {
+    loggy.debug("populating default geo assets");
     await transaction(() async {
       final geoAssets = defaultGeoAssets.map((e) => e.toEntry());
       for (final geoAsset in geoAssets) {
-        await into(geoAssetEntries).insert(geoAsset);
+        await into(geoAssetEntries)
+            .insert(geoAsset, mode: InsertMode.insertOrIgnore);
       }
     });
   }
