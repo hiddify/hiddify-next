@@ -97,8 +97,9 @@ class ProfileDetailsNotifier extends _$ProfileDetailsNotifier with AppLogger {
               failureOrSuccess = await _profilesRepo.patch(profile).run();
             } else {
               loggy.debug('updating profile');
-              failureOrSuccess =
-                  await _profilesRepo.updateSubscription(profile).run();
+              failureOrSuccess = await _profilesRepo
+                  .updateSubscription(profile, patchBaseProfile: true)
+                  .run();
             }
           } else {
             loggy.debug('adding profile, url: [${profile.url}]');

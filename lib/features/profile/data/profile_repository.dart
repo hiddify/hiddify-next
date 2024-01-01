@@ -45,9 +45,11 @@ abstract interface class ProfileRepository {
 
   TaskEither<ProfileFailure, String> generateConfig(String id);
 
+  /// using [patchBaseProfile] name, url, etc will also be patched (useful when editing with a new url)
   TaskEither<ProfileFailure, Unit> updateSubscription(
-    RemoteProfileEntity baseProfile,
-  );
+    RemoteProfileEntity baseProfile, {
+    bool patchBaseProfile = false,
+  });
 
   TaskEither<ProfileFailure, Unit> patch(ProfileEntity profile);
   TaskEither<ProfileFailure, Unit> setAsActive(String id);
@@ -263,8 +265,9 @@ class ProfileRepositoryImpl
 
   @override
   TaskEither<ProfileFailure, Unit> updateSubscription(
-    RemoteProfileEntity baseProfile,
-  ) {
+    RemoteProfileEntity baseProfile, {
+    bool patchBaseProfile = false,
+  }) {
     return exceptionHandler(
       () async {
         loggy.debug(
@@ -272,15 +275,26 @@ class ProfileRepositoryImpl
         );
         return fetch(baseProfile.url, baseProfile.id)
             .flatMap(
-              (remoteProfile) => TaskEither(() async {
-                await profileDataSource.edit(
-                  baseProfile.id,
-                  remoteProfile
+              (remoteProfile) => TaskEither(
+                () async {
+                  final profilePatch = remoteProfile
                       .subInfoPatch()
-                      .copyWith(lastUpdate: Value(DateTime.now())),
-                );
-                return right(unit);
-              }),
+                      .copyWith(lastUpdate: Value(DateTime.now()));
+
+                  await profileDataSource.edit(
+                    baseProfile.id,
+                    patchBaseProfile
+                        ? profilePatch.copyWith(
+                            name: Value(baseProfile.name),
+                            url: Value(baseProfile.url),
+                            updateInterval:
+                                Value(baseProfile.options?.updateInterval),
+                          )
+                        : profilePatch,
+                  );
+                  return right(unit);
+                },
+              ),
             )
             .run();
       },
