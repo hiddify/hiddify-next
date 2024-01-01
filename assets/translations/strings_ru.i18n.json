@@ -214,6 +214,7 @@
             "directDnsDomainStrategy": "Стратегия прямого домена DNS",
             "mixedPort": "Смешанный порт",
             "localDnsPort": "Локальный порт DNS",
+            "allowConnectionFromLan": "Allow Connection from LAN",
             "tunImplementation": "Реализация TUN",
             "mtu": "MTU",
             "connectionTestUrl": "URL проверки подключения",

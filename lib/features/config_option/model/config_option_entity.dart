@@ -37,6 +37,7 @@ class ConfigOptionEntity with _$ConfigOptionEntity {
     @Default(true) bool enableClashApi,
     @Default(6756) int clashApiPort,
     @Default(false) bool bypassLan,
+    @Default(false) bool allowConnectionFromLan,
     @Default(false) bool enableFakeDns,
     @Default(true) bool enableDnsRouting,
     @Default(true) bool independentDnsCache,
@@ -96,6 +97,8 @@ class ConfigOptionEntity with _$ConfigOptionEntity {
       enableClashApi: patch.enableClashApi ?? enableClashApi,
       clashApiPort: patch.clashApiPort ?? clashApiPort,
       bypassLan: patch.bypassLan ?? bypassLan,
+      allowConnectionFromLan:
+          patch.allowConnectionFromLan ?? allowConnectionFromLan,
       enableFakeDns: patch.enableFakeDns ?? enableFakeDns,
       enableDnsRouting: patch.enableDnsRouting ?? enableDnsRouting,
       independentDnsCache: patch.independentDnsCache ?? independentDnsCache,

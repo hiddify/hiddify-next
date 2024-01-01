@@ -103,6 +103,7 @@ class ConfigOptionRepositoryImpl
           enableTun: persisted.serviceMode == ServiceMode.tun,
           setSystemProxy: persisted.serviceMode == ServiceMode.systemProxy,
           bypassLan: persisted.bypassLan,
+          allowConnectionFromLan: persisted.allowConnectionFromLan,
           enableFakeDns: persisted.enableFakeDns,
           enableDnsRouting: persisted.enableDnsRouting,
           independentDnsCache: persisted.independentDnsCache,

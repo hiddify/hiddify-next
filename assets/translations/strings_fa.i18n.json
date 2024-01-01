@@ -216,6 +216,7 @@
             "directDnsDomainStrategy": "حالت DNS مستقیم",
             "mixedPort": "پورت همه منظوره",
             "localDnsPort": "پورت DNS داخلی",
+            "allowConnectionFromLan": "Allow Connection from LAN",
             "tunImplementation": "مدل تونل",
             "mtu": "سایز بسته‌ها",
             "connectionTestUrl": "لینک تست اتصال",

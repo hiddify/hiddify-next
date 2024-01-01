@@ -214,6 +214,7 @@
             "directDnsDomainStrategy": "Doğrudan DNS Domain Stratejisi",
             "mixedPort": "Mixed Port",
             "localDnsPort": "Yerel DNS Bağlantı Noktası",
+            "allowConnectionFromLan": "Allow Connection from LAN",
             "tunImplementation": "TUN İmplementasyonu",
             "mtu": "MTU",
             "connectionTestUrl": "Bağlantı Testi URL'i",

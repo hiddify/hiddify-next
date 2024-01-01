@@ -31,6 +31,7 @@ class ConfigOptionPatch with _$ConfigOptionPatch {
     bool? enableClashApi,
     int? clashApiPort,
     bool? bypassLan,
+    bool? allowConnectionFromLan,
     bool? enableFakeDns,
     bool? enableDnsRouting,
     bool? independentDnsCache,

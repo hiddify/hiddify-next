@@ -216,6 +216,7 @@
             "directDnsDomainStrategy": "Direct DNS Domain Strategy",
             "mixedPort": "Mixed Port",
             "localDnsPort": "Local DNS Port",
+            "allowConnectionFromLan": "Allow Connection from LAN",
             "tunImplementation": "TUN Implementation",
             "mtu": "MTU",
             "connectionTestUrl": "Connection Test URL",

@@ -257,6 +257,13 @@ class ConfigOptionsPage extends HookConsumerWidget {
                   );
                 },
               ),
+              SwitchListTile(
+                title: Text(t.settings.config.allowConnectionFromLan),
+                value: options.allowConnectionFromLan,
+                onChanged: (value) => changeOption(
+                  ConfigOptionPatch(allowConnectionFromLan: value),
+                ),
+              ),
               const SettingsDivider(),
               SettingsSection(t.settings.config.section.tlsTricks),
               SwitchListTile(

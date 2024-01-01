@@ -214,6 +214,7 @@
             "directDnsDomainStrategy": "直连 DNS 域名策略",
             "mixedPort": "混合端口",
             "localDnsPort": "本地 DNS 端口",
+            "allowConnectionFromLan": "Allow Connection from LAN",
             "tunImplementation": "TUN 实现",
             "mtu": "MTU",
             "connectionTestUrl": "连接测试网址",
