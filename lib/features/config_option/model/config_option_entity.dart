@@ -38,6 +38,7 @@ class ConfigOptionEntity with _$ConfigOptionEntity {
     @Default(6756) int clashApiPort,
     @Default(false) bool bypassLan,
     @Default(false) bool enableFakeDns,
+    @Default(true) bool enableDnsRouting,
     @Default(true) bool independentDnsCache,
     @Default(false) bool enableTlsFragment,
     @RangeWithOptionalCeilJsonConverter()
@@ -96,6 +97,7 @@ class ConfigOptionEntity with _$ConfigOptionEntity {
       clashApiPort: patch.clashApiPort ?? clashApiPort,
       bypassLan: patch.bypassLan ?? bypassLan,
       enableFakeDns: patch.enableFakeDns ?? enableFakeDns,
+      enableDnsRouting: patch.enableDnsRouting ?? enableDnsRouting,
       independentDnsCache: patch.independentDnsCache ?? independentDnsCache,
       enableTlsFragment: patch.enableTlsFragment ?? enableTlsFragment,
       tlsFragmentSize: patch.tlsFragmentSize ?? tlsFragmentSize,

@@ -224,6 +224,7 @@
             "clashApiPort": "Clash API Port",
             "enableTun": "Enable TUN",
             "setSystemProxy": "Set System Proxy",
+            "enableDnsRouting": "Enable DNS Routing",
             "enableFakeDns": "Enable Fake DNS",
             "bypassLan": "Bypass Lan",
             "strictRoute": "Strict Route",

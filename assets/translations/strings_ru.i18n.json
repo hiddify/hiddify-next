@@ -222,6 +222,7 @@
             "clashApiPort": "Порт Clash API",
             "enableTun": "Использовать TUN",
             "setSystemProxy": "Использовать системный прокси",
+            "enableDnsRouting": "Enable DNS Routing",
             "enableFakeDns": "Использовать поддельную DNS",
             "bypassLan": "Обход локальной сети",
             "strictRoute": "Строгая маршрутизация",

@@ -36,6 +36,7 @@ class SingboxConfigOption with _$SingboxConfigOption {
     required bool setSystemProxy,
     required bool bypassLan,
     required bool enableFakeDns,
+    required bool enableDnsRouting,
     required bool independentDnsCache,
     required bool enableTlsFragment,
     @RangeWithOptionalCeilJsonConverter()

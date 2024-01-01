@@ -174,6 +174,13 @@ class ConfigOptionsPage extends HookConsumerWidget {
                   );
                 },
               ),
+              SwitchListTile(
+                title: Text(t.settings.config.enableDnsRouting),
+                value: options.enableDnsRouting,
+                onChanged: (value) => changeOption(
+                  ConfigOptionPatch(enableDnsRouting: value),
+                ),
+              ),
               const SettingsDivider(),
               SettingsSection(t.settings.config.section.inbound),
               ListTile(

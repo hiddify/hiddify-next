@@ -224,6 +224,7 @@
             "clashApiPort": "پورت کلش",
             "enableTun": "فعال سازی تونل",
             "setSystemProxy": "تنظیم پروکسی سیستم",
+            "enableDnsRouting": "Enable DNS Routing",
             "enableFakeDns": "Enable Fake DNS",
             "bypassLan": "Bypass Lan",
             "strictRoute": "Strict Route",

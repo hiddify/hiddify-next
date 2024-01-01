@@ -222,6 +222,7 @@
             "clashApiPort": "Clash API Bağlantı Noktası",
             "enableTun": "TUN'u etkinleştir",
             "setSystemProxy": "Sistem Proxy'sini Ayarla",
+            "enableDnsRouting": "Enable DNS Routing",
             "enableFakeDns": "Sahte DNS'yi Etkinleştir",
             "bypassLan": "Lan'ı Atla",
             "strictRoute": "Kesin Rota",

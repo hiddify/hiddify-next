@@ -222,6 +222,7 @@
             "clashApiPort": "Clash API 端口",
             "enableTun": "启用 TUN",
             "setSystemProxy": "设置系统代理",
+            "enableDnsRouting": "Enable DNS Routing",
             "enableFakeDns": "启用 Fake DNS",
             "bypassLan": "绕过局域网",
             "strictRoute": "严格路由",

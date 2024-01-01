@@ -104,6 +104,7 @@ class ConfigOptionRepositoryImpl
           setSystemProxy: persisted.serviceMode == ServiceMode.systemProxy,
           bypassLan: persisted.bypassLan,
           enableFakeDns: persisted.enableFakeDns,
+          enableDnsRouting: persisted.enableDnsRouting,
           independentDnsCache: persisted.independentDnsCache,
           enableTlsFragment: persisted.enableTlsFragment,
           tlsFragmentSize: persisted.tlsFragmentSize,

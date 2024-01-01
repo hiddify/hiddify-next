@@ -32,6 +32,7 @@ class ConfigOptionPatch with _$ConfigOptionPatch {
     int? clashApiPort,
     bool? bypassLan,
     bool? enableFakeDns,
+    bool? enableDnsRouting,
     bool? independentDnsCache,
     bool? enableTlsFragment,
     @RangeWithOptionalCeilJsonConverter()
