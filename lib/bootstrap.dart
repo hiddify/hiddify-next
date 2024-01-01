@@ -140,10 +140,12 @@ Future<void> lazyBootstrap(
   await _safeInit(
     "active profile",
     () => container.read(activeProfileProvider.future),
+    timeout: 1000,
   );
-  await _init(
+  await _safeInit(
     "deep link service",
     () => container.read(deepLinkServiceProvider.future),
+    timeout: 1000,
   );
 
   if (PlatformUtils.isDesktop) {
