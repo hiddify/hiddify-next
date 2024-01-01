@@ -85,11 +85,12 @@ class ConfigOptionsPage extends HookConsumerWidget {
               ),
               const SettingsDivider(),
               SettingsSection(t.settings.config.section.route),
-              // SwitchListTile(
-              //   title: Text(t.settings.config.bypassLan),
-              //   value: options.bypassLan,
-              //   onChanged: ref.read(bypassLanStore.notifier).update,
-              // ),
+              SwitchListTile(
+                title: Text(t.settings.config.bypassLan),
+                value: options.bypassLan,
+                onChanged: (value) async =>
+                    changeOption(ConfigOptionPatch(bypassLan: value)),
+              ),
               SwitchListTile(
                 title: Text(t.settings.config.resolveDestination),
                 value: options.resolveDestination,
@@ -173,11 +174,6 @@ class ConfigOptionsPage extends HookConsumerWidget {
                   );
                 },
               ),
-              // SwitchListTile(
-              //   title: Text(t.settings.config.enableFakeDns),
-              //   value: options.enableFakeDns,
-              //   onChanged: ref.read(enableFakeDnsStore.notifier).update,
-              // ),
               const SettingsDivider(),
               SettingsSection(t.settings.config.section.inbound),
               ListTile(
