@@ -86,7 +86,7 @@ class ConfigOptionsPage extends HookConsumerWidget {
               const SettingsDivider(),
               SettingsSection(t.settings.config.section.route),
               SwitchListTile(
-                title: Text(t.settings.config.bypassLan),
+                title: Text(experimental(t.settings.config.bypassLan)),
                 value: options.bypassLan,
                 onChanged: (value) async =>
                     changeOption(ConfigOptionPatch(bypassLan: value)),
@@ -258,7 +258,9 @@ class ConfigOptionsPage extends HookConsumerWidget {
                 },
               ),
               SwitchListTile(
-                title: Text(t.settings.config.allowConnectionFromLan),
+                title: Text(
+                  experimental(t.settings.config.allowConnectionFromLan),
+                ),
                 value: options.allowConnectionFromLan,
                 onChanged: (value) => changeOption(
                   ConfigOptionPatch(allowConnectionFromLan: value),
