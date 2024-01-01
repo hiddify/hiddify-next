@@ -195,6 +195,7 @@
                 "dns": "DNS Seçenekleri",
                 "inbound": "Gelen Seçenekler",
                 "outbound": "Outbound Options",
+                "tlsTricks": "TLS Tricks",
                 "misc": "Çeşitli Seçenekler"
             },
             "pageTitle": "Yapılandırma Seçenekleri",

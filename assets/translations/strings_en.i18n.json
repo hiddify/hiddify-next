@@ -197,6 +197,7 @@
                 "dns": "DNS Options",
                 "inbound": "Inbound Options",
                 "outbound": "Outbound Options",
+                "tlsTricks": "TLS Tricks",
                 "misc": "Misc Options"
             },
             "pageTitle": "Config Options",

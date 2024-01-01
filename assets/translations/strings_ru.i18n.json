@@ -195,6 +195,7 @@
                 "dns": "Параметры DNS",
                 "inbound": "Входящие параметры",
                 "outbound": "Outbound Options",
+                "tlsTricks": "TLS Tricks",
                 "misc": "Разные параметры"
             },
             "pageTitle": "Параметры конфигурации",

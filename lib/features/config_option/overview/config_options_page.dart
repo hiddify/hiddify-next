@@ -255,7 +255,7 @@ class ConfigOptionsPage extends HookConsumerWidget {
                 },
               ),
               const SettingsDivider(),
-              SettingsSection(t.settings.config.section.outbound),
+              SettingsSection(t.settings.config.section.tlsTricks),
               SwitchListTile(
                 title: Text(experimental(t.settings.config.enableTlsFragment)),
                 value: options.enableTlsFragment,

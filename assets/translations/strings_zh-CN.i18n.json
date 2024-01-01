@@ -195,6 +195,7 @@
                 "dns": "DNS 选项",
                 "inbound": "入站选项",
                 "outbound": "出站选项",
+                "tlsTricks": "TLS Tricks",
                 "misc": "其它选项"
             },
             "pageTitle": "配置选项",

@@ -197,6 +197,7 @@
                 "dns": "تنظیمات DNS",
                 "inbound": "تنظیمات ورودی",
                 "outbound": "Outbound Options",
+                "tlsTricks": "TLS Tricks",
                 "misc": "تنظیمات متفرقه"
             },
             "pageTitle": "تنظیمات کانفیگ",
