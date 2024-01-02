@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.13.3.dev] - 2023-1-2
+
+### New Features and Improvements
+
+- Added Bypass LAN option (Experimental)
+- Added Connection from LAN option (Experimental)
+- Added DNS Routing option
+- Changed outbound options section to TLS Tricks
+
+### Bug Fixes
+
+- Fixed profile edit bug where you were unable to change existing profile's URL
+- Fixed localization mistakes in Chinese. [PR#287](https://github.com/hiddify/hiddify-next/pull/287) by [Wu Jiahao](https://github.com/wujiahao15)
+
 ## [0.13.2.dev] - 2023-12-31
 
 ### Bug Fixes
@@ -168,6 +182,8 @@
 - Fixed localization mistakes in Russian. [PR#95](https://github.com/hiddify/hiddify-next/pull/95) by [solokot](https://github.com/solokot)
 - Fixed localization mistakes in Russian. [PR#74](https://github.com/hiddify/hiddify-next/pull/74) by [Elshad Guseynov](https://github.com/lifeindarkside)
 
+[0.13.3.dev]: https://github.com/hiddify/hiddify-next/releases/tag/v0.13.3.dev
+[0.13.2.dev]: https://github.com/hiddify/hiddify-next/releases/tag/v0.13.2.dev
 [0.13.1.dev]: https://github.com/hiddify/hiddify-next/releases/tag/v0.13.1.dev
 [0.13.0.dev]: https://github.com/hiddify/hiddify-next/releases/tag/v0.13.0.dev
 [0.12.3]: https://github.com/hiddify/hiddify-next/releases/tag/v0.12.3
