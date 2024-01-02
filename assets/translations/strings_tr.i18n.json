@@ -134,6 +134,8 @@
     "settings": {
         "pageTitle": "Ayarlar",
         "requiresRestartMsg": "Bunun etkili olması için uygulamayı yeniden başlatın",
+        "experimental": "Deneysel",
+        "experimentalMsg": "Deneysel işaretli özellikler hâlâ geliştirilme aşamasındadır ve sorunlara neden olabilir.",
         "general": {
             "sectionTitle": "Genel",
             "locale": "Dil",
@@ -244,9 +246,7 @@
             "successMsg": "Öğe başarıyla güncellendi",
             "addRecommended": "Önerilen Varlıkları Ekle",
             "missingGeoAssetsMsg": "Seçilen yönlendirme varlıklarının dosyaları eksik. Bunları indirin veya mevcut olanları seçin."
-        },
-        "experimental": "Deneysel",
-        "experimentalMsg": "Deneysel işaretli özellikler hâlâ geliştirilme aşamasındadır ve sorunlara neden olabilir."
+        }
     },
     "about": {
         "pageTitle": "Hakkında",

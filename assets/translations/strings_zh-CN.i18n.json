@@ -41,7 +41,7 @@
         "overviewPageTitle": "配置文件",
         "detailsPageTitle": "配置文件",
         "activeProfileNameSemanticLabel": "活动配置文件名称：“${name}”。",
-        "activeProfileBtnSemanticLabel": "查看所有配置文件",
+        "activeProfileBtnSemanticLabel": "查看所有配置文件。",
         "nonActiveProfileBtnSemanticLabel": "选择 “${name}” 作为活动配置文件。",
         "subscription": {
             "traffic": "流量",
@@ -134,6 +134,8 @@
     "settings": {
         "pageTitle": "设置",
         "requiresRestartMsg": "要使其生效，请重新启动应用程序",
+        "experimental": "实验性的",
+        "experimentalMsg": "带有实验标志的功能仍在开发中，可能会导致问题。",
         "general": {
             "sectionTitle": "一般选项",
             "locale": "语言",
@@ -244,9 +246,7 @@
             "successMsg": "已成功更新资源文件",
             "addRecommended": "添加建议的资源文件",
             "missingGeoAssetsMsg": "所选路由资源的文件丢失。下载它们或选择现有的。"
-        },
-        "experimental": "实验性的",
-        "experimentalMsg": "带有实验标志的功能仍在开发中，可能会导致问题。"
+        }
     },
     "about": {
         "pageTitle": "关于",
@@ -274,7 +274,7 @@
         "status": {
             "connect": "连接",
             "connecting": "正在连接",
-            "disconnect": "已断开连接",
+            "disconnect": "断开连接",
             "disconnecting": "正在断开连接"
         }
     },
