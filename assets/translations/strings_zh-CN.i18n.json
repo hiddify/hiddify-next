@@ -134,8 +134,8 @@
     "settings": {
         "pageTitle": "设置",
         "requiresRestartMsg": "要使其生效，请重新启动应用程序",
-        "experimental": "实验性的",
-        "experimentalMsg": "带有实验标志的功能仍在开发中，可能会导致问题。",
+        "experimental": "实验性选项",
+        "experimentalMsg": "带有实验标志的功能仍在开发中，可能会出现问题。",
         "general": {
             "sectionTitle": "一般选项",
             "locale": "语言",
@@ -216,7 +216,7 @@
             "directDnsDomainStrategy": "直连 DNS 域名策略",
             "mixedPort": "混合端口",
             "localDnsPort": "本地 DNS 端口",
-            "allowConnectionFromLan": "Allow Connection from LAN",
+            "allowConnectionFromLan": "允许局域网连接",
             "tunImplementation": "TUN 实现",
             "mtu": "MTU",
             "connectionTestUrl": "连接测试网址",
@@ -225,7 +225,7 @@
             "clashApiPort": "Clash API 端口",
             "enableTun": "启用 TUN",
             "setSystemProxy": "设置系统代理",
-            "enableDnsRouting": "Enable DNS Routing",
+            "enableDnsRouting": "启用 DNS 路由",
             "enableFakeDns": "启用 Fake DNS",
             "bypassLan": "绕过局域网",
             "strictRoute": "严格路由",
