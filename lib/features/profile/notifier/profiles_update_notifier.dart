@@ -1,4 +1,5 @@
 import 'package:dartx/dartx.dart';
+import 'package:hiddify/core/preferences/general_preferences.dart';
 import 'package:hiddify/core/preferences/preferences_provider.dart';
 import 'package:hiddify/features/profile/data/profile_data_providers.dart';
 import 'package:hiddify/features/profile/model/profile_entity.dart';
@@ -17,7 +18,6 @@ class ForegroundProfilesUpdateNotifier
 
   @override
   Future<void> build() async {
-    loggy.debug("initializing");
     var cycleCount = 0;
     final scheduler = NeatPeriodicTaskScheduler(
       name: 'profiles update worker',
@@ -33,7 +33,12 @@ class ForegroundProfilesUpdateNotifier
       await scheduler.stop();
     });
 
-    return scheduler.start();
+    if (ref.watch(introCompletedProvider)) {
+      loggy.debug("intro done, starting");
+      return scheduler.start();
+    } else {
+      loggy.debug("intro in process, skipping");
+    }
   }
 
   @visibleForTesting

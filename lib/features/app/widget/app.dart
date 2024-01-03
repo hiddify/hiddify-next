@@ -6,7 +6,6 @@ import 'package:hiddify/core/localization/locale_extensions.dart';
 import 'package:hiddify/core/localization/locale_preferences.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/model/constants.dart';
-import 'package:hiddify/core/preferences/general_preferences.dart';
 import 'package:hiddify/core/router/router.dart';
 import 'package:hiddify/core/theme/app_theme.dart';
 import 'package:hiddify/core/theme/theme_preferences.dart';
@@ -34,14 +33,7 @@ class App extends HookConsumerWidget with PresLogger {
 
     final upgrader = ref.watch(upgraderProvider);
 
-    ref.listen(
-      introCompletedProvider,
-      (_, completed) async {
-        if (completed) {
-          await ref.read(foregroundProfilesUpdateNotifierProvider.future);
-        }
-      },
-    );
+    ref.listen(foregroundProfilesUpdateNotifierProvider, (_, __) {});
 
     return WindowWrapper(
       TrayWrapper(
