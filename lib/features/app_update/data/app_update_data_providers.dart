@@ -8,5 +8,5 @@ part 'app_update_data_providers.g.dart';
 AppUpdateRepository appUpdateRepository(
   AppUpdateRepositoryRef ref,
 ) {
-  return AppUpdateRepositoryImpl(dio: ref.watch(httpClientProvider));
+  return AppUpdateRepositoryImpl(httpClient: ref.watch(httpClientProvider));
 }

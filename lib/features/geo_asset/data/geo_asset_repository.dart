@@ -1,11 +1,11 @@
 import 'dart:io';
 
 import 'package:dartx/dartx_io.dart';
-import 'package:dio/dio.dart';
 import 'package:drift/drift.dart';
 import 'package:flutter/services.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:hiddify/core/database/app_database.dart';
+import 'package:hiddify/core/http_client/dio_http_client.dart';
 import 'package:hiddify/core/utils/exception_handler.dart';
 import 'package:hiddify/features/geo_asset/data/geo_asset_data_mapper.dart';
 import 'package:hiddify/features/geo_asset/data/geo_asset_data_source.dart';
@@ -35,12 +35,12 @@ class GeoAssetRepositoryImpl
   GeoAssetRepositoryImpl({
     required this.geoAssetDataSource,
     required this.geoAssetPathResolver,
-    required this.dio,
+    required this.httpClient,
   });
 
   final GeoAssetDataSource geoAssetDataSource;
   final GeoAssetPathResolver geoAssetPathResolver;
-  final Dio dio;
+  final DioHttpClient httpClient;
 
   @override
   TaskEither<GeoAssetFailure, Unit> init() {
@@ -141,7 +141,7 @@ class GeoAssetRepositoryImpl
         loggy.debug(
           "checking latest release of [${geoAsset.name}] on [${geoAsset.repositoryUrl}]",
         );
-        final response = await dio.get<Map>(geoAsset.repositoryUrl);
+        final response = await httpClient.get<Map>(geoAsset.repositoryUrl);
         if (response.statusCode != 200 || response.data == null) {
           return left(
             GeoAssetUnexpectedFailure.new(
@@ -180,7 +180,7 @@ class GeoAssetRepositoryImpl
         loggy.debug("[${geoAsset.name}] download url: [$downloadUrl]");
         final tempPath = "${file.path}.tmp";
         await file.parent.create(recursive: true);
-        await dio.download(downloadUrl, tempPath);
+        await httpClient.download(downloadUrl, tempPath);
         await File(tempPath).rename(file.path);
 
         await geoAssetDataSource.patch(

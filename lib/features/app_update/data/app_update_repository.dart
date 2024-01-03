@@ -1,5 +1,5 @@
-import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:hiddify/core/http_client/dio_http_client.dart';
 import 'package:hiddify/core/model/constants.dart';
 import 'package:hiddify/core/model/environment.dart';
 import 'package:hiddify/core/utils/exception_handler.dart';
@@ -18,9 +18,9 @@ abstract interface class AppUpdateRepository {
 class AppUpdateRepositoryImpl
     with ExceptionHandler, InfraLogger
     implements AppUpdateRepository {
-  AppUpdateRepositoryImpl({required this.dio});
+  AppUpdateRepositoryImpl({required this.httpClient});
 
-  final Dio dio;
+  final DioHttpClient httpClient;
 
   @override
   TaskEither<AppUpdateFailure, RemoteVersionEntity> getLatestVersion({
@@ -32,7 +32,8 @@ class AppUpdateRepositoryImpl
         if (!release.allowCustomUpdateChecker) {
           throw Exception("custom update checkers are not supported");
         }
-        final response = await dio.get<List>(Constants.githubReleasesApiUrl);
+        final response =
+            await httpClient.get<List>(Constants.githubReleasesApiUrl);
         if (response.statusCode != 200 || response.data == null) {
           loggy.warning("failed to fetch latest version info");
           return left(const AppUpdateFailure.unexpected());

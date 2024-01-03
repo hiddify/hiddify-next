@@ -353,6 +353,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.4.0"
+  dio_smart_retry:
+    dependency: "direct main"
+    description:
+      name: dio_smart_retry
+      sha256: "3d71450c19b4d91ef4c7d726a55a284bfc11eb3634f1f25006cdfab3f8595653"
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.0.0"
   drift:
     dependency: "direct main"
     description:
@@ -499,6 +507,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.2"
+  flutter_loggy_dio:
+    dependency: "direct main"
+    description:
+      name: flutter_loggy_dio
+      sha256: "682fe1fe136ae11cc9094364a4256d831b8cbe627b1370bb8fb9f135415265e2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.1"
   flutter_native_splash:
     dependency: "direct main"
     description:
