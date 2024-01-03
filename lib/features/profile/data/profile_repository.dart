@@ -1,9 +1,9 @@
 import 'dart:io';
 
-import 'package:dio/dio.dart';
 import 'package:drift/drift.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:hiddify/core/database/app_database.dart';
+import 'package:hiddify/core/http_client/dio_http_client.dart';
 import 'package:hiddify/core/utils/exception_handler.dart';
 import 'package:hiddify/features/profile/data/profile_data_mapper.dart';
 import 'package:hiddify/features/profile/data/profile_data_source.dart';
@@ -16,7 +16,6 @@ import 'package:hiddify/singbox/service/singbox_service.dart';
 import 'package:hiddify/utils/custom_loggers.dart';
 import 'package:hiddify/utils/link_parsers.dart';
 import 'package:meta/meta.dart';
-import 'package:retry/retry.dart';
 import 'package:uuid/uuid.dart';
 
 abstract interface class ProfileRepository {
@@ -63,13 +62,13 @@ class ProfileRepositoryImpl
     required this.profileDataSource,
     required this.profilePathResolver,
     required this.singbox,
-    required this.dio,
+    required this.httpClient,
   });
 
   final ProfileDataSource profileDataSource;
   final ProfilePathResolver profilePathResolver;
   final SingboxService singbox;
-  final Dio dio;
+  final DioHttpClient httpClient;
 
   @override
   TaskEither<ProfileFailure, Unit> init() {
@@ -366,11 +365,9 @@ class ProfileRepositoryImpl
       () async {
         final file = profilePathResolver.file(fileName);
         final tempFile = profilePathResolver.tempFile(fileName);
+
         try {
-          final response = await retry(
-            () async => dio.download(url.trim(), tempFile.path),
-            maxAttempts: 3,
-          );
+          final response = await httpClient.download(url.trim(), tempFile.path);
           final headers =
               await _populateHeaders(response.headers.map, tempFile.path);
           return await validateConfig(file.path, tempFile.path, false)

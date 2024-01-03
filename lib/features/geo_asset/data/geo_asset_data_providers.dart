@@ -13,7 +13,7 @@ Future<GeoAssetRepository> geoAssetRepository(GeoAssetRepositoryRef ref) async {
   final repo = GeoAssetRepositoryImpl(
     geoAssetDataSource: ref.watch(geoAssetDataSourceProvider),
     geoAssetPathResolver: ref.watch(geoAssetPathResolverProvider),
-    dio: ref.watch(httpClientProvider),
+    httpClient: ref.watch(httpClientProvider),
   );
   await repo.init().getOrElse((l) => throw l).run();
   return repo;

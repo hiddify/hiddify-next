@@ -15,7 +15,7 @@ Future<ProfileRepository> profileRepository(ProfileRepositoryRef ref) async {
     profileDataSource: ref.watch(profileDataSourceProvider),
     profilePathResolver: ref.watch(profilePathResolverProvider),
     singbox: ref.watch(singboxServiceProvider),
-    dio: ref.watch(httpClientProvider),
+    httpClient: ref.watch(httpClientProvider),
   );
   await repo.init().getOrElse((l) => throw l).run();
   return repo;
