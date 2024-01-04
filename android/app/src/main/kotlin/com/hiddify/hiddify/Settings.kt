@@ -92,26 +92,24 @@ object Settings {
         }
     }
 
+    private var currentServiceMode = ServiceMode.NORMAL;
+
     suspend fun rebuildServiceMode(): Boolean {
         var newMode = ServiceMode.NORMAL
-        if (serviceMode == ServiceMode.VPN) {
-            newMode = ServiceMode.VPN
+        try {
+            if (serviceMode == ServiceMode.VPN) {
+                newMode = ServiceMode.VPN
+            }
+        } catch (_: Exception) {
         }
-//        try {
-//            if (needVPNService()) {
-//                newMode = ServiceMode.VPN
-//            }
-//        } catch (_: Exception) {
-//        }
-        if (serviceMode == newMode) {
+        if (currentServiceMode == newMode) {
             return false
         }
-        serviceMode = newMode
+        currentServiceMode = newMode
         return true
     }
 
     private suspend fun needVPNService(): Boolean {
-        if (serviceMode == ServiceMode.VPN) return true
         val filePath = activeConfigPath
         if (filePath.isBlank()) return false
         val content = JSONObject(File(filePath).readText())
