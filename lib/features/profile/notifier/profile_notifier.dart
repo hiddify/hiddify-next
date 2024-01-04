@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/model/failures.dart';
@@ -20,6 +21,10 @@ class AddProfile extends _$AddProfile with AppLogger {
   @override
   AsyncValue<Unit?> build() {
     ref.disposeDelay(const Duration(minutes: 1));
+    ref.onDispose(() {
+      loggy.debug("disposing");
+      _cancelToken?.cancel();
+    });
     ref.listenSelf(
       (previous, next) {
         final t = ref.read(translationsProvider);
@@ -43,6 +48,7 @@ class AddProfile extends _$AddProfile with AppLogger {
 
   ProfileRepository get _profilesRepo =>
       ref.read(profileRepositoryProvider).requireValue;
+  CancelToken? _cancelToken;
 
   Future<void> add(String rawInput) async {
     if (state.isLoading) return;
@@ -55,7 +61,11 @@ class AddProfile extends _$AddProfile with AppLogger {
         final TaskEither<ProfileFailure, Unit> task;
         if (LinkParser.parse(rawInput) case (final link)?) {
           loggy.debug("adding profile, url: [${link.url}]");
-          task = _profilesRepo.addByUrl(link.url, markAsActive: markAsActive);
+          task = _profilesRepo.addByUrl(
+            link.url,
+            markAsActive: markAsActive,
+            cancelToken: _cancelToken = CancelToken(),
+          );
         } else if (LinkParser.protocol(rawInput) case (final parsed)?) {
           loggy.debug("adding profile, content");
           task = _profilesRepo.addByContent(

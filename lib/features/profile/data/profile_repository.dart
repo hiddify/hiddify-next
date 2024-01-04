@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:drift/drift.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:hiddify/core/database/app_database.dart';
@@ -32,6 +33,7 @@ abstract interface class ProfileRepository {
   TaskEither<ProfileFailure, Unit> addByUrl(
     String url, {
     bool markAsActive = false,
+    CancelToken? cancelToken,
   });
 
   TaskEither<ProfileFailure, Unit> addByContent(
@@ -40,7 +42,10 @@ abstract interface class ProfileRepository {
     bool markAsActive = false,
   });
 
-  TaskEither<ProfileFailure, Unit> add(RemoteProfileEntity baseProfile);
+  TaskEither<ProfileFailure, Unit> add(
+    RemoteProfileEntity baseProfile, {
+    CancelToken? cancelToken,
+  });
 
   TaskEither<ProfileFailure, String> generateConfig(String id);
 
@@ -48,6 +53,7 @@ abstract interface class ProfileRepository {
   TaskEither<ProfileFailure, Unit> updateSubscription(
     RemoteProfileEntity baseProfile, {
     bool patchBaseProfile = false,
+    CancelToken? cancelToken,
   });
 
   TaskEither<ProfileFailure, Unit> patch(ProfileEntity profile);
@@ -127,6 +133,7 @@ class ProfileRepositoryImpl
   TaskEither<ProfileFailure, Unit> addByUrl(
     String url, {
     bool markAsActive = false,
+    CancelToken? cancelToken,
   }) {
     return exceptionHandler(
       () async {
@@ -138,11 +145,14 @@ class ProfileRepositoryImpl
           final baseProfile = markAsActive
               ? existingProfile.copyWith(active: true)
               : existingProfile;
-          return updateSubscription(baseProfile).run();
+          return updateSubscription(
+            baseProfile,
+            cancelToken: cancelToken,
+          ).run();
         }
 
         final profileId = const Uuid().v4();
-        return fetch(url, profileId)
+        return fetch(url, profileId, cancelToken: cancelToken)
             .flatMap(
               (profile) => TaskEither(
                 () async {
@@ -221,10 +231,13 @@ class ProfileRepositoryImpl
   }
 
   @override
-  TaskEither<ProfileFailure, Unit> add(RemoteProfileEntity baseProfile) {
+  TaskEither<ProfileFailure, Unit> add(
+    RemoteProfileEntity baseProfile, {
+    CancelToken? cancelToken,
+  }) {
     return exceptionHandler(
       () async {
-        return fetch(baseProfile.url, baseProfile.id)
+        return fetch(baseProfile.url, baseProfile.id, cancelToken: cancelToken)
             .flatMap(
               (remoteProfile) => TaskEither(() async {
                 await profileDataSource.insert(
@@ -266,13 +279,14 @@ class ProfileRepositoryImpl
   TaskEither<ProfileFailure, Unit> updateSubscription(
     RemoteProfileEntity baseProfile, {
     bool patchBaseProfile = false,
+    CancelToken? cancelToken,
   }) {
     return exceptionHandler(
       () async {
         loggy.debug(
           "updating profile [${baseProfile.name} (${baseProfile.id})]",
         );
-        return fetch(baseProfile.url, baseProfile.id)
+        return fetch(baseProfile.url, baseProfile.id, cancelToken: cancelToken)
             .flatMap(
               (remoteProfile) => TaskEither(
                 () async {
@@ -359,15 +373,20 @@ class ProfileRepositoryImpl
   @visibleForTesting
   TaskEither<ProfileFailure, RemoteProfileEntity> fetch(
     String url,
-    String fileName,
-  ) {
+    String fileName, {
+    CancelToken? cancelToken,
+  }) {
     return TaskEither(
       () async {
         final file = profilePathResolver.file(fileName);
         final tempFile = profilePathResolver.tempFile(fileName);
 
         try {
-          final response = await httpClient.download(url.trim(), tempFile.path);
+          final response = await httpClient.download(
+            url.trim(),
+            tempFile.path,
+            cancelToken: cancelToken,
+          );
           final headers =
               await _populateHeaders(response.headers.map, tempFile.path);
           return await validateConfig(file.path, tempFile.path, false)

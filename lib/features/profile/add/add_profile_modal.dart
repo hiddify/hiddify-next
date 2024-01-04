@@ -76,6 +76,15 @@ class AddProfileModal extends HookConsumerWidget {
                       const LinearProgressIndicator(
                         backgroundColor: Colors.transparent,
                       ),
+                      const Gap(8),
+                      TextButton(
+                        onPressed: () {
+                          ref.invalidate(addProfileProvider);
+                        },
+                        child: Text(
+                          MaterialLocalizations.of(context).cancelButtonLabel,
+                        ),
+                      ),
                     ],
                   ),
                 ),
