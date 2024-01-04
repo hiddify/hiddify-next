@@ -74,7 +74,10 @@
             "buttonTxt": "Обновить",
             "tooltip": "Обновить профиль",
             "failureMsg": "Не удалось обновить профиль",
-            "successMsg": "Профиль успешно обновлён"
+            "successMsg": "Профиль успешно обновлён",
+            "namedFailureMsg": "Не удалось обновить \"${name}\".",
+            "namedSuccessMsg": "\"${name}\" успешно обновлено",
+            "updateSubscriptions": "Обновить подписки"
         },
         "share": {
             "buttonText": "Поделиться",

@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/model/failures.dart';
+import 'package:hiddify/core/notification/in_app_notification_controller.dart';
 import 'package:hiddify/core/router/router.dart';
 import 'package:hiddify/features/profile/model/profile_sort_enum.dart';
+import 'package:hiddify/features/profile/notifier/profiles_update_notifier.dart';
 import 'package:hiddify/features/profile/overview/profiles_overview_notifier.dart';
 import 'package:hiddify/features/profile/widget/profile_tile.dart';
 import 'package:hiddify/utils/placeholders.dart';
@@ -21,6 +23,25 @@ class ProfilesOverviewModal extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final t = ref.watch(translationsProvider);
     final asyncProfiles = ref.watch(profilesOverviewNotifierProvider);
+
+    ref.listen(
+      foregroundProfilesUpdateNotifierProvider,
+      (_, next) {
+        if (next case AsyncData(:final value?)) {
+          final t = ref.read(translationsProvider);
+          final notification = ref.read(inAppNotificationControllerProvider);
+          if (value.success) {
+            notification.showSuccessToast(
+              t.profile.update.namedSuccessMsg(name: value.name),
+            );
+          } else {
+            notification.showErrorToast(
+              t.profile.update.namedFailureMsg(name: value.name),
+            );
+          }
+        }
+      },
+    );
 
     return Stack(
       children: [
@@ -47,29 +68,44 @@ class ProfilesOverviewModal extends HookConsumerWidget {
         Positioned.fill(
           child: Align(
             alignment: Alignment.bottomCenter,
-            child: ButtonBar(
-              alignment: MainAxisAlignment.center,
-              children: [
-                FilledButton.icon(
-                  onPressed: () {
-                    const AddProfileRoute().push(context);
-                  },
-                  icon: const Icon(Icons.add),
-                  label: Text(t.profile.add.shortBtnTxt),
-                ),
-                FilledButton.icon(
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return const ProfilesSortModal();
-                      },
-                    );
-                  },
-                  icon: const Icon(Icons.sort),
-                  label: Text(t.general.sort),
-                ),
-              ],
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: Wrap(
+                alignment: WrapAlignment.center,
+                spacing: 8,
+                children: [
+                  FilledButton.icon(
+                    onPressed: () {
+                      const AddProfileRoute().push(context);
+                    },
+                    icon: const Icon(Icons.add),
+                    label: Text(t.profile.add.shortBtnTxt),
+                  ),
+                  FilledButton.icon(
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return const ProfilesSortModal();
+                        },
+                      );
+                    },
+                    icon: const Icon(Icons.sort),
+                    label: Text(t.general.sort),
+                  ),
+                  FilledButton.icon(
+                    onPressed: () async {
+                      await ref
+                          .read(
+                            foregroundProfilesUpdateNotifierProvider.notifier,
+                          )
+                          .trigger();
+                    },
+                    icon: const Icon(Icons.update),
+                    label: Text(t.profile.update.updateSubscriptions),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

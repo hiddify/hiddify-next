@@ -73,8 +73,11 @@
         "update": {
             "buttonTxt": "Update",
             "tooltip": "Update Profile",
+            "updateSubscriptions": "Update Subscriptions",
             "failureMsg": "Failed to update profile",
-            "successMsg": "Profile updated successfully"
+            "successMsg": "Profile updated successfully",
+            "namedFailureMsg": "Failed to update \"${name}\"",
+            "namedSuccessMsg": "\"${name}\" updated successfully"
         },
         "share": {
             "buttonText": "Share",
