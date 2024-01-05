@@ -17,13 +17,13 @@ import 'package:hiddify/core/preferences/preferences_migration.dart';
 import 'package:hiddify/core/preferences/preferences_provider.dart';
 import 'package:hiddify/features/app/widget/app.dart';
 import 'package:hiddify/features/auto_start/notifier/auto_start_notifier.dart';
+import 'package:hiddify/features/deep_link/notifier/deep_link_notifier.dart';
 import 'package:hiddify/features/geo_asset/data/geo_asset_data_providers.dart';
 import 'package:hiddify/features/log/data/log_data_providers.dart';
 import 'package:hiddify/features/profile/data/profile_data_providers.dart';
 import 'package:hiddify/features/profile/notifier/active_profile_notifier.dart';
 import 'package:hiddify/features/system_tray/notifier/system_tray_notifier.dart';
 import 'package:hiddify/features/window/notifier/window_notifier.dart';
-import 'package:hiddify/services/deep_link_service.dart';
 import 'package:hiddify/singbox/service/singbox_service_provider.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -144,7 +144,7 @@ Future<void> lazyBootstrap(
   );
   await _safeInit(
     "deep link service",
-    () => container.read(deepLinkServiceProvider.future),
+    () => container.read(deepLinkNotifierProvider.future),
     timeout: 1000,
   );
 

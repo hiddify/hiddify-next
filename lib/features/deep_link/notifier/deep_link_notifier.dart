@@ -4,17 +4,16 @@ import 'package:hiddify/utils/utils.dart';
 import 'package:protocol_handler/protocol_handler.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'deep_link_service.g.dart';
+part 'deep_link_notifier.g.dart';
 
 typedef NewProfileLink = ({String? url, String? name});
 
 @Riverpod(keepAlive: true)
-class DeepLinkService extends _$DeepLinkService
+class DeepLinkNotifier extends _$DeepLinkNotifier
     with ProtocolListener, InfraLogger {
   @override
   Future<NewProfileLink?> build() async {
     if (Platform.isLinux) return null;
-    loggy.debug("initializing");
     for (final protocol in LinkParser.protocols) {
       await protocolHandler.register(protocol);
     }
