@@ -15,7 +15,6 @@ dependencies:
   intl: ^0.18.1
   slang: ^3.28.0
   slang_flutter: ^3.28.0
-  timeago: ^3.6.0
   fpdart: ^1.1.0
   freezed_annotation: ^2.4.1
   json_annotation: ^4.8.1
@@ -27,7 +26,6 @@ dependencies:
   sqlite3_flutter_libs: ^0.5.18
   shared_preferences: ^2.2.2
   dio: ^5.4.0
-  web_socket_channel: ^2.4.0
   ffi: ^2.1.0
   path_provider: ^2.1.1
   mobile_scanner: ^3.5.5
@@ -52,7 +50,6 @@ dependencies:
   tint: ^2.0.1
   accessibility_tools: ^1.0.1
   neat_periodic_task: ^2.0.1
-  retry: ^3.1.2
   watcher: ^1.1.0
   go_router: ^13.0.0
   flex_color_scheme: ^7.3.1
@@ -91,6 +88,7 @@ dev_dependencies:
   custom_lint: ^0.5.7
   riverpod_lint: ^2.3.7
   icons_launcher: ^2.1.6
+  dependency_validator: ^3.2.3
 
 flutter:
   uses-material-design: true
