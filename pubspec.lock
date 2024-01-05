@@ -458,10 +458,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_adaptive_scaffold
-      sha256: "3e78be8b9c95b1c9832b2f8ec4a845adac205c4bb5e7bd3fb204b07990229167"
+      sha256: b3b7f8537b0af3e9982a0d1199d4d0e73b225672c867cecfb731c7f2bfc2f0f8
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.7+1"
+    version: "0.1.7+2"
   flutter_animate:
     dependency: "direct main"
     description:
@@ -482,26 +482,26 @@ packages:
     dependency: transitive
     description:
       name: flutter_gen_core
-      sha256: "8b4ff1d45d125e576e26ea99d15e0419bb3c45b53696e022880866b78bb6b830"
+      sha256: "3a6c3dbc1c0e260088e9c7ed1ba905436844e8c01a44799f6281edada9e45308"
       url: "https://pub.dev"
     source: hosted
-    version: "5.3.2"
+    version: "5.4.0"
   flutter_gen_runner:
     dependency: "direct dev"
     description:
       name: flutter_gen_runner
-      sha256: fd197f8c657e79313d53d3934de602ebe604ba722a84c88ae3a43cd90428c67a
+      sha256: "24889d5140b03997f7148066a9c5fab8b606dff36093434c782d7a7fb22c6fb6"
       url: "https://pub.dev"
     source: hosted
-    version: "5.3.2"
+    version: "5.4.0"
   flutter_hooks:
     dependency: "direct main"
     description:
       name: flutter_hooks
-      sha256: "7c8db779c2d1010aa7f9ea3fbefe8f86524fcb87b69e8b0af31e1a4b55422dec"
+      sha256: "09f64db63fee3b2ab8b9038a1346be7d8986977fae3fec601275bf32455ccfc0"
       url: "https://pub.dev"
     source: hosted
-    version: "0.20.3"
+    version: "0.20.4"
   flutter_localizations:
     dependency: "direct main"
     description: flutter
@@ -527,10 +527,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_native_splash
-      sha256: "141b20f15a2c4fe6e33c49257ca1bc114fc5c500b04fcbc8d75016bb86af672f"
+      sha256: "9cdb5d9665dab5d098dc50feab74301c2c228cd02ca25c9b546ab572cebcd6af"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.8"
+    version: "2.3.9"
   flutter_riverpod:
     dependency: transitive
     description:
@@ -617,18 +617,18 @@ packages:
     dependency: "direct main"
     description:
       name: go_router
-      sha256: ca7e4a2249f96773152f1853fa25933ac752495cdd7fdf5dafb9691bd05830fd
+      sha256: "3b40e751eaaa855179b416974d59d29669e750d2e50fcdb2b37f1cb0ca8c803a"
       url: "https://pub.dev"
     source: hosted
-    version: "13.0.0"
+    version: "13.0.1"
   go_router_builder:
     dependency: "direct dev"
     description:
       name: go_router_builder
-      sha256: c1a643f7efafe01ac0a19be5297e414c5f65aede38b83b203f7f420d8c911471
+      sha256: f84449079eb1f09f59344fbbb8cdc6a6349d8973a83746a57953bd4130d852b6
       url: "https://pub.dev"
     source: hosted
-    version: "2.4.0"
+    version: "2.4.1"
   graphs:
     dependency: transitive
     description:
@@ -865,10 +865,10 @@ packages:
     dependency: "direct main"
     description:
       name: native_dio_adapter
-      sha256: "2bb78b5e20b012ae6a0b5ea6405a3583f2ea6c85be9f7d909decabcb1992c25d"
+      sha256: "4c925ba15a44478be0eb6e97b62a1c1d07e56b28e566283dbcb15e58418bdaae"
       url: "https://pub.dev"
     source: hosted
-    version: "1.2.0"
+    version: "1.3.0"
   neat_periodic_task:
     dependency: "direct main"
     description:
@@ -1494,10 +1494,10 @@ packages:
     dependency: "direct main"
     description:
       name: tray_manager
-      sha256: b1975a05e0c6999e983cf9a58a6a098318c896040ccebac5398a3cc9e43b9c69
+      sha256: "4ab709d70a4374af172f8c39e018db33a4271265549c6fc9d269a65e5f4b0225"
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.0"
+    version: "0.2.1"
   typed_data:
     dependency: transitive
     description:
@@ -1678,10 +1678,10 @@ packages:
     dependency: "direct main"
     description:
       name: win32
-      sha256: b0f37db61ba2f2e9b7a78a1caece0052564d1bc70668156cf3a29d676fe4e574
+      sha256: "464f5674532865248444b4c3daca12bd9bf2d7c47f759ce2617986e7229494a8"
       url: "https://pub.dev"
     source: hosted
-    version: "5.1.1"
+    version: "5.2.0"
   win32_registry:
     dependency: transitive
     description:
