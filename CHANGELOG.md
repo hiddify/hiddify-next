@@ -6,6 +6,7 @@
 
 - Updated sing-box to version 1.7.8
 - Improved TLS Fragmentation. [PR#12](https://github.com/hiddify/hiddify-sing-box/pull/12) by [Kyōchikutō | キョウチクトウ](https://github.com/kyochikuto)
+- Improved v2ray config parser
 - Added cancel button on new profile modal
 - Changed default Connection Test URL
 
