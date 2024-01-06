@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.13.5.dev] - 2023-1-6
+
+### New Features and Improvements
+
+- Updated sing-box to version 1.7.8
+- Improved TLS Fragmentation. [PR#12](https://github.com/hiddify/hiddify-sing-box/pull/12) by [Kyōchikutō | キョウチクトウ](https://github.com/kyochikuto)
+- Improved v2ray config parser
+- Added cancel button on new profile modal
+- Changed default Connection Test URL
+
+### Bug Fixes
+
+- Fixed Android service mode
+- Fixed QR code scanner not scanning deep links
 
 ## [0.13.4.dev] - 2023-1-4
 
@@ -197,6 +211,7 @@
 - Fixed localization mistakes in Russian. [PR#95](https://github.com/hiddify/hiddify-next/pull/95) by [solokot](https://github.com/solokot)
 - Fixed localization mistakes in Russian. [PR#74](https://github.com/hiddify/hiddify-next/pull/74) by [Elshad Guseynov](https://github.com/lifeindarkside)
 
+[0.13.5.dev]: https://github.com/hiddify/hiddify-next/releases/tag/v0.13.5.dev
 [0.13.4.dev]: https://github.com/hiddify/hiddify-next/releases/tag/v0.13.4.dev
 [0.13.3.dev]: https://github.com/hiddify/hiddify-next/releases/tag/v0.13.3.dev
 [0.13.2.dev]: https://github.com/hiddify/hiddify-next/releases/tag/v0.13.2.dev

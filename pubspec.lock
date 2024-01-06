@@ -329,6 +329,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.3"
+  dependency_validator:
+    dependency: "direct dev"
+    description:
+      name: dependency_validator
+      sha256: f727a5627aa405965fab4aef4f468e50a9b632ba0737fd2f98c932fec6d712b9
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.2.3"
   device_info_plus:
     dependency: transitive
     description:
@@ -1102,7 +1110,7 @@ packages:
     source: hosted
     version: "4.1.0"
   retry:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: retry
       sha256: "822e118d5b3aafed083109c72d5f484c6dc66707885e07c0fbcb8b986bba7efc"
@@ -1458,14 +1466,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.3"
-  timeago:
-    dependency: "direct main"
-    description:
-      name: timeago
-      sha256: c44b80cbc6b44627c00d76960f2af571f6f50e5dbedef4d9215d455e4335165b
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.6.0"
   timing:
     dependency: transitive
     description:
@@ -1667,7 +1667,7 @@ packages:
     source: hosted
     version: "0.3.0"
   web_socket_channel:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: web_socket_channel
       sha256: d88238e5eac9a42bb43ca4e721edba3c08c6354d4a53063afaa568516217621b
