@@ -77,11 +77,17 @@ class QRCodeScannerScreen extends HookConsumerWidget with PresLogger {
           MobileScanner(
             controller: controller,
             onDetect: (capture) {
-              final data = capture.barcodes.first;
-              if (context.mounted && data.type == BarcodeType.url) {
-                loggy.debug('captured raw: [${data.rawValue}]');
-                loggy.debug('captured url: [${data.url?.url}]');
-                Navigator.of(context, rootNavigator: true).pop(data.url?.url);
+              final rawData = capture.barcodes.first.rawValue;
+              loggy.debug('captured raw: [$rawData]');
+              if (rawData != null) {
+                final uri = Uri.tryParse(rawData);
+                if (context.mounted && uri != null) {
+                  loggy.debug('captured url: [$uri]');
+                  Navigator.of(context, rootNavigator: true)
+                      .pop(uri.toString());
+                }
+              } else {
+                loggy.warning("unable to capture");
               }
             },
             errorBuilder: (_, error, __) {

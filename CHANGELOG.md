@@ -12,6 +12,7 @@
 ### Bug Fixes
 
 - Fixed Android service mode
+- Fixed QR code scanner not scanning deep links
 
 ## [0.13.4.dev] - 2023-1-4
 
