@@ -3,32 +3,32 @@
     <channel>
         <title>Release</title>
         <item>
-            <title>Version 0.11.1</title>
-            <pubDate>Sun, 20 Nov 2023 22:00:00 +0000</pubDate>
+            <title>Version 0.13.6</title>
+            <pubDate>Sun, 7 Jan 2024 22:00:00 +0000</pubDate>
             <enclosure
                 url="https://play.google.com/store/apps/details?id=app.hiddify.com"
-                sparkle:version="0.11.1" sparkle:os="android" />
+                sparkle:version="0.13.6" sparkle:os="android" />
         </item>
         <item>
-            <title>Version 0.12.0</title>
-            <pubDate>Wed, 20 Dec 2023 21:00:00 +0000</pubDate>
+            <title>Version 0.13.6</title>
+            <pubDate>Sun, 7 Jan 2024 22:00:00 +0000</pubDate>
             <enclosure
-                url="https://github.com/hiddify/hiddify-next/releases/download/v0.12.0/hiddify-windows-x64-setup.zip"
-                sparkle:version="0.12.0" sparkle:os="windows" />
+                url="https://github.com/hiddify/hiddify-next/releases/download/v0.13.6/hiddify-windows-x64-setup.zip"
+                sparkle:version="0.13.6" sparkle:os="windows" />
         </item>
         <item>
-            <title>Version 0.12.0</title>
-            <pubDate>Wed, 20 Dec 2023 21:00:00 +0000</pubDate>
+            <title>Version 0.13.6</title>
+            <pubDate>Sun, 7 Jan 2024 22:00:00 +0000</pubDate>
             <enclosure
-                url="https://github.com/hiddify/hiddify-next/releases/download/v0.12.0/hiddify-macos-universal.zip"
-                sparkle:version="0.12.0" sparkle:os="macos" />
+                url="https://github.com/hiddify/hiddify-next/releases/download/v0.13.6/hiddify-macos-universal.zip"
+                sparkle:version="0.13.6" sparkle:os="macos" />
         </item>
         <item>
-            <title>Version 0.12.0</title>
-            <pubDate>Wed, 20 Dec 2023 21:00:00 +0000</pubDate>
+            <title>Version 0.13.6</title>
+            <pubDate>Sun, 7 Jan 2024 22:00:00 +0000</pubDate>
             <enclosure
-                url="https://github.com/hiddify/hiddify-next/releases/download/v0.12.0/hiddify-linux-x64.zip"
-                sparkle:version="0.12.0" sparkle:os="linux" />
+                url="https://github.com/hiddify/hiddify-next/releases/download/v0.13.6/hiddify-linux-x64.zip"
+                sparkle:version="0.13.6" sparkle:os="linux" />
         </item>
     </channel>
 </rss>

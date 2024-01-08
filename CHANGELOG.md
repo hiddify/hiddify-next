@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.13.6] - 2023-1-7
+
+- First stable 0.13.x release. check changes from 0.13.0.dev to 0.13.5.dev for more details.
+
 ## [0.13.5.dev] - 2023-1-6
 
 ### New Features and Improvements
@@ -211,6 +215,7 @@
 - Fixed localization mistakes in Russian. [PR#95](https://github.com/hiddify/hiddify-next/pull/95) by [solokot](https://github.com/solokot)
 - Fixed localization mistakes in Russian. [PR#74](https://github.com/hiddify/hiddify-next/pull/74) by [Elshad Guseynov](https://github.com/lifeindarkside)
 
+[0.13.6]: https://github.com/hiddify/hiddify-next/releases/tag/v0.13.6
 [0.13.5.dev]: https://github.com/hiddify/hiddify-next/releases/tag/v0.13.5.dev
 [0.13.4.dev]: https://github.com/hiddify/hiddify-next/releases/tag/v0.13.4.dev
 [0.13.3.dev]: https://github.com/hiddify/hiddify-next/releases/tag/v0.13.3.dev
