@@ -110,6 +110,12 @@
  
 
 ## 改进翻译
+
+<div align=center>
+    
+[![inlang status badge](https://inlang.com/badge?url=github.com/hiddify/hiddify-next)](https://inlang.com/editor/github.com/hiddify/hiddify-next?ref=badge)
+</div>
+
 您可以使用以下链接轻松地为该项目改进翻译以做出贡献：
  - [英语](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en)
 - [波斯语](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=fa)
