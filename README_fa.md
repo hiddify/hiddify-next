@@ -115,6 +115,7 @@
     
 [![inlang status badge](https://inlang.com/badge?url=github.com/hiddify/hiddify-next)](https://inlang.com/editor/github.com/hiddify/hiddify-next?ref=badge)
 </div>
+
 شما به راحتی می توانید با استفاده از لینک‌های زیر برای بهبود ترجمه‌ها به این پروژه کمک کنید:
 - [فارسی](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=fa)
 - [انگلیسی](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en)
