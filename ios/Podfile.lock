@@ -36,7 +36,6 @@ PODS:
   - GoogleUtilitiesComponents (1.1.0):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (2.3.0)
-  - Libcore (1.0.0.local)
   - MLImage (1.0.0-beta4)
   - MLKitBarcodeScanning (3.0.0):
     - MLKitCommon (~> 9.0)
@@ -106,7 +105,6 @@ DEPENDENCIES:
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - Flutter (from `Flutter`)
   - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
-  - Libcore (from `./Frameworks/Libcore.xcframework`)
   - mobile_scanner (from `.symlinks/plugins/mobile_scanner/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
@@ -144,8 +142,6 @@ EXTERNAL SOURCES:
     :path: Flutter
   flutter_native_splash:
     :path: ".symlinks/plugins/flutter_native_splash/ios"
-  Libcore:
-    :path: "./Frameworks/Libcore.xcframework"
   mobile_scanner:
     :path: ".symlinks/plugins/mobile_scanner/ios"
   package_info_plus:
@@ -176,7 +172,6 @@ SPEC CHECKSUMS:
   GoogleUtilities: 0759d1a57ebb953965c2dfe0ba4c82e95ccc2e34
   GoogleUtilitiesComponents: 679b2c881db3b615a2777504623df6122dd20afe
   GTMSessionFetcher: 3a63d75eecd6aa32c2fc79f578064e1214dfdec2
-  Libcore: 755017c5b3afb0244329093a5f20c1cc04a99831
   MLImage: 7bb7c4264164ade9bf64f679b40fb29c8f33ee9b
   MLKitBarcodeScanning: 04e264482c5f3810cb89ebc134ef6b61e67db505
   MLKitCommon: c1b791c3e667091918d91bda4bba69a91011e390
@@ -196,6 +191,6 @@ SPEC CHECKSUMS:
   sqlite3_flutter_libs: eb769059df0356dc52ddda040f09cacc9391a7cf
   url_launcher_ios: bf5ce03e0e2088bad9cc378ea97fa0ed5b49673b
 
-PODFILE CHECKSUM: 367d7a6193b749777e3939af38a774b483fbfab7
+PODFILE CHECKSUM: b2f23486238d2db8c0e4efaba841097cb2253271
 
 COCOAPODS: 1.14.3

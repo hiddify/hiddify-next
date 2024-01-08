@@ -92,8 +92,8 @@ macos-libs:
 	curl -L $(CORE_URL)/$(CORE_NAME)-macos-universal.dylib.gz | gunzip > $(DESKTOP_OUT)/libcore.dylib
 
 ios-libs: #not tested
-	mkdir -p $(DESKTOP_OUT)/ &&\
-	rm -rf $(IOS_OUT)/Libcore.xcframework
+	mkdir -p $(DESKTOP_OUT)/ && \
+	rm -rf $(IOS_OUT)/Libcore.xcframework && \
 	curl -L $(CORE_URL)/$(CORE_NAME)-ios.xcframework.tar.gz | tar xz -C "$(IOS_OUT)" && \
 	mv $(IOS_OUT)/$(CORE_NAME)-ios.xcframework $(IOS_OUT)/Libcore.xcframework
 
@@ -117,7 +117,9 @@ build-macos-libs:
 	make -C libcore -f Makefile macos-universal && mv $(BINDIR)/$(CORE_NAME)-macos-universal.dylib $(DESKTOP_OUT)/libcore.dylib
 
 build-ios-libs: 
-	make -C libcore -f Makefile ios  && mv $(BINDIR)/$(CORE_NAME)-ios.xcframework $(IOS_OUT)/Libcore.xcframework
+	rm -rf $(IOS_OUT)/Libcore.xcframework && \
+	make -C libcore -f Makefile ios  && \
+	mv $(BINDIR)/$(CORE_NAME)-ios.xcframework $(IOS_OUT)/Libcore.xcframework
 
 release: # Create a new tag for release.
 	@echo "previous version was $$(git describe --tags $$(git rev-list --tags --max-count=1))"

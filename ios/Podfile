@@ -35,7 +35,9 @@ target 'Runner' do
   target 'RunnerTests' do
     inherit! :search_paths
   end
-  pod 'Libcore', :path => './Frameworks/Libcore.xcframework'
+  # target 'SingBoxPacketTunnel' do
+  #   pod 'Libcore', :path => './Frameworks/Libcore.xcframework'
+  # end
 
 end
 
