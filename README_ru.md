@@ -97,6 +97,12 @@
 </div>
 
 ## Улучшите переводы
+
+<div align=center>
+    
+[![inlang status badge](https://inlang.com/badge?url=github.com/hiddify/hiddify-next)](https://inlang.com/editor/github.com/hiddify/hiddify-next?ref=badge)
+</div>
+
 Вы можете легко внести свой вклад в этот проект, используя следующие ссылки для улучшения переводов:
 - [Русский](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=ru)
 - [Английский](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en)
