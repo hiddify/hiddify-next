@@ -27,19 +27,16 @@
 		03E392D02ADDF1BD000ADF15 /* FilePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E392CE2ADDEFC8000ADF15 /* FilePath.swift */; };
 		03E392D22ADDF1F4000ADF15 /* ExtensionPlatformInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E392D12ADDF1F4000ADF15 /* ExtensionPlatformInterface.swift */; };
 		03E392D42ADDF262000ADF15 /* Extension+RunBlocking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E392D32ADDF262000ADF15 /* Extension+RunBlocking.swift */; };
-		073695782B39DB2B007249BE /* Libcore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 073695722B39DA23007249BE /* Libcore.xcframework */; };
-		073695882B3AC757007249BE /* Libcore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 073695722B39DA23007249BE /* Libcore.xcframework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		0736958B2B3AC96D007249BE /* Bundle+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0736958A2B3AC96D007249BE /* Bundle+Properties.swift */; };
 		0736958D2B3B79E0007249BE /* StatsEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0736958C2B3B79E0007249BE /* StatsEventHandler.swift */; };
 		0736958F2B3B8048007249BE /* PlatformMethodHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0736958E2B3B8047007249BE /* PlatformMethodHandler.swift */; };
 		075637BA2B01583F005AFB8E /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F1D4AAC33ACF5C8307310D /* Pods_Runner.framework */; };
-		075637BB2B01583F005AFB8E /* Pods_Runner.framework in Embed Frameworks (2 items) */ = {isa = PBXBuildFile; fileRef = 60F1D4AAC33ACF5C8307310D /* Pods_Runner.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		075637BC2B015864005AFB8E /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E392B72ADDA00E000ADF15 /* NetworkExtension.framework */; };
-		075637BD2B015864005AFB8E /* NetworkExtension.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03E392B72ADDA00E000ADF15 /* NetworkExtension.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		07A63AD52B1E961E00CAFA4D /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A63AD42B1E961E00CAFA4D /* GeneratedPluginRegistrant.m */; };
 		331C808B294A63AB00263BE5 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C807B294A618700263BE5 /* RunnerTests.swift */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
 		54EA599BF9C050F2827533D5 /* Pods_RunnerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDA50BDF2E5E5DDA3995F24D /* Pods_RunnerTests.framework */; };
+		68885DD42B4EF00900D214BA /* hiddify-libcore-ios.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68885DD22B4EEDA100D214BA /* hiddify-libcore-ios.xcframework */; };
+		68885DD72B4EF33400D214BA /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E392B72ADDA00E000ADF15 /* NetworkExtension.framework */; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
@@ -81,21 +78,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				073695882B3AC757007249BE /* Libcore.xcframework in Embed Frameworks */,
-				075637BD2B015864005AFB8E /* NetworkExtension.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9705A1C41CF9048500538489 /* Embed Frameworks (2 items) */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				075637BB2B01583F005AFB8E /* Pods_Runner.framework in Embed Frameworks (2 items) */,
-			);
-			name = "Embed Frameworks (2 items)";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -124,17 +108,10 @@
 		03E392CE2ADDEFC8000ADF15 /* FilePath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePath.swift; sourceTree = "<group>"; };
 		03E392D12ADDF1F4000ADF15 /* ExtensionPlatformInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionPlatformInterface.swift; sourceTree = "<group>"; };
 		03E392D32ADDF262000ADF15 /* Extension+RunBlocking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+RunBlocking.swift"; sourceTree = "<group>"; };
-		073695362B1FD56C007249BE /* libcore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = libcore; path = ../libcore; sourceTree = "<group>"; };
 		0736954E2B1FEB3E007249BE /* mobile_scanner.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = mobile_scanner.xcframework; path = ../build/ios/framework/Release/mobile_scanner.xcframework; sourceTree = "<group>"; };
-		0736955C2B384217007249BE /* libcore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = libcore.xcframework; sourceTree = "<group>"; };
-		0736956A2B39814F007249BE /* libcore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = libcore.xcframework; path = Framework/libcore.xcframework; sourceTree = "<group>"; };
-		0736956E2B3998A2007249BE /* libcore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = libcore.xcframework; path = Frameworks/libcore.xcframework; sourceTree = "<group>"; };
-		073695722B39DA23007249BE /* Libcore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Libcore.xcframework; path = Frameworks/Libcore.xcframework; sourceTree = "<group>"; };
-		0736957A2B39DE78007249BE /* Libcore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Libcore.xcframework; path = Frameworks/Libcore.xcframework; sourceTree = "<group>"; };
 		0736958A2B3AC96D007249BE /* Bundle+Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Properties.swift"; sourceTree = "<group>"; };
 		0736958C2B3B79E0007249BE /* StatsEventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsEventHandler.swift; sourceTree = "<group>"; };
 		0736958E2B3B8047007249BE /* PlatformMethodHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformMethodHandler.swift; sourceTree = "<group>"; };
-		075637B22B0157CB005AFB8E /* libcore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = libcore.xcframework; path = ../libcore/bin/libcore.xcframework; sourceTree = "<group>"; };
 		07A63A832B1E728C00CAFA4D /* Release */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Release; path = ../build/ios/framework/release; sourceTree = "<group>"; };
 		07A63A842B1E72AE00CAFA4D /* App.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = App.xcframework; path = ../build/ios/framework/release/App.xcframework; sourceTree = "<group>"; };
 		07A63A872B1E72C800CAFA4D /* Flutter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Flutter.xcframework; path = ../build/ios/framework/release/Flutter.xcframework; sourceTree = "<group>"; };
@@ -168,6 +145,7 @@
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
 		574F12C7748958784380337F /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 		60F1D4AAC33ACF5C8307310D /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		68885DD22B4EEDA100D214BA /* hiddify-libcore-ios.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = "hiddify-libcore-ios.xcframework"; path = "Frameworks/hiddify-libcore-ios.xcframework"; sourceTree = "<group>"; };
 		74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Runner-Bridging-Header.h"; sourceTree = "<group>"; };
 		74858FAE1ED2DC5600515810 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7AFA3C8E1D35360C0083082E /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Release.xcconfig; path = Flutter/Release.xcconfig; sourceTree = "<group>"; };
@@ -193,8 +171,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				073695782B39DB2B007249BE /* Libcore.xcframework in Frameworks */,
-				075637BC2B015864005AFB8E /* NetworkExtension.framework in Frameworks */,
+				68885DD42B4EF00900D214BA /* hiddify-libcore-ios.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,6 +188,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				075637BA2B01583F005AFB8E /* Pods_Runner.framework in Frameworks */,
+				68885DD72B4EF33400D214BA /* NetworkExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,7 +307,6 @@
 		97C146E51CF9000F007C117D = {
 			isa = PBXGroup;
 			children = (
-				0736957A2B39DE78007249BE /* Libcore.xcframework */,
 				03E392CD2ADDE103000ADF15 /* Shared */,
 				9740EEB11CF90186004384FC /* Flutter */,
 				97C146F01CF9000F007C117D /* Runner */,
@@ -373,12 +350,8 @@
 		B8133545EEE13EDD5549E6A3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				073695722B39DA23007249BE /* Libcore.xcframework */,
-				0736955C2B384217007249BE /* libcore.xcframework */,
-				0736956A2B39814F007249BE /* libcore.xcframework */,
-				0736956E2B3998A2007249BE /* libcore.xcframework */,
+				68885DD22B4EEDA100D214BA /* hiddify-libcore-ios.xcframework */,
 				0736954E2B1FEB3E007249BE /* mobile_scanner.xcframework */,
-				073695362B1FD56C007249BE /* libcore */,
 				07A63A932B1E72FB00CAFA4D /* cupertino_http.xcframework */,
 				07A63A972B1E72FB00CAFA4D /* device_info_plus.xcframework */,
 				07A63A952B1E72FB00CAFA4D /* FBLPromises.xcframework */,
@@ -404,7 +377,6 @@
 				07A63A872B1E72C800CAFA4D /* Flutter.xcframework */,
 				07A63A842B1E72AE00CAFA4D /* App.xcframework */,
 				07A63A832B1E728C00CAFA4D /* Release */,
-				075637B22B0157CB005AFB8E /* libcore.xcframework */,
 				60F1D4AAC33ACF5C8307310D /* Pods_Runner.framework */,
 				DDA50BDF2E5E5DDA3995F24D /* Pods_RunnerTests.framework */,
 				03E392B72ADDA00E000ADF15 /* NetworkExtension.framework */,
@@ -462,7 +434,6 @@
 				97C146EA1CF9000F007C117D /* Sources */,
 				97C146EB1CF9000F007C117D /* Frameworks */,
 				97C146EC1CF9000F007C117D /* Resources */,
-				9705A1C41CF9048500538489 /* Embed Frameworks (2 items) */,
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
 				FBEFD3291AEA65EDE2F5AEF6 /* [CP] Embed Pods Frameworks */,
 			);
@@ -913,7 +884,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CPLUSPLUSFLAGS = (
 					"-fcxx-modules",
 					"$(OTHER_CFLAGS)",
@@ -971,6 +942,7 @@
 					"$(PROJECT_DIR)/..",
 				);
 				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/ios/framework/$(CONFIGURATION)",
@@ -1157,7 +1129,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CPLUSPLUSFLAGS = (
 					"-fcxx-modules",
 					"$(OTHER_CFLAGS)",
@@ -1218,6 +1190,7 @@
 					"$(PROJECT_DIR)/..",
 				);
 				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/ios/framework/$(CONFIGURATION)",
@@ -1293,6 +1266,7 @@
 					"$(PROJECT_DIR)/..",
 				);
 				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/ios/framework/$(CONFIGURATION)",
