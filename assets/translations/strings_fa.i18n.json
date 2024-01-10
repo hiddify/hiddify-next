@@ -73,11 +73,11 @@
         "update": {
             "buttonTxt": "بروزرسانی",
             "tooltip": "بروزرسانی پروفایل",
+            "updateSubscriptions": "بروزرسانی اشتراک‌ها",
             "failureMsg": "در بروزرسانی پروفایل خطایی رخ داد",
             "successMsg": "پروفایل با موفقیت بروزرسانی شد",
             "namedFailureMsg": "در بروزرسانی \"${name}\" خطایی رخ داد",
-            "namedSuccessMsg": "\"${name}\" با موفقیت به روز شد",
-            "updateSubscriptions": "بروزرسانی اشتراک‌ها"
+            "namedSuccessMsg": "\"${name}\" با موفقیت به روز شد"
         },
         "share": {
             "buttonText": "اشتراک گذاری",

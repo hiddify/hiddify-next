@@ -73,11 +73,11 @@
         "update": {
             "buttonTxt": "更新",
             "tooltip": "更新配置文件",
+            "updateSubscriptions": "更新订阅",
             "failureMsg": "更新配置文件失败",
             "successMsg": "配置文件更新成功",
             "namedFailureMsg": "无法更新\"${name}\"",
-            "namedSuccessMsg": "\"${name}\" 更新成功",
-            "updateSubscriptions": "更新订阅"
+            "namedSuccessMsg": "\"${name}\" 更新成功"
         },
         "share": {
             "buttonText": "分享",
