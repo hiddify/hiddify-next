@@ -1,14 +1,10 @@
-import 'dart:io';
 import 'dart:ui';
 
-import 'package:hiddify/core/app_info/app_info_provider.dart';
-import 'package:hiddify/core/model/constants.dart';
 import 'package:hiddify/features/connection/notifier/connection_notifier.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:tray_manager/tray_manager.dart';
 import 'package:window_manager/window_manager.dart';
-import 'package:windows_single_instance/windows_single_instance.dart';
 
 part 'window_notifier.g.dart';
 
@@ -21,18 +17,14 @@ class WindowNotifier extends _$WindowNotifier with AppLogger {
   Future<void> build() async {
     if (!PlatformUtils.isDesktop) return;
 
-    if (Platform.isWindows) {
-      loggy.debug("ensuring single instance");
-      await WindowsSingleInstance.ensureSingleInstance([], "app.hiddify.com");
-    }
+    // if (Platform.isWindows) {
+    //   loggy.debug("ensuring single instance");
+    //   await WindowsSingleInstance.ensureSingleInstance([], "HiddifyNext");
+    // }
 
     await windowManager.ensureInitialized();
     await windowManager.setMinimumSize(minimumWindowSize);
     await windowManager.setSize(defaultWindowSize);
-
-    final appInfo = await ref.watch(appInfoProvider.future);
-    await windowManager
-        .setTitle("${Constants.appName} v${appInfo.presentVersion}");
   }
 
   Future<void> open({bool focus = true}) async {

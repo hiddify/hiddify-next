@@ -9,14 +9,24 @@
 
 int APIENTRY wWinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prev,
                       _In_ wchar_t *command_line, _In_ int show_command) {
-  HWND hwnd = ::FindWindow(L"FLUTTER_RUNNER_WIN32_WINDOW", L"Hiddify Next");
-  if (hwnd != NULL) {
-    DispatchToProtocolHandler(hwnd);
+  HANDLE hMutexInstance = CreateMutex(NULL, TRUE, L"HiddifyMutex");
+  HWND handle = FindWindowA(NULL, "Hiddify Next");
 
-    ::ShowWindow(hwnd, SW_NORMAL);
-    ::SetForegroundWindow(hwnd);
-    return EXIT_FAILURE;
+  if (GetLastError() == ERROR_ALREADY_EXISTS) {
+    flutter::DartProject project(L"data");
+    std::vector<std::string> command_line_arguments = GetCommandLineArguments();
+    project.set_dart_entrypoint_arguments(std::move(command_line_arguments));
+    FlutterWindow window(project);
+    if (window.SendAppLinkToInstance(L"Hiddify Next")) {
+      return false;
+    }
+
+    WINDOWPLACEMENT place = {sizeof(WINDOWPLACEMENT)};
+    GetWindowPlacement(handle, &place);
+    ShowWindow(handle, SW_NORMAL);
+    return 0;
   }
+
   // Attach to console when present (e.g., 'flutter run') or create a
   // new console when running with a debugger.
   if (!::AttachConsole(ATTACH_PARENT_PROCESS) && ::IsDebuggerPresent()) {
@@ -49,5 +59,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prev,
   }
 
   ::CoUninitialize();
+  ReleaseMutex(hMutexInstance);
   return EXIT_SUCCESS;
 }
