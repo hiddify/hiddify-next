@@ -1,0 +1,130 @@
+{
+    "general": {
+        "reset": "Renicio"
+    },
+    "home": {
+        "emptyProfilesMsg": "Comience agregando un perfil de suscripción",
+        "connection": {
+            "disconnecting": "Desconectando",
+            "experimentalNotice": "Funciones experimentales en uso"
+        }
+    },
+    "profile": {
+        "overviewPageTitle": "Perfiles",
+        "activeProfileNameSemanticLabel": "Nombre del perfil activo: \"${name}\".",
+        "activeProfileBtnSemanticLabel": "Ver todos los perfiles.",
+        "subscription": {
+            "expired": "Caducado"
+        },
+        "update": {
+            "updateSubscriptions": "Actualizar suscripciones",
+            "successMsg": "Perfil actualizado con éxito",
+            "namedSuccessMsg": "\"${name}\" actualizado exitosamente"
+        },
+        "share": {
+            "exportToClipboardSuccess": "Exportado al portapapeles",
+            "exportConfigToClipboardSuccess": "Configuración copiada al portapapeles"
+        },
+        "delete": {
+            "successMsg": "Perfil eliminado exitosamente"
+        },
+        "save": {
+            "successMsg": "Perfil guardado exitosamente"
+        }
+    },
+    "proxies": {
+        "pageTitle": "Proxies",
+        "emptyProxiesMsg": "No proxies disponibles",
+        "delayTestTooltip": "Prueba de Restraso",
+        "sortTooltip": "Ordenar Proxies",
+        "sortOptions": {
+            "unsorted": "Por Defecto",
+            "name": "Alfabéticamente",
+            "delay": "Por retraso"
+        }
+    },
+    "logs": {
+        "resumeTooltip": "reanudar"
+    },
+    "settings": {
+        "requiresRestartMsg": "Para que esto surta efecto, reinicie la aplicación.",
+        "experimentalMsg": "Las funciones con el indicador Experimental aún están en desarrollo y pueden causar problemas.",
+        "general": {
+            "regionMsg": "Ayuda a configurar opciones predeterminadas para omitir direcciones nacionales",
+            "themeModes": {
+                "system": "Seguir el tema del sistema",
+                "dark": "Modo Oscuro",
+                "light": "Modo Claro",
+                "black": "Modo Negro"
+            },
+            "silentStart": "Inicio Silencioso",
+            "ignoreBatteryOptimizationsMsg": "Elimine las restricciones para un rendimiento VPN óptimo"
+        },
+        "advanced": {
+            "debugModeMsg": "Reinicie la aplicación para aplicar este cambio."
+        },
+        "network": {
+            "perAppProxyModes": {
+                "off": "Todo",
+                "offMsg": "Proxy en todas las aplicaciones",
+                "include": "Proxy",
+                "includeMsg": "Proxy solo en aplicaciones seleccionadas",
+                "exclude": "Bypass",
+                "excludeMsg": "No hacer proxy de aplicaciones seleccionadas"
+            },
+            "hideSystemApps": "Ocultar aplicaciones del sistema"
+        },
+        "config": {
+            "resetBtn": "Restablecer opciones",
+            "serviceModes": {
+                "proxy": "Proxy",
+                "systemProxy": "Sistema Proxy",
+                "tun": "VPN"
+            },
+            "logLevel": "Registro del Nivel",
+            "resolveDestination": "Resolver Destino",
+            "ipv6Modes": {
+                "disable": "Desactivar",
+                "enable": "Activar",
+                "prefer": "Preferido",
+                "only": "Exclusivo"
+            },
+            "remoteDnsAddress": "DNS Remoto",
+            "directDnsAddress": "DNS Directo",
+            "connectionTestUrl": "URL de prueba de conexión",
+            "urlTestInterval": "URL Prueba de Intervalo",
+            "strictRoute": "Ruta estricta"
+        },
+        "geoAssets": {
+            "successMsg": "Activo actualizado correctamente",
+            "missingGeoAssetsMsg": "Faltan los archivos de los recursos de enrutamiento seleccionados. Descárgalos o elige los existentes."
+        }
+    },
+    "appUpdate": {
+        "notAvailableMsg": "Ya estas usando la última versión."
+    },
+    "tray": {
+        "status": {
+            "disconnect": "Desconectado",
+            "disconnecting": "Desconectando"
+        }
+    },
+    "failure": {
+        "singbox": {
+            "missingPrivilegeMsg": "El modo VPN requiere privilegios de administrador. Reinicie la aplicación como administrador o cambie el modo de servicio."
+        },
+        "profiles": {
+            "unexpected": "Error Inesperado",
+            "notFound": "Perfil no encontrado",
+            "invalidConfig": "Configuracion Invalida",
+            "invalidUrl": "URL Invalido"
+        },
+        "connection": {
+            "badResponse": "Mala respuesta"
+        }
+    },
+    "play": {
+        "short_description": "Auto, SSH, VLESS, Vmess, Trojan, Reality, Sing-Box, Clash, Xray, Shadowsocks",
+        "full_description": "El objetivo clave de HiddifyNext es proporcionar un cliente de túnel seguro, fácil de usar y eficiente. Le permite enrutar todo el tráfico o el tráfico de aplicaciones seleccionadas a un servidor remoto de su elección, utilizando el permiso del servicio VPN.Nota: No proporcionamos ningún servidor; Los usuarios deben garantizar que sus actividades en línea permanezcan privadas mediante el uso de su propio servidor autohospedado o servidores confiables. Soportamos servidores con:- Enlace de suscripción normal a V2ray/Xray- Enlace de suscripción a Choque- Enlace de suscripción a Sing-Box¿Cuáles son nuestras características únicas? - Fácil de usar - Optimizado y Rápido - Seleccionar automáticamente LowestPing - Mostrar información de uso del usuario. - Importe fácilmente un subvínculo con un solo clic mediante enlaces profundos - Gratis y sin anuncios - Cambie fácilmente los subvínculos de usuario - más y másApoyo:- Todos los protocolos soportados por Sing-Box- VLESS + xtls realidad, visión- VMESS- troyano- Calcetines Shoadow- Realidad-V2ray-Histria2-TUIC-SSH- SombraTLSEl código fuente existe en https://github.com/hiddify/Hiddify-NextEl núcleo de la aplicación se basa en sing-box de código abierto.Descripción del permiso:- Servicio VPN: como el objetivo de esta aplicación es proporcionar un cliente de túnel seguro, fácil de usar y eficiente, necesitamos este permiso para poder enrutar el tráfico a través del túnel al servidor remoto.- CONSULTAR TODOS LOS PAQUETES: este permiso se utiliza para permitir a los usuarios incluir o excluir aplicaciones específicas para la tunelización.- RECIBIR ARRANQUE COMPLETADO: este permiso se puede habilitar o deshabilitar desde la configuración de la aplicación para activar esta aplicación al iniciar el dispositivo.- PUBLICAR NOTIFICACIONES: este permiso es esencial ya que empleamos un servicio en primer plano para garantizar el funcionamiento continuo del servicio VPN.- Esta aplicación está libre de publicidad. Los datos analíticos y de fallos solo se producen con el consentimiento explícito del usuario en el primer uso de la aplicación."
+    }
+}

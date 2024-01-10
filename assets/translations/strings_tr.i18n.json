@@ -73,11 +73,11 @@
         "update": {
             "buttonTxt": "Güncelle",
             "tooltip": "Profili Güncelle",
+            "updateSubscriptions": "Abonelikleri Güncelle",
             "failureMsg": "Profil güncellenemedi",
             "successMsg": "Profil başarıyla güncellendi",
             "namedFailureMsg": "\"${name}\" güncellenemedi",
-            "namedSuccessMsg": "\"${name}\" başarıyla güncellendi",
-            "updateSubscriptions": "Abonelikleri Güncelle"
+            "namedSuccessMsg": "\"${name}\" başarıyla güncellendi"
         },
         "share": {
             "buttonText": "Paylaş",
