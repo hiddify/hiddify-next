@@ -95,7 +95,7 @@ class VPNManager: ObservableObject {
         let newManager = NETunnelProviderManager()
         let `protocol` = NETunnelProviderProtocol()
         `protocol`.providerBundleIdentifier = "\(Bundle.main.baseBundleIdentifier).SingBoxPacketTunnel"
-        `protocol`.serverAddress = "Hiddify"
+        `protocol`.serverAddress = "localhost"
         newManager.protocolConfiguration = `protocol`
         newManager.localizedDescription = "Hiddify"
         try await newManager.saveToPreferences()
