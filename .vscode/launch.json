@@ -28,6 +28,17 @@
             "type": "dart",
             "flutterMode": "release",
             "program": "lib/main_prod.dart",
+        },
+        {
+            "name": "Attach: Design for iPad",
+            "request": "attach",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "args": [
+                "--app-id",
+                "com.hiddify.ios"
+            ],
+            "deviceId": "designed-for-ipad",
         }
     ]
 }
