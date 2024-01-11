@@ -84,8 +84,6 @@ dev_dependencies:
   slang_build_runner: ^3.28.0
   flutter_gen_runner: ^5.4.0
   go_router_builder: ^2.4.1
-  custom_lint: ^0.5.7
-  riverpod_lint: ^2.3.7
   icons_launcher: ^2.1.6
   dependency_validator: ^3.2.3
 
