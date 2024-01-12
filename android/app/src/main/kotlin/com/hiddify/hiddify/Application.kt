@@ -25,10 +25,15 @@ class Application : Application() {
 
         Seq.setContext(this)
 
-        registerReceiver(AppChangeReceiver(), IntentFilter().apply {
+        if (checkSelfPermission(Manifest.permission.SOME_PERMISSION) == PackageManager.PERMISSION_GRANTED) {
+            registerReceiver(AppChangeReceiver(), IntentFilter().apply {
+                addAction(Intent.ACTION_PACKAGE_ADDED)
+                addDataScheme("package")
+            })
+        }
             addAction(Intent.ACTION_PACKAGE_ADDED)
             addDataScheme("package")
-        })
+        }
     }
 
     companion object {
