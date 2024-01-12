@@ -88,13 +88,14 @@ abstract class ProfileParser {
         case {
           "upload": final upload?,
           "download": final download?,
-          "total": final total,
+          "total": var total,
           "expire": final expire
         }) {
+      total = total ?? 0;
       return SubscriptionInfo(
         upload: upload,
         download: download,
-        total: total ?? 9223372036854775807,
+        total: total == 0 ? 9223372036854775807 : total,
         expire: DateTime.fromMillisecondsSinceEpoch(
           (expire ?? 92233720368) * 1000,
         ),
