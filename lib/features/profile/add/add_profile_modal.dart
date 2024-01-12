@@ -248,6 +248,7 @@ class _Button extends StatelessWidget {
                   child: Text(
                     label,
                     style: theme.textTheme.labelLarge?.copyWith(color: color),
+                    textAlign: TextAlign.center,
                   ),
                 ),
               ],
