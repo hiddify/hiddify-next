@@ -48,7 +48,7 @@ public class MethodHandler: NSObject, FlutterPlugin {
                 result(FlutterError(code: String(error.code), message: error.description, details: nil))
                 return
             }
-            result(true)
+            result("")
         case "change_config_options":
             guard let options = call.arguments as? String else {
                 result(FlutterError(code: "INVALID_ARGS", message: nil, details: nil))

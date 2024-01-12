@@ -43,73 +43,75 @@ class ProfilesOverviewModal extends HookConsumerWidget {
       },
     );
 
-    return Stack(
-      children: [
-        CustomScrollView(
-          controller: scrollController,
-          slivers: [
-            switch (asyncProfiles) {
-              AsyncData(value: final profiles) => SliverList.builder(
-                  itemBuilder: (context, index) {
-                    final profile = profiles[index];
-                    return ProfileTile(profile: profile);
-                  },
-                  itemCount: profiles.length,
+    return SafeArea(
+      child: Stack(
+        children: [
+          CustomScrollView(
+            controller: scrollController,
+            slivers: [
+              switch (asyncProfiles) {
+                AsyncData(value: final profiles) => SliverList.builder(
+                    itemBuilder: (context, index) {
+                      final profile = profiles[index];
+                      return ProfileTile(profile: profile);
+                    },
+                    itemCount: profiles.length,
+                  ),
+                AsyncError(:final error) => SliverErrorBodyPlaceholder(
+                    t.presentShortError(error),
+                  ),
+                AsyncLoading() => const SliverLoadingBodyPlaceholder(),
+                _ => const SliverToBoxAdapter(),
+              },
+              const SliverGap(48),
+            ],
+          ),
+          Positioned.fill(
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: Wrap(
+                  alignment: WrapAlignment.center,
+                  spacing: 8,
+                  children: [
+                    FilledButton.icon(
+                      onPressed: () {
+                        const AddProfileRoute().push(context);
+                      },
+                      icon: const Icon(Icons.add),
+                      label: Text(t.profile.add.shortBtnTxt),
+                    ),
+                    FilledButton.icon(
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return const ProfilesSortModal();
+                          },
+                        );
+                      },
+                      icon: const Icon(Icons.sort),
+                      label: Text(t.general.sort),
+                    ),
+                    FilledButton.icon(
+                      onPressed: () async {
+                        await ref
+                            .read(
+                              foregroundProfilesUpdateNotifierProvider.notifier,
+                            )
+                            .trigger();
+                      },
+                      icon: const Icon(Icons.update),
+                      label: Text(t.profile.update.updateSubscriptions),
+                    ),
+                  ],
                 ),
-              AsyncError(:final error) => SliverErrorBodyPlaceholder(
-                  t.presentShortError(error),
-                ),
-              AsyncLoading() => const SliverLoadingBodyPlaceholder(),
-              _ => const SliverToBoxAdapter(),
-            },
-            const SliverGap(48),
-          ],
-        ),
-        Positioned.fill(
-          child: Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              child: Wrap(
-                alignment: WrapAlignment.center,
-                spacing: 8,
-                children: [
-                  FilledButton.icon(
-                    onPressed: () {
-                      const AddProfileRoute().push(context);
-                    },
-                    icon: const Icon(Icons.add),
-                    label: Text(t.profile.add.shortBtnTxt),
-                  ),
-                  FilledButton.icon(
-                    onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return const ProfilesSortModal();
-                        },
-                      );
-                    },
-                    icon: const Icon(Icons.sort),
-                    label: Text(t.general.sort),
-                  ),
-                  FilledButton.icon(
-                    onPressed: () async {
-                      await ref
-                          .read(
-                            foregroundProfilesUpdateNotifierProvider.notifier,
-                          )
-                          .trigger();
-                    },
-                    icon: const Icon(Icons.update),
-                    label: Text(t.profile.update.updateSubscriptions),
-                  ),
-                ],
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
