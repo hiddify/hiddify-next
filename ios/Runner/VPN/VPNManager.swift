@@ -115,8 +115,8 @@ class VPNManager: ObservableObject {
     }
     
     var isAnyVPNConnected: Bool {
-        let cfDict = CFNetworkCopySystemProxySettings()
-        let nsDict = cfDict!.takeRetainedValue() as NSDictionary
+        guard let cfDict = CFNetworkCopySystemProxySettings() else { return false }
+        let nsDict = cfDict.takeRetainedValue() as NSDictionary
         guard let keys = nsDict["__SCOPED__"] as? NSDictionary else {
             return false
         }
