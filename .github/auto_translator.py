@@ -1,8 +1,8 @@
-import i18n
-import json
 from deep_translator import GoogleTranslator
-import sys
+import json
 import os
+import re
+import sys
 
 
 def get_path(lang):
@@ -19,7 +19,9 @@ def read_translate(lang):
     pat = get_path(lang)
     if not os.path.isfile(pat):
         return {}
-    with open(pat) as f:
+    sanitized_pat = os.path.abspath(pat)
+    sanitized_pat = os.path.basename(sanitized_pat)
+    with open(sanitized_pat) as f:
         return json.load(f)
 
 
@@ -40,6 +42,9 @@ def recursive_translate(src, dst, translator):
 if __name__ == "__main__":
     src = sys.argv[1]
     dst = sys.argv[2]
+
+    # Sanitize the dst argument to prevent path traversal
+    dst = re.sub(r'[^\w.-]', '', dst)
 
     src_pofile = read_translate(src)
     dst_pofile = read_translate(dst)
