@@ -19,108 +19,144 @@ public class MethodHandler: NSObject, FlutterPlugin {
         let channel = FlutterMethodChannel(name: Self.name, binaryMessenger: registrar.messenger())
         let instance = MethodHandler()
         registrar.addMethodCallDelegate(instance, channel: channel)
-        instance.channel = channel	
+        instance.channel = channel
     }
     
     private var channel: FlutterMethodChannel?
     
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
+        @Sendable func mainResult(_ res: Any?) async -> Void {
+            await MainActor.run {
+                result(res)
+            }
+        }
+        
         switch call.method {
         case "parse_config":
-            result(parseConfig(args: call.arguments))
+            guard
+                let args = call.arguments as? [String:Any?],
+                let path = args["path"] as? String,
+                let tempPath = args["tempPath"] as? String,
+                let debug = (args["debug"] as? NSNumber)?.boolValue
+            else {
+                result(FlutterError(code: "INVALID_ARGS", message: nil, details: nil))
+                return
+            }
+            var error: NSError?
+            MobileParse(path, tempPath, debug, &error)
+            if let error {
+                result(FlutterError(code: String(error.code), message: error.description, details: nil))
+                return
+            }
+            result(true)
         case "change_config_options":
-            result(changeConfigOptions(args: call.arguments))
+            guard let options = call.arguments as? String else {
+                result(FlutterError(code: "INVALID_ARGS", message: nil, details: nil))
+                return
+            }
+            VPNConfig.shared.configOptions = options
+            result(true)
         case "setup":
-            Task { [unowned self] in
-                let res = await setup(args: call.arguments)
-                await MainActor.run {
-                    result(res)
+            Task {
+                do {
+                    try await VPNManager.shared.setup()
+                } catch {
+                    await mainResult(FlutterError(code: "SETUP", message: error.localizedDescription, details: nil))
+                    return
                 }
+                await mainResult(true)
             }
         case "start":
-            Task { [unowned self] in
-                let res = await start(args: call.arguments)
-                await MainActor.run {
-                    result(res)
+            Task {
+                guard
+                    let args = call.arguments as? [String:Any?],
+                    let path = args["path"] as? String
+                else {
+                    await mainResult(FlutterError(code: "INVALID_ARGS", message: nil, details: nil))
+                    return
                 }
+                VPNConfig.shared.activeConfigPath = path
+                var error: NSError?
+                let config = MobileBuildConfig(path, VPNConfig.shared.configOptions, &error)
+                if let error {
+                    await mainResult(FlutterError(code: String(error.code), message: error.description, details: nil))
+                    return
+                }
+                do {
+                    try await VPNManager.shared.setup()
+                    try await VPNManager.shared.connect(with: config, disableMemoryLimit: VPNConfig.shared.disableMemoryLimit)
+                } catch {
+                    await mainResult(FlutterError(code: "SETUP_CONNECTION", message: error.localizedDescription, details: nil))
+                    return
+                }
+                await mainResult(true)
             }
         case "restart":
             Task { [unowned self] in
-                let res = await restart(args: call.arguments)
-                await MainActor.run {
-                    result(res)
+                guard
+                    let args = call.arguments as? [String:Any?],
+                    let path = args["path"] as? String
+                else {
+                    await mainResult(FlutterError(code: "INVALID_ARGS", message: nil, details: nil))
+                    return
                 }
+                VPNConfig.shared.activeConfigPath = path
+                VPNManager.shared.disconnect()
+                await waitForStop().value
+                var error: NSError?
+                let config = MobileBuildConfig(path, VPNConfig.shared.configOptions, &error)
+                if let error {
+                    await mainResult(FlutterError(code: "BUILD_CONFIG", message: error.localizedDescription, details: nil))
+                    return
+                }
+                do {
+                    try await VPNManager.shared.setup()
+                    try await VPNManager.shared.connect(with: config, disableMemoryLimit: VPNConfig.shared.disableMemoryLimit)
+                } catch {
+                    await mainResult(FlutterError(code: "SETUP_CONNECTION", message: error.localizedDescription, details: nil))
+                    return
+                }
+                await mainResult(true)
             }
         case "stop":
-            result(stop())
+            VPNManager.shared.disconnect()
+            result(true)
         case "url_test":
-            result(urlTest(args: call.arguments))
+            guard
+                let args = call.arguments as? [String:Any?]
+            else {
+                result(FlutterError(code: "INVALID_ARGS", message: nil, details: nil))
+                return
+            }
+            let group = args["groupTag"] as? String
+            FileManager.default.changeCurrentDirectoryPath(FilePath.sharedDirectory.path)
+            do {
+                try LibboxNewStandaloneCommandClient()?.urlTest(group)
+            } catch {
+                result(FlutterError(code: "URL_TEST", message: error.localizedDescription, details: nil))
+                return
+            }
+            result(true)
         case "select_outbound":
-            result(selectOutbound(args: call.arguments))
+            guard
+                let args = call.arguments as? [String:Any?],
+                let group = args["groupTag"] as? String,
+                let outbound = args["outboundTag"] as? String
+            else {
+                result(FlutterError(code: "INVALID_ARGS", message: nil, details: nil))
+                return
+            }
+            FileManager.default.changeCurrentDirectoryPath(FilePath.sharedDirectory.path)
+            do {
+                try LibboxNewStandaloneCommandClient()?.selectOutbound(group, outboundTag: outbound)
+            } catch {
+                result(FlutterError(code: "SELECT_OUTBOUND", message: error.localizedDescription, details: nil))
+                return
+            }
+            result(true)
         default:
             result(FlutterMethodNotImplemented)
         }
-    }
-    
-    public func parseConfig(args: Any?) -> String {
-        var error: NSError?
-        guard
-            let args = args as? [String:Any?],
-            let path = args["path"] as? String,
-            let tempPath = args["tempPath"] as? String,
-            let debug = (args["debug"] as? NSNumber)?.boolValue
-        else {
-            return "bad method format"
-        }
-        let res = MobileParse(path, tempPath, debug, &error)
-        if let error {
-            return error.localizedDescription
-        }
-        return ""
-    }
-    
-    public func changeConfigOptions(args: Any?) -> Bool {
-        guard let options = args as? String else {
-            return false
-        }
-        VPNConfig.shared.configOptions = options
-        return true
-    }
-    
-    public func setup(args: Any?) async -> Bool {
-        do {
-            try await VPNManager.shared.setup()
-        } catch {
-            return false
-        }
-        return true
-    }
-    
-    public func start(args: Any?) async -> Bool {
-        guard
-            let args = args as? [String:Any?],
-            let path = args["path"] as? String
-        else {
-            return false
-        }
-        VPNConfig.shared.activeConfigPath = path
-        var error: NSError?
-        let config = MobileBuildConfig(path, VPNConfig.shared.configOptions, &error)
-        if let error {
-            return false
-        }
-        do {
-            try await VPNManager.shared.setup()
-            try await VPNManager.shared.connect(with: config, disableMemoryLimit: VPNConfig.shared.disableMemoryLimit)
-        } catch {
-            return false
-        }
-        return true
-    }
-    
-    public func stop() -> Bool {
-        VPNManager.shared.disconnect()
-        return true
     }
     
     private func waitForStop() -> Future<Void, Never> {
@@ -135,62 +171,5 @@ public class MethodHandler: NSObject, FlutterPlugin {
                     cancellable?.cancel()
                 })
         }
-    }
-    
-    public func restart(args: Any?) async -> Bool {
-        guard
-            let args = args as? [String:Any?],
-            let path = args["path"] as? String
-        else {
-            return false
-        }
-        VPNConfig.shared.activeConfigPath = path
-        VPNManager.shared.disconnect()
-        await waitForStop().value
-        var error: NSError?
-        let config = MobileBuildConfig(path, VPNConfig.shared.configOptions, &error)
-        if let error {
-            return false
-        }
-        do {
-            try await VPNManager.shared.setup()
-            try await VPNManager.shared.connect(with: config, disableMemoryLimit: VPNConfig.shared.disableMemoryLimit)
-        } catch {
-            return false
-        }
-        return true
-    }
-    
-    public func selectOutbound(args: Any?) -> Bool {
-        guard
-            let args = args as? [String:Any?],
-            let group = args["groupTag"] as? String,
-            let outbound = args["outboundTag"] as? String
-        else {
-            return false
-        }
-        FileManager.default.changeCurrentDirectoryPath(FilePath.sharedDirectory.path)
-        do {
-            try LibboxNewStandaloneCommandClient()?.selectOutbound(group, outboundTag: outbound)
-        } catch {
-            return false
-        }
-        return true
-    }
-    
-    public func urlTest(args: Any?) -> Bool {
-        guard
-            let args = args as? [String:Any?]
-        else {
-            return false
-        }
-        let group = args["groupTag"] as? String
-        FileManager.default.changeCurrentDirectoryPath(FilePath.sharedDirectory.path)
-        do {
-            try LibboxNewStandaloneCommandClient()?.urlTest(group)
-        } catch {
-            return false
-        }
-        return true
     }
 }
