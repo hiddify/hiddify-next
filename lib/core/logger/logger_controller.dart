@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:flutter_loggy/flutter_loggy.dart';
 import 'package:hiddify/core/logger/custom_logger.dart';
 import 'package:hiddify/utils/custom_loggers.dart';
 import 'package:loggy/loggy.dart';
@@ -18,9 +17,13 @@ class LoggerController extends LoggyPrinter with InfraLogger {
 
   static late LoggerController _instance;
 
+  static void preInit() {
+    Loggy.initLoggy(logPrinter: const ConsolePrinter());
+  }
+
   static void init(String appLogPath) {
     _instance = LoggerController(
-      const PrettyDeveloperPrinter(),
+      const ConsolePrinter(),
       {"app": FileLogPrinter(appLogPath)},
     );
     Loggy.initLoggy(logPrinter: _instance);

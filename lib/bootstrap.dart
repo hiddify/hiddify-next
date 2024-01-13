@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
-import 'package:flutter_loggy/flutter_loggy.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hiddify/core/analytics/analytics_controller.dart';
 import 'package:hiddify/core/app_info/app_info_provider.dart';
@@ -27,7 +26,6 @@ import 'package:hiddify/features/window/notifier/window_notifier.dart';
 import 'package:hiddify/singbox/service/singbox_service_provider.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:loggy/loggy.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 Future<void> lazyBootstrap(
@@ -36,8 +34,7 @@ Future<void> lazyBootstrap(
 ) async {
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
-  Loggy.initLoggy(logPrinter: const PrettyDeveloperPrinter());
-
+  LoggerController.preInit();
   FlutterError.onError = Logger.logFlutterError;
   WidgetsBinding.instance.platformDispatcher.onError =
       Logger.logPlatformDispatcherError;
