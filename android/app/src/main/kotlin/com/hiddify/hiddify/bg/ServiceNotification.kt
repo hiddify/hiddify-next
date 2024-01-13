@@ -107,9 +107,6 @@ class ServiceNotification(private val status: MutableLiveData<Status>, private v
             addAction(Intent.ACTION_SCREEN_ON)
             addAction(Intent.ACTION_SCREEN_OFF)
         }, null, null)
-            addAction(Intent.ACTION_SCREEN_ON)
-            addAction(Intent.ACTION_SCREEN_OFF)
-        }
         receiverRegistered = true
     }
 
