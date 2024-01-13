@@ -1,0 +1,23 @@
+name: CI
+on:
+  pull_request:
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - '.vscode/'
+      - 'appcast.xml'
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - '.vscode/'
+      - 'appcast.xml'
+
+jobs:
+  run:
+    uses: ./.github/workflows/build.yml
+    secrets: inherit
+    with:
+      upload-artifact: false

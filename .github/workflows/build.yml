@@ -1,26 +1,26 @@
 name: Build
 on:
-  push:
-    branches:
-      - main
-    tags:
-      - 'v*'
-    paths-ignore:
-      - '**.md'
-      - 'docs/**'
-      - '.github/**'
-      - '!.github/workflows/build.yml'
-      - 'appcast.xml'
-  # pull_request:
-  #   branches:
-  #     - main
+  workflow_call:
+    inputs:
+      upload-artifact:
+        type: boolean
+        default: true
+      tag-name:
+        type: string
+        default: "draft"
+      channel:
+        type: string
+        default: "dev"
+
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
   cancel-in-progress: true
 
 env:
-  CHANNEL: ${{ github.ref_type == 'tag' && endsWith(github.ref_name, 'dev') && 'dev' || github.ref_type != 'tag' && 'dev' || 'prod' }}
+  CHANNEL: "${{ inputs.channel }}"
   NDK_VERSION: r26b
+  UPLOAD_ARTIFACT: "${{ inputs.upload-artifact }}"
+  TAG_NAME: "${{ inputs.tag-name }}"
 
 jobs:
   build:
@@ -55,17 +55,11 @@ jobs:
             targets: dmg
             filename: hiddify-macos-universal
 
-          # - platform: ios
-          #   os: macos-13
-          #   aarch: universal
-          #   filename: hiddify-ios
-          #   targets: ipa
-
     runs-on: ${{ matrix.os }}
     steps:
       - name: checkout
         uses: actions/checkout@v3
-      - name: Install macos dmg needed tools
+      - name: Setup Apple dependencies
         if: matrix.platform == 'macos' || matrix.platform == 'ios'
         run: |
           # xcode-select --install || softwareupdate --all --install --force
@@ -75,6 +69,7 @@ jobs:
           python3 -m pip install --upgrade setuptools pip
           brew install create-dmg tree 
           npm install -g appdmg
+
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
@@ -125,7 +120,7 @@ jobs:
           make translate
           make gen
 
-      - name: Get Libs ${{ matrix.platform }}
+      - name: Get Libs & Bindings ${{ matrix.platform }}
         run: |
           make ${{ matrix.platform }}-libs
 
@@ -172,14 +167,14 @@ jobs:
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
           cp $PP_PACKET_TUNNEL_PATH ~/Library/MobileDevice/Provisioning\ Profiles
 
-      - name: Release ${{ matrix.platform }}
+      - name: Build ${{ matrix.platform }}
         env:
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
         run: |
           make ${{ matrix.platform }}-release
 
       - name: Upload Debug Symbols
-        if: ${{ github.ref_type == 'tag' }}
+        if: ${{ inputs.upload-artifact && inputs.tag-name != 'draft' }}
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
@@ -194,7 +189,7 @@ jobs:
           tree
           .\scripts\package_windows.ps1
 
-      - name: Copy to out Android apk
+      - name: Copy to out Android APK
         if: matrix.platform == 'android-apk'
         run: |
           mkdir out
@@ -204,7 +199,7 @@ jobs:
           cp ./build/app/outputs/flutter-apk/*x86_64*.apk out/hiddify-android-x86_64.apk || echo "no x64 apk"
           cp ./build/app/outputs/flutter-apk/app-release.apk out/hiddify-android-universal.apk || echo "no universal apk"
 
-      - name: Copy to out Android aab
+      - name: Copy to out Android AAB
         if: matrix.platform == 'android-aab'
         run: |
           mkdir out
@@ -233,43 +228,23 @@ jobs:
             mv *.zip ../out/
           fi
 
-      # - name: Copy to out unix
-      #   if: matrix.platform == 'linux' || matrix.platform == 'macos' || matrix.platform == 'ios'
-      #   run: |
-      #     ls -R dist/
-      #     mkdir out
-      #     mkdir tmp_out
-      #     IFS=',' read -r -a EXT_ARRAY <<< "${{ matrix.targets }}"
-      #     # Loop over extensions
-      #     for EXT in "${EXT_ARRAY[@]}"; do
-      #         # Find all files with this extension in SRC_DIR, and copy them to DST_DIR
-      #         find "." -type f -name "*.$EXT" -exec cp {} "tmp_out" \;
-      #     done
-
-      #     mv tmp_out/*.AppImage tmp_out/hiddify-linux-x64.AppImage &&\
-      #     chmod +x tmp_out/hiddify-linux-x64.AppImage &&\
-      #     cp ./.github/help/linux/* tmp_out/ \
-      #     ||echo "no app image"
-      #     mv tmp_out/*.dmg tmp_out/hiddify-macos-universal.dmg && \
-      #     cp ./.github/help/mac-windows/* tmp_out/ \
-      #     || echo "no macos dmg"
-      #     cd tmp_out && 7z a hiddify-${{matrix.platform}}-x64.zip ./ && mv *.zip ../out/
-      # Important! Cleanup: remove the certificate and provisioning profile from the runner!
       - name: Clean up keychain and provisioning profile
         if: ${{ always() && startsWith(matrix.os,'macos')}}
         run: |
           security delete-keychain $RUNNER_TEMP/app-signing.keychain-db
           rm ~/Library/MobileDevice/Provisioning\ Profiles/build_pp.mobileprovision
+
       - name: Upload Artifact
+        if: env.UPLOAD_ARTIFACT == 'true'
         uses: actions/upload-artifact@v3
         with:
           name: artifact
           path: ./out
           retention-days: 2
 
-  upload-draft:
+  update-draft:
     permissions: write-all
-    if: ${{ github.ref_type == 'branch' }}
+    if: ${{ inputs.upload-artifact }}
     needs: [build]
     runs-on: ubuntu-latest
     steps:
@@ -292,7 +267,6 @@ jobs:
 
       - name: Create or Update Draft Release
         uses: softprops/action-gh-release@v1
-        if: ${{ github.ref_type != 'tag' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -303,7 +277,7 @@ jobs:
 
   upload-release:
     permissions: write-all
-    if: ${{ github.ref_type == 'tag' }}
+    if: ${{ inputs.upload-artifact && inputs.tag-name != 'draft' }}
     needs: [build]
     runs-on: ubuntu-latest
     steps:
@@ -328,7 +302,7 @@ jobs:
           # prelease=$(curl --silent "https://api.github.com/repos/hiddify/hiddify-next/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")')
           # current="${{ github.ref_name }}"
           # gitchangelog $prelease..$current > release.md
-          sed 's|RELEASE_TAG|${{ github.ref_name }}|g' ./.github/release_message.md >> release.md
+          sed 's|RELEASE_TAG|${{ env.TAG_NAME }}|g' ./.github/release_message.md >> release.md
 
       - name: Upload Release
         uses: softprops/action-gh-release@v1
@@ -337,7 +311,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           prerelease: ${{ env.CHANNEL == 'dev' }}
-          tag_name: ${{ github.ref_name }}
+          tag_name: ${{ env.TAG_NAME }}
           body_path: './release.md'
           files: ./out/*
 
@@ -349,50 +323,6 @@ jobs:
         with:
           serviceAccountJson: service_account.json
           packageName: app.hiddify.com
-          releaseName: ${{ github.ref }}
+          releaseName: ${{ env.TAG_NAME }}
           releaseFiles: ./hiddify-android-market.aab
-          # track: ${{ env.CHANNEL == 'dev' && 'beta' || 'internal' }}
-          track:  'beta'
-
-      # - name: "Upload app to TestFlight"
-      #   uses: apple-actions/upload-testflight-build@v1
-      #   with:
-      #     app-path: "./hiddify-ios-universal.ipa"
-      #     issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
-      #     api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
-      #     api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
-
-  upload-winget-release:
-    permissions: write-all
-    if: ${{ github.ref_type == 'tag' }}
-    needs: [upload-release]
-    runs-on: windows-latest
-    steps:
-      - name: Find & Replace
-        id: version
-        uses: ashley-taylor/regex-property-action@v1.3
-        with:
-          value: '${{ github.ref_name }}'
-          regex: '^v|.dev$'
-          flags: 'gi' # Optional, defaults to "g"
-          replacement: ''
-      - name: Winget Publish
-        if: ${{ env.CHANNEL != 'dev' }}
-        uses: isaacrlevin/winget-publish-action@v.5
-        with:
-          publish-type: 'Update'
-          user: 'Hiddify'
-          package: 'Next'
-          version: ${{ steps.version.outputs.value }}
-          url: 'https://github.com/hiddify/hiddify-next/releases/download/${{ github.ref_name }}/hiddify-windows-x64-setup.zip'
-          token: ${{ secrets.WINGET_TOKEN }}
-
-      - name: Winget Publish Beta
-        uses: isaacrlevin/winget-publish-action@v.5
-        with:
-          publish-type: 'Update'
-          user: 'Hiddify'
-          package: 'Next.Beta'
-          version: ${{ steps.version.outputs.value }}
-          url: 'https://github.com/hiddify/hiddify-next/releases/download/${{ github.ref_name }}/hiddify-windows-x64-setup.zip'
-          token: ${{ secrets.WINGET_TOKEN }}
+          track: 'beta'
