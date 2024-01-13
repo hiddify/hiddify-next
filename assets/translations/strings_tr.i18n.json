@@ -242,6 +242,8 @@
         },
         "geoAssets": {
             "pageTitle": "Varlıkları Yönlendirme",
+            "geoip": "Geoip",
+            "geosite": "Geosite",
             "version": "Sürüm ${version}",
             "fileMissing": "Eksik dosya",
             "update": "Güncelleme",

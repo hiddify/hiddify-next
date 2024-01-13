@@ -243,7 +243,9 @@
             "update": "Actualizar",
             "download": "Descargar",
             "failureMsg": "No se pudo actualizar el activo",
-            "addRecommended": "Agregar activos recomendados"
+            "addRecommended": "Agregar activos recomendados",
+            "geoip": "Geoip",
+            "geosite": "Geosite"
         },
         "pageTitle": "Ajustes",
         "experimental": "Experimental"

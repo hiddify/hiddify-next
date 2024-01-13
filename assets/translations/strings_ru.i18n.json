@@ -242,6 +242,8 @@
         },
         "geoAssets": {
             "pageTitle": "Активы маршрутизации",
+            "geoip": "Geoip",
+            "geosite": "Geosite",
             "version": "Версия ${version}",
             "fileMissing": "Файл отсутствует",
             "update": "Обновить",
