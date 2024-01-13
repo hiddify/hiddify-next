@@ -19,5 +19,6 @@ jobs:
   run:
     uses: ./.github/workflows/build.yml
     secrets: inherit
+    permissions: write-all
     with:
       upload-artifact: false
