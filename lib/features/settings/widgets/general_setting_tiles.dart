@@ -22,7 +22,6 @@ class GeneralSettingTiles extends HookConsumerWidget {
     return Column(
       children: [
         const LocalePrefTile(),
-        const EnableAnalyticsPrefTile(),
         ListTile(
           title: Text(t.settings.general.themeMode),
           subtitle: Text(themeMode.present(t)),
@@ -53,6 +52,7 @@ class GeneralSettingTiles extends HookConsumerWidget {
             }
           },
         ),
+        const EnableAnalyticsPrefTile(),
         if (Platform.isAndroid)
           SwitchListTile(
             title: Text(t.settings.general.dynamicNotification),

@@ -160,8 +160,8 @@
             },
             "enableAnalytics": "Enable Analytics",
             "enableAnalyticsMsg": "Give permission to collect analytics and send crash reports to improve the app",
-            "autoStart": "Start on Boot",
-            "silentStart": "Silent Start",
+            "autoStart": "Start At Login",
+            "silentStart": "Start Minimized",
             "openWorkingDir": "Open Working Directory",
             "ignoreBatteryOptimizations": "Disable Battery Optimization",
             "ignoreBatteryOptimizationsMsg": "Remove restrictions for optimal VPN performance",
@@ -171,7 +171,8 @@
             "sectionTitle": "Advanced",
             "debugMode": "Debug Mode",
             "debugModeMsg": "Restart the app for applying this change",
-            "memoryLimit": "Memory Limit"
+            "memoryLimit": "Memory Limit",
+            "memoryLimitMsg": "Enable if you're experiencing out of memory errors or frequent app crash"
         },
         "network": {
             "perAppProxyPageTitle": "Per-app Proxy",

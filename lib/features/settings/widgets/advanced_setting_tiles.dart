@@ -64,6 +64,15 @@ class AdvancedSettingTiles extends HookConsumerWidget {
           ),
         ],
         SwitchListTile(
+          title: Text(t.settings.advanced.memoryLimit),
+          subtitle: Text(t.settings.advanced.memoryLimitMsg),
+          value: !disableMemoryLimit,
+          secondary: const Icon(Icons.memory),
+          onChanged: (value) async {
+            await ref.read(disableMemoryLimitProvider.notifier).update(!value);
+          },
+        ),
+        SwitchListTile(
           title: Text(t.settings.advanced.debugMode),
           value: debug,
           secondary: const Icon(Icons.bug_report),
@@ -88,13 +97,6 @@ class AdvancedSettingTiles extends HookConsumerWidget {
               );
             }
             await ref.read(debugModeNotifierProvider.notifier).update(value);
-          },
-        ),
-        SwitchListTile(
-          title: Text(t.settings.advanced.memoryLimit),
-          value: !disableMemoryLimit,
-          onChanged: (value) async {
-            await ref.read(disableMemoryLimitProvider.notifier).update(!value);
           },
         ),
       ],

@@ -171,7 +171,8 @@
             "sectionTitle": "Gelişmiş",
             "debugMode": "Hata ayıklama modu",
             "debugModeMsg": "Bu değişikliği uygulamak için uygulamayı yeniden başlatın",
-            "memoryLimit": "Bellek Sınırı"
+            "memoryLimit": "Bellek Sınırı",
+            "memoryLimitMsg": "Yetersiz bellek hataları veya sık sık uygulama çökmesi yaşıyorsanız etkinleştirin"
         },
         "network": {
             "perAppProxyPageTitle": "Uygulama başına Proxy",

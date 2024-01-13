@@ -171,7 +171,8 @@
             "sectionTitle": "پیشرفته",
             "debugMode": "دیباگ مود",
             "debugModeMsg": "برای اعمال این تغییر اپ را ری‌استارت کنید",
-            "memoryLimit": "محدودیت مموری"
+            "memoryLimit": "محدودیت مموری",
+            "memoryLimitMsg": "اگر با خطاهای کمبود حافظه یا خرابی مکرر برنامه مواجه شدید، فعال کنید"
         },
         "network": {
             "perAppProxyPageTitle": "پراکسی برنامه‌ها",
