@@ -10,7 +10,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
+  build-release:
     uses: ./.github/workflows/build.yml
     secrets: inherit
     permissions: write-all

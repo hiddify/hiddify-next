@@ -3,17 +3,13 @@ on:
   push:
     branches:
       - main
-    tags:
-      - 'v*'
     paths-ignore:
       - '**.md'
       - 'docs/**'
       - '.github/**'
       - '!.github/workflows/*'
       - 'appcast.xml'
-  # pull_request:
-  #   branches:
-  #     - main
+
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
   cancel-in-progress: true
