@@ -92,12 +92,12 @@ abstract class ProfileParser {
           "expire": final expire
         }) {
       total = total ?? 0;
-      expire = expire ?? 92233720368;
+      expire = expire ?? 0;
       return SubscriptionInfo(
         upload: upload,
         download: download,
         total: total == 0 ? 9223372036854775807 : total,
-        expire: DateTime.fromMillisecondsSinceEpoch(expire * 1000),
+        expire: expire == 0 ? DateTime.fromMillisecondsSinceEpoch(92233720368 * 1000) : DateTime.fromMillisecondsSinceEpoch(expire * 1000),
       );
     }
     return null;
