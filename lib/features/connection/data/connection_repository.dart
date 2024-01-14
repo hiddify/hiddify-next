@@ -16,6 +16,7 @@ import 'package:hiddify/utils/utils.dart';
 import 'package:meta/meta.dart';
 
 abstract interface class ConnectionRepository {
+  TaskEither<ConnectionFailure, Unit> setup();
   Stream<ConnectionStatus> watchConnectionStatus();
   TaskEither<ConnectionFailure, Unit> connect(
     String fileName,
@@ -120,7 +121,7 @@ class ConnectionRepositoryImpl
     );
   }
 
-  @visibleForTesting
+  @override
   TaskEither<ConnectionFailure, Unit> setup() {
     if (_initialized) return TaskEither.of(unit);
     return exceptionHandler(
