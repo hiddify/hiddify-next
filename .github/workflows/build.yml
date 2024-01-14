@@ -12,10 +12,6 @@ on:
         type: string
         default: "dev"
 
-concurrency:
-  group: ${{ github.ref }}-${{ github.workflow }}
-  cancel-in-progress: true
-
 env:
   CHANNEL: "${{ inputs.channel }}"
   NDK_VERSION: r26b
