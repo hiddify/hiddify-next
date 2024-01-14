@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.14.0.dev] - 2023-1-14
+
+### New Features and Improvements
+
+- Published initial iOS beta version on TestFlight
+  - Thanks to contributions from [GFWFighter](https://github.com/GFWFighter) and [Amir Mohammadi](https://github.com/amirsaam)
+  - iOS version is still in heavy development phase and there are known bugs
+- Added Spanish language. [PR#314](https://github.com/hiddify/hiddify-next/pull/314) by [AvatarStark](https://github.com/AvatarStark)
+- Changed Routing Assets page layout, separating assets by type
+- Improved descriptions for some of the options in settings page
+
+### Bug Fixes
+
+- Fixed Deep links on Windows
+- Fixed minor UI bugs
+- Fixed subscription profiles with infinite traffic
+
 ## [0.13.6] - 2023-1-7
 
 - First stable 0.13.x release. check changes from 0.13.0.dev to 0.13.5.dev for more details.
@@ -215,6 +232,7 @@
 - Fixed localization mistakes in Russian. [PR#95](https://github.com/hiddify/hiddify-next/pull/95) by [solokot](https://github.com/solokot)
 - Fixed localization mistakes in Russian. [PR#74](https://github.com/hiddify/hiddify-next/pull/74) by [Elshad Guseynov](https://github.com/lifeindarkside)
 
+[0.14.0.dev]: https://github.com/hiddify/hiddify-next/releases/tag/v0.14.0.dev
 [0.13.6]: https://github.com/hiddify/hiddify-next/releases/tag/v0.13.6
 [0.13.5.dev]: https://github.com/hiddify/hiddify-next/releases/tag/v0.13.5.dev
 [0.13.4.dev]: https://github.com/hiddify/hiddify-next/releases/tag/v0.13.4.dev
