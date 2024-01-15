@@ -19,7 +19,7 @@ public class StatsEventHandler: NSObject, FlutterPlugin, FlutterStreamHandler, L
     
     public static func register(with registrar: FlutterPluginRegistrar) {
         let instance = StatsEventHandler()
-        instance.channel = FlutterEventChannel(name: Self.name, binaryMessenger: registrar.messenger())
+        instance.channel = FlutterEventChannel(name: Self.name,  binaryMessenger: registrar.messenger(), codec: FlutterJSONMethodCodec())
         instance.channel?.setStreamHandler(instance)
     }
     
