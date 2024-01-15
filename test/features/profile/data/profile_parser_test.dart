@@ -70,6 +70,36 @@ void main() {
           );
         },
       );
+
+      test(
+        "with infinite traffic and time",
+        () {
+          final headers = <String, List<String>>{
+            "profile-title": ["title"],
+            "profile-update-interval": ["1"],
+            "subscription-userinfo": [
+              "upload=0;download=1024;total=0;expire=0",
+            ],
+            "profile-web-page-url": [validBaseUrl],
+            "support-url": [validSupportUrl],
+          };
+          final profile = ProfileParser.parse(validExtendedUrl, headers);
+
+          expect(profile.subInfo, isNotNull);
+          expect(
+            profile.subInfo!.total,
+            equals(ProfileParser.infiniteTrafficThreshold),
+          );
+          expect(
+            profile.subInfo!.expire,
+            equals(
+              DateTime.fromMillisecondsSinceEpoch(
+                ProfileParser.infiniteTimeThreshold * 1000,
+              ),
+            ),
+          );
+        },
+      );
     },
   );
 }
