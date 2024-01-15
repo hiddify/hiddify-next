@@ -88,16 +88,16 @@ abstract class ProfileParser {
         case {
           "upload": final upload?,
           "download": final download?,
-          "total": var total,
-          "expire": var expire
+          "total": final total,
+          "expire": final expire
         }) {
-      total = (total ?? 0) == 0 ? 9223372036854775807 : total;
-      expire = (expire ?? 0) == 0 ? 92233720368 : expire;
+      final total1 = (total ==null || total== 0) ? 9223372036854775807 : total!;
+      final expire1 = (expire ==null || expire == 0) ? 92233720368 : expire!;
       return SubscriptionInfo(
         upload: upload,
         download: download,
-        total: total,
-        expire: DateTime.fromMillisecondsSinceEpoch(expire * 1000),
+        total: total1,
+        expire: DateTime.fromMillisecondsSinceEpoch(expire1 * 1000),
       );
     }
     return null;
