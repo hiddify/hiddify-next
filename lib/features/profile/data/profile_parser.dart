@@ -89,7 +89,7 @@ abstract class ProfileParser {
           "upload": final upload?,
           "download": final download?,
           "total": var total,
-          "expire": final expire
+          "expire": var expire
         }) {
       total = total ?? 0;
       expire = expire ?? 0;
