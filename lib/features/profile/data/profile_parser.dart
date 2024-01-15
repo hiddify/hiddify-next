@@ -91,13 +91,13 @@ abstract class ProfileParser {
           "total": var total,
           "expire": var expire
         }) {
-      total = total ?? 0;
-      expire = expire ?? 0;
+      total = (total ?? 0) == 0 ? 9223372036854775807 : total;
+      expire = (expire ?? 0) == 0 ? 92233720368 : expire;
       return SubscriptionInfo(
         upload: upload,
         download: download,
-        total: total == 0 ? 9223372036854775807 : total,
-        expire: expire == 0 ? DateTime.fromMillisecondsSinceEpoch(92233720368 * 1000) : DateTime.fromMillisecondsSinceEpoch(expire * 1000),
+        total: total,
+        expire: DateTime.fromMillisecondsSinceEpoch(expire * 1000),
       );
     }
     return null;
