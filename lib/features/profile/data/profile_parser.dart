@@ -14,6 +14,9 @@ import 'package:uuid/uuid.dart';
 /// - url filename extension (example: `https://example.com/config.json`) -> name=`config`
 /// - if none of these methods return a non-blank string, fallback to `Remote Profile`
 abstract class ProfileParser {
+  static const infiniteTrafficThreshold = 9223372036854775807;
+  static const infiniteTimeThreshold = 92233720368;
+
   static RemoteProfileEntity parse(
     String url,
     Map<String, List<String>> headers,
@@ -88,16 +91,16 @@ abstract class ProfileParser {
         case {
           "upload": final upload?,
           "download": final download?,
-          "total": final total,
-          "expire": final expire
+          "total": var total,
+          "expire": var expire
         }) {
-      final total1 = (total ==null || total== 0) ? 9223372036854775807 : total!;
-      final expire1 = (expire ==null || expire == 0) ? 92233720368 : expire!;
+      total = (total == null || total == 0) ? infiniteTrafficThreshold : total;
+      expire = (expire == null || expire == 0) ? infiniteTimeThreshold : expire;
       return SubscriptionInfo(
         upload: upload,
         download: download,
-        total: total1,
-        expire: DateTime.fromMillisecondsSinceEpoch(expire1 * 1000),
+        total: total,
+        expire: DateTime.fromMillisecondsSinceEpoch(expire * 1000),
       );
     }
     return null;
