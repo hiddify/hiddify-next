@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:hiddify/core/preferences/general_preferences.dart';
 import 'package:hiddify/core/preferences/service_preferences.dart';
 import 'package:hiddify/features/connection/data/connection_data_providers.dart';
@@ -14,7 +16,13 @@ part 'connection_notifier.g.dart';
 @Riverpod(keepAlive: true)
 class ConnectionNotifier extends _$ConnectionNotifier with AppLogger {
   @override
-  Stream<ConnectionStatus> build() {
+  Stream<ConnectionStatus> build() async* {
+    if (Platform.isIOS) {
+      await _connectionRepo.setup().mapLeft((l) {
+        loggy.error("error setting up connection repository", l);
+      }).run();
+    }
+
     ref.listen(
       activeProfileProvider.select((value) => value.asData?.value),
       (previous, next) async {
@@ -25,7 +33,7 @@ class ConnectionNotifier extends _$ConnectionNotifier with AppLogger {
         }
       },
     );
-    return _connectionRepo.watchConnectionStatus().doOnData((event) {
+    yield* _connectionRepo.watchConnectionStatus().doOnData((event) {
       if (event case Disconnected(connectionFailure: final _?)
           when PlatformUtils.isDesktop) {
         ref.read(startedByUserProvider.notifier).update(false);

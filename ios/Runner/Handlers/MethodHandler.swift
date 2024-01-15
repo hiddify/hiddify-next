@@ -154,6 +154,21 @@ public class MethodHandler: NSObject, FlutterPlugin {
                 return
             }
             result(true)
+        case "generate_config":
+            guard
+                let args = call.arguments as? [String:Any?],
+                let path = args["path"] as? String
+            else {
+                result(FlutterError(code: "INVALID_ARGS", message: nil, details: nil))
+                return
+            }
+            var error: NSError?
+            let config = MobileBuildConfig(path, VPNConfig.shared.configOptions, &error)
+            if let error {
+                result(FlutterError(code: "BUILD_CONFIG", message: error.localizedDescription, details: nil))
+                return
+            }
+            result(config)
         default:
             result(FlutterMethodNotImplemented)
         }

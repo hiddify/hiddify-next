@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/services.dart';
 import 'package:fpdart/fpdart.dart';
@@ -37,8 +38,18 @@ class PlatformSingboxService with InfraLogger implements SingboxService {
   TaskEither<String, Unit> setup(
     Directories directories,
     bool debug,
-  ) =>
-      TaskEither.of(unit);
+  ) {
+    return TaskEither(
+      () async {
+        if (!Platform.isIOS) {
+          return right(unit);
+        }
+
+        await _methodChannel.invokeMethod("setup");
+        return right(unit);
+      },
+    );
+  }
 
   @override
   TaskEither<String, Unit> validateConfigByPath(
