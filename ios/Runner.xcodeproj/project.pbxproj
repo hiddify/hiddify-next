@@ -432,10 +432,10 @@
 				03E392C12ADDA00F000ADF15 /* Embed Foundation Extensions */,
 				9740EEB61CF901F6004384FC /* Run Script */,
 				97C146EA1CF9000F007C117D /* Sources */,
+				FBEFD3291AEA65EDE2F5AEF6 /* [CP] Embed Pods Frameworks */,
 				97C146EB1CF9000F007C117D /* Frameworks */,
 				97C146EC1CF9000F007C117D /* Resources */,
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
-				FBEFD3291AEA65EDE2F5AEF6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
