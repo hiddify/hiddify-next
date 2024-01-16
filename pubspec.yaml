@@ -70,6 +70,7 @@ dependencies:
   flutter_loggy_dio: ^3.0.1
   dio_smart_retry: ^6.0.0
   cupertino_http: ^1.2.0
+  wolt_modal_sheet: ^0.3.0
 
 dev_dependencies:
   flutter_test:

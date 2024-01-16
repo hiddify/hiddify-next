@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/model/failures.dart';
 import 'package:hiddify/core/router/router.dart';
+import 'package:hiddify/core/widget/adaptive_menu.dart';
 import 'package:hiddify/features/common/confirmation_dialogs.dart';
 import 'package:hiddify/features/common/qr_code_dialog.dart';
 import 'package:hiddify/features/profile/model/profile_entity.dart';
@@ -202,19 +203,13 @@ class ProfileActionButton extends HookConsumerWidget {
     }
     return ProfileActionsMenu(
       profile,
-      (context, controller, child) {
+      (context, toggleVisibility, _) {
         return Semantics(
           button: true,
           child: Tooltip(
             message: MaterialLocalizations.of(context).showMenuTooltip,
             child: InkWell(
-              onTap: () {
-                if (controller.isOpen) {
-                  controller.close();
-                } else {
-                  controller.open();
-                }
-              },
+              onTap: toggleVisibility,
               child: const Icon(Icons.more_vert),
             ),
           ),
@@ -228,7 +223,7 @@ class ProfileActionsMenu extends HookConsumerWidget {
   const ProfileActionsMenu(this.profile, this.builder, {super.key, this.child});
 
   final ProfileEntity profile;
-  final MenuAnchorChildBuilder builder;
+  final AdaptiveMenuBuilder builder;
   final Widget? child;
 
   @override
@@ -249,97 +244,99 @@ class ProfileActionsMenu extends HookConsumerWidget {
       },
     );
 
-    return MenuAnchor(
-      builder: builder,
-      menuChildren: [
-        if (profile case RemoteProfileEntity())
-          MenuItemButton(
-            leadingIcon: const Icon(Icons.update),
-            child: Text(t.profile.update.buttonTxt),
-            onPressed: () {
-              if (ref.read(updateProfileProvider(profile.id)).isLoading) {
-                return;
-              }
-              ref
-                  .read(updateProfileProvider(profile.id).notifier)
-                  .updateProfile(profile as RemoteProfileEntity);
-            },
-          ),
-        SubmenuButton(
-          menuChildren: [
-            if (profile case RemoteProfileEntity(:final url, :final name)) ...[
-              MenuItemButton(
-                child: Text(t.profile.share.exportSubLinkToClipboard),
-                onPressed: () async {
-                  final link = LinkParser.generateSubShareLink(url, name);
-                  if (link.isNotEmpty) {
-                    await Clipboard.setData(ClipboardData(text: link));
-                    if (context.mounted) {
-                      CustomToast(t.profile.share.exportToClipboardSuccess)
-                          .show(context);
-                    }
+    final menuItems = [
+      if (profile case RemoteProfileEntity())
+        AdaptiveMenuItem(
+          title: t.profile.update.buttonTxt,
+          icon: Icons.update,
+          onTap: () {
+            if (ref.read(updateProfileProvider(profile.id)).isLoading) {
+              return;
+            }
+            ref
+                .read(updateProfileProvider(profile.id).notifier)
+                .updateProfile(profile as RemoteProfileEntity);
+          },
+        ),
+      AdaptiveMenuItem(
+        title: t.profile.share.buttonText,
+        icon: Icons.share,
+        subItems: [
+          if (profile case RemoteProfileEntity(:final url, :final name)) ...[
+            AdaptiveMenuItem(
+              title: t.profile.share.exportSubLinkToClipboard,
+              onTap: () async {
+                final link = LinkParser.generateSubShareLink(url, name);
+                if (link.isNotEmpty) {
+                  await Clipboard.setData(ClipboardData(text: link));
+                  if (context.mounted) {
+                    CustomToast(t.profile.share.exportToClipboardSuccess)
+                        .show(context);
                   }
-                },
-              ),
-              MenuItemButton(
-                child: Text(t.profile.share.subLinkQrCode),
-                onPressed: () async {
-                  final link = LinkParser.generateSubShareLink(url, name);
-                  if (link.isNotEmpty) {
-                    await QrCodeDialog(
-                      link,
-                      message: name,
-                    ).show(context);
-                  }
-                },
-              ),
-            ],
-            MenuItemButton(
-              child: Text(t.profile.share.exportConfigToClipboard),
-              onPressed: () async {
-                if (exportConfigMutation.state.isInProgress) {
-                  return;
                 }
-                exportConfigMutation.setFuture(
-                  ref
-                      .read(profilesOverviewNotifierProvider.notifier)
-                      .exportConfigToClipboard(profile),
-                );
+              },
+            ),
+            AdaptiveMenuItem(
+              title: t.profile.share.subLinkQrCode,
+              onTap: () async {
+                final link = LinkParser.generateSubShareLink(url, name);
+                if (link.isNotEmpty) {
+                  await QrCodeDialog(
+                    link,
+                    message: name,
+                  ).show(context);
+                }
               },
             ),
           ],
-          leadingIcon: const Icon(Icons.share),
-          child: Text(t.profile.share.buttonText),
-        ),
-        MenuItemButton(
-          leadingIcon: const Icon(Icons.edit),
-          child: Text(t.profile.edit.buttonTxt),
-          onPressed: () async {
-            await ProfileDetailsRoute(profile.id).push(context);
-          },
-        ),
-        MenuItemButton(
-          leadingIcon: const Icon(Icons.delete),
-          child: Text(t.profile.delete.buttonTxt),
-          onPressed: () async {
-            if (deleteProfileMutation.state.isInProgress) {
-              return;
-            }
-            final deleteConfirmed = await showConfirmationDialog(
-              context,
-              title: t.profile.delete.buttonTxt,
-              message: t.profile.delete.confirmationMsg,
-            );
-            if (deleteConfirmed) {
-              deleteProfileMutation.setFuture(
+          AdaptiveMenuItem(
+            title: t.profile.share.exportConfigToClipboard,
+            onTap: () async {
+              if (exportConfigMutation.state.isInProgress) {
+                return;
+              }
+              exportConfigMutation.setFuture(
                 ref
                     .read(profilesOverviewNotifierProvider.notifier)
-                    .deleteProfile(profile),
+                    .exportConfigToClipboard(profile),
               );
-            }
-          },
-        ),
-      ],
+            },
+          ),
+        ],
+      ),
+      AdaptiveMenuItem(
+        icon: Icons.edit,
+        title: t.profile.edit.buttonTxt,
+        onTap: () async {
+          await ProfileDetailsRoute(profile.id).push(context);
+        },
+      ),
+      AdaptiveMenuItem(
+        icon: Icons.delete,
+        title: t.profile.delete.buttonTxt,
+        onTap: () async {
+          if (deleteProfileMutation.state.isInProgress) {
+            return;
+          }
+          final deleteConfirmed = await showConfirmationDialog(
+            context,
+            title: t.profile.delete.buttonTxt,
+            message: t.profile.delete.confirmationMsg,
+          );
+          if (deleteConfirmed) {
+            deleteProfileMutation.setFuture(
+              ref
+                  .read(profilesOverviewNotifierProvider.notifier)
+                  .deleteProfile(profile),
+            );
+          }
+        },
+      ),
+    ];
+
+    return AdaptiveMenu(
+      builder: builder,
+      items: menuItems,
       child: child,
     );
   }
