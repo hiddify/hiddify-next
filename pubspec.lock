@@ -109,10 +109,10 @@ packages:
     dependency: "direct dev"
     description:
       name: build_runner
-      sha256: "581bacf68f89ec8792f5e5a0b2c4decd1c948e97ce659dc783688c8a88fbec21"
+      sha256: "67d591d602906ef9201caf93452495ad1812bea2074f04e25dbd7c133785821b"
       url: "https://pub.dev"
     source: hosted
-    version: "2.4.8"
+    version: "2.4.7"
   build_runner_core:
     dependency: transitive
     description:
@@ -737,10 +737,10 @@ packages:
     dependency: transitive
     description:
       name: image
-      sha256: "004a2e90ce080f8627b5a04aecb4cdfac87d2c3f3b520aa291260be5a32c033d"
+      sha256: "028f61960d56f26414eb616b48b04eb37d700cbe477b7fb09bf1d7ce57fd9271"
       url: "https://pub.dev"
     source: hosted
-    version: "4.1.4"
+    version: "4.1.3"
   injector:
     dependency: transitive
     description:
@@ -953,10 +953,10 @@ packages:
     dependency: transitive
     description:
       name: path_provider_foundation
-      sha256: "5a7999be66e000916500be4f15a3633ebceb8302719b47b9cc49ce924125350f"
+      sha256: "19314d595120f82aca0ba62787d58dde2cc6b5df7d2f0daf72489e38d1b57f2d"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.2"
+    version: "2.3.1"
   path_provider_linux:
     dependency: transitive
     description:
@@ -985,10 +985,10 @@ packages:
     dependency: transitive
     description:
       name: pausable_timer
-      sha256: "6ef1a95441ec3439de6fb63f39a011b67e693198e7dae14e20675c3c00e86074"
+      sha256: "35b1f77eb2fb0f42e823360321fbed9b9a8b1c7043a07a58aeda17d01f84659a"
       url: "https://pub.dev"
     source: hosted
-    version: "3.1.0+3"
+    version: "2.0.0+1"
   percent_indicator:
     dependency: "direct main"
     description:
@@ -1025,10 +1025,10 @@ packages:
     dependency: transitive
     description:
       name: pointycastle
-      sha256: "43ac87de6e10afabc85c445745a7b799e04de84cebaa4fd7bf55a5e1e9604d29"
+      sha256: "7c1e5f0d23c9016c5bbd8b1473d0d3fb3fc851b876046039509e18e0c7485f2c"
       url: "https://pub.dev"
     source: hosted
-    version: "3.7.4"
+    version: "3.7.3"
   pool:
     dependency: transitive
     description:
@@ -1233,10 +1233,10 @@ packages:
     dependency: transitive
     description:
       name: shared_preferences_foundation
-      sha256: "7708d83064f38060c7b39db12aefe449cb8cdc031d6062280087bc4cdb988f5c"
+      sha256: "7bf53a9f2d007329ee6f3df7268fd498f8373602f943c975598bbb34649b62a7"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.5"
+    version: "2.3.4"
   shared_preferences_linux:
     dependency: transitive
     description:
@@ -1486,10 +1486,10 @@ packages:
     dependency: "direct main"
     description:
       name: toastification
-      sha256: "18293318ffcdc5b6fb10289eb18b9addfef56f053b824c320fbdddcf6a48bab1"
+      sha256: "14e7f9178db0393df00509cd921de3d3db310d06c7c122e873f31d3c8d18cf4e"
       url: "https://pub.dev"
     source: hosted
-    version: "1.2.0"
+    version: "1.1.0"
   tray_manager:
     dependency: "direct main"
     description:
@@ -1542,10 +1542,10 @@ packages:
     dependency: transitive
     description:
       name: url_launcher_ios
-      sha256: "75bb6fe3f60070407704282a2d295630cab232991eb52542b18347a8a941df03"
+      sha256: cdb7b6da34483f9b2c9f8b2b29bc468fa7271d92e2021607ca0c4d3bcb04cdd4
       url: "https://pub.dev"
     source: hosted
-    version: "6.2.4"
+    version: "6.2.3"
   url_launcher_linux:
     dependency: transitive
     description:
@@ -1590,10 +1590,10 @@ packages:
     dependency: "direct main"
     description:
       name: uuid
-      sha256: cd210a09f7c18cbe5a02511718e0334de6559871052c90a90c0cca46a4aa81c8
+      sha256: "8c951c9cb6504b2aa6b3666e6de504032d9baec24bf4cbabd3eea9edd73d4d77"
       url: "https://pub.dev"
     source: hosted
-    version: "4.3.3"
+    version: "4.3.2"
   vclibs:
     dependency: "direct main"
     description:

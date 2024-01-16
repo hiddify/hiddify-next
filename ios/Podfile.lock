@@ -4,8 +4,6 @@ PODS:
   - device_info_plus (0.0.1):
     - Flutter
   - Flutter (1.0.0)
-  - flutter_keyboard_visibility (0.0.1):
-    - Flutter
   - flutter_native_splash (0.0.1):
     - Flutter
   - GoogleDataTransport (9.3.0):
@@ -106,7 +104,6 @@ DEPENDENCIES:
   - cupertino_http (from `.symlinks/plugins/cupertino_http/ios`)
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - Flutter (from `Flutter`)
-  - flutter_keyboard_visibility (from `.symlinks/plugins/flutter_keyboard_visibility/ios`)
   - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
   - mobile_scanner (from `.symlinks/plugins/mobile_scanner/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
@@ -143,8 +140,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/device_info_plus/ios"
   Flutter:
     :path: Flutter
-  flutter_keyboard_visibility:
-    :path: ".symlinks/plugins/flutter_keyboard_visibility/ios"
   flutter_native_splash:
     :path: ".symlinks/plugins/flutter_native_splash/ios"
   mobile_scanner:
@@ -170,7 +165,6 @@ SPEC CHECKSUMS:
   cupertino_http: 5f8b1161107fe6c8d94a0c618735a033d93fa7db
   device_info_plus: c6fb39579d0f423935b0c9ce7ee2f44b71b9fce6
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  flutter_keyboard_visibility: 0339d06371254c3eb25eeb90ba8d17dca8f9c069
   flutter_native_splash: 52501b97d1c0a5f898d687f1646226c1f93c56ef
   GoogleDataTransport: 57c22343ab29bc686febbf7cbb13bad167c2d8fe
   GoogleMLKit: 2bd0dc6253c4d4f227aad460f69215a504b2980e
@@ -185,17 +179,17 @@ SPEC CHECKSUMS:
   mobile_scanner: 202ab6f652e40a9add68b10de4c4fb2a745c4348
   nanopb: d4d75c12cd1316f4a64e3c6963f879ecd4b5e0d5
   package_info_plus: 115f4ad11e0698c8c1c5d8a689390df880f47e85
-  path_provider_foundation: 3784922295ac71e43754bd15e0653ccfd36a147c
+  path_provider_foundation: 29f094ae23ebbca9d3d0cec13889cd9060c0e943
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
   protocol_handler: ae9efcf3b307f3fdffcd9d5252775b9f7d9f0d09
   Sentry: 64a9f9c3637af913adcf53deced05bbe452d1410
   sentry_flutter: 57912cf425e09398bdf47f38842a1fcb9836f1be
   SentryPrivate: 024c6fed507ac39ae98e6d087034160f942920d5
   share_plus: c3fef564749587fc939ef86ffb283ceac0baf9f5
-  shared_preferences_foundation: b4c3b4cddf1c21f02770737f147a3f5da9d39695
+  shared_preferences_foundation: 5b919d13b803cadd15ed2dc053125c68730e5126
   sqlite3: 6e2d4a4879854d0ec86b476bf3c3e30870bac273
   sqlite3_flutter_libs: eb769059df0356dc52ddda040f09cacc9391a7cf
-  url_launcher_ios: bbd758c6e7f9fd7b5b1d4cde34d2b95fcce5e812
+  url_launcher_ios: bf5ce03e0e2088bad9cc378ea97fa0ed5b49673b
 
 PODFILE CHECKSUM: be4663332fca77601dd6736e3676fe47177084e1
 
