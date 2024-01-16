@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "hiddify-next-core",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/hiddify/hiddify-next-core.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "7b2bf9503c055544a2f259457065f1d32dffb7ef"
+      }
+    }
+  ],
+  "version" : 2
+}
