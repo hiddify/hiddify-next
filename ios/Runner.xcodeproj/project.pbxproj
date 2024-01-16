@@ -35,7 +35,7 @@
 		331C808B294A63AB00263BE5 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C807B294A618700263BE5 /* RunnerTests.swift */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
 		54EA599BF9C050F2827533D5 /* Pods_RunnerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDA50BDF2E5E5DDA3995F24D /* Pods_RunnerTests.framework */; };
-		687F12072B56B992009C8C7D /* Libcore in Frameworks */ = {isa = PBXBuildFile; productRef = 687F12062B56B992009C8C7D /* Libcore */; };
+		684381112B572DBF00C06CAA /* Libcore in Frameworks */ = {isa = PBXBuildFile; productRef = 684381102B572DBF00C06CAA /* Libcore */; };
 		68885DD72B4EF33400D214BA /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E392B72ADDA00E000ADF15 /* NetworkExtension.framework */; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
@@ -170,7 +170,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				687F12072B56B992009C8C7D /* Libcore in Frameworks */,
+				684381112B572DBF00C06CAA /* Libcore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,10 +397,11 @@
 			buildRules = (
 			);
 			dependencies = (
+				684381132B57335300C06CAA /* PBXTargetDependency */,
 			);
 			name = SingBoxPacketTunnel;
 			packageProductDependencies = (
-				687F12062B56B992009C8C7D /* Libcore */,
+				684381102B572DBF00C06CAA /* Libcore */,
 			);
 			productName = SingBoxPacketTunnel;
 			productReference = 03E392B62ADDA00E000ADF15 /* SingBoxPacketTunnel.appex */;
@@ -490,7 +491,7 @@
 			);
 			mainGroup = 97C146E51CF9000F007C117D;
 			packageReferences = (
-				687F12052B56B992009C8C7D /* XCRemoteSwiftPackageReference "hiddify-next-core" */,
+				684380FC2B57068900C06CAA /* XCRemoteSwiftPackageReference "hiddify-next-core" */,
 			);
 			productRefGroup = 97C146EF1CF9000F007C117D /* Products */;
 			projectDirPath = "";
@@ -685,6 +686,10 @@
 			isa = PBXTargetDependency;
 			target = 97C146ED1CF9000F007C117D /* Runner */;
 			targetProxy = 331C8085294A63A400263BE5 /* PBXContainerItemProxy */;
+		};
+		684381132B57335300C06CAA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 684381122B57335300C06CAA /* Libcore */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1353,7 +1358,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		687F12052B56B992009C8C7D /* XCRemoteSwiftPackageReference "hiddify-next-core" */ = {
+		684380FC2B57068900C06CAA /* XCRemoteSwiftPackageReference "hiddify-next-core" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hiddify/hiddify-next-core.git";
 			requirement = {
@@ -1364,9 +1369,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		687F12062B56B992009C8C7D /* Libcore */ = {
+		684381102B572DBF00C06CAA /* Libcore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 687F12052B56B992009C8C7D /* XCRemoteSwiftPackageReference "hiddify-next-core" */;
+			package = 684380FC2B57068900C06CAA /* XCRemoteSwiftPackageReference "hiddify-next-core" */;
+			productName = Libcore;
+		};
+		684381122B57335300C06CAA /* Libcore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 684380FC2B57068900C06CAA /* XCRemoteSwiftPackageReference "hiddify-next-core" */;
 			productName = Libcore;
 		};
 /* End XCSwiftPackageProductDependency section */
