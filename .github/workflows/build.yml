@@ -39,11 +39,23 @@ jobs:
             targets: exe
             filename: hiddify-windows-x64
 
-          - platform: linux
+          - platform: linux-appimage
             os: ubuntu-latest
             aarch: amd64
             targets: AppImage
             filename: hiddify-linux-x64
+
+          - platform: linux-deb
+            os: ubuntu-latest
+            aarch: amd64
+            targets: deb
+            filename: hiddify-debian-x64
+            
+          - platform: linux-rpm
+            os: ubuntu-latest
+            aarch: amd64
+            targets: rpm
+            filename: hiddify-rpm-x64
 
           - platform: macos
             os: macos-13
@@ -97,7 +109,7 @@ jobs:
       - name: Setup Linux dependencies
         if: matrix.platform == 'linux'
         run: |
-          sudo apt install -y locate ninja-build pkg-config libgtk-3-dev libglib2.0-dev libgio2.0-cil-dev libayatana-appindicator3-dev fuse
+          sudo apt install -y locate ninja-build pkg-config libgtk-3-dev libglib2.0-dev libgio2.0-cil-dev libayatana-appindicator3-dev fuse rpm patchelf
           sudo modprobe fuse
           wget -O appimagetool "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage"
           chmod +x appimagetool
