@@ -17,7 +17,8 @@ abstract class LinkParser {
       query: uri.query,
       fragment: name??uri.fragment,
     );
-    return 'hiddify://import/$modifiedUri';
+    // return 'hiddify://import/$modifiedUri';
+    return '$modifiedUri';
 
   }
 
