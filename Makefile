@@ -63,8 +63,15 @@ android-aab-release:
 windows-release:
 	flutter_distributor package --platform windows --targets exe $(DISTRIBUTOR_ARGS)
 
-linux-release:
+linux-release: linux-appimage-release linux-deb-release linux-rpm-release
+
+linux-appimage-release:
 	flutter_distributor package --platform linux --targets appimage $(DISTRIBUTOR_ARGS)
+linux-deb-release:
+	flutter_distributor package --platform linux --targets deb $(DISTRIBUTOR_ARGS)
+linux-rpm-release:
+	flutter_distributor package --platform linux --targets rpm $(DISTRIBUTOR_ARGS)
+
 
 macos-release:
 	flutter_distributor package --platform macos --targets dmg $(DISTRIBUTOR_ARGS)
