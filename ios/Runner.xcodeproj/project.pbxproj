@@ -763,7 +763,7 @@
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-lresolv";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BASE_BUNDLE_IDENTIFIER).SingBoxPacketTunnel";
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.hiddify.ios.SingBoxPacketTunnel;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = app.hiddify.com.SingBoxPacketTunnel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -812,7 +812,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-lresolv";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BASE_BUNDLE_IDENTIFIER).SingBoxPacketTunnel";
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.hiddify.ios.SingBoxPacketTunnel;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = app.hiddify.com.SingBoxPacketTunnel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -859,7 +859,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-lresolv";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BASE_BUNDLE_IDENTIFIER).SingBoxPacketTunnel";
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.hiddify.ios.SingBoxPacketTunnel;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = app.hiddify.com.SingBoxPacketTunnel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -997,7 +997,7 @@
 					"-lresolv",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BASE_BUNDLE_IDENTIFIER)";
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.hiddify.ios;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = app.hiddify.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1248,7 +1248,7 @@
 					"-lresolv",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BASE_BUNDLE_IDENTIFIER)";
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.hiddify.ios;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = app.hiddify.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1328,7 +1328,7 @@
 					"-lresolv",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "$(BASE_BUNDLE_IDENTIFIER)";
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.hiddify.ios;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = app.hiddify.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

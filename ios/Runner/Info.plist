@@ -44,6 +44,8 @@
 		<key>EXExtensionPointIdentifier</key>
 		<string>com.apple.appintents-extension</string>
 	</dict>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
