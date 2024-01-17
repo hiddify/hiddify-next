@@ -94,6 +94,11 @@ linux-libs:
 	mkdir -p $(DESKTOP_OUT)
 	curl -L $(CORE_URL)/$(CORE_NAME)-linux-amd64.so.gz | gunzip > $(DESKTOP_OUT)/libcore.so
 
+
+linux-deb-libs:linux-libs
+linux-rpm-libs:linux-libs
+linux-appimage-libs:linux-libs
+
 macos-libs:
 	mkdir -p $(DESKTOP_OUT)/ &&\
 	curl -L $(CORE_URL)/$(CORE_NAME)-macos-universal.dylib.gz | gunzip > $(DESKTOP_OUT)/libcore.dylib
