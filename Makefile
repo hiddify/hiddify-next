@@ -106,8 +106,10 @@ macos-libs:
 ios-libs: #not tested
 	mkdir -p $(DESKTOP_OUT)/ && \
 	rm -rf $(IOS_OUT)/Libcore.xcframework && \
-	curl -L $(CORE_URL)/$(CORE_NAME)-ios.xcframework.tar.gz | tar xz -C "$(IOS_OUT)" && \
+	curl -L "$(CORE_URL)/$(CORE_NAME)-ios.xcframework.zip" -o "$(IOS_OUT)/$(CORE_NAME)-ios.xcframework.zip"
+	unzip -o "$(IOS_OUT)/$(CORE_NAME)-ios.xcframework.zip" -d "$(IOS_OUT)"
 	mv $(IOS_OUT)/$(CORE_NAME)-ios.xcframework $(IOS_OUT)/Libcore.xcframework
+	rm $(IOS_OUT)/$(CORE_NAME)-ios.xcframework.zip
 
 get-geo-assets:
 	curl -L https://github.com/SagerNet/sing-geoip/releases/latest/download/geoip.db -o $(GEO_ASSETS_DIR)/geoip.db
