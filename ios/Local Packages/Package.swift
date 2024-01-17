@@ -21,7 +21,7 @@ let package = Package(
      targets: [
         .binaryTarget(
             name: "Libcore",
-            path: "Frameworks/Libcore.xcframework"
+            path: "../Frameworks/Libcore.xcframework"
         )
      ]
  )
