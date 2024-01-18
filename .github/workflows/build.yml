@@ -25,37 +25,37 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - platform: android-apk
-            os: ubuntu-latest
-            targets: apk
+          # - platform: android-apk
+          #   os: ubuntu-latest
+          #   targets: apk
 
-          - platform: android-aab
-            os: ubuntu-latest
-            targets: aab
+          # - platform: android-aab
+          #   os: ubuntu-latest
+          #   targets: aab
 
-          - platform: windows
-            os: windows-latest
-            aarch: amd64
-            targets: exe
-            filename: hiddify-windows-x64
+          # - platform: windows
+          #   os: windows-latest
+          #   aarch: amd64
+          #   targets: exe
+          #   filename: hiddify-windows-x64
 
-          - platform: linux-appimage
-            os: ubuntu-latest
-            aarch: amd64
-            targets: AppImage
-            filename: hiddify-linux-x64
+          # - platform: linux-appimage
+          #   os: ubuntu-latest
+          #   aarch: amd64
+          #   targets: AppImage
+          #   filename: hiddify-linux-x64
 
-          - platform: linux-deb
-            os: ubuntu-latest
-            aarch: amd64
-            targets: deb
-            filename: hiddify-debian-x64
+          # - platform: linux-deb
+          #   os: ubuntu-latest
+          #   aarch: amd64
+          #   targets: deb
+          #   filename: hiddify-debian-x64
             
-          - platform: linux-rpm
-            os: ubuntu-latest
-            aarch: amd64
-            targets: rpm
-            filename: hiddify-rpm-x64
+          # - platform: linux-rpm
+          #   os: ubuntu-latest
+          #   aarch: amd64
+          #   targets: rpm
+          #   filename: hiddify-rpm-x64
 
           - platform: macos
             os: macos-13
@@ -72,10 +72,13 @@ jobs:
         run: |
           # xcode-select --install || softwareupdate --all --install --force
           # brew uninstall --force $(brew list | grep python@) && brew cleanup || echo "python not installed"
-          brew uninstall --ignore-dependencies python@3.12
+          brew uninstall --ignore-dependencies python
+          echo "all pythons are removed"
           brew reinstall python@3.10
-          python3 -m pip install --upgrade setuptools pip
+          echo "python3.10 is installed now"
+          #python3 -m pip install --upgrade setuptools pip
           brew install create-dmg tree 
+          echo "installed create-dmg tree "
           npm install -g appdmg
 
       - name: Setup Flutter
