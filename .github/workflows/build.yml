@@ -25,37 +25,37 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # - platform: android-apk
-          #   os: ubuntu-latest
-          #   targets: apk
+          - platform: android-apk
+            os: ubuntu-latest
+            targets: apk
 
-          # - platform: android-aab
-          #   os: ubuntu-latest
-          #   targets: aab
+          - platform: android-aab
+            os: ubuntu-latest
+            targets: aab
 
-          # - platform: windows
-          #   os: windows-latest
-          #   aarch: amd64
-          #   targets: exe
-          #   filename: hiddify-windows-x64
+          - platform: windows
+            os: windows-latest
+            aarch: amd64
+            targets: exe
+            filename: hiddify-windows-x64
 
-          # - platform: linux-appimage
-          #   os: ubuntu-latest
-          #   aarch: amd64
-          #   targets: AppImage
-          #   filename: hiddify-linux-x64
+          - platform: linux-appimage
+            os: ubuntu-latest
+            aarch: amd64
+            targets: AppImage
+            filename: hiddify-linux-x64
 
-          # - platform: linux-deb
-          #   os: ubuntu-latest
-          #   aarch: amd64
-          #   targets: deb
-          #   filename: hiddify-debian-x64
+          - platform: linux-deb
+            os: ubuntu-latest
+            aarch: amd64
+            targets: deb
+            filename: hiddify-debian-x64
             
-          # - platform: linux-rpm
-          #   os: ubuntu-latest
-          #   aarch: amd64
-          #   targets: rpm
-          #   filename: hiddify-rpm-x64
+          - platform: linux-rpm
+            os: ubuntu-latest
+            aarch: amd64
+            targets: rpm
+            filename: hiddify-rpm-x64
 
           - platform: macos
             os: macos-13
@@ -70,13 +70,6 @@ jobs:
       - name: Setup Apple dependencies
         if: matrix.platform == 'macos' || matrix.platform == 'ios'
         run: |
-          # xcode-select --install || softwareupdate --all --install --force
-          # brew uninstall --force $(brew list | grep python@) && brew cleanup || echo "python not installed"
-          # brew uninstall --ignore-dependencies python
-          # echo "all pythons are removed"
-          # brew reinstall python@3.12
-          # echo "python3.11 is installed now"
-          #python3 -m pip install --upgrade setuptools pip
           brew install create-dmg tree 
           echo "installed create-dmg tree "
           npm install -g appdmg
@@ -275,7 +268,16 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           tag: 'draft'
           deleteOnlyFromDrafts: false
-
+          
+      - name: prepare_release_message
+        run: |
+          pip install gitchangelog pystache mustache markdown
+          prelease=$(curl --silent "https://api.github.com/repos/hiddify/hiddify-next/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")')
+          current="${{ github.ref_name }}"
+          sed 's|RELEASE_TAG|${{ env.TAG_NAME }}|g' ./.github/release_message.md > release.md
+          echo -e "\n\n<details markdown=1><summary>All changes from $current to the latest commit:</summary>\n\n">>release.md
+          gitchangelog $prelease.. >> release.md
+          echo -e "\n\n</details>">>release.md
       - name: Create or Update Draft Release
         uses: softprops/action-gh-release@v1
         env:
@@ -309,10 +311,6 @@ jobs:
 
       - name: prepare_release_message
         run: |
-          pip install gitchangelog pystache mustache markdown
-          # prelease=$(curl --silent "https://api.github.com/repos/hiddify/hiddify-next/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")')
-          # current="${{ github.ref_name }}"
-          # gitchangelog $prelease..$current > release.md
           sed 's|RELEASE_TAG|${{ env.TAG_NAME }}|g' ./.github/release_message.md >> release.md
 
       - name: Upload Release
