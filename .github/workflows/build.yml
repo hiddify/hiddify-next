@@ -288,6 +288,7 @@ jobs:
           files: ./out/*
           name: 'draft'
           tag_name: 'draft'
+          body_path: './release.md'
           prerelease: true
 
   upload-release:
