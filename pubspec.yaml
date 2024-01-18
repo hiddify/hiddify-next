@@ -22,8 +22,8 @@ dependencies:
   flutter_hooks: ^0.20.4
   riverpod_annotation: ^2.3.3
   rxdart: ^0.27.7
-  drift: ^2.14.1
-  sqlite3_flutter_libs: ^0.5.18
+  drift: ^2.15.0
+  sqlite3_flutter_libs: ^0.5.19+1
   shared_preferences: ^2.2.2
   dio: ^5.4.0
   ffi: ^2.1.0
@@ -46,14 +46,14 @@ dependencies:
   flutter_loggy: ^2.0.2
   meta: ^1.10.0
   dartx: ^1.2.0
-  uuid: ^4.2.2
+  uuid: ^4.3.3
   tint: ^2.0.1
   accessibility_tools: ^1.0.1
   neat_periodic_task: ^2.0.1
   watcher: ^1.1.0
   go_router: ^13.0.1
   flex_color_scheme: ^7.3.1
-  flutter_animate: ^4.3.0
+  flutter_animate: ^4.4.0
   flutter_svg: ^2.0.9
   gap: ^3.0.1
   percent_indicator: ^4.2.3
@@ -61,7 +61,7 @@ dependencies:
   flutter_adaptive_scaffold: ^0.1.7+2
   humanizer: ^2.2.0
   upgrader: ^8.4.0
-  toastification: ^1.1.0
+  toastification: ^1.2.0
   version: ^3.0.2
   posix: ^6.0.1
   win32: ^5.2.0
@@ -76,16 +76,16 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   lint: ^2.3.0
-  build_runner: ^2.4.7
+  build_runner: ^2.4.8
   json_serializable: ^6.7.1
   freezed: ^2.4.6
   riverpod_generator: ^2.3.9
-  drift_dev: ^2.14.1
+  drift_dev: ^2.15.0
   ffigen: ^8.0.2
   slang_build_runner: ^3.28.0
   flutter_gen_runner: ^5.4.0
   go_router_builder: ^2.4.1
-  icons_launcher: ^2.1.6
+  icons_launcher: ^2.1.7
   dependency_validator: ^3.2.3
 
 flutter:

@@ -117,7 +117,7 @@ class CustomToast extends StatelessWidget {
   void show(BuildContext context) {
     toastification.show(
       context: context,
-      title: message,
+      title: Text(message),
       type: type._toastificationType,
       alignment: Alignment.bottomLeft,
       autoCloseDuration: duration,

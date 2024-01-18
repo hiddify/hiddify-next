@@ -109,10 +109,10 @@ packages:
     dependency: "direct dev"
     description:
       name: build_runner
-      sha256: "67d591d602906ef9201caf93452495ad1812bea2074f04e25dbd7c133785821b"
+      sha256: "581bacf68f89ec8792f5e5a0b2c4decd1c948e97ce659dc783688c8a88fbec21"
       url: "https://pub.dev"
     source: hosted
-    version: "2.4.7"
+    version: "2.4.8"
   build_runner_core:
     dependency: transitive
     description:
@@ -357,18 +357,18 @@ packages:
     dependency: "direct main"
     description:
       name: drift
-      sha256: "05363b695885c72036ed5c76287125bfc6f1deda20cb3aa044a09fe22792f81b"
+      sha256: b50a8342c6ddf05be53bda1d246404cbad101b64dc73e8d6d1ac1090d119b4e2
       url: "https://pub.dev"
     source: hosted
-    version: "2.14.1"
+    version: "2.15.0"
   drift_dev:
     dependency: "direct dev"
     description:
       name: drift_dev
-      sha256: "50c14b8248d133d36b41c1b08ceed138be869b5b98ccaf3af16c9b88c7adc54e"
+      sha256: c037d9431b6f8dc633652b1469e5f53aaec6e4eb405ed29dd232fa888ef10d88
       url: "https://pub.dev"
     source: hosted
-    version: "2.14.1"
+    version: "2.15.0"
   equatable:
     dependency: transitive
     description:
@@ -985,10 +985,10 @@ packages:
     dependency: transitive
     description:
       name: pausable_timer
-      sha256: "35b1f77eb2fb0f42e823360321fbed9b9a8b1c7043a07a58aeda17d01f84659a"
+      sha256: "6ef1a95441ec3439de6fb63f39a011b67e693198e7dae14e20675c3c00e86074"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.0+1"
+    version: "3.1.0+3"
   percent_indicator:
     dependency: "direct main"
     description:
@@ -1382,18 +1382,18 @@ packages:
     dependency: "direct main"
     description:
       name: sqlite3_flutter_libs
-      sha256: "3e3583b77cf888a68eae2e49ee4f025f66b86623ef0d83c297c8d903daa14871"
+      sha256: "90963b515721d6a71e96f438175cf43c979493ed14822860a300b69694c74eb6"
       url: "https://pub.dev"
     source: hosted
-    version: "0.5.18"
+    version: "0.5.19+1"
   sqlparser:
     dependency: transitive
     description:
       name: sqlparser
-      sha256: "877fcefabb725d120e31f54fa669a98c002db0feeaca6cea5354543f03b5e906"
+      sha256: dc384bb1f56d1384ce078edb5ff8247976abdab79d0c83e437210c85f06ecb61
       url: "https://pub.dev"
     source: hosted
-    version: "0.33.0"
+    version: "0.34.0"
   stack_trace:
     dependency: transitive
     description:
@@ -1486,10 +1486,10 @@ packages:
     dependency: "direct main"
     description:
       name: toastification
-      sha256: "14e7f9178db0393df00509cd921de3d3db310d06c7c122e873f31d3c8d18cf4e"
+      sha256: "18293318ffcdc5b6fb10289eb18b9addfef56f053b824c320fbdddcf6a48bab1"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.0"
+    version: "1.2.0"
   tray_manager:
     dependency: "direct main"
     description:
@@ -1590,10 +1590,10 @@ packages:
     dependency: "direct main"
     description:
       name: uuid
-      sha256: "8c951c9cb6504b2aa6b3666e6de504032d9baec24bf4cbabd3eea9edd73d4d77"
+      sha256: cd210a09f7c18cbe5a02511718e0334de6559871052c90a90c0cca46a4aa81c8
       url: "https://pub.dev"
     source: hosted
-    version: "4.3.2"
+    version: "4.3.3"
   vclibs:
     dependency: "direct main"
     description:
