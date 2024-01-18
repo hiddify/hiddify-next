@@ -278,7 +278,8 @@ jobs:
           current="${{ github.ref_name }}"
           sed 's|RELEASE_TAG|${{ env.TAG_NAME }}|g' ./.github/release_message.md > release.md
           echo -e "\n\n<details markdown=1><summary>All changes from $current to the latest commit:</summary>\n\n">>release.md
-          gitchangelog $prelease.. >> release.md
+          gitchangelog "${prelease}.." >> release.md 
+          gitchangelog "${prelease}.." >> release.md  2>&1 || echo "Error in gitchangelog"
           echo -e "\n\n</details>">>release.md
       - name: Create or Update Draft Release
         uses: softprops/action-gh-release@v1
