@@ -254,6 +254,10 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
+        with:
+          # by default, it uses a depth of 1
+          # this fetches all history so that we can read each commit
+          fetch-depth: 0
       - name: Download Artifact
         uses: actions/download-artifact@v3
         with:
