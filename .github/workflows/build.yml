@@ -215,7 +215,7 @@ jobs:
           cp ./build/app/outputs/bundle/release/app-release.aab out/hiddify-android-market.aab || echo "no aab"
 
       - name: Copy to out unix
-        if: matrix.platform == 'linux' || matrix.platform == 'macos' || matrix.platform == 'ios'
+        if: startsWith(matrix.platform,'linux') || matrix.platform == 'macos' || matrix.platform == 'ios'
         run: |
           ls -R dist/
           mkdir out
