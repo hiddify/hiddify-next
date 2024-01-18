@@ -28,7 +28,7 @@ public class StatsEventHandler: NSObject, FlutterPlugin, FlutterStreamHandler, L
         self.events = events
         let opts = LibboxCommandClientOptions()
         opts.command = LibboxCommandStatus
-        opts.statusInterval = 300
+        opts.statusInterval = Int64(NSEC_PER_SEC)
         commandClient = LibboxCommandClient(self, options: opts)
         try? commandClient?.connect()
         return nil
@@ -40,7 +40,7 @@ public class StatsEventHandler: NSObject, FlutterPlugin, FlutterStreamHandler, L
     }
     
     public func writeStatus(_ message: LibboxStatusMessage?) {
-        guard 
+        guard
             let message
         else { return }
         let data = [
@@ -51,11 +51,7 @@ public class StatsEventHandler: NSObject, FlutterPlugin, FlutterStreamHandler, L
             "uplink-total": message.uplinkTotal,
             "downlink-total": message.downlinkTotal
         ] as [String:Any]
-        guard
-            let json = try? JSONSerialization.data(withJSONObject: data),
-            let json = String(data: json, encoding: .utf8)
-        else { return }
-        events?(json)
+        events?(data)
     }
 }
 

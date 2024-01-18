@@ -194,7 +194,9 @@ class PlatformSingboxService with InfraLogger implements SingboxService {
         if (event case Map<String, dynamic> _) {
           return SingboxStats.fromJson(event);
         }
-        loggy.error("[stats client] unexpected type, msg: $event");
+        loggy.error(
+          "[stats client] unexpected type(${event.runtimeType}), msg: $event",
+        );
         throw "invalid type";
       },
     );
