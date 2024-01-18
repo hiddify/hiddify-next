@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.14.1.dev] - 2023-1-19
+
+### New Features and Improvements
+
+- Redesigned profile options on mobile
+- Improved configuration parser
+- Added export config json in iOS
+- Added iOS URL scheme. [PR#343](https://github.com/hiddify/hiddify-next/pull/343) by [Amir Mohammadi](https://github.com/amirsaam)
+- Added option to reset VPN profile on iOS
+
+### Bug Fixes
+
+- Fixed TLS Tricks causing app crash
+- Fixed connection status on iOS app relaunch
+- Fixed iOS connection stats
+- Fixed infinite subscription traffic
+- Fixed infinite subscription expiry. [PR#334](https://github.com/hiddify/hiddify-next/pull/334) by [Pavel Volkov](https://github.com/pvolkov)
+
 ## [0.14.0.dev] - 2023-1-14
 
 ### New Features and Improvements
@@ -232,6 +250,7 @@
 - Fixed localization mistakes in Russian. [PR#95](https://github.com/hiddify/hiddify-next/pull/95) by [solokot](https://github.com/solokot)
 - Fixed localization mistakes in Russian. [PR#74](https://github.com/hiddify/hiddify-next/pull/74) by [Elshad Guseynov](https://github.com/lifeindarkside)
 
+[0.14.1.dev]: https://github.com/hiddify/hiddify-next/releases/tag/v0.14.1.dev
 [0.14.0.dev]: https://github.com/hiddify/hiddify-next/releases/tag/v0.14.0.dev
 [0.13.6]: https://github.com/hiddify/hiddify-next/releases/tag/v0.13.6
 [0.13.5.dev]: https://github.com/hiddify/hiddify-next/releases/tag/v0.13.5.dev
