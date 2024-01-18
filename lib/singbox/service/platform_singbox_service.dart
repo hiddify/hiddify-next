@@ -148,6 +148,24 @@ class PlatformSingboxService with InfraLogger implements SingboxService {
   }
 
   @override
+  TaskEither<String, Unit> resetTunnel() {
+    return TaskEither(
+      () async {
+        // only available on iOS (and macOS later)
+        if (!Platform.isIOS) {
+          throw UnimplementedError(
+            "reset tunnel function unavailable on platform",
+          );
+        }
+
+        loggy.debug("resetting tunnel");
+        await _methodChannel.invokeMethod("reset");
+        return right(unit);
+      },
+    );
+  }
+
+  @override
   Stream<List<SingboxOutboundGroup>> watchOutbounds() {
     const channel = EventChannel("com.hiddify.app/groups");
     loggy.debug("watching outbounds");

@@ -225,6 +225,13 @@ class FFISingboxService with InfraLogger implements SingboxService {
   }
 
   @override
+  TaskEither<String, Unit> resetTunnel() {
+    throw UnimplementedError(
+      "reset tunnel function unavailable on platform",
+    );
+  }
+
+  @override
   Stream<SingboxStatus> watchStatus() => _status;
 
   @override

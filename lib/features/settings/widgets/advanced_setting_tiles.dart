@@ -6,6 +6,7 @@ import 'package:hiddify/core/preferences/general_preferences.dart';
 import 'package:hiddify/core/router/router.dart';
 import 'package:hiddify/features/common/general_pref_tiles.dart';
 import 'package:hiddify/features/per_app_proxy/model/per_app_proxy_mode.dart';
+import 'package:hiddify/features/settings/notifier/platform_settings_notifier.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class AdvancedSettingTiles extends HookConsumerWidget {
@@ -72,6 +73,14 @@ class AdvancedSettingTiles extends HookConsumerWidget {
             await ref.read(disableMemoryLimitProvider.notifier).update(!value);
           },
         ),
+        if (Platform.isIOS)
+          ListTile(
+            title: Text(t.settings.advanced.resetTunnel),
+            leading: const Icon(Icons.restart_alt),
+            onTap: () async {
+              await ref.read(resetTunnelProvider.notifier).run();
+            },
+          ),
         SwitchListTile(
           title: Text(t.settings.advanced.debugMode),
           value: debug,

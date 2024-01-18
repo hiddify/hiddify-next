@@ -166,7 +166,8 @@
             "sectionTitle": "Avanzado",
             "debugMode": "Modo de depuración",
             "memoryLimit": "Limite de memoria",
-            "memoryLimitMsg": "Habilítelo si experimenta errores de falta de memoria o fallas frecuentes de la aplicación"
+            "memoryLimitMsg": "Habilítelo si experimenta errores de falta de memoria o fallas frecuentes de la aplicación",
+            "resetTunnel": "Restablecer perfil VPN"
         },
         "network": {
             "perAppProxyModes": {

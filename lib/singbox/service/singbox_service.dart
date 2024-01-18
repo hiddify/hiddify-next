@@ -52,6 +52,8 @@ abstract interface class SingboxService {
     bool disableMemoryLimit,
   );
 
+  TaskEither<String, Unit> resetTunnel();
+
   Stream<List<SingboxOutboundGroup>> watchOutbounds();
 
   TaskEither<String, Unit> selectOutbound(String groupTag, String outboundTag);

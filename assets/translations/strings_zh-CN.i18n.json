@@ -172,7 +172,8 @@
             "debugMode": "调试模式",
             "debugModeMsg": "重新启动应用程序以应用此更改",
             "memoryLimit": "内存限制",
-            "memoryLimitMsg": "如果您遇到内存不足错误或频繁应用程序崩溃，请启用"
+            "memoryLimitMsg": "如果您遇到内存不足错误或频繁应用程序崩溃，请启用",
+            "resetTunnel": "重置 VPN 配置文件"
         },
         "network": {
             "perAppProxyPageTitle": "分应用代理",

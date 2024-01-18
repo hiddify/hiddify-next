@@ -121,6 +121,9 @@ public class MethodHandler: NSObject, FlutterPlugin {
         case "stop":
             VPNManager.shared.disconnect()
             result(true)
+        case "reset":
+            VPNManager.shared.reset()
+            result(true)
         case "url_test":
             guard
                 let args = call.arguments as? [String:Any?]
