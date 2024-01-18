@@ -23,36 +23,29 @@
 
 ## What is Hiddify-Next?
 
-<p dir="ltr" style="font-size: 16px">A multi-platform auto-client based on <a href="https://github.com/SagerNet/sing-box">Sing-box</a> that serves as a universal proxy tool-chain. This app offers a wide range of capabilities, which are listed below. It also supports a large number of protocols. The app is free to use, ad-free, and open-source. It provides a secure and private tool for getting access to the free internet. </p>
-
-The app is developed using [Flutter](https://flutter.dev) and [Go](https://go.dev). For more information about development, you can read through our [Contribution Guidelines](CONTRIBUTING.md) .
+<p dir="ltr" style="font-size: 16px">A multi-platform proxy client based on <a href="https://github.com/SagerNet/sing-box">Sing-box</a> universal proxy tool-chain. Hiddify Next offers a wide range of capabilities, like automatic node selection, TUN mode, remote profiles etc. Hiddify Next is free and open-source. With support for a wide range of protocols, it provides a secure and private way for accessing free internet.</p>
 
 <div align=center>
 <img width=90% alt="English Demo" src="https://github.com/hiddify/hiddify-next/assets/125398461/ffe5346d-3404-470f-b5e0-4364e23743d2">
 
-
 </div>
-
 
 ## 🚀 Main features
 
-⭐ Easy to use with a simple UI
+✈️ Multi-platform: Android, iOS, Windows, macOS and Linux
 
-✈️ Multi-platform: Android, Windows, Linux and macOS (PRs for iOS are welcome)
+⭐ Intuitive and accessible UI
 
-🔍 Auto selection based on delay
+🔍 Delay based node selection
 
 🟡 Wide range of protocols:
-**ECH, Sing-box, V2ray, Xray, Vless, Vmess, Reality, TUIC, Hysteria, ShadowTLS, SSH, Clash, Clash meta**
+Vless, Vmess, Reality, TUIC, Hysteria, SSH etc.
 
-🟡 Subscription links:
-**Clash, Clash meta, Sing-box and Shadowsocks**
+🟡 Subscription link and configuration formats: Sing-box, V2ray, Clash, Clash meta
 
 🔄 Automatic subscription update
 
 🔎 Display profile information including remaining days and traffic usage
-
-💻 Completely free and without any ads and interruptions
 
 🛡 Open source, secure and community driven
 
@@ -105,7 +98,8 @@ The app is developed using [Flutter](https://flutter.dev) and [Go](https://go.de
 </div>
 
 ## Installation and tutorials
-**Please find tutorial information on our wiki page by clicking on image below.**
+
+**Find tutorial information on our wiki page by clicking on image below.**
 
 <div align="center">
 
@@ -114,28 +108,26 @@ The app is developed using [Flutter](https://flutter.dev) and [Go](https://go.de
 
 </div>
 
-## Improve Translations
+## Translations 🌎
 
 <div align=center>
     
 [![inlang status badge](https://inlang.com/badge?url=github.com/hiddify/hiddify-next)](https://inlang.com/editor/github.com/hiddify/hiddify-next?ref=badge)
 </div>
 
-You can easily contribute to this project by using the following links to improve the translations:
-- [English](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en)
-- [Persian](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=fa)
-- [Russian](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=ru)
-- [Chinese](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=zh-CN)
-- [Turkish](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=tr)
+Improve existing languages or add new ones by manually editing the JSON files located in `/assets/translations` or by using the [Inlang online editor](https://inlang.com/editor/github.com/hiddify/hiddify-next).
 
 ## Acknowledgements
+
 We would like to express our sincere appreciation to the contributors of the following projects, whose robust foundation and innovative features have significantly enhanced the success and functionality of this project.
+
 - [Sing-box](https://github.com/SagerNet/sing-box)
 - [Sing-box for Android](https://github.com/SagerNet/sing-box-for-android)
+- [Sing-box for Apple](https://github.com/SagerNet/sing-box-for-apple)
 - [Clash](https://github.com/Dreamacro/clash)
 - [Clash Meta](https://github.com/MetaCubeX/Clash.Meta)
 - [FClash](https://github.com/Fclash/Fclash)
-- Font: [Vazirmatn by Saber Rastikerdar](https://github.com/rastikerdar/vazirmatn)
+- [Vazirmatn Font by Saber Rastikerdar](https://github.com/rastikerdar/vazirmatn)
 - [Others](./pubspec.yaml)
 
 ## Donation and Support
@@ -152,12 +144,8 @@ We also need financial support for our services. All of our activities are done 
 
 ## Collaboration and Contact Information
 
-We need your collaboration in order to develop this project. If you are specialists in these areas, please do not hesitate to contact us and mention your skill.
+Hiddify Next is a community driven project. If you're interested in contributing, please read the [contribution guidelines](./CONTRIBUTING.md). We would specially appreciate any help we can get in these areas: **Flutter, Go, iOS development (Swift), Android development (Kotlin).**
 
-- Flutter Developing
-- Swift Developing
-- Kotlin Developing
-- Go Developing
 <div align=center>
 
 <br>
