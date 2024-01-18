@@ -72,10 +72,10 @@ jobs:
         run: |
           # xcode-select --install || softwareupdate --all --install --force
           # brew uninstall --force $(brew list | grep python@) && brew cleanup || echo "python not installed"
-          brew uninstall --ignore-dependencies python
-          echo "all pythons are removed"
-          brew reinstall python@3.11
-          echo "python3.11 is installed now"
+          # brew uninstall --ignore-dependencies python
+          # echo "all pythons are removed"
+          # brew reinstall python@3.12
+          # echo "python3.11 is installed now"
           #python3 -m pip install --upgrade setuptools pip
           brew install create-dmg tree 
           echo "installed create-dmg tree "
