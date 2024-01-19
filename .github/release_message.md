@@ -51,7 +51,9 @@
         </tr>
         <tr>
             <td>Linux</td>
-            <td><a href="https://github.com/hiddify/hiddify-next/releases/download/RELEASE_TAG/hiddify-linux-x64.zip"><img src="https://img.shields.io/badge/AppImage-x64-f84e29.svg?logo=github"> </a></td>
+            <td><a href="https://github.com/hiddify/hiddify-next/releases/download/RELEASE_TAG/hiddify-linux-x64.zip"><img src="https://img.shields.io/badge/AppImage-x64-f84e29.svg?logo=github"> </a><br>
+            <a href="https://github.com/hiddify/hiddify-next/releases/download/RELEASE_TAG/hiddify-debian-x64.zip"><img src="https://img.shields.io/badge/DebPackage-x64-FF9966.svg?logo=github"> </a><br>
+            <a href="https://github.com/hiddify/hiddify-next/releases/download/RELEASE_TAG/hiddify-rpm-x64.zip"><img src="https://img.shields.io/badge/RpmPackage-x64-F1B42F.svg?logo=github"> </a></td>
         </tr>
     </tbody>
 </table>
