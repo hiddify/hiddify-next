@@ -113,6 +113,10 @@ class ConfigOptionRepositoryImpl
           enableTlsMixedSniCase: persisted.enableTlsMixedSniCase,
           enableTlsPadding: persisted.enableTlsPadding,
           tlsPaddingSize: persisted.tlsPaddingSize,
+          enableMux: persisted.enableMux,
+          muxPadding: persisted.muxPadding,
+          muxMaxStreams: persisted.muxMaxStreams,
+          muxProtocol: persisted.muxProtocol,
           geoipPath: geoAssetPathResolver.relativePath(
             geoAssets.geoip.providerName,
             geoAssets.geoip.fileName,

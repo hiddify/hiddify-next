@@ -48,6 +48,10 @@ class SingboxConfigOption with _$SingboxConfigOption {
     required bool enableTlsPadding,
     @RangeWithOptionalCeilJsonConverter()
     required RangeWithOptionalCeil tlsPaddingSize,
+    required bool enableMux,
+    required bool muxPadding,
+    required int muxMaxStreams,
+    required MuxProtocol muxProtocol,
     required String geoipPath,
     required String geositePath,
     required List<SingboxRule> rules,

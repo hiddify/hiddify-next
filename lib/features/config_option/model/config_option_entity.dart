@@ -53,6 +53,10 @@ class ConfigOptionEntity with _$ConfigOptionEntity {
     @RangeWithOptionalCeilJsonConverter()
     @Default(RangeWithOptionalCeil(min: 100, max: 200))
     RangeWithOptionalCeil tlsPaddingSize,
+    @Default(false) bool enableMux,
+    @Default(false) bool muxPadding,
+    @Default(8) int muxMaxStreams,
+    @Default(MuxProtocol.h2mux) MuxProtocol muxProtocol,
   }) = _ConfigOptionEntity;
 
   static ConfigOptionEntity initial = ConfigOptionEntity(
@@ -109,6 +113,10 @@ class ConfigOptionEntity with _$ConfigOptionEntity {
           patch.enableTlsMixedSniCase ?? enableTlsMixedSniCase,
       enableTlsPadding: patch.enableTlsPadding ?? enableTlsPadding,
       tlsPaddingSize: patch.tlsPaddingSize ?? tlsPaddingSize,
+      enableMux: patch.enableMux ?? enableMux,
+      muxPadding: patch.muxPadding ?? muxPadding,
+      muxMaxStreams: patch.muxMaxStreams ?? muxMaxStreams,
+      muxProtocol: patch.muxProtocol ?? muxProtocol,
     );
   }
 

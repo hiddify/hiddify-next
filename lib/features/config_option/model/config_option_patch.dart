@@ -43,6 +43,10 @@ class ConfigOptionPatch with _$ConfigOptionPatch {
     bool? enableTlsMixedSniCase,
     bool? enableTlsPadding,
     @RangeWithOptionalCeilJsonConverter() RangeWithOptionalCeil? tlsPaddingSize,
+    bool? enableMux,
+    bool? muxPadding,
+    int? muxMaxStreams,
+    MuxProtocol? muxProtocol,
   }) = _ConfigOptionPatch;
 
   factory ConfigOptionPatch.fromJson(Map<String, dynamic> json) =>

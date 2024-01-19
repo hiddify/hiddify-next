@@ -72,3 +72,9 @@ enum TunImplementation {
   system,
   gVisor;
 }
+
+enum MuxProtocol {
+  h2mux,
+  smux,
+  yamux;
+}
