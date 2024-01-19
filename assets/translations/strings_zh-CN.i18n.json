@@ -201,6 +201,7 @@
                 "route": "路由选项",
                 "dns": "DNS 选项",
                 "inbound": "入站选项",
+                "mux": "Multiplexer",
                 "outbound": "出站选项",
                 "tlsTricks": "TLS Tricks",
                 "misc": "其它选项"
@@ -239,7 +240,10 @@
             "tlsFragmentSleep": "TLS 分段休眠",
             "enableTlsMixedSniCase": "启用 TLS 混合 SNI 情形",
             "enableTlsPadding": "启用 TLS 填充",
-            "tlsPaddingSize": "TLS 填充"
+            "tlsPaddingSize": "TLS 填充",
+            "enableMux": "Enable Mux",
+            "muxProtocol": "Mux Protocol",
+            "muxMaxStreams": "Max Concurrent Streams"
         },
         "geoAssets": {
             "pageTitle": "路由资源文件",

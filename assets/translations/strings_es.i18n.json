@@ -208,6 +208,7 @@
                 "route": "Opciones de ruta",
                 "dns": "Opciones de DNS",
                 "inbound": "Opciones entrantes",
+                "mux": "Multiplexer",
                 "outbound": "Opciones de salida",
                 "tlsTricks": "Trucos TLS",
                 "misc": "Opciones varias"
@@ -233,7 +234,10 @@
             "tlsFragmentSleep": "Sueño de fragmento TLS",
             "enableTlsMixedSniCase": "Habilitar caso SNI mixto TLS",
             "enableTlsPadding": "Habilitar el relleno TLS",
-            "tlsPaddingSize": "Relleno TLS"
+            "tlsPaddingSize": "Relleno TLS",
+            "enableMux": "Enable Mux",
+            "muxProtocol": "Mux Protocol",
+            "muxMaxStreams": "Max Concurrent Streams"
         },
         "geoAssets": {
             "successMsg": "Activo actualizado correctamente",

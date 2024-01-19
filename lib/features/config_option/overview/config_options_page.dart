@@ -182,6 +182,49 @@ class ConfigOptionsPage extends HookConsumerWidget {
                 ),
               ),
               const SettingsDivider(),
+              SettingsSection(experimental(t.settings.config.section.mux)),
+              SwitchListTile(
+                title: Text(t.settings.config.enableMux),
+                value: options.enableMux,
+                onChanged: (value) => changeOption(
+                  ConfigOptionPatch(enableMux: value),
+                ),
+              ),
+              ListTile(
+                title: Text(t.settings.config.muxProtocol),
+                subtitle: Text(options.muxProtocol.name),
+                onTap: () async {
+                  final pickedProtocol = await SettingsPickerDialog(
+                    title: t.settings.config.muxProtocol,
+                    selected: options.muxProtocol,
+                    options: MuxProtocol.values,
+                    getTitle: (e) => e.name,
+                    resetValue: defaultOptions.muxProtocol,
+                  ).show(context);
+                  if (pickedProtocol == null) return;
+                  await changeOption(
+                    ConfigOptionPatch(muxProtocol: pickedProtocol),
+                  );
+                },
+              ),
+              ListTile(
+                title: Text(t.settings.config.muxMaxStreams),
+                subtitle: Text(options.muxMaxStreams.toString()),
+                onTap: () async {
+                  final maxStreams = await SettingsInputDialog(
+                    title: t.settings.config.muxMaxStreams,
+                    initialValue: options.muxMaxStreams,
+                    resetValue: defaultOptions.muxMaxStreams,
+                    mapTo: int.tryParse,
+                    digitsOnly: true,
+                  ).show(context);
+                  if (maxStreams == null || maxStreams < 1) return;
+                  await changeOption(
+                    ConfigOptionPatch(muxMaxStreams: maxStreams),
+                  );
+                },
+              ),
+              const SettingsDivider(),
               SettingsSection(t.settings.config.section.inbound),
               ListTile(
                 title: Text(t.settings.config.serviceMode),

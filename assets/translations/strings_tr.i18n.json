@@ -201,6 +201,7 @@
                 "route": "Rota Seçenekleri",
                 "dns": "DNS Seçenekleri",
                 "inbound": "Gelen Seçenekler",
+                "mux": "Multiplexer",
                 "outbound": "Outbound Options",
                 "tlsTricks": "TLS Tricks",
                 "misc": "Çeşitli Seçenekler"
@@ -239,7 +240,10 @@
             "tlsFragmentSleep": "TLS Fragment Sleep",
             "enableTlsMixedSniCase": "Enable TLS Mixed SNI Case",
             "enableTlsPadding": "Enable TLS Padding",
-            "tlsPaddingSize": "TLS Padding"
+            "tlsPaddingSize": "TLS Padding",
+            "enableMux": "Enable Mux",
+            "muxProtocol": "Mux Protocol",
+            "muxMaxStreams": "Max Concurrent Streams"
         },
         "geoAssets": {
             "pageTitle": "Varlıkları Yönlendirme",
