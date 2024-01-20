@@ -19,6 +19,9 @@ public class LogsEventHandler: NSObject, FlutterPlugin, FlutterStreamHandler {
     }
     
     public func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
+        if VPNManager.shared.logCallback {
+            events(VPNManager.shared.logList)
+        }
         return nil
     }
     

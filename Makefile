@@ -159,7 +159,7 @@ release: # Create a new tag for release.
 ios-temp-prepare: 
 	flutter upgrade
 	flutter clean
-	flutter pub upgrade
+	# flutter pub upgrade
 	make prepare platform=ios
 	# make get-geo-assets 
 	# make get 
