@@ -7,8 +7,7 @@ let package = Package(
      name: "Libcore",
      platforms: [
         // Minimum platform version
-         .iOS(.v13),
-         .tvOS(.v13)
+         .iOS(.v13)
      ],
      products: [
          .library(
