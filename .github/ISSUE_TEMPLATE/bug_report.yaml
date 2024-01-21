@@ -5,6 +5,7 @@ body:
   - type: markdown
     attributes:
       value: |
+        # Only English
         If you have a feature idea or need help, please go to [our Telegram group](https://t.me/hiddify_board).
 
         Please make sure to provide a descriptive, deterministic, and reproducible report. It saves time for both the developers and users who are looking for solutions. Providing as much information as possible, including screenshots and logs, is highly appreciated. This will help us to better understand the issue and respond more effectively.
