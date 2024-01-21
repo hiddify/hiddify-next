@@ -2,6 +2,10 @@ name: Feature Request
 description: Request a new feature
 title: '[FR] '
 body:
+  - type: markdown
+    attributes:
+      value: |
+        # Only English
   - type: textarea
     attributes:
       label: Feature description
