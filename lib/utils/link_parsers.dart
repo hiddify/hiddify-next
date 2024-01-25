@@ -57,7 +57,8 @@ abstract class LinkParser {
         'hy' || 'hysteria' => fragment ?? ProxyType.hysteria.label,
         'ssh' => fragment ?? ProxyType.ssh.label,
         'wg' => fragment ?? ProxyType.wireguard.label,
-        _ => null,
+        'warp'=>fragment ?? ProxyType.warp.label,
+        _ => ProxyType.unknown.label,
       };
       if (name != null) {
         return (content: content, name: name);
