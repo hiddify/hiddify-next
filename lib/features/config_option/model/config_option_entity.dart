@@ -21,7 +21,7 @@ class ConfigOptionEntity with _$ConfigOptionEntity {
     @Default(LogLevel.warn) LogLevel logLevel,
     @Default(false) bool resolveDestination,
     @Default(IPv6Mode.disable) IPv6Mode ipv6Mode,
-    @Default("tcp://8.8.8.8") String remoteDnsAddress,
+    @Default("udp://8.8.8.8") String remoteDnsAddress,
     @Default(DomainStrategy.auto) DomainStrategy remoteDnsDomainStrategy,
     @Default("8.8.8.8") String directDnsAddress,
     @Default(DomainStrategy.auto) DomainStrategy directDnsDomainStrategy,
@@ -30,7 +30,7 @@ class ConfigOptionEntity with _$ConfigOptionEntity {
     @Default(TunImplementation.mixed) TunImplementation tunImplementation,
     @Default(9000) int mtu,
     @Default(true) bool strictRoute,
-    @Default("https://cp.cloudflare.com/") String connectionTestUrl,
+    @Default("http://cp.cloudflare.com/") String connectionTestUrl,
     @IntervalInSecondsConverter()
     @Default(Duration(minutes: 10))
     Duration urlTestInterval,
