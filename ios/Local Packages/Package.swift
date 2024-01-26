@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-     name: "Libcore",
+     name: "Hiddify Packages",
      platforms: [
         // Minimum platform version
          .iOS(.v13)
