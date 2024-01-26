@@ -123,7 +123,7 @@
 - [clash](https://github.com/Dreamacro/clash)
 - [clash Meta](https://github.com/MetaCubeX/Clash.Meta)
 - [FClash](https://github.com/Fclash/Fclash)
-- 字体：[Vazirmatn by Saber Rastikerdar](https://github.com/rastikerdar/vazirmatn)
+- [字体 Vazirmatn by Saber Rastikerdar](https://github.com/rastikerdar/vazirmatn)
 - [其他](./pubspec.yaml)
 
 
