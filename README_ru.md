@@ -110,7 +110,7 @@
 - [Clash](https://github.com/Dreamacro/clash)
 - [Мета Clash](https://github.com/MetaCubeX/Clash.Meta)
 - [FClash](https://github.com/Fclash/Fclash)
-- Шрифт: [Vazirmatn от Sabre Rastikerdar] (https://github.com/rastikerdar/vazirmatn)
+- [Шрифт Vazirmatn от Sabre Rastikerdar] (https://github.com/rastikerdar/vazirmatn)
 - [Другие](./pubspec.yaml)
 
 
