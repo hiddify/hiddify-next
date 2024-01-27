@@ -361,7 +361,7 @@ class ProfileRepositoryImpl
     );
   }
 
-  final _subInfoHeaders = [
+  static final  _subInfoHeaders = [
     'profile-title',
     'content-disposition',
     'subscription-userinfo',
@@ -418,8 +418,20 @@ class ProfileRepositoryImpl
       "only [$headersFound] headers found, checking file content for possible information",
     );
     var content = await File(path).readAsString();
-    content = safeDecodeBase64(content);
-    final lines = content.split("\n");
+    final contentHeaders = parseHeadersFromContent(content);
+    for (final entry in contentHeaders.entries) {
+      if (!headers.keys.contains(entry.key) && entry.value.isNotEmpty) {
+        headers[entry.key] = entry.value;
+      }  
+    }
+    
+    return headers;
+  }
+
+  static Map<String, List<String>> parseHeadersFromContent(String content) {
+    final headers = <String, List<String>>{};
+    final content_ = safeDecodeBase64(content);
+    final lines = content_.split("\n");
     final linesToProcess = lines.length < 10 ? lines.length : 10;
     for (int i = 0; i < linesToProcess; i++) {
       final line = lines[i];
