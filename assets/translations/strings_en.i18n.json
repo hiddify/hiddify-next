@@ -193,8 +193,8 @@
             "resetBtn": "Reset options",
             "serviceMode": "Service Mode",
             "serviceModes": {
-                "proxy": "Proxy",
-                "systemProxy": "System Proxy",
+                "proxy": "Proxy Service Only",
+                "systemProxy": "Set System Proxy",
                 "tun": "VPN"
             },
             "section": {

@@ -67,7 +67,7 @@ class ConfigOptionEntity with _$ConfigOptionEntity {
     if (PlatformUtils.isDesktop && serviceMode == ServiceMode.tun) {
       return true;
     }
-    if (enableTlsFragment || enableTlsMixedSniCase || enableTlsPadding) {
+    if (enableTlsFragment || enableTlsMixedSniCase || enableTlsPadding||enableMux) {
       return true;
     }
 

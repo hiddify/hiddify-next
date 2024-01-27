@@ -193,8 +193,8 @@
             "resetBtn": "گزینه ها را بازنشانی کنید",
             "serviceMode": "حالت سرویس",
             "serviceModes": {
-                "proxy": "پروکسی",
-                "systemProxy": "پروکسی سیستم",
+                "proxy": "فقط سرویس پروکسی",
+                "systemProxy": "تنظیم پروکسی سیستم",
                 "tun": "VPN"
             },
             "section": {
