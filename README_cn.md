@@ -1,6 +1,6 @@
 <div dir="ltr">
 
-[**![Lang_farsi](https://user-images.githubusercontent.com/125398461/234186932-52f1fa82-52c6-417f-8b37-08fe9250a55f.png) فارسی**](README_fa.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**Русский 🇷🇺**](README_ru.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**English 🇺🇸**](README.md)
+[**![Lang_farsi](https://user-images.githubusercontent.com/125398461/234186932-52f1fa82-52c6-417f-8b37-08fe9250a55f.png) فارسی**](README_fa.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**Русский 🇷🇺**](README_ru.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**English 🇺🇸**](README.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**日本語 🇯🇵**](README_ja.md)
 
 </div>
 
@@ -18,34 +18,28 @@
 
 ## Hiddify-Next 是什么？
 
-<p dir="ltr" style="font-size: 16px">一个基于 <a href="https://github.com/SagerNet/sing-box">Sing-box</a> 的跨平台自动客户端，用作通用代理工具链。该应用提供了广泛的功能，如下所列。它还支持大量协议。该应用免费使用、无广告且开源。它为访问自由互联网提供了一个安全且私密的工具。</p>
-
-该应用是使用 [Flutter](https://flutter.dev/) 和 [Go](https://go.dev/) 开发的。 有关开发的更多信息，您可以阅读我们的[贡献指南](CONTRIBUTING.md)。
+<p dir="ltr" style="font-size: 16px">一款基于 <a href="https://github.com/SagerNet/sing-box">Sing-box</a> 通用代理工具的跨平台代理客户端。Hiddify Next 提供了较全面的代理功能，例如自动选择节点、TUN 模式、使用远程配置文件等。Hiddify Next 无广告，并且代码开源。它为大家自由访问互联网提供了一个支持多种协议的、安全且私密的工具。</p>
 
 <div align=center>
 <img width=90% alt="English Demo" src="https://github.com/hiddify/hiddify-next/assets/125398461/ffe5346d-3404-470f-b5e0-4364e23743d2">
-
-
 </div>
 
 
-## 🚀 主要功能
+## 🚀 主要特性
+
+✈️ 多平台客户端：Android、iOS、Windows、macOS 和 Linux
 
 ⭐ 简单易用的用户界面
 
-✈️ 跨平台：Android、Windows、Linux 和 macOS（欢迎 iOS 的 PR）
+🔍 基于延迟自动选择节点
 
-🔍 基于延迟的自动选择
+🟡 全面的协议支持：**Vless、Vmess、Reality、TUIC、Hysteria、SSH**
 
-🟡 广泛的协议支持：**ECH, Sing-box, V2ray, Xray, Vless, Vmess, Reality, TUIC, Hysteria, ShadowTLS, SSH, Clash, Clash meta**
+🟡 多种订阅链接和配置文件格式支持： **Sing-box、V2ray、Clash、Clash meta**
 
-🟡 支持多种订阅链接导入： **Clash, Clash meta, Sing-box and Shadowsocks**
+🔄 支持自动更新订阅
 
-🔄 自动更新订阅
-
-🔎 显示包含了剩余天数和流量使用情况的配置文件信息
-
-💻 完全免费，没有任何广告和干扰
+🔎 可显示包含了剩余天数和流量使用情况的配置文件信息
 
 🛡 开源、安全且由社区驱动
 
@@ -57,7 +51,7 @@
 
 📱 可在 [Google Play](https://play.google.com/store/apps/details?id=app.hiddify.com) 上获取
 
-## 下载
+## 🔗 下载
 
 <div align=left>
 <table>
@@ -98,37 +92,39 @@
 
 </div>
 
-## 安装和教程
+## ⚙️ 安装和教程
 **请单击下面的图片，在我们的维基页面上找到相关信息。**
 
 <div align=center>
+    
+[![Wiki上的所有教程](https://github.com/hiddify/hiddify-next/assets/125398461/95bb5cf8-c143-4934-87d6-b9d4c31e035e)](https://github.com/hiddify/hiddify-next/wiki)
+
+</div>
  
-<a href="https://github.com/hiddify/hiddify-next/wiki"><img width="100%" alt="Wiki 上的所有教程" src="https://github.com/hiddify/hiddify-next/assets/125398461/317be77a-33d4-4f07-a4d0-aea83e034712" /></a>
 
+## 🌎 翻译
+<div align=center>
+    
+[![inlang status badge](https://inlang.com/badge?url=github.com/hiddify/hiddify-next)](https://inlang.com/editor/github.com/hiddify/hiddify-next?ref=badge)
 
- </div>
- 
+</div>
 
-## 改进翻译
-您可以使用以下链接轻松地为该项目改进翻译以做出贡献：
- - [英语](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en)
-- [波斯语](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=fa)
-- [俄语](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=ru)
-- [简体中文](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=zh-CN)
+您可以通过手动编辑位于 `/assets/translations` 中的 JSON 文件，或使用 [Inlang 在线编辑器](https://inlang.com/editor/github.com/hiddify/hiddify-next)来改进现有语言或添加新语言。
 
-## 致谢
-我们谨向以下项目的贡献者表示诚挚的谢意，他们坚实的基础和创新的功能显着增强了该项目的成功和功能。
+## ✏️ 致谢
+我们谨向以下项目的贡献者表示诚挚的谢意，这些项目打下的坚实基础和开发的创新功能，显着增强了本项目的功能，为本项目的开发带来了成功。
 - [Sing-box](https://github.com/SagerNet/sing-box)
-- [Android 版 Sing-box](https://github.com/SagerNet/sing-box-for-android)
-- [clash](https://github.com/Dreamacro/clash)
-- [clash Meta](https://github.com/MetaCubeX/Clash.Meta)
+- [Sing-box for Android](https://github.com/SagerNet/sing-box-for-android)
+- [Sing-box for Apple](https://github.com/SagerNet/sing-box-for-apple)
+- [Clash](https://github.com/Dreamacro/clash)
+- [Clash Meta](https://github.com/MetaCubeX/Clash.Meta)
 - [FClash](https://github.com/Fclash/Fclash)
-- [字体 Vazirmatn by Saber Rastikerdar](https://github.com/rastikerdar/vazirmatn)
+- [字体 Vazirmatn Font by Saber Rastikerdar](https://github.com/rastikerdar/vazirmatn)
 - [其他](./pubspec.yaml)
 
 
 
-## 捐赠和支持
+## 🎯 捐赠和支持
 
 支持我们的最简单方法是单击此页面顶部的Star (⭐) 。
 
@@ -140,14 +136,10 @@
 
 我们的服务也需要经济支持。我们所有的活动都是志愿性质的，经济支持将被用于项目的发展。您可以在 [这里](https://github.com/hiddify/hiddify-server/wiki/support) 查看我们的支持地址。
 
-## 合作与联系信息
+## 👩‍🏫 合作及联系信息
 
-我们需要您的合作来推动这个项目的发展。如果您在这些领域是专家，请不要犹豫联系我们并提及您的技能。
+Hiddify Next 是一个由社区驱动的项目。如果您有兴趣为本项目做出贡献，请阅读 [贡献指南](./CONTRIBUTING.md)。我们将非常感谢您，如果您能够在以下领域提供任何帮助：Flutter、Go、iOS 开发 (Swift)、Android 开发 (Kotlin)。
 
-- Flutter 开发
-- Swift 开发
-- Kotlin 开发
-- Go 开发
 <div align=center>
 
 <br>
@@ -161,7 +153,7 @@
 </div>
 
 <p align=center>
-我们非常感谢所有参与此项目的人，包括在这里的一些人和在Github之外的。这对我们来说意义重大。♥
+我们非常感谢所有参与此项目的朋友，包括下面列出的这些朋友，以及许许多多没有在 Github 社区的朋友。这对我们来说意义重大。♥
  </p>
 
 
