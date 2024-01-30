@@ -9,6 +9,7 @@ part 'profile_data_source.g.dart';
 abstract interface class ProfileDataSource {
   Future<ProfileEntry?> getById(String id);
   Future<ProfileEntry?> getByUrl(String url);
+  Future<ProfileEntry?> getByName(String name);
   Stream<ProfileEntry?> watchActiveProfile();
   Stream<int> watchProfilesCount();
   Stream<List<ProfileEntry>> watchAll({
@@ -41,6 +42,13 @@ class ProfileDao extends DatabaseAccessor<AppDatabase>
   Future<ProfileEntry?> getByUrl(String url) async {
     return (select(profileEntries)
           ..where((tbl) => tbl.url.like('%$url%'))
+          ..limit(1))
+        .getSingleOrNull();
+  }
+  @override
+  Future<ProfileEntry?> getByName(String name) async {
+    return (select(profileEntries)
+          ..where((tbl) => tbl.name.equals(name))
           ..limit(1))
         .getSingleOrNull();
   }

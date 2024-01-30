@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dartx/dartx.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:hiddify/features/profile/data/profile_parser.dart';
 import 'package:hiddify/features/profile/data/profile_repository.dart';
 import 'package:hiddify/singbox/model/singbox_proxy_type.dart';
@@ -49,30 +50,28 @@ abstract class LinkParser {
       if (uri == null) continue;
       final fragment =
           uri.hasFragment ? Uri.decodeComponent(uri.fragment) : null;
-      if (name != null) {
-        name = switch (uri.scheme) {
-          'ss' => fragment ?? ProxyType.shadowsocks.label,
-          'ssconf' => fragment ?? ProxyType.shadowsocks.label,
-          'vmess' => ProxyType.vmess.label,
-          'vless' => fragment ?? ProxyType.vless.label,
-          'trojan' => fragment ?? ProxyType.trojan.label,
-          'tuic' => fragment ?? ProxyType.tuic.label,
-          'hy2' || 'hysteria2' => fragment ?? ProxyType.hysteria2.label,
-          'hy' || 'hysteria' => fragment ?? ProxyType.hysteria.label,
-          'ssh' => fragment ?? ProxyType.ssh.label,
-          'wg' => fragment ?? ProxyType.wireguard.label,
-          'warp' => fragment ?? ProxyType.warp.label,
-          _ => null,
-        };
-      }
+      name ??= switch (uri.scheme) {
+        'ss' => fragment ?? ProxyType.shadowsocks.label,
+        'ssconf' => fragment ?? ProxyType.shadowsocks.label,
+        'vmess' => ProxyType.vmess.label,
+        'vless' => fragment ?? ProxyType.vless.label,
+        'trojan' => fragment ?? ProxyType.trojan.label,
+        'tuic' => fragment ?? ProxyType.tuic.label,
+        'hy2' || 'hysteria2' => fragment ?? ProxyType.hysteria2.label,
+        'hy' || 'hysteria' => fragment ?? ProxyType.hysteria.label,
+        'ssh' => fragment ?? ProxyType.ssh.label,
+        'wg' => fragment ?? ProxyType.wireguard.label,
+        'warp' => fragment ?? ProxyType.warp.label,
+        _ => null,
+      };
     }
     final headers = ProfileRepositoryImpl.parseHeadersFromContent(content);
     final subinfo = ProfileParser.parse("", headers);
 
-    if (subinfo.name.isNotNullOrEmpty) {
+    if (subinfo.name.isNotNullOrEmpty && subinfo.name != "Remote Profile") {
       name = subinfo.name;
     }
-
+    
     return (content: normalContent, name: name ?? ProxyType.unknown.label);
   }
 

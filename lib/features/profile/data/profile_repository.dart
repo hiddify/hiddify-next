@@ -22,6 +22,7 @@ import 'package:uuid/uuid.dart';
 abstract interface class ProfileRepository {
   TaskEither<ProfileFailure, Unit> init();
   TaskEither<ProfileFailure, ProfileEntity?> getById(String id);
+  Future<ProfileEntity?> getByName(String name);
   Stream<Either<ProfileFailure, ProfileEntity?>> watchActiveProfile();
   Stream<Either<ProfileFailure, bool>> watchHasAnyProfile();
 
@@ -95,6 +96,11 @@ class ProfileRepositoryImpl
       () => profileDataSource.getById(id).then((value) => value?.toEntity()),
       ProfileUnexpectedFailure.new,
     );
+  }
+
+  @override
+  Future<ProfileEntity?> getByName(String name) async {
+    return (await profileDataSource.getByName(name))?.toEntity();
   }
 
   @override
@@ -361,7 +367,7 @@ class ProfileRepositoryImpl
     );
   }
 
-  static final  _subInfoHeaders = [
+  static final _subInfoHeaders = [
     'profile-title',
     'content-disposition',
     'subscription-userinfo',
@@ -422,9 +428,9 @@ class ProfileRepositoryImpl
     for (final entry in contentHeaders.entries) {
       if (!headers.keys.contains(entry.key) && entry.value.isNotEmpty) {
         headers[entry.key] = entry.value;
-      }  
+      }
     }
-    
+
     return headers;
   }
 

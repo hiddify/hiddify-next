@@ -68,9 +68,14 @@ class AddProfile extends _$AddProfile with AppLogger {
           );
         } else if (LinkParser.protocol(rawInput) case (final parsed)?) {
           loggy.debug("adding profile, content");
+          var name = parsed.name;
+
+          while (await _profilesRepo.getByName(name) != null) {  
+            name+= '${randomInt(0, 9).run()}'; 
+          }
           task = _profilesRepo.addByContent(
             parsed.content,
-            name: parsed.name,
+            name: name,
             markAsActive: markAsActive,
           );
         } else {
