@@ -8,6 +8,7 @@ import 'package:hiddify/features/connection/notifier/connection_notifier.dart';
 import 'package:hiddify/features/proxy/data/proxy_data_providers.dart';
 import 'package:hiddify/features/proxy/model/proxy_entity.dart';
 import 'package:hiddify/features/proxy/model/proxy_failure.dart';
+import 'package:hiddify/singbox/model/singbox_proxy_type.dart';
 import 'package:hiddify/utils/pref_notifier.dart';
 import 'package:hiddify/utils/riverpod_utils.dart';
 import 'package:hiddify/utils/utils.dart';
@@ -33,7 +34,7 @@ class ProxiesSortNotifier extends _$ProxiesSortNotifier with AppLogger {
   late final _pref = Pref(
     ref.watch(sharedPreferencesProvider).requireValue,
     "proxies_sort_mode",
-    ProxiesSort.unsorted,
+    ProxiesSort.delay,
     mapFrom: ProxiesSort.values.byName,
     mapTo: (value) => value.name,
   );
@@ -92,14 +93,20 @@ class ProxiesOverviewNotifier extends _$ProxiesOverviewNotifier with AppLogger {
         final sortedProxies = <ProxyGroupEntity>[];
         for (final group in proxies) {
           final sortedItems = switch (sortBy) {
-            ProxiesSort.name => group.items.sortedBy((e) => e.tag),
+            ProxiesSort.name => group.items.sortedWith((a, b) {
+                if(a.type.isGroup && !b.type.isGroup) return -1;
+                if(!a.type.isGroup && b.type.isGroup) return 1;
+                return a.tag.compareTo(b.tag);
+            }),
             ProxiesSort.delay => group.items.sortedWith((a, b) {
+                if(a.type.isGroup && !b.type.isGroup) return -1;
+                if(!a.type.isGroup && b.type.isGroup) return 1;
+                
                 final ai = a.urlTestDelay;
                 final bi = b.urlTestDelay;
                 if (ai == 0 && bi == 0) return -1;
                 if (ai == 0 && bi > 0) return 1;
                 if (ai > 0 && bi == 0) return -1;
-                if (ai == bi && a.type.isGroup) return -1;
                 return ai.compareTo(bi);
               }),
             ProxiesSort.unsorted => group.items,
