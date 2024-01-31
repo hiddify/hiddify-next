@@ -76,9 +76,12 @@ class ProfileDao extends DatabaseAccessor<AppDatabase>
   }) {
     return (profileEntries.select()
           ..orderBy(
-            [
+            [(tbl) => OrderingTerm(
+            expression: tbl.active,
+            mode: OrderingMode.desc,
+          ),
               (tbl) {
-                final trafficRatio = (tbl.download + tbl.upload) / tbl.total;
+                final trafficRatio = (tbl.download + tbl.upload) / tbl.total;                
                 final isExpired =
                     tbl.expire.isSmallerOrEqualValue(DateTime.now());
                 return OrderingTerm(
@@ -90,8 +93,9 @@ class ProfileDao extends DatabaseAccessor<AppDatabase>
               },
               switch (sort) {
                 ProfilesSort.name => (tbl) => OrderingTerm(
-                      expression: tbl.name,
+                      expression:  tbl.name,
                       mode: orderMap[sortMode]!,
+                      
                     ),
                 ProfilesSort.lastUpdate => (tbl) => OrderingTerm(
                       expression: tbl.lastUpdate,
