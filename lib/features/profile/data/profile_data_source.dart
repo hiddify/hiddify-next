@@ -45,6 +45,7 @@ class ProfileDao extends DatabaseAccessor<AppDatabase>
           ..limit(1))
         .getSingleOrNull();
   }
+
   @override
   Future<ProfileEntry?> getByName(String name) async {
     return (select(profileEntries)
@@ -76,12 +77,13 @@ class ProfileDao extends DatabaseAccessor<AppDatabase>
   }) {
     return (profileEntries.select()
           ..orderBy(
-            [(tbl) => OrderingTerm(
-            expression: tbl.active,
-            mode: OrderingMode.desc,
-          ),
+            [
+              (tbl) => OrderingTerm(
+                    expression: tbl.active,
+                    mode: OrderingMode.desc,
+                  ),
               (tbl) {
-                final trafficRatio = (tbl.download + tbl.upload) / tbl.total;                
+                final trafficRatio = (tbl.download + tbl.upload) / tbl.total;
                 final isExpired =
                     tbl.expire.isSmallerOrEqualValue(DateTime.now());
                 return OrderingTerm(
@@ -93,9 +95,8 @@ class ProfileDao extends DatabaseAccessor<AppDatabase>
               },
               switch (sort) {
                 ProfilesSort.name => (tbl) => OrderingTerm(
-                      expression:  tbl.name,
+                      expression: tbl.name,
                       mode: orderMap[sortMode]!,
-                      
                     ),
                 ProfilesSort.lastUpdate => (tbl) => OrderingTerm(
                       expression: tbl.lastUpdate,
@@ -124,12 +125,13 @@ class ProfileDao extends DatabaseAccessor<AppDatabase>
   Future<void> edit(String id, ProfileEntriesCompanion entry) async {
     await transaction(
       () async {
+        
         if (entry.active.present && entry.active.value) {
           await update(profileEntries)
               .write(const ProfileEntriesCompanion(active: Value(false)));
         }
         await (update(profileEntries)..where((tbl) => tbl.id.equals(id)))
-            .write(entry);
+            .write(entry.copyWith(lastUpdate: Value(DateTime.now())));
       },
     );
   }
