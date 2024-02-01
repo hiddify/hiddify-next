@@ -106,18 +106,16 @@ class _CustomAdaptiveScaffold extends HookConsumerWidget {
     return Scaffold(
       key: RootScaffold.stateKey,
       drawer: Breakpoints.small.isActive(context)
-          ? SafeArea(
-              child: Drawer(
-                width: (MediaQuery.sizeOf(context).width * 0.88).clamp(0, 304),
-                child: NavigationRail(
-                  extended: true,
-                  selectedIndex: selectedWithOffset(drawerDestinationRange),
-                  destinations: destinationsSlice(drawerDestinationRange)
-                      .map((dest) => AdaptiveScaffold.toRailDestination(dest))
-                      .toList(),
-                  onDestinationSelected: (index) =>
-                      selectWithOffset(index, drawerDestinationRange),
-                ),
+          ? Drawer(
+              width: (MediaQuery.sizeOf(context).width * 0.88).clamp(0, 304),
+              child: NavigationRail(
+                extended: true,
+                selectedIndex: selectedWithOffset(drawerDestinationRange),
+                destinations: destinationsSlice(drawerDestinationRange)
+                    .map((dest) => AdaptiveScaffold.toRailDestination(dest))
+                    .toList(),
+                onDestinationSelected: (index) =>
+                    selectWithOffset(index, drawerDestinationRange),
               ),
             )
           : null,
