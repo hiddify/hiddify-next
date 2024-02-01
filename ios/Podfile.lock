@@ -56,7 +56,7 @@ PODS:
     - GTMSessionFetcher/Core (< 3.0, >= 1.1)
     - MLImage (= 1.0.0-beta4)
     - MLKitCommon (~> 9.0)
-  - mobile_scanner (3.5.5):
+  - mobile_scanner (3.5.6):
     - Flutter
     - GoogleMLKit/BarcodeScanning (~> 4.0.0)
   - nanopb (2.30909.1):
@@ -70,28 +70,28 @@ PODS:
     - Flutter
     - FlutterMacOS
   - PromisesObjC (2.3.1)
-  - protocol_handler (0.0.1):
+  - protocol_handler_ios (0.0.1):
     - Flutter
-  - Sentry/HybridSDK (8.17.2):
-    - SentryPrivate (= 8.17.2)
+  - Sentry/HybridSDK (8.19.0):
+    - SentryPrivate (= 8.19.0)
   - sentry_flutter (0.0.1):
     - Flutter
     - FlutterMacOS
-    - Sentry/HybridSDK (= 8.17.2)
-  - SentryPrivate (8.17.2)
+    - Sentry/HybridSDK (= 8.19.0)
+  - SentryPrivate (8.19.0)
   - share_plus (0.0.1):
     - Flutter
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
-  - sqlite3 (3.45.0):
-    - sqlite3/common (= 3.45.0)
-  - sqlite3/common (3.45.0)
-  - sqlite3/fts5 (3.45.0):
+  - sqlite3 (3.45.1):
+    - sqlite3/common (= 3.45.1)
+  - sqlite3/common (3.45.1)
+  - sqlite3/fts5 (3.45.1):
     - sqlite3/common
-  - sqlite3/perf-threadsafe (3.45.0):
+  - sqlite3/perf-threadsafe (3.45.1):
     - sqlite3/common
-  - sqlite3/rtree (3.45.0):
+  - sqlite3/rtree (3.45.1):
     - sqlite3/common
   - sqlite3_flutter_libs (0.0.1):
     - Flutter
@@ -111,7 +111,7 @@ DEPENDENCIES:
   - mobile_scanner (from `.symlinks/plugins/mobile_scanner/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
-  - protocol_handler (from `.symlinks/plugins/protocol_handler/ios`)
+  - protocol_handler_ios (from `.symlinks/plugins/protocol_handler_ios/ios`)
   - sentry_flutter (from `.symlinks/plugins/sentry_flutter/ios`)
   - share_plus (from `.symlinks/plugins/share_plus/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
@@ -153,8 +153,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/package_info_plus/ios"
   path_provider_foundation:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
-  protocol_handler:
-    :path: ".symlinks/plugins/protocol_handler/ios"
+  protocol_handler_ios:
+    :path: ".symlinks/plugins/protocol_handler_ios/ios"
   sentry_flutter:
     :path: ".symlinks/plugins/sentry_flutter/ios"
   share_plus:
@@ -182,21 +182,21 @@ SPEC CHECKSUMS:
   MLKitBarcodeScanning: 04e264482c5f3810cb89ebc134ef6b61e67db505
   MLKitCommon: c1b791c3e667091918d91bda4bba69a91011e390
   MLKitVision: 8baa5f46ee3352614169b85250574fde38c36f49
-  mobile_scanner: 202ab6f652e40a9add68b10de4c4fb2a745c4348
+  mobile_scanner: 38dcd8a49d7d485f632b7de65e4900010187aef2
   nanopb: d4d75c12cd1316f4a64e3c6963f879ecd4b5e0d5
   package_info_plus: 115f4ad11e0698c8c1c5d8a689390df880f47e85
   path_provider_foundation: 29f094ae23ebbca9d3d0cec13889cd9060c0e943
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
-  protocol_handler: ae9efcf3b307f3fdffcd9d5252775b9f7d9f0d09
-  Sentry: 64a9f9c3637af913adcf53deced05bbe452d1410
-  sentry_flutter: 57912cf425e09398bdf47f38842a1fcb9836f1be
-  SentryPrivate: 024c6fed507ac39ae98e6d087034160f942920d5
+  protocol_handler_ios: a5db8abc38526ee326988b808be621e5fd568990
+  Sentry: 1ebcaef678a27c8ac515f974cb5425dd1bbdec2f
+  sentry_flutter: ecdfbedee55337205561cfa782ee02d31ec83e1f
+  SentryPrivate: 765c9b4ebe9ac1a5fcdc067c5a1cfbf3f10e1677
   share_plus: c3fef564749587fc939ef86ffb283ceac0baf9f5
   shared_preferences_foundation: 5b919d13b803cadd15ed2dc053125c68730e5126
-  sqlite3: f307b6291c4db7b5086c38d6237446b98a738581
+  sqlite3: 73b7fc691fdc43277614250e04d183740cb15078
   sqlite3_flutter_libs: aeb4d37509853dfa79d9b59386a2dac5dd079428
   url_launcher_ios: bf5ce03e0e2088bad9cc378ea97fa0ed5b49673b
 
 PODFILE CHECKSUM: be4663332fca77601dd6736e3676fe47177084e1
 
-COCOAPODS: 1.14.3
+COCOAPODS: 1.15.0
