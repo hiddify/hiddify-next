@@ -725,14 +725,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.0"
-  icons_launcher:
-    dependency: "direct dev"
-    description:
-      name: icons_launcher
-      sha256: "9b514ffed6ed69b232fd2bf34c44878c8526be71fc74129a658f35c04c9d4a9d"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.7"
   iconsax_flutter:
     dependency: transitive
     description:

@@ -9,9 +9,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.6
   flutter_localizations:
     sdk: flutter
+  cupertino_icons: ^1.0.6
   intl: ^0.18.1
   slang: ^3.29.0
   slang_flutter: ^3.29.0
@@ -28,7 +28,7 @@ dependencies:
   dio: ^5.4.0
   ffi: ^2.1.0
   path_provider: ^2.1.1
-  mobile_scanner: 4.0.0
+  mobile_scanner: ^4.0.0
   protocol_handler: ^0.2.0
   flutter_native_splash: ^2.3.10
   share_plus: ^7.2.2
@@ -85,7 +85,6 @@ dev_dependencies:
   slang_build_runner: ^3.29.0
   flutter_gen_runner: ^5.4.0
   go_router_builder: ^2.4.1
-  icons_launcher: ^2.1.7
   dependency_validator: ^3.2.3
 
 flutter:
@@ -108,30 +107,6 @@ flutter_gen:
   output: lib/gen/
   integrations:
     flutter_svg: true
-
-icons_launcher:
-  image_path: "assets/images/source/ic_launcher_border.png"
-  platforms:
-    android:
-      enable: true
-      image_path: "assets/images/source/ic_launcher_border.png"
-      # adaptive_background_color: "#ffffff"
-      adaptive_background_image: "assets/images/source/ic_launcher_background.png"
-      adaptive_foreground_image: "assets/images/source/ic_launcher_foreground.png"
-      adaptive_round_image: "assets/images/source/ic_launcher_round.png"
-      adaptive_monochrome_image: "assets/images/source/ic_launcher_monochrome.png"
-    ios:
-      enable: true
-      image_path: "assets/images/source/ic_launcher_rectangle.png"
-    macos:
-      enable: true
-      image_path: "assets/images/source/ic_launcher_border.png"
-    linux:
-      enable: true
-      image_path: "assets/images/source/ic_launcher_border.png"
-    windows:
-      enable: true
-      image_path: "assets/images/source/ic_launcher_transparent.png"
 
 flutter_native_splash:
   color: "#ffffff"
