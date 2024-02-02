@@ -4,7 +4,8 @@
 #include <flutter_windows.h>
 
 #include "resource.h"
-#include <protocol_handler/protocol_handler_plugin.h>
+#include <protocol_handler_windows/protocol_handler_windows_plugin_c_api.h>
+
 
 namespace {
 
