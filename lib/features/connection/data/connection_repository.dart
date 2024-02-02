@@ -159,11 +159,16 @@ class ConnectionRepositoryImpl
         await $(
           TaskEither(() async {
             if (options.enableTun) {
-              final hasPrivilege = await platformSource.checkPrivilege();
-              if (!hasPrivilege) {
-                loggy.warning("missing privileges for tun mode");
+              final active = await platformSource.activateTunnel();
+              if (!active) {
+                loggy.warning("Possiblity missing privileges for tun mode");
                 return left(const MissingPrivilege());
               }
+              // final hasPrivilege = await platformSource.checkPrivilege();
+              // if (!hasPrivilege) {
+              //   loggy.warning("missing privileges for tun mode");
+              //   return left(const MissingPrivilege());
+              // }
             }
             return right(unit);
           }),
@@ -185,10 +190,35 @@ class ConnectionRepositoryImpl
 
   @override
   TaskEither<ConnectionFailure, Unit> disconnect() {
-    return exceptionHandler(
-      () => singbox.stop().mapLeft(UnexpectedConnectionFailure.new).run(),
-      UnexpectedConnectionFailure.new,
-    );
+    return TaskEither<ConnectionFailure, Unit>.Do(
+      ($) async {
+        final options = await $(getConfigOption());
+
+            await $(
+          TaskEither(() async {
+            if (options.enableTun) {
+              final active = await platformSource.deactivateTunnel();
+              if (!active) {
+                loggy.warning("Possiblity missing privileges for tun mode");
+                return left(const MissingPrivilege());
+              }
+              // final hasPrivilege = await platformSource.checkPrivilege();
+              // if (!hasPrivilege) {
+              //   loggy.warning("missing privileges for tun mode");
+              //   return left(const MissingPrivilege());
+              // }
+            }
+            return right(unit);
+          }),
+        );
+        return await $(
+          singbox.stop()
+              .mapLeft(UnexpectedConnectionFailure.new),
+        );
+      },
+    ).handleExceptions(UnexpectedConnectionFailure.new);
+  
+  
   }
 
   @override

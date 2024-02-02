@@ -40,19 +40,19 @@ jobs:
             filename: hiddify-windows-x64
 
           - platform: linux-appimage
-            os: ubuntu-latest
+            os: ubuntu-20.04
             aarch: amd64
             targets: AppImage
             filename: hiddify-linux-x64
 
           - platform: linux-deb
-            os: ubuntu-latest
+            os: ubuntu-20.04
             aarch: amd64
             targets: deb
             filename: hiddify-debian-x64
             
           - platform: linux-rpm
-            os: ubuntu-latest
+            os: ubuntu-20.04
             aarch: amd64
             targets: rpm
             filename: hiddify-rpm-x64

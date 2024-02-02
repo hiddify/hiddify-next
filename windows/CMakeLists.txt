@@ -87,6 +87,10 @@ set(HIDDIFY_NEXT_LIB "../libcore/bin/libcore.dll")
 install(FILES "${HIDDIFY_NEXT_LIB}" DESTINATION "${INSTALL_BUNDLE_LIB_DIR}"
 COMPONENT Runtime RENAME libcore.dll)
 
+set(HIDDIFY_NEXT_LIB "../libcore/bin/hiddify-service.exe")
+install(FILES "${HIDDIFY_NEXT_LIB}" DESTINATION "${INSTALL_BUNDLE_LIB_DIR}"
+COMPONENT Runtime RENAME hiddify-service.exe)
+
 
 if(PLUGIN_BUNDLED_LIBRARIES)
   install(FILES "${PLUGIN_BUNDLED_LIBRARIES}"

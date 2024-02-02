@@ -6,8 +6,9 @@ IOS_OUT=./ios/Frameworks
 DESKTOP_OUT=./libcore/bin
 GEO_ASSETS_DIR=./assets/core
 
-CORE_PRODUCT_NAME=libcore
-CORE_NAME=hiddify-$(CORE_PRODUCT_NAME)
+CORE_PRODUCT_NAME=hiddify-core
+CORE_NAME=$(CORE_PRODUCT_NAME)
+SRV_NAME=hiddify-service
 ifeq ($(CHANNEL),prod)
 CORE_URL=https://github.com/hiddify/hiddify-next-core/releases/download/v$(core.version)
 else
@@ -81,18 +82,18 @@ ios-release: #not tested
 
 android-libs:
 	mkdir -p $(ANDROID_OUT)
-	curl -L $(CORE_URL)/$(CORE_NAME)-android.aar.gz | gunzip > $(ANDROID_OUT)/libcore.aar
+	curl -L $(CORE_URL)/$(CORE_NAME)-android.tar.gz | tar xz -C $(ANDROID_OUT)/
 
 android-apk-libs: android-libs
 android-aab-libs: android-libs
 
 windows-libs:
 	mkdir -p $(DESKTOP_OUT)
-	curl -L $(CORE_URL)/$(CORE_NAME)-windows-amd64.dll.gz | gunzip > $(DESKTOP_OUT)/libcore.dll
+	curl -L $(CORE_URL)/$(CORE_NAME)-windows-amd64.tar.gz | tar xz -C $(DESKTOP_OUT)/
 
 linux-libs:
 	mkdir -p $(DESKTOP_OUT)
-	curl -L $(CORE_URL)/$(CORE_NAME)-linux-amd64.so.gz | gunzip > $(DESKTOP_OUT)/libcore.so
+	curl -L $(CORE_URL)/$(CORE_NAME)-linux-amd64.tar.gz | tar xz -C $(DESKTOP_OUT)/
 
 
 linux-deb-libs:linux-libs
@@ -101,13 +102,12 @@ linux-appimage-libs:linux-libs
 
 macos-libs:
 	mkdir -p $(DESKTOP_OUT)/ &&\
-	curl -L $(CORE_URL)/$(CORE_NAME)-macos-universal.dylib.gz | gunzip > $(DESKTOP_OUT)/libcore.dylib
+	curl -L $(CORE_URL)/$(CORE_NAME)-macos-universal.tar.gz | tar xz -C $(DESKTOP_OUT)/
 
 ios-libs: #not tested
 	mkdir -p $(DESKTOP_OUT)/ && \
 	rm -rf $(IOS_OUT)/Libcore.xcframework && \
-	curl -L $(CORE_URL)/$(CORE_NAME)-ios.xcframework.tar.gz | tar xz -C "$(IOS_OUT)" && \
-	mv $(IOS_OUT)/$(CORE_NAME)-ios.xcframework $(IOS_OUT)/Libcore.xcframework
+	curl -L $(CORE_URL)/$(CORE_NAME)-ios.tar.gz | tar xz -C "$(IOS_OUT)" 
 
 get-geo-assets:
 	curl -L https://github.com/SagerNet/sing-geoip/releases/latest/download/geoip.db -o $(GEO_ASSETS_DIR)/geoip.db
@@ -117,16 +117,23 @@ build-headers:
 	make -C libcore -f Makefile headers && mv $(BINDIR)/$(CORE_NAME)-headers.h $(BINDIR)/libcore.h
 
 build-android-libs:
-	make -C libcore -f Makefile android && mv $(BINDIR)/$(CORE_NAME)-android.aar $(ANDROID_OUT)/libcore.aar
+	make -C libcore -f Makefile android 
+	mv $(BINDIR)/$(CORE_NAME).aar $(ANDROID_OUT)/
 
 build-windows-libs:
-	make -C libcore -f Makefile windows-amd64 && mv $(BINDIR)/$(CORE_NAME)-windows-amd64.dll $(DESKTOP_OUT)/libcore.dll
+	make -C libcore -f Makefile windows-amd64
+	mv $(BINDIR)/$(CORE_NAME).dll $(DESKTOP_OUT)/
+	mv $(BINDIR)/$(SRV_NAME) $(DESKTOP_OUT)/
 
 build-linux-libs:
-	make -C libcore -f Makefile linux-amd64 && mv $(BINDIR)/$(CORE_NAME)-linux-amd64.so $(DESKTOP_OUT)/libcore.so
+	make -C libcore -f Makefile linux-amd64 
+	mv $(BINDIR)/$(CORE_NAME).so $(DESKTOP_OUT)/
+	mv $(BINDIR)/$(SRV_NAME) $(DESKTOP_OUT)/
 
 build-macos-libs:
-	make -C libcore -f Makefile macos-universal && mv $(BINDIR)/$(CORE_NAME)-macos-universal.dylib $(DESKTOP_OUT)/libcore.dylib
+	make -C libcore -f Makefile macos-universal
+	mv $(BINDIR)/$(CORE_NAME).dylib $(DESKTOP_OUT)/
+	mv $(BINDIR)/$(SRV_NAME) $(DESKTOP_OUT)/
 
 build-ios-libs: 
 	rm -rf $(IOS_OUT)/Libcore.xcframework && \
