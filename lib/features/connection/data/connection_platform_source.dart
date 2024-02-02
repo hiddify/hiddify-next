@@ -66,8 +66,8 @@ class ConnectionPlatformSourceImpl
 
   @override
   Future<bool> activateTunnel() async {
-    if (!Platform.isWindows && !Platform.isLinux && !Platform.isMacOS) {
-      return true;
+    if (!Platform.isWindows && !Platform.isLinux) {
+      return await checkPrivilege();
     }
     try {
       final socket = await Socket.connect('127.0.0.1', 18020,
