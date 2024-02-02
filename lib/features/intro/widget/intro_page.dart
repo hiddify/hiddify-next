@@ -21,9 +21,9 @@ class IntroPage extends HookConsumerWidget with PresLogger {
 
     final isStarting = useState(false);
 
-    return SafeArea(
-      child: Scaffold(
-        body: CustomScrollView(
+    return Scaffold(
+      body: SafeArea(
+        child: CustomScrollView(
           shrinkWrap: true,
           slivers: [
             SliverToBoxAdapter(

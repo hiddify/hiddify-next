@@ -9,12 +9,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.6
   flutter_localizations:
     sdk: flutter
+  cupertino_icons: ^1.0.6
   intl: ^0.18.1
-  slang: ^3.28.0
-  slang_flutter: ^3.28.0
+  slang: ^3.29.0
+  slang_flutter: ^3.29.0
   fpdart: ^1.1.0
   freezed_annotation: ^2.4.1
   json_annotation: ^4.8.1
@@ -28,17 +28,17 @@ dependencies:
   dio: ^5.4.0
   ffi: ^2.1.0
   path_provider: ^2.1.1
-  mobile_scanner: 3.5.5
-  protocol_handler: ^0.1.6
-  flutter_native_splash: ^2.3.9
-  share_plus: ^7.2.1
-  window_manager: ^0.3.7
+  mobile_scanner: ^4.0.0
+  protocol_handler: ^0.2.0
+  flutter_native_splash: ^2.3.10
+  share_plus: ^7.2.2
+  window_manager: ^0.3.8
   tray_manager: ^0.2.1
   package_info_plus: ^5.0.1
-  url_launcher: ^6.2.2
-  vclibs: ^0.1.0
+  url_launcher: ^6.2.4
+  vclibs: ^0.1.1
   launch_at_startup: ^0.2.2
-  sentry_flutter: ^7.14.0
+  sentry_flutter: ^7.16.0
   sentry_dart_plugin: ^1.6.3
   combine: ^0.5.6
   path: ^1.8.3
@@ -51,16 +51,16 @@ dependencies:
   accessibility_tools: ^1.0.1
   neat_periodic_task: ^2.0.1
   watcher: ^1.1.0
-  go_router: ^13.0.1
+  go_router: ^13.1.0
   flex_color_scheme: ^7.3.1
-  flutter_animate: ^4.4.0
+  flutter_animate: ^4.5.0
   flutter_svg: ^2.0.9
   gap: ^3.0.1
   percent_indicator: ^4.2.3
   sliver_tools: ^0.2.12
   flutter_adaptive_scaffold: ^0.1.7+2
   humanizer: ^2.2.0
-  upgrader: ^8.4.0
+  upgrader: ^9.0.0
   toastification: ^1.2.0
   version: ^3.0.2
   posix: ^6.0.1
@@ -69,8 +69,8 @@ dependencies:
   flutter_displaymode: ^0.6.0
   flutter_loggy_dio: ^3.0.1
   dio_smart_retry: ^6.0.0
-  cupertino_http: ^1.2.0
-  wolt_modal_sheet: ^0.3.0
+  cupertino_http: ^1.3.0
+  wolt_modal_sheet: ^0.4.0
 
 dev_dependencies:
   flutter_test:
@@ -82,10 +82,9 @@ dev_dependencies:
   riverpod_generator: ^2.3.9
   drift_dev: ^2.15.0
   ffigen: ^8.0.2
-  slang_build_runner: ^3.28.0
+  slang_build_runner: ^3.29.0
   flutter_gen_runner: ^5.4.0
   go_router_builder: ^2.4.1
-  icons_launcher: ^2.1.7
   dependency_validator: ^3.2.3
 
 flutter:
@@ -108,30 +107,6 @@ flutter_gen:
   output: lib/gen/
   integrations:
     flutter_svg: true
-
-icons_launcher:
-  image_path: "assets/images/source/ic_launcher_border.png"
-  platforms:
-    android:
-      enable: true
-      image_path: "assets/images/source/ic_launcher_border.png"
-      # adaptive_background_color: "#ffffff"
-      adaptive_background_image: "assets/images/source/ic_launcher_background.png"
-      adaptive_foreground_image: "assets/images/source/ic_launcher_foreground.png"
-      adaptive_round_image: "assets/images/source/ic_launcher_round.png"
-      adaptive_monochrome_image: "assets/images/source/ic_launcher_monochrome.png"
-    ios:
-      enable: true
-      image_path: "assets/images/source/ic_launcher_rectangle.png"
-    macos:
-      enable: true
-      image_path: "assets/images/source/ic_launcher_border.png"
-    linux:
-      enable: true
-      image_path: "assets/images/source/ic_launcher_border.png"
-    windows:
-      enable: true
-      image_path: "assets/images/source/ic_launcher_transparent.png"
 
 flutter_native_splash:
   color: "#ffffff"

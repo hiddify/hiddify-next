@@ -269,7 +269,6 @@ class LogsOverviewRoute extends GoRouteData {
   Page<void> buildPage(BuildContext context, GoRouterState state) {
     if (useMobileRouter) {
       return const MaterialPage(
-        fullscreenDialog: true,
         name: name,
         child: LogsOverviewPage(),
       );
@@ -288,7 +287,6 @@ class SettingsRoute extends GoRouteData {
   Page<void> buildPage(BuildContext context, GoRouterState state) {
     if (useMobileRouter) {
       return const MaterialPage(
-        fullscreenDialog: true,
         name: name,
         child: SettingsOverviewPage(),
       );
@@ -307,7 +305,6 @@ class ConfigOptionsRoute extends GoRouteData {
   Page<void> buildPage(BuildContext context, GoRouterState state) {
     if (useMobileRouter) {
       return const MaterialPage(
-        fullscreenDialog: true,
         name: name,
         child: ConfigOptionsPage(),
       );
@@ -346,7 +343,6 @@ class GeoAssetsRoute extends GoRouteData {
   Page<void> buildPage(BuildContext context, GoRouterState state) {
     if (useMobileRouter) {
       return const MaterialPage(
-        fullscreenDialog: true,
         name: name,
         child: GeoAssetsOverviewPage(),
       );
@@ -369,7 +365,6 @@ class AboutRoute extends GoRouteData {
   Page<void> buildPage(BuildContext context, GoRouterState state) {
     if (useMobileRouter) {
       return const MaterialPage(
-        fullscreenDialog: true,
         name: name,
         child: AboutPage(),
       );
