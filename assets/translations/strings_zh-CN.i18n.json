@@ -11,7 +11,10 @@
         },
         "sort": "排序",
         "sortBy": "排序方式",
-        "addToClipboard": "添加到剪贴板"
+        "addToClipboard": "添加到剪贴板",
+        "notSet": "没有设置",
+        "agree": "同意",
+        "decline": "衰退"
     },
     "intro": {
         "termsAndPolicyCaution(rich)": "继续即表示您同意 ${tap(@:about.termsAndConditions)}",
@@ -204,6 +207,7 @@
                 "mux": "Multiplexer",
                 "outbound": "出站选项",
                 "tlsTricks": "TLS Tricks",
+                "warp": "WARP Options",
                 "misc": "其它选项"
             },
             "pageTitle": "配置选项",
@@ -243,7 +247,21 @@
             "tlsPaddingSize": "TLS 填充",
             "enableMux": "Enable Mux",
             "muxProtocol": "Mux Protocol",
-            "muxMaxStreams": "Max Concurrent Streams"
+            "muxMaxStreams": "Max Concurrent Streams",
+            "enableWarp": "Enable WARP",
+            "warpDetourMode": "Detour Mode",
+            "warpDetourModes": {
+                "inbound": "Detour WARP through proxies",
+                "outbound": "Detour proxies through WARP"
+            },
+            "warpLicenseKey": "License Key",
+            "warpCleanIp": "Clean IP",
+            "warpPort": "Port",
+            "warpNoise": "Noise",
+            "warpConsent": {
+                "title": "Cloudflare WARP 同意",
+                "description(rich)": "Cloudflare WARP 是免费的 WireGuard VPN 提供商。启用此选项即表示您同意 Cloudflare WARP 的 ${tos(服务条款)} 和 ${privacy(隐私政策)}"
+            }
         },
         "geoAssets": {
             "pageTitle": "路由资源文件",

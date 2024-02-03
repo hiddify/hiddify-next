@@ -11,7 +11,10 @@
         },
         "sort": "مرتب‌سازی",
         "sortBy": "مرتب‌سازی براساس",
-        "addToClipboard": "به کلیپ بورد اضافه کنید"
+        "addToClipboard": "به کلیپ بورد اضافه کنید",
+        "notSet": "تنظیم نشده",
+        "agree": "موافق",
+        "decline": "کاهش می یابد"
     },
     "intro": {
         "termsAndPolicyCaution(rich)": "در صورت ادامه با ${tap(@:about.termsAndConditions)} موافقت میکنید",
@@ -204,6 +207,7 @@
                 "mux": "Multiplexer",
                 "outbound": "Outbound Options",
                 "tlsTricks": "TLS Tricks",
+                "warp": "WARP Options",
                 "misc": "تنظیمات متفرقه"
             },
             "pageTitle": "تنظیمات کانفیگ",
@@ -243,7 +247,21 @@
             "tlsPaddingSize": "TLS Padding",
             "enableMux": "Enable Mux",
             "muxProtocol": "Mux Protocol",
-            "muxMaxStreams": "Max Concurrent Streams"
+            "muxMaxStreams": "Max Concurrent Streams",
+            "enableWarp": "Enable WARP",
+            "warpDetourMode": "Detour Mode",
+            "warpDetourModes": {
+                "inbound": "Detour WARP through proxies",
+                "outbound": "Detour proxies through WARP"
+            },
+            "warpLicenseKey": "License Key",
+            "warpCleanIp": "Clean IP",
+            "warpPort": "Port",
+            "warpNoise": "Noise",
+            "warpConsent": {
+                "title": "رضایت Cloudflare WARP",
+                "description(rich)": "Cloudflare WARP یک ارائه دهنده رایگان WireGuard VPN است. با فعال کردن این گزینه، با ${tos(شرایط خدمات)} و ${privacy(خط‌مشی رازداری)} Cloudflare WARP موافقت می‌کنید."
+            }
         },
         "geoAssets": {
             "pageTitle": "فایل‌های مسیریابی",

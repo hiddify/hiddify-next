@@ -57,6 +57,14 @@ class ConfigOptionEntity with _$ConfigOptionEntity {
     @Default(false) bool muxPadding,
     @Default(8) int muxMaxStreams,
     @Default(MuxProtocol.h2mux) MuxProtocol muxProtocol,
+    @Default(false) bool enableWarp,
+    @Default(WarpDetourMode.outbound) WarpDetourMode warpDetourMode,
+    @Default("") String warpLicenseKey,
+    @Default("auto") String warpCleanIp,
+    @Default(0) int warpPort,
+    @RangeWithOptionalCeilJsonConverter()
+    @Default(RangeWithOptionalCeil())
+    RangeWithOptionalCeil warpNoise,
   }) = _ConfigOptionEntity;
 
   static ConfigOptionEntity initial = ConfigOptionEntity(
@@ -67,7 +75,11 @@ class ConfigOptionEntity with _$ConfigOptionEntity {
     if (PlatformUtils.isDesktop && serviceMode == ServiceMode.tun) {
       return true;
     }
-    if (enableTlsFragment || enableTlsMixedSniCase || enableTlsPadding||enableMux) {
+    if (enableTlsFragment ||
+        enableTlsMixedSniCase ||
+        enableTlsPadding ||
+        enableMux ||
+        enableWarp) {
       return true;
     }
 
@@ -117,6 +129,12 @@ class ConfigOptionEntity with _$ConfigOptionEntity {
       muxPadding: patch.muxPadding ?? muxPadding,
       muxMaxStreams: patch.muxMaxStreams ?? muxMaxStreams,
       muxProtocol: patch.muxProtocol ?? muxProtocol,
+      enableWarp: patch.enableWarp ?? enableWarp,
+      warpDetourMode: patch.warpDetourMode ?? warpDetourMode,
+      warpLicenseKey: patch.warpLicenseKey ?? warpLicenseKey,
+      warpCleanIp: patch.warpCleanIp ?? warpCleanIp,
+      warpPort: patch.warpPort ?? warpPort,
+      warpNoise: patch.warpNoise ?? warpNoise,
     );
   }
 

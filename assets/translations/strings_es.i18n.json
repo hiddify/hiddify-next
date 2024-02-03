@@ -11,7 +11,10 @@
         },
         "sort": "Clasificar",
         "sortBy": "Ordenar por",
-        "addToClipboard": "Añadir al portapapeles"
+        "addToClipboard": "Añadir al portapapeles",
+        "notSet": "No establecido",
+        "agree": "Aceptar",
+        "decline": "Rechazar"
     },
     "home": {
         "emptyProfilesMsg": "Comience agregando un perfil de suscripción",
@@ -211,6 +214,7 @@
                 "mux": "Multiplexer",
                 "outbound": "Opciones de salida",
                 "tlsTricks": "Trucos TLS",
+                "warp": "WARP Options",
                 "misc": "Opciones varias"
             },
             "pageTitle": "Opciones de configuración",
@@ -237,7 +241,21 @@
             "tlsPaddingSize": "Relleno TLS",
             "enableMux": "Enable Mux",
             "muxProtocol": "Mux Protocol",
-            "muxMaxStreams": "Max Concurrent Streams"
+            "muxMaxStreams": "Max Concurrent Streams",
+            "enableWarp": "Enable WARP",
+            "warpDetourMode": "Detour Mode",
+            "warpDetourModes": {
+                "inbound": "Detour WARP through proxies",
+                "outbound": "Detour proxies through WARP"
+            },
+            "warpLicenseKey": "License Key",
+            "warpCleanIp": "Clean IP",
+            "warpPort": "Port",
+            "warpNoise": "Noise",
+            "warpConsent": {
+                "title": "Consentimiento WARP de Cloudflare",
+                "description(rich)": "Cloudflare WARP es un proveedor de VPN WireGuard gratuito. Al habilitar esta opción, acepta los ${tos(Términos de servicio)} y ${privacy(Política de privacidad)} de Cloudflare WARP."
+            }
         },
         "geoAssets": {
             "successMsg": "Activo actualizado correctamente",

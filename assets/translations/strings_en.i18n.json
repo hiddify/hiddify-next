@@ -11,7 +11,10 @@
         },
         "sort": "Sort",
         "sortBy": "Sort by",
-        "addToClipboard": "Add to clipboard"
+        "addToClipboard": "Add to clipboard",
+        "notSet": "Not Set",
+        "agree": "Agree",
+        "decline": "Decline"
     },
     "intro": {
         "termsAndPolicyCaution(rich)": "by continuing you agree with ${tap(@:about.termsAndConditions)}",
@@ -204,7 +207,12 @@
                 "mux": "Multiplexer",
                 "outbound": "Outbound Options",
                 "tlsTricks": "TLS Tricks",
+                "warp": "WARP Options",
                 "misc": "Misc Options"
+            },
+            "warpConsent": {
+                "title": "Cloudflare WARP Consent",
+                "description(rich)": "Cloudflare WARP is a free WireGuard VPN provider. By enabling this option you are agreeing to the Cloudflare WARP's ${tos(Terms of Service)} and ${privacy(Privacy Policy)}."
             },
             "pageTitle": "Config Options",
             "logLevel": "Log Level",
@@ -243,7 +251,17 @@
             "tlsPaddingSize": "TLS Padding",
             "enableMux": "Enable Mux",
             "muxProtocol": "Mux Protocol",
-            "muxMaxStreams": "Max Concurrent Streams"    
+            "muxMaxStreams": "Max Concurrent Streams",
+            "enableWarp": "Enable WARP",
+            "warpDetourMode": "Detour Mode",
+            "warpDetourModes": {
+                "inbound": "Detour WARP through proxies",
+                "outbound": "Detour proxies through WARP"
+            },
+            "warpLicenseKey": "License Key",
+            "warpCleanIp": "Clean IP",
+            "warpPort": "Port",
+            "warpNoise": "Noise"
         },
         "geoAssets": {
             "pageTitle": "Routing Assets",
