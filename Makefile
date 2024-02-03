@@ -52,17 +52,17 @@ translate:
 
 prepare: #get-geo-assets get gen translate
 	@echo use the following commands to prepare the library for each platform:
-	@echo    make prepare-android
-	@echo    make prepare-windows
-	@echo    make prepare-linux 
-	@echo    make prepare-macos 
-	@echo    make prepare-ios
+	@echo    make android-prepare
+	@echo    make windows-prepare
+	@echo    make linux-prepare 
+	@echo    make macos-prepare
+	@echo    make ios-prepare
 
-prepare-windows: get-geo-assets get gen translate windows-libs
-prepare-ios: get-geo-assets get gen translate ios-libs
-prepare-macos: get-geo-assets get gen translate macos-libs
-prepare-linux: get-geo-assets get gen translate linux-libs
-prepare-android: get-geo-assets get gen translate android-libs	
+windows-prepare: get-geo-assets get gen translate windows-libs
+ios-prepare: get-geo-assets get gen translate ios-libs
+macos-prepare: get-geo-assets get gen translate macos-libs
+linux-prepare: get-geo-assets get gen translate linux-libs
+android-prepare: get-geo-assets get gen translate android-libs	
 	
 
 
