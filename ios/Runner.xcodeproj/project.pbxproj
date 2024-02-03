@@ -42,8 +42,6 @@
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
-		D78B64E92B6EB41900C5D800 /* Extension+Iterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78B64E82B6EB41900C5D800 /* Extension+Iterator.swift */; };
-		D7A729302B6E44F200FFFF41 /* CommandClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A7292F2B6E44F200FFFF41 /* CommandClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -166,8 +164,6 @@
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AC67B4DCF829F5B6F63AA7D /* Pods-Runner-SingBoxPacketTunnel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner-SingBoxPacketTunnel.release.xcconfig"; path = "Target Support Files/Pods-Runner-SingBoxPacketTunnel/Pods-Runner-SingBoxPacketTunnel.release.xcconfig"; sourceTree = "<group>"; };
 		C20A211B58CE31B2738D133C /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
-		D78B64E82B6EB41900C5D800 /* Extension+Iterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Iterator.swift"; sourceTree = "<group>"; };
-		D7A7292F2B6E44F200FFFF41 /* CommandClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandClient.swift; sourceTree = "<group>"; };
 		F3FFE1D9C2D5629FACC123EE /* Pods-Runner-SingBoxPacketTunnel.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner-SingBoxPacketTunnel.profile.xcconfig"; path = "Target Support Files/Pods-Runner-SingBoxPacketTunnel/Pods-Runner-SingBoxPacketTunnel.profile.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -321,7 +317,6 @@
 		97C146E51CF9000F007C117D = {
 			isa = PBXGroup;
 			children = (
-				D7A7292E2B6E44D500FFFF41 /* Network */,
 				6836D3FF2B57FECF00A79D75 /* Local Packages */,
 				03E392CD2ADDE103000ADF15 /* Shared */,
 				9740EEB11CF90186004384FC /* Flutter */,
@@ -397,15 +392,6 @@
 				30560DB3EFDF5E86AAD00AB8 /* Pods_RunnerTests.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		D7A7292E2B6E44D500FFFF41 /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				D7A7292F2B6E44F200FFFF41 /* CommandClient.swift */,
-				D78B64E82B6EB41900C5D800 /* Extension+Iterator.swift */,
-			);
-			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -687,14 +673,12 @@
 				03B516772AE7634400EA47E2 /* Logger.swift in Sources */,
 				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
 				03B516712AE74CCD00EA47E2 /* VPNConfig.swift in Sources */,
-				D78B64E92B6EB41900C5D800 /* Extension+Iterator.swift in Sources */,
 				03B5166B2AE7315E00EA47E2 /* AlertsEventHandler.swift in Sources */,
 				0736958B2B3AC96D007249BE /* Bundle+Properties.swift in Sources */,
 				0736958D2B3B79E0007249BE /* StatsEventHandler.swift in Sources */,
 				03B516692AE7306B00EA47E2 /* StatusEventHandler.swift in Sources */,
 				032158B82ADDF8BF008D943B /* VPNManager.swift in Sources */,
 				0736958F2B3B8048007249BE /* PlatformMethodHandler.swift in Sources */,
-				D7A729302B6E44F200FFFF41 /* CommandClient.swift in Sources */,
 				03B516672AE6B93A00EA47E2 /* MethodHandler.swift in Sources */,
 				03B5166D2AE7325500EA47E2 /* LogsEventHandler.swift in Sources */,
 				03E392D02ADDF1BD000ADF15 /* FilePath.swift in Sources */,
