@@ -170,11 +170,11 @@ class ConnectionPlatformSourceImpl
       fullPath = "libcore";
     }
     if (Platform.isWindows) {
-      fullPath = p.join(fullPath, "hiddify-service.exe");
+      fullPath = p.join(fullPath, "HiddifyService.exe");
     } else if (Platform.isMacOS) {
-      fullPath = p.join(fullPath, "hiddify-service");
+      fullPath = p.join(fullPath, "HiddifyService");
     } else {
-      fullPath = p.join(fullPath, "hiddify-service");
+      fullPath = p.join(fullPath, "HiddifyService");
     }
 
     return "$binFolder/$fullPath";
