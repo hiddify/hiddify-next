@@ -41,6 +41,7 @@ class VPNManager: ObservableObject {
     @Published private(set) var elapsedTime: TimeInterval = 0
     @Published private(set) var logList: [String] = []
     @Published private(set) var logCallback = false
+    private(set) var logClient: CommandClient?
     
     private var _connectTime: Date?
     private var connectTime: Date? {
@@ -73,6 +74,8 @@ class VPNManager: ObservableObject {
             updateStats()
             elapsedTime = -1 * (connectTime?.timeIntervalSinceNow ?? 0)
         }
+        
+        logClient = CommandClient(.log)
     }
                 
     deinit {
