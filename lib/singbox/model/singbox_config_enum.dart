@@ -78,3 +78,13 @@ enum MuxProtocol {
   smux,
   yamux;
 }
+
+enum WarpDetourMode {
+  outbound,
+  inbound;
+
+  String present(TranslationsEn t) => switch (this) {
+        outbound => t.settings.config.warpDetourModes.outbound,
+        inbound => t.settings.config.warpDetourModes.inbound,
+      };
+}
