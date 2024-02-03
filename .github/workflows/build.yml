@@ -39,11 +39,11 @@ jobs:
             targets: exe
             filename: hiddify-windows-x64
 
-          - platform: linux-appimage
-            os: ubuntu-22.04
-            aarch: amd64
-            targets: AppImage
-            filename: hiddify-linux-x64
+          # - platform: linux-appimage
+          #   os: ubuntu-20.04
+          #   aarch: amd64
+          #   targets: AppImage
+          #   filename: hiddify-linux-x64
 
           - platform: linux-deb
             os: ubuntu-20.04
