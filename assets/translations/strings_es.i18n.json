@@ -1,7 +1,7 @@
 {
     "general": {
-        "reset": "Renicio",
         "appTitle": "Hiddify Next",
+        "reset": "Renicio",
         "toggle": {
             "enabled": "Activado",
             "disabled": "Desactivado"
@@ -13,19 +13,23 @@
         "sortBy": "Ordenar por",
         "addToClipboard": "Añadir al portapapeles"
     },
+    "intro": {
+        "termsAndPolicyCaution(rich)": "al continuar, aceptas ${tap(@:about.termsAndConditions)}",
+        "start": "Comenzar"
+    },
     "home": {
+        "pageTitle": "Hogar",
         "emptyProfilesMsg": "Comience agregando un perfil de suscripción",
+        "noActiveProfileMsg": "Elige un perfil",
         "connection": {
-            "disconnecting": "Desconectando",
-            "experimentalNotice": "Funciones experimentales en uso",
             "tapToConnect": "Toque para conectarse",
             "connecting": "Conectando",
+            "disconnecting": "Desconectando",
             "connected": "Conectado",
+            "experimentalNotice": "Funciones experimentales en uso",
             "experimentalNoticeMsg": "Ha habilitado algunas funciones experimentales que podrían afectar la calidad de la conexión y provocar errores inesperados. Siempre puede cambiar o restablecer estas opciones desde la página de opciones de configuración.",
             "disableExperimentalNotice": "No volver a mostrar"
         },
-        "pageTitle": "Hogar",
-        "noActiveProfileMsg": "Elige un perfil",
         "stats": {
             "traffic": "Tráfico en vivo",
             "trafficTotal": "Tráfico total",
@@ -35,45 +39,18 @@
     },
     "profile": {
         "overviewPageTitle": "Perfiles",
+        "detailsPageTitle": "Perfil",
         "activeProfileNameSemanticLabel": "Nombre del perfil activo: \"${name}\".",
         "activeProfileBtnSemanticLabel": "Ver todos los perfiles.",
+        "nonActiveProfileBtnSemanticLabel": "Seleccione \"${name}\" como perfil activo.",
         "subscription": {
-            "expired": "Caducado",
             "traffic": "Tráfico",
             "updatedTimeAgo": "Actualizado ${timeago}",
             "remainingDuration": "${duration} días restantes",
             "remainingTrafficSemanticLabel": "${consumed} de ${total} tráfico consumido.",
+            "expired": "Caducado",
             "noTraffic": "Fuera de cuota"
         },
-        "update": {
-            "updateSubscriptions": "Actualizar suscripciones",
-            "successMsg": "Perfil actualizado con éxito",
-            "namedSuccessMsg": "\"${name}\" actualizado exitosamente",
-            "buttonTxt": "Actualizar",
-            "tooltip": "Actualización del perfil",
-            "failureMsg": "No se pudo actualizar el perfil",
-            "namedFailureMsg": "No se pudo actualizar \"${name}\""
-        },
-        "share": {
-            "exportToClipboardSuccess": "Exportado al portapapeles",
-            "exportConfigToClipboardSuccess": "Configuración copiada al portapapeles",
-            "buttonText": "Compartir",
-            "exportSubLinkToClipboard": "Exportar enlace de suscripción al portapapeles",
-            "subLinkQrCode": "Código QR del enlace de suscripción",
-            "exportConfigToClipboard": "Exportar configuración al portapapeles"
-        },
-        "delete": {
-            "successMsg": "Perfil eliminado exitosamente",
-            "buttonTxt": "Borrar",
-            "confirmationMsg": "¿Eliminar perfil permanentemente?"
-        },
-        "save": {
-            "successMsg": "Perfil guardado exitosamente",
-            "buttonText": "Ahorrar",
-            "failureMsg": "No se pudo guardar el perfil"
-        },
-        "detailsPageTitle": "Perfil",
-        "nonActiveProfileBtnSemanticLabel": "Seleccione \"${name}\" como perfil activo.",
         "sortBy": {
             "lastUpdate": "Recientemente actualizado",
             "name": "Alfabéticamente"
@@ -93,9 +70,36 @@
             "addingProfileMsg": "Agregar perfil",
             "failureMsg": "No se pudo agregar el perfil"
         },
+        "update": {
+            "buttonTxt": "Actualizar",
+            "tooltip": "Actualización del perfil",
+            "updateSubscriptions": "Actualizar suscripciones",
+            "failureMsg": "No se pudo actualizar el perfil",
+            "successMsg": "Perfil actualizado con éxito",
+            "namedFailureMsg": "No se pudo actualizar \"${name}\"",
+            "namedSuccessMsg": "\"${name}\" actualizado exitosamente"
+        },
+        "share": {
+            "buttonText": "Compartir",
+            "exportToClipboardSuccess": "Exportado al portapapeles",
+            "exportSubLinkToClipboard": "Exportar enlace de suscripción al portapapeles",
+            "subLinkQrCode": "Código QR del enlace de suscripción",
+            "exportConfigToClipboard": "Exportar configuración al portapapeles",
+            "exportConfigToClipboardSuccess": "Configuración copiada al portapapeles"
+        },
         "edit": {
             "buttonTxt": "Editar",
             "selectActiveTxt": "Seleccionar perfil activo"
+        },
+        "delete": {
+            "buttonTxt": "Borrar",
+            "confirmationMsg": "¿Eliminar perfil permanentemente?",
+            "successMsg": "Perfil eliminado exitosamente"
+        },
+        "save": {
+            "buttonText": "Ahorrar",
+            "successMsg": "Perfil guardado exitosamente",
+            "failureMsg": "No se pudo guardar el perfil"
         },
         "detailsForm": {
             "nameLabel": "Nombre",
@@ -121,31 +125,25 @@
         }
     },
     "logs": {
-        "resumeTooltip": "reanudar",
         "pageTitle": "Registros",
         "filterHint": "Filtrar",
         "allLevelsFilter": "Todo",
         "shareCoreLogs": "Compartir registros principales",
         "shareAppLogs": "Compartir registros de aplicaciones",
         "pauseTooltip": "Pausa",
+        "resumeTooltip": "reanudar",
         "clearTooltip": "Claro"
     },
     "settings": {
+        "pageTitle": "Ajustes",
         "requiresRestartMsg": "Para que esto surta efecto, reinicie la aplicación.",
+        "experimental": "Experimental",
         "experimentalMsg": "Las funciones con el indicador Experimental aún están en desarrollo y pueden causar problemas.",
         "general": {
-            "regionMsg": "Ayuda a configurar opciones predeterminadas para omitir direcciones nacionales",
-            "themeModes": {
-                "system": "Seguir el tema del sistema",
-                "dark": "Modo Oscuro",
-                "light": "Modo Claro",
-                "black": "Modo Negro"
-            },
-            "silentStart": "Inicio Silencioso",
-            "ignoreBatteryOptimizationsMsg": "Elimine las restricciones para un rendimiento VPN óptimo",
             "sectionTitle": "General",
             "locale": "Idioma",
             "region": "Región",
+            "regionMsg": "Ayuda a configurar opciones predeterminadas para omitir direcciones nacionales",
             "regions": {
                 "ir": "Irán (ir)",
                 "cn": "China (CN)",
@@ -154,22 +152,31 @@
                 "other": "Otro"
             },
             "themeMode": "Modo temático",
+            "themeModes": {
+                "system": "Seguir el tema del sistema",
+                "dark": "Modo Oscuro",
+                "light": "Modo Claro",
+                "black": "Modo Negro"
+            },
             "enableAnalytics": "Habilitar análisis",
             "enableAnalyticsMsg": "Dar permiso para recopilar análisis y enviar informes de fallos para mejorar la aplicación.",
             "autoStart": "Inicie en el arranque",
+            "silentStart": "Inicio Silencioso",
             "openWorkingDir": "Abrir directorio de trabajo",
             "ignoreBatteryOptimizations": "Deshabilitar la optimización de la batería",
+            "ignoreBatteryOptimizationsMsg": "Elimine las restricciones para un rendimiento VPN óptimo",
             "dynamicNotification": "Mostrar velocidad en la notificación"
         },
         "advanced": {
-            "debugModeMsg": "Reinicie la aplicación para aplicar este cambio.",
             "sectionTitle": "Avanzado",
             "debugMode": "Modo de depuración",
+            "debugModeMsg": "Reinicie la aplicación para aplicar este cambio.",
             "memoryLimit": "Limite de memoria",
             "memoryLimitMsg": "Habilítelo si experimenta errores de falta de memoria o fallas frecuentes de la aplicación",
             "resetTunnel": "Restablecer perfil VPN"
         },
         "network": {
+            "perAppProxyPageTitle": "Proxy por aplicación",
             "perAppProxyModes": {
                 "off": "Todo",
                 "offMsg": "Proxy en todas las aplicaciones",
@@ -178,32 +185,18 @@
                 "exclude": "Bypass",
                 "excludeMsg": "No hacer proxy de aplicaciones seleccionadas"
             },
-            "hideSystemApps": "Ocultar aplicaciones del sistema",
-            "perAppProxyPageTitle": "Proxy por aplicación",
             "showSystemApps": "Mostrar aplicaciones del sistema",
+            "hideSystemApps": "Ocultar aplicaciones del sistema",
             "clearSelection": "Selección clara"
         },
         "config": {
             "resetBtn": "Restablecer opciones",
+            "serviceMode": "Modo de servicio",
             "serviceModes": {
                 "proxy": "Proxy",
                 "systemProxy": "Sistema Proxy",
                 "tun": "VPN"
             },
-            "logLevel": "Registro del Nivel",
-            "resolveDestination": "Resolver Destino",
-            "ipv6Modes": {
-                "disable": "Desactivar",
-                "enable": "Activar",
-                "prefer": "Preferido",
-                "only": "Exclusivo"
-            },
-            "remoteDnsAddress": "DNS Remoto",
-            "directDnsAddress": "DNS Directo",
-            "connectionTestUrl": "URL de prueba de conexión",
-            "urlTestInterval": "URL Prueba de Intervalo",
-            "strictRoute": "Ruta estricta",
-            "serviceMode": "Modo de servicio",
             "section": {
                 "route": "Opciones de ruta",
                 "dns": "Opciones de DNS",
@@ -214,14 +207,26 @@
                 "misc": "Opciones varias"
             },
             "pageTitle": "Opciones de configuración",
+            "logLevel": "Registro del Nivel",
+            "resolveDestination": "Resolver Destino",
             "ipv6Mode": "Ruta IPv6",
+            "ipv6Modes": {
+                "disable": "Desactivar",
+                "enable": "Activar",
+                "prefer": "Preferido",
+                "only": "Exclusivo"
+            },
+            "remoteDnsAddress": "DNS Remoto",
             "remoteDnsDomainStrategy": "Estrategia de dominio DNS remoto",
+            "directDnsAddress": "DNS Directo",
             "directDnsDomainStrategy": "Estrategia de dominio DNS directo",
             "mixedPort": "Puerto Mixto",
             "localDnsPort": "Puerto DNS local",
             "allowConnectionFromLan": "Permitir conexión desde LAN",
             "tunImplementation": "Implementación de TUN",
             "mtu": "MTU",
+            "connectionTestUrl": "URL de prueba de conexión",
+            "urlTestInterval": "URL Prueba de Intervalo",
             "enableClashApi": "Habilitar API de choque",
             "clashApiPort": "Puerto API de choque",
             "enableTun": "Habilitar sintonización",
@@ -229,6 +234,7 @@
             "enableDnsRouting": "Habilitar enrutamiento DNS",
             "enableFakeDns": "Habilitar DNS falso",
             "bypassLan": "Omitir LAN",
+            "strictRoute": "Ruta estricta",
             "enableTlsFragment": "Habilitar fragmento TLS",
             "tlsFragmentSize": "Tamaño del fragmento TLS",
             "tlsFragmentSleep": "Sueño de fragmento TLS",
@@ -240,20 +246,27 @@
             "muxMaxStreams": "Max Concurrent Streams"
         },
         "geoAssets": {
-            "successMsg": "Activo actualizado correctamente",
-            "missingGeoAssetsMsg": "Faltan los archivos de los recursos de enrutamiento seleccionados. Descárgalos o elige los existentes.",
             "pageTitle": "Activos de enrutamiento",
+            "geoip": "Geoip",
+            "geosite": "Geosite",
             "version": "Versión ${version}",
             "fileMissing": "Archivo faltante",
             "update": "Actualizar",
             "download": "Descargar",
             "failureMsg": "No se pudo actualizar el activo",
+            "successMsg": "Activo actualizado correctamente",
             "addRecommended": "Agregar activos recomendados",
-            "geoip": "Geoip",
-            "geosite": "Geosite"
-        },
-        "pageTitle": "Ajustes",
-        "experimental": "Experimental"
+            "missingGeoAssetsMsg": "Faltan los archivos de los recursos de enrutamiento seleccionados. Descárgalos o elige los existentes."
+        }
+    },
+    "about": {
+        "pageTitle": "Acerca de",
+        "version": "Versión",
+        "sourceCode": "Código fuente",
+        "telegramChannel": "Canal de telegramas",
+        "checkForUpdate": "Buscar actualizaciones",
+        "privacyPolicy": "Política de privacidad",
+        "termsAndConditions": "Términos y condiciones"
     },
     "appUpdate": {
         "notAvailableMsg": "Ya estas usando la última versión.",
@@ -266,28 +279,39 @@
         "ignoreBtnTxt": "Ignorar"
     },
     "tray": {
-        "status": {
-            "disconnect": "Desconectado",
-            "disconnecting": "Desconectando",
-            "connect": "Conectar",
-            "connecting": "Conectando"
-        },
         "dashboard": "Panel",
         "quit": "Abandonar",
-        "open": "Abierto"
+        "open": "Abierto",
+        "status": {
+            "connect": "Conectar",
+            "connecting": "Conectando",
+            "disconnect": "Desconectado",
+            "disconnecting": "Desconectando"
+        }
     },
     "failure": {
+        "unexpected": "Error inesperado",
+        "clash": {
+            "unexpected": "Error inesperado",
+            "core": "Error de choque ${reason}"
+        },
         "singbox": {
-            "missingPrivilegeMsg": "El modo VPN requiere privilegios de administrador. Reinicie la aplicación como administrador o cambie el modo de servicio.",
             "unexpected": "Error de servicio inesperado",
             "serviceNotRunning": "El servicio no está funcionando",
             "missingPrivilege": "Privilegio perdido",
+            "missingPrivilegeMsg": "El modo VPN requiere privilegios de administrador. Reinicie la aplicación como administrador o cambie el modo de servicio.",
             "missingGeoAssets": "Recursos geográficos faltantes",
             "missingGeoAssetsMsg": "Faltan recursos geográficos. considere cambiar el activo activo o descargar uno seleccionado en la configuración.",
             "invalidConfigOptions": "Opciones de configuración no válidas",
             "invalidConfig": "Configuración no válida",
             "create": "Error de creación del servicio",
             "start": "Error de inicio del servicio"
+        },
+        "connectivity": {
+            "unexpected": "Falla inesperada",
+            "missingVpnPermission": "Permiso VPN faltante",
+            "missingNotificationPermission": "Permiso de notificación faltante",
+            "core": "Error central"
         },
         "profiles": {
             "unexpected": "Error Inesperado",
@@ -296,22 +320,11 @@
             "invalidUrl": "URL Invalido"
         },
         "connection": {
-            "badResponse": "Mala respuesta",
             "unexpected": "Error de conexión inesperado",
             "timeout": "El tiempo de conexión expiro",
+            "badResponse": "Mala respuesta",
             "connectionError": "Error de conexión",
             "badCertificate": "Certificado malo"
-        },
-        "unexpected": "Error inesperado",
-        "clash": {
-            "unexpected": "Error inesperado",
-            "core": "Error de choque ${reason}"
-        },
-        "connectivity": {
-            "unexpected": "Falla inesperada",
-            "missingVpnPermission": "Permiso VPN faltante",
-            "missingNotificationPermission": "Permiso de notificación faltante",
-            "core": "Error central"
         },
         "geoAssets": {
             "unexpected": "Error inesperado",
@@ -320,21 +333,8 @@
         }
     },
     "play": {
+        "title": "Hiddify Next (vista previa)",
         "short_description": "Auto, SSH, VLESS, Vmess, Trojan, Reality, Sing-Box, Clash, Xray, Shadowsocks",
-        "full_description": "El objetivo clave de HiddifyNext es proporcionar un cliente de túnel seguro, fácil de usar y eficiente. Le permite enrutar todo el tráfico o el tráfico de aplicaciones seleccionadas a un servidor remoto de su elección, utilizando el permiso del servicio VPN.Nota: No proporcionamos ningún servidor; Los usuarios deben garantizar que sus actividades en línea permanezcan privadas mediante el uso de su propio servidor autohospedado o servidores confiables. Soportamos servidores con:- Enlace de suscripción normal a V2ray/Xray- Enlace de suscripción a Choque- Enlace de suscripción a Sing-Box¿Cuáles son nuestras características únicas? - Fácil de usar - Optimizado y Rápido - Seleccionar automáticamente LowestPing - Mostrar información de uso del usuario. - Importe fácilmente un subvínculo con un solo clic mediante enlaces profundos - Gratis y sin anuncios - Cambie fácilmente los subvínculos de usuario - más y másApoyo:- Todos los protocolos soportados por Sing-Box- VLESS + xtls realidad, visión- VMESS- troyano- Calcetines Shoadow- Realidad-V2ray-Histria2-TUIC-SSH- SombraTLSEl código fuente existe en https://github.com/hiddify/Hiddify-NextEl núcleo de la aplicación se basa en sing-box de código abierto.Descripción del permiso:- Servicio VPN: como el objetivo de esta aplicación es proporcionar un cliente de túnel seguro, fácil de usar y eficiente, necesitamos este permiso para poder enrutar el tráfico a través del túnel al servidor remoto.- CONSULTAR TODOS LOS PAQUETES: este permiso se utiliza para permitir a los usuarios incluir o excluir aplicaciones específicas para la tunelización.- RECIBIR ARRANQUE COMPLETADO: este permiso se puede habilitar o deshabilitar desde la configuración de la aplicación para activar esta aplicación al iniciar el dispositivo.- PUBLICAR NOTIFICACIONES: este permiso es esencial ya que empleamos un servicio en primer plano para garantizar el funcionamiento continuo del servicio VPN.- Esta aplicación está libre de publicidad. Los datos analíticos y de fallos solo se producen con el consentimiento explícito del usuario en el primer uso de la aplicación.",
-        "title": "Hiddify Next (vista previa)"
-    },
-    "intro": {
-        "termsAndPolicyCaution(rich)": "al continuar, aceptas ${tap(@:about.termsAndConditions)}",
-        "start": "Comenzar"
-    },
-    "about": {
-        "pageTitle": "Acerca de",
-        "version": "Versión",
-        "sourceCode": "Código fuente",
-        "telegramChannel": "Canal de telegramas",
-        "checkForUpdate": "Buscar actualizaciones",
-        "privacyPolicy": "Política de privacidad",
-        "termsAndConditions": "Términos y condiciones"
+        "full_description": "El objetivo clave de HiddifyNext es proporcionar un cliente de túnel seguro, fácil de usar y eficiente. Le permite enrutar todo el tráfico o el tráfico de aplicaciones seleccionadas a un servidor remoto de su elección, utilizando el permiso del servicio VPN.Nota: No proporcionamos ningún servidor; Los usuarios deben garantizar que sus actividades en línea permanezcan privadas mediante el uso de su propio servidor autohospedado o servidores confiables. Soportamos servidores con:- Enlace de suscripción normal a V2ray/Xray- Enlace de suscripción a Choque- Enlace de suscripción a Sing-Box¿Cuáles son nuestras características únicas? - Fácil de usar - Optimizado y Rápido - Seleccionar automáticamente LowestPing - Mostrar información de uso del usuario. - Importe fácilmente un subvínculo con un solo clic mediante enlaces profundos - Gratis y sin anuncios - Cambie fácilmente los subvínculos de usuario - más y másApoyo:- Todos los protocolos soportados por Sing-Box- VLESS + xtls realidad, visión- VMESS- troyano- Calcetines Shoadow- Realidad-V2ray-Histria2-TUIC-SSH- SombraTLSEl código fuente existe en https://github.com/hiddify/Hiddify-NextEl núcleo de la aplicación se basa en sing-box de código abierto.Descripción del permiso:- Servicio VPN: como el objetivo de esta aplicación es proporcionar un cliente de túnel seguro, fácil de usar y eficiente, necesitamos este permiso para poder enrutar el tráfico a través del túnel al servidor remoto.- CONSULTAR TODOS LOS PAQUETES: este permiso se utiliza para permitir a los usuarios incluir o excluir aplicaciones específicas para la tunelización.- RECIBIR ARRANQUE COMPLETADO: este permiso se puede habilitar o deshabilitar desde la configuración de la aplicación para activar esta aplicación al iniciar el dispositivo.- PUBLICAR NOTIFICACIONES: este permiso es esencial ya que empleamos un servicio en primer plano para garantizar el funcionamiento continuo del servicio VPN.- Esta aplicación está libre de publicidad. Los datos analíticos y de fallos solo se producen con el consentimiento explícito del usuario en el primer uso de la aplicación."
     }
 }

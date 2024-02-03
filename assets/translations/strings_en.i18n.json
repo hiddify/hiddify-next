@@ -243,7 +243,7 @@
             "tlsPaddingSize": "TLS Padding",
             "enableMux": "Enable Mux",
             "muxProtocol": "Mux Protocol",
-            "muxMaxStreams": "Max Concurrent Streams"    
+            "muxMaxStreams": "Max Concurrent Streams"
         },
         "geoAssets": {
             "pageTitle": "Routing Assets",

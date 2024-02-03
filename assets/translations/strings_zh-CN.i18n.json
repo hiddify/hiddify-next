@@ -33,8 +33,8 @@
         "stats": {
             "traffic": "实时流量",
             "trafficTotal": "总流量",
-            "uplink": "上行链路",
-            "downlink": "下行链路"
+            "uplink": "上行",
+            "downlink": "下行"
         }
     },
     "profile": {
@@ -47,7 +47,7 @@
             "traffic": "流量",
             "updatedTimeAgo": "更新 ${timeago}",
             "remainingDuration": "剩余 ${duration} 天",
-            "remainingTrafficSemanticLabel": "已消耗 ${consumed} 流量，共 ${total} 流量。",
+            "remainingTrafficSemanticLabel": "已使用 ${consumed} 流量，共 ${total} 流量。",
             "expired": "已过期",
             "noTraffic": "超出配额"
         },
@@ -129,7 +129,7 @@
         "filterHint": "筛选",
         "allLevelsFilter": "全部",
         "shareCoreLogs": "分享核心日志",
-        "shareAppLogs": "分享日志",
+        "shareAppLogs": "分享應用日志",
         "pauseTooltip": "暂停",
         "resumeTooltip": "恢复",
         "clearTooltip": "清除"
@@ -149,14 +149,14 @@
                 "cn": "中国 (cn)",
                 "ru": "俄罗斯 (ru)",
                 "af": "阿富汗 (af)",
-                "other": "其它"
+                "other": "其他"
             },
             "themeMode": "主题模式",
             "themeModes": {
                 "system": "遵循系统主题",
-                "dark": "黑暗模式",
-                "light": "浅色模式",
-                "black": "深色模式"
+                "dark": "暗色",
+                "light": "浅色",
+                "black": "黑色"
             },
             "enableAnalytics": "启用分析",
             "enableAnalyticsMsg": "授予收集分析并发送崩溃报告以改进应用程序的权限",
@@ -191,7 +191,7 @@
         },
         "config": {
             "resetBtn": "重置选项",
-            "serviceMode": "服务方式",
+            "serviceMode": "服务模式",
             "serviceModes": {
                 "proxy": "仅代理",
                 "systemProxy": "系统代理",
@@ -201,10 +201,10 @@
                 "route": "路由选项",
                 "dns": "DNS 选项",
                 "inbound": "入站选项",
-                "mux": "Multiplexer",
+                "mux": "复用器",
                 "outbound": "出站选项",
                 "tlsTricks": "TLS Tricks",
-                "misc": "其它选项"
+                "misc": "其他选项"
             },
             "pageTitle": "配置选项",
             "logLevel": "日志级别",
@@ -213,7 +213,7 @@
             "ipv6Modes": {
                 "disable": "禁用",
                 "enable": "启用",
-                "prefer": "优先",
+                "prefer": "首选",
                 "only": "仅"
             },
             "remoteDnsAddress": "远程 DNS",
@@ -241,9 +241,9 @@
             "enableTlsMixedSniCase": "启用 TLS 混合 SNI 情形",
             "enableTlsPadding": "启用 TLS 填充",
             "tlsPaddingSize": "TLS 填充",
-            "enableMux": "Enable Mux",
-            "muxProtocol": "Mux Protocol",
-            "muxMaxStreams": "Max Concurrent Streams"
+            "enableMux": "启用复用器",
+            "muxProtocol": "复用器控制",
+            "muxMaxStreams": "最大并发数"
         },
         "geoAssets": {
             "pageTitle": "路由资源文件",
@@ -279,7 +279,7 @@
         "ignoreBtnTxt": "忽略"
     },
     "tray": {
-        "dashboard": "控制面板",
+        "dashboard": "仪表板",
         "quit": "退出",
         "open": "打开",
         "status": {
@@ -327,7 +327,7 @@
             "badCertificate": "证书无效"
         },
         "geoAssets": {
-            "unexpected": "意外的错误",
+            "unexpected": "意外错误",
             "notUpdate": "无可用更新",
             "activeNotFound": "未找到激活的 GEO 资源文件"
         }
@@ -335,6 +335,6 @@
     "play": {
         "title": "Hiddify Next（预览）",
         "short_description": "自动，SSH, VLESS, Vmess, Trojan, Reality, Sing-Box, Clash, Xray, Shadowsocks",
-        "full_description": "HiddifyNext 的主要目标是提供安全、用户友好且高效的隧道客户端。它使您能够利用 VPN 服务权限将所有流量或选定的应用程序流量路由到您选择的远程服务器。\n\n注：我们不提供任何服务器；用户需要使用自己托管的服务器或可信的服务器来确保您在线活动的私密性。\n \n我们支持以下类型的服务器：\n- 普通 V2ray/Xray 订阅链接\n- Clash 订阅链接\n- Sing-Box 订阅链接\n\n我们的特色是什么？\n\n- 用户友好\n- 优化和高速\n- 自动选择最低延迟\n- 显示用户使用信息\n- 通过一键链接轻松导入\n- 免费且无广告\n- 轻松切换线路\n- 等等\n\n支持：\n- Sing-Box 支持的所有协议\n- VLESS + XTLS Reality、Vision 协议\n- VMESS\n- Trojan\n- Shoadowsocks\n- Reality\n- V2ray\n- Hystria2\n- TUIC\n- SSH\n- ShadowTLS\n\n\n源代码位于 https://github.com/hiddify/Hiddify-Next\n应用程序核心基于开源的 Sing-Box。\n\n权限说明：\n\n- VPN 服务：由于此应用程序的目标是提供安全、用户友好和高效的隧道客户端，我们需要此权限以能够通过隧道将流量路由到远程服务器。\n获取应用程序列表：此权限用于允许用户包括或排除特定应用程序以进行隧道传输。\n- 接收开机广播：可以从应用程序设置中启用或禁用此权限，以便在设备启动时激活此应用程序。\n- 发送通知：此权限是必需的，因为我们使用前台服务来确保 VPN 服务的持续运行。\n- 本应用程序没有广告。分析和崩溃数据仅在首次使用应用程序时经用户明确同意的情况下发生。"
+        "full_description": "HiddifyNext 的主要目标是提供安全、用户友好且高效的隧道客户端。它使您能够利用 VPN 服务权限将所有流量或选定的应用程序流量路由到您选择的远程服务器。\n\n注：我们不提供任何服务器；用户需要使用自己托管的服务器或可信的服务器来确保您在线活动的私密性。\n \n我们支持以下类型的服务器：\n- 普通 V2ray/Xray 订阅链接\n- Clash 订阅链接\n- Sing-Box 订阅链接\n\n我们的特色是什么？\n\n- 用户友好\n- 优化和高速\n- 自动选择最低延迟\n- 显示用户使用信息\n- 通过一键链接轻松导入\n- 免费且无广告\n- 轻松切换线路\n- 等等\n\n支持：\n- Sing-Box 支持的所有协议\n- VLESS + XTLS Reality、Vision 协议\n- VMESS\n- Trojan\n- Shoadowsocks\n- Reality\n- V2ray\n- Hystria2\n- TUIC\n- SSH\n- ShadowTLS\n\n\n源代码位于 https://github.com/hiddify/Hiddify-Next\n应用程序核心基于开源的 Sing-Box。\n\n权限说明：\n\n- VPN 服务：由于此应用程序的目标是提供安全、用户友好和高效的隧道客户端，我们需要此权限以能够通过隧道将流量路由到远程服务器。\n- 获取应用程序列表：此权限用于允许用户包括或排除特定应用程序以进行隧道传输。\n- 接收开机广播：可以从应用程序设置中启用或禁用此权限，以便在设备启动时激活此应用程序。\n- 发送通知：此权限是必需的，因为我们使用前台服务来确保 VPN 服务的持续运行。\n- 本应用程序没有广告。分析和崩溃数据仅在首次使用应用程序时经用户明确同意的情况下发生。"
     }
 }
