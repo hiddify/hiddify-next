@@ -1,4 +1,6 @@
+import 'package:dartx/dartx.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hiddify/core/localization/translations.dart';
 
 part 'range.freezed.dart';
 
@@ -7,14 +9,21 @@ class RangeWithOptionalCeil with _$RangeWithOptionalCeil {
   const RangeWithOptionalCeil._();
 
   const factory RangeWithOptionalCeil({
-    required int min,
+    int? min,
     int? max,
   }) = _RangeWithOptionalCeil;
 
-  String format() => "$min${max != null ? "-$max" : ""}";
+  String format() => [min, max].whereNotNull().join("-");
+  String present(TranslationsEn t) =>
+      format().isEmpty ? t.general.notSet : format();
 
-  factory RangeWithOptionalCeil.fromString(String input) =>
+  factory RangeWithOptionalCeil._fromString(
+    String input, {
+    bool allowEmpty = true,
+  }) =>
       switch (input.split("-")) {
+        [final String val] when val.isEmpty && allowEmpty =>
+          const RangeWithOptionalCeil(),
         [final String min] => RangeWithOptionalCeil(min: int.parse(min)),
         [final String min, final String max] => RangeWithOptionalCeil(
             min: int.parse(min),
@@ -23,9 +32,12 @@ class RangeWithOptionalCeil with _$RangeWithOptionalCeil {
         _ => throw Exception("Invalid range: $input"),
       };
 
-  static RangeWithOptionalCeil? tryParse(String input) {
+  static RangeWithOptionalCeil? tryParse(
+    String input, {
+    bool allowEmpty = false,
+  }) {
     try {
-      return RangeWithOptionalCeil.fromString(input);
+      return RangeWithOptionalCeil._fromString(input);
     } catch (_) {
       return null;
     }
@@ -38,7 +50,7 @@ class RangeWithOptionalCeilJsonConverter
 
   @override
   RangeWithOptionalCeil fromJson(String json) =>
-      RangeWithOptionalCeil.fromString(json);
+      RangeWithOptionalCeil._fromString(json);
 
   @override
   String toJson(RangeWithOptionalCeil object) => object.format();

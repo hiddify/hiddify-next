@@ -47,6 +47,12 @@ class ConfigOptionPatch with _$ConfigOptionPatch {
     bool? muxPadding,
     int? muxMaxStreams,
     MuxProtocol? muxProtocol,
+    bool? enableWarp,
+    WarpDetourMode? warpDetourMode,
+    String? warpLicenseKey,
+    String? warpCleanIp,
+    int? warpPort,
+    @RangeWithOptionalCeilJsonConverter() RangeWithOptionalCeil? warpNoise,
   }) = _ConfigOptionPatch;
 
   factory ConfigOptionPatch.fromJson(Map<String, dynamic> json) =>

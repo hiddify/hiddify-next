@@ -120,8 +120,11 @@ install(FILES "${FLUTTER_LIBRARY}" DESTINATION "${INSTALL_BUNDLE_LIB_DIR}"
 install(FILES "../libcore/bin/libcore.so" DESTINATION "${INSTALL_BUNDLE_LIB_DIR}"
   COMPONENT Runtime)
 
-install(FILES "../libcore/bin/hiddify-service" DESTINATION "${INSTALL_BUNDLE_LIB_DIR}"
-  COMPONENT Runtime)
+install(
+  FILES "../libcore/bin/HiddifyService" 
+  DESTINATION "${INSTALL_BUNDLE_LIB_DIR}"
+  COMPONENT Runtime
+)
 
 foreach(bundled_library ${PLUGIN_BUNDLED_LIBRARIES})
   install(FILES "${bundled_library}"

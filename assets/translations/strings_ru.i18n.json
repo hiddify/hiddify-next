@@ -11,7 +11,10 @@
         },
         "sort": "Сортировка",
         "sortBy": "Сортировка",
-        "addToClipboard": "Копировать в буфер обмена"
+        "addToClipboard": "Копировать в буфер обмена",
+        "notSet": "Не задано",
+        "agree": "Соглашаться",
+        "decline": "Отклонить"
     },
     "intro": {
         "termsAndPolicyCaution(rich)": "Продолжая, Вы соглашаетесь с ${tap(@:about.termsAndConditions)}",
@@ -204,6 +207,7 @@
                 "mux": "Multiplexer",
                 "outbound": "Outbound Options",
                 "tlsTricks": "TLS Tricks",
+                "warp": "WARP Options",
                 "misc": "Разные параметры"
             },
             "pageTitle": "Параметры конфигурации",
@@ -243,7 +247,21 @@
             "tlsPaddingSize": "TLS Padding",
             "enableMux": "Enable Mux",
             "muxProtocol": "Mux Protocol",
-            "muxMaxStreams": "Max Concurrent Streams"
+            "muxMaxStreams": "Max Concurrent Streams",
+            "enableWarp": "Enable WARP",
+            "warpDetourMode": "Detour Mode",
+            "warpDetourModes": {
+                "inbound": "Detour WARP through proxies",
+                "outbound": "Detour proxies through WARP"
+            },
+            "warpLicenseKey": "License Key",
+            "warpCleanIp": "Clean IP",
+            "warpPort": "Port",
+            "warpNoise": "Noise",
+            "warpConsent": {
+                "title": "Согласие Cloudflare WARP",
+                "description(rich)": "Cloudflare WARP — бесплатный провайдер WireGuard VPN. Включая эту опцию, вы соглашаетесь с ${tos(Условиями обслуживания)} и ${privacy(Политикой конфиденциальности)} Cloudflare WARP."
+            }
         },
         "geoAssets": {
             "pageTitle": "Активы маршрутизации",

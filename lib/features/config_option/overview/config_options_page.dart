@@ -9,6 +9,7 @@ import 'package:hiddify/core/widget/tip_card.dart';
 import 'package:hiddify/features/config_option/model/config_option_entity.dart';
 import 'package:hiddify/features/config_option/model/config_option_patch.dart';
 import 'package:hiddify/features/config_option/notifier/config_option_notifier.dart';
+import 'package:hiddify/features/config_option/overview/warp_options_widgets.dart';
 import 'package:hiddify/features/log/model/log_level.dart';
 import 'package:hiddify/features/settings/widgets/sections_widgets.dart';
 import 'package:hiddify/features/settings/widgets/settings_input_dialog.dart';
@@ -319,7 +320,7 @@ class ConfigOptionsPage extends HookConsumerWidget {
               ),
               ListTile(
                 title: Text(t.settings.config.tlsFragmentSize),
-                subtitle: Text(options.tlsFragmentSize.format()),
+                subtitle: Text(options.tlsFragmentSize.present(t)),
                 onTap: () async {
                   final range = await SettingsInputDialog(
                     title: t.settings.config.tlsFragmentSize,
@@ -336,7 +337,7 @@ class ConfigOptionsPage extends HookConsumerWidget {
               ),
               ListTile(
                 title: Text(t.settings.config.tlsFragmentSleep),
-                subtitle: Text(options.tlsFragmentSleep.format()),
+                subtitle: Text(options.tlsFragmentSleep.present(t)),
                 onTap: () async {
                   final range = await SettingsInputDialog(
                     title: t.settings.config.tlsFragmentSleep,
@@ -368,7 +369,7 @@ class ConfigOptionsPage extends HookConsumerWidget {
               ),
               ListTile(
                 title: Text(t.settings.config.tlsPaddingSize),
-                subtitle: Text(options.tlsPaddingSize.format()),
+                subtitle: Text(options.tlsPaddingSize.present(t)),
                 onTap: () async {
                   final range = await SettingsInputDialog(
                     title: t.settings.config.tlsPaddingSize,
@@ -382,6 +383,13 @@ class ConfigOptionsPage extends HookConsumerWidget {
                     ),
                   );
                 },
+              ),
+              const SettingsDivider(),
+              SettingsSection(experimental(t.settings.config.section.warp)),
+              WarpOptionsTiles(
+                options: options,
+                defaultOptions: defaultOptions,
+                onChange: changeOption,
               ),
               const SettingsDivider(),
               SettingsSection(t.settings.config.section.misc),

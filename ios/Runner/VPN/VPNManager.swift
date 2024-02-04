@@ -39,8 +39,6 @@ class VPNManager: ObservableObject {
     @Published private(set) var upload: Int64 = 0
     @Published private(set) var download: Int64 = 0
     @Published private(set) var elapsedTime: TimeInterval = 0
-    @Published private(set) var logList: [String] = []
-    @Published private(set) var logCallback = false
     
     private var _connectTime: Date?
     private var connectTime: Date? {
@@ -88,7 +86,7 @@ class VPNManager: ObservableObject {
         do {
             try await loadVPNPreference()
         } catch {
-            onServiceWriteLog(message: error.localizedDescription)
+            LogsEventHandler().writeLog(error.localizedDescription)
         }
     }
     
@@ -109,7 +107,7 @@ class VPNManager: ObservableObject {
             try await newManager.loadFromPreferences()
             self.manager = newManager
         } catch {
-            onServiceWriteLog(message: error.localizedDescription)
+            LogsEventHandler().writeLog(error.localizedDescription)
         }
     }
     
@@ -119,7 +117,7 @@ class VPNManager: ObservableObject {
             try await manager.saveToPreferences()
             try await manager.loadFromPreferences()
         } catch {
-            onServiceWriteLog(message: error.localizedDescription)
+            LogsEventHandler().writeLog(error.localizedDescription)
         }
     }
     
@@ -159,7 +157,7 @@ class VPNManager: ObservableObject {
                     }
                     try await self?.loadVPNPreference()
                 } catch {
-                    onServiceWriteLog(message: error.localizedDescription)
+                    LogsEventHandler().writeLog(error.localizedDescription)
                 }
             }
         }.store(in: &cancelBag)
@@ -190,7 +188,7 @@ class VPNManager: ObservableObject {
                 }
             }
         } catch {
-            onServiceWriteLog(message: error.localizedDescription)
+            LogsEventHandler().writeLog(error.localizedDescription)
         }
     }
     
@@ -204,7 +202,7 @@ class VPNManager: ObservableObject {
                 "DisableMemoryLimit": (disableMemoryLimit ? "YES" : "NO") as NSString,
             ])
         } catch {
-            onServiceWriteLog(message: error.localizedDescription)
+            LogsEventHandler().writeLog(error.localizedDescription)
         }
         connectTime = .now
     }
@@ -212,18 +210,5 @@ class VPNManager: ObservableObject {
     func disconnect() {
         guard state == .connected else { return }
         manager.connection.stopVPNTunnel()
-    }
-    
-    func onServiceWriteLog(message: String) {
-        logCallback = true
-        if logList.count > 300 {
-            logList.removeFirst()
-        }
-        logList.append(message)
-    }
-
-    func onServiceResetLogs() {
-        logCallback = false
-        logList.removeAll()
     }
 }

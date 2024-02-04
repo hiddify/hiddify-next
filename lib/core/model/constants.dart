@@ -10,4 +10,8 @@ abstract class Constants {
   static const telegramChannelUrl = "https://t.me/hiddify";
   static const privacyPolicyUrl = "https://hiddify.com/privacy-policy/";
   static const termsAndConditionsUrl = "https://hiddify.com/terms/";
+  static const cfWarpPrivacyPolicy =
+      "https://www.cloudflare.com/application/privacypolicy/";
+  static const cfWarpTermsOfService =
+      "https://www.cloudflare.com/application/terms/";
 }

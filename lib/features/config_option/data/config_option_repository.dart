@@ -117,6 +117,12 @@ class ConfigOptionRepositoryImpl
           muxPadding: persisted.muxPadding,
           muxMaxStreams: persisted.muxMaxStreams,
           muxProtocol: persisted.muxProtocol,
+          enableWarp: persisted.enableWarp,
+          warpDetourMode: persisted.warpDetourMode,
+          warpLicenseKey: persisted.warpLicenseKey,
+          warpCleanIp: persisted.warpCleanIp,
+          warpPort: persisted.warpPort,
+          warpNoise: persisted.warpNoise,
           geoipPath: geoAssetPathResolver.relativePath(
             geoAssets.geoip.providerName,
             geoAssets.geoip.fileName,

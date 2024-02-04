@@ -1,14 +1,25 @@
 include dependencies.properties
+ifeq ($(OS),Windows_NT)
+    MKDIR := -mkdir
+    RM := rmdir /s /q
+	SEP:=\\
+	PLATFORM_REQ:= @set /p platform="Run 'make prepare platform=ios' or enter platform name:";
+else
+    MKDIR := mkdir -p
+    RM  := rm -rf
+	SEP :=/
+	PLATFORM_REQ:= @read -p "Run make prepare platform=ios or enter platform name: " platform; 
+endif
 
-BINDIR=./libcore/bin
-ANDROID_OUT=./android/app/libs
-IOS_OUT=./ios/Frameworks
-DESKTOP_OUT=./libcore/bin
-GEO_ASSETS_DIR=./assets/core
+BINDIR=libcore$(SEP)bin
+ANDROID_OUT=android$(SEP)app$(SEP)libs
+IOS_OUT=ios$(SEP)Frameworks
+DESKTOP_OUT=libcore$(SEP)bin
+GEO_ASSETS_DIR=assets$(SEP)core
 
 CORE_PRODUCT_NAME=hiddify-core
 CORE_NAME=$(CORE_PRODUCT_NAME)
-SRV_NAME=hiddify-service
+SRV_NAME=HiddifyService
 ifeq ($(CHANNEL),prod)
 CORE_URL=https://github.com/hiddify/hiddify-next-core/releases/download/v$(core.version)
 else
@@ -24,6 +35,10 @@ endif
 BUILD_ARGS=--dart-define sentry_dsn=$(SENTRY_DSN)
 DISTRIBUTOR_ARGS=--skip-clean --build-target $(TARGET) --build-dart-define sentry_dsn=$(SENTRY_DSN)
 
+
+
+
+
 get:
 	flutter pub get
 
@@ -33,19 +48,23 @@ gen:
 translate:
 	dart run slang
 
-prepare: get-geo-assets get gen translate
-	@echo "Available platforms:"
-	@echo "android"
-	@echo "windows"
-	@echo "linux"
-	@echo "macos"
-	@echo "ios"
-	if [ -z "$$platform" ]; then \
-		read -p "run make prepare platform=ios or Enter platform name: " choice; \
-	else \
-		choice=$$platform; \
-	fi; \
-	make $$choice-libs
+
+
+prepare: #get-geo-assets get gen translate
+	@echo use the following commands to prepare the library for each platform:
+	@echo    make android-prepare
+	@echo    make windows-prepare
+	@echo    make linux-prepare 
+	@echo    make macos-prepare
+	@echo    make ios-prepare
+
+windows-prepare: get-geo-assets get gen translate windows-libs
+ios-prepare: get-geo-assets get gen translate ios-libs
+macos-prepare: get-geo-assets get gen translate macos-libs
+linux-prepare: get-geo-assets get gen translate linux-libs
+android-prepare: get-geo-assets get gen translate android-libs	
+	
+
 
 sync_translate:
 	cd .github && bash sync_translate.sh
@@ -81,18 +100,18 @@ ios-release: #not tested
 	flutter_distributor package --platform ios --targets ipa --build-export-options-plist  ios/exportOptions.plist $(DISTRIBUTOR_ARGS)
 
 android-libs:
-	mkdir -p $(ANDROID_OUT)
+	@$(MKDIR) $(ANDROID_OUT) || echo Folder already exists. Skipping...
 	curl -L $(CORE_URL)/$(CORE_NAME)-android.tar.gz | tar xz -C $(ANDROID_OUT)/
 
 android-apk-libs: android-libs
 android-aab-libs: android-libs
 
 windows-libs:
-	mkdir -p $(DESKTOP_OUT)
+	@$(MKDIR) $(DESKTOP_OUT) || echo Folder already exists. Skipping...
 	curl -L $(CORE_URL)/$(CORE_NAME)-windows-amd64.tar.gz | tar xz -C $(DESKTOP_OUT)/
 
 linux-libs:
-	mkdir -p $(DESKTOP_OUT)
+	@$(MKDIR) $(DESKTOP_OUT) || echo Folder already exists. Skipping...
 	curl -L $(CORE_URL)/$(CORE_NAME)-linux-amd64.tar.gz | tar xz -C $(DESKTOP_OUT)/
 
 
@@ -101,13 +120,13 @@ linux-rpm-libs:linux-libs
 linux-appimage-libs:linux-libs
 
 macos-libs:
-	mkdir -p $(DESKTOP_OUT)/ &&\
-	curl -L $(CORE_URL)/$(CORE_NAME)-macos-universal.tar.gz | tar xz -C $(DESKTOP_OUT)/
+	@$(MKDIR) $(DESKTOP_OUT) || echo Folder already exists. Skipping...
+	curl -L $(CORE_URL)/$(CORE_NAME)-macos-universal.tar.gz | tar xz -C $(DESKTOP_OUT)
 
 ios-libs: #not tested
-	mkdir -p $(DESKTOP_OUT)/ && \
-	rm -rf $(IOS_OUT)/Libcore.xcframework && \
-	curl -L $(CORE_URL)/$(CORE_NAME)-ios.tar.gz | tar xz -C "$(IOS_OUT)" 
+	@$(MKDIR) $(IOS_OUT) || echo Folder already exists. Skipping...
+	@$(RM) $(IOS_OUT)/Libcore.xcframework
+	curl -L $(CORE_URL)/$(CORE_NAME)-ios.tar.gz | tar xz -C "$(IOS_OUT)"
 
 get-geo-assets:
 	curl -L https://github.com/SagerNet/sing-geoip/releases/latest/download/geoip.db -o $(GEO_ASSETS_DIR)/geoip.db
@@ -136,7 +155,7 @@ build-macos-libs:
 	mv $(BINDIR)/$(SRV_NAME) $(DESKTOP_OUT)/
 
 build-ios-libs: 
-	rm -rf $(IOS_OUT)/Libcore.xcframework && \
+	@$(RM) $(IOS_OUT)/Libcore.xcframework && \
 	make -C libcore -f Makefile ios  && \
 	mv $(BINDIR)/$(CORE_NAME)-ios.xcframework $(IOS_OUT)/Libcore.xcframework
 

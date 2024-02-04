@@ -52,6 +52,13 @@ class SingboxConfigOption with _$SingboxConfigOption {
     required bool muxPadding,
     required int muxMaxStreams,
     required MuxProtocol muxProtocol,
+    required bool enableWarp,
+    required WarpDetourMode warpDetourMode,
+    required String warpLicenseKey,
+    required String warpCleanIp,
+    required int warpPort,
+    @RangeWithOptionalCeilJsonConverter()
+    required RangeWithOptionalCeil warpNoise,
     required String geoipPath,
     required String geositePath,
     required List<SingboxRule> rules,
