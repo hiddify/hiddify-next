@@ -25,7 +25,7 @@ extension ErrorPresenter on TranslationsEn {
         UnexpectedFailure(error: final nestedErr?) => errorToPair(nestedErr),
         Failure() => error.present(this),
         DioException() => error.present(this),
-        _ => (type: failure.unexpected, message: null),
+        _ => (type: failure.unexpected, message: error.toString()),
       };
 
   PresentableError presentError(
