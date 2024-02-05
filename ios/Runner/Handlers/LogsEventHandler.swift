@@ -3,6 +3,7 @@ import Combine
 import Libcore
 
 class LogsEventHandler: NSObject, FlutterPlugin, FlutterStreamHandler, LibboxCommandClientHandlerProtocol {
+    static let shared: LogsEventHandler = LogsEventHandler()
     static let name = "\(Bundle.main.serviceIdentifier)/service.logs"
     
     private var channel: FlutterEventChannel?
@@ -15,7 +16,7 @@ class LogsEventHandler: NSObject, FlutterPlugin, FlutterStreamHandler, LibboxCom
     private var lock: NSLock = NSLock()
 
     public static func register(with registrar: FlutterPluginRegistrar) {
-          let instance = LogsEventHandler()
+          let instance = LogsEventHandler.shared
           instance.channel = FlutterEventChannel(name: Self.name, binaryMessenger: registrar.messenger())
           instance.channel?.setStreamHandler(instance)
     }

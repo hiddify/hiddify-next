@@ -86,7 +86,7 @@ class VPNManager: ObservableObject {
         do {
             try await loadVPNPreference()
         } catch {
-            LogsEventHandler().writeLog(error.localizedDescription)
+            LogsEventHandler.shared.writeLog(error.localizedDescription)
         }
     }
     
@@ -107,7 +107,7 @@ class VPNManager: ObservableObject {
             try await newManager.loadFromPreferences()
             self.manager = newManager
         } catch {
-            LogsEventHandler().writeLog(error.localizedDescription)
+            LogsEventHandler.shared.writeLog(error.localizedDescription)
         }
     }
     
@@ -117,7 +117,7 @@ class VPNManager: ObservableObject {
             try await manager.saveToPreferences()
             try await manager.loadFromPreferences()
         } catch {
-            LogsEventHandler().writeLog(error.localizedDescription)
+            LogsEventHandler.shared.writeLog(error.localizedDescription)
         }
     }
     
@@ -157,7 +157,7 @@ class VPNManager: ObservableObject {
                     }
                     try await self?.loadVPNPreference()
                 } catch {
-                    LogsEventHandler().writeLog(error.localizedDescription)
+                    LogsEventHandler.shared.writeLog(error.localizedDescription)
                 }
             }
         }.store(in: &cancelBag)
@@ -188,7 +188,7 @@ class VPNManager: ObservableObject {
                 }
             }
         } catch {
-            LogsEventHandler().writeLog(error.localizedDescription)
+            LogsEventHandler.shared.writeLog(error.localizedDescription)
         }
     }
     
@@ -202,7 +202,7 @@ class VPNManager: ObservableObject {
                 "DisableMemoryLimit": (disableMemoryLimit ? "YES" : "NO") as NSString,
             ])
         } catch {
-            LogsEventHandler().writeLog(error.localizedDescription)
+            LogsEventHandler.shared.writeLog(error.localizedDescription)
         }
         connectTime = .now
     }
