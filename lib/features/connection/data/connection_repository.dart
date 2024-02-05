@@ -159,11 +159,6 @@ class ConnectionRepositoryImpl
         await $(
           TaskEither(() async {
             if (options.enableTun) {
-              final active = await platformSource.activateTunnel();
-              if (!active) {
-                loggy.warning("Possiblity missing privileges for tun mode");
-                return left(const MissingPrivilege());
-              }
               // final hasPrivilege = await platformSource.checkPrivilege();
               // if (!hasPrivilege) {
               //   loggy.warning("missing privileges for tun mode");
@@ -197,11 +192,6 @@ class ConnectionRepositoryImpl
             await $(
           TaskEither(() async {
             if (options.enableTun) {
-              final active = await platformSource.deactivateTunnel();
-              if (!active) {
-                loggy.warning("Possiblity missing privileges for tun mode");
-                return left(const MissingPrivilege());
-              }
               // final hasPrivilege = await platformSource.checkPrivilege();
               // if (!hasPrivilege) {
               //   loggy.warning("missing privileges for tun mode");

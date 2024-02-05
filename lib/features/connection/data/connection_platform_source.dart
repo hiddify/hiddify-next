@@ -12,8 +12,6 @@ import 'package:win32/win32.dart';
 
 abstract interface class ConnectionPlatformSource {
   Future<bool> checkPrivilege();
-  Future<bool> activateTunnel();
-  Future<bool> deactivateTunnel();
 }
 
 class ConnectionPlatformSourceImpl
@@ -62,122 +60,6 @@ class ConnectionPlatformSourceImpl
       loggy.warning("error checking privilege", e);
       return true; // return true so core handles it
     }
-  }
-
-  @override
-  Future<bool> activateTunnel() async {
-    if (!Platform.isWindows && !Platform.isLinux) {
-      return await checkPrivilege();
-    }
-    try {
-      final socket = await Socket.connect('127.0.0.1', 18020,
-          timeout: Duration(seconds: 1));
-      await socket.close();
-      return await startTunnelRequest();
-    } catch (error) {
-      loggy.warning(
-          'Tunnel Service is not running. Error: $error.--> Running...');
-      return await runTunnelService();
-    }
-  }
-
-  @override
-  Future<bool> deactivateTunnel() async {
-    if (!Platform.isWindows && !Platform.isLinux && !Platform.isMacOS) {
-      return true;
-    }
-    try {
-      return await stopTunnelRequest();
-    } catch (error) {
-      loggy.error('Tunnel Service Stop Error: $error.');
-      return false;
-    }
-  }
-
-  Future<bool> startTunnelRequest() async {
-    final params = {
-      "Ipv6": false,
-      "ServerPort": "2334",
-      "StrictRoute": false,
-      "EndpointIndependentNat": false,
-      "Stack": "gvisor",
-    };
-
-    final query = mapToQueryString(params);
-
-    try {
-      final request =
-          await HttpClient().get('localhost', 18020, "/start?$query");
-      final response = await request.close();
-      final body = await response.transform(utf8.decoder).join();
-      loggy.debug(
-          'Status Code: ${response.statusCode} ${response.reasonPhrase}');
-      loggy.debug('Response Body: ${body}');
-      return true;
-    } catch (error) {
-      loggy.error('HTTP Request Error: $error');
-      return false;
-    }
-  }
-
-  Future<bool> stopTunnelRequest() async {
-    try {
-      final request = await HttpClient().get('localhost', 18020, "/stop");
-      final response = await request.close();
-      final body = await response.transform(utf8.decoder).join();
-      loggy.debug(
-          'Status Code: ${response.statusCode} ${response.reasonPhrase}');
-      loggy.debug('Response Body: ${body}');
-      return true;
-    } catch (error) {
-      loggy.error('HTTP Request Error: $error');
-      return false;
-    }
-  }
-
-  String mapToQueryString(Map<String, dynamic> params) {
-    return params.entries.map((entry) {
-      final key = Uri.encodeQueryComponent(entry.key);
-      final value = Uri.encodeQueryComponent(entry.value.toString());
-      return '$key=$value';
-    }).join('&');
-  }
-
-  Future<bool> runTunnelService() async {
-    final executablePath = getTunnelServicePath();
-
-    var command = [executablePath, "install"];
-    if (Platform.isLinux) {
-      command.insert(0, 'pkexec');
-    }
-
-    try {
-      final result =
-          await Process.run(command[0], command.sublist(1), runInShell: true);
-      loggy.debug('Shell command executed: ${result.stdout} ${result.stderr}');
-      return await startTunnelRequest();
-    } catch (error) {
-      loggy.error('Error executing shell command: $error');
-      return false;
-    }
-  }
-
-  static String getTunnelServicePath() {
-    String fullPath = "";
-    final binFolder =
-        Directory(Platform.resolvedExecutable).parent.absolute.path;
-    if (Platform.environment.containsKey('FLUTTER_TEST')) {
-      fullPath = "libcore";
-    }
-    if (Platform.isWindows) {
-      fullPath = p.join(fullPath, "HiddifyService.exe");
-    } else if (Platform.isMacOS) {
-      fullPath = p.join(fullPath, "HiddifyService");
-    } else {
-      fullPath = p.join(fullPath, "HiddifyService");
-    }
-
-    return "$binFolder/$fullPath";
   }
 }
 
