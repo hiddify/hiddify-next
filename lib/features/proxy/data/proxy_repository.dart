@@ -42,6 +42,7 @@ class ProxyRepositoryImpl
                       selectedTag: groupWithSelected[e.tag],
                     ),
                   )
+                  .filter((t) => t.isVisible)
                   .toList(),
             ),
           )
