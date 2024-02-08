@@ -35,6 +35,7 @@ migrate_working_dir/
 # generated files
 **/*.g.dart
 **/*.freezed.dart
+**/*.mapper.dart
 **/*.gen.dart
 **/libclash.so
 **/libclash.h
