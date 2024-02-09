@@ -62,27 +62,18 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
-      - name: Setup Apple dependencies
-        if: matrix.platform == 'macos' || matrix.platform == 'ios'
-        run: |
-          brew install create-dmg tree 
-          echo "installed create-dmg tree "
-          npm install -g appdmg
-
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.16.x'
           channel: 'stable'
           cache: true
-
       - name: Setup Java
         if: startsWith(matrix.platform,'android')
         uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
           java-version: 17
-
       - name: Setup NDK
         if: startsWith(matrix.platform,'android')
         uses: nttld/setup-ndk@v1.4.1
@@ -92,15 +83,10 @@ jobs:
           add-to-path: true
           link-to-sdk: true
 
-      - name: Setup Flutter Distributor
-        if: ${{ !startsWith(matrix.platform,'android') }}
-        run: |
-          dart pub global activate --source git  https://github.com/hiddify/flutter_distributor --git-path packages/flutter_distributor
 
-      - name: Setup Linux dependencies
-        if: ${{ startsWith(matrix.platform,'linux') }}      
+      - name: Setup dependencies
         run: |
-          make linux-install-dependencies
+          make ${{ matrix.platform }}-install-dependencies
 
       - name: Prepare for ${{ matrix.platform }}
         run: |
@@ -214,7 +200,7 @@ jobs:
                 mv ${targetFile} ../out/${targetFile} # added for appimage link
               fi
             fi
-          
+          done
 
       - name: Clean up keychain and provisioning profile
         if: ${{ always() && startsWith(matrix.os,'macos')}}

@@ -70,6 +70,19 @@ android-aab-prepare:android-prepare
 
 	
 
+macos-install-dependencies:
+	brew install create-dmg tree 
+	npm install -g appdmg
+	dart pub global activate --source git  https://github.com/hiddify/flutter_distributor --git-path packages/flutter_distributor
+
+ios-install-dependencies: 
+	echo "not yet implemented"
+
+android-install-dependencies: 
+	echo "nothing yet"
+android-apk-install-dependencies: android-install-dependencies
+android-aab-install-dependencies: android-install-dependencies
+
 linux-install-dependencies:
 	if [ "$(flutter)" = "true" ]; then \
 		wget -O ~/Downloads/flutter_linux_3.16.9-stable.tar.xz https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.16.9-stable.tar.xz; \
@@ -82,12 +95,16 @@ linux-install-dependencies:
 	PATH="$$PATH":"$$HOME/.pub-cache/bin"
 	echo 'export PATH="$$PATH:$$HOME/.pub-cache/bin"' >>~/.bashrc
 	sudo apt install -y clang ninja-build pkg-config cmake libgtk-3-dev locate ninja-build pkg-config libgtk-3-dev libglib2.0-dev libgio2.0-cil-dev libayatana-appindicator3-dev fuse rpm patchelf file appstream
-	dart pub global activate flutter_distributor
+	
 	sudo modprobe fuse
 	wget -O appimagetool "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage"
 	chmod +x appimagetool
 	sudo mv appimagetool /usr/local/bin/
 
+	dart pub global activate --source git  https://github.com/hiddify/flutter_distributor --git-path packages/flutter_distributor
+
+windows-install-dependencies:
+	dart pub global activate --source git  https://github.com/hiddify/flutter_distributor --git-path packages/flutter_distributor
 
 sync_translate:
 	cd .github && bash sync_translate.sh
@@ -123,9 +140,9 @@ android-apk-libs: android-libs
 android-aab-libs: android-libs
 
 windows-libs:
-	@$(MKDIR) $(DESKTOP_OUT) || echo Folder already exists. Skipping...
+	$(MKDIR) $(DESKTOP_OUT) || echo Folder already exists. Skipping...
 	curl -L $(CORE_URL)/$(CORE_NAME)-windows-amd64.tar.gz | tar xz -C $(DESKTOP_OUT)$(SEP)
-	ls $(DESKTOP_OUT)$(SEP)
+	ls $(DESKTOP_OUT)$(SEP) || dir $(DESKTOP_OUT)$(SEP) || tree
 
 linux-libs:
 	mkdir -p $(DESKTOP_OUT)
