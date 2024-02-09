@@ -26,6 +26,7 @@ env:
         "aab": "Hiddify-Android",
         "exe": "Hiddify-Windows-x64",
         "dmg": "Hiddify-MacOS",
+        "pkg": "Hiddify-MacOS-Installer",
         "ipa": "Hiddify-iOS",
       }
 jobs:
@@ -56,7 +57,7 @@ jobs:
           - platform: macos
             os: macos-13
             aarch: universal
-            targets: dmg
+            targets: dmg,pkg
 
     runs-on: ${{ matrix.os }}
     steps:
@@ -91,6 +92,7 @@ jobs:
       - name: Prepare for ${{ matrix.platform }}
         run: |
           make ${{ matrix.platform }}-prepare
+          tree
 
       - name: Setup Android Signing Properties
         if: startsWith(matrix.platform,'android')
@@ -158,6 +160,8 @@ jobs:
           .\scripts\package_windows.ps1
 
       - name: Copy to out Android APK
+        env:
+          TARGET_MAP: ${{ env.TARGET_MAP }}
         if: matrix.platform == 'android-apk'
         run: |
           mkdir out
@@ -169,6 +173,8 @@ jobs:
 
       - name: Copy to out Android AAB
         if: matrix.platform == 'android-aab'
+        env:
+          TARGET_MAP: ${{ env.TARGET_MAP }}
         run: |
           mkdir out
           ls -R ./build/app/outputs
@@ -176,6 +182,8 @@ jobs:
 
       - name: Copy to out unix
         if: startsWith(matrix.platform,'linux') || matrix.platform == 'macos' || matrix.platform == 'ios'
+        env:
+          TARGET_MAP: ${{ env.TARGET_MAP }}
         run: |
           ls -R dist/
           mkdir out

@@ -1,5 +1,5 @@
 include dependencies.properties
-ifeq ($(OS),Windows_NT)
+ifeq ($(OS),Windows_1NT)
     MKDIR := -mkdir
     RM := rmdir /s /q
 	SEP:=\\
@@ -73,7 +73,7 @@ android-aab-prepare:android-prepare
 macos-install-dependencies:
 	brew install create-dmg tree 
 	npm install -g appdmg
-	dart pub global activate --source git  https://github.com/hiddify/flutter_distributor --git-path packages/flutter_distributor
+	dart pub global activate flutter_distributor
 
 ios-install-dependencies: 
 	echo "not yet implemented"
@@ -94,7 +94,8 @@ linux-install-dependencies:
 	fi
 	PATH="$$PATH":"$$HOME/.pub-cache/bin"
 	echo 'export PATH="$$PATH:$$HOME/.pub-cache/bin"' >>~/.bashrc
-	sudo apt install -y clang ninja-build pkg-config cmake libgtk-3-dev locate ninja-build pkg-config libgtk-3-dev libglib2.0-dev libgio2.0-cil-dev libayatana-appindicator3-dev fuse rpm patchelf file appstream
+	sudo apt install -y clang ninja-build pkg-config cmake libgtk-3-dev locate ninja-build pkg-config libgtk-3-dev libglib2.0-dev libgio2.0-cil-dev libayatana-appindicator3-dev fuse rpm patchelf file appstream 
+	
 	
 	sudo modprobe fuse
 	wget -O appimagetool "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage"
@@ -104,7 +105,7 @@ linux-install-dependencies:
 	dart pub global activate --source git  https://github.com/hiddify/flutter_distributor --git-path packages/flutter_distributor
 
 windows-install-dependencies:
-	dart pub global activate --source git  https://github.com/hiddify/flutter_distributor --git-path packages/flutter_distributor
+	dart pub global activate flutter_distributor
 
 sync_translate:
 	cd .github && bash sync_translate.sh
@@ -142,7 +143,7 @@ android-aab-libs: android-libs
 windows-libs:
 	$(MKDIR) $(DESKTOP_OUT) || echo Folder already exists. Skipping...
 	curl -L $(CORE_URL)/$(CORE_NAME)-windows-amd64.tar.gz | tar xz -C $(DESKTOP_OUT)$(SEP)
-	ls $(DESKTOP_OUT)$(SEP) || dir $(DESKTOP_OUT)$(SEP) || tree
+	ls $(DESKTOP_OUT) || dir $(DESKTOP_OUT)$(SEP)
 
 linux-libs:
 	mkdir -p $(DESKTOP_OUT)
