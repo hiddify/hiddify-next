@@ -128,7 +128,7 @@ linux-release:
 	flutter_distributor package --platform linux --targets deb,rpm,appimage $(DISTRIBUTOR_ARGS)
 
 macos-release:
-	flutter_distributor package --platform macos --targets dmg $(DISTRIBUTOR_ARGS)
+	flutter_distributor package --platform macos --targets dmg,pkg $(DISTRIBUTOR_ARGS)
 
 ios-release: #not tested
 	flutter_distributor package --platform ios --targets ipa --build-export-options-plist  ios/exportOptions.plist $(DISTRIBUTOR_ARGS)

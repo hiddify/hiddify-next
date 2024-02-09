@@ -196,9 +196,10 @@ jobs:
               mv tmp_out/${FILENAME}.$EXT bin/${FILENAME}.$EXT
             else
               cd tmp_out
-              7z a ${FILENAME}.zip ./
-              mv ${FILENAME}.zip ../out/
-              [[ $EXT == 'AppImage' ]]&& mv ${FILENAME}.$EXT ../out/ # added for appimage link
+              # 7z a ${FILENAME}.zip ./
+              # mv ${FILENAME}.zip ../out/
+              # [[ $EXT == 'AppImage' ]]&& mv ${FILENAME}.$EXT ../out/ # added for appimage link
+              mv ${FILENAME}.$EXT ../out/
               cd ..
             fi
           done
