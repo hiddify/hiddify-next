@@ -104,6 +104,7 @@ android-aab-release:
 	ls -R build/app/outputs
 
 windows-release:
+	flutter build -v windows --target lib/main.dart --dart-define sentry_dsn=*** --dart-define FLUTTER_BUILD_NAME=0.15.4 --dart-define FLUTTER_BUILD_NUMBER=1504
 	flutter_distributor package --platform windows --targets exe $(DISTRIBUTOR_ARGS)
 
 linux-release: linux-appimage-release linux-deb-release linux-rpm-release
