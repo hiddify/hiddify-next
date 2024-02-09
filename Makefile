@@ -19,23 +19,23 @@ GEO_ASSETS_DIR=assets$(SEP)core
 
 CORE_PRODUCT_NAME=hiddify-core
 CORE_NAME=$(CORE_PRODUCT_NAME)
+CORE_LIB_NAME=libcore
 SRV_NAME=HiddifyService
+
 ifeq ($(CHANNEL),prod)
-CORE_URL=https://github.com/hiddify/hiddify-next-core/releases/download/v$(core.version)
+	CORE_URL=https://github.com/hiddify/hiddify-next-core/releases/download/v$(core.version)
 else
-CORE_URL=https://github.com/hiddify/hiddify-next-core/releases/download/draft
+	CORE_URL=https://github.com/hiddify/hiddify-next-core/releases/download/draft
 endif
 
 ifeq ($(CHANNEL),prod)
-TARGET=lib/main_prod.dart
+	TARGET=lib/main_prod.dart
 else
-TARGET=lib/main.dart
+	TARGET=lib/main.dart
 endif
 
 BUILD_ARGS=--dart-define sentry_dsn=$(SENTRY_DSN)
 DISTRIBUTOR_ARGS=--skip-clean --build-target $(TARGET) --build-dart-define sentry_dsn=$(SENTRY_DSN)
-
-
 
 
 
@@ -50,7 +50,7 @@ translate:
 
 
 
-prepare: #get-geo-assets get gen translate
+prepare:
 	@echo use the following commands to prepare the library for each platform:
 	@echo    make android-prepare
 	@echo    make windows-prepare
@@ -62,7 +62,7 @@ windows-prepare: get-geo-assets get gen translate windows-libs
 ios-prepare: get-geo-assets get gen translate ios-libs
 macos-prepare: get-geo-assets get gen translate macos-libs
 linux-prepare: get-geo-assets get gen translate linux-libs
-android-prepare: get-geo-assets get gen translate android-libs	
+android-prepare: get-geo-assets get gen translate android-libs
 	
 
 
@@ -92,7 +92,6 @@ linux-deb-release:
 linux-rpm-release:
 	flutter_distributor package --platform linux --targets rpm $(DISTRIBUTOR_ARGS)
 
-
 macos-release:
 	flutter_distributor package --platform macos --targets dmg $(DISTRIBUTOR_ARGS)
 
@@ -113,7 +112,6 @@ windows-libs:
 linux-libs:
 	@$(MKDIR) $(DESKTOP_OUT) || echo Folder already exists. Skipping...
 	curl -L $(CORE_URL)/$(CORE_NAME)-linux-amd64.tar.gz | tar xz -C $(DESKTOP_OUT)/
-
 
 linux-deb-libs:linux-libs
 linux-rpm-libs:linux-libs
@@ -137,27 +135,22 @@ build-headers:
 
 build-android-libs:
 	make -C libcore -f Makefile android 
-	mv $(BINDIR)/$(CORE_NAME).aar $(ANDROID_OUT)/
+	mv $(BINDIR)/$(CORE_LIB_NAME).aar $(ANDROID_OUT)/
 
 build-windows-libs:
 	make -C libcore -f Makefile windows-amd64
-	mv $(BINDIR)/$(CORE_NAME).dll $(DESKTOP_OUT)/
-	mv $(BINDIR)/$(SRV_NAME) $(DESKTOP_OUT)/
 
 build-linux-libs:
-	make -C libcore -f Makefile linux-amd64 
-	mv $(BINDIR)/$(CORE_NAME).so $(DESKTOP_OUT)/
-	mv $(BINDIR)/$(SRV_NAME) $(DESKTOP_OUT)/
+	make -C libcore -f Makefile linux-amd64
 
 build-macos-libs:
 	make -C libcore -f Makefile macos-universal
-	mv $(BINDIR)/$(CORE_NAME).dylib $(DESKTOP_OUT)/
 	mv $(BINDIR)/$(SRV_NAME) $(DESKTOP_OUT)/
 
 build-ios-libs: 
 	@$(RM) $(IOS_OUT)/Libcore.xcframework && \
 	make -C libcore -f Makefile ios  && \
-	mv $(BINDIR)/$(CORE_NAME)-ios.xcframework $(IOS_OUT)/Libcore.xcframework
+	mv $(BINDIR)/Libcore.xcframework $(IOS_OUT)/Libcore.xcframework
 
 release: # Create a new tag for release.
  	
