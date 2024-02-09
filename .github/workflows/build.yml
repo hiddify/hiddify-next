@@ -34,7 +34,7 @@ jobs:
             targets: aab
 
           - platform: windows
-            os: windows-latest
+            os: windows-2019
             aarch: amd64
             targets: exe
             filename: hiddify-windows-x64
@@ -100,7 +100,7 @@ jobs:
       - name: Setup Flutter Distributor
         if: ${{ !startsWith(matrix.platform,'android') }}
         run: |
-          dart pub global activate flutter_distributor
+        dart pub global activate --source git  https://github.com/hiddify/flutter_distributor --git-path packages/flutter_distributor
 
       - name: Setup Linux dependencies
         if: ${{ startsWith(matrix.platform,'linux') }}      
