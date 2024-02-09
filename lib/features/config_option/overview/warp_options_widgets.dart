@@ -34,12 +34,12 @@ class WarpOptionsTiles extends HookConsumerWidget {
 
     return Column(
       children: [
-        SwitchListTile.adaptive(
+        SwitchListTile(
           title: Text(t.settings.config.enableWarp),
           value: options.enableWarp,
           onChanged: (value) async {
             if (!warpPrefaceCompleted) {
-              final agreed = await showAdaptiveDialog<bool>(
+              final agreed = await showDialog<bool>(
                 context: context,
                 builder: (context) => const WarpLicenseAgreementModal(),
               );
@@ -154,7 +154,7 @@ class WarpLicenseAgreementModal extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final t = ref.watch(translationsProvider);
 
-    return AlertDialog.adaptive(
+    return AlertDialog(
       title: Text(t.settings.config.warpConsent.title),
       content: Text.rich(
         t.settings.config.warpConsent.description(
