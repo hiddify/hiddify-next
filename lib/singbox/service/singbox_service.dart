@@ -56,6 +56,8 @@ abstract interface class SingboxService {
 
   Stream<List<SingboxOutboundGroup>> watchOutbounds();
 
+  Stream<List<SingboxOutboundGroup>> watchActiveOutbounds();
+
   TaskEither<String, Unit> selectOutbound(String groupTag, String outboundTag);
 
   TaskEither<String, Unit> urlTest(String groupTag);

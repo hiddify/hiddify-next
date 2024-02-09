@@ -14,7 +14,8 @@
         "addToClipboard": "به کلیپ بورد اضافه کنید",
         "notSet": "تنظیم نشده",
         "agree": "موافق",
-        "decline": "کاهش می یابد"
+        "decline": "کاهش می یابد",
+        "unknown": "ناشناخته"
     },
     "intro": {
         "termsAndPolicyCaution(rich)": "در صورت ادامه با ${tap(@:about.termsAndConditions)} موافقت میکنید",

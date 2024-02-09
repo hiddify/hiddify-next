@@ -14,7 +14,8 @@
         "addToClipboard": "添加到剪贴板",
         "notSet": "没有设置",
         "agree": "同意",
-        "decline": "衰退"
+        "decline": "衰退",
+        "unknown": "未知"
     },
     "intro": {
         "termsAndPolicyCaution(rich)": "继续即表示您同意 ${tap(@:about.termsAndConditions)}",

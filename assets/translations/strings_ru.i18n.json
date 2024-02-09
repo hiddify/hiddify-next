@@ -14,7 +14,8 @@
         "addToClipboard": "Копировать в буфер обмена",
         "notSet": "Не задано",
         "agree": "Соглашаться",
-        "decline": "Отклонить"
+        "decline": "Отклонить",
+        "unknown": "Неизвестный"
     },
     "intro": {
         "termsAndPolicyCaution(rich)": "Продолжая, Вы соглашаетесь с ${tap(@:about.termsAndConditions)}",

@@ -14,7 +14,8 @@
         "addToClipboard": "Panoya ekle",
         "notSet": "Ayarlanmadı",
         "agree": "Kabul etmek",
-        "decline": "Reddetmek"
+        "decline": "Reddetmek",
+        "unknown": "Bilinmeyen"
     },
     "intro": {
         "termsAndPolicyCaution(rich)": "devam ederek ${tap(@:about.termsAndConditions)} kabul etmiş olursunuz",

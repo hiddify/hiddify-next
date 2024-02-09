@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:hiddify/core/http_client/dio_http_client.dart';
 import 'package:hiddify/core/utils/exception_handler.dart';
@@ -9,7 +10,8 @@ import 'package:hiddify/utils/custom_loggers.dart';
 
 abstract interface class ProxyRepository {
   Stream<Either<ProxyFailure, List<ProxyGroupEntity>>> watchProxies();
-  TaskEither<ProxyFailure, IpInfo> getCurrentIpInfo();
+  Stream<Either<ProxyFailure, List<ProxyGroupEntity>>> watchActiveProxies();
+  TaskEither<ProxyFailure, IpInfo> getCurrentIpInfo(CancelToken cancelToken);
   TaskEither<ProxyFailure, Unit> selectProxy(
     String groupTag,
     String outboundTag,
@@ -31,7 +33,6 @@ class ProxyRepositoryImpl
   @override
   Stream<Either<ProxyFailure, List<ProxyGroupEntity>>> watchProxies() {
     return singbox.watchOutbounds().map((event) {
-      print("outbounds: $event");
       final groupWithSelected = {
         for (final group in event) group.tag: group.selected,
       };
@@ -58,6 +59,39 @@ class ProxyRepositoryImpl
     }).handleExceptions(
       (error, stackTrace) {
         loggy.error("error watching proxies", error, stackTrace);
+        return ProxyUnexpectedFailure(error, stackTrace);
+      },
+    );
+  }
+
+  @override
+  Stream<Either<ProxyFailure, List<ProxyGroupEntity>>> watchActiveProxies() {
+    return singbox.watchActiveOutbounds().map((event) {
+      final groupWithSelected = {
+        for (final group in event) group.tag: group.selected,
+      };
+      return event
+          .map(
+            (e) => ProxyGroupEntity(
+              tag: e.tag,
+              type: e.type,
+              selected: e.selected,
+              items: e.items
+                  .map(
+                    (e) => ProxyItemEntity(
+                      tag: e.tag,
+                      type: e.type,
+                      urlTestDelay: e.urlTestDelay,
+                      selectedTag: groupWithSelected[e.tag],
+                    ),
+                  )
+                  .toList(),
+            ),
+          )
+          .toList();
+    }).handleExceptions(
+      (error, stackTrace) {
+        loggy.error("error watching active proxies", error, stackTrace);
         return ProxyUnexpectedFailure(error, stackTrace);
       },
     );
@@ -92,13 +126,16 @@ class ProxyRepositoryImpl
   };
 
   @override
-  TaskEither<ProxyFailure, IpInfo> getCurrentIpInfo() {
+  TaskEither<ProxyFailure, IpInfo> getCurrentIpInfo(CancelToken cancelToken) {
     return TaskEither.tryCatch(
       () async {
         for (final source in _ipInfoSources.entries) {
           try {
             loggy.debug("getting current ip info using [${source.key}]");
-            final response = await client.get<Map<String, dynamic>>(source.key);
+            final response = await client.get<Map<String, dynamic>>(
+              source.key,
+              cancelToken: cancelToken,
+            );
             if (response.statusCode == 200 && response.data != null) {
               return source.value(response.data!);
             }

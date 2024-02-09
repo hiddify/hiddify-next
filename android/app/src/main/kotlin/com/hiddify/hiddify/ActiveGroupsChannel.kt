@@ -9,15 +9,17 @@ import io.flutter.plugin.common.EventChannel
 import io.nekohasekai.libbox.OutboundGroup
 import kotlinx.coroutines.CoroutineScope
 
-class GroupsChannel(private val scope: CoroutineScope) : FlutterPlugin, CommandClient.Handler {
+
+class ActiveGroupsChannel(private val scope: CoroutineScope) : FlutterPlugin,
+    CommandClient.Handler {
     companion object {
-        const val TAG = "A/GroupsChannel"
-        const val CHANNEL = "com.hiddify.app/groups"
+        const val TAG = "A/ActiveGroupsChannel"
+        const val CHANNEL = "com.hiddify.app/active-groups"
         val gson = Gson()
     }
 
     private val client =
-        CommandClient(scope, CommandClient.ConnectionType.Groups, this)
+        CommandClient(scope, CommandClient.ConnectionType.GroupOnly, this)
 
     private var channel: EventChannel? = null
     private var event: EventChannel.EventSink? = null
@@ -38,13 +40,13 @@ class GroupsChannel(private val scope: CoroutineScope) : FlutterPlugin, CommandC
         channel!!.setStreamHandler(object : EventChannel.StreamHandler {
             override fun onListen(arguments: Any?, events: EventChannel.EventSink?) {
                 event = events
-                Log.d(TAG, "connecting groups command client")
+                Log.d(TAG, "connecting active groups command client")
                 client.connect()
             }
 
             override fun onCancel(arguments: Any?) {
                 event = null
-                Log.d(TAG, "disconnecting groups command client")
+                Log.d(TAG, "disconnecting active groups command client")
                 client.disconnect()
             }
         })

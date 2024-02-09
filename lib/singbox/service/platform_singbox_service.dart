@@ -183,6 +183,23 @@ class PlatformSingboxService with InfraLogger implements SingboxService {
   }
 
   @override
+  Stream<List<SingboxOutboundGroup>> watchActiveOutbounds() {
+    const channel = EventChannel("com.hiddify.app/active-groups");
+    loggy.debug("watching active outbounds");
+    return channel.receiveBroadcastStream().map(
+      (event) {
+        if (event case String _) {
+          return (jsonDecode(event) as List).map((e) {
+            return SingboxOutboundGroup.fromJson(e as Map<String, dynamic>);
+          }).toList();
+        }
+        loggy.error("[active group client] unexpected type, msg: $event");
+        throw "invalid type";
+      },
+    );
+  }
+
+  @override
   Stream<SingboxStatus> watchStatus() => _status;
 
   @override

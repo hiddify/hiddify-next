@@ -319,6 +319,12 @@ class FFISingboxService with InfraLogger implements SingboxService {
   }
 
   @override
+  Stream<List<SingboxOutboundGroup>> watchActiveOutbounds() {
+    // TODO: implement watchActiveOutbounds
+    throw UnimplementedError();
+  }
+
+  @override
   TaskEither<String, Unit> selectOutbound(String groupTag, String outboundTag) {
     return TaskEither(
       () => CombineWorker().execute(

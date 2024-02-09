@@ -14,7 +14,8 @@
         "addToClipboard": "Add to clipboard",
         "notSet": "Not Set",
         "agree": "Agree",
-        "decline": "Decline"
+        "decline": "Decline",
+        "unknown": "Unknown"
     },
     "intro": {
         "termsAndPolicyCaution(rich)": "by continuing you agree with ${tap(@:about.termsAndConditions)}",

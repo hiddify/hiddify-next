@@ -14,7 +14,8 @@
         "addToClipboard": "Añadir al portapapeles",
         "notSet": "No establecido",
         "agree": "Aceptar",
-        "decline": "Rechazar"
+        "decline": "Rechazar",
+        "unknown": "Desconocido"
     },
     "home": {
         "emptyProfilesMsg": "Comience agregando un perfil de suscripción",
