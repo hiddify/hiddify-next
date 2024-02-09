@@ -19,14 +19,14 @@ env:
   UPLOAD_ARTIFACT: "${{ inputs.upload-artifact }}"
   TAG_NAME: "${{ inputs.tag-name }}"
   TARGET_NAME_AppImage: "Hiddify-Linux-x64"
-  TARGET_NAME_deb": "Hiddify-Debian-x64"
-  TARGET_NAME_rpm": "Hiddify-rpm-x64"
-  TARGET_NAME_apk": "Hiddify-Android"
-  TARGET_NAME_aab": "Hiddify-Android"
-  TARGET_NAME_exe": "Hiddify-Windows-x64"
-  TARGET_NAME_dmg": "Hiddify-MacOS"
-  TARGET_NAME_pkg": "Hiddify-MacOS-Installer"
-  TARGET_NAME_ipa": "Hiddify-iOS"
+  TARGET_NAME_deb: "Hiddify-Debian-x64"
+  TARGET_NAME_rpm: "Hiddify-rpm-x64"
+  TARGET_NAME_apk: "Hiddify-Android"
+  TARGET_NAME_aab: "Hiddify-Android"
+  TARGET_NAME_exe: "Hiddify-Windows-x64"
+  TARGET_NAME_dmg: "Hiddify-MacOS"
+  TARGET_NAME_pkg: "Hiddify-MacOS-Installer"
+  TARGET_NAME_ipa: "Hiddify-iOS"
 jobs:
   build:
     permissions: write-all
@@ -184,6 +184,7 @@ jobs:
           for EXT in $(echo ${{ matrix.targets }} | tr ',' '\n'); do
             KEY=TARGET_NAME_${EXT}
             FILENAME=${!KEY}
+            echo "For $EXT ($KEY) filename is ${FILENAME}"
             mv dist/*/*.$EXT tmp_out/${FILENAME}.$EXT
             chmod +x tmp_out/${FILENAME}.$EXT
             if [ "${{matrix.platform}}" == "linux" ];then
@@ -196,10 +197,8 @@ jobs:
             else
               cd tmp_out
               7z a ${FILENAME}.zip ./
-              mv *.zip ../out/
-              if [[ $EXT == 'AppImage' ]];then
-                mv ${FILENAME}.$EXT ../out/${FILENAME}.$EXT # added for appimage link
-              fi
+              mv ${FILENAME}.zip ../out/
+              [[ $EXT == 'AppImage' ]]&& mv ${FILENAME}.$EXT ../out/ # added for appimage link
               cd ..
             fi
           done
