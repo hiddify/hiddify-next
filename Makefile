@@ -19,19 +19,17 @@ GEO_ASSETS_DIR=assets$(SEP)core
 
 CORE_PRODUCT_NAME=hiddify-core
 CORE_NAME=$(CORE_PRODUCT_NAME)
-CORE_LIB_NAME=libcore
 SRV_NAME=HiddifyService
-
 ifeq ($(CHANNEL),prod)
-	CORE_URL=https://github.com/hiddify/hiddify-next-core/releases/download/v$(core.version)
+CORE_URL=https://github.com/hiddify/hiddify-next-core/releases/download/v$(core.version)
 else
-	CORE_URL=https://github.com/hiddify/hiddify-next-core/releases/download/draft
+CORE_URL=https://github.com/hiddify/hiddify-next-core/releases/download/draft
 endif
 
 ifeq ($(CHANNEL),prod)
-	TARGET=lib/main_prod.dart
+TARGET=lib/main_prod.dart
 else
-	TARGET=lib/main.dart
+TARGET=lib/main.dart
 endif
 
 BUILD_ARGS=--dart-define sentry_dsn=$(SENTRY_DSN)
@@ -62,8 +60,26 @@ windows-prepare: get-geo-assets get gen translate windows-libs
 ios-prepare: get-geo-assets get gen translate ios-libs
 macos-prepare: get-geo-assets get gen translate macos-libs
 linux-prepare: get-geo-assets get gen translate linux-libs
-android-prepare: get-geo-assets get gen translate android-libs
+android-prepare: get-geo-assets get gen translate android-libs	
 	
+
+linux-install-dependencies:
+	if [ "$(flutter)" = "true" ]; then \
+		wget -O ~/Downloads/flutter_linux_3.16.9-stable.tar.xz https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.16.9-stable.tar.xz; \
+		mkdir -p ~/develop; \
+		cd ~/develop; \
+		tar xf ~/Downloads/flutter_linux_3.16.9-stable.tar.xz; \
+		export PATH="$$PATH:$$HOME/develop/flutter/bin"; \
+		echo 'export PATH="$$PATH:$$HOME/develop/flutter/bin"' >> ~/.bashrc; \
+	fi
+	PATH="$$PATH":"$$HOME/.pub-cache/bin"
+	echo 'export PATH="$$PATH:$$HOME/.pub-cache/bin"' >>~/.bashrc
+	sudo apt install -y clang ninja-build pkg-config cmake libgtk-3-dev locate ninja-build pkg-config libgtk-3-dev libglib2.0-dev libgio2.0-cil-dev libayatana-appindicator3-dev fuse rpm patchelf file appstream
+	dart pub global activate flutter_distributor
+	sudo modprobe fuse
+	wget -O appimagetool "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage"
+	chmod +x appimagetool
+	sudo mv appimagetool /usr/local/bin/
 
 
 sync_translate:
@@ -110,7 +126,7 @@ windows-libs:
 	curl -L $(CORE_URL)/$(CORE_NAME)-windows-amd64.tar.gz | tar xz -C $(DESKTOP_OUT)/
 
 linux-libs:
-	@$(MKDIR) $(DESKTOP_OUT) || echo Folder already exists. Skipping...
+	mkdir -p $(DESKTOP_OUT)
 	curl -L $(CORE_URL)/$(CORE_NAME)-linux-amd64.tar.gz | tar xz -C $(DESKTOP_OUT)/
 
 linux-deb-libs:linux-libs
@@ -118,12 +134,12 @@ linux-rpm-libs:linux-libs
 linux-appimage-libs:linux-libs
 
 macos-libs:
-	@$(MKDIR) $(DESKTOP_OUT) || echo Folder already exists. Skipping...
+	mkdir -p  $(DESKTOP_OUT) 
 	curl -L $(CORE_URL)/$(CORE_NAME)-macos-universal.tar.gz | tar xz -C $(DESKTOP_OUT)
 
 ios-libs: #not tested
-	@$(MKDIR) $(IOS_OUT) || echo Folder already exists. Skipping...
-	@$(RM) $(IOS_OUT)/Libcore.xcframework
+	mkdir -p $(IOS_OUT)
+	rm -rf $(IOS_OUT)/Libcore.xcframework
 	curl -L $(CORE_URL)/$(CORE_NAME)-ios.tar.gz | tar xz -C "$(IOS_OUT)"
 
 get-geo-assets:
@@ -141,15 +157,15 @@ build-windows-libs:
 	make -C libcore -f Makefile windows-amd64
 
 build-linux-libs:
-	make -C libcore -f Makefile linux-amd64
+	make -C libcore -f Makefile linux-amd64 
 
 build-macos-libs:
 	make -C libcore -f Makefile macos-universal
 	mv $(BINDIR)/$(SRV_NAME) $(DESKTOP_OUT)/
 
 build-ios-libs: 
-	@$(RM) $(IOS_OUT)/Libcore.xcframework && \
-	make -C libcore -f Makefile ios  && \
+	rf -rf $(IOS_OUT)/Libcore.xcframework 
+	make -C libcore -f Makefile ios  
 	mv $(BINDIR)/Libcore.xcframework $(IOS_OUT)/Libcore.xcframework
 
 release: # Create a new tag for release.

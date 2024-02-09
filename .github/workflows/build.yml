@@ -39,11 +39,11 @@ jobs:
             targets: exe
             filename: hiddify-windows-x64
 
-          # - platform: linux-appimage
-          #   os: ubuntu-20.04
-          #   aarch: amd64
-          #   targets: AppImage
-          #   filename: hiddify-linux-x64
+          - platform: linux-appimage
+            os: ubuntu-20.04
+            aarch: amd64
+            targets: AppImage
+            filename: hiddify-linux-x64
 
           - platform: linux-deb
             os: ubuntu-20.04
@@ -105,28 +105,11 @@ jobs:
       - name: Setup Linux dependencies
         if: ${{ startsWith(matrix.platform,'linux') }}      
         run: |
-          sudo apt install -y locate ninja-build pkg-config libgtk-3-dev libglib2.0-dev libgio2.0-cil-dev libayatana-appindicator3-dev fuse rpm patchelf
-          sudo modprobe fuse
-          wget -O appimagetool "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage"
-          chmod +x appimagetool
-          mv appimagetool /usr/local/bin/
+          make linux-install-dependencies
 
-      - name: Get Geo Assets
+      - name: Prepare for ${{ matrix.platform }}
         run: |
-          make get-geo-assets
-
-      - name: Get Dependencies
-        run: |
-          make get
-
-      - name: Generate
-        run: |
-          make translate
-          make gen
-
-      - name: Get Libs & Bindings ${{ matrix.platform }}
-        run: |
-          make ${{ matrix.platform }}-libs
+          make ${{ matrix.platform }}-prepare
 
       - name: Setup Android Signing Properties
         if: startsWith(matrix.platform,'android')
@@ -230,7 +213,9 @@ jobs:
             cd tmp_out
             7z a ${{matrix.filename}}.zip ./
             mv *.zip ../out/
+            mv ${{matrix.filename}}.AppImage HiddifyNext.AppImage || echo "no appimage" # added for appimage link
           fi
+          
 
       - name: Clean up keychain and provisioning profile
         if: ${{ always() && startsWith(matrix.os,'macos')}}
