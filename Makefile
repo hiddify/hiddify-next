@@ -60,7 +60,14 @@ windows-prepare: get-geo-assets get gen translate windows-libs
 ios-prepare: get-geo-assets get gen translate ios-libs
 macos-prepare: get-geo-assets get gen translate macos-libs
 linux-prepare: get-geo-assets get gen translate linux-libs
+linux-appimage-prepare:linux-prepare
+linux-rpm-prepare:linux-prepare
+linux-deb-prepare:linux-prepare
+
 android-prepare: get-geo-assets get gen translate android-libs	
+android-apk-prepare:android-prepare
+android-aab-prepare:android-prepare
+
 	
 
 linux-install-dependencies:

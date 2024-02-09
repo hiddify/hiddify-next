@@ -83,12 +83,11 @@ install(FILES "${FLUTTER_LIBRARY}" DESTINATION "${INSTALL_BUNDLE_LIB_DIR}"
 
 # install(FILES "../libcore/bin/libcore.dll" DESTINATION "${INSTALL_BUNDLE_LIB_DIR}"
 #  COMPONENT Runtime)
-set(HIDDIFY_NEXT_LIB "../libcore/bin/libcore.dll")
-install(FILES "${HIDDIFY_NEXT_LIB}" DESTINATION "${INSTALL_BUNDLE_LIB_DIR}"
+
+install(FILES "../libcore/bin/libcore.dll" DESTINATION "${INSTALL_BUNDLE_LIB_DIR}"
 COMPONENT Runtime RENAME libcore.dll)
 
-set(HIDDIFY_NEXT_LIB "../libcore/bin/HiddifyService.exe")
-install(FILES "${HIDDIFY_NEXT_LIB}" DESTINATION "${INSTALL_BUNDLE_LIB_DIR}"
+install(FILES "../libcore/bin/HiddifyService.exe" DESTINATION "${CMAKE_INSTALL_PREFIX}"
 COMPONENT Runtime RENAME HiddifyService.exe)
 
 

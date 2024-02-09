@@ -10,7 +10,6 @@ setup_icon_file: ..\..\windows\runner\resources\app_icon.ico
 locales:
   - en
   - fa
-  - zh
   - ru
   - pt
   - tr
