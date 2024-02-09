@@ -9,6 +9,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Build
+import androidx.annotation.StringRes
 import androidx.core.app.NotificationCompat
 import androidx.core.app.ServiceCompat
 import androidx.lifecycle.MutableLiveData
@@ -79,25 +80,27 @@ class ServiceNotification(private val status: MutableLiveData<Status>, private v
                 }
     }
 
-    suspend fun show(profileName: String) {
+    fun show(profileName: String, @StringRes contentTextId: Int) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             Application.notification.createNotificationChannel(
-                    NotificationChannel(
-                            notificationChannel, "hiddify service", NotificationManager.IMPORTANCE_LOW
-                    )
+                NotificationChannel(
+                    notificationChannel, "hiddify service", NotificationManager.IMPORTANCE_LOW
+                )
             )
         }
         service.startForeground(
-                notificationId, notificationBuilder
+            notificationId, notificationBuilder
                 .setContentTitle(profileName.takeIf { it.isNotBlank() } ?: "Hiddify Next")
-                .setContentText("service started").build()
+                .setContentText(service.getString(contentTextId)).build()
         )
-        withContext(Dispatchers.IO) {
-            if (Settings.dynamicNotification) {
-                commandClient.connect()
-                withContext(Dispatchers.Main) {
-                    registerReceiver()
-                }
+    }
+
+
+    suspend fun start() {
+        if (Settings.dynamicNotification) {
+            commandClient.connect()
+            withContext(Dispatchers.Main) {
+                registerReceiver()
             }
         }
     }

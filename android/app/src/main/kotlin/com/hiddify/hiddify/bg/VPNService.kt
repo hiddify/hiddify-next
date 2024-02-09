@@ -165,19 +165,14 @@ class VPNService : VpnService(), PlatformInterfaceWrapper {
             }
         }
 
-        if (options.isHTTPProxyEnabled) {
+        if (options.isHTTPProxyEnabled && Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             systemProxyAvailable = true
             systemProxyEnabled = Settings.systemProxyEnabled
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                if (systemProxyEnabled) builder.setHttpProxy(
-                    ProxyInfo.buildDirectProxy(
-                        options.httpProxyServer,
-                        options.httpProxyServerPort
-                    )
+            if (systemProxyEnabled) builder.setHttpProxy(
+                ProxyInfo.buildDirectProxy(
+                    options.httpProxyServer, options.httpProxyServerPort
                 )
-            } else {
-                error("android: tun.platform.http_proxy requires android 10 or higher")
-            }
+            )
         } else {
             systemProxyAvailable = false
             systemProxyEnabled = false
