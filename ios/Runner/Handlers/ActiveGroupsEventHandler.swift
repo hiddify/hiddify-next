@@ -2,17 +2,16 @@ import Foundation
 import Combine
 import Libcore
 
-public class GroupsEventHandler: NSObject, FlutterPlugin, FlutterStreamHandler{
+public class ActiveGroupsEventHandler: NSObject, FlutterPlugin, FlutterStreamHandler {
     
-    static let name = "\(Bundle.main.serviceIdentifier)/groups"
-    
+    static let name = "\(Bundle.main.serviceIdentifier)/active-groups"
     private var commandClient: CommandClient?
     private var channel: FlutterEventChannel?
     private var events: FlutterEventSink?
     private var cancellable: AnyCancellable?
     
     public static func register(with registrar: FlutterPluginRegistrar) {
-        let instance = GroupsEventHandler()
+        let instance = ActiveGroupsEventHandler()
         instance.channel = FlutterEventChannel(name: Self.name,
                                                binaryMessenger: registrar.messenger())
         instance.channel?.setStreamHandler(instance)
@@ -21,10 +20,10 @@ public class GroupsEventHandler: NSObject, FlutterPlugin, FlutterStreamHandler{
     public func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
         FileManager.default.changeCurrentDirectoryPath(FilePath.sharedDirectory.path)
         self.events = events
-        commandClient = CommandClient(.groups)
+        commandClient = CommandClient(.groupsInfoOnly)
         commandClient?.connect()
-        cancellable = commandClient?.$groups.sink{ [self] groups in
-            self.writeGroups(groups)
+        cancellable =  commandClient?.$groups.sink{ [self] sbGroups in
+            self.writeGroups(sbGroups)
         }
         return nil
     }
@@ -42,7 +41,7 @@ public class GroupsEventHandler: NSObject, FlutterPlugin, FlutterStreamHandler{
             let groups = try? JSONEncoder().encode(sbGroups),
             let groups = String(data: groups, encoding: .utf8)
         {
-            DispatchQueue.main.async { [events = self.events, groups] in
+            DispatchQueue.main.async { [events = self.events, groups] () in
                 events?(groups)
             }
         }

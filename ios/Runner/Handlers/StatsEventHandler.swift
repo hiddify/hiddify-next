@@ -1,48 +1,46 @@
-//
-//  StatsEventHandler.swift
-//  Runner
-//
-//  Created by Hiddify on 12/27/23.
-//
-
 import Foundation
 import Flutter
+import Combine
 import Libcore
 
-public class StatsEventHandler: NSObject, FlutterPlugin, FlutterStreamHandler, LibboxCommandClientHandlerProtocol {
+public class StatsEventHandler: NSObject, FlutterPlugin, FlutterStreamHandler {
+    
     static let name = "\(Bundle.main.serviceIdentifier)/stats"
     
+    private var commandClient: CommandClient?
     private var channel: FlutterEventChannel?
-    
-    private var commandClient: LibboxCommandClient?
     private var events: FlutterEventSink?
+    private var cancellable: AnyCancellable?
     
     public static func register(with registrar: FlutterPluginRegistrar) {
         let instance = StatsEventHandler()
-        instance.channel = FlutterEventChannel(name: Self.name,  binaryMessenger: registrar.messenger(), codec: FlutterJSONMethodCodec())
+        instance.channel = FlutterEventChannel(name: Self.name,
+                                               binaryMessenger: registrar.messenger(),
+                                               codec: FlutterJSONMethodCodec())
         instance.channel?.setStreamHandler(instance)
     }
     
     public func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
         FileManager.default.changeCurrentDirectoryPath(FilePath.sharedDirectory.path)
         self.events = events
-        let opts = LibboxCommandClientOptions()
-        opts.command = LibboxCommandStatus
-        opts.statusInterval = Int64(NSEC_PER_SEC)
-        commandClient = LibboxCommandClient(self, options: opts)
-        try? commandClient?.connect()
+        commandClient = CommandClient(.status)
+        commandClient?.connect()
+        cancellable =  commandClient?.$status.sink{ [self] status in
+            self.writeStatus(status)
+        }
         return nil
     }
     
     public func onCancel(withArguments arguments: Any?) -> FlutterError? {
-        try? commandClient?.disconnect()
+        commandClient?.disconnect()
+        cancellable?.cancel()
+        events = nil
         return nil
     }
     
-    public func writeStatus(_ message: LibboxStatusMessage?) {
-        guard
-            let message
-        else { return }
+    func writeStatus(_ message: LibboxStatusMessage?) {
+        guard let message else { return }
+        
         let data = [
             "connections-in": message.connectionsIn,
             "connections-out": message.connectionsOut,
@@ -53,14 +51,4 @@ public class StatsEventHandler: NSObject, FlutterPlugin, FlutterStreamHandler, L
         ] as [String:Any]
         events?(data)
     }
-}
-
-extension StatsEventHandler {
-    public func clearLog() {}
-    public func connected() {}
-    public func disconnected(_ message: String?) {}
-    public func initializeClashMode(_ modeList: LibboxStringIteratorProtocol?, currentMode: String?) {}
-    public func updateClashMode(_ newMode: String?) {}
-    public func writeGroups(_ message: LibboxOutboundGroupIteratorProtocol?) {}
-    public func writeLog(_ message: String?) {}
 }
