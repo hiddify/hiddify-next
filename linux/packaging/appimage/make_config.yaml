@@ -29,6 +29,9 @@ categories:
 
 startup_notify: true
 
+app_run_content: "
+Hi
+"
 # You can specify the shared libraries that you want to bundle with your app
 #
 # flutter_distributor automatically detects the shared libraries that your app
