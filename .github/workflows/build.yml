@@ -17,7 +17,17 @@ env:
   NDK_VERSION: r26b
   UPLOAD_ARTIFACT: "${{ inputs.upload-artifact }}"
   TAG_NAME: "${{ inputs.tag-name }}"
-
+  TARGET_MAP: |
+      {
+        "AppImage": "Hiddify-Linux-x64",
+        "deb": "Hiddify-Debian-x64",
+        "rpm": "Hiddify-rpm-x64",
+        "apk": "Hiddify-Android",
+        "aab": "Hiddify-Android",
+        "exe": "Hiddify-Windows-x64",
+        "dmg": "Hiddify-MacOS",
+        "ipa": "Hiddify-iOS",
+      }
 jobs:
   build:
     permissions: write-all
@@ -37,31 +47,16 @@ jobs:
             os: windows-2019
             aarch: amd64
             targets: exe
-            filename: hiddify-windows-x64
 
-          - platform: linux-appimage
+          - platform: linux
             os: ubuntu-20.04
             aarch: amd64
-            targets: AppImage
-            filename: hiddify-linux-x64
-
-          - platform: linux-deb
-            os: ubuntu-20.04
-            aarch: amd64
-            targets: deb
-            filename: hiddify-debian-x64
-            
-          - platform: linux-rpm
-            os: ubuntu-20.04
-            aarch: amd64
-            targets: rpm
-            filename: hiddify-rpm-x64
+            targets: AppImage,deb,rpm
 
           - platform: macos
             os: macos-13
             aarch: universal
             targets: dmg
-            filename: hiddify-macos-universal
 
     runs-on: ${{ matrix.os }}
     steps:
@@ -181,10 +176,10 @@ jobs:
         run: |
           mkdir out
           ls -R ./build/app/outputs
-          cp ./build/app/outputs/flutter-apk/*arm64-v8a*.apk out/hiddify-android-arm64.apk || echo "no arm64 apk"
-          cp ./build/app/outputs/flutter-apk/*armeabi-v7a*.apk out/hiddify-android-arm7.apk || echo "no arm7 apk"
-          cp ./build/app/outputs/flutter-apk/*x86_64*.apk out/hiddify-android-x86_64.apk || echo "no x64 apk"
-          cp ./build/app/outputs/flutter-apk/app-release.apk out/hiddify-android-universal.apk || echo "no universal apk"
+          cp ./build/app/outputs/flutter-apk/*arm64-v8a*.apk out/${TARGET_MAP[apk]}-arm64.apk || echo "no arm64 apk"
+          cp ./build/app/outputs/flutter-apk/*armeabi-v7a*.apk out/${TARGET_MAP[apk]}-arm7.apk || echo "no arm7 apk"
+          cp ./build/app/outputs/flutter-apk/*x86_64*.apk out/${TARGET_MAP[apk]}-x86_64.apk || echo "no x64 apk"
+          cp ./build/app/outputs/flutter-apk/app-release.apk out/${TARGET_MAP[apk]}-universal.apk || echo "no universal apk"
 
       - name: Copy to out Android AAB
         if: matrix.platform == 'android-aab'
@@ -199,22 +194,26 @@ jobs:
           ls -R dist/
           mkdir out
           mkdir tmp_out
-          EXT="${{ matrix.targets }}"
-          mv dist/*/*.$EXT tmp_out/${{matrix.filename}}.$EXT
-          chmod +x tmp_out/${{matrix.filename}}.$EXT
-          if [ "${{matrix.platform}}" == "linux" ];then
-            cp ./.github/help/linux/* tmp_out/
-          else
-            cp ./.github/help/mac-windows/* tmp_out/
-          fi
-          if [[ "${{matrix.platform}}" == 'ios' ]];then
-            mv tmp_out/${{matrix.filename}}.ipa bin/${{matrix.filename}}.ipa
-          else
-            cd tmp_out
-            7z a ${{matrix.filename}}.zip ./
-            mv *.zip ../out/
-            mv ${{matrix.filename}}.AppImage HiddifyNext.AppImage || echo "no appimage" # added for appimage link
-          fi
+          
+          for EXT in $(echo ${{ matrix.targets }} | tr ',' '\n'); do
+            targetFile=${TARGET_MAP[$EXT]}.$EXT
+            mv dist/*/*.$EXT tmp_out/${targetFile}
+            chmod +x tmp_out/${targetFile}
+            if [ "${{matrix.platform}}" == "linux" ];then
+              cp ./.github/help/linux/* tmp_out/
+            else
+              cp ./.github/help/mac-windows/* tmp_out/
+            fi
+            if [[ "${{matrix.platform}}" == 'ios' ]];then
+              mv tmp_out/${targetFile} bin/${targetFile}
+            else
+              cd tmp_out
+              7z a ${TARGET_MAP[$EXT]}.zip ./
+              mv *.zip ../out/
+              if [[ $EXT == 'AppImage' ]];then
+                mv ${targetFile} ../out/${targetFile} # added for appimage link
+              fi
+            fi
           
 
       - name: Clean up keychain and provisioning profile

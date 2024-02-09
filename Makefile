@@ -104,17 +104,10 @@ android-aab-release:
 	ls -R build/app/outputs
 
 windows-release:
-	flutter build -v windows --target lib/main.dart --dart-define sentry_dsn=*** --dart-define FLUTTER_BUILD_NAME=0.15.4 --dart-define FLUTTER_BUILD_NUMBER=1504
-	flutter_distributor package --platform windows --targets exe $(DISTRIBUTOR_ARGS)
+	flutter_distributor package --flutter-build-args=verbose --platform windows --targets exe $(DISTRIBUTOR_ARGS)
 
-linux-release: linux-appimage-release linux-deb-release linux-rpm-release
-
-linux-appimage-release:
-	flutter_distributor package --platform linux --targets appimage $(DISTRIBUTOR_ARGS)
-linux-deb-release:
-	flutter_distributor package --platform linux --targets deb $(DISTRIBUTOR_ARGS)
-linux-rpm-release:
-	flutter_distributor package --platform linux --targets rpm $(DISTRIBUTOR_ARGS)
+linux-release: 
+	flutter_distributor package --platform linux --targets deb,rpm,appimage $(DISTRIBUTOR_ARGS)
 
 macos-release:
 	flutter_distributor package --platform macos --targets dmg $(DISTRIBUTOR_ARGS)
@@ -131,15 +124,13 @@ android-aab-libs: android-libs
 
 windows-libs:
 	@$(MKDIR) $(DESKTOP_OUT) || echo Folder already exists. Skipping...
-	curl -L $(CORE_URL)/$(CORE_NAME)-windows-amd64.tar.gz | tar xz -C $(DESKTOP_OUT)/
+	curl -L $(CORE_URL)/$(CORE_NAME)-windows-amd64.tar.gz | tar xz -C $(DESKTOP_OUT)$(SEP)
+	ls $(DESKTOP_OUT)$(SEP)
 
 linux-libs:
 	mkdir -p $(DESKTOP_OUT)
 	curl -L $(CORE_URL)/$(CORE_NAME)-linux-amd64.tar.gz | tar xz -C $(DESKTOP_OUT)/
 
-linux-deb-libs:linux-libs
-linux-rpm-libs:linux-libs
-linux-appimage-libs:linux-libs
 
 macos-libs:
 	mkdir -p  $(DESKTOP_OUT) 
