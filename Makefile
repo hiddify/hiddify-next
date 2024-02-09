@@ -1,14 +1,14 @@
 include dependencies.properties
-ifeq ($(OS),Windows_1NT)
-    MKDIR := -mkdir
-    RM := rmdir /s /q
-	SEP:=\\
-	PLATFORM_REQ:= @set /p platform="Run 'make prepare platform=ios' or enter platform name:";
-else
-    MKDIR := mkdir -p
-    RM  := rm -rf
-	SEP :=/
-	PLATFORM_REQ:= @read -p "Run make prepare platform=ios or enter platform name: " platform; 
+MKDIR := mkdir -p
+RM  := rm -rf
+SEP :=/
+
+ifeq ($(OS),Windows_NT)
+    ifeq ($(IS_GITHUB_ACTIONS),)
+		MKDIR := -mkdir
+		RM := rmdir /s /q
+		SEP:=\\
+	endif
 endif
 
 BINDIR=libcore$(SEP)bin

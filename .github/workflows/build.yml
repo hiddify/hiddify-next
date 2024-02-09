@@ -13,22 +13,20 @@ on:
         default: "dev"
 
 env:
+  IS_GITHUB_ACTIONS: 1
   CHANNEL: "${{ inputs.channel }}"
   NDK_VERSION: r26b
   UPLOAD_ARTIFACT: "${{ inputs.upload-artifact }}"
   TAG_NAME: "${{ inputs.tag-name }}"
-  TARGET_MAP: |
-      {
-        "AppImage": "Hiddify-Linux-x64",
-        "deb": "Hiddify-Debian-x64",
-        "rpm": "Hiddify-rpm-x64",
-        "apk": "Hiddify-Android",
-        "aab": "Hiddify-Android",
-        "exe": "Hiddify-Windows-x64",
-        "dmg": "Hiddify-MacOS",
-        "pkg": "Hiddify-MacOS-Installer",
-        "ipa": "Hiddify-iOS",
-      }
+  TARGET_NAME_AppImage: "Hiddify-Linux-x64"
+  TARGET_NAME_deb": "Hiddify-Debian-x64"
+  TARGET_NAME_rpm": "Hiddify-rpm-x64"
+  TARGET_NAME_apk": "Hiddify-Android"
+  TARGET_NAME_aab": "Hiddify-Android"
+  TARGET_NAME_exe": "Hiddify-Windows-x64"
+  TARGET_NAME_dmg": "Hiddify-MacOS"
+  TARGET_NAME_pkg": "Hiddify-MacOS-Installer"
+  TARGET_NAME_ipa": "Hiddify-iOS"
 jobs:
   build:
     permissions: write-all
@@ -160,21 +158,17 @@ jobs:
           .\scripts\package_windows.ps1
 
       - name: Copy to out Android APK
-        env:
-          TARGET_MAP: ${{ env.TARGET_MAP }}
         if: matrix.platform == 'android-apk'
         run: |
           mkdir out
           ls -R ./build/app/outputs
-          cp ./build/app/outputs/flutter-apk/*arm64-v8a*.apk out/${TARGET_MAP[apk]}-arm64.apk || echo "no arm64 apk"
-          cp ./build/app/outputs/flutter-apk/*armeabi-v7a*.apk out/${TARGET_MAP[apk]}-arm7.apk || echo "no arm7 apk"
-          cp ./build/app/outputs/flutter-apk/*x86_64*.apk out/${TARGET_MAP[apk]}-x86_64.apk || echo "no x64 apk"
-          cp ./build/app/outputs/flutter-apk/app-release.apk out/${TARGET_MAP[apk]}-universal.apk || echo "no universal apk"
+          cp ./build/app/outputs/flutter-apk/*arm64-v8a*.apk out/${TARGET_NAME_apk}-arm64.apk || echo "no arm64 apk"
+          cp ./build/app/outputs/flutter-apk/*armeabi-v7a*.apk out/${TARGET_NAME_apk}-arm7.apk || echo "no arm7 apk"
+          cp ./build/app/outputs/flutter-apk/*x86_64*.apk out/${TARGET_NAME_apk}-x86_64.apk || echo "no x64 apk"
+          cp ./build/app/outputs/flutter-apk/app-release.apk out/${TARGET_NAME_apk}-universal.apk || echo "no universal apk"
 
       - name: Copy to out Android AAB
         if: matrix.platform == 'android-aab'
-        env:
-          TARGET_MAP: ${{ env.TARGET_MAP }}
         run: |
           mkdir out
           ls -R ./build/app/outputs
@@ -182,30 +176,29 @@ jobs:
 
       - name: Copy to out unix
         if: startsWith(matrix.platform,'linux') || matrix.platform == 'macos' || matrix.platform == 'ios'
-        env:
-          TARGET_MAP: ${{ env.TARGET_MAP }}
         run: |
           ls -R dist/
           mkdir out
           mkdir tmp_out
           
           for EXT in $(echo ${{ matrix.targets }} | tr ',' '\n'); do
-            targetFile=${TARGET_MAP[$EXT]}.$EXT
-            mv dist/*/*.$EXT tmp_out/${targetFile}
-            chmod +x tmp_out/${targetFile}
+            KEY=TARGET_NAME_${EXT}
+            FILENAME=${!KEY}
+            mv dist/*/*.$EXT tmp_out/${FILENAME}.$EXT
+            chmod +x tmp_out/${FILENAME}.$EXT
             if [ "${{matrix.platform}}" == "linux" ];then
               cp ./.github/help/linux/* tmp_out/
             else
               cp ./.github/help/mac-windows/* tmp_out/
             fi
             if [[ "${{matrix.platform}}" == 'ios' ]];then
-              mv tmp_out/${targetFile} bin/${targetFile}
+              mv tmp_out/${FILENAME}.$EXT bin/${FILENAME}.$EXT
             else
               cd tmp_out
-              7z a ${TARGET_MAP[$EXT]}.zip ./
+              7z a ${FILENAME}.zip ./
               mv *.zip ../out/
               if [[ $EXT == 'AppImage' ]];then
-                mv ${targetFile} ../out/${targetFile} # added for appimage link
+                mv ${FILENAME}.$EXT ../out/${FILENAME}.$EXT # added for appimage link
               fi
             fi
           done
