@@ -200,6 +200,7 @@ jobs:
               if [[ $EXT == 'AppImage' ]];then
                 mv ${FILENAME}.$EXT ../out/${FILENAME}.$EXT # added for appimage link
               fi
+              cd ..
             fi
           done
 
