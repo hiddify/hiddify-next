@@ -56,6 +56,9 @@ class ActiveProxyNotifier extends _$ActiveProxyNotifier with AppLogger {
   @override
   AsyncValue<ActiveProxyInfo> build() {
     ref.disposeDelay(const Duration(seconds: 20));
+    ref.onDispose(() {
+      _urlTestDebouncer.dispose();
+    });
     final ipInfo = ref.watch(proxyIpInfoProvider);
     final activeProxies = ref.watch(activeProxyGroupProvider);
     return switch (activeProxies) {
@@ -67,9 +70,28 @@ class ActiveProxyNotifier extends _$ActiveProxyNotifier with AppLogger {
     };
   }
 
+  final _urlTestDebouncer = CallbackDebouncer(const Duration(seconds: 1));
+
   Future<void> refreshIpInfo() async {
     if (state case AsyncData(:final value) when !value.ipInfo.isLoading) {
       ref.invalidate(proxyIpInfoProvider);
     }
+  }
+
+  Future<void> urlTest(String groupTag) async {
+    _urlTestDebouncer(
+      () async {
+        loggy.debug("testing group: [$groupTag]");
+        if (state case AsyncData()) {
+          await ref
+              .read(proxyRepositoryProvider)
+              .urlTest(groupTag)
+              .getOrElse((err) {
+            loggy.error("error testing group", err);
+            throw err;
+          }).run();
+        }
+      },
+    );
   }
 }

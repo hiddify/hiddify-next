@@ -11,6 +11,7 @@ import 'package:hiddify/features/home/widget/connection_button.dart';
 import 'package:hiddify/features/home/widget/empty_profiles_home_body.dart';
 import 'package:hiddify/features/profile/notifier/active_profile_notifier.dart';
 import 'package:hiddify/features/profile/widget/profile_tile.dart';
+import 'package:hiddify/features/proxy/active/active_proxy_delay_indicator.dart';
 import 'package:hiddify/features/proxy/active/active_proxy_footer.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -61,7 +62,17 @@ class HomePage extends HookConsumerWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Expanded(child: ConnectionButton()),
+                            Expanded(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const ConnectionButton(),
+                                  if (Platform.isAndroid || Platform.isIOS)
+                                    const ActiveProxyDelayIndicator(),
+                                ],
+                              ),
+                            ),
                             if (Platform.isAndroid || Platform.isIOS)
                               const ActiveProxyFooter(),
                           ],
