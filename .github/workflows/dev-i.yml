@@ -2,7 +2,7 @@ name: dev i
 on:
   push:
     branches:
-      - main
+      - ios
     paths-ignore:
       - '**.md'
       - 'docs/**'
