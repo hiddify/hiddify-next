@@ -1,9 +1,8 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:gap/gap.dart';
 import 'package:hiddify/core/widget/animated_visibility.dart';
-import 'package:hiddify/core/widget/skeleton_widget.dart';
+import 'package:hiddify/core/widget/shimmer_skeleton.dart';
 import 'package:hiddify/features/proxy/active/active_proxy_notifier.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -52,18 +51,7 @@ class ActiveProxyDelayIndicator extends HookConsumerWidget {
                           ),
                         )
                       else
-                        const Skeleton(
-                          height: 18,
-                          width: 48,
-                        )
-                            .animate(
-                              onPlay: (controller) => controller.loop(),
-                            )
-                            .shimmer(
-                              duration: 1000.ms,
-                              angle: 45,
-                              color: Theme.of(context).colorScheme.secondary,
-                            ),
+                        const ShimmerSkeleton(width: 48, height: 18),
                     ],
                   ),
                 ),

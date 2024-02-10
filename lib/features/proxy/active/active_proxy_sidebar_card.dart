@@ -1,13 +1,11 @@
-import 'package:circle_flags/circle_flags.dart';
 import 'package:dartx/dartx.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:gap/gap.dart';
 import 'package:hiddify/core/localization/translations.dart';
-import 'package:hiddify/core/widget/skeleton_widget.dart';
-import 'package:hiddify/features/proxy/active/active_proxy_footer.dart';
+import 'package:hiddify/core/widget/shimmer_skeleton.dart';
 import 'package:hiddify/features/proxy/active/active_proxy_notifier.dart';
+import 'package:hiddify/features/proxy/active/ip_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ActiveProxySideBarCard extends HookConsumerWidget {
@@ -31,7 +29,11 @@ class ActiveProxySideBarCard extends HookConsumerWidget {
     final asyncState = ref.watch(activeProxyNotifierProvider);
 
     Widget propText(String txt) {
-      return IPWidget(txt, style: theme.textTheme.bodySmall);
+      return Text(
+        txt,
+        overflow: TextOverflow.ellipsis,
+        style: theme.textTheme.bodySmall,
+      );
     }
 
     return Theme(
@@ -68,8 +70,19 @@ class ActiveProxySideBarCard extends HookConsumerWidget {
                   switch (value.ipInfo) {
                     case AsyncData(value: final ipInfo?):
                       return buildProp(
-                        CircleFlag(ipInfo.countryCode, size: 12),
-                        propText(ipInfo.ip),
+                        IPCountryFlag(
+                            countryCode: ipInfo.countryCode, size: 16),
+                        IPText(
+                          ip: ipInfo.ip,
+                          onLongPress: () async {
+                            ref
+                                .read(
+                                  activeProxyNotifierProvider.notifier,
+                                )
+                                .refreshIpInfo();
+                          },
+                          constrained: true,
+                        ),
                       );
                     case AsyncError():
                       return buildProp(
@@ -79,15 +92,7 @@ class ActiveProxySideBarCard extends HookConsumerWidget {
                     case AsyncLoading():
                       return buildProp(
                         const Icon(FluentIcons.question_circle_20_regular),
-                        const Skeleton(height: 14, widthFactor: .85)
-                            .animate(
-                              onPlay: (controller) => controller.loop(),
-                            )
-                            .shimmer(
-                              duration: 1000.ms,
-                              angle: 45,
-                              color: Theme.of(context).colorScheme.secondary,
-                            ),
+                        const ShimmerSkeleton(widthFactor: .85, height: 14),
                       );
                   }
                 }
