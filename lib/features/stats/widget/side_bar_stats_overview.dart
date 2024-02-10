@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hiddify/core/localization/translations.dart';
+import 'package:hiddify/features/proxy/active/active_proxy_sidebar_card.dart';
 import 'package:hiddify/features/stats/model/stats_entity.dart';
 import 'package:hiddify/features/stats/notifier/stats_notifier.dart';
 import 'package:hiddify/utils/number_formatters.dart';
@@ -21,6 +22,8 @@ class SideBarStatsOverview extends HookConsumerWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          const ActiveProxySideBarCard(),
+          const Gap(8),
           _StatCard(
             title: t.home.stats.traffic,
             firstStat: (

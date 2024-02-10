@@ -320,8 +320,42 @@ class FFISingboxService with InfraLogger implements SingboxService {
 
   @override
   Stream<List<SingboxOutboundGroup>> watchActiveOutbounds() {
-    // TODO: implement watchActiveOutbounds
-    throw UnimplementedError();
+    final logger = newLoggy("[ActiveGroupsClient]");
+    final receiver = ReceivePort('active groups receiver');
+    final outboundsStream = receiver.asBroadcastStream(
+      onCancel: (_) {
+        logger.debug("stopping");
+        final err = _box.stopCommandClient(12).cast<Utf8>().toDartString();
+        if (err.isNotEmpty) {
+          logger.error("failed stopping: $err");
+        }
+        receiver.close();
+      },
+    ).map(
+      (event) {
+        if (event case String _) {
+          if (event.startsWith('error:')) {
+            logger.error(event);
+            throw event.replaceFirst('error:', "");
+          }
+          return (jsonDecode(event) as List).map((e) {
+            return SingboxOutboundGroup.fromJson(e as Map<String, dynamic>);
+          }).toList();
+        }
+        logger.error("unexpected type, msg: $event");
+        throw "invalid type";
+      },
+    );
+
+    final err = _box
+        .startCommandClient(12, receiver.sendPort.nativePort)
+        .cast<Utf8>()
+        .toDartString();
+    if (err.isNotEmpty) {
+      logger.error("error starting: $err");
+      throw err;
+    }
+    return outboundsStream;
   }
 
   @override

@@ -38,7 +38,8 @@
             "traffic": "Live Traffic",
             "trafficTotal": "Total Traffic",
             "uplink": "Uplink",
-            "downlink": "Downlink"
+            "downlink": "Downlink",
+            "connection": "Connection"
         }
     },
     "profile": {

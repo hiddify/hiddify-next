@@ -62,18 +62,17 @@ class HomePage extends HookConsumerWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Expanded(
+                            const Expanded(
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  const ConnectionButton(),
-                                  if (Platform.isAndroid || Platform.isIOS)
-                                    const ActiveProxyDelayIndicator(),
+                                  ConnectionButton(),
+                                  ActiveProxyDelayIndicator(),
                                 ],
                               ),
                             ),
-                            if (Platform.isAndroid || Platform.isIOS)
+                            if (MediaQuery.sizeOf(context).width < 840)
                               const ActiveProxyFooter(),
                           ],
                         ),
