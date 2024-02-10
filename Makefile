@@ -19,17 +19,18 @@ GEO_ASSETS_DIR=assets$(SEP)core
 
 CORE_PRODUCT_NAME=hiddify-core
 CORE_NAME=$(CORE_PRODUCT_NAME)
+LIB_NAME=libcore
 SRV_NAME=HiddifyService
 ifeq ($(CHANNEL),prod)
-CORE_URL=https://github.com/hiddify/hiddify-next-core/releases/download/v$(core.version)
+	CORE_URL=https://github.com/hiddify/hiddify-next-core/releases/download/v$(core.version)
 else
-CORE_URL=https://github.com/hiddify/hiddify-next-core/releases/download/draft
+	CORE_URL=https://github.com/hiddify/hiddify-next-core/releases/download/draft
 endif
 
 ifeq ($(CHANNEL),prod)
-TARGET=lib/main_prod.dart
+	TARGET=lib/main_prod.dart
 else
-TARGET=lib/main.dart
+	TARGET=lib/main.dart
 endif
 
 BUILD_ARGS=--dart-define sentry_dsn=$(SENTRY_DSN)
@@ -107,7 +108,7 @@ linux-install-dependencies:
 windows-install-dependencies:
 	dart pub global activate flutter_distributor
 
-sync_translate:
+gen_translations: #generating missing translations using google translate
 	cd .github && bash sync_translate.sh
 	make translate
 
@@ -168,7 +169,7 @@ build-headers:
 
 build-android-libs:
 	make -C libcore -f Makefile android 
-	mv $(BINDIR)/$(CORE_LIB_NAME).aar $(ANDROID_OUT)/
+	mv $(BINDIR)/$(LIB_NAME).aar $(ANDROID_OUT)/
 
 build-windows-libs:
 	make -C libcore -f Makefile windows-amd64
