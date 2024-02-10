@@ -1,6 +1,6 @@
 # Contributing
 
-Every contribution to Hiddify Next is welcome, whether it is reporting a bug, submitting a fix, proposing new features, or just asking a question. To make contributing to Hiddify Next as easy as possible, you will find more details for the development flow in this documentation.
+Every contribution to Hiddify is welcome, whether it is reporting a bug, submitting a fix, proposing new features, or just asking a question. To make contributing to Hiddify as easy as possible, you will find more details for the development flow in this documentation.
 
 Please note, we have a [Code of Conduct](https://github.com/hiddify/hiddify-next/blob/main/CODE_OF_CONDUCT.md), please follow it in all your interactions with the project.
 
@@ -23,7 +23,7 @@ If you encounter any issue, or you have an idea to improve, please:
 
 ## Adding new Features
 
-When contributing a complex change to the Hiddify Next repository, please discuss the change you wish to make within a GitHub issue with the owners of this repository before making the change.
+When contributing a complex change to the Hiddify repository, please discuss the change you wish to make within a GitHub issue with the owners of this repository before making the change.
 
 
 ## Development
@@ -32,7 +32,7 @@ When contributing a complex change to the Hiddify Next repository, please discus
 Please follow our [Go Core Development repository](https://github.com/hiddify/hiddify-next-core/main/CONTRIBUTING.m).
 
 ### Working with the Flutter Code
-Hiddify Next uses [Flutter](https://flutter.dev), make sure that you have the correct version installed before starting development. You can use the following commands to check your installed version:
+Hiddify uses [Flutter](https://flutter.dev), make sure that you have the correct version installed before starting development. You can use the following commands to check your installed version:
 
 ```shell
 $ flutter --version

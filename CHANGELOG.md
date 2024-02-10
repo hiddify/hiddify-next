@@ -203,7 +203,7 @@
 - Added Geo Asset Settings
   - Update geo assets and use recommended providers
 - Added **winget** Release
-  - Now you're able to install and update Hiddify Next on Windows using [winget](https://learn.microsoft.com/en-us/windows/package-manager/winget/).
+  - Now you're able to install and update Hiddify on Windows using [winget](https://learn.microsoft.com/en-us/windows/package-manager/winget/).
 - Added Turkish Translations. [PR#173](https://github.com/hiddify/hiddify-next/pull/173) by [Hasan Karlı](https://github.com/hasankarli)
 - Changed in-app Toasts
 - Updated Core Sing-box Version to 1.7.0

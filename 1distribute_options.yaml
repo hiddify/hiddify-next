@@ -1,0 +1,45 @@
+# output: dist/
+# releases:
+#   - name: prod
+#     jobs:
+#       - name: release-windows-exe
+#         package:
+#           platform: windows
+#           target: exe
+
+#       - name: release-android-apk
+#         package:
+#           platform: android
+#           target: apk
+#           build_args:
+#             target-platform: android-arm,android-arm64,android-x64
+
+#       - name: release-android-bundle
+#         package:
+#           platform: android
+#           target: aab
+#           build_args:
+#             target-platform: android-arm,android-arm64,android-x64
+
+
+
+#       variables:
+#         APPSTORE_USERNAME: "xxx"
+#         APPSTORE_PASSWORD: "xxx"
+#         # or
+#         # APPSTORE_APIKEY: "xxx"
+#         # APPSTORE_APIISSUER: "xxx"
+#       output: dist/
+#       releases:
+#         - name: dev
+#           jobs:
+#             - name: release-dev-ios
+#               package:
+#                 platform: ios
+#                 target: ipa
+#                 build_args:
+#                   target: lib/main.dart
+#                   export-options-plist: ios/ExportOptions.plist
+#               # Publish to appstore
+#               publish:
+#                 target: appstore
