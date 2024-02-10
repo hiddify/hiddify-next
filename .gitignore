@@ -37,8 +37,6 @@ migrate_working_dir/
 **/*.freezed.dart
 **/*.mapper.dart
 **/*.gen.dart
-**/libclash.so
-**/libclash.h
 **/*.dll
 **/*.dylib
 **/*.xcframework
