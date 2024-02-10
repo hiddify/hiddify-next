@@ -143,34 +143,30 @@ class _InfoProp extends StatelessWidget {
 }
 
 class IPWidget extends StatefulWidget {
-  final String text1;
-  final String text2;
-
-  IPWidget(String text)
-      : text1 = _replaceMiddlePart(text),
-        text2 = text,
-        super(key: UniqueKey());
-  static String _replaceMiddlePart(String ip) {
-    RegExp regex = RegExp(
-      r'^([\da-f]+([:.]))([\da-f:.]*)([:.][\da-f]+)$',
-      caseSensitive: false,
-    );
-
-    return ip.replaceAllMapped(regex, (match) {
-      return '${match[1]} ░ ${match[2]} ░ ${match[4]}';
-    });
-  }
+  final String text;
+  final TextStyle? style;
+  IPWidget(this.text, {this.style}) : super(key: UniqueKey());
 
   @override
   _IPWidgetState createState() => _IPWidgetState();
 }
 
 class _IPWidgetState extends State<IPWidget> {
-  bool isText1Visible = true;
+  bool isFullIPVisible = true;
 
   void toggleVisibility() {
     setState(() {
-      isText1Visible = !isText1Visible;
+      isFullIPVisible = !isFullIPVisible;
+    });
+  }
+
+  static String _replaceMiddlePart(String ip) {
+    RegExp regex = RegExp(
+      r'^([\da-f]+([:.]))([\da-f:.]*)([:.][\da-f]+)$',
+      caseSensitive: false,
+    );
+    return ip.replaceAllMapped(regex, (match) {
+      return '${match[1]} ░ ${match[2]} ░ ${match[4]}';
     });
   }
 
@@ -179,8 +175,9 @@ class _IPWidgetState extends State<IPWidget> {
     return GestureDetector(
       onTap: toggleVisibility,
       child: Text(
-        isText1Visible ? widget.text1 : widget.text2,
+        isFullIPVisible ? _replaceMiddlePart(widget.text) : widget.text,
         overflow: TextOverflow.ellipsis,
+        style: widget.style,
       ),
     );
   }

@@ -6,6 +6,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:gap/gap.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/widget/skeleton_widget.dart';
+import 'package:hiddify/features/proxy/active/active_proxy_footer.dart';
 import 'package:hiddify/features/proxy/active/active_proxy_notifier.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -30,11 +31,7 @@ class ActiveProxySideBarCard extends HookConsumerWidget {
     final asyncState = ref.watch(activeProxyNotifierProvider);
 
     Widget propText(String txt) {
-      return Text(
-        txt,
-        overflow: TextOverflow.ellipsis,
-        style: theme.textTheme.bodySmall,
-      );
+      return IPWidget(txt, style: theme.textTheme.bodySmall);
     }
 
     return Theme(
