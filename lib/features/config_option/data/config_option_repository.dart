@@ -14,25 +14,115 @@ import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract interface class ConfigOptionRepository {
-  TaskEither<ConfigOptionFailure, SingboxConfigOption>
-      getFullSingboxConfigOption();
-  TaskEither<ConfigOptionFailure, ConfigOptionEntity> getConfigOption();
+  Either<ConfigOptionFailure, ConfigOptionEntity> getConfigOption();
   TaskEither<ConfigOptionFailure, Unit> updateConfigOption(
     ConfigOptionPatch patch,
   );
   TaskEither<ConfigOptionFailure, Unit> resetConfigOption();
 }
 
+abstract interface class SingBoxConfigOptionRepository {
+  TaskEither<ConfigOptionFailure, SingboxConfigOption>
+      getFullSingboxConfigOption();
+}
+
 class ConfigOptionRepositoryImpl
     with ExceptionHandler, InfraLogger
     implements ConfigOptionRepository {
-  ConfigOptionRepositoryImpl({
+  ConfigOptionRepositoryImpl({required this.preferences});
+
+  final SharedPreferences preferences;
+
+  @override
+  Either<ConfigOptionFailure, ConfigOptionEntity> getConfigOption() {
+    try {
+      final map = ConfigOptionEntity.initial.toJson();
+      for (final key in map.keys) {
+        final persisted = preferences.get(key);
+        if (persisted != null) {
+          final defaultValue = map[key];
+          if (defaultValue != null &&
+              persisted.runtimeType != defaultValue.runtimeType) {
+            loggy.warning(
+              "error getting preference[$key], expected type: [${defaultValue.runtimeType}] - received value: [$persisted](${persisted.runtimeType})",
+            );
+            continue;
+          }
+          map[key] = persisted;
+        }
+      }
+      final options = ConfigOptionEntity.fromJson(map);
+      return right(options);
+    } catch (error, stackTrace) {
+      return left(ConfigOptionUnexpectedFailure(error, stackTrace));
+    }
+  }
+
+  @override
+  TaskEither<ConfigOptionFailure, Unit> updateConfigOption(
+    ConfigOptionPatch patch,
+  ) {
+    return exceptionHandler(
+      () async {
+        final map = patch.toJson();
+        await updateByJson(map);
+        return right(unit);
+      },
+      ConfigOptionUnexpectedFailure.new,
+    );
+  }
+
+  @override
+  TaskEither<ConfigOptionFailure, Unit> resetConfigOption() {
+    return exceptionHandler(
+      () async {
+        final map = ConfigOptionEntity.initial.toJson();
+        await updateByJson(map);
+        return right(unit);
+      },
+      ConfigOptionUnexpectedFailure.new,
+    );
+  }
+
+  @visibleForTesting
+  Future<void> updateByJson(
+    Map<String, dynamic> options,
+  ) async {
+    final map = ConfigOptionEntity.initial.toJson();
+    for (final key in map.keys) {
+      final value = options[key];
+      if (value != null) {
+        loggy.debug("updating [$key] to [$value]");
+
+        switch (value) {
+          case bool _:
+            await preferences.setBool(key, value);
+          case String _:
+            await preferences.setString(key, value);
+          case int _:
+            await preferences.setInt(key, value);
+          case double _:
+            await preferences.setDouble(key, value);
+          default:
+            loggy.warning("unexpected type");
+        }
+      }
+    }
+  }
+}
+
+class SingBoxConfigOptionRepositoryImpl
+    with ExceptionHandler, InfraLogger
+    implements SingBoxConfigOptionRepository {
+  SingBoxConfigOptionRepositoryImpl({
     required this.preferences,
+    required this.optionsRepository,
     required this.geoAssetRepository,
     required this.geoAssetPathResolver,
   });
 
   final SharedPreferences preferences;
+  final ConfigOptionRepository optionsRepository;
   final GeoAssetRepository geoAssetRepository;
   final GeoAssetPathResolver geoAssetPathResolver;
 
@@ -81,7 +171,7 @@ class ConfigOptionRepositoryImpl
             .run();
 
         final persisted =
-            await getConfigOption().getOrElse((l) => throw l).run();
+            optionsRepository.getConfigOption().getOrElse((l) => throw l);
         final singboxConfigOption = SingboxConfigOption(
           executeConfigAsIs: false,
           logLevel: persisted.logLevel,
@@ -137,83 +227,5 @@ class ConfigOptionRepositoryImpl
       },
       ConfigOptionUnexpectedFailure.new,
     );
-  }
-
-  @override
-  TaskEither<ConfigOptionFailure, ConfigOptionEntity> getConfigOption() {
-    return exceptionHandler(
-      () async {
-        final map = ConfigOptionEntity.initial.toJson();
-        for (final key in map.keys) {
-          final persisted = preferences.get(key);
-          if (persisted != null) {
-            final defaultValue = map[key];
-            if (defaultValue != null &&
-                persisted.runtimeType != defaultValue.runtimeType) {
-              loggy.warning(
-                "error getting preference[$key], expected type: [${defaultValue.runtimeType}] - received value: [$persisted](${persisted.runtimeType})",
-              );
-              continue;
-            }
-            map[key] = persisted;
-          }
-        }
-        final options = ConfigOptionEntity.fromJson(map);
-        return right(options);
-      },
-      ConfigOptionUnexpectedFailure.new,
-    );
-  }
-
-  @override
-  TaskEither<ConfigOptionFailure, Unit> updateConfigOption(
-    ConfigOptionPatch patch,
-  ) {
-    return exceptionHandler(
-      () async {
-        final map = patch.toJson();
-        await updateByJson(map);
-        return right(unit);
-      },
-      ConfigOptionUnexpectedFailure.new,
-    );
-  }
-
-  @override
-  TaskEither<ConfigOptionFailure, Unit> resetConfigOption() {
-    return exceptionHandler(
-      () async {
-        final map = ConfigOptionEntity.initial.toJson();
-        await updateByJson(map);
-        return right(unit);
-      },
-      ConfigOptionUnexpectedFailure.new,
-    );
-  }
-
-  @visibleForTesting
-  Future<void> updateByJson(
-    Map<String, dynamic> options,
-  ) async {
-    final map = ConfigOptionEntity.initial.toJson();
-    for (final key in map.keys) {
-      final value = options[key];
-      if (value != null) {
-        loggy.debug("updating [$key] to [$value]");
-
-        switch (value) {
-          case bool _:
-            await preferences.setBool(key, value);
-          case String _:
-            await preferences.setString(key, value);
-          case int _:
-            await preferences.setInt(key, value);
-          case double _:
-            await preferences.setDouble(key, value);
-          default:
-            loggy.warning("unexpected type");
-        }
-      }
-    }
   }
 }

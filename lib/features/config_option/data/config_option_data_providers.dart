@@ -11,6 +11,16 @@ ConfigOptionRepository configOptionRepository(
 ) {
   return ConfigOptionRepositoryImpl(
     preferences: ref.watch(sharedPreferencesProvider).requireValue,
+  );
+}
+
+@Riverpod(keepAlive: true)
+SingBoxConfigOptionRepository singBoxConfigOptionRepository(
+  SingBoxConfigOptionRepositoryRef ref,
+) {
+  return SingBoxConfigOptionRepositoryImpl(
+    preferences: ref.watch(sharedPreferencesProvider).requireValue,
+    optionsRepository: ref.watch(configOptionRepositoryProvider),
     geoAssetRepository: ref.watch(geoAssetRepositoryProvider).requireValue,
     geoAssetPathResolver: ref.watch(geoAssetPathResolverProvider),
   );

@@ -38,7 +38,7 @@ class ConnectionRepositoryImpl
     required this.directories,
     required this.singbox,
     required this.platformSource,
-    required this.configOptionRepository,
+    required this.singBoxConfigOptionRepository,
     required this.profilePathResolver,
     required this.geoAssetPathResolver,
   });
@@ -46,7 +46,7 @@ class ConnectionRepositoryImpl
   final Directories directories;
   final SingboxService singbox;
   final ConnectionPlatformSource platformSource;
-  final ConfigOptionRepository configOptionRepository;
+  final SingBoxConfigOptionRepository singBoxConfigOptionRepository;
   final ProfilePathResolver profilePathResolver;
   final GeoAssetPathResolver geoAssetPathResolver;
 
@@ -83,7 +83,7 @@ class ConnectionRepositoryImpl
     return TaskEither<ConnectionFailure, SingboxConfigOption>.Do(
       ($) async {
         final options = await $(
-          configOptionRepository
+          singBoxConfigOptionRepository
               .getFullSingboxConfigOption()
               .mapLeft((l) => const InvalidConfigOption()),
         );
@@ -189,7 +189,7 @@ class ConnectionRepositoryImpl
       ($) async {
         final options = await $(getConfigOption());
 
-            await $(
+        await $(
           TaskEither(() async {
             if (options.enableTun) {
               // final hasPrivilege = await platformSource.checkPrivilege();
@@ -202,13 +202,10 @@ class ConnectionRepositoryImpl
           }),
         );
         return await $(
-          singbox.stop()
-              .mapLeft(UnexpectedConnectionFailure.new),
+          singbox.stop().mapLeft(UnexpectedConnectionFailure.new),
         );
       },
     ).handleExceptions(UnexpectedConnectionFailure.new);
-  
-  
   }
 
   @override

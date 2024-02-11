@@ -15,7 +15,8 @@ ConnectionRepository connectionRepository(
 ) {
   return ConnectionRepositoryImpl(
     directories: ref.watch(appDirectoriesProvider).requireValue,
-    configOptionRepository: ref.watch(configOptionRepositoryProvider),
+    singBoxConfigOptionRepository:
+        ref.watch(singBoxConfigOptionRepositoryProvider),
     singbox: ref.watch(singboxServiceProvider),
     platformSource: ConnectionPlatformSourceImpl(),
     profilePathResolver: ref.watch(profilePathResolverProvider),

@@ -9,14 +9,14 @@ part 'config_option_notifier.g.dart';
 @Riverpod(keepAlive: true)
 class ConfigOptionNotifier extends _$ConfigOptionNotifier with AppLogger {
   @override
-  Future<ConfigOptionEntity> build() {
+  Future<ConfigOptionEntity> build() async {
     return ref
         .watch(configOptionRepositoryProvider)
         .getConfigOption()
         .getOrElse((l) {
       loggy.error("error getting persisted options $l", l);
       throw l;
-    }).run();
+    });
   }
 
   Future<void> updateOption(ConfigOptionPatch patch) async {
