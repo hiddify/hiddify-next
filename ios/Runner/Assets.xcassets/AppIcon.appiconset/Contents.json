@@ -1,14 +1,14 @@
 {
   "images" : [
     {
-      "filename" : "Icon-1024x1024.png",
+      "filename" : "app-icon-1024.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
     }
   ],
-  "info": {
-    "author": "icons_launcher",
-    "version": 1
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
   }
 }
