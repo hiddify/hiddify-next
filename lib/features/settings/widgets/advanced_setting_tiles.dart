@@ -24,13 +24,6 @@ class AdvancedSettingTiles extends HookConsumerWidget {
       children: [
         const RegionPrefTile(),
         ListTile(
-          title: Text(t.settings.config.pageTitle),
-          leading: const Icon(Icons.edit_document),
-          onTap: () async {
-            await const ConfigOptionsRoute().push(context);
-          },
-        ),
-        ListTile(
           title: Text(t.settings.geoAssets.pageTitle),
           leading: const Icon(Icons.folder),
           onTap: () async {

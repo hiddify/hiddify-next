@@ -43,18 +43,14 @@ GlobalKey<NavigatorState>? _dynamicRootKey =
           path: "profiles/:id",
           name: ProfileDetailsRoute.name,
         ),
-        TypedGoRoute<LogsOverviewRoute>(
-          path: "logs",
-          name: LogsOverviewRoute.name,
+        TypedGoRoute<ConfigOptionsRoute>(
+          path: "config-options",
+          name: ConfigOptionsRoute.name,
         ),
         TypedGoRoute<SettingsRoute>(
           path: "settings",
           name: SettingsRoute.name,
           routes: [
-            TypedGoRoute<ConfigOptionsRoute>(
-              path: "config-options",
-              name: ConfigOptionsRoute.name,
-            ),
             TypedGoRoute<PerAppProxyRoute>(
               path: "per-app-proxy",
               name: PerAppProxyRoute.name,
@@ -64,6 +60,10 @@ GlobalKey<NavigatorState>? _dynamicRootKey =
               name: GeoAssetsRoute.name,
             ),
           ],
+        ),
+        TypedGoRoute<LogsOverviewRoute>(
+          path: "logs",
+          name: LogsOverviewRoute.name,
         ),
         TypedGoRoute<AboutRoute>(
           path: "about",
@@ -114,23 +114,23 @@ class MobileWrapperRoute extends ShellRouteData {
       path: "/proxies",
       name: ProxiesRoute.name,
     ),
-    TypedGoRoute<LogsOverviewRoute>(
-      path: "/logs",
-      name: LogsOverviewRoute.name,
+    TypedGoRoute<ConfigOptionsRoute>(
+      path: "/config-options",
+      name: ConfigOptionsRoute.name,
     ),
     TypedGoRoute<SettingsRoute>(
       path: "/settings",
       name: SettingsRoute.name,
       routes: [
-        TypedGoRoute<ConfigOptionsRoute>(
-          path: "config-options",
-          name: ConfigOptionsRoute.name,
-        ),
         TypedGoRoute<GeoAssetsRoute>(
           path: "routing-assets",
           name: GeoAssetsRoute.name,
         ),
       ],
+    ),
+    TypedGoRoute<LogsOverviewRoute>(
+      path: "/logs",
+      name: LogsOverviewRoute.name,
     ),
     TypedGoRoute<AboutRoute>(
       path: "/about",
@@ -309,11 +309,7 @@ class ConfigOptionsRoute extends GoRouteData {
         child: ConfigOptionsPage(),
       );
     }
-    return const MaterialPage(
-      fullscreenDialog: true,
-      name: name,
-      child: ConfigOptionsPage(),
-    );
+    return const NoTransitionPage(name: name, child: ConfigOptionsPage());
   }
 }
 
