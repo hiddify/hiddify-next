@@ -217,7 +217,7 @@ release: # Create a new tag for release.
 
 
 ios-temp-prepare: 
-	make prepare platform=ios
+	make ios-prepare
 	flutter build ios-framework
 	cd ios
 	pod install
