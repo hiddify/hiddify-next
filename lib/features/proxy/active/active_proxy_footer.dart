@@ -18,7 +18,6 @@ class ActiveProxyFooter extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final t = ref.watch(translationsProvider);
     final asyncState = ref.watch(activeProxyNotifierProvider);
-    final stats = ref.watch(statsNotifierProvider).value;
 
     return AnimatedVisibility(
       axis: Axis.vertical,
@@ -77,32 +76,41 @@ class ActiveProxyFooter extends HookConsumerWidget {
                     ],
                   ),
                 ),
-                Directionality(
-                  textDirection: TextDirection.values[
-                      (Directionality.of(context).index + 1) %
-                          TextDirection.values.length],
-                  child: Flexible(
-                    child: Column(
-                      children: [
-                        _InfoProp(
-                          icon: FluentIcons
-                              .arrow_bidirectional_up_down_20_regular,
-                          text: (stats?.downlinkTotal ?? 0).size(),
-                        ),
-                        const Gap(8),
-                        _InfoProp(
-                          icon: FluentIcons.arrow_download_20_regular,
-                          text: (stats?.downlink ?? 0).speed(),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                const _StatsColumn(),
               ],
             ),
           ),
         _ => const SizedBox(),
       },
+    );
+  }
+}
+
+class _StatsColumn extends HookConsumerWidget {
+  const _StatsColumn();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final stats = ref.watch(statsNotifierProvider).value;
+
+    return Directionality(
+      textDirection: TextDirection.values[
+          (Directionality.of(context).index + 1) % TextDirection.values.length],
+      child: Flexible(
+        child: Column(
+          children: [
+            _InfoProp(
+              icon: FluentIcons.arrow_bidirectional_up_down_20_regular,
+              text: (stats?.downlinkTotal ?? 0).size(),
+            ),
+            const Gap(8),
+            _InfoProp(
+              icon: FluentIcons.arrow_download_20_regular,
+              text: (stats?.downlink ?? 0).speed(),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
