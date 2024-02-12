@@ -6,7 +6,7 @@
 
 </div>
 
-<p align="center"><img src="assets/images/logo.svg" width="168"/></p>
+<p align="center"><img src="https://github.com/hiddify/hiddify-next/assets/125398461/d821cfe0-b4c4-441f-be4e-eb9209f59542" /></p>
 
 <div align="center">
     
