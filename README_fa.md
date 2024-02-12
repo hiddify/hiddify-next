@@ -3,8 +3,10 @@
 [**🇺🇸 English**](README.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**🇨🇳 简体中文**](README_cn.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**🇷🇺 Русский**](README_ru.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**🇯🇵 日本語**](README_ja.md)
 
 </div>
+<br>
 
 <p align="center"><img src="https://github.com/hiddify/hiddify-next/assets/125398461/d821cfe0-b4c4-441f-be4e-eb9209f59542" /></p>
+<br>
 
 <div align="center">
     
