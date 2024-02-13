@@ -1,7 +1,7 @@
 import 'package:circle_flags/circle_flags.dart';
-import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:hiddify/core/localization/translations.dart';
+import 'package:hiddify/core/utils/ip_utils.dart';
 import 'package:hiddify/utils/riverpod_utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -49,7 +49,7 @@ class IPText extends HookConsumerWidget {
                   ? EdgeInsets.zero
                   : const EdgeInsetsDirectional.only(end: 48),
               child: Text(
-                "*.*.*.*",
+                obscureIp(ip),
                 semanticsLabel: t.general.hidden,
                 style:
                     constrained ? textTheme.labelMedium : textTheme.labelLarge,
@@ -76,31 +76,14 @@ class IPCountryFlag extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = ref.watch(translationsProvider);
-    final isVisible = ref.watch(_showIp);
 
     return Semantics(
       label: t.proxies.ipInfoSemantics.country,
-      child: InkWell(
-        onTap: () {
-          ref.read(_showIp.notifier).state = !isVisible;
-        },
-        borderRadius: BorderRadius.circular(12),
-        child: Container(
-          width: size,
-          height: size,
-          padding: const EdgeInsets.all(2),
-          child: Center(
-            child: AnimatedCrossFade(
-              firstChild: CircleFlag(countryCode),
-              secondChild:
-                  Icon(FluentIcons.eye_off_24_regular, size: size * .8),
-              crossFadeState: isVisible
-                  ? CrossFadeState.showFirst
-                  : CrossFadeState.showSecond,
-              duration: const Duration(milliseconds: 200),
-            ),
-          ),
-        ),
+      child: Container(
+        width: size,
+        height: size,
+        padding: const EdgeInsets.all(2),
+        child: Center(child: CircleFlag(countryCode)),
       ),
     );
   }
