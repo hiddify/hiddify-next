@@ -26,7 +26,8 @@ class ActiveProxySideBarCard extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final t = ref.watch(translationsProvider);
-    final asyncState = ref.watch(activeProxyNotifierProvider);
+    final activeProxy = ref.watch(activeProxyNotifierProvider);
+    final ipInfo = ref.watch(ipInfoNotifierProvider);
 
     Widget propText(String txt) {
       return Text(
@@ -50,13 +51,13 @@ class ActiveProxySideBarCard extends HookConsumerWidget {
             children: [
               Text(t.home.stats.connection),
               const Gap(4),
-              switch (asyncState) {
-                AsyncData(:final value) => buildProp(
+              switch (activeProxy) {
+                AsyncData(value: final proxy) => buildProp(
                     const Icon(FluentIcons.arrow_routing_20_regular),
                     propText(
-                      value.proxy.selectedName.isNotNullOrBlank
-                          ? value.proxy.selectedName!
-                          : value.proxy.name,
+                      proxy.selectedName.isNotNullOrBlank
+                          ? proxy.selectedName!
+                          : proxy.name,
                     ),
                   ),
                 _ => buildProp(
@@ -65,43 +66,29 @@ class ActiveProxySideBarCard extends HookConsumerWidget {
                   ),
               },
               const Gap(4),
-              () {
-                if (asyncState case AsyncData(:final value)) {
-                  switch (value.ipInfo) {
-                    case AsyncData(value: final ipInfo?):
-                      return buildProp(
-                        IPCountryFlag(
-                            countryCode: ipInfo.countryCode, size: 16),
-                        IPText(
-                          ip: ipInfo.ip,
-                          onLongPress: () async {
-                            ref
-                                .read(
-                                  activeProxyNotifierProvider.notifier,
-                                )
-                                .refreshIpInfo();
-                          },
-                          constrained: true,
-                        ),
-                      );
-                    case AsyncError():
-                      return buildProp(
-                        const Icon(FluentIcons.error_circle_20_regular),
-                        propText(t.general.unknown),
-                      );
-                    case AsyncLoading():
-                      return buildProp(
-                        const Icon(FluentIcons.question_circle_20_regular),
-                        const ShimmerSkeleton(widthFactor: .85, height: 14),
-                      );
-                  }
-                }
-
-                return buildProp(
-                  const Icon(FluentIcons.question_circle_20_regular),
-                  propText(t.general.unknown),
-                );
-              }(),
+              switch (ipInfo) {
+                AsyncData(value: final info) => buildProp(
+                    IPCountryFlag(
+                      countryCode: info.countryCode,
+                      size: 16,
+                    ),
+                    IPText(
+                      ip: info.ip,
+                      onLongPress: () async {
+                        ref.read(ipInfoNotifierProvider.notifier).refresh();
+                      },
+                      constrained: true,
+                    ),
+                  ),
+                AsyncLoading() => buildProp(
+                    const Icon(FluentIcons.question_circle_20_regular),
+                    const ShimmerSkeleton(widthFactor: .85, height: 14),
+                  ),
+                _ => buildProp(
+                    const Icon(FluentIcons.error_circle_20_regular),
+                    propText(t.general.unknown),
+                  ),
+              },
             ],
           ),
         ),

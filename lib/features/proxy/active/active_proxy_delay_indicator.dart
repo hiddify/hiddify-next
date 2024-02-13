@@ -12,22 +12,21 @@ class ActiveProxyDelayIndicator extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    final asyncState = ref.watch(activeProxyNotifierProvider);
+    final activeProxy = ref.watch(activeProxyNotifierProvider);
 
     return AnimatedVisibility(
       axis: Axis.vertical,
-      visible: asyncState is AsyncData,
+      visible: activeProxy is AsyncData,
       child: () {
-        switch (asyncState) {
-          case AsyncData(:final value):
-            final delay = value.proxy.urlTestDelay;
+        switch (activeProxy) {
+          case AsyncData(value: final proxy):
+            final delay = proxy.urlTestDelay;
             return Center(
               child: InkWell(
                 onTap: () async {
                   await ref
                       .read(activeProxyNotifierProvider.notifier)
-                      // .urlTest(value.proxy.tag);
-                      .urlTest("auto");
+                      .urlTest(proxy.tag);
                 },
                 borderRadius: BorderRadius.circular(24),
                 child: Padding(

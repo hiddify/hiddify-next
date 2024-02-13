@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:hiddify/core/utils/throttler.dart';
 import 'package:hiddify/features/connection/notifier/connection_notifier.dart';
 import 'package:hiddify/features/proxy/data/proxy_data_providers.dart';
 import 'package:hiddify/features/proxy/model/ip_info_entity.dart';
@@ -6,98 +7,65 @@ import 'package:hiddify/features/proxy/model/proxy_entity.dart';
 import 'package:hiddify/features/proxy/model/proxy_failure.dart';
 import 'package:hiddify/utils/riverpod_utils.dart';
 import 'package:hiddify/utils/utils.dart';
-import 'package:loggy/loggy.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'active_proxy_notifier.g.dart';
 
-typedef ActiveProxyInfo = ({
-  ProxyItemEntity proxy,
-  AsyncValue<IpInfo?> ipInfo,
-});
-
 @riverpod
-Stream<ProxyItemEntity?> activeProxyGroup(ActiveProxyGroupRef ref) async* {
-  final serviceRunning = await ref.watch(serviceRunningProvider.future);
-  if (!serviceRunning) {
-    throw const ServiceNotRunning();
-  }
-  yield* ref
-      .watch(proxyRepositoryProvider)
-      .watchActiveProxies()
-      .map((event) => event.getOrElse((l) => throw l))
-      .map((event) {
-    final Map<String, ProxyGroupEntity> itemMap =
-        event.fold({}, (Map<String, ProxyGroupEntity> map, item) {
-      map[item.tag] = item;
-      return map;
+class IpInfoNotifier extends _$IpInfoNotifier with AppLogger {
+  @override
+  Future<IpInfo> build() async {
+    ref.disposeDelay(const Duration(seconds: 20));
+    final cancelToken = CancelToken();
+    ref.onDispose(() {
+      loggy.debug("disposing");
+      cancelToken.cancel();
     });
 
-    // Start from the item with the tag "Select"
-    var current = itemMap["select"];
-    ProxyItemEntity? selected;
-
-    // Traverse through the map based on the selected tag until reaching the end
-    while (current != null) {
-      selected = current.items.firstOrNull;
-      current = itemMap[selected?.tag];
+    final serviceRunning = await ref.watch(serviceRunningProvider.future);
+    if (!serviceRunning) {
+      throw const ServiceNotRunning();
     }
 
-    return selected;
-  });
-}
-
-@riverpod
-Future<IpInfo?> proxyIpInfo(ProxyIpInfoRef ref) async {
-  final serviceRunning = await ref.watch(serviceRunningProvider.future);
-  if (!serviceRunning) {
-    return null;
+    return ref
+        .watch(proxyRepositoryProvider)
+        .getCurrentIpInfo(cancelToken)
+        .getOrElse(
+      (err) {
+        loggy.error("error getting proxy ip info", err);
+        throw err;
+      },
+    ).run();
   }
-  final cancelToken = CancelToken();
-  ref.onDispose(() {
-    Loggy("ProxyIpInfo").debug("canceling");
-    cancelToken.cancel();
-  });
-  return ref
-      .watch(proxyRepositoryProvider)
-      .getCurrentIpInfo(cancelToken)
-      .getOrElse(
-    (err) {
-      Loggy("ProxyIpInfo").error("error getting proxy ip info", err);
-      throw err;
-    },
-  ).run();
+
+  Future<void> refresh() async {
+    loggy.debug("refreshing");
+    ref.invalidateSelf();
+  }
 }
 
 @riverpod
 class ActiveProxyNotifier extends _$ActiveProxyNotifier with AppLogger {
   @override
-  AsyncValue<ActiveProxyInfo> build() {
+  Stream<ProxyItemEntity> build() async* {
     ref.disposeDelay(const Duration(seconds: 20));
-    ref.onDispose(() {
-      _urlTestDebouncer.dispose();
-    });
-    final ipInfo = ref.watch(proxyIpInfoProvider);
-    final activeProxies = ref.watch(activeProxyGroupProvider);
-    return switch (activeProxies) {
-      AsyncData(value: final activeGroup?) =>
-        AsyncData((proxy: activeGroup, ipInfo: ipInfo)),
-      AsyncError(:final error, :final stackTrace) =>
-        AsyncError(error, stackTrace),
-      _ => const AsyncLoading(),
-    };
-  }
 
-  final _urlTestDebouncer = CallbackDebouncer(const Duration(seconds: 1));
-
-  Future<void> refreshIpInfo() async {
-    if (state case AsyncData(:final value) when !value.ipInfo.isLoading) {
-      ref.invalidate(proxyIpInfoProvider);
+    final serviceRunning = await ref.watch(serviceRunningProvider.future);
+    if (!serviceRunning) {
+      throw const ServiceNotRunning();
     }
+
+    yield* ref
+        .watch(proxyRepositoryProvider)
+        .watchActiveProxies()
+        .map((event) => event.getOrElse((l) => throw l))
+        .map((event) => event.firstOrNull!.items.first);
   }
+
+  final _urlTestThrottler = Throttler(const Duration(seconds: 2));
 
   Future<void> urlTest(String groupTag) async {
-    _urlTestDebouncer(
+    _urlTestThrottler(
       () async {
         loggy.debug("testing group: [$groupTag]");
         if (state case AsyncData()) {

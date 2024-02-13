@@ -17,13 +17,14 @@ class ActiveProxyFooter extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = ref.watch(translationsProvider);
-    final asyncState = ref.watch(activeProxyNotifierProvider);
+    final activeProxy = ref.watch(activeProxyNotifierProvider);
+    final ipInfo = ref.watch(ipInfoNotifierProvider);
 
     return AnimatedVisibility(
       axis: Axis.vertical,
-      visible: asyncState is AsyncData,
-      child: switch (asyncState) {
-        AsyncData(value: final info) => Padding(
+      visible: activeProxy is AsyncData,
+      child: switch (activeProxy) {
+        AsyncData(value: final proxy) => Padding(
             padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -34,24 +35,22 @@ class ActiveProxyFooter extends HookConsumerWidget {
                     children: [
                       _InfoProp(
                         icon: FluentIcons.arrow_routing_20_regular,
-                        text: info.proxy.selectedName.isNotNullOrBlank
-                            ? info.proxy.selectedName!
-                            : info.proxy.name,
+                        text: proxy.selectedName.isNotNullOrBlank
+                            ? proxy.selectedName!
+                            : proxy.name,
                       ),
                       const Gap(8),
-                      switch (info.ipInfo) {
-                        AsyncData(value: final ipInfo?) => Row(
+                      switch (ipInfo) {
+                        AsyncData(value: final info) => Row(
                             children: [
-                              IPCountryFlag(countryCode: ipInfo.countryCode),
+                              IPCountryFlag(countryCode: info.countryCode),
                               const Gap(8),
                               IPText(
-                                ip: ipInfo.ip,
+                                ip: info.ip,
                                 onLongPress: () async {
                                   ref
-                                      .read(
-                                        activeProxyNotifierProvider.notifier,
-                                      )
-                                      .refreshIpInfo();
+                                      .read(ipInfoNotifierProvider.notifier)
+                                      .refresh();
                                 },
                               ),
                             ],
