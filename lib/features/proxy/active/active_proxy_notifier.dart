@@ -26,7 +26,25 @@ Stream<ProxyItemEntity?> activeProxyGroup(ActiveProxyGroupRef ref) async* {
       .watch(proxyRepositoryProvider)
       .watchActiveProxies()
       .map((event) => event.getOrElse((l) => throw l))
-      .map((event) => event.firstOrNull?.items.firstOrNull);
+      .map((event) {
+    final Map<String, ProxyGroupEntity> itemMap =
+        event.fold({}, (Map<String, ProxyGroupEntity> map, item) {
+      map[item.tag] = item;
+      return map;
+    });
+
+    // Start from the item with the tag "Select"
+    var current = itemMap["select"];
+    ProxyItemEntity? selected;
+
+    // Traverse through the map based on the selected tag until reaching the end
+    while (current != null) {
+      selected = current.items.firstOrNull;
+      current = itemMap[selected?.tag];
+    }
+
+    return selected;
+  });
 }
 
 @riverpod

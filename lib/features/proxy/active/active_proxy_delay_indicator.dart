@@ -26,7 +26,8 @@ class ActiveProxyDelayIndicator extends HookConsumerWidget {
                 onTap: () async {
                   await ref
                       .read(activeProxyNotifierProvider.notifier)
-                      .urlTest(value.proxy.tag);
+                      // .urlTest(value.proxy.tag);
+                      .urlTest("auto");
                 },
                 borderRadius: BorderRadius.circular(24),
                 child: Padding(
@@ -42,7 +43,7 @@ class ActiveProxyDelayIndicator extends HookConsumerWidget {
                           TextSpan(
                             children: [
                               TextSpan(
-                                text: delay.toString(),
+                                text: delay > 65000 ? "×" : delay.toString(),
                                 style: theme.textTheme.titleMedium
                                     ?.copyWith(fontWeight: FontWeight.bold),
                               ),
