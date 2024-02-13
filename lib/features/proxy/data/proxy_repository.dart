@@ -32,7 +32,7 @@ class ProxyRepositoryImpl
 
   @override
   Stream<Either<ProxyFailure, List<ProxyGroupEntity>>> watchProxies() {
-    return singbox.watchOutbounds().map((event) {
+    return singbox.watchGroups().map((event) {
       final groupWithSelected = {
         for (final group in event) group.tag: group.selected,
       };
@@ -66,7 +66,7 @@ class ProxyRepositoryImpl
 
   @override
   Stream<Either<ProxyFailure, List<ProxyGroupEntity>>> watchActiveProxies() {
-    return singbox.watchActiveOutbounds().map((event) {
+    return singbox.watchActiveGroups().map((event) {
       final groupWithSelected = {
         for (final group in event) group.tag: group.selected,
       };
