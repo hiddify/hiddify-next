@@ -1,6 +1,7 @@
 import 'package:circle_flags/circle_flags.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/utils/riverpod_utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -23,36 +24,43 @@ class IPText extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final t = ref.watch(translationsProvider);
     final isVisible = ref.watch(_showIp);
     final textTheme = Theme.of(context).textTheme;
 
-    return InkWell(
-      onTap: () {
-        ref.read(_showIp.notifier).state = !isVisible;
-      },
-      onLongPress: onLongPress,
-      borderRadius: BorderRadius.circular(12),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 2),
-        child: AnimatedCrossFade(
-          firstChild: Text(
-            ip,
-            style: textTheme.labelMedium,
-            overflow: TextOverflow.ellipsis,
-          ),
-          secondChild: Padding(
-            padding: constrained
-                ? EdgeInsets.zero
-                : const EdgeInsetsDirectional.only(end: 48),
-            child: Text(
-              "*.*.*.*",
-              style: constrained ? textTheme.labelMedium : textTheme.labelLarge,
+    return Semantics(
+      label: t.proxies.ipInfoSemantics.address,
+      child: InkWell(
+        onTap: () {
+          ref.read(_showIp.notifier).state = !isVisible;
+        },
+        onLongPress: onLongPress,
+        borderRadius: BorderRadius.circular(12),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 2),
+          child: AnimatedCrossFade(
+            firstChild: Text(
+              ip,
+              style: textTheme.labelMedium,
               overflow: TextOverflow.ellipsis,
             ),
+            secondChild: Padding(
+              padding: constrained
+                  ? EdgeInsets.zero
+                  : const EdgeInsetsDirectional.only(end: 48),
+              child: Text(
+                "*.*.*.*",
+                semanticsLabel: t.general.hidden,
+                style:
+                    constrained ? textTheme.labelMedium : textTheme.labelLarge,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            crossFadeState: isVisible
+                ? CrossFadeState.showFirst
+                : CrossFadeState.showSecond,
+            duration: const Duration(milliseconds: 200),
           ),
-          crossFadeState:
-              isVisible ? CrossFadeState.showFirst : CrossFadeState.showSecond,
-          duration: const Duration(milliseconds: 200),
         ),
       ),
     );
@@ -67,25 +75,30 @@ class IPCountryFlag extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final t = ref.watch(translationsProvider);
     final isVisible = ref.watch(_showIp);
 
-    return InkWell(
-      onTap: () {
-        ref.read(_showIp.notifier).state = !isVisible;
-      },
-      borderRadius: BorderRadius.circular(12),
-      child: Container(
-        width: size,
-        height: size,
-        padding: const EdgeInsets.all(2),
-        child: Center(
-          child: AnimatedCrossFade(
-            firstChild: CircleFlag(countryCode),
-            secondChild: Icon(FluentIcons.eye_off_24_regular, size: size * .8),
-            crossFadeState: isVisible
-                ? CrossFadeState.showFirst
-                : CrossFadeState.showSecond,
-            duration: const Duration(milliseconds: 200),
+    return Semantics(
+      label: t.proxies.ipInfoSemantics.country,
+      child: InkWell(
+        onTap: () {
+          ref.read(_showIp.notifier).state = !isVisible;
+        },
+        borderRadius: BorderRadius.circular(12),
+        child: Container(
+          width: size,
+          height: size,
+          padding: const EdgeInsets.all(2),
+          child: Center(
+            child: AnimatedCrossFade(
+              firstChild: CircleFlag(countryCode),
+              secondChild:
+                  Icon(FluentIcons.eye_off_24_regular, size: size * .8),
+              crossFadeState: isVisible
+                  ? CrossFadeState.showFirst
+                  : CrossFadeState.showSecond,
+              duration: const Duration(milliseconds: 200),
+            ),
           ),
         ),
       ),

@@ -15,7 +15,8 @@
         "notSet": "Not Set",
         "agree": "Agree",
         "decline": "Decline",
-        "unknown": "Unknown"
+        "unknown": "Unknown",
+        "hidden": "Hidden"
     },
     "intro": {
         "termsAndPolicyCaution(rich)": "by continuing you agree with ${tap(@:about.termsAndConditions)}",
@@ -127,6 +128,19 @@
             "unsorted": "Default",
             "name": "Alphabetically",
             "delay": "By Delay"
+        },
+        "activeProxySemanticLabel": "Active proxy",
+        "delaySemantics": {
+            "result": "delay: ${delay}ms",
+            "testing": "delay: testing..."
+        },
+        "ipInfoSemantics": {
+            "address": "IP address",
+            "country": "Country"
+        },
+        "statsSemantics": {
+            "speed": "Speed",
+            "totalTransferred": "Total transferred"
         }
     },
     "logs": {

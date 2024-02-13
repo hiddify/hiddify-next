@@ -1,6 +1,7 @@
 import 'package:dartx/dartx.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/semantics.dart';
 import 'package:gap/gap.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/widget/animated_visibility.dart';
@@ -38,6 +39,7 @@ class ActiveProxyFooter extends HookConsumerWidget {
                         text: proxy.selectedName.isNotNullOrBlank
                             ? proxy.selectedName!
                             : proxy.name,
+                        semanticLabel: t.proxies.activeProxySemanticLabel,
                       ),
                       const Gap(8),
                       switch (ipInfo) {
@@ -90,6 +92,7 @@ class _StatsColumn extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final t = ref.watch(translationsProvider);
     final stats = ref.watch(statsNotifierProvider).value;
 
     return Directionality(
@@ -101,11 +104,13 @@ class _StatsColumn extends HookConsumerWidget {
             _InfoProp(
               icon: FluentIcons.arrow_bidirectional_up_down_20_regular,
               text: (stats?.downlinkTotal ?? 0).size(),
+              semanticLabel: t.proxies.statsSemantics.totalTransferred,
             ),
             const Gap(8),
             _InfoProp(
               icon: FluentIcons.arrow_download_20_regular,
               text: (stats?.downlink ?? 0).speed(),
+              semanticLabel: t.proxies.statsSemantics.speed,
             ),
           ],
         ),
@@ -118,25 +123,30 @@ class _InfoProp extends StatelessWidget {
   const _InfoProp({
     required this.icon,
     required this.text,
+    this.semanticLabel,
   });
 
   final IconData icon;
   final String text;
+  final String? semanticLabel;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Icon(icon),
-        const Gap(8),
-        Flexible(
-          child: Text(
-            text,
-            style: Theme.of(context).textTheme.labelMedium,
-            overflow: TextOverflow.ellipsis,
+    return Semantics(
+      label: semanticLabel,
+      child: Row(
+        children: [
+          Icon(icon),
+          const Gap(8),
+          Flexible(
+            child: Text(
+              text,
+              style: Theme.of(context).textTheme.labelMedium,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/widget/animated_visibility.dart';
 import 'package:hiddify/core/widget/shimmer_skeleton.dart';
 import 'package:hiddify/features/proxy/active/active_proxy_notifier.dart';
@@ -11,6 +12,7 @@ class ActiveProxyDelayIndicator extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final t = ref.watch(translationsProvider);
     final theme = Theme.of(context);
     final activeProxy = ref.watch(activeProxyNotifierProvider);
 
@@ -39,6 +41,8 @@ class ActiveProxyDelayIndicator extends HookConsumerWidget {
                       const Gap(8),
                       if (delay > 0)
                         Text.rich(
+                          semanticsLabel:
+                              t.proxies.delaySemantics.result(delay: delay),
                           TextSpan(
                             children: [
                               TextSpan(
@@ -51,7 +55,10 @@ class ActiveProxyDelayIndicator extends HookConsumerWidget {
                           ),
                         )
                       else
-                        const ShimmerSkeleton(width: 48, height: 18),
+                        Semantics(
+                          label: t.proxies.delaySemantics.testing,
+                          child: const ShimmerSkeleton(width: 48, height: 18),
+                        ),
                     ],
                   ),
                 ),
