@@ -33,6 +33,7 @@ class SingboxConfigOption with _$SingboxConfigOption {
     required bool enableClashApi,
     required int clashApiPort,
     required bool enableTun,
+    required bool enableTunService,
     required bool setSystemProxy,
     required bool bypassLan,
     required bool allowConnectionFromLan,

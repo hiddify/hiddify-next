@@ -191,6 +191,7 @@ class SingBoxConfigOptionRepositoryImpl
           enableClashApi: persisted.enableClashApi,
           clashApiPort: persisted.clashApiPort,
           enableTun: persisted.serviceMode == ServiceMode.tun,
+          enableTunService: persisted.serviceMode == ServiceMode.tunService,
           setSystemProxy: persisted.serviceMode == ServiceMode.systemProxy,
           bypassLan: persisted.bypassLan,
           allowConnectionFromLan: persisted.allowConnectionFromLan,

@@ -6,7 +6,8 @@ import 'package:json_annotation/json_annotation.dart';
 enum ServiceMode {
   proxy("proxy"),
   systemProxy("system-proxy"),
-  tun("vpn");
+  tun("vpn"),
+  tunService("vpnService");
 
   const ServiceMode(this.key);
 
@@ -27,6 +28,8 @@ enum ServiceMode {
         systemProxy => t.settings.config.serviceModes.systemProxy,
         tun =>
           "${t.settings.config.serviceModes.tun}${PlatformUtils.isDesktop ? " (${t.settings.experimental})" : ""}",
+        tunService =>
+          "${t.settings.config.serviceModes.tunService}${PlatformUtils.isDesktop ? " (${t.settings.experimental})" : ""}",
       };
 }
 

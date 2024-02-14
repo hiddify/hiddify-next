@@ -214,7 +214,8 @@
             "serviceModes": {
                 "proxy": "Proxy Service Only",
                 "systemProxy": "Set System Proxy",
-                "tun": "VPN"
+                "tun": "VPN",
+                "tunService": "VPN Service"
             },
             "section": {
                 "route": "Route Options",
