@@ -44,7 +44,7 @@ class ConfigOptionEntity with ConfigOptionEntityMappable {
     this.independentDnsCache = true,
     this.enableTlsFragment = false,
     this.tlsFragmentSize = const OptionalRange(min: 1, max: 500),
-    this.tlsFragmentSleep = const OptionalRange(min: 1, max: 500),
+    this.tlsFragmentSleep = const OptionalRange(min: 0, max: 500),
     this.enableTlsMixedSniCase = false,
     this.enableTlsPadding = false,
     this.tlsPaddingSize = const OptionalRange(min: 1, max: 1500),
