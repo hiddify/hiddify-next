@@ -1,6 +1,5 @@
-import 'dart:io';
-
 import 'package:dartx/dartx.dart';
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:hiddify/core/app_info/app_info_provider.dart';
 import 'package:hiddify/core/localization/translations.dart';
@@ -48,7 +47,7 @@ class HomePage extends HookConsumerWidget {
                 actions: [
                   IconButton(
                     onPressed: () => const AddProfileRoute().push(context),
-                    icon: const Icon(Icons.add_circle),
+                    icon: const Icon(FluentIcons.add_circle_24_filled),
                     tooltip: t.profile.add.buttonText,
                   ),
                 ],

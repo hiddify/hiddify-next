@@ -1,4 +1,5 @@
 import 'package:dartx/dartx.dart';
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hiddify/core/localization/translations.dart';
@@ -46,9 +47,15 @@ class QRCodeScannerScreen extends HookConsumerWidget with PresLogger {
               builder: (context, state, child) {
                 switch (state) {
                   case TorchState.off:
-                    return const Icon(Icons.flash_off, color: Colors.grey);
+                    return const Icon(
+                      FluentIcons.flash_off_24_regular,
+                      color: Colors.grey,
+                    );
                   case TorchState.on:
-                    return const Icon(Icons.flash_on, color: Colors.yellow);
+                    return const Icon(
+                      FluentIcons.flash_24_regular,
+                      color: Colors.yellow,
+                    );
                 }
               },
             ),
@@ -56,17 +63,7 @@ class QRCodeScannerScreen extends HookConsumerWidget with PresLogger {
             onPressed: () => controller.toggleTorch(),
           ),
           IconButton(
-            icon: ValueListenableBuilder(
-              valueListenable: controller.cameraFacingState,
-              builder: (context, state, child) {
-                switch (state) {
-                  case CameraFacing.front:
-                    return const Icon(Icons.camera_front);
-                  case CameraFacing.back:
-                    return const Icon(Icons.camera_rear);
-                }
-              },
-            ),
+            icon: const Icon(FluentIcons.camera_switch_24_regular),
             tooltip: t.profile.add.qrScanner.facingSemanticLabel,
             onPressed: () => controller.switchCamera(),
           ),
@@ -103,7 +100,10 @@ class QRCodeScannerScreen extends HookConsumerWidget with PresLogger {
                   children: [
                     const Padding(
                       padding: EdgeInsets.only(bottom: 8),
-                      child: Icon(Icons.error, color: Colors.white),
+                      child: Icon(
+                        FluentIcons.error_circle_24_regular,
+                        color: Colors.white,
+                      ),
                     ),
                     Text(message),
                     Text(error.errorDetails?.message ?? ''),

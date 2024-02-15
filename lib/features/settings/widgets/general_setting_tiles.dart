@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/preferences/general_preferences.dart';
@@ -25,7 +26,7 @@ class GeneralSettingTiles extends HookConsumerWidget {
         ListTile(
           title: Text(t.settings.general.themeMode),
           subtitle: Text(themeMode.present(t)),
-          leading: const Icon(Icons.light_mode),
+          leading: const Icon(FluentIcons.weather_moon_20_regular),
           onTap: () async {
             final selectedThemeMode = await showDialog<AppThemeMode>(
               context: context,
@@ -56,7 +57,7 @@ class GeneralSettingTiles extends HookConsumerWidget {
         if (Platform.isAndroid)
           SwitchListTile(
             title: Text(t.settings.general.dynamicNotification),
-            secondary: const Icon(Icons.speed),
+            secondary: const Icon(FluentIcons.top_speed_24_regular),
             value: ref.watch(dynamicNotificationProvider),
             onChanged: (value) async {
               await ref

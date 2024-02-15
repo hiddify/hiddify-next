@@ -1,10 +1,12 @@
 import 'package:dartx/dartx.dart';
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/model/failures.dart';
 import 'package:hiddify/core/model/range.dart';
+import 'package:hiddify/core/widget/adaptive_icon.dart';
 import 'package:hiddify/core/widget/tip_card.dart';
 import 'package:hiddify/features/common/nested_app_bar.dart';
 import 'package:hiddify/features/config_option/model/config_option_entity.dart';
@@ -45,6 +47,7 @@ class ConfigOptionsPage extends HookConsumerWidget {
             actions: [
               if (asyncOptions case AsyncData(value: final options))
                 PopupMenuButton(
+                  icon: Icon(AdaptiveIcon(context).more),
                   itemBuilder: (context) {
                     return [
                       PopupMenuItem(
@@ -483,7 +486,7 @@ class ConfigOptionsPage extends HookConsumerWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(Icons.error),
+                    const Icon(FluentIcons.error_circle_24_regular),
                     const Gap(2),
                     Text(t.presentShortError(error)),
                     const Gap(2),

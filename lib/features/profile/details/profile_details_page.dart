@@ -1,8 +1,10 @@
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/model/failures.dart';
+import 'package:hiddify/core/widget/adaptive_icon.dart';
 import 'package:hiddify/features/common/confirmation_dialogs.dart';
 import 'package:hiddify/features/profile/details/profile_details_notifier.dart';
 import 'package:hiddify/features/profile/model/profile_entity.dart';
@@ -95,6 +97,7 @@ class ProfileDetailsPage extends HookConsumerWidget with PresLogger {
                       actions: [
                         if (state.isEditing)
                           PopupMenuButton(
+                            icon: Icon(AdaptiveIcon(context).more),
                             itemBuilder: (context) {
                               return [
                                 if (state.profile case RemoteProfileEntity())
@@ -175,7 +178,8 @@ class ProfileDetailsPage extends HookConsumerWidget with PresLogger {
                                     ) ??
                                     t.general.toggle.disabled,
                               ),
-                              leading: const Icon(Icons.update),
+                              leading:
+                                  const Icon(FluentIcons.arrow_sync_24_regular),
                               onTap: () async {
                                 final intervalInHours =
                                     await SettingsInputDialog(
@@ -185,7 +189,8 @@ class ProfileDetailsPage extends HookConsumerWidget with PresLogger {
                                   optionalAction: (
                                     t.general.state.disable,
                                     () => notifier.setField(
-                                        updateInterval: none()),
+                                          updateInterval: none(),
+                                        ),
                                   ),
                                   validator: isPort,
                                   mapTo: int.tryParse,

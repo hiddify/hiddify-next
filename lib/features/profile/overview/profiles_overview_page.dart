@@ -1,3 +1,4 @@
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hiddify/core/localization/translations.dart';
@@ -79,7 +80,7 @@ class ProfilesOverviewModal extends HookConsumerWidget {
                       onPressed: () {
                         const AddProfileRoute().push(context);
                       },
-                      icon: const Icon(Icons.add),
+                      icon: const Icon(FluentIcons.add_24_filled),
                       label: Text(t.profile.add.shortBtnTxt),
                     ),
                     FilledButton.icon(
@@ -91,7 +92,7 @@ class ProfilesOverviewModal extends HookConsumerWidget {
                           },
                         );
                       },
-                      icon: const Icon(Icons.sort),
+                      icon: const Icon(FluentIcons.arrow_sort_24_filled),
                       label: Text(t.general.sort),
                     ),
                     FilledButton.icon(
@@ -102,7 +103,7 @@ class ProfilesOverviewModal extends HookConsumerWidget {
                             )
                             .trigger();
                       },
-                      icon: const Icon(Icons.update),
+                      icon: const Icon(FluentIcons.arrow_sync_24_filled),
                       label: Text(t.profile.update.updateSubscriptions),
                     ),
                   ],
@@ -159,7 +160,7 @@ class ProfilesSortModal extends HookConsumerWidget {
                                 turns: arrowTurn,
                                 duration: const Duration(milliseconds: 100),
                                 child: Icon(
-                                  Icons.arrow_upward,
+                                  FluentIcons.arrow_sort_up_24_regular,
                                   semanticLabel: sort.mode.name,
                                 ),
                               ),
