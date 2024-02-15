@@ -27,6 +27,7 @@ class IPText extends HookConsumerWidget {
     final t = ref.watch(translationsProvider);
     final isVisible = ref.watch(_showIp);
     final textTheme = Theme.of(context).textTheme;
+    final ipStyle = constrained ? textTheme.labelMedium : textTheme.labelLarge;
 
     return Semantics(
       label: t.proxies.ipInfoSemantics.address,
@@ -41,7 +42,8 @@ class IPText extends HookConsumerWidget {
           child: AnimatedCrossFade(
             firstChild: Text(
               ip,
-              style: textTheme.labelMedium,
+              style: ipStyle,
+              textDirection: TextDirection.ltr,
               overflow: TextOverflow.ellipsis,
             ),
             secondChild: Padding(
@@ -51,8 +53,8 @@ class IPText extends HookConsumerWidget {
               child: Text(
                 obscureIp(ip),
                 semanticsLabel: t.general.hidden,
-                style:
-                    constrained ? textTheme.labelMedium : textTheme.labelLarge,
+                style: ipStyle,
+                textDirection: TextDirection.ltr,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
