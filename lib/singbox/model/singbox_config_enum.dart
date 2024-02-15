@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/utils/platform_utils.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -7,7 +9,7 @@ enum ServiceMode {
   proxy("proxy"),
   systemProxy("system-proxy"),
   tun("vpn"),
-  tunService("vpnService");
+  tunService("vpn-service");
 
   const ServiceMode(this.key);
 
@@ -16,10 +18,14 @@ enum ServiceMode {
   static ServiceMode get defaultMode =>
       PlatformUtils.isDesktop ? systemProxy : tun;
 
+  /// supported service mode based on platform, use this instead of [values] in UI
   static List<ServiceMode> get choices {
-    if (PlatformUtils.isDesktop) {
+    if (Platform.isWindows || Platform.isLinux) {
       return values;
+    } else if (Platform.isMacOS) {
+      return [proxy, systemProxy, tun];
     }
+    // mobile
     return [proxy, tun];
   }
 
