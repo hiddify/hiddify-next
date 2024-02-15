@@ -1,35 +1,37 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:dart_mappable/dart_mappable.dart';
 
-part 'singbox_rule.freezed.dart';
-part 'singbox_rule.g.dart';
+part 'singbox_rule.mapper.dart';
 
-@freezed
-class SingboxRule with _$SingboxRule {
-  const SingboxRule._();
+@MappableClass()
+class SingboxRule with SingboxRuleMappable {
+  const SingboxRule({
+    this.domains,
+    this.ip,
+    this.port,
+    this.protocol,
+    this.network = RuleNetwork.tcpAndUdp,
+    this.outbound = RuleOutbound.proxy,
+  });
 
-  @JsonSerializable(fieldRename: FieldRename.kebab)
-  const factory SingboxRule({
-    String? domains,
-    String? ip,
-    String? port,
-    String? protocol,
-    @Default(RuleNetwork.tcpAndUdp) RuleNetwork network,
-    @Default(RuleOutbound.proxy) RuleOutbound outbound,
-  }) = _SingboxRule;
-
-  factory SingboxRule.fromJson(Map<String, dynamic> json) =>
-      _$SingboxRuleFromJson(json);
+  final String? domains;
+  final String? ip;
+  final String? port;
+  final String? protocol;
+  final RuleNetwork network;
+  final RuleOutbound outbound;
 }
 
+@MappableEnum()
 enum RuleOutbound { proxy, bypass, block }
 
-@JsonEnum(valueField: 'key')
+@MappableEnum()
 enum RuleNetwork {
-  tcpAndUdp(""),
-  tcp("tcp"),
-  udp("udp");
+  @MappableValue("")
+  tcpAndUdp,
 
-  const RuleNetwork(this.key);
+  @MappableValue("tcp")
+  tcp,
 
-  final String? key;
+  @MappableValue("udp")
+  udp;
 }

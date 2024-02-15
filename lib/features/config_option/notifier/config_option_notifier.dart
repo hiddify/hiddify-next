@@ -1,6 +1,5 @@
 import 'package:hiddify/features/config_option/data/config_option_data_providers.dart';
 import 'package:hiddify/features/config_option/model/config_option_entity.dart';
-import 'package:hiddify/features/config_option/model/config_option_patch.dart';
 import 'package:hiddify/utils/custom_loggers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

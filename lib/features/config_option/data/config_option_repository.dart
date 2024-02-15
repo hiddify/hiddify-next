@@ -3,10 +3,8 @@ import 'package:hiddify/core/model/region.dart';
 import 'package:hiddify/core/utils/exception_handler.dart';
 import 'package:hiddify/features/config_option/model/config_option_entity.dart';
 import 'package:hiddify/features/config_option/model/config_option_failure.dart';
-import 'package:hiddify/features/config_option/model/config_option_patch.dart';
 import 'package:hiddify/features/geo_asset/data/geo_asset_path_resolver.dart';
 import 'package:hiddify/features/geo_asset/data/geo_asset_repository.dart';
-import 'package:hiddify/singbox/model/singbox_config_enum.dart';
 import 'package:hiddify/singbox/model/singbox_config_option.dart';
 import 'package:hiddify/singbox/model/singbox_rule.dart';
 import 'package:hiddify/utils/utils.dart';
@@ -36,7 +34,7 @@ class ConfigOptionRepositoryImpl
   @override
   Either<ConfigOptionFailure, ConfigOptionEntity> getConfigOption() {
     try {
-      final map = ConfigOptionEntity.initial.toJson();
+      final map = ConfigOptionEntity.initial().toMap();
       for (final key in map.keys) {
         final persisted = preferences.get(key);
         if (persisted != null) {
@@ -51,7 +49,7 @@ class ConfigOptionRepositoryImpl
           map[key] = persisted;
         }
       }
-      final options = ConfigOptionEntity.fromJson(map);
+      final options = ConfigOptionEntityMapper.fromMap(map);
       return right(options);
     } catch (error, stackTrace) {
       return left(ConfigOptionUnexpectedFailure(error, stackTrace));
@@ -64,7 +62,7 @@ class ConfigOptionRepositoryImpl
   ) {
     return exceptionHandler(
       () async {
-        final map = patch.toJson();
+        final map = patch.toMap();
         await updateByJson(map);
         return right(unit);
       },
@@ -76,7 +74,7 @@ class ConfigOptionRepositoryImpl
   TaskEither<ConfigOptionFailure, Unit> resetConfigOption() {
     return exceptionHandler(
       () async {
-        final map = ConfigOptionEntity.initial.toJson();
+        final map = ConfigOptionEntity.initial().toMap();
         await updateByJson(map);
         return right(unit);
       },
@@ -88,7 +86,7 @@ class ConfigOptionRepositoryImpl
   Future<void> updateByJson(
     Map<String, dynamic> options,
   ) async {
-    final map = ConfigOptionEntity.initial.toJson();
+    final map = ConfigOptionEntity.initial().toMap();
     for (final key in map.keys) {
       final value = options[key];
       if (value != null) {
@@ -172,48 +170,7 @@ class SingBoxConfigOptionRepositoryImpl
 
         final persisted =
             optionsRepository.getConfigOption().getOrElse((l) => throw l);
-        final singboxConfigOption = SingboxConfigOption(
-          executeConfigAsIs: false,
-          logLevel: persisted.logLevel,
-          resolveDestination: persisted.resolveDestination,
-          ipv6Mode: persisted.ipv6Mode,
-          remoteDnsAddress: persisted.remoteDnsAddress,
-          remoteDnsDomainStrategy: persisted.remoteDnsDomainStrategy,
-          directDnsAddress: persisted.directDnsAddress,
-          directDnsDomainStrategy: persisted.directDnsDomainStrategy,
-          mixedPort: persisted.mixedPort,
-          localDnsPort: persisted.localDnsPort,
-          tunImplementation: persisted.tunImplementation,
-          mtu: persisted.mtu,
-          strictRoute: persisted.strictRoute,
-          connectionTestUrl: persisted.connectionTestUrl,
-          urlTestInterval: persisted.urlTestInterval,
-          enableClashApi: persisted.enableClashApi,
-          clashApiPort: persisted.clashApiPort,
-          enableTun: persisted.serviceMode == ServiceMode.tun,
-          enableTunService: persisted.serviceMode == ServiceMode.tunService,
-          setSystemProxy: persisted.serviceMode == ServiceMode.systemProxy,
-          bypassLan: persisted.bypassLan,
-          allowConnectionFromLan: persisted.allowConnectionFromLan,
-          enableFakeDns: persisted.enableFakeDns,
-          enableDnsRouting: persisted.enableDnsRouting,
-          independentDnsCache: persisted.independentDnsCache,
-          enableTlsFragment: persisted.enableTlsFragment,
-          tlsFragmentSize: persisted.tlsFragmentSize,
-          tlsFragmentSleep: persisted.tlsFragmentSleep,
-          enableTlsMixedSniCase: persisted.enableTlsMixedSniCase,
-          enableTlsPadding: persisted.enableTlsPadding,
-          tlsPaddingSize: persisted.tlsPaddingSize,
-          enableMux: persisted.enableMux,
-          muxPadding: persisted.muxPadding,
-          muxMaxStreams: persisted.muxMaxStreams,
-          muxProtocol: persisted.muxProtocol,
-          enableWarp: persisted.enableWarp,
-          warpDetourMode: persisted.warpDetourMode,
-          warpLicenseKey: persisted.warpLicenseKey,
-          warpCleanIp: persisted.warpCleanIp,
-          warpPort: persisted.warpPort,
-          warpNoise: persisted.warpNoise,
+        final singboxConfigOption = persisted.toSingbox(
           geoipPath: geoAssetPathResolver.relativePath(
             geoAssets.geoip.providerName,
             geoAssets.geoip.fileName,

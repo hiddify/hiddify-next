@@ -3,9 +3,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/model/constants.dart';
-import 'package:hiddify/core/model/range.dart';
+import 'package:hiddify/core/model/optional_range.dart';
 import 'package:hiddify/features/config_option/model/config_option_entity.dart';
-import 'package:hiddify/features/config_option/model/config_option_patch.dart';
 import 'package:hiddify/features/config_option/notifier/warp_option_notifier.dart';
 import 'package:hiddify/features/settings/widgets/settings_input_dialog.dart';
 import 'package:hiddify/singbox/model/singbox_config_enum.dart';
@@ -134,10 +133,7 @@ class WarpOptionsTiles extends HookConsumerWidget {
             if (warpNoise == null) return;
             await onChange(
               ConfigOptionPatch(
-                warpNoise: RangeWithOptionalCeil.tryParse(
-                  warpNoise,
-                  allowEmpty: true,
-                ),
+                warpNoise: OptionalRange.tryParse(warpNoise, allowEmpty: true),
               ),
             );
           },

@@ -121,7 +121,7 @@ class FFISingboxService with InfraLogger implements SingboxService {
     return TaskEither(
       () => CombineWorker().execute(
         () {
-          final json = jsonEncode(options.toJson());
+          final json = options.toJson();
           final err = _box
               .changeConfigOptions(json.toNativeUtf8().cast())
               .cast<Utf8>()

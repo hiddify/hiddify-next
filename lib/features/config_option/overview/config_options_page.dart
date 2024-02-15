@@ -5,12 +5,11 @@ import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/model/failures.dart';
-import 'package:hiddify/core/model/range.dart';
+import 'package:hiddify/core/model/optional_range.dart';
 import 'package:hiddify/core/widget/adaptive_icon.dart';
 import 'package:hiddify/core/widget/tip_card.dart';
 import 'package:hiddify/features/common/nested_app_bar.dart';
 import 'package:hiddify/features/config_option/model/config_option_entity.dart';
-import 'package:hiddify/features/config_option/model/config_option_patch.dart';
 import 'package:hiddify/features/config_option/notifier/config_option_notifier.dart';
 import 'package:hiddify/features/config_option/overview/warp_options_widgets.dart';
 import 'package:hiddify/features/log/model/log_level.dart';
@@ -28,7 +27,7 @@ class ConfigOptionsPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final t = ref.watch(translationsProvider);
 
-    final defaultOptions = ConfigOptionEntity.initial;
+    final defaultOptions = ConfigOptionEntity.initial();
     final asyncOptions = ref.watch(configOptionNotifierProvider);
 
     Future<void> changeOption(ConfigOptionPatch patch) async {
@@ -349,8 +348,7 @@ class ConfigOptionsPage extends HookConsumerWidget {
                       if (range == null) return;
                       await changeOption(
                         ConfigOptionPatch(
-                          tlsFragmentSize:
-                              RangeWithOptionalCeil.tryParse(range),
+                          tlsFragmentSize: OptionalRange.tryParse(range),
                         ),
                       );
                     },
@@ -367,8 +365,7 @@ class ConfigOptionsPage extends HookConsumerWidget {
                       if (range == null) return;
                       await changeOption(
                         ConfigOptionPatch(
-                          tlsFragmentSleep:
-                              RangeWithOptionalCeil.tryParse(range),
+                          tlsFragmentSleep: OptionalRange.tryParse(range),
                         ),
                       );
                     },
@@ -402,7 +399,7 @@ class ConfigOptionsPage extends HookConsumerWidget {
                       if (range == null) return;
                       await changeOption(
                         ConfigOptionPatch(
-                          tlsPaddingSize: RangeWithOptionalCeil.tryParse(range),
+                          tlsPaddingSize: OptionalRange.tryParse(range),
                         ),
                       );
                     },

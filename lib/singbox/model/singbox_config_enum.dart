@@ -1,19 +1,24 @@
 import 'dart:io';
 
+import 'package:dart_mappable/dart_mappable.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/utils/platform_utils.dart';
-import 'package:json_annotation/json_annotation.dart';
 
-@JsonEnum(valueField: 'key')
+part 'singbox_config_enum.mapper.dart';
+
+@MappableEnum()
 enum ServiceMode {
-  proxy("proxy"),
-  systemProxy("system-proxy"),
-  tun("vpn"),
-  tunService("vpn-service");
+  @MappableValue("proxy")
+  proxy,
 
-  const ServiceMode(this.key);
+  @MappableValue("system-proxy")
+  systemProxy,
 
-  final String key;
+  @MappableValue("vpn")
+  tun,
+
+  @MappableValue("vpn-service")
+  tunService;
 
   static ServiceMode get defaultMode =>
       PlatformUtils.isDesktop ? systemProxy : tun;
@@ -39,16 +44,19 @@ enum ServiceMode {
       };
 }
 
-@JsonEnum(valueField: 'key')
+@MappableEnum()
 enum IPv6Mode {
-  disable("ipv4_only"),
-  enable("prefer_ipv4"),
-  prefer("prefer_ipv6"),
-  only("ipv6_only");
+  @MappableValue("ipv4_only")
+  disable,
 
-  const IPv6Mode(this.key);
+  @MappableValue("prefer_ipv4")
+  enable,
 
-  final String key;
+  @MappableValue("prefer_ipv6")
+  prefer,
+
+  @MappableValue("ipv6_only")
+  only;
 
   String present(TranslationsEn t) => switch (this) {
         disable => t.settings.config.ipv6Modes.disable,
@@ -58,12 +66,21 @@ enum IPv6Mode {
       };
 }
 
-@JsonEnum(valueField: 'key')
+@MappableEnum()
 enum DomainStrategy {
+  @MappableValue("")
   auto(""),
+
+  @MappableValue("prefer_ipv6")
   preferIpv6("prefer_ipv6"),
+
+  @MappableValue("prefer_ipv4")
   preferIpv4("prefer_ipv4"),
+
+  @MappableValue("ipv4_only")
   ipv4Only("ipv4_only"),
+
+  @MappableValue("ipv6_only")
   ipv6Only("ipv6_only");
 
   const DomainStrategy(this.key);
@@ -76,18 +93,21 @@ enum DomainStrategy {
       };
 }
 
+@MappableEnum()
 enum TunImplementation {
   mixed,
   system,
   gVisor;
 }
 
+@MappableEnum()
 enum MuxProtocol {
   h2mux,
   smux,
   yamux;
 }
 
+@MappableEnum()
 enum WarpDetourMode {
   outbound,
   inbound;

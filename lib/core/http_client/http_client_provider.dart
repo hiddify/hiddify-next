@@ -15,11 +15,9 @@ DioHttpClient httpClient(HttpClientRef ref) {
   );
 
   ref.listen(
-    configOptionNotifierProvider,
-    (_, next) {
-      if (next case AsyncData(value: final options)) {
-        client.setProxyPort(options.mixedPort);
-      }
+    configOptionNotifierProvider.selectAsync((data) => data.mixedPort),
+    (_, next) async {
+      client.setProxyPort(await next);
     },
     fireImmediately: true,
   );
