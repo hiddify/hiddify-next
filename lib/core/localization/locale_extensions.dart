@@ -11,6 +11,7 @@ extension AppLocaleX on AppLocale {
         "ru" => "Русский",
         "zh" || "zh_CN" => "中文",
         "tr" => "Türkçe",
+        "es" => "Spanish",
         _ => "Unknown",
       };
 }

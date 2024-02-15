@@ -23,6 +23,7 @@ class ActiveProxyDelayIndicator extends HookConsumerWidget {
         switch (activeProxy) {
           case AsyncData(value: final proxy):
             final delay = proxy.urlTestDelay;
+            final timeout = delay > 65000;
             return Center(
               child: InkWell(
                 onTap: () async {
@@ -41,16 +42,27 @@ class ActiveProxyDelayIndicator extends HookConsumerWidget {
                       const Gap(8),
                       if (delay > 0)
                         Text.rich(
-                          semanticsLabel:
-                              t.proxies.delaySemantics.result(delay: delay),
+                          semanticsLabel: timeout
+                              ? t.proxies.delaySemantics.timeout
+                              : t.proxies.delaySemantics.result(delay: delay),
                           TextSpan(
                             children: [
-                              TextSpan(
-                                text: delay > 65000 ? "×" : delay.toString(),
-                                style: theme.textTheme.titleMedium
-                                    ?.copyWith(fontWeight: FontWeight.bold),
-                              ),
-                              const TextSpan(text: " ms"),
+                              if (timeout)
+                                TextSpan(
+                                  text: t.general.timeout,
+                                  style: theme.textTheme.titleMedium?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    color: theme.colorScheme.error,
+                                  ),
+                                )
+                              else ...[
+                                TextSpan(
+                                  text: delay.toString(),
+                                  style: theme.textTheme.titleMedium
+                                      ?.copyWith(fontWeight: FontWeight.bold),
+                                ),
+                                const TextSpan(text: " ms"),
+                              ],
                             ],
                           ),
                         )

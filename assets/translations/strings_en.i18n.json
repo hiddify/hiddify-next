@@ -16,7 +16,8 @@
         "agree": "Agree",
         "decline": "Decline",
         "unknown": "Unknown",
-        "hidden": "Hidden"
+        "hidden": "Hidden",
+        "timeout": "timeout"
     },
     "intro": {
         "termsAndPolicyCaution(rich)": "by continuing you agree with ${tap(@:about.termsAndConditions)}",
@@ -132,6 +133,7 @@
         "activeProxySemanticLabel": "Active proxy",
         "delaySemantics": {
             "result": "delay: ${delay}ms",
+            "timeout": "delay test timeout",
             "testing": "delay: testing..."
         },
         "ipInfoSemantics": {
