@@ -14,7 +14,7 @@
         "addToClipboard": "新增到剪貼簿"
     },
     "intro": {
-        "termsAndPolicyCaution(rich)": "繼續即表示您同意 ${tap( @:about .termsAndConditions)}",
+        "termsAndPolicyCaution(rich)": "繼續即表示您同意 ${tap(@:about.termsAndConditions)}",
         "start": "開始"
     },
     "home": {
@@ -45,7 +45,7 @@
         "nonActiveProfileBtnSemanticLabel": "選擇“${name}”作為活動設定檔。",
         "subscription": {
             "traffic": "流量",
-            "updatedTimeAgo": "更新${時間前}",
+            "updatedTimeAgo": "更新${timeago}",
             "remainingDuration": "剩餘 ${duration} 天",
             "remainingTrafficSemanticLabel": "已使用 ${consumed} 流量，總共 ${total} 流量。",
             "expired": "已到期",
@@ -271,7 +271,7 @@
     "appUpdate": {
         "notAvailableMsg": "已經是最新版本",
         "dialogTitle": "有可用更新",
-        "updateMsg": "@:general .appTitle 的更新版本現已推出。您想現在更新嗎？",
+        "updateMsg": "@:general.appTitle 的更新版本現已推出。您想現在更新嗎？",
         "currentVersionLbl": "目前版本",
         "newVersionLbl": "新版本",
         "updateNowBtnTxt": "現在更新",
