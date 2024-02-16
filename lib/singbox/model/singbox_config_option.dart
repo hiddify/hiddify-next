@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dart_mappable/dart_mappable.dart';
 import 'package:hiddify/core/model/optional_range.dart';
+import 'package:hiddify/core/utils/json_converters.dart';
 import 'package:hiddify/features/log/model/log_level.dart';
 import 'package:hiddify/singbox/model/singbox_config_enum.dart';
 import 'package:hiddify/singbox/model/singbox_rule.dart';
@@ -12,7 +13,7 @@ part 'singbox_config_option.mapper.dart';
   caseStyle: CaseStyle.paramCase,
   includeCustomMappers: [
     OptionalRangeJsonMapper(),
-    IntervalMapper(),
+    IntervalInSecondsMapper(),
   ],
 )
 class SingboxConfigOption with SingboxConfigOptionMappable {
@@ -113,15 +114,4 @@ class SingboxConfigOption with SingboxConfigOptionMappable {
     const encoder = JsonEncoder.withIndent('  ');
     return encoder.convert(toMap());
   }
-}
-
-class IntervalMapper extends SimpleMapper<Duration> {
-  const IntervalMapper();
-
-  @override
-  Duration decode(dynamic value) =>
-      Duration(minutes: int.parse((value as String).replaceAll("m", "")));
-
-  @override
-  String encode(Duration self) => "${self.inMinutes}m";
 }
