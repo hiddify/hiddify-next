@@ -37,8 +37,8 @@
         "stats": {
             "traffic": "实时流量",
             "trafficTotal": "总流量",
-            "uplink": "上行链路",
-            "downlink": "下行链路"
+            "uplink": "上行",
+            "downlink": "下行"
         }
     },
     "profile": {
@@ -51,7 +51,7 @@
             "traffic": "流量",
             "updatedTimeAgo": "更新 ${timeago}",
             "remainingDuration": "剩余 ${duration} 天",
-            "remainingTrafficSemanticLabel": "已消耗 ${consumed} 流量，共 ${total} 流量。",
+            "remainingTrafficSemanticLabel": "已使用 ${consumed} 流量，共 ${total} 流量。",
             "expired": "已过期",
             "noTraffic": "超出配额"
         },
@@ -133,7 +133,7 @@
         "filterHint": "筛选",
         "allLevelsFilter": "全部",
         "shareCoreLogs": "分享核心日志",
-        "shareAppLogs": "分享日志",
+        "shareAppLogs": "分享應用日志",
         "pauseTooltip": "暂停",
         "resumeTooltip": "恢复",
         "clearTooltip": "清除"
@@ -153,14 +153,14 @@
                 "cn": "中国 (cn)",
                 "ru": "俄罗斯 (ru)",
                 "af": "阿富汗 (af)",
-                "other": "其它"
+                "other": "其他"
             },
             "themeMode": "主题模式",
             "themeModes": {
                 "system": "遵循系统主题",
-                "dark": "黑暗模式",
-                "light": "浅色模式",
-                "black": "深色模式"
+                "dark": "暗色",
+                "light": "浅色",
+                "black": "黑色"
             },
             "enableAnalytics": "启用分析",
             "enableAnalyticsMsg": "授予收集分析并发送崩溃报告以改进应用程序的权限",
@@ -195,7 +195,7 @@
         },
         "config": {
             "resetBtn": "重置选项",
-            "serviceMode": "服务方式",
+            "serviceMode": "服务模式",
             "serviceModes": {
                 "proxy": "仅代理",
                 "systemProxy": "系统代理",
@@ -205,11 +205,12 @@
                 "route": "路由选项",
                 "dns": "DNS 选项",
                 "inbound": "入站选项",
-                "mux": "Multiplexer",
+                "mux": "复用器",
                 "outbound": "出站选项",
                 "tlsTricks": "TLS Tricks",
-                "warp": "WARP Options",
-                "misc": "其它选项"
+                "misc": "其他选项",
+                "warp": "WARP 选项",
+                "misc": "其它选项",
             },
             "pageTitle": "配置选项",
             "logLevel": "日志级别",
@@ -218,7 +219,7 @@
             "ipv6Modes": {
                 "disable": "禁用",
                 "enable": "启用",
-                "prefer": "优先",
+                "prefer": "首选",
                 "only": "仅"
             },
             "remoteDnsAddress": "远程 DNS",
@@ -246,19 +247,22 @@
             "enableTlsMixedSniCase": "启用 TLS 混合 SNI 情形",
             "enableTlsPadding": "启用 TLS 填充",
             "tlsPaddingSize": "TLS 填充",
-            "enableMux": "Enable Mux",
-            "muxProtocol": "Mux Protocol",
-            "muxMaxStreams": "Max Concurrent Streams",
-            "enableWarp": "Enable WARP",
-            "warpDetourMode": "Detour Mode",
+            "enableMux": "启用复用器",
+            "muxProtocol": "复用器控制",
+            "muxMaxStreams": "最大并发数"
+            "enableMux": "启用 Mux",
+            "muxProtocol": "Mux 控制",
+            "muxMaxStreams": "最大并发数",
+            "enableWarp": "启用 WARP",
+            "warpDetourMode": "迂回模式",
             "warpDetourModes": {
-                "inbound": "Detour WARP through proxies",
-                "outbound": "Detour proxies through WARP"
+                "inbound": "通过代理绕过 WARP",
+                "outbound": "通过 WARP 绕过代理"
             },
-            "warpLicenseKey": "License Key",
-            "warpCleanIp": "Clean IP",
-            "warpPort": "Port",
-            "warpNoise": "Noise",
+            "warpLicenseKey": "许可证密钥",
+            "warpCleanIp": "干净 IP",
+            "warpPort": "端口",
+            "warpNoise": "噪音",
             "warpConsent": {
                 "title": "Cloudflare WARP 同意",
                 "description(rich)": "Cloudflare WARP 是免费的 WireGuard VPN 提供商。启用此选项即表示您同意 Cloudflare WARP 的 ${tos(服务条款)} 和 ${privacy(隐私政策)}"
@@ -298,7 +302,7 @@
         "ignoreBtnTxt": "忽略"
     },
     "tray": {
-        "dashboard": "控制面板",
+        "dashboard": "仪表板",
         "quit": "退出",
         "open": "打开",
         "status": {
@@ -346,7 +350,7 @@
             "badCertificate": "证书无效"
         },
         "geoAssets": {
-            "unexpected": "意外的错误",
+            "unexpected": "意外错误",
             "notUpdate": "无可用更新",
             "activeNotFound": "未找到激活的 GEO 资源文件"
         }
