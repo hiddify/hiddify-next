@@ -1,4 +1,5 @@
 package com.hiddify.hiddify.bg
+import java.net.NetworkInterface
 
 import android.net.Network
 import android.os.Build
@@ -35,9 +36,23 @@ object DefaultNetworkMonitor {
         newNetwork: Network?
     ) {
         val listener = listener ?: return
-        val link = Application.connectivity.getLinkProperties(newNetwork ?: return) ?: return
-        listener.updateDefaultInterface(link.interfaceName, -1)
+        if (newNetwork != null) {
+            val interfaceName =
+                (Application.connectivity.getLinkProperties(newNetwork) ?: return).interfaceName
+            for (times in 0 until 10) {
+                var interfaceIndex: Int
+                try {
+                    interfaceIndex = NetworkInterface.getByName(interfaceName).index
+                } catch (e: Exception) {
+                    Thread.sleep(100)
+                    continue
+                }
+                listener.updateDefaultInterface(interfaceName, interfaceIndex)
+                break
+            }
+        } else {
+            listener.updateDefaultInterface("", -1)
+        }
     }
-
 
 }
