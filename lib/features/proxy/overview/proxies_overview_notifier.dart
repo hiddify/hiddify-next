@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:combine/combine.dart';
 import 'package:dartx/dartx.dart';
+import 'package:hiddify/core/haptic/haptic_service.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/preferences/preferences_provider.dart';
 import 'package:hiddify/features/connection/notifier/connection_notifier.dart';
@@ -131,6 +132,7 @@ class ProxiesOverviewNotifier extends _$ProxiesOverviewNotifier with AppLogger {
       "changing proxy, group: [$groupTag] - outbound: [$outboundTag]",
     );
     if (state case AsyncData(value: final outbounds)) {
+      await ref.read(hapticServiceProvider.notifier).lightImpact();
       await ref
           .read(proxyRepositoryProvider)
           .selectProxy(groupTag, outboundTag)
@@ -151,6 +153,7 @@ class ProxiesOverviewNotifier extends _$ProxiesOverviewNotifier with AppLogger {
   Future<void> urlTest(String groupTag) async {
     loggy.debug("testing group: [$groupTag]");
     if (state case AsyncData()) {
+      await ref.read(hapticServiceProvider.notifier).lightImpact();
       await ref
           .read(proxyRepositoryProvider)
           .urlTest(groupTag)

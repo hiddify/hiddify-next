@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:hiddify/core/haptic/haptic_service.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/model/failures.dart';
 import 'package:hiddify/core/notification/in_app_notification_controller.dart';
@@ -70,8 +71,8 @@ class AddProfile extends _$AddProfile with AppLogger {
           loggy.debug("adding profile, content");
           var name = parsed.name;
 
-          while (await _profilesRepo.getByName(name) != null) {  
-            name+= '${randomInt(0, 9).run()}'; 
+          while (await _profilesRepo.getByName(name) != null) {
+            name += '${randomInt(0, 9).run()}';
           }
           task = _profilesRepo.addByContent(
             parsed.content,
@@ -127,6 +128,7 @@ class UpdateProfile extends _$UpdateProfile with AppLogger {
   Future<void> updateProfile(RemoteProfileEntity profile) async {
     if (state.isLoading) return;
     state = const AsyncLoading();
+    await ref.read(hapticServiceProvider.notifier).lightImpact();
     state = await AsyncValue.guard(
       () async {
         return await _profilesRepo.updateSubscription(profile).match(

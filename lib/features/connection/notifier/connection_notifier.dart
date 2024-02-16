@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:hiddify/core/haptic/haptic_service.dart';
 import 'package:hiddify/core/preferences/general_preferences.dart';
 import 'package:hiddify/core/preferences/service_preferences.dart';
 import 'package:hiddify/features/connection/data/connection_data_providers.dart';
@@ -53,14 +54,18 @@ class ConnectionNotifier extends _$ConnectionNotifier with AppLogger {
   }
 
   Future<void> toggleConnection() async {
+    final haptic = ref.read(hapticServiceProvider.notifier);
     if (state case AsyncError()) {
+      await haptic.lightImpact();
       await _connect();
     } else if (state case AsyncData(:final value)) {
       switch (value) {
         case Disconnected():
+          await haptic.lightImpact();
           await ref.read(startedByUserProvider.notifier).update(true);
           await _connect();
         case Connected():
+          await haptic.mediumImpact();
           await ref.read(startedByUserProvider.notifier).update(false);
           await _disconnect();
         default:
@@ -111,8 +116,9 @@ class ConnectionNotifier extends _$ConnectionNotifier with AppLogger {
     )
         .mapLeft((err) async {
       loggy.warning("error connecting", err);
-      loggy.warning(err);//Go err is not normal object to see the go errors are string and need to be dumped
-      if (err.toString().contains("panic") ){
+      loggy.warning(
+          err); //Go err is not normal object to see the go errors are string and need to be dumped
+      if (err.toString().contains("panic")) {
         await Sentry.captureException(Exception(err.toString()));
       }
       await ref.read(startedByUserProvider.notifier).update(false);

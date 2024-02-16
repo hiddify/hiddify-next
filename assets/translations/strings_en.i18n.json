@@ -186,7 +186,8 @@
             "openWorkingDir": "Open Working Directory",
             "ignoreBatteryOptimizations": "Disable Battery Optimization",
             "ignoreBatteryOptimizationsMsg": "Remove restrictions for optimal VPN performance",
-            "dynamicNotification": "Display speed in notification"
+            "dynamicNotification": "Display speed in notification",
+            "hapticFeedback": "Haptic Feedback"
         },
         "advanced": {
             "sectionTitle": "Advanced",
