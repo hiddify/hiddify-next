@@ -1,7 +1,6 @@
-display_name: HiddifyNext
+display_name: Hiddify
 url: https://github.com/hiddify/hiddify-next/
 license: Other
-
 
 packager: hiddify
 packagerEmail: linux@hiddify.com
@@ -21,7 +20,6 @@ keywords:
   - Xray
   - Psiphon
   - OpenVPN
-
 
 generic_name: Hiddify
 

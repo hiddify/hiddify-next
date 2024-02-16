@@ -1,3 +1,4 @@
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -99,7 +100,7 @@ class AddProfileModal extends HookConsumerWidget {
                         _Button(
                           key: const ValueKey("add_from_clipboard_button"),
                           label: t.profile.add.fromClipboard,
-                          icon: Icons.content_paste,
+                          icon: FluentIcons.clipboard_paste_24_regular,
                           size: buttonWidth,
                           onTap: () async {
                             final captureResult =
@@ -116,7 +117,7 @@ class AddProfileModal extends HookConsumerWidget {
                           _Button(
                             key: const ValueKey("add_by_qr_code_button"),
                             label: t.profile.add.scanQr,
-                            icon: Icons.qr_code_scanner,
+                            icon: FluentIcons.qr_code_24_regular,
                             size: buttonWidth,
                             onTap: () async {
                               final captureResult =
@@ -133,7 +134,7 @@ class AddProfileModal extends HookConsumerWidget {
                           _Button(
                             key: const ValueKey("add_manually_button"),
                             label: t.profile.add.manually,
-                            icon: Icons.add,
+                            icon: FluentIcons.add_24_regular,
                             size: buttonWidth,
                             onTap: () async {
                               context.pop();
@@ -170,7 +171,7 @@ class AddProfileModal extends HookConsumerWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Icon(
-                                    Icons.add,
+                                    FluentIcons.add_24_regular,
                                     color: theme.colorScheme.primary,
                                   ),
                                   const Gap(8),

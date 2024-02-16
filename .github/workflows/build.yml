@@ -13,11 +13,20 @@ on:
         default: "dev"
 
 env:
+  IS_GITHUB_ACTIONS: 1
   CHANNEL: "${{ inputs.channel }}"
   NDK_VERSION: r26b
   UPLOAD_ARTIFACT: "${{ inputs.upload-artifact }}"
   TAG_NAME: "${{ inputs.tag-name }}"
-
+  TARGET_NAME_AppImage: "Hiddify-Linux-x64"
+  TARGET_NAME_deb: "Hiddify-Debian-x64"
+  TARGET_NAME_rpm: "Hiddify-rpm-x64"
+  TARGET_NAME_apk: "Hiddify-Android"
+  TARGET_NAME_aab: "Hiddify-Android"
+  #TARGET_NAME_exe: "Hiddify-Windows-x64"
+  TARGET_NAME_dmg: "Hiddify-MacOS"
+  TARGET_NAME_pkg: "Hiddify-MacOS-Installer"
+  TARGET_NAME_ipa: "Hiddify-iOS"
 jobs:
   build:
     permissions: write-all
@@ -34,60 +43,36 @@ jobs:
             targets: aab
 
           - platform: windows
-            os: windows-latest
+            os: windows-2019
             aarch: amd64
             targets: exe
-            filename: hiddify-windows-x64
 
-          # - platform: linux-appimage
-          #   os: ubuntu-20.04
-          #   aarch: amd64
-          #   targets: AppImage
-          #   filename: hiddify-linux-x64
-
-          - platform: linux-deb
-            os: ubuntu-20.04
+          - platform: linux
+            os: ubuntu-22.04
             aarch: amd64
-            targets: deb
-            filename: hiddify-debian-x64
-            
-          - platform: linux-rpm
-            os: ubuntu-20.04
-            aarch: amd64
-            targets: rpm
-            filename: hiddify-rpm-x64
+            targets: AppImage,deb,rpm
 
           - platform: macos
             os: macos-13
             aarch: universal
-            targets: dmg
-            filename: hiddify-macos-universal
+            targets: dmg,pkg
 
     runs-on: ${{ matrix.os }}
     steps:
       - name: checkout
         uses: actions/checkout@v3
-      - name: Setup Apple dependencies
-        if: matrix.platform == 'macos' || matrix.platform == 'ios'
-        run: |
-          brew install create-dmg tree 
-          echo "installed create-dmg tree "
-          npm install -g appdmg
-
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.16.x'
           channel: 'stable'
           cache: true
-
       - name: Setup Java
         if: startsWith(matrix.platform,'android')
         uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
           java-version: 17
-
       - name: Setup NDK
         if: startsWith(matrix.platform,'android')
         uses: nttld/setup-ndk@v1.4.1
@@ -97,36 +82,15 @@ jobs:
           add-to-path: true
           link-to-sdk: true
 
-      - name: Setup Flutter Distributor
-        if: ${{ !startsWith(matrix.platform,'android') }}
-        run: |
-          dart pub global activate flutter_distributor
 
-      - name: Setup Linux dependencies
-        if: ${{ startsWith(matrix.platform,'linux') }}      
+      - name: Setup dependencies
         run: |
-          sudo apt install -y locate ninja-build pkg-config libgtk-3-dev libglib2.0-dev libgio2.0-cil-dev libayatana-appindicator3-dev fuse rpm patchelf
-          sudo modprobe fuse
-          wget -O appimagetool "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage"
-          chmod +x appimagetool
-          mv appimagetool /usr/local/bin/
+          make ${{ matrix.platform }}-install-dependencies
 
-      - name: Get Geo Assets
+      - name: Prepare for ${{ matrix.platform }}
         run: |
-          make get-geo-assets
-
-      - name: Get Dependencies
-        run: |
-          make get
-
-      - name: Generate
-        run: |
-          make translate
-          make gen
-
-      - name: Get Libs & Bindings ${{ matrix.platform }}
-        run: |
-          make ${{ matrix.platform }}-libs
+          make ${{ matrix.platform }}-prepare
+          tree
 
       - name: Setup Android Signing Properties
         if: startsWith(matrix.platform,'android')
@@ -198,10 +162,10 @@ jobs:
         run: |
           mkdir out
           ls -R ./build/app/outputs
-          cp ./build/app/outputs/flutter-apk/*arm64-v8a*.apk out/hiddify-android-arm64.apk || echo "no arm64 apk"
-          cp ./build/app/outputs/flutter-apk/*armeabi-v7a*.apk out/hiddify-android-arm7.apk || echo "no arm7 apk"
-          cp ./build/app/outputs/flutter-apk/*x86_64*.apk out/hiddify-android-x86_64.apk || echo "no x64 apk"
-          cp ./build/app/outputs/flutter-apk/app-release.apk out/hiddify-android-universal.apk || echo "no universal apk"
+          cp ./build/app/outputs/flutter-apk/*arm64-v8a*.apk out/${TARGET_NAME_apk}-arm64.apk || echo "no arm64 apk"
+          cp ./build/app/outputs/flutter-apk/*armeabi-v7a*.apk out/${TARGET_NAME_apk}-arm7.apk || echo "no arm7 apk"
+          cp ./build/app/outputs/flutter-apk/*x86_64*.apk out/${TARGET_NAME_apk}-x86_64.apk || echo "no x64 apk"
+          cp ./build/app/outputs/flutter-apk/app-release.apk out/${TARGET_NAME_apk}-universal.apk || echo "no universal apk"
 
       - name: Copy to out Android AAB
         if: matrix.platform == 'android-aab'
@@ -216,21 +180,29 @@ jobs:
           ls -R dist/
           mkdir out
           mkdir tmp_out
-          EXT="${{ matrix.targets }}"
-          mv dist/*/*.$EXT tmp_out/${{matrix.filename}}.$EXT
-          chmod +x tmp_out/${{matrix.filename}}.$EXT
-          if [ "${{matrix.platform}}" == "linux" ];then
-            cp ./.github/help/linux/* tmp_out/
-          else
-            cp ./.github/help/mac-windows/* tmp_out/
-          fi
-          if [[ "${{matrix.platform}}" == 'ios' ]];then
-            mv tmp_out/${{matrix.filename}}.ipa bin/${{matrix.filename}}.ipa
-          else
-            cd tmp_out
-            7z a ${{matrix.filename}}.zip ./
-            mv *.zip ../out/
-          fi
+          
+          for EXT in $(echo ${{ matrix.targets }} | tr ',' '\n'); do
+            KEY=TARGET_NAME_${EXT}
+            FILENAME=${!KEY}
+            echo "For $EXT ($KEY) filename is ${FILENAME}"
+            mv dist/*/*.$EXT tmp_out/${FILENAME}.$EXT
+            chmod +x tmp_out/${FILENAME}.$EXT
+            if [ "${{matrix.platform}}" == "linux" ];then
+              cp ./.github/help/linux/* tmp_out/
+            else
+              cp ./.github/help/mac-windows/* tmp_out/
+            fi
+            if [[ "${{matrix.platform}}" == 'ios' ]];then
+              mv tmp_out/${FILENAME}.$EXT bin/${FILENAME}.$EXT
+            else
+              cd tmp_out
+              # 7z a ${FILENAME}.zip ./
+              # mv ${FILENAME}.zip ../out/
+              # [[ $EXT == 'AppImage' ]]&& mv ${FILENAME}.$EXT ../out/ # added for appimage link
+              mv ${FILENAME}.$EXT ../out/
+              cd ..
+            fi
+          done
 
       - name: Clean up keychain and provisioning profile
         if: ${{ always() && startsWith(matrix.os,'macos')}}
@@ -342,4 +314,3 @@ jobs:
           releaseName: ${{ env.TAG_NAME }}
           releaseFiles: ./hiddify-android-market.aab
           track: 'beta'
-

@@ -1,3 +1,4 @@
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:fpdart/fpdart.dart';
@@ -5,6 +6,7 @@ import 'package:gap/gap.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/model/failures.dart';
 import 'package:hiddify/core/preferences/general_preferences.dart';
+import 'package:hiddify/core/widget/adaptive_icon.dart';
 import 'package:hiddify/features/common/nested_app_bar.dart';
 import 'package:hiddify/features/log/data/log_data_providers.dart';
 import 'package:hiddify/features/log/model/log_level.dart';
@@ -65,22 +67,26 @@ class LogsOverviewPage extends HookConsumerWidget with PresLogger {
                       if (state.paused)
                         IconButton(
                           onPressed: notifier.resume,
-                          icon: const Icon(Icons.play_arrow),
+                          icon: const Icon(FluentIcons.play_20_regular),
                           tooltip: t.logs.resumeTooltip,
+                          iconSize: 20,
                         )
                       else
                         IconButton(
                           onPressed: notifier.pause,
-                          icon: const Icon(Icons.pause),
+                          icon: const Icon(FluentIcons.pause_20_regular),
                           tooltip: t.logs.pauseTooltip,
+                          iconSize: 20,
                         ),
                       IconButton(
                         onPressed: notifier.clear,
-                        icon: const Icon(Icons.clear_all),
+                        icon: const Icon(FluentIcons.delete_lines_20_regular),
                         tooltip: t.logs.clearTooltip,
+                        iconSize: 20,
                       ),
                       if (popupButtons.isNotEmpty)
                         PopupMenuButton(
+                          icon: Icon(AdaptiveIcon(context).more),
                           itemBuilder: (context) {
                             return popupButtons;
                           },

@@ -1,6 +1,6 @@
 {
     "general": {
-        "appTitle": "Hiddify Next",
+        "appTitle": "Hiddify",
         "reset": "Reset",
         "toggle": {
             "enabled": "Enabled",
@@ -14,7 +14,10 @@
         "addToClipboard": "Add to clipboard",
         "notSet": "Not Set",
         "agree": "Agree",
-        "decline": "Decline"
+        "decline": "Decline",
+        "unknown": "Unknown",
+        "hidden": "Hidden",
+        "timeout": "timeout"
     },
     "intro": {
         "termsAndPolicyCaution(rich)": "by continuing you agree with ${tap(@:about.termsAndConditions)}",
@@ -37,7 +40,8 @@
             "traffic": "Live Traffic",
             "trafficTotal": "Total Traffic",
             "uplink": "Uplink",
-            "downlink": "Downlink"
+            "downlink": "Downlink",
+            "connection": "Connection"
         }
     },
     "profile": {
@@ -125,6 +129,20 @@
             "unsorted": "Default",
             "name": "Alphabetically",
             "delay": "By Delay"
+        },
+        "activeProxySemanticLabel": "Active proxy",
+        "delaySemantics": {
+            "result": "delay: ${delay}ms",
+            "timeout": "delay test timeout",
+            "testing": "delay: testing..."
+        },
+        "ipInfoSemantics": {
+            "address": "IP address",
+            "country": "Country"
+        },
+        "statsSemantics": {
+            "speed": "Speed",
+            "totalTransferred": "Total transferred"
         }
     },
     "logs": {
@@ -198,7 +216,8 @@
             "serviceModes": {
                 "proxy": "Proxy Service Only",
                 "systemProxy": "Set System Proxy",
-                "tun": "VPN"
+                "tun": "VPN",
+                "tunService": "VPN Service"
             },
             "section": {
                 "route": "Route Options",
@@ -351,8 +370,8 @@
         }
     },
     "play": {
-        "title": "Hiddify Next (Preview)",
+        "title": "Hiddify (Preview)",
         "short_description": "Auto, SSH, VLESS, Vmess, Trojan, Reality, Sing-Box, Clash, Xray, Shadowsocks",
-        "full_description": "The key goal of HiddifyNext is to provide a secure, user-friendly and efficient tunneling client. It enables you to route all traffic or selected app traffic to a remote server of your choose, utilizing VPN-Service permission.\n\nNote: We do not provide any server; users are required to ensure their online activities stay private by using use their own self-hosted server or trusted servers. \n \nWe support servers with:\n- Normal V2ray/Xray Subscription Link\n- Clash Subscription Link\n- Sing-Box Subscription Link\n\nWhat is our unique features?\n - User Friendly\n - Optimized and Fast\n - Automatically select LowestPing \n - Show user usage information\n - Easily import sublink by one click using deeplinking \n - Free and No ADS\n - Easily switch user sublinks\n - more and more\n\nSupport:\n- All Protocols supported by Sing-Box \n- VLESS + xtls reality, vision\n- VMESS\n- Trojan\n- ShoadowSocks\n- Reality\n- V2ray\n- Hystria2\n- TUIC\n- SSH\n- ShadowTLS\n\n\nThe source code exist in https://github.com/hiddify/Hiddify-Next\nThe application core is based on open-source sing-box.\n\nPermission Description:\n- VPN Service: As the goal of this application is to provide a secure, user-friendly and efficient tunneling client, we need this permission to be able to route the traffic via tunnel to the remote server. \n- QUERY ALL PACKAGES: This permission is used to allow users to include or exclude specific applications for tunneling.\n- RECEIVE BOOT COMPLETED: This permission can be enabled or disabled from app settings to activate this application upon device boot.\n- POST NOTIFICATIONS: This permission is essential as we employ a foreground service to ensure the continuous operation of the VPN service.\n- This application is free from advertisements. The analytics and crash data only occurs with the explicit consent of the user in the first use of application."
+        "full_description": "The key goal of Hiddify is to provide a secure, user-friendly and efficient tunneling client. It enables you to route all traffic or selected app traffic to a remote server of your choose, utilizing VPN-Service permission.\n\nNote: We do not provide any server; users are required to ensure their online activities stay private by using use their own self-hosted server or trusted servers. \n \nWe support servers with:\n- Normal V2ray/Xray Subscription Link\n- Clash Subscription Link\n- Sing-Box Subscription Link\n\nWhat is our unique features?\n - User Friendly\n - Optimized and Fast\n - Automatically select LowestPing \n - Show user usage information\n - Easily import sublink by one click using deeplinking \n - Free and No ADS\n - Easily switch user sublinks\n - more and more\n\nSupport:\n- All Protocols supported by Sing-Box \n- VLESS + xtls reality, vision\n- VMESS\n- Trojan\n- ShoadowSocks\n- Reality\n- V2ray\n- Hystria2\n- TUIC\n- SSH\n- ShadowTLS\n\n\nThe source code exist in https://github.com/hiddify/Hiddify-Next\nThe application core is based on open-source sing-box.\n\nPermission Description:\n- VPN Service: As the goal of this application is to provide a secure, user-friendly and efficient tunneling client, we need this permission to be able to route the traffic via tunnel to the remote server. \n- QUERY ALL PACKAGES: This permission is used to allow users to include or exclude specific applications for tunneling.\n- RECEIVE BOOT COMPLETED: This permission can be enabled or disabled from app settings to activate this application upon device boot.\n- POST NOTIFICATIONS: This permission is essential as we employ a foreground service to ensure the continuous operation of the VPN service.\n- This application is free from advertisements. The analytics and crash data only occurs with the explicit consent of the user in the first use of application."
     }
 }

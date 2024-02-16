@@ -1,4 +1,4 @@
-display_name: HiddifyNext
+display_name: Hiddify
 
 icon: ./assets/images/source/ic_launcher_border.png
 
@@ -28,6 +28,8 @@ categories:
   - Network
 
 startup_notify: true
+
+app_run_file: AppRun
 
 # You can specify the shared libraries that you want to bundle with your app
 #

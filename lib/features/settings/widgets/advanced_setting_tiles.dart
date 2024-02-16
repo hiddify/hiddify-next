@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/preferences/general_preferences.dart';
@@ -24,15 +25,10 @@ class AdvancedSettingTiles extends HookConsumerWidget {
       children: [
         const RegionPrefTile(),
         ListTile(
-          title: Text(t.settings.config.pageTitle),
-          leading: const Icon(Icons.edit_document),
-          onTap: () async {
-            await const ConfigOptionsRoute().push(context);
-          },
-        ),
-        ListTile(
           title: Text(t.settings.geoAssets.pageTitle),
-          leading: const Icon(Icons.folder),
+          leading: const Icon(
+            FluentIcons.arrow_routing_rectangle_multiple_24_regular,
+          ),
           onTap: () async {
             await const GeoAssetsRoute().push(context);
           },
@@ -40,7 +36,7 @@ class AdvancedSettingTiles extends HookConsumerWidget {
         if (Platform.isAndroid) ...[
           ListTile(
             title: Text(t.settings.network.perAppProxyPageTitle),
-            leading: const Icon(Icons.apps),
+            leading: const Icon(FluentIcons.apps_list_detail_24_regular),
             trailing: Switch(
               value: perAppProxy,
               onChanged: (value) async {
@@ -68,7 +64,7 @@ class AdvancedSettingTiles extends HookConsumerWidget {
           title: Text(t.settings.advanced.memoryLimit),
           subtitle: Text(t.settings.advanced.memoryLimitMsg),
           value: !disableMemoryLimit,
-          secondary: const Icon(Icons.memory),
+          secondary: const Icon(FluentIcons.developer_board_24_regular),
           onChanged: (value) async {
             await ref.read(disableMemoryLimitProvider.notifier).update(!value);
           },
@@ -76,7 +72,7 @@ class AdvancedSettingTiles extends HookConsumerWidget {
         if (Platform.isIOS)
           ListTile(
             title: Text(t.settings.advanced.resetTunnel),
-            leading: const Icon(Icons.restart_alt),
+            leading: const Icon(FluentIcons.arrow_reset_24_regular),
             onTap: () async {
               await ref.read(resetTunnelProvider.notifier).run();
             },
@@ -84,7 +80,7 @@ class AdvancedSettingTiles extends HookConsumerWidget {
         SwitchListTile(
           title: Text(t.settings.advanced.debugMode),
           value: debug,
-          secondary: const Icon(Icons.bug_report),
+          secondary: const Icon(FluentIcons.window_dev_tools_24_regular),
           onChanged: (value) async {
             if (value) {
               await showDialog<bool>(

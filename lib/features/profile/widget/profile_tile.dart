@@ -1,3 +1,4 @@
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -6,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/model/failures.dart';
 import 'package:hiddify/core/router/router.dart';
+import 'package:hiddify/core/widget/adaptive_icon.dart';
 import 'package:hiddify/core/widget/adaptive_menu.dart';
 import 'package:hiddify/features/common/confirmation_dialogs.dart';
 import 'package:hiddify/features/common/qr_code_dialog.dart';
@@ -132,7 +134,10 @@ class ProfileTile extends HookConsumerWidget {
                                       ),
                                     ),
                                   ),
-                                  const Icon(Icons.arrow_drop_down),
+                                  const Icon(
+                                    FluentIcons.caret_down_16_filled,
+                                    size: 16,
+                                  ),
                                 ],
                               ),
                             ),
@@ -196,7 +201,7 @@ class ProfileActionButton extends HookConsumerWidget {
                   .read(updateProfileProvider(profile.id).notifier)
                   .updateProfile(profile as RemoteProfileEntity);
             },
-            child: const Icon(Icons.update),
+            child: const Icon(FluentIcons.arrow_sync_24_filled),
           ),
         ),
       );
@@ -210,7 +215,7 @@ class ProfileActionButton extends HookConsumerWidget {
             message: MaterialLocalizations.of(context).showMenuTooltip,
             child: InkWell(
               onTap: toggleVisibility,
-              child: const Icon(Icons.more_vert),
+              child: Icon(AdaptiveIcon(context).more),
             ),
           ),
         );
@@ -248,7 +253,7 @@ class ProfileActionsMenu extends HookConsumerWidget {
       if (profile case RemoteProfileEntity())
         AdaptiveMenuItem(
           title: t.profile.update.buttonTxt,
-          icon: Icons.update,
+          icon: FluentIcons.arrow_sync_24_regular,
           onTap: () {
             if (ref.read(updateProfileProvider(profile.id)).isLoading) {
               return;
@@ -260,7 +265,7 @@ class ProfileActionsMenu extends HookConsumerWidget {
         ),
       AdaptiveMenuItem(
         title: t.profile.share.buttonText,
-        icon: Icons.share,
+        icon: AdaptiveIcon(context).share,
         subItems: [
           if (profile case RemoteProfileEntity(:final url, :final name)) ...[
             AdaptiveMenuItem(
@@ -305,14 +310,14 @@ class ProfileActionsMenu extends HookConsumerWidget {
         ],
       ),
       AdaptiveMenuItem(
-        icon: Icons.edit,
+        icon: FluentIcons.edit_24_regular,
         title: t.profile.edit.buttonTxt,
         onTap: () async {
           await ProfileDetailsRoute(profile.id).push(context);
         },
       ),
       AdaptiveMenuItem(
-        icon: Icons.delete,
+        icon: FluentIcons.delete_24_regular,
         title: t.profile.delete.buttonTxt,
         onTap: () async {
           if (deleteProfileMutation.state.isInProgress) {

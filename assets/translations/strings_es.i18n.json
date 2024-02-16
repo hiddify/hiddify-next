@@ -1,7 +1,7 @@
 {
     "general": {
-        "appTitle": "Hiddify Next",
         "reset": "Renicio",
+        "appTitle": "Hiddify",
         "toggle": {
             "enabled": "Activado",
             "disabled": "Desactivado"
@@ -14,7 +14,8 @@
         "addToClipboard": "Añadir al portapapeles",
         "notSet": "No establecido",
         "agree": "Aceptar",
-        "decline": "Rechazar"
+        "decline": "Rechazar",
+        "unknown": "Desconocido"
     },
     "intro": {
         "termsAndPolicyCaution(rich)": "al continuar, aceptas ${tap(@:about.termsAndConditions)}",

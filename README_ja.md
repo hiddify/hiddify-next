@@ -3,9 +3,10 @@
 [**![Lang_farsi](https://user-images.githubusercontent.com/125398461/234186932-52f1fa82-52c6-417f-8b37-08fe9250a55f.png) فارسی**](README_fa.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**Русский 🇷🇺**](README_ru.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**简体中文 🇨🇳**](README_cn.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**English 🇺🇸**](README.md)
 
 </div>
+<br>
 
-<p align="center"><img src="assets/images/logo.svg" width="168"/></p>
-
+<p align="center"><img src="https://github.com/hiddify/hiddify-next/assets/125398461/d821cfe0-b4c4-441f-be4e-eb9209f59542" /></p>
+<br>
 
 <div align="center">
 
@@ -23,7 +24,7 @@
 
 ## Hiddify-Next とは？
 
-<p dir="ltr" style="font-size: 16px"><a href="https://github.com/SagerNet/sing-box">Sing-box</a> ユニバーサルプロキシツールチェーンに基づくマルチプラットフォームプロキシクライアントです。Hiddify Next は、自動ノード選択、TUN モード、リモートプロファイルなど、幅広い機能を提供します。Hiddify Next は無料でオープンソースです。幅広いプロトコルをサポートし、無料インターネットにアクセスするための安全でプライベートな方法を提供します。</p>
+<p dir="ltr" style="font-size: 16px"><a href="https://github.com/SagerNet/sing-box">Sing-box</a> ユニバーサルプロキシツールチェーンに基づくマルチプラットフォームプロキシクライアントです。Hiddify は、自動ノード選択、TUN モード、リモートプロファイルなど、幅広い機能を提供します。Hiddify は無料でオープンソースです。幅広いプロトコルをサポートし、無料インターネットにアクセスするための安全でプライベートな方法を提供します。</p>
 
 <div align=center>
 <img width=90% alt="English Demo" src="https://github.com/hiddify/hiddify-next/assets/125398461/ffe5346d-3404-470f-b5e0-4364e23743d2">
@@ -144,7 +145,7 @@ Vless、Vmess、Reality、TUIC、Hysteria、SSHなど。
 
 ## 👩‍🏫 コラボレーションおよび連絡先
 
-Hiddify Next はコミュニティドリブンのプロジェクトです。コントリビュートすることに興味がある方は、[コントリビューションガイドライン](./CONTRIBUTING.md)をお読みください。私たちは特に以下の分野において、どのような協力でもいただけるとありがたいです: **Flutter、Go、iOS開発（Swift）、Androi d開発（Kotlin）。**
+Hiddify はコミュニティドリブンのプロジェクトです。コントリビュートすることに興味がある方は、[コントリビューションガイドライン](./CONTRIBUTING.md)をお読みください。私たちは特に以下の分野において、どのような協力でもいただけるとありがたいです: **Flutter、Go、iOS開発（Swift）、Androi d開発（Kotlin）。**
 
 <div align=center>
 

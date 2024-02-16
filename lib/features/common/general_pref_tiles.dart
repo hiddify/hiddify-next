@@ -1,3 +1,4 @@
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:hiddify/core/analytics/analytics_controller.dart';
 import 'package:hiddify/core/localization/locale_extensions.dart';
@@ -19,7 +20,7 @@ class LocalePrefTile extends HookConsumerWidget {
     return ListTile(
       title: Text(t.settings.general.locale),
       subtitle: Text(locale.localeName),
-      leading: const Icon(Icons.language),
+      leading: const Icon(FluentIcons.local_language_24_regular),
       onTap: () async {
         final selectedLocale = await showDialog<AppLocale>(
           context: context,
@@ -61,7 +62,7 @@ class RegionPrefTile extends HookConsumerWidget {
     return ListTile(
       title: Text(t.settings.general.region),
       subtitle: Text(region.present(t)),
-      leading: const Icon(Icons.my_location),
+      leading: const Icon(FluentIcons.globe_location_24_regular),
       onTap: () async {
         final selectedRegion = await showDialog<Region>(
           context: context,
@@ -111,7 +112,7 @@ class EnableAnalyticsPrefTile extends HookConsumerWidget {
         t.settings.general.enableAnalyticsMsg,
         style: Theme.of(context).textTheme.bodySmall,
       ),
-      secondary: const Icon(Icons.bug_report),
+      secondary: const Icon(FluentIcons.bug_24_regular),
       value: enabled,
       onChanged: (value) async {
         if (onChanged != null) {

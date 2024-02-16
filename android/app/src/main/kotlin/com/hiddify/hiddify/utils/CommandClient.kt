@@ -23,7 +23,7 @@ open class CommandClient(
 ) {
 
     enum class ConnectionType {
-        Status, Groups, Log, ClashMode
+        Status, Groups, Log, ClashMode, GroupOnly
     }
 
     interface Handler {
@@ -50,6 +50,7 @@ open class CommandClient(
             ConnectionType.Groups -> Libbox.CommandGroup
             ConnectionType.Log -> Libbox.CommandLog
             ConnectionType.ClashMode -> Libbox.CommandClashMode
+            ConnectionType.GroupOnly -> Libbox.CommandGroupInfoOnly
         }
         options.statusInterval = 2 * 1000 * 1000 * 1000
         val commandClient = CommandClient(clientHandler, options)

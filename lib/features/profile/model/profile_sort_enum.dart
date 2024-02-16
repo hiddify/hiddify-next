@@ -1,3 +1,4 @@
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:hiddify/core/localization/translations.dart';
 
@@ -13,8 +14,8 @@ enum ProfilesSort {
   }
 
   IconData get icon => switch (this) {
-        lastUpdate => Icons.update,
-        name => Icons.sort_by_alpha,
+        lastUpdate => FluentIcons.history_24_regular,
+        name => FluentIcons.text_sort_ascending_24_regular,
       };
 }
 

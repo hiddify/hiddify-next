@@ -31,6 +31,7 @@ class ProxyItemEntity with _$ProxyItemEntity {
   String get name => _sanitizedTag(tag);
   String? get selectedName =>
       selectedTag == null ? null : _sanitizedTag(selectedTag!);
+  bool get isVisible => !tag.contains("§hide§");
 }
 
 String _sanitizedTag(String tag) =>

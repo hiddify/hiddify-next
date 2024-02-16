@@ -92,7 +92,7 @@ object Settings {
         }
     }
 
-    private var currentServiceMode = ServiceMode.NORMAL;
+    private var currentServiceMode : String? = null
 
     suspend fun rebuildServiceMode(): Boolean {
         var newMode = ServiceMode.NORMAL

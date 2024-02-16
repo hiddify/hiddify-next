@@ -1,6 +1,6 @@
 # Contributing
 
-Every contribution to Hiddify Next is welcome, whether it is reporting a bug, submitting a fix, proposing new features, or just asking a question. To make contributing to Hiddify Next as easy as possible, you will find more details for the development flow in this documentation.
+Every contribution to Hiddify is welcome, whether it is reporting a bug, submitting a fix, proposing new features, or just asking a question. To make contributing to Hiddify as easy as possible, you will find more details for the development flow in this documentation.
 
 Please note, we have a [Code of Conduct](https://github.com/hiddify/hiddify-next/blob/main/CODE_OF_CONDUCT.md), please follow it in all your interactions with the project.
 
@@ -23,11 +23,16 @@ If you encounter any issue, or you have an idea to improve, please:
 
 ## Adding new Features
 
-When contributing a complex change to the Hiddify Next repository, please discuss the change you wish to make within a GitHub issue with the owners of this repository before making the change.
+When contributing a complex change to the Hiddify repository, please discuss the change you wish to make within a GitHub issue with the owners of this repository before making the change.
+
 
 ## Development
 
-Hiddify Next uses [Flutter](https://flutter.dev) and [Go](https://go.dev), make sure that you have the correct version installed before starting development. You can use the following commands to check your installed version:
+### Adding Feature / Fix bug in Core:
+Please follow our [Go Core Development repository](https://github.com/hiddify/hiddify-next-core/main/CONTRIBUTING.m).
+
+### Working with the Flutter Code
+Hiddify uses [Flutter](https://flutter.dev), make sure that you have the correct version installed before starting development. You can use the following commands to check your installed version:
 
 ```shell
 $ flutter --version
@@ -37,62 +42,31 @@ Flutter 3.13.4 • channel stable • https://github.com/flutter/flutter.git
 Framework • revision 367f9ea16b (4 weeks ago) • 2023-09-12 23:27:53 -0500
 Engine • revision 9064459a8b
 Tools • Dart 3.1.2 • DevTools 2.25.0
-
-
-$ go version
-
-# example response
-go version go1.21.1 darwin/arm64
 ```
 
-### Working with the Go Code
-
-> if you're not interested in building/contributing to the Go code, you can skip this section
-
-The Go code for Hiddify Next can be found in the `libcore` folder, as a [git submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules) and in [core repository](https://github.com/hiddify/hiddify-next-core). The entrypoints for the desktop version are available in the [`libcore/custom`](https://github.com/hiddify/hiddify-next-core/tree/main/custom) folder and for the mobile version they can be found in the [`libcore/mobile`](https://github.com/hiddify/hiddify-next-core/tree/main/mobile) folder.
-
-For the desktop version, we have to compile the Go code into a C shared library. We are providing a Makefile to generate the C shared libraries for all operating systems. The following Make commands will build libcore and copy the resulting output in [`libcore/bin`](https://github.com/hiddify/hiddify-next-core/tree/main/bin):
-
-- `make windows-amd64`
-- `make linux-amd64`
-- `make macos-universal`
-
-For the mobile version, we are using the [`gomobile`](https://github.com/golang/go/wiki/Mobile) tools. The following Make commands will build libcore for Android and iOS and copy the resulting output in [`libcore/bin`](https://github.com/hiddify/hiddify-next-core/tree/main/bin):
-
-- `make android`
-- `make ios`
-
-### Working with the Flutter Code
 
 We recommend using [Visual Studio Code](https://docs.flutter.dev/development/tools/vs-code) extensions for development.
 
 #### Setting up the Environment
 
 We have extensive use of code generation in the form of [freezed](https://github.com/rrousselGit/freezed), [riverpod](https://github.com/rrousselGit/riverpod), etc. So it's generate these before running the code. Execute the following make commands in order:
-
-```shell
-# fetch dependencies
-$ make get
-
-# generate translations
-$ make translate
-
-# fetch geo assets
-$ make get-geo-assets
-
-# generate dart code using build_runner
-$ make gen
-```
-
 Assuming you have not built the `libcore` and want to use [existing releases](https://github.com/hiddify/hiddify-next-core/releases), you should run the following command (based on your target platform):
 
-- `make windows-libs`
-- `make linux-libs`
-- `make macos-libs`
-- `make android-libs`
-- `make ios-libs`
 
-If you want to build the `libcore` from source, prefix the above command with `build-` like `make build-windows-libs`.
+- `make windows-prepare`
+- `make linux-prepare` 
+- `make macos-prepare`
+- `make ios-prepare`
+- `make android-prepare`
+
+
+##### build the `libcore` from source (Optional)
+If you want to build the `libcore` from source after `make prepare`, use:
+- `make build-windows-libs`
+- `make build-linux-libs` 
+- `make build-macos-libs`
+- `make build-ios-libs`
+- `make build-android-libs`
 
 #### Run Release Build on a Device
 
@@ -112,7 +86,9 @@ Chrome (web)      • chrome   • web-javascript • Google Chrome 117.0.5938.1
 Then we can use one of the listed devices and execute the following command to build and run the app on this device:
 
 ```shell
-flutter run --release --target lib/main_dev.dart --device-id=35492ae2
+flutter run
+# or
+flutter run --device-id=35492ae2
 ```
 
 ## Release
@@ -132,7 +108,6 @@ We need your collaboration in order to develop this project. If you have experie
 
 - Flutter Developing
 - Swift Developing
-- Kotlin Developing
 - Go Developing
 
 <div align=center>

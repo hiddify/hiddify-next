@@ -8,7 +8,6 @@ import 'package:hiddify/features/connection/notifier/connection_notifier.dart';
 import 'package:hiddify/features/proxy/data/proxy_data_providers.dart';
 import 'package:hiddify/features/proxy/model/proxy_entity.dart';
 import 'package:hiddify/features/proxy/model/proxy_failure.dart';
-import 'package:hiddify/singbox/model/singbox_proxy_type.dart';
 import 'package:hiddify/utils/pref_notifier.dart';
 import 'package:hiddify/utils/riverpod_utils.dart';
 import 'package:hiddify/utils/utils.dart';
@@ -94,14 +93,14 @@ class ProxiesOverviewNotifier extends _$ProxiesOverviewNotifier with AppLogger {
         for (final group in proxies) {
           final sortedItems = switch (sortBy) {
             ProxiesSort.name => group.items.sortedWith((a, b) {
-                if(a.type.isGroup && !b.type.isGroup) return -1;
-                if(!a.type.isGroup && b.type.isGroup) return 1;
+                if (a.type.isGroup && !b.type.isGroup) return -1;
+                if (!a.type.isGroup && b.type.isGroup) return 1;
                 return a.tag.compareTo(b.tag);
-            }),
+              }),
             ProxiesSort.delay => group.items.sortedWith((a, b) {
-                if(a.type.isGroup && !b.type.isGroup) return -1;
-                if(!a.type.isGroup && b.type.isGroup) return 1;
-                
+                if (a.type.isGroup && !b.type.isGroup) return -1;
+                if (!a.type.isGroup && b.type.isGroup) return 1;
+
                 final ai = a.urlTestDelay;
                 final bi = b.urlTestDelay;
                 if (ai == 0 && bi == 0) return -1;

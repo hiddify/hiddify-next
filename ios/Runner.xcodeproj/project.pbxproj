@@ -42,6 +42,9 @@
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
+		D703EE932B764EA3001D88B3 /* CommandClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D703EE922B764EA3001D88B3 /* CommandClient.swift */; };
+		D703EE962B765176001D88B3 /* ActiveGroupsEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D703EE952B765176001D88B3 /* ActiveGroupsEventHandler.swift */; };
+		D7CC50862B768C50006BC140 /* Outbound.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CC50852B768C50006BC140 /* Outbound.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -164,6 +167,9 @@
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AC67B4DCF829F5B6F63AA7D /* Pods-Runner-SingBoxPacketTunnel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner-SingBoxPacketTunnel.release.xcconfig"; path = "Target Support Files/Pods-Runner-SingBoxPacketTunnel/Pods-Runner-SingBoxPacketTunnel.release.xcconfig"; sourceTree = "<group>"; };
 		C20A211B58CE31B2738D133C /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
+		D703EE922B764EA3001D88B3 /* CommandClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandClient.swift; sourceTree = "<group>"; };
+		D703EE952B765176001D88B3 /* ActiveGroupsEventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveGroupsEventHandler.swift; sourceTree = "<group>"; };
+		D7CC50852B768C50006BC140 /* Outbound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Outbound.swift; sourceTree = "<group>"; };
 		F3FFE1D9C2D5629FACC123EE /* Pods-Runner-SingBoxPacketTunnel.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner-SingBoxPacketTunnel.profile.xcconfig"; path = "Target Support Files/Pods-Runner-SingBoxPacketTunnel/Pods-Runner-SingBoxPacketTunnel.profile.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -218,6 +224,7 @@
 				03B5166C2AE7325500EA47E2 /* LogsEventHandler.swift */,
 				03B5167C2AE7AC6200EA47E2 /* GroupsEventHandler.swift */,
 				0736958C2B3B79E0007249BE /* StatsEventHandler.swift */,
+				D703EE952B765176001D88B3 /* ActiveGroupsEventHandler.swift */,
 			);
 			path = Handlers;
 			sourceTree = "<group>";
@@ -258,6 +265,8 @@
 			isa = PBXGroup;
 			children = (
 				03E392CE2ADDEFC8000ADF15 /* FilePath.swift */,
+				D703EE922B764EA3001D88B3 /* CommandClient.swift */,
+				D7CC50852B768C50006BC140 /* Outbound.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -672,13 +681,16 @@
 				03B5167B2AE79DB400EA47E2 /* FileMethodHandler.swift in Sources */,
 				03B516772AE7634400EA47E2 /* Logger.swift in Sources */,
 				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
+				D703EE962B765176001D88B3 /* ActiveGroupsEventHandler.swift in Sources */,
 				03B516712AE74CCD00EA47E2 /* VPNConfig.swift in Sources */,
 				03B5166B2AE7315E00EA47E2 /* AlertsEventHandler.swift in Sources */,
 				0736958B2B3AC96D007249BE /* Bundle+Properties.swift in Sources */,
 				0736958D2B3B79E0007249BE /* StatsEventHandler.swift in Sources */,
 				03B516692AE7306B00EA47E2 /* StatusEventHandler.swift in Sources */,
+				D7CC50862B768C50006BC140 /* Outbound.swift in Sources */,
 				032158B82ADDF8BF008D943B /* VPNManager.swift in Sources */,
 				0736958F2B3B8048007249BE /* PlatformMethodHandler.swift in Sources */,
+				D703EE932B764EA3001D88B3 /* CommandClient.swift in Sources */,
 				03B516672AE6B93A00EA47E2 /* MethodHandler.swift in Sources */,
 				03B5166D2AE7325500EA47E2 /* LogsEventHandler.swift in Sources */,
 				03E392D02ADDF1BD000ADF15 /* FilePath.swift in Sources */,
@@ -739,7 +751,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = SingBoxPacketTunnel/SingBoxPacketTunnel.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1504;
+				CURRENT_PROJECT_VERSION = 1511;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				EXCLUDED_ARCHS = armv7;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
@@ -758,7 +770,7 @@
 					"@executable_path/libcore/",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 0.15.4;
+				MARKETING_VERSION = 0.15.11;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-lresolv";
@@ -790,7 +802,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = SingBoxPacketTunnel/SingBoxPacketTunnel.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1504;
+				CURRENT_PROJECT_VERSION = 1511;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				EXCLUDED_ARCHS = armv7;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
@@ -809,7 +821,7 @@
 					"@executable_path/libcore/",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 0.15.4;
+				MARKETING_VERSION = 0.15.11;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-lresolv";
@@ -839,7 +851,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = SingBoxPacketTunnel/SingBoxPacketTunnel.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1504;
+				CURRENT_PROJECT_VERSION = 1511;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				EXCLUDED_ARCHS = armv7;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
@@ -858,7 +870,7 @@
 					"@executable_path/libcore/",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 0.15.4;
+				MARKETING_VERSION = 0.15.11;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-lresolv";

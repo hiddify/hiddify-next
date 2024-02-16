@@ -1,6 +1,6 @@
 {
     "general": {
-        "appTitle": "Hiddify Next",
+        "appTitle": "Hiddify",
         "reset": "Sıfırla",
         "toggle": {
             "enabled": "Etkin",
@@ -14,7 +14,8 @@
         "addToClipboard": "Panoya ekle",
         "notSet": "Ayarlanmadı",
         "agree": "Kabul etmek",
-        "decline": "Reddetmek"
+        "decline": "Reddetmek",
+        "unknown": "Bilinmeyen"
     },
     "intro": {
         "termsAndPolicyCaution(rich)": "devam ederek ${tap(@:about.termsAndConditions)} kabul etmiş olursunuz",
@@ -351,8 +352,8 @@
         }
     },
     "play": {
-        "title": "Hiddify Next (Önizleme)",
+        "title": "Hiddify (Önizleme)",
         "short_description": "Otomatik, SSH, VLESS, Vmess, Trojan, Reality, Sing-Box, Clash, Xray, Shadowsocks",
-        "full_description": "HiddifyNext'in temel hedefi güvenli, kullanıcı dostu ve verimli bir tünel istemcisi sağlamaktır. VPN Hizmeti iznini kullanarak tüm trafiği veya seçilen uygulama trafiğini seçtiğiniz uzak bir sunucuya yönlendirmenizi sağlar. Not: Herhangi bir sunucu sağlamıyoruz; kullanıcıların kendi barındırılan sunucularını veya güvenilir sunucularını kullanarak çevrimiçi etkinliklerinin gizli kalmasını sağlamaları gerekir. Sunucuları aşağıdakilerle destekliyoruz: - Normal V2ray/Xray Abonelik Bağlantısı - Clash Abonelik Bağlantısı - Sing-Box Abonelik Bağlantısı Benzersiz özelliklerimiz nelerdir? - Kullanıcı Dostu - Optimize Edilmiş ve Hızlı - En Düşük Ping'i otomatik olarak seçin - Kullanıcı kullanım bilgilerini gösterin - Derin bağlantı kullanarak tek tıklamayla alt bağlantıyı kolayca içe aktarın - Ücretsiz ve ADS Yok - Kullanıcı alt bağlantılarını kolayca değiştirin - giderek daha fazla Destek: - Sing-Box tarafından desteklenen tüm Protokoller - VLESS + xtls gerçeklik, vizyon - VMESS - Trojan - ShoadowSocks - Reality - V2ray - Hystria2 - TUIC - SSH - ShadowTLS Kaynak kodu https://github.com/hiddify/Hiddify-Next adresinde mevcuttur. Uygulama çekirdeği açık tabanlıdır. kaynak şarkı kutusu. İzin Açıklaması: - VPN Hizmeti: Bu uygulamanın amacı güvenli, kullanıcı dostu ve verimli bir tünel istemcisi sağlamak olduğundan, trafiği tünel aracılığıyla uzak sunucuya yönlendirebilmek için bu izne ihtiyacımız var. - TÜM PAKETLERİ SORGULAYIN: Bu izin, kullanıcıların tünelleme için belirli uygulamaları dahil etmesine veya hariç tutmasına izin vermek için kullanılır. - ALMA ÖNYÜKLEME TAMAMLANDI: Bu izin, cihaz önyüklemesi sırasında bu uygulamayı etkinleştirmek için uygulama ayarlarından etkinleştirilebilir veya devre dışı bırakılabilir. - BİLDİRİMLER SONRASI: VPN hizmetinin sürekli çalışmasını sağlamak için bir ön plan hizmeti kullandığımız için bu izin önemlidir. - Bu uygulama reklam içermez. Analitik ve kilitlenme verileri yalnızca uygulamanın ilk kullanımında kullanıcının açık rızası ile gerçekleşir."
+        "full_description": "Hiddify'in temel hedefi güvenli, kullanıcı dostu ve verimli bir tünel istemcisi sağlamaktır. VPN Hizmeti iznini kullanarak tüm trafiği veya seçilen uygulama trafiğini seçtiğiniz uzak bir sunucuya yönlendirmenizi sağlar. Not: Herhangi bir sunucu sağlamıyoruz; kullanıcıların kendi barındırılan sunucularını veya güvenilir sunucularını kullanarak çevrimiçi etkinliklerinin gizli kalmasını sağlamaları gerekir. Sunucuları aşağıdakilerle destekliyoruz: - Normal V2ray/Xray Abonelik Bağlantısı - Clash Abonelik Bağlantısı - Sing-Box Abonelik Bağlantısı Benzersiz özelliklerimiz nelerdir? - Kullanıcı Dostu - Optimize Edilmiş ve Hızlı - En Düşük Ping'i otomatik olarak seçin - Kullanıcı kullanım bilgilerini gösterin - Derin bağlantı kullanarak tek tıklamayla alt bağlantıyı kolayca içe aktarın - Ücretsiz ve ADS Yok - Kullanıcı alt bağlantılarını kolayca değiştirin - giderek daha fazla Destek: - Sing-Box tarafından desteklenen tüm Protokoller - VLESS + xtls gerçeklik, vizyon - VMESS - Trojan - ShoadowSocks - Reality - V2ray - Hystria2 - TUIC - SSH - ShadowTLS Kaynak kodu https://github.com/hiddify/Hiddify-Next adresinde mevcuttur. Uygulama çekirdeği açık tabanlıdır. kaynak şarkı kutusu. İzin Açıklaması: - VPN Hizmeti: Bu uygulamanın amacı güvenli, kullanıcı dostu ve verimli bir tünel istemcisi sağlamak olduğundan, trafiği tünel aracılığıyla uzak sunucuya yönlendirebilmek için bu izne ihtiyacımız var. - TÜM PAKETLERİ SORGULAYIN: Bu izin, kullanıcıların tünelleme için belirli uygulamaları dahil etmesine veya hariç tutmasına izin vermek için kullanılır. - ALMA ÖNYÜKLEME TAMAMLANDI: Bu izin, cihaz önyüklemesi sırasında bu uygulamayı etkinleştirmek için uygulama ayarlarından etkinleştirilebilir veya devre dışı bırakılabilir. - BİLDİRİMLER SONRASI: VPN hizmetinin sürekli çalışmasını sağlamak için bir ön plan hizmeti kullandığımız için bu izin önemlidir. - Bu uygulama reklam içermez. Analitik ve kilitlenme verileri yalnızca uygulamanın ilk kullanımında kullanıcının açık rızası ile gerçekleşir."
     }
 }

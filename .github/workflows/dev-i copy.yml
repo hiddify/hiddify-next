@@ -1,0 +1,206 @@
+name: dev i new
+on:
+  push:
+    branches:
+      - ios
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - '.github/**'
+      - '!.github/workflows/*'
+      - 'appcast.xml'
+
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}
+  cancel-in-progress: true
+
+env:
+  CHANNEL: ${{ github.ref_type == 'tag' && endsWith(github.ref_name, 'dev') && 'dev' || github.ref_type != 'tag' && 'dev' || 'prod' }}
+  NDK_VERSION: r26b
+
+jobs:
+  build:
+    permissions: write-all
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # - platform: android-apk
+          #   os: ubuntu-latest
+          #   targets: apk
+
+          # - platform: android-aab
+          #   os: ubuntu-latest
+          #   targets: aab
+
+          # - platform: windows
+          #   os: windows-latest
+          #   aarch: amd64
+          #   targets: exe
+          #   filename: hiddify-windows-x64
+
+          # - platform: linux
+          #   os: ubuntu-latest
+          #   aarch: amd64
+          #   targets: AppImage
+          #   filename: hiddify-linux-x64
+
+          # - platform: macos
+          #   os: macos-13
+          #   aarch: universal
+          #   targets: dmg
+          #   filename: hiddify-macos-universal
+
+          - platform: ios
+            os: macos-13
+            aarch: universal
+            filename: hiddify-ios
+            targets: ipa
+
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: Install macos dmg needed tools
+        if: matrix.platform == 'macos' || matrix.platform == 'ios'
+        run: |
+          # xcode-select --install || softwareupdate --all --install --force
+          # brew uninstall --force $(brew list | grep python@) && brew cleanup || echo "python not installed"
+          brew uninstall --ignore-dependencies python@3.12
+          brew reinstall python@3.10
+          python3 -m pip install --upgrade setuptools pip
+          brew install create-dmg tree 
+          npm install -g appdmg
+          brew install graphicsmagick imagemagick
+          gem install fastlane
+          bundle install
+          pip install setuptools
+          npm install --global create-dmg
+
+      - name: Fastlane Release
+        shell: bash
+        run: fastlane release
+        env:
+          MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT: 120 # x86 is slooooooow
+          
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: '15.0.1'
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.16.x'
+          channel: 'stable'
+          cache: true
+
+      
+      - name: Setup Flutter Distributor
+        if: ${{ !startsWith(matrix.platform,'android') }}
+        run: |
+          dart pub global activate flutter_distributor
+
+      
+      - name: Get Geo Assets
+        run: |
+          make get-geo-assets
+
+      - name: Get Dependencies
+        run: |
+          make get
+
+      - name: Generate
+        run: |
+          make translate
+          make gen
+
+      - name: Get Libs ${{ matrix.platform }}
+        run: |
+          make ${{ matrix.platform }}-libs
+
+
+      - name: Setup Apple certificate and provisioning profile
+        if: startsWith(matrix.os,'macos')
+        env:
+          BUILD_CERTIFICATE_BASE64: ${{ secrets.APPLE_BUILD_CERTIFICATE_BASE64 }}
+          P12_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_P12_PASSWORD }}
+          BUILD_PROVISION_PROFILE_BASE64: ${{ secrets.APPLE_BUILD_PROVISION_PROFILE_BASE64 }}
+          BUILD_PACKET_TUNNEL_PROVISION_PROFILE_BASE64: ${{ secrets.APPLE_BUILD_PACKET_TUNNEL_PROVISION_PROFILE_BASE64 }}
+          KEYCHAIN_PASSWORD: ${{ secrets.APPLE_KEYCHAIN_PASSWORD }}
+        run: |
+          # create variables
+          CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
+          PP_PATH=$RUNNER_TEMP/build_pp.mobileprovision
+          PP_PACKET_TUNNEL_PATH=$RUNNER_TEMP/build_pppt.mobileprovision
+          KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
+
+          # import certificate and provisioning profile from secrets
+          echo -n "$BUILD_CERTIFICATE_BASE64" | base64 --decode -o $CERTIFICATE_PATH
+          echo -n "$BUILD_PROVISION_PROFILE_BASE64" | base64 --decode -o $PP_PATH
+          echo -n "$BUILD_PACKET_TUNNEL_PROVISION_PROFILE_BASE64" | base64 --decode -o $PP_PACKET_TUNNEL_PATH
+
+          # create temporary keychain
+          security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+          security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+
+          # import certificate to keychain
+          security import $CERTIFICATE_PATH -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+          security list-keychain -d user -s $KEYCHAIN_PATH
+
+          # apply provisioning profile
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
+          cp $PP_PACKET_TUNNEL_PATH ~/Library/MobileDevice/Provisioning\ Profiles
+
+      - name: Release ${{ matrix.platform }}
+        env:
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+        run: |
+          make ${{ matrix.platform }}-release
+
+      - name: Upload Debug Symbols
+        if: ${{ github.ref_type == 'tag' }}
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+          SENTRY_DIST: ${{ matrix.platform == 'android-aab' && 'google-play' || 'general' }}
+        run: |
+          flutter packages pub run sentry_dart_plugin
+
+
+      - name: Copy to out unix
+        if: matrix.platform == 'linux' || matrix.platform == 'macos' || matrix.platform == 'ios'
+        run: |
+          ls -R dist/
+          mkdir out
+          mkdir tmp_out
+          EXT="${{ matrix.targets }}"
+          mv dist/*/*.$EXT tmp_out/${{matrix.filename}}.$EXT
+          chmod +x tmp_out/${{matrix.filename}}.$EXT
+          if [ "${{matrix.platform}}" == "linux" ];then
+            cp ./.github/help/linux/* tmp_out/
+          else
+            cp ./.github/help/mac-windows/* tmp_out/
+          fi
+          if [[ "${{matrix.platform}}" == 'ios' ]];then
+            mv tmp_out/${{matrix.filename}}.ipa bin/${{matrix.filename}}.ipa
+          else
+            cd tmp_out
+            7z a ${{matrix.filename}}.zip ./
+            mv *.zip ../out/
+          fi
+
+      - name: Clean up keychain and provisioning profile
+        if: ${{ always() && startsWith(matrix.os,'macos')}}
+        run: |
+          security delete-keychain $RUNNER_TEMP/app-signing.keychain-db
+          rm ~/Library/MobileDevice/Provisioning\ Profiles/build_pp.mobileprovision
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: artifact
+          path: ./out
+          retention-days: 2

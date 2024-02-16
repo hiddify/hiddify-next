@@ -22,9 +22,9 @@
 
     <application
         android:name=".Application"
-        android:banner="@mipmap/ic_launcher_banner"
+        android:banner="@mipmap/ic_banner"
         android:icon="@mipmap/ic_launcher"
-        android:label="Hiddify Next"
+        android:label="Hiddify"
         android:roundIcon="@mipmap/ic_launcher_round"
         tools:targetApi="31">
 

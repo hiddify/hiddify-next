@@ -1,6 +1,6 @@
 {
     "general": {
-        "appTitle": "Hiddify Next",
+        "appTitle": "Hiddify",
         "reset": "重置",
         "toggle": {
             "enabled": "启用",
@@ -14,7 +14,8 @@
         "addToClipboard": "添加到剪贴板",
         "notSet": "没有设置",
         "agree": "同意",
-        "decline": "衰退"
+        "decline": "衰退",
+        "unknown": "未知"
     },
     "intro": {
         "termsAndPolicyCaution(rich)": "继续即表示您同意 ${tap(@:about.termsAndConditions)}",
@@ -355,8 +356,8 @@
         }
     },
     "play": {
-        "title": "Hiddify Next（预览）",
+        "title": "Hiddify（预览）",
         "short_description": "自动，SSH, VLESS, Vmess, Trojan, Reality, Sing-Box, Clash, Xray, Shadowsocks",
-        "full_description": "HiddifyNext 的主要目标是提供安全、用户友好且高效的隧道客户端。它使您能够利用 VPN 服务权限将所有流量或选定的应用程序流量路由到您选择的远程服务器。\n\n注：我们不提供任何服务器；用户需要使用自己托管的服务器或可信的服务器来确保您在线活动的私密性。\n \n我们支持以下类型的服务器：\n- 普通 V2ray/Xray 订阅链接\n- Clash 订阅链接\n- Sing-Box 订阅链接\n\n我们的特色是什么？\n\n- 用户友好\n- 优化和高速\n- 自动选择最低延迟\n- 显示用户使用信息\n- 通过一键链接轻松导入\n- 免费且无广告\n- 轻松切换线路\n- 等等\n\n支持：\n- Sing-Box 支持的所有协议\n- VLESS + XTLS Reality、Vision 协议\n- VMESS\n- Trojan\n- Shoadowsocks\n- Reality\n- V2ray\n- Hystria2\n- TUIC\n- SSH\n- ShadowTLS\n\n\n源代码位于 https://github.com/hiddify/Hiddify-Next\n应用程序核心基于开源的 Sing-Box。\n\n权限说明：\n\n- VPN 服务：由于此应用程序的目标是提供安全、用户友好和高效的隧道客户端，我们需要此权限以能够通过隧道将流量路由到远程服务器。\n- 获取应用程序列表：此权限用于允许用户包括或排除特定应用程序以进行隧道传输。\n- 接收开机广播：可以从应用程序设置中启用或禁用此权限，以便在设备启动时激活此应用程序。\n- 发送通知：此权限是必需的，因为我们使用前台服务来确保 VPN 服务的持续运行。\n- 本应用程序没有广告。分析和崩溃数据仅在首次使用应用程序时经用户明确同意的情况下发生。"
+        "full_description": "Hiddify 的主要目标是提供安全、用户友好且高效的隧道客户端。它使您能够利用 VPN 服务权限将所有流量或选定的应用程序流量路由到您选择的远程服务器。\n\n注：我们不提供任何服务器；用户需要使用自己托管的服务器或可信的服务器来确保您在线活动的私密性。\n \n我们支持以下类型的服务器：\n- 普通 V2ray/Xray 订阅链接\n- Clash 订阅链接\n- Sing-Box 订阅链接\n\n我们的特色是什么？\n\n- 用户友好\n- 优化和高速\n- 自动选择最低延迟\n- 显示用户使用信息\n- 通过一键链接轻松导入\n- 免费且无广告\n- 轻松切换线路\n- 等等\n\n支持：\n- Sing-Box 支持的所有协议\n- VLESS + XTLS Reality、Vision 协议\n- VMESS\n- Trojan\n- Shoadowsocks\n- Reality\n- V2ray\n- Hystria2\n- TUIC\n- SSH\n- ShadowTLS\n\n\n源代码位于 https://github.com/hiddify/Hiddify-Next\n应用程序核心基于开源的 Sing-Box。\n\n权限说明：\n\n- VPN 服务：由于此应用程序的目标是提供安全、用户友好和高效的隧道客户端，我们需要此权限以能够通过隧道将流量路由到远程服务器。\n获取应用程序列表：此权限用于允许用户包括或排除特定应用程序以进行隧道传输。\n- 接收开机广播：可以从应用程序设置中启用或禁用此权限，以便在设备启动时激活此应用程序。\n- 发送通知：此权限是必需的，因为我们使用前台服务来确保 VPN 服务的持续运行。\n- 本应用程序没有广告。分析和崩溃数据仅在首次使用应用程序时经用户明确同意的情况下发生。"
     }
 }

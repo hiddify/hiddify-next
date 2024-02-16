@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:dartx/dartx.dart';
-import 'package:fpdart/fpdart.dart';
 import 'package:hiddify/features/profile/data/profile_parser.dart';
 import 'package:hiddify/features/profile/data/profile_repository.dart';
 import 'package:hiddify/singbox/model/singbox_proxy_type.dart';
@@ -71,7 +70,7 @@ abstract class LinkParser {
     if (subinfo.name.isNotNullOrEmpty && subinfo.name != "Remote Profile") {
       name = subinfo.name;
     }
-    
+
     return (content: normalContent, name: name ?? ProxyType.unknown.label);
   }
 

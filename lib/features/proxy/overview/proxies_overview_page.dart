@@ -1,3 +1,4 @@
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/model/failures.dart';
@@ -29,7 +30,7 @@ class ProxiesOverviewPage extends HookConsumerWidget with PresLogger {
         PopupMenuButton<ProxiesSort>(
           initialValue: sortBy,
           onSelected: ref.read(proxiesSortNotifierProvider.notifier).update,
-          icon: const Icon(Icons.sort),
+          icon: const Icon(FluentIcons.arrow_sort_24_regular),
           tooltip: t.proxies.sortTooltip,
           itemBuilder: (context) {
             return [
@@ -131,7 +132,7 @@ class ProxiesOverviewPage extends HookConsumerWidget with PresLogger {
           floatingActionButton: FloatingActionButton(
             onPressed: () async => notifier.urlTest(group.tag),
             tooltip: t.proxies.delayTestTooltip,
-            child: const Icon(Icons.bolt),
+            child: const Icon(FluentIcons.flash_24_filled),
           ),
         );
 

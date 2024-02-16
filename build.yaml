@@ -7,6 +7,7 @@ targets:
       slang_build_runner:
         options:
           base_locale: en
+          fallback_strategy: base_locale
           input_directory: assets/translations
           input_file_pattern: .i18n.json
           output_directory: lib/gen

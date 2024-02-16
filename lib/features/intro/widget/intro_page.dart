@@ -1,15 +1,20 @@
+import 'dart:convert';
 import 'package:flutter/gestures.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hiddify/core/analytics/analytics_controller.dart';
+import 'package:hiddify/core/localization/locale_preferences.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/model/constants.dart';
+import 'package:hiddify/core/model/region.dart';
 import 'package:hiddify/core/preferences/general_preferences.dart';
 import 'package:hiddify/features/common/general_pref_tiles.dart';
 import 'package:hiddify/gen/assets.gen.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:http/http.dart' as http;
 import 'package:sliver_tools/sliver_tools.dart';
 
 class IntroPage extends HookConsumerWidget with PresLogger {
@@ -20,7 +25,8 @@ class IntroPage extends HookConsumerWidget with PresLogger {
     final t = ref.watch(translationsProvider);
 
     final isStarting = useState(false);
-
+    autoSelectRegion(ref)
+        .then((value) => loggy.debug("Auto Region selection finished!"));
     return Scaffold(
       body: SafeArea(
         child: CustomScrollView(
@@ -109,4 +115,47 @@ class IntroPage extends HookConsumerWidget with PresLogger {
       ),
     );
   }
+
+  Future<void> autoSelectRegion(WidgetRef ref) async {
+    final response = await http.get(Uri.parse('https://ipapi.co/json/'));
+
+    if (response.statusCode == 200) {
+      final jsonData = jsonDecode(response.body);
+      final regionLocale =
+          _getRegionLocale(jsonData['country']?.toString() ?? "");
+
+      loggy.debug(
+          'Region: ${regionLocale.region} Locale: ${regionLocale.locale}');
+      await ref
+          .read(regionNotifierProvider.notifier)
+          .update(regionLocale.region);
+      await ref
+          .read(localePreferencesProvider.notifier)
+          .changeLocale(regionLocale.locale);
+    } else {
+      loggy.warning('Request failed with status: ${response.statusCode}');
+    }
+  }
+
+  RegionLocale _getRegionLocale(String country) {
+    switch (country) {
+      case "IR":
+        return RegionLocale(Region.ir, AppLocale.fa);
+      case "CN":
+        return RegionLocale(Region.cn, AppLocale.zhCn);
+      case "RU":
+        return RegionLocale(Region.ru, AppLocale.ru);
+      case "AF":
+        return RegionLocale(Region.af, AppLocale.fa);
+      default:
+        return RegionLocale(Region.other, AppLocale.en);
+    }
+  }
+}
+
+class RegionLocale {
+  final Region region;
+  final AppLocale locale;
+
+  RegionLocale(this.region, this.locale);
 }

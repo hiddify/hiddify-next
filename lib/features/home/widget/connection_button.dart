@@ -149,9 +149,11 @@ class _ConnectionButton extends StatelessWidget {
               .scaleXY(end: .88, curve: Curves.easeIn),
         ),
         const Gap(16),
-        Text(
-          label,
-          style: Theme.of(context).textTheme.bodyLarge,
+        ExcludeSemantics(
+          child: Text(
+            label,
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
         ),
       ],
     );

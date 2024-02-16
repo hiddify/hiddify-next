@@ -1,3 +1,4 @@
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hiddify/core/localization/translations.dart';
@@ -20,7 +21,7 @@ class EmptyProfilesHomeBody extends HookConsumerWidget {
           const Gap(16),
           OutlinedButton.icon(
             onPressed: () => const AddProfileRoute().push(context),
-            icon: const Icon(Icons.add),
+            icon: const Icon(FluentIcons.add_24_regular),
             label: Text(t.profile.add.buttonText),
           ),
         ],

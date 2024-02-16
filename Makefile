@@ -1,14 +1,14 @@
 include dependencies.properties
+MKDIR := mkdir -p
+RM  := rm -rf
+SEP :=/
+
 ifeq ($(OS),Windows_NT)
-    MKDIR := -mkdir
-    RM := rmdir /s /q
-	SEP:=\\
-	PLATFORM_REQ:= @set /p platform="Run 'make prepare platform=ios' or enter platform name:";
-else
-    MKDIR := mkdir -p
-    RM  := rm -rf
-	SEP :=/
-	PLATFORM_REQ:= @read -p "Run make prepare platform=ios or enter platform name: " platform; 
+    ifeq ($(IS_GITHUB_ACTIONS),)
+		MKDIR := -mkdir
+		RM := rmdir /s /q
+		SEP:=\\
+	endif
 endif
 
 BINDIR=libcore$(SEP)bin
@@ -19,23 +19,22 @@ GEO_ASSETS_DIR=assets$(SEP)core
 
 CORE_PRODUCT_NAME=hiddify-core
 CORE_NAME=$(CORE_PRODUCT_NAME)
+LIB_NAME=libcore
 SRV_NAME=HiddifyService
 ifeq ($(CHANNEL),prod)
-CORE_URL=https://github.com/hiddify/hiddify-next-core/releases/download/v$(core.version)
+	CORE_URL=https://github.com/hiddify/hiddify-next-core/releases/download/v$(core.version)
 else
-CORE_URL=https://github.com/hiddify/hiddify-next-core/releases/download/draft
+	CORE_URL=https://github.com/hiddify/hiddify-next-core/releases/download/draft
 endif
 
 ifeq ($(CHANNEL),prod)
-TARGET=lib/main_prod.dart
+	TARGET=lib/main_prod.dart
 else
-TARGET=lib/main.dart
+	TARGET=lib/main.dart
 endif
 
 BUILD_ARGS=--dart-define sentry_dsn=$(SENTRY_DSN)
 DISTRIBUTOR_ARGS=--skip-clean --build-target $(TARGET) --build-dart-define sentry_dsn=$(SENTRY_DSN)
-
-
 
 
 
@@ -50,7 +49,7 @@ translate:
 
 
 
-prepare: #get-geo-assets get gen translate
+prepare:
 	@echo use the following commands to prepare the library for each platform:
 	@echo    make android-prepare
 	@echo    make windows-prepare
@@ -62,11 +61,54 @@ windows-prepare: get-geo-assets get gen translate windows-libs
 ios-prepare: get-geo-assets get gen translate ios-libs
 macos-prepare: get-geo-assets get gen translate macos-libs
 linux-prepare: get-geo-assets get gen translate linux-libs
+linux-appimage-prepare:linux-prepare
+linux-rpm-prepare:linux-prepare
+linux-deb-prepare:linux-prepare
+
 android-prepare: get-geo-assets get gen translate android-libs	
+android-apk-prepare:android-prepare
+android-aab-prepare:android-prepare
+
 	
 
+macos-install-dependencies:
+	brew install create-dmg tree 
+	npm install -g appdmg
+	dart pub global activate flutter_distributor
 
-sync_translate:
+ios-install-dependencies: 
+	echo "not yet implemented"
+
+android-install-dependencies: 
+	echo "nothing yet"
+android-apk-install-dependencies: android-install-dependencies
+android-aab-install-dependencies: android-install-dependencies
+
+linux-install-dependencies:
+	if [ "$(flutter)" = "true" ]; then \
+		wget -O ~/Downloads/flutter_linux_3.16.9-stable.tar.xz https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.16.9-stable.tar.xz; \
+		mkdir -p ~/develop; \
+		cd ~/develop; \
+		tar xf ~/Downloads/flutter_linux_3.16.9-stable.tar.xz; \
+		export PATH="$$PATH:$$HOME/develop/flutter/bin"; \
+		echo 'export PATH="$$PATH:$$HOME/develop/flutter/bin"' >> ~/.bashrc; \
+	fi
+	PATH="$$PATH":"$$HOME/.pub-cache/bin"
+	echo 'export PATH="$$PATH:$$HOME/.pub-cache/bin"' >>~/.bashrc
+	sudo apt install -y clang ninja-build pkg-config cmake libgtk-3-dev locate ninja-build pkg-config libgtk-3-dev libglib2.0-dev libgio2.0-cil-dev libayatana-appindicator3-dev fuse rpm patchelf file appstream 
+	
+	
+	sudo modprobe fuse
+	wget -O appimagetool "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage"
+	chmod +x appimagetool
+	sudo mv appimagetool /usr/local/bin/
+
+	dart pub global activate --source git  https://github.com/hiddify/flutter_distributor --git-path packages/flutter_distributor
+
+windows-install-dependencies:
+	dart pub global activate flutter_distributor
+
+gen_translations: #generating missing translations using google translate
 	cd .github && bash sync_translate.sh
 	make translate
 
@@ -81,20 +123,13 @@ android-aab-release:
 	ls -R build/app/outputs
 
 windows-release:
-	flutter_distributor package --platform windows --targets exe $(DISTRIBUTOR_ARGS)
+	flutter_distributor package --flutter-build-args=verbose --platform windows --targets exe $(DISTRIBUTOR_ARGS)
 
-linux-release: linux-appimage-release linux-deb-release linux-rpm-release
-
-linux-appimage-release:
-	flutter_distributor package --platform linux --targets appimage $(DISTRIBUTOR_ARGS)
-linux-deb-release:
-	flutter_distributor package --platform linux --targets deb $(DISTRIBUTOR_ARGS)
-linux-rpm-release:
-	flutter_distributor package --platform linux --targets rpm $(DISTRIBUTOR_ARGS)
-
+linux-release: 
+	flutter_distributor package --platform linux --targets deb,rpm,appimage $(DISTRIBUTOR_ARGS)
 
 macos-release:
-	flutter_distributor package --platform macos --targets dmg $(DISTRIBUTOR_ARGS)
+	flutter_distributor package --platform macos --targets dmg,pkg $(DISTRIBUTOR_ARGS)
 
 ios-release: #not tested
 	flutter_distributor package --platform ios --targets ipa --build-export-options-plist  ios/exportOptions.plist $(DISTRIBUTOR_ARGS)
@@ -107,25 +142,22 @@ android-apk-libs: android-libs
 android-aab-libs: android-libs
 
 windows-libs:
-	@$(MKDIR) $(DESKTOP_OUT) || echo Folder already exists. Skipping...
-	curl -L $(CORE_URL)/$(CORE_NAME)-windows-amd64.tar.gz | tar xz -C $(DESKTOP_OUT)/
+	$(MKDIR) $(DESKTOP_OUT) || echo Folder already exists. Skipping...
+	curl -L $(CORE_URL)/$(CORE_NAME)-windows-amd64.tar.gz | tar xz -C $(DESKTOP_OUT)$(SEP)
+	ls $(DESKTOP_OUT) || dir $(DESKTOP_OUT)$(SEP)
 
 linux-libs:
-	@$(MKDIR) $(DESKTOP_OUT) || echo Folder already exists. Skipping...
+	mkdir -p $(DESKTOP_OUT)
 	curl -L $(CORE_URL)/$(CORE_NAME)-linux-amd64.tar.gz | tar xz -C $(DESKTOP_OUT)/
 
 
-linux-deb-libs:linux-libs
-linux-rpm-libs:linux-libs
-linux-appimage-libs:linux-libs
-
 macos-libs:
-	@$(MKDIR) $(DESKTOP_OUT) || echo Folder already exists. Skipping...
+	mkdir -p  $(DESKTOP_OUT) 
 	curl -L $(CORE_URL)/$(CORE_NAME)-macos-universal.tar.gz | tar xz -C $(DESKTOP_OUT)
 
 ios-libs: #not tested
-	@$(MKDIR) $(IOS_OUT) || echo Folder already exists. Skipping...
-	@$(RM) $(IOS_OUT)/Libcore.xcframework
+	mkdir -p $(IOS_OUT)
+	rm -rf $(IOS_OUT)/Libcore.xcframework
 	curl -L $(CORE_URL)/$(CORE_NAME)-ios.tar.gz | tar xz -C "$(IOS_OUT)"
 
 get-geo-assets:
@@ -137,34 +169,29 @@ build-headers:
 
 build-android-libs:
 	make -C libcore -f Makefile android 
-	mv $(BINDIR)/$(CORE_NAME).aar $(ANDROID_OUT)/
+	mv $(BINDIR)/$(LIB_NAME).aar $(ANDROID_OUT)/
 
 build-windows-libs:
 	make -C libcore -f Makefile windows-amd64
-	mv $(BINDIR)/$(CORE_NAME).dll $(DESKTOP_OUT)/
-	mv $(BINDIR)/$(SRV_NAME) $(DESKTOP_OUT)/
 
 build-linux-libs:
 	make -C libcore -f Makefile linux-amd64 
-	mv $(BINDIR)/$(CORE_NAME).so $(DESKTOP_OUT)/
-	mv $(BINDIR)/$(SRV_NAME) $(DESKTOP_OUT)/
 
 build-macos-libs:
 	make -C libcore -f Makefile macos-universal
-	mv $(BINDIR)/$(CORE_NAME).dylib $(DESKTOP_OUT)/
 	mv $(BINDIR)/$(SRV_NAME) $(DESKTOP_OUT)/
 
 build-ios-libs: 
-	@$(RM) $(IOS_OUT)/Libcore.xcframework && \
-	make -C libcore -f Makefile ios  && \
-	mv $(BINDIR)/$(CORE_NAME)-ios.xcframework $(IOS_OUT)/Libcore.xcframework
+	rf -rf $(IOS_OUT)/Libcore.xcframework 
+	make -C libcore -f Makefile ios  
+	mv $(BINDIR)/Libcore.xcframework $(IOS_OUT)/Libcore.xcframework
 
 release: # Create a new tag for release.
  	
 	@echo "previous version was $$(git describe --tags $$(git rev-list --tags --max-count=1))"
 	@echo "WARNING: This operation will creates version tag and push to github"
 	@bash -c '\
-	[ "404" == $$(curl -I -s -w "%{http_code}" https://github.com/hiddify/hiddify-next-core/releases/download/v$(core.version)/hiddify-libcore-windows-amd64.h.gz -o /dev/null) ]&&{ echo "Core Not Found"; exit 1 ; };\
+	[ "404" == $$(curl -I -s -w "%{http_code}" https://github.com/hiddify/hiddify-next-core/releases/download/v$(core.version)/hiddify-core-linux-amd64.tar.gz -o /dev/null) ]&&{ echo "Core Not Found"; exit 1 ; };\
 	cversion_string=`grep -e "^version:" pubspec.yaml | cut -d: -f2-`; \
 	cstr_version=`echo "$${cversion_string}" | sed -n "s/[ ]*\\([0-9]\\+\\.[0-9]\\+\\.[0-9]\\+\\)+.*/\\1/p"`; \
 	cbuild_number=`echo "$${cversion_string}" | sed -n "s/.*+\\([0-9]\\+\\)/\\1/p"`; \
@@ -190,7 +217,7 @@ release: # Create a new tag for release.
 
 
 ios-temp-prepare: 
-	make prepare platform=ios
+	make ios-prepare
 	flutter build ios-framework
 	cd ios
 	pod install

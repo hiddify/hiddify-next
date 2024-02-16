@@ -1,6 +1,6 @@
 name: Bug Report
-description: Report a bug encountered while using Hiddify Next
-labels: ['bug']
+description: Report a bug encountered while using Hiddify
+labels: ["bug"]
 body:
   - type: markdown
     attributes:
@@ -52,7 +52,7 @@ body:
     id: version
     attributes:
       label: Version
-      description: What version of Hiddify Next are you using?
+      description: What version of Hiddify are you using?
       placeholder: v1.3.8 etc
     validations:
       required: true

@@ -3,8 +3,10 @@
 [**![Lang_farsi](https://user-images.githubusercontent.com/125398461/234186932-52f1fa82-52c6-417f-8b37-08fe9250a55f.png) فارسی**](README_fa.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**Русский 🇷🇺**](README_ru.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**English 🇺🇸**](README.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**日本語 🇯🇵**](README_ja.md)
 
 </div>
+<br>
 
-<p align="center"><img src="assets/images/logo.svg" width="168"/></p>
+<p align="center"><img src="https://github.com/hiddify/hiddify-next/assets/125398461/d821cfe0-b4c4-441f-be4e-eb9209f59542" /></p>
+<br>
 
 <div align="center">
 
@@ -18,7 +20,7 @@
 
 ## Hiddify-Next 是什么？
 
-<p dir="ltr" style="font-size: 16px">一款基于 <a href="https://github.com/SagerNet/sing-box">Sing-box</a> 通用代理工具的跨平台代理客户端。Hiddify Next 提供了较全面的代理功能，例如自动选择节点、TUN 模式、使用远程配置文件等。Hiddify Next 无广告，并且代码开源。它为大家自由访问互联网提供了一个支持多种协议的、安全且私密的工具。</p>
+<p dir="ltr" style="font-size: 16px">一款基于 <a href="https://github.com/SagerNet/sing-box">Sing-box</a> 通用代理工具的跨平台代理客户端。Hiddify 提供了较全面的代理功能，例如自动选择节点、TUN 模式、使用远程配置文件等。Hiddify 无广告，并且代码开源。它为大家自由访问互联网提供了一个支持多种协议的、安全且私密的工具。</p>
 
 <div align=center>
 <img width=90% alt="English Demo" src="https://github.com/hiddify/hiddify-next/assets/125398461/ffe5346d-3404-470f-b5e0-4364e23743d2">
@@ -138,7 +140,7 @@
 
 ## 👩‍🏫 合作及联系信息
 
-Hiddify Next 是一个由社区驱动的项目。如果您有兴趣为本项目做出贡献，请阅读 [贡献指南](./CONTRIBUTING.md)。我们将非常感谢您，如果您能够在以下领域提供任何帮助：Flutter、Go、iOS 开发 (Swift)、Android 开发 (Kotlin)。
+Hiddify 是一个由社区驱动的项目。如果您有兴趣为本项目做出贡献，请阅读 [贡献指南](./CONTRIBUTING.md)。我们将非常感谢您，如果您能够在以下领域提供任何帮助：Flutter、Go、iOS 开发 (Swift)、Android 开发 (Kotlin)。
 
 <div align=center>
 

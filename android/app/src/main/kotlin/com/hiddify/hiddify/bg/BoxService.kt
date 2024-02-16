@@ -14,6 +14,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
 import com.hiddify.hiddify.Application
+import com.hiddify.hiddify.R
 import com.hiddify.hiddify.Settings
 import com.hiddify.hiddify.constant.Action
 import com.hiddify.hiddify.constant.Alert
@@ -140,6 +141,9 @@ class BoxService(
     private suspend fun startService(delayStart: Boolean = false) {
         try {
             Log.d(TAG, "starting service")
+            withContext(Dispatchers.Main) {
+                notification.show(activeProfileName, R.string.status_starting)
+            }
 
             val selectedConfigPath = Settings.activeConfigPath
             if (selectedConfigPath.isBlank()) {
@@ -168,6 +172,7 @@ class BoxService(
             }
 
             withContext(Dispatchers.Main) {
+                notification.show(activeProfileName, R.string.status_starting)
                 binder.broadcast {
                     it.onServiceResetLogs(listOf())
                 }
@@ -194,8 +199,9 @@ class BoxService(
             status.postValue(Status.Started)
 
             withContext(Dispatchers.Main) {
-                notification.show(activeProfileName)
+                notification.show(activeProfileName, R.string.status_started)
             }
+            notification.start()
         } catch (e: Exception) {
             stopAndAlert(Alert.StartService, e.message)
             return

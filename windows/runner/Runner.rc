@@ -94,7 +94,7 @@ BEGIN
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "hiddify" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 Hiddify.com. All rights reserved." "\0"
-            VALUE "OriginalFilename", "HiddifyNext.exe" "\0"
+            VALUE "OriginalFilename", "Hiddify.exe" "\0"
             VALUE "ProductName", "hiddify" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END

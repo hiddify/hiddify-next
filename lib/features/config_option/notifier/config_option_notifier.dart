@@ -1,6 +1,5 @@
 import 'package:hiddify/features/config_option/data/config_option_data_providers.dart';
 import 'package:hiddify/features/config_option/model/config_option_entity.dart';
-import 'package:hiddify/features/config_option/model/config_option_patch.dart';
 import 'package:hiddify/utils/custom_loggers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -9,14 +8,14 @@ part 'config_option_notifier.g.dart';
 @Riverpod(keepAlive: true)
 class ConfigOptionNotifier extends _$ConfigOptionNotifier with AppLogger {
   @override
-  Future<ConfigOptionEntity> build() {
+  Future<ConfigOptionEntity> build() async {
     return ref
         .watch(configOptionRepositoryProvider)
         .getConfigOption()
         .getOrElse((l) {
       loggy.error("error getting persisted options $l", l);
       throw l;
-    }).run();
+    });
   }
 
   Future<void> updateOption(ConfigOptionPatch patch) async {

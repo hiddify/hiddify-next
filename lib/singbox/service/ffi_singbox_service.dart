@@ -121,7 +121,7 @@ class FFISingboxService with InfraLogger implements SingboxService {
     return TaskEither(
       () => CombineWorker().execute(
         () {
-          final json = jsonEncode(options.toJson());
+          final json = options.toJson();
           final err = _box
               .changeConfigOptions(json.toNativeUtf8().cast())
               .cast<Utf8>()
@@ -237,7 +237,7 @@ class FFISingboxService with InfraLogger implements SingboxService {
   @override
   Stream<SingboxStats> watchStats() {
     if (_serviceStatsStream != null) return _serviceStatsStream!;
-    final receiver = ReceivePort('service stats receiver');
+    final receiver = ReceivePort('stats');
     final statusStream = receiver.asBroadcastStream(
       onCancel: (_) {
         _logger.debug("stopping stats command client");
@@ -277,45 +277,99 @@ class FFISingboxService with InfraLogger implements SingboxService {
   }
 
   @override
-  Stream<List<SingboxOutboundGroup>> watchOutbounds() {
+  Stream<List<SingboxOutboundGroup>> watchGroups() {
+    final logger = newLoggy("watchGroups");
     if (_outboundsStream != null) return _outboundsStream!;
-    final receiver = ReceivePort('outbounds receiver');
+    final receiver = ReceivePort('groups');
     final outboundsStream = receiver.asBroadcastStream(
       onCancel: (_) {
-        _logger.debug("stopping group command client");
+        logger.debug("stopping");
+        receiver.close();
+        _outboundsStream = null;
         final err = _box.stopCommandClient(4).cast<Utf8>().toDartString();
         if (err.isNotEmpty) {
           _logger.error("error stopping group client");
         }
-        receiver.close();
-        _outboundsStream = null;
       },
     ).map(
       (event) {
         if (event case String _) {
           if (event.startsWith('error:')) {
-            loggy.error("[group client] error received: $event");
+            logger.error("error received: $event");
             throw event.replaceFirst('error:', "");
           }
+
           return (jsonDecode(event) as List).map((e) {
             return SingboxOutboundGroup.fromJson(e as Map<String, dynamic>);
           }).toList();
         }
-        loggy.error("[group client] unexpected type, msg: $event");
+        logger.error("unexpected type, msg: $event");
         throw "invalid type";
       },
     );
 
-    final err = _box
-        .startCommandClient(4, receiver.sendPort.nativePort)
-        .cast<Utf8>()
-        .toDartString();
-    if (err.isNotEmpty) {
-      loggy.error("error starting group command: $err");
-      throw err;
+    try {
+      final err = _box
+          .startCommandClient(4, receiver.sendPort.nativePort)
+          .cast<Utf8>()
+          .toDartString();
+      if (err.isNotEmpty) {
+        logger.error("error starting group command: $err");
+        throw err;
+      }
+    } catch (e) {
+      receiver.close();
+      rethrow;
     }
 
     return _outboundsStream = outboundsStream;
+  }
+
+  @override
+  Stream<List<SingboxOutboundGroup>> watchActiveGroups() {
+    final logger = newLoggy("[ActiveGroupsClient]");
+    final receiver = ReceivePort('active groups');
+    final outboundsStream = receiver.asBroadcastStream(
+      onCancel: (_) {
+        logger.debug("stopping");
+        receiver.close();
+        final err = _box.stopCommandClient(12).cast<Utf8>().toDartString();
+        if (err.isNotEmpty) {
+          logger.error("failed stopping: $err");
+        }
+      },
+    ).map(
+      (event) {
+        if (event case String _) {
+          if (event.startsWith('error:')) {
+            logger.error(event);
+            throw event.replaceFirst('error:', "");
+          }
+
+          return (jsonDecode(event) as List).map((e) {
+            return SingboxOutboundGroup.fromJson(e as Map<String, dynamic>);
+          }).toList();
+        }
+        logger.error("unexpected type, msg: $event");
+        throw "invalid type";
+      },
+    );
+
+    try {
+      final err = _box
+          .startCommandClient(12, receiver.sendPort.nativePort)
+          .cast<Utf8>()
+          .toDartString();
+      if (err.isNotEmpty) {
+        logger.error("error starting: $err");
+        throw err;
+      }
+    } catch (e) {
+      receiver.close();
+      rethrow;
+    }
+
+    return outboundsStream;
   }
 
   @override

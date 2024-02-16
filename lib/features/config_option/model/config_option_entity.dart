@@ -1,75 +1,107 @@
 import 'dart:convert';
 
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hiddify/core/model/range.dart';
+import 'package:dart_mappable/dart_mappable.dart';
+import 'package:hiddify/core/model/optional_range.dart';
 import 'package:hiddify/core/utils/json_converters.dart';
-import 'package:hiddify/features/config_option/model/config_option_patch.dart';
 import 'package:hiddify/features/log/model/log_level.dart';
 import 'package:hiddify/singbox/model/singbox_config_enum.dart';
+import 'package:hiddify/singbox/model/singbox_config_option.dart';
+import 'package:hiddify/singbox/model/singbox_rule.dart';
 import 'package:hiddify/utils/platform_utils.dart';
 
-part 'config_option_entity.freezed.dart';
-part 'config_option_entity.g.dart';
+part 'config_option_entity.mapper.dart';
 
-@freezed
-class ConfigOptionEntity with _$ConfigOptionEntity {
-  const ConfigOptionEntity._();
+@MappableClass(
+  caseStyle: CaseStyle.paramCase,
+  includeCustomMappers: [
+    OptionalRangeJsonMapper(),
+    IntervalInSecondsMapper(),
+  ],
+)
+class ConfigOptionEntity with ConfigOptionEntityMappable {
+  const ConfigOptionEntity({
+    required this.serviceMode,
+    this.logLevel = LogLevel.warn,
+    this.resolveDestination = false,
+    this.ipv6Mode = IPv6Mode.disable,
+    this.remoteDnsAddress = "udp://1.1.1.1",
+    this.remoteDnsDomainStrategy = DomainStrategy.auto,
+    this.directDnsAddress = "1.1.1.1",
+    this.directDnsDomainStrategy = DomainStrategy.auto,
+    this.mixedPort = 2334,
+    this.localDnsPort = 6450,
+    this.tunImplementation = TunImplementation.mixed,
+    this.mtu = 9000,
+    this.strictRoute = true,
+    this.connectionTestUrl = "http://cp.cloudflare.com/",
+    this.urlTestInterval = const Duration(minutes: 10),
+    this.enableClashApi = true,
+    this.clashApiPort = 6756,
+    this.bypassLan = false,
+    this.allowConnectionFromLan = false,
+    this.enableFakeDns = false,
+    this.enableDnsRouting = true,
+    this.independentDnsCache = true,
+    this.enableTlsFragment = false,
+    this.tlsFragmentSize = const OptionalRange(min: 1, max: 500),
+    this.tlsFragmentSleep = const OptionalRange(min: 0, max: 500),
+    this.enableTlsMixedSniCase = false,
+    this.enableTlsPadding = false,
+    this.tlsPaddingSize = const OptionalRange(min: 1, max: 1500),
+    this.enableMux = false,
+    this.muxPadding = false,
+    this.muxMaxStreams = 8,
+    this.muxProtocol = MuxProtocol.h2mux,
+    this.enableWarp = false,
+    this.warpDetourMode = WarpDetourMode.outbound,
+    this.warpLicenseKey = "",
+    this.warpCleanIp = "auto",
+    this.warpPort = 0,
+    this.warpNoise = const OptionalRange(),
+  });
 
-  @JsonSerializable(fieldRename: FieldRename.kebab)
-  const factory ConfigOptionEntity({
-    required ServiceMode serviceMode,
-    @Default(LogLevel.warn) LogLevel logLevel,
-    @Default(false) bool resolveDestination,
-    @Default(IPv6Mode.disable) IPv6Mode ipv6Mode,
-    @Default("udp://1.1.1.1") String remoteDnsAddress,
-    @Default(DomainStrategy.auto) DomainStrategy remoteDnsDomainStrategy,
-    @Default("1.1.1.1") String directDnsAddress,
-    @Default(DomainStrategy.auto) DomainStrategy directDnsDomainStrategy,
-    @Default(2334) int mixedPort,
-    @Default(6450) int localDnsPort,
-    @Default(TunImplementation.mixed) TunImplementation tunImplementation,
-    @Default(9000) int mtu,
-    @Default(true) bool strictRoute,
-    @Default("http://cp.cloudflare.com/") String connectionTestUrl,
-    @IntervalInSecondsConverter()
-    @Default(Duration(minutes: 10))
-    Duration urlTestInterval,
-    @Default(true) bool enableClashApi,
-    @Default(6756) int clashApiPort,
-    @Default(false) bool bypassLan,
-    @Default(false) bool allowConnectionFromLan,
-    @Default(false) bool enableFakeDns,
-    @Default(true) bool enableDnsRouting,
-    @Default(true) bool independentDnsCache,
-    @Default(false) bool enableTlsFragment,
-    @RangeWithOptionalCeilJsonConverter()
-    @Default(RangeWithOptionalCeil(min: 10, max: 100))
-    RangeWithOptionalCeil tlsFragmentSize,
-    @RangeWithOptionalCeilJsonConverter()
-    @Default(RangeWithOptionalCeil(min: 50, max: 200))
-    RangeWithOptionalCeil tlsFragmentSleep,
-    @Default(false) bool enableTlsMixedSniCase,
-    @Default(false) bool enableTlsPadding,
-    @RangeWithOptionalCeilJsonConverter()
-    @Default(RangeWithOptionalCeil(min: 100, max: 200))
-    RangeWithOptionalCeil tlsPaddingSize,
-    @Default(false) bool enableMux,
-    @Default(false) bool muxPadding,
-    @Default(8) int muxMaxStreams,
-    @Default(MuxProtocol.h2mux) MuxProtocol muxProtocol,
-    @Default(false) bool enableWarp,
-    @Default(WarpDetourMode.outbound) WarpDetourMode warpDetourMode,
-    @Default("") String warpLicenseKey,
-    @Default("auto") String warpCleanIp,
-    @Default(0) int warpPort,
-    @RangeWithOptionalCeilJsonConverter()
-    @Default(RangeWithOptionalCeil())
-    RangeWithOptionalCeil warpNoise,
-  }) = _ConfigOptionEntity;
+  final ServiceMode serviceMode;
+  final LogLevel logLevel;
+  final bool resolveDestination;
+  @MappableField(key: "ipv6-mode")
+  final IPv6Mode ipv6Mode;
+  final String remoteDnsAddress;
+  final DomainStrategy remoteDnsDomainStrategy;
+  final String directDnsAddress;
+  final DomainStrategy directDnsDomainStrategy;
+  final int mixedPort;
+  final int localDnsPort;
+  final TunImplementation tunImplementation;
+  final int mtu;
+  final bool strictRoute;
+  final String connectionTestUrl;
+  final Duration urlTestInterval;
+  final bool enableClashApi;
+  final int clashApiPort;
+  final bool bypassLan;
+  final bool allowConnectionFromLan;
+  final bool enableFakeDns;
+  final bool enableDnsRouting;
+  final bool independentDnsCache;
+  final bool enableTlsFragment;
+  final OptionalRange tlsFragmentSize;
+  final OptionalRange tlsFragmentSleep;
+  final bool enableTlsMixedSniCase;
+  final bool enableTlsPadding;
+  final OptionalRange tlsPaddingSize;
+  final bool enableMux;
+  final bool muxPadding;
+  final int muxMaxStreams;
+  final MuxProtocol muxProtocol;
+  final bool enableWarp;
+  final WarpDetourMode warpDetourMode;
+  final String warpLicenseKey;
+  final String warpCleanIp;
+  final int warpPort;
+  final OptionalRange warpNoise;
 
-  static ConfigOptionEntity initial = ConfigOptionEntity(
-    serviceMode: ServiceMode.defaultMode,
-  );
+  factory ConfigOptionEntity.initial() =>
+      ConfigOptionEntity(serviceMode: ServiceMode.defaultMode);
 
   bool hasExperimentalOptions() {
     if (PlatformUtils.isDesktop && serviceMode == ServiceMode.tun) {
@@ -88,56 +120,157 @@ class ConfigOptionEntity with _$ConfigOptionEntity {
 
   String format() {
     const encoder = JsonEncoder.withIndent('  ');
-    return encoder.convert(toJson());
+    return encoder.convert(toMap());
   }
 
   ConfigOptionEntity patch(ConfigOptionPatch patch) {
-    return copyWith(
-      serviceMode: patch.serviceMode ?? serviceMode,
-      logLevel: patch.logLevel ?? logLevel,
-      resolveDestination: patch.resolveDestination ?? resolveDestination,
-      ipv6Mode: patch.ipv6Mode ?? ipv6Mode,
-      remoteDnsAddress: patch.remoteDnsAddress ?? remoteDnsAddress,
-      remoteDnsDomainStrategy:
-          patch.remoteDnsDomainStrategy ?? remoteDnsDomainStrategy,
-      directDnsAddress: patch.directDnsAddress ?? directDnsAddress,
-      directDnsDomainStrategy:
-          patch.directDnsDomainStrategy ?? directDnsDomainStrategy,
-      mixedPort: patch.mixedPort ?? mixedPort,
-      localDnsPort: patch.localDnsPort ?? localDnsPort,
-      tunImplementation: patch.tunImplementation ?? tunImplementation,
-      mtu: patch.mtu ?? mtu,
-      strictRoute: patch.strictRoute ?? strictRoute,
-      connectionTestUrl: patch.connectionTestUrl ?? connectionTestUrl,
-      urlTestInterval: patch.urlTestInterval ?? urlTestInterval,
-      enableClashApi: patch.enableClashApi ?? enableClashApi,
-      clashApiPort: patch.clashApiPort ?? clashApiPort,
-      bypassLan: patch.bypassLan ?? bypassLan,
-      allowConnectionFromLan:
-          patch.allowConnectionFromLan ?? allowConnectionFromLan,
-      enableFakeDns: patch.enableFakeDns ?? enableFakeDns,
-      enableDnsRouting: patch.enableDnsRouting ?? enableDnsRouting,
-      independentDnsCache: patch.independentDnsCache ?? independentDnsCache,
-      enableTlsFragment: patch.enableTlsFragment ?? enableTlsFragment,
-      tlsFragmentSize: patch.tlsFragmentSize ?? tlsFragmentSize,
-      tlsFragmentSleep: patch.tlsFragmentSleep ?? tlsFragmentSleep,
-      enableTlsMixedSniCase:
-          patch.enableTlsMixedSniCase ?? enableTlsMixedSniCase,
-      enableTlsPadding: patch.enableTlsPadding ?? enableTlsPadding,
-      tlsPaddingSize: patch.tlsPaddingSize ?? tlsPaddingSize,
-      enableMux: patch.enableMux ?? enableMux,
-      muxPadding: patch.muxPadding ?? muxPadding,
-      muxMaxStreams: patch.muxMaxStreams ?? muxMaxStreams,
-      muxProtocol: patch.muxProtocol ?? muxProtocol,
-      enableWarp: patch.enableWarp ?? enableWarp,
-      warpDetourMode: patch.warpDetourMode ?? warpDetourMode,
-      warpLicenseKey: patch.warpLicenseKey ?? warpLicenseKey,
-      warpCleanIp: patch.warpCleanIp ?? warpCleanIp,
-      warpPort: patch.warpPort ?? warpPort,
-      warpNoise: patch.warpNoise ?? warpNoise,
-    );
+    return copyWith.$delta(patch.delta());
   }
 
-  factory ConfigOptionEntity.fromJson(Map<String, dynamic> json) =>
-      _$ConfigOptionEntityFromJson(json);
+  SingboxConfigOption toSingbox({
+    required String geoipPath,
+    required String geositePath,
+    required List<SingboxRule> rules,
+  }) {
+    return SingboxConfigOption(
+      executeConfigAsIs: false,
+      logLevel: logLevel,
+      resolveDestination: resolveDestination,
+      ipv6Mode: ipv6Mode,
+      remoteDnsAddress: remoteDnsAddress,
+      remoteDnsDomainStrategy: remoteDnsDomainStrategy,
+      directDnsAddress: directDnsAddress,
+      directDnsDomainStrategy: directDnsDomainStrategy,
+      mixedPort: mixedPort,
+      localDnsPort: localDnsPort,
+      tunImplementation: tunImplementation,
+      mtu: mtu,
+      strictRoute: strictRoute,
+      connectionTestUrl: connectionTestUrl,
+      urlTestInterval: urlTestInterval,
+      enableClashApi: enableClashApi,
+      clashApiPort: clashApiPort,
+      enableTun: serviceMode == ServiceMode.tun,
+      enableTunService: serviceMode == ServiceMode.tunService,
+      setSystemProxy: serviceMode == ServiceMode.systemProxy,
+      bypassLan: bypassLan,
+      allowConnectionFromLan: allowConnectionFromLan,
+      enableFakeDns: enableFakeDns,
+      enableDnsRouting: enableDnsRouting,
+      independentDnsCache: independentDnsCache,
+      enableTlsFragment: enableTlsFragment,
+      tlsFragmentSize: tlsFragmentSize,
+      tlsFragmentSleep: tlsFragmentSleep,
+      enableTlsMixedSniCase: enableTlsMixedSniCase,
+      enableTlsPadding: enableTlsPadding,
+      tlsPaddingSize: tlsPaddingSize,
+      enableMux: enableMux,
+      muxPadding: muxPadding,
+      muxMaxStreams: muxMaxStreams,
+      muxProtocol: muxProtocol,
+      enableWarp: enableWarp,
+      warpDetourMode: warpDetourMode,
+      warpLicenseKey: warpLicenseKey,
+      warpCleanIp: warpCleanIp,
+      warpPort: warpPort,
+      warpNoise: warpNoise,
+      geoipPath: geoipPath,
+      geositePath: geositePath,
+      rules: rules,
+    );
+  }
+}
+
+@MappableClass(
+  caseStyle: CaseStyle.paramCase,
+  ignoreNull: true,
+  includeCustomMappers: [
+    OptionalRangeJsonMapper(),
+    IntervalInSecondsMapper(),
+  ],
+)
+class ConfigOptionPatch with ConfigOptionPatchMappable {
+  const ConfigOptionPatch({
+    this.serviceMode,
+    this.logLevel,
+    this.resolveDestination,
+    this.ipv6Mode,
+    this.remoteDnsAddress,
+    this.remoteDnsDomainStrategy,
+    this.directDnsAddress,
+    this.directDnsDomainStrategy,
+    this.mixedPort,
+    this.localDnsPort,
+    this.tunImplementation,
+    this.mtu,
+    this.strictRoute,
+    this.connectionTestUrl,
+    this.urlTestInterval,
+    this.enableClashApi,
+    this.clashApiPort,
+    this.bypassLan,
+    this.allowConnectionFromLan,
+    this.enableFakeDns,
+    this.enableDnsRouting,
+    this.independentDnsCache,
+    this.enableTlsFragment,
+    this.tlsFragmentSize,
+    this.tlsFragmentSleep,
+    this.enableTlsMixedSniCase,
+    this.enableTlsPadding,
+    this.tlsPaddingSize,
+    this.enableMux,
+    this.muxPadding,
+    this.muxMaxStreams,
+    this.muxProtocol,
+    this.enableWarp,
+    this.warpDetourMode,
+    this.warpLicenseKey,
+    this.warpCleanIp,
+    this.warpPort,
+    this.warpNoise,
+  });
+
+  final ServiceMode? serviceMode;
+  final LogLevel? logLevel;
+  final bool? resolveDestination;
+  @MappableField(key: "ipv6-mode")
+  final IPv6Mode? ipv6Mode;
+  final String? remoteDnsAddress;
+  final DomainStrategy? remoteDnsDomainStrategy;
+  final String? directDnsAddress;
+  final DomainStrategy? directDnsDomainStrategy;
+  final int? mixedPort;
+  final int? localDnsPort;
+  final TunImplementation? tunImplementation;
+  final int? mtu;
+  final bool? strictRoute;
+  final String? connectionTestUrl;
+  final Duration? urlTestInterval;
+  final bool? enableClashApi;
+  final int? clashApiPort;
+  final bool? bypassLan;
+  final bool? allowConnectionFromLan;
+  final bool? enableFakeDns;
+  final bool? enableDnsRouting;
+  final bool? independentDnsCache;
+  final bool? enableTlsFragment;
+  final OptionalRange? tlsFragmentSize;
+  final OptionalRange? tlsFragmentSleep;
+  final bool? enableTlsMixedSniCase;
+  final bool? enableTlsPadding;
+  final OptionalRange? tlsPaddingSize;
+  final bool? enableMux;
+  final bool? muxPadding;
+  final int? muxMaxStreams;
+  final MuxProtocol? muxProtocol;
+  final bool? enableWarp;
+  final WarpDetourMode? warpDetourMode;
+  final String? warpLicenseKey;
+  final String? warpCleanIp;
+  final int? warpPort;
+  final OptionalRange? warpNoise;
+
+  Map<String, dynamic> delta() =>
+      toMap()..removeWhere((key, value) => value == null);
 }

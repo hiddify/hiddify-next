@@ -1,9 +1,11 @@
 import 'package:dartx/dartx.dart';
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/preferences/general_preferences.dart';
+import 'package:hiddify/core/widget/adaptive_icon.dart';
 import 'package:hiddify/features/per_app_proxy/model/installed_package_info.dart';
 import 'package:hiddify/features/per_app_proxy/model/per_app_proxy_mode.dart';
 import 'package:hiddify/features/per_app_proxy/overview/per_app_proxy_notifier.dart';
@@ -83,11 +85,12 @@ class PerAppProxyPage extends HookConsumerWidget with PresLogger {
               title: Text(t.settings.network.perAppProxyPageTitle),
               actions: [
                 IconButton(
-                  icon: const Icon(Icons.search),
+                  icon: const Icon(FluentIcons.search_24_regular),
                   onPressed: () => isSearching.value = true,
                   tooltip: localizations.searchFieldLabel,
                 ),
                 PopupMenuButton(
+                  icon: Icon(AdaptiveIcon(context).more),
                   itemBuilder: (context) {
                     return [
                       PopupMenuItem(
@@ -179,7 +182,8 @@ class PerAppProxyPage extends HookConsumerWidget with PresLogger {
                           .watch(packageIconProvider(package.packageName))
                           .when(
                             data: (data) => Image(image: data),
-                            error: (error, _) => const Icon(Icons.error),
+                            error: (error, _) =>
+                                const Icon(FluentIcons.error_circle_24_regular),
                             loading: () => const Center(
                               child: CircularProgressIndicator(),
                             ),

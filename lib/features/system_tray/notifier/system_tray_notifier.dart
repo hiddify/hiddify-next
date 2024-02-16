@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/model/constants.dart';
 import 'package:hiddify/core/router/router.dart';
-import 'package:hiddify/features/config_option/model/config_option_patch.dart';
+import 'package:hiddify/features/config_option/model/config_option_entity.dart';
 import 'package:hiddify/features/config_option/notifier/config_option_notifier.dart';
 import 'package:hiddify/features/connection/model/connection_status.dart';
 import 'package:hiddify/features/connection/notifier/connection_notifier.dart';

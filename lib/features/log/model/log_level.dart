@@ -1,6 +1,10 @@
+import 'package:dart_mappable/dart_mappable.dart';
 import 'package:dartx/dartx.dart';
 import 'package:flutter/material.dart';
 
+part 'log_level.mapper.dart';
+
+@MappableEnum()
 enum LogLevel {
   trace,
   debug,

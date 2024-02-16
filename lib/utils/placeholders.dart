@@ -1,3 +1,4 @@
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -39,7 +40,7 @@ class SliverErrorBodyPlaceholder extends HookConsumerWidget {
   const SliverErrorBodyPlaceholder(
     this.msg, {
     super.key,
-    this.icon = Icons.error,
+    this.icon = FluentIcons.error_circle_24_regular,
   });
 
   final String msg;

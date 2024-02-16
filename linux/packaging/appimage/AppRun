@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cd "\$(dirname "\$0")"
+export LD_LIBRARY_PATH=usr/lib
+if [ "$1" == "HiddifyService" ];then
+    exec ./$@
+else
+    exec ./$appName $@
+fi

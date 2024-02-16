@@ -1,4 +1,5 @@
 import 'package:dartx/dartx.dart';
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:hiddify/core/app_info/app_info_provider.dart';
 import 'package:hiddify/core/localization/translations.dart';
@@ -9,6 +10,8 @@ import 'package:hiddify/features/home/widget/connection_button.dart';
 import 'package:hiddify/features/home/widget/empty_profiles_home_body.dart';
 import 'package:hiddify/features/profile/notifier/active_profile_notifier.dart';
 import 'package:hiddify/features/profile/widget/profile_tile.dart';
+import 'package:hiddify/features/proxy/active/active_proxy_delay_indicator.dart';
+import 'package:hiddify/features/proxy/active/active_proxy_footer.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:sliver_tools/sliver_tools.dart';
@@ -44,7 +47,7 @@ class HomePage extends HookConsumerWidget {
                 actions: [
                   IconButton(
                     onPressed: () => const AddProfileRoute().push(context),
-                    icon: const Icon(Icons.add_circle),
+                    icon: const Icon(FluentIcons.add_circle_24_filled),
                     tooltip: t.profile.add.buttonText,
                   ),
                 ],
@@ -53,16 +56,24 @@ class HomePage extends HookConsumerWidget {
                 AsyncData(value: final profile?) => MultiSliver(
                     children: [
                       ProfileTile(profile: profile, isMain: true),
-                      const SliverFillRemaining(
+                      SliverFillRemaining(
                         hasScrollBody: false,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            left: 8,
-                            right: 8,
-                            top: 8,
-                            bottom: 86,
-                          ),
-                          child: ConnectionButton(),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Expanded(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  ConnectionButton(),
+                                  ActiveProxyDelayIndicator(),
+                                ],
+                              ),
+                            ),
+                            if (MediaQuery.sizeOf(context).width < 840)
+                              const ActiveProxyFooter(),
+                          ],
                         ),
                       ),
                     ],
