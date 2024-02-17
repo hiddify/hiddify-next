@@ -40,6 +40,7 @@ class IpInfoNotifier extends _$IpInfoNotifier with AppLogger {
   }
 
   Future<void> refresh() async {
+    if (state is AsyncLoading) return;
     loggy.debug("refreshing");
     await ref.read(hapticServiceProvider.notifier).lightImpact();
     ref.invalidateSelf();

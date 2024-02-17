@@ -86,7 +86,12 @@ class ActiveProxySideBarCard extends HookConsumerWidget {
                   ),
                 _ => buildProp(
                     const Icon(FluentIcons.error_circle_20_regular),
-                    propText(t.general.unknown),
+                    IPText.unknown(
+                      onLongPress: () async {
+                        ref.read(ipInfoNotifierProvider.notifier).refresh();
+                      },
+                      constrained: true,
+                    ),
                   ),
               },
             ],

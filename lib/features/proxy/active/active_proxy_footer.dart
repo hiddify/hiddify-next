@@ -56,9 +56,18 @@ class ActiveProxyFooter extends HookConsumerWidget {
                               ),
                             ],
                           ),
-                        AsyncError() => _InfoProp(
-                            icon: FluentIcons.error_circle_20_regular,
-                            text: t.general.unknown,
+                        AsyncError() => Row(
+                            children: [
+                              const Icon(FluentIcons.error_circle_20_regular),
+                              const Gap(8),
+                              IPText.unknown(
+                                onLongPress: () async {
+                                  ref
+                                      .read(ipInfoNotifierProvider.notifier)
+                                      .refresh();
+                                },
+                              ),
+                            ],
                           ),
                         _ => const Row(
                             children: [
