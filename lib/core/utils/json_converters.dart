@@ -1,11 +1,11 @@
-import 'package:dart_mappable/dart_mappable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class IntervalInSecondsMapper extends SimpleMapper<Duration> {
-  const IntervalInSecondsMapper();
-
-  @override
-  Duration decode(dynamic value) => Duration(seconds: value as int);
+class IntervalInSecondsConverter implements JsonConverter<Duration, int> {
+  const IntervalInSecondsConverter();
 
   @override
-  dynamic encode(Duration self) => self.inSeconds;
+  Duration fromJson(int json) => Duration(seconds: json);
+
+  @override
+  int toJson(Duration object) => object.inSeconds;
 }

@@ -1,24 +1,19 @@
 import 'dart:io';
 
-import 'package:dart_mappable/dart_mappable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/utils/platform_utils.dart';
 
-part 'singbox_config_enum.mapper.dart';
-
-@MappableEnum()
+@JsonEnum(valueField: 'key')
 enum ServiceMode {
-  @MappableValue("proxy")
-  proxy,
+  proxy("proxy"),
+  systemProxy("system-proxy"),
+  tun("vpn"),
+  tunService("vpn-service");
 
-  @MappableValue("system-proxy")
-  systemProxy,
+  const ServiceMode(this.key);
 
-  @MappableValue("vpn")
-  tun,
-
-  @MappableValue("vpn-service")
-  tunService;
+  final String key;
 
   static ServiceMode get defaultMode =>
       PlatformUtils.isDesktop ? systemProxy : tun;
@@ -44,19 +39,16 @@ enum ServiceMode {
       };
 }
 
-@MappableEnum()
+@JsonEnum(valueField: 'key')
 enum IPv6Mode {
-  @MappableValue("ipv4_only")
-  disable,
+  disable("ipv4_only"),
+  enable("prefer_ipv4"),
+  prefer("prefer_ipv6"),
+  only("ipv6_only");
 
-  @MappableValue("prefer_ipv4")
-  enable,
+  const IPv6Mode(this.key);
 
-  @MappableValue("prefer_ipv6")
-  prefer,
-
-  @MappableValue("ipv6_only")
-  only;
+  final String key;
 
   String present(TranslationsEn t) => switch (this) {
         disable => t.settings.config.ipv6Modes.disable,
@@ -66,21 +58,12 @@ enum IPv6Mode {
       };
 }
 
-@MappableEnum()
+@JsonEnum(valueField: 'key')
 enum DomainStrategy {
-  @MappableValue("")
   auto(""),
-
-  @MappableValue("prefer_ipv6")
   preferIpv6("prefer_ipv6"),
-
-  @MappableValue("prefer_ipv4")
   preferIpv4("prefer_ipv4"),
-
-  @MappableValue("ipv4_only")
   ipv4Only("ipv4_only"),
-
-  @MappableValue("ipv6_only")
   ipv6Only("ipv6_only");
 
   const DomainStrategy(this.key);
@@ -93,21 +76,18 @@ enum DomainStrategy {
       };
 }
 
-@MappableEnum()
 enum TunImplementation {
   mixed,
   system,
   gVisor;
 }
 
-@MappableEnum()
 enum MuxProtocol {
   h2mux,
   smux,
   yamux;
 }
 
-@MappableEnum()
 enum WarpDetourMode {
   outbound,
   inbound;

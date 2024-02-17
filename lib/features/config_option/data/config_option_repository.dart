@@ -34,7 +34,7 @@ class ConfigOptionRepositoryImpl
   @override
   Either<ConfigOptionFailure, ConfigOptionEntity> getConfigOption() {
     try {
-      final map = ConfigOptionEntity.initial().toMap();
+      final map = ConfigOptionEntity.initial().toJson();
       for (final key in map.keys) {
         final persisted = preferences.get(key);
         if (persisted != null) {
@@ -49,7 +49,7 @@ class ConfigOptionRepositoryImpl
           map[key] = persisted;
         }
       }
-      final options = ConfigOptionEntityMapper.fromMap(map);
+      final options = ConfigOptionEntity.fromJson(map);
       return right(options);
     } catch (error, stackTrace) {
       return left(ConfigOptionUnexpectedFailure(error, stackTrace));
@@ -62,7 +62,7 @@ class ConfigOptionRepositoryImpl
   ) {
     return exceptionHandler(
       () async {
-        final map = patch.toMap();
+        final map = patch.toJson();
         await updateByJson(map);
         return right(unit);
       },
@@ -74,7 +74,7 @@ class ConfigOptionRepositoryImpl
   TaskEither<ConfigOptionFailure, Unit> resetConfigOption() {
     return exceptionHandler(
       () async {
-        final map = ConfigOptionEntity.initial().toMap();
+        final map = ConfigOptionEntity.initial().toJson();
         await updateByJson(map);
         return right(unit);
       },
@@ -86,7 +86,7 @@ class ConfigOptionRepositoryImpl
   Future<void> updateByJson(
     Map<String, dynamic> options,
   ) async {
-    final map = ConfigOptionEntity.initial().toMap();
+    final map = ConfigOptionEntity.initial().toJson();
     for (final key in map.keys) {
       final value = options[key];
       if (value != null) {

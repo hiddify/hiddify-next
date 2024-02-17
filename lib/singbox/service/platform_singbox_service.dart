@@ -80,7 +80,7 @@ class PlatformSingboxService with InfraLogger implements SingboxService {
         loggy.debug("changing options");
         await methodChannel.invokeMethod(
           "change_config_options",
-          options.toJson(),
+          jsonEncode(options.toJson()),
         );
         return right(unit);
       },

@@ -1,5 +1,6 @@
 import 'package:dart_mappable/dart_mappable.dart';
 import 'package:dartx/dartx.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hiddify/core/localization/translations.dart';
 
 part 'optional_range.mapper.dart';
@@ -42,13 +43,13 @@ class OptionalRange with OptionalRangeMappable {
   }
 }
 
-class OptionalRangeJsonMapper extends SimpleMapper<OptionalRange> {
-  const OptionalRangeJsonMapper();
+class OptionalRangeJsonConverter
+    implements JsonConverter<OptionalRange, String> {
+  const OptionalRangeJsonConverter();
 
   @override
-  OptionalRange decode(dynamic value) =>
-      OptionalRange._fromString(value as String);
+  OptionalRange fromJson(String json) => OptionalRange._fromString(json);
 
   @override
-  dynamic encode(OptionalRange self) => self.format();
+  String toJson(OptionalRange object) => object.format();
 }

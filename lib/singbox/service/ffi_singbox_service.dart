@@ -118,10 +118,10 @@ class FFISingboxService with InfraLogger implements SingboxService {
 
   @override
   TaskEither<String, Unit> changeOptions(SingboxConfigOption options) {
-    final json = options.toJson();
     return TaskEither(
       () => CombineWorker().execute(
         () {
+          final json = jsonEncode(options.toJson());
           final err = _box
               .changeConfigOptions(json.toNativeUtf8().cast())
               .cast<Utf8>()
