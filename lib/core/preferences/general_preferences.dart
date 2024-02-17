@@ -186,3 +186,20 @@ class DynamicNotification extends _$DynamicNotification {
     return _pref.update(value);
   }
 }
+
+@riverpod
+class AutoCheckIp extends _$AutoCheckIp {
+  late final _pref = Pref(
+    ref.watch(sharedPreferencesProvider).requireValue,
+    "auto_check_ip",
+    true,
+  );
+
+  @override
+  bool build() => _pref.getValue();
+
+  Future<void> update(bool value) {
+    state = value;
+    return _pref.update(value);
+  }
+}

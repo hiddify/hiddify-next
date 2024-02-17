@@ -17,6 +17,9 @@ sealed class ProxyFailure with _$ProxyFailure, Failure {
   @With<ExpectedFailure>()
   const factory ProxyFailure.serviceNotRunning() = ServiceNotRunning;
 
+  @With<ExpectedFailure>()
+  const factory ProxyFailure.unknownIp() = UnknownIp;
+
   @override
   ({String type, String? message}) present(TranslationsEn t) {
     return switch (this) {
@@ -28,6 +31,7 @@ sealed class ProxyFailure with _$ProxyFailure, Failure {
           type: t.failure.singbox.serviceNotRunning,
           message: null,
         ),
+      UnknownIp() => (type: t.general.unknown, message: null),
     };
   }
 }

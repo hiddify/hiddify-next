@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:hiddify/core/haptic/haptic_service.dart';
+import 'package:hiddify/core/preferences/general_preferences.dart';
 import 'package:hiddify/core/utils/throttler.dart';
 import 'package:hiddify/features/connection/notifier/connection_notifier.dart';
 import 'package:hiddify/features/proxy/data/proxy_data_providers.dart';
@@ -23,11 +24,15 @@ class IpInfoNotifier extends _$IpInfoNotifier with AppLogger {
       cancelToken.cancel();
     });
 
+    final autoCheck = ref.watch(autoCheckIpProvider);
     final serviceRunning = await ref.watch(serviceRunningProvider.future);
-    if (!serviceRunning) {
+    if (!_userRequestedFetch && !serviceRunning) {
       throw const ServiceNotRunning();
+    } else if (!_userRequestedFetch && serviceRunning && !autoCheck) {
+      throw const UnknownIp();
     }
 
+    _userRequestedFetch = false;
     return ref
         .watch(proxyRepositoryProvider)
         .getCurrentIpInfo(cancelToken)
@@ -39,10 +44,13 @@ class IpInfoNotifier extends _$IpInfoNotifier with AppLogger {
     ).run();
   }
 
+  bool _userRequestedFetch = false;
+
   Future<void> refresh() async {
     if (state is AsyncLoading) return;
     loggy.debug("refreshing");
     await ref.read(hapticServiceProvider.notifier).lightImpact();
+    _userRequestedFetch = true;
     ref.invalidateSelf();
   }
 }
