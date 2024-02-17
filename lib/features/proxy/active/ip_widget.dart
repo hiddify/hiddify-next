@@ -12,20 +12,14 @@ final _showIp = StateProvider.autoDispose((ref) {
 
 class IPText extends HookConsumerWidget {
   const IPText({
-    required String this.ip,
-    required VoidCallback this.onLongPress,
+    required this.ip,
+    required this.onLongPress,
     this.constrained = false,
     super.key,
   });
 
-  const IPText.unknown({
-    this.onLongPress,
-    this.constrained = false,
-    super.key,
-  }) : ip = null;
-
-  final String? ip;
-  final VoidCallback? onLongPress;
+  final String ip;
+  final VoidCallback onLongPress;
   final bool constrained;
 
   @override
@@ -38,46 +32,73 @@ class IPText extends HookConsumerWidget {
     return Semantics(
       label: t.proxies.ipInfoSemantics.address,
       child: InkWell(
-        onTap: ip == null
-            ? null
-            : () {
-                ref.read(_showIp.notifier).state = !isVisible;
-              },
+        onTap: () {
+          ref.read(_showIp.notifier).state = !isVisible;
+        },
         onLongPress: onLongPress,
         borderRadius: BorderRadius.circular(12),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 2),
-          child: switch (ip) {
-            final ip? => AnimatedCrossFade(
-                firstChild: Text(
-                  ip,
-                  style: ipStyle,
-                  textDirection: TextDirection.ltr,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                secondChild: Padding(
-                  padding: constrained
-                      ? EdgeInsets.zero
-                      : const EdgeInsetsDirectional.only(end: 48),
-                  child: Text(
-                    obscureIp(ip),
-                    semanticsLabel: t.general.hidden,
-                    style: ipStyle,
-                    textDirection: TextDirection.ltr,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-                crossFadeState: isVisible
-                    ? CrossFadeState.showFirst
-                    : CrossFadeState.showSecond,
-                duration: const Duration(milliseconds: 200),
-              ),
-            _ => Text(
-                t.general.unknown,
-                style: constrained ? textTheme.bodySmall : ipStyle,
+          child: AnimatedCrossFade(
+            firstChild: Text(
+              ip,
+              style: ipStyle,
+              textDirection: TextDirection.ltr,
+              overflow: TextOverflow.ellipsis,
+            ),
+            secondChild: Padding(
+              padding: constrained
+                  ? EdgeInsets.zero
+                  : const EdgeInsetsDirectional.only(end: 48),
+              child: Text(
+                obscureIp(ip),
+                semanticsLabel: t.general.hidden,
+                style: ipStyle,
+                textDirection: TextDirection.ltr,
                 overflow: TextOverflow.ellipsis,
               ),
-          },
+            ),
+            crossFadeState: isVisible
+                ? CrossFadeState.showFirst
+                : CrossFadeState.showSecond,
+            duration: const Duration(milliseconds: 200),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class UnknownIPText extends HookConsumerWidget {
+  const UnknownIPText({
+    required this.text,
+    required this.onTap,
+    this.constrained = false,
+    super.key,
+  });
+
+  final String text;
+  final VoidCallback onTap;
+  final bool constrained;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = ref.watch(translationsProvider);
+    final textTheme = Theme.of(context).textTheme;
+    final style = constrained ? textTheme.bodySmall : textTheme.labelMedium;
+
+    return Semantics(
+      label: t.proxies.ipInfoSemantics.address,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(12),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 2),
+          child: Text(
+            text,
+            style: style,
+            overflow: TextOverflow.ellipsis,
+          ),
         ),
       ),
     );

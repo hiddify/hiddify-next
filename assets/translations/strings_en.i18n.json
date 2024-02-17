@@ -125,6 +125,8 @@
         "emptyProxiesMsg": "No proxies available",
         "delayTestTooltip": "Test Delay",
         "sortTooltip": "Sort Proxies",
+        "checkIp": "Check IP",
+        "unknownIp": "Unknown IP",
         "sortOptions": {
             "unsorted": "Default",
             "name": "Alphabetically",

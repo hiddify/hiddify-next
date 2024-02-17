@@ -7,6 +7,7 @@ import 'package:hiddify/core/widget/animated_visibility.dart';
 import 'package:hiddify/core/widget/shimmer_skeleton.dart';
 import 'package:hiddify/features/proxy/active/active_proxy_notifier.dart';
 import 'package:hiddify/features/proxy/active/ip_widget.dart';
+import 'package:hiddify/features/proxy/model/proxy_failure.dart';
 import 'package:hiddify/features/stats/notifier/stats_notifier.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -56,12 +57,27 @@ class ActiveProxyFooter extends HookConsumerWidget {
                               ),
                             ],
                           ),
+                        AsyncError(error: final UnknownIp _) => Row(
+                            children: [
+                              const Icon(FluentIcons.arrow_sync_20_regular),
+                              const Gap(8),
+                              UnknownIPText(
+                                text: t.proxies.checkIp,
+                                onTap: () async {
+                                  ref
+                                      .read(ipInfoNotifierProvider.notifier)
+                                      .refresh();
+                                },
+                              ),
+                            ],
+                          ),
                         AsyncError() => Row(
                             children: [
                               const Icon(FluentIcons.error_circle_20_regular),
                               const Gap(8),
-                              IPText.unknown(
-                                onLongPress: () async {
+                              UnknownIPText(
+                                text: t.proxies.unknownIp,
+                                onTap: () async {
                                   ref
                                       .read(ipInfoNotifierProvider.notifier)
                                       .refresh();

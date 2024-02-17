@@ -6,6 +6,7 @@ import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/widget/shimmer_skeleton.dart';
 import 'package:hiddify/features/proxy/active/active_proxy_notifier.dart';
 import 'package:hiddify/features/proxy/active/ip_widget.dart';
+import 'package:hiddify/features/proxy/model/proxy_failure.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ActiveProxySideBarCard extends HookConsumerWidget {
@@ -84,10 +85,21 @@ class ActiveProxySideBarCard extends HookConsumerWidget {
                     const Icon(FluentIcons.question_circle_20_regular),
                     const ShimmerSkeleton(widthFactor: .85, height: 14),
                   ),
+                AsyncError(error: final UnknownIp _) => buildProp(
+                    const Icon(FluentIcons.arrow_sync_20_regular),
+                    UnknownIPText(
+                      text: t.proxies.checkIp,
+                      onTap: () async {
+                        ref.read(ipInfoNotifierProvider.notifier).refresh();
+                      },
+                      constrained: true,
+                    ),
+                  ),
                 _ => buildProp(
                     const Icon(FluentIcons.error_circle_20_regular),
-                    IPText.unknown(
-                      onLongPress: () async {
+                    UnknownIPText(
+                      text: t.proxies.unknownIp,
+                      onTap: () async {
                         ref.read(ipInfoNotifierProvider.notifier).refresh();
                       },
                       constrained: true,
