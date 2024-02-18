@@ -62,7 +62,7 @@ void main() {
                 upload: 0,
                 download: 1024,
                 total: 10240,
-                expire: DateTime(2024),
+                expire: DateTime.fromMillisecondsSinceEpoch(1704054600 * 1000),
                 webPageUrl: validBaseUrl,
                 supportUrl: validSupportUrl,
               ),
