@@ -7,6 +7,7 @@ import 'package:hiddify/features/geo_asset/data/geo_asset_path_resolver.dart';
 import 'package:hiddify/features/geo_asset/data/geo_asset_repository.dart';
 import 'package:hiddify/singbox/model/singbox_config_option.dart';
 import 'package:hiddify/singbox/model/singbox_rule.dart';
+import 'package:hiddify/singbox/service/singbox_service.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -17,6 +18,7 @@ abstract interface class ConfigOptionRepository {
     ConfigOptionPatch patch,
   );
   TaskEither<ConfigOptionFailure, Unit> resetConfigOption();
+  TaskEither<ConfigOptionFailure, Unit> generateWarpConfig();
 }
 
 abstract interface class SingBoxConfigOptionRepository {
@@ -27,9 +29,13 @@ abstract interface class SingBoxConfigOptionRepository {
 class ConfigOptionRepositoryImpl
     with ExceptionHandler, InfraLogger
     implements ConfigOptionRepository {
-  ConfigOptionRepositoryImpl({required this.preferences});
+  ConfigOptionRepositoryImpl({
+    required this.preferences,
+    required this.singbox,
+  });
 
   final SharedPreferences preferences;
+  final SingboxService singbox;
 
   @override
   Either<ConfigOptionFailure, ConfigOptionEntity> getConfigOption() {
@@ -106,6 +112,35 @@ class ConfigOptionRepositoryImpl
         }
       }
     }
+  }
+
+  @override
+  TaskEither<ConfigOptionFailure, Unit> generateWarpConfig() {
+    return exceptionHandler(
+      () async {
+        final options = getConfigOption().getOrElse((l) => throw l);
+        return await singbox
+            .generateWarpConfig(
+              licenseKey: options.warpLicenseKey,
+              previousAccountId: options.warpAccountId,
+              previousAccessToken: options.warpAccessToken,
+            )
+            .mapLeft((l) => ConfigOptionFailure.unexpected(l))
+            .flatMap(
+              (warp) => updateConfigOption(
+                ConfigOptionPatch(
+                  warpAccountId: warp.accountId,
+                  warpAccessToken: warp.accessToken,
+                ),
+              ),
+            )
+            .run();
+      },
+      (error, stackTrace) {
+        loggy.error(error);
+        return ConfigOptionUnexpectedFailure(error, stackTrace);
+      },
+    );
   }
 }
 

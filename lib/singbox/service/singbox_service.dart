@@ -6,6 +6,7 @@ import 'package:hiddify/singbox/model/singbox_config_option.dart';
 import 'package:hiddify/singbox/model/singbox_outbound.dart';
 import 'package:hiddify/singbox/model/singbox_stats.dart';
 import 'package:hiddify/singbox/model/singbox_status.dart';
+import 'package:hiddify/singbox/model/warp_account.dart';
 import 'package:hiddify/singbox/service/ffi_singbox_service.dart';
 import 'package:hiddify/singbox/service/platform_singbox_service.dart';
 
@@ -85,4 +86,10 @@ abstract interface class SingboxService {
   Stream<List<String>> watchLogs(String path);
 
   TaskEither<String, Unit> clearLogs();
+
+  TaskEither<String, WarpAccount> generateWarpConfig({
+    required String licenseKey,
+    required String previousAccountId,
+    required String previousAccessToken,
+  });
 }

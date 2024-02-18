@@ -1,6 +1,7 @@
 import 'package:hiddify/core/preferences/preferences_provider.dart';
 import 'package:hiddify/features/config_option/data/config_option_repository.dart';
 import 'package:hiddify/features/geo_asset/data/geo_asset_data_providers.dart';
+import 'package:hiddify/singbox/service/singbox_service_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'config_option_data_providers.g.dart';
@@ -11,6 +12,7 @@ ConfigOptionRepository configOptionRepository(
 ) {
   return ConfigOptionRepositoryImpl(
     preferences: ref.watch(sharedPreferencesProvider).requireValue,
+    singbox: ref.watch(singboxServiceProvider),
   );
 }
 

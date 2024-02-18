@@ -54,6 +54,8 @@ class SingboxConfigOption with _$SingboxConfigOption {
     required bool enableWarp,
     required WarpDetourMode warpDetourMode,
     required String warpLicenseKey,
+    required String warpAccountId,
+    required String warpAccessToken,
     required String warpCleanIp,
     required int warpPort,
     @OptionalRangeJsonConverter() required OptionalRange warpNoise,

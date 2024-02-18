@@ -28,7 +28,8 @@ class WarpOptionsTiles extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final t = ref.watch(translationsProvider);
 
-    final warpPrefaceCompleted = ref.watch(warpOptionNotifierProvider);
+    final warpOptions = ref.watch(warpOptionNotifierProvider);
+    final warpPrefaceCompleted = warpOptions.consentGiven;
     final canChangeOptions = warpPrefaceCompleted && options.enableWarp;
 
     return Column(
@@ -49,6 +50,26 @@ class WarpOptionsTiles extends HookConsumerWidget {
             } else {
               await onChange(ConfigOptionPatch(enableWarp: value));
             }
+          },
+        ),
+        ListTile(
+          title: Text(t.settings.config.generateWarpConfig),
+          subtitle: canChangeOptions
+              ? switch (warpOptions.configGeneration) {
+                  AsyncLoading() => const LinearProgressIndicator(),
+                  AsyncError() => Text(
+                      t.settings.config.missingWarpConfig,
+                      style:
+                          TextStyle(color: Theme.of(context).colorScheme.error),
+                    ),
+                  _ => null,
+                }
+              : null,
+          enabled: canChangeOptions,
+          onTap: () async {
+            await ref
+                .read(warpOptionNotifierProvider.notifier)
+                .generateWarpConfig();
           },
         ),
         ListTile(

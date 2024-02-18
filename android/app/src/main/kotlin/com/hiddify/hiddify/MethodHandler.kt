@@ -7,13 +7,14 @@ import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.nekohasekai.libbox.Libbox
+import io.nekohasekai.mobile.Mobile
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class MethodHandler(private val scope: CoroutineScope) : FlutterPlugin,
-        MethodChannel.MethodCallHandler {
+    MethodChannel.MethodCallHandler {
     private var channel: MethodChannel? = null
 
     companion object {
@@ -30,13 +31,14 @@ class MethodHandler(private val scope: CoroutineScope) : FlutterPlugin,
             SelectOutbound("select_outbound"),
             UrlTest("url_test"),
             ClearLogs("clear_logs"),
+            GenerateWarpConfig("generate_warp_config"),
         }
     }
 
     override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
         channel = MethodChannel(
-                flutterPluginBinding.binaryMessenger,
-                channelName,
+            flutterPluginBinding.binaryMessenger,
+            channelName,
         )
         channel!!.setMethodCallHandler(this)
     }
@@ -150,10 +152,10 @@ class MethodHandler(private val scope: CoroutineScope) : FlutterPlugin,
                     result.runCatching {
                         val args = call.arguments as Map<*, *>
                         Libbox.newStandaloneCommandClient()
-                                .selectOutbound(
-                                        args["groupTag"] as String,
-                                        args["outboundTag"] as String
-                                )
+                            .selectOutbound(
+                                args["groupTag"] as String,
+                                args["outboundTag"] as String
+                            )
                         success(true)
                     }
                 }
@@ -164,9 +166,9 @@ class MethodHandler(private val scope: CoroutineScope) : FlutterPlugin,
                     result.runCatching {
                         val args = call.arguments as Map<*, *>
                         Libbox.newStandaloneCommandClient()
-                                .urlTest(
-                                        args["groupTag"] as String
-                                )
+                            .urlTest(
+                                args["groupTag"] as String
+                            )
                         success(true)
                     }
                 }
@@ -177,6 +179,20 @@ class MethodHandler(private val scope: CoroutineScope) : FlutterPlugin,
                     result.runCatching {
                         MainActivity.instance.onServiceResetLogs(mutableListOf())
                         success(true)
+                    }
+                }
+            }
+
+            Trigger.GenerateWarpConfig.method -> {
+                scope.launch(Dispatchers.IO) {
+                    result.runCatching {
+                        val args = call.arguments as Map<*, *>
+                        val warpConfig = Mobile.generateWarpConfig(
+                            args["license-key"] as String,
+                            args["previous-account-id"] as String,
+                            args["previous-access-token"] as String,
+                        )
+                        success(warpConfig)
                     }
                 }
             }
