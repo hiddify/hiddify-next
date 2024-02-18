@@ -15,7 +15,9 @@
         "notSet": "没有设置",
         "agree": "同意",
         "decline": "衰退",
-        "unknown": "未知"
+        "unknown": "未知",
+        "hidden": "隐藏",
+        "timeout": "超时"
     },
     "intro": {
         "termsAndPolicyCaution(rich)": "继续即表示您同意 ${tap(@:about.termsAndConditions)}",
@@ -38,7 +40,8 @@
             "traffic": "实时流量",
             "trafficTotal": "总流量",
             "uplink": "上行",
-            "downlink": "下行"
+            "downlink": "下行",
+            "connection": "连接"
         }
     },
     "profile": {
@@ -126,10 +129,26 @@
         "emptyProxiesMsg": "没有可用的代理",
         "delayTestTooltip": "测试延迟",
         "sortTooltip": "对代理进行排序",
+        "checkIp": "查看IP",
+        "unknownIp": "未知IP",
         "sortOptions": {
             "unsorted": "默认",
             "name": "按字母顺序",
             "delay": "按延迟顺序"
+        },
+        "activeProxySemanticLabel": "激活代理",
+        "delaySemantics": {
+            "result": "延迟: ${delay}ms",
+            "timeout": "测试延迟超时",
+            "testing": "延迟: 测试中..."
+        },
+        "ipInfoSemantics": {
+            "address": "IP地址",
+            "country": "国家"
+        },
+        "statsSemantics": {
+            "speed": "速度",
+            "totalTransferred": "已转发流量"
         }
     },
     "logs": {
@@ -173,7 +192,9 @@
             "openWorkingDir": "打开工作目录",
             "ignoreBatteryOptimizations": "禁用电池优化",
             "ignoreBatteryOptimizationsMsg": "消除限制以获得最佳 VPN 性能",
-            "dynamicNotification": "在通知中显示速度"
+            "dynamicNotification": "在通知中显示速度",
+            "hapticFeedback": "触觉反馈",
+            "autoIpCheck": "自动检查IP"
         },
         "advanced": {
             "sectionTitle": "高级选项",
@@ -212,10 +233,15 @@
                 "mux": "复用器",
                 "outbound": "出站选项",
                 "tlsTricks": "TLS Tricks",
-                "misc": "其他选项",
-                "warp": "WARP 选项"
-                
+                "warp": "WARP 选项",
+                "misc": "其他选项"
             },
+            "warpConsent": {
+                "title": "Cloudflare WARP 同意",
+                "description(rich)": "Cloudflare WARP 是免费的 WireGuard VPN 提供商。启用此选项即表示您同意 Cloudflare WARP 的 ${tos(服务条款)} 和 ${privacy(隐私政策)}"
+            },
+            "generateWarpConfig": "生成WARP配置",
+            "missingWarpConfig": "缺失WARP配置",
             "pageTitle": "配置选项",
             "logLevel": "日志级别",
             "resolveDestination": "解析目标地址",
@@ -255,7 +281,7 @@
             "muxProtocol": "Mux多路复用控制",
             "muxMaxStreams": "Mux最大并发数",
             "enableWarp": "启用 WARP",
-            "warpDetourMode": "迂回模式",
+            "warpDetourMode": "链式代理",
             "warpDetourModes": {
                 "inbound": "通过代理绕过 WARP",
                 "outbound": "通过 WARP 绕过代理"
@@ -263,11 +289,7 @@
             "warpLicenseKey": "许可证密钥",
             "warpCleanIp": "干净 IP",
             "warpPort": "端口",
-            "warpNoise": "噪音",
-            "warpConsent": {
-                "title": "Cloudflare WARP 同意",
-                "description(rich)": "Cloudflare WARP 是免费的 WireGuard VPN 提供商。启用此选项即表示您同意 Cloudflare WARP 的 ${tos(服务条款)} 和 ${privacy(隐私政策)}"
-            }
+            "warpNoise": "噪音"
         },
         "geoAssets": {
             "pageTitle": "路由资源文件",
