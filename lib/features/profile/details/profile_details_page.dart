@@ -1,6 +1,7 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/model/failures.dart';
@@ -203,12 +204,69 @@ class ProfileDetailsPage extends HookConsumerWidget with PresLogger {
                               },
                             ),
                           ],
-                          if (state.isEditing)
+                          if (state.isEditing) ...[
                             ListTile(
                               title: Text(t.profile.detailsForm.lastUpdate),
+                              leading:
+                                  const Icon(FluentIcons.history_24_regular),
                               subtitle: Text(state.profile.lastUpdate.format()),
                               dense: true,
                             ),
+                          ],
+                          if (state.profile
+                              case RemoteProfileEntity(:final subInfo?)) ...[
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 18,
+                                vertical: 8,
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text.rich(
+                                    style:
+                                        Theme.of(context).textTheme.bodySmall,
+                                    TextSpan(
+                                      children: [
+                                        _buildSubProp(
+                                          FluentIcons.arrow_upload_16_regular,
+                                          subInfo.upload.size(),
+                                          t.profile.subscription.upload,
+                                        ),
+                                        const TextSpan(text: "     "),
+                                        _buildSubProp(
+                                          FluentIcons.arrow_download_16_regular,
+                                          subInfo.download.size(),
+                                          t.profile.subscription.download,
+                                        ),
+                                        const TextSpan(text: "     "),
+                                        _buildSubProp(
+                                          FluentIcons
+                                              .arrow_bidirectional_up_down_16_regular,
+                                          subInfo.total.size(),
+                                          t.profile.subscription.total,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const Gap(12),
+                                  Text.rich(
+                                    style:
+                                        Theme.of(context).textTheme.bodySmall,
+                                    TextSpan(
+                                      children: [
+                                        _buildSubProp(
+                                          FluentIcons.clock_dismiss_20_regular,
+                                          subInfo.expire.format(),
+                                          t.profile.subscription.expireDate,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ],
                       ),
                     ),
@@ -282,5 +340,15 @@ class ProfileDetailsPage extends HookConsumerWidget with PresLogger {
       default:
         return const Scaffold();
     }
+  }
+
+  InlineSpan _buildSubProp(IconData icon, String text, String semanticLabel) {
+    return TextSpan(
+      children: [
+        WidgetSpan(child: Icon(icon, size: 16, semanticLabel: semanticLabel)),
+        const TextSpan(text: " "),
+        TextSpan(text: text),
+      ],
+    );
   }
 }
