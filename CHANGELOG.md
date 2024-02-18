@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## [0.16.0.dev] - 2023-2-18
 
 ### New Features and Improvements
 
@@ -16,6 +16,7 @@
 - Changed in-app icons (using [Fluent UI System Icons](https://github.com/microsoft/fluentui-system-icons))
 - Redesigned navigation flow, separating config options
 - Added haptic feedback
+- Added detailed subscription info in profile edit page
 - Added Chinese Taiwan language. [PR#410](https://github.com/hiddify/hiddify-next/pull/410) by [junlin03](https://github.com/junlin03) and [PR#491](https://github.com/hiddify/hiddify-next/pull/491) by [kouhe3](https://github.com/kouhe3)
 - Added Japanese Readme. [PR#371](https://github.com/hiddify/hiddify-next/pull/371) by [Ikko Eltociear Ashimine](https://github.com/eltociear)
 
@@ -277,6 +278,7 @@
 - Fixed localization mistakes in Russian. [PR#95](https://github.com/hiddify/hiddify-next/pull/95) by [solokot](https://github.com/solokot)
 - Fixed localization mistakes in Russian. [PR#74](https://github.com/hiddify/hiddify-next/pull/74) by [Elshad Guseynov](https://github.com/lifeindarkside)
 
+[0.16.0.dev]: https://github.com/hiddify/hiddify-next/releases/tag/v0.16.0.dev
 [0.14.1.dev]: https://github.com/hiddify/hiddify-next/releases/tag/v0.14.1.dev
 [0.14.0.dev]: https://github.com/hiddify/hiddify-next/releases/tag/v0.14.0.dev
 [0.13.6]: https://github.com/hiddify/hiddify-next/releases/tag/v0.13.6
