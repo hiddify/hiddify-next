@@ -6,7 +6,7 @@ void main() {
     "obscureIp",
     () {
       test(
-        "Should pass given valid IPV4",
+        "Should obscure parts of ipv4",
         () {
           const ipv4 = "1.1.1.1";
           final obscured = obscureIp(ipv4);
@@ -15,7 +15,7 @@ void main() {
       );
 
       test(
-        "Should pass given valid full IPV6",
+        "Should obscure parts of full ipv6",
         () {
           const ipv6 = "FEDC:BA98:7654:3210:FEDC:BA98:7654:3210";
           final obscured = obscureIp(ipv6);
@@ -24,7 +24,7 @@ void main() {
       );
 
       test(
-        "Should pass given valid IPV6",
+        "Should obscure parts of ipv6",
         () {
           const ipv6 = "::1";
           final obscured = obscureIp(ipv6);

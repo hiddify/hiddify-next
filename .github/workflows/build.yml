@@ -92,6 +92,9 @@ jobs:
           make ${{ matrix.platform }}-prepare
           tree
 
+      - name: Test
+        run: flutter test
+
       - name: Setup Android Signing Properties
         if: startsWith(matrix.platform,'android')
         run: |

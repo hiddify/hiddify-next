@@ -12,7 +12,7 @@ void main() {
     "parse",
     () {
       test(
-        "url with file extension, no headers",
+        "Should use filename in url with no headers and fragment",
         () {
           final profile = ProfileParser.parse(validBaseUrl, {});
 
@@ -24,7 +24,7 @@ void main() {
       );
 
       test(
-        "url with url, no headers",
+        "Should use fragment in url with no headers",
         () {
           final profile = ProfileParser.parse(validExtendedUrl, {});
 
@@ -36,7 +36,7 @@ void main() {
       );
 
       test(
-        "with base64 profile-title header",
+        "Should use base64 title in headers",
         () {
           final headers = <String, List<String>>{
             "profile-title": ["base64:ZXhhbXBsZVRpdGxl"],
@@ -72,7 +72,7 @@ void main() {
       );
 
       test(
-        "with infinite traffic and time",
+        "Should use infinite when given 0 for subscription properties",
         () {
           final headers = <String, List<String>>{
             "profile-title": ["title"],
