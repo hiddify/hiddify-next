@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:hiddify/core/haptic/haptic_service.dart';
 import 'package:hiddify/features/profile/data/profile_data_providers.dart';
 import 'package:hiddify/features/profile/data/profile_repository.dart';
 import 'package:hiddify/features/profile/model/profile_entity.dart';
@@ -46,6 +47,7 @@ class ProfilesOverviewNotifier extends _$ProfilesOverviewNotifier
 
   Future<Unit> selectActiveProfile(String id) async {
     loggy.debug('changing active profile to: [$id]');
+    await ref.read(hapticServiceProvider.notifier).lightImpact();
     return _profilesRepo.setAsActive(id).getOrElse((err) {
       loggy.warning('failed to set [$id] as active profile', err);
       throw err;
