@@ -1,5 +1,32 @@
 # Changelog
 
+## Unreleased
+
+### New Features and Improvements
+
+- Changed App name to **Hiddify**
+- Changed App icon
+- Added Mux (**Experimental**)
+- Added Cloudflare WARP (**Experimental**)
+- Added connection info
+  - when connected, name of the active node, speed and IP address are shown on home page
+  - delay indicator below connection button shows active node's ping
+- Added VPN Service (Windows & Linux) (**Experimental**)
+  - VPN Service circumvents need for administrator permission while using TUN
+- Changed in-app icons (using [Fluent UI System Icons](https://github.com/microsoft/fluentui-system-icons))
+- Redesigned navigation flow, separating config options
+- Added haptic feedback
+- Added Chinese Taiwan language. [PR#410](https://github.com/hiddify/hiddify-next/pull/410) by [junlin03](https://github.com/junlin03) and [PR#491](https://github.com/hiddify/hiddify-next/pull/491) by [kouhe3](https://github.com/kouhe3)
+- Added Japanese Readme. [PR#371](https://github.com/hiddify/hiddify-next/pull/371) by [Ikko Eltociear Ashimine](https://github.com/eltociear)
+
+### Bug Fixes
+
+- Fixed TLS Tricks bugs
+- Fixed logs on iOS. [PR#414](https://github.com/hiddify/hiddify-next/pull/414) by [Amir Mohammadi](https://github.com/amirsaam) and [PR#416](https://github.com/hiddify/hiddify-next/pull/416) by [Ebrahim Tahernejad](https://github.com/EbrahimTahernejad)
+- Fixed Android service mode
+- Fixed UI inconsistencies
+- Fixed Readme download URL. [PR#482](https://github.com/hiddify/hiddify-next/pull/482) by [Ali Afsharzadeh](https://github.com/guoard)
+
 ## [0.14.1.dev] - 2023-1-19
 
 ### New Features and Improvements
