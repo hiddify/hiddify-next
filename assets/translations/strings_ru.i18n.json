@@ -211,6 +211,10 @@
                 "warp": "WARP Options",
                 "misc": "Разные параметры"
             },
+            "warpConsent": {
+                "title": "Согласие Cloudflare WARP",
+                "description(rich)": "Cloudflare WARP — бесплатный провайдер WireGuard VPN. Включая эту опцию, вы соглашаетесь с ${tos(Условиями обслуживания)} и ${privacy(Политикой конфиденциальности)} Cloudflare WARP."
+            },
             "pageTitle": "Параметры конфигурации",
             "logLevel": "Подробность журналирования",
             "resolveDestination": "Определять назначение",
@@ -258,11 +262,7 @@
             "warpLicenseKey": "License Key",
             "warpCleanIp": "Clean IP",
             "warpPort": "Port",
-            "warpNoise": "Noise",
-            "warpConsent": {
-                "title": "Согласие Cloudflare WARP",
-                "description(rich)": "Cloudflare WARP — бесплатный провайдер WireGuard VPN. Включая эту опцию, вы соглашаетесь с ${tos(Условиями обслуживания)} и ${privacy(Политикой конфиденциальности)} Cloudflare WARP."
-            }
+            "warpNoise": "Noise"
         },
         "geoAssets": {
             "pageTitle": "Активы маршрутизации",

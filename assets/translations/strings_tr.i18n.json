@@ -211,6 +211,10 @@
                 "warp": "WARP Options",
                 "misc": "Çeşitli Seçenekler"
             },
+            "warpConsent": {
+                "title": "Cloudflare WARP Onayı",
+                "description(rich)": "Cloudflare WARP ücretsiz bir WireGuard VPN sağlayıcısıdır. Bu seçeneği etkinleştirerek Cloudflare WARP'ın ${tos(Hizmet Şartları)} ve ${privacy(Gizlilik Politikası)}'nı kabul etmiş olursunuz."
+            },
             "pageTitle": "Yapılandırma Seçenekleri",
             "logLevel": "Log Seviyesi",
             "resolveDestination": "Hedefi Çöz",
@@ -258,11 +262,7 @@
             "warpLicenseKey": "License Key",
             "warpCleanIp": "Clean IP",
             "warpPort": "Port",
-            "warpNoise": "Noise",
-            "warpConsent": {
-                "title": "Cloudflare WARP Onayı",
-                "description(rich)": "Cloudflare WARP ücretsiz bir WireGuard VPN sağlayıcısıdır. Bu seçeneği etkinleştirerek Cloudflare WARP'ın ${tos(Hizmet Şartları)} ve ${privacy(Gizlilik Politikası)}'nı kabul etmiş olursunuz."
-            }
+            "warpNoise": "Noise"
         },
         "geoAssets": {
             "pageTitle": "Varlıkları Yönlendirme",
