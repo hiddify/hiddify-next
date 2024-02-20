@@ -122,8 +122,9 @@
             "lastUpdate": "Última atualização",
             "updateInterval": "Autilização automática",
             "updateIntervalDialogTitle": "Intervalo de atualização (em horas)"
-        },
-        "proxies": {
+        }
+    },
+    "proxies": {
         "pageTitle": "Proxies",
         "emptyProxiesMsg": "Nenhum proxy encontrado",
         "delayTestTooltip": "Testar delay",
@@ -149,7 +150,6 @@
             "speed": "Velocidade",
             "totalTransferred": "Total transferido"
         }
-    }
     },
      "logs": {
         "pageTitle": "Logs",

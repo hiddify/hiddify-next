@@ -93,7 +93,7 @@ jobs:
           tree
 
       - name: Setup Android Signing Properties
-        if: startsWith(matrix.platform,'android')
+        if: ${{ inputs.upload-artifact && startsWith(matrix.platform,'android') }}
         run: |
           echo "${{ secrets.ANDROID_SIGNING_KEY }}" | base64 --decode > android/key.jks
           echo "storeFile=$(pwd)/android/key.jks" > android/key.properties
@@ -102,7 +102,7 @@ jobs:
           echo "keyAlias=${{ secrets.ANDROID_SIGNING_KEY_ALIAS }}" >> android/key.properties
 
       - name: Setup Apple certificate and provisioning profile
-        if: startsWith(matrix.os,'macos')
+        if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') }}
         env:
           BUILD_CERTIFICATE_BASE64: ${{ secrets.APPLE_BUILD_CERTIFICATE_BASE64 }}
           P12_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_P12_PASSWORD }}

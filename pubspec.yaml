@@ -74,6 +74,7 @@ dependencies:
   dart_mappable: ^4.2.0
   fluentui_system_icons: ^1.1.225
   circle_flags: ^4.0.2
+  http: ^1.2.0
 
 dev_dependencies:
   flutter_test:

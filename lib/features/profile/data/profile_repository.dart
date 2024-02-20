@@ -423,7 +423,7 @@ class ProfileRepositoryImpl
     loggy.debug(
       "only [$headersFound] headers found, checking file content for possible information",
     );
-    var content = await File(path).readAsString();
+    final content = await File(path).readAsString();
     final contentHeaders = parseHeadersFromContent(content);
     for (final entry in contentHeaders.entries) {
       if (!headers.keys.contains(entry.key) && entry.value.isNotEmpty) {

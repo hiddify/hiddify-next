@@ -125,7 +125,7 @@ class IntroPage extends HookConsumerWidget with PresLogger {
           _getRegionLocale(jsonData['country']?.toString() ?? "");
 
       loggy.debug(
-          'Region: ${regionLocale.region} Locale: ${regionLocale.locale}');
+          'Region: ${regionLocale.region} Locale: ${regionLocale.locale}',);
       await ref
           .read(regionNotifierProvider.notifier)
           .update(regionLocale.region);

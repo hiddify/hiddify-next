@@ -127,8 +127,8 @@ class ConnectionNotifier extends _$ConnectionNotifier with AppLogger {
     )
         .mapLeft((err) async {
       loggy.warning("error connecting", err);
-      loggy.warning(
-          err); //Go err is not normal object to see the go errors are string and need to be dumped
+      //Go err is not normal object to see the go errors are string and need to be dumped
+      loggy.warning(err);
       if (err.toString().contains("panic")) {
         await Sentry.captureException(Exception(err.toString()));
       }
