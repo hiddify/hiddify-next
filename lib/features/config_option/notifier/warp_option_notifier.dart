@@ -1,4 +1,3 @@
-import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hiddify/core/preferences/preferences_provider.dart';
 import 'package:hiddify/features/config_option/data/config_option_data_providers.dart';
@@ -27,7 +26,7 @@ class WarpOptionNotifier extends _$WarpOptionNotifier with AppLogger {
     return WarpOptions(
       consentGiven: consent,
       configGeneration: hasWarpConfig
-          ? const AsyncValue.data(unit)
+          ? const AsyncValue.data("")
           : AsyncError(const MissingWarpConfigFailure(), StackTrace.current),
     );
   }
@@ -66,6 +65,6 @@ class WarpOptionNotifier extends _$WarpOptionNotifier with AppLogger {
 class WarpOptions with _$WarpOptions {
   const factory WarpOptions({
     required bool consentGiven,
-    required AsyncValue<Unit> configGeneration,
+    required AsyncValue<String> configGeneration,
   }) = _WarpOptions;
 }

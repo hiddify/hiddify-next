@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/model/constants.dart';
 import 'package:hiddify/core/model/optional_range.dart';
+import 'package:hiddify/core/widget/custom_alert_dialog.dart';
 import 'package:hiddify/features/config_option/model/config_option_entity.dart';
 import 'package:hiddify/features/config_option/notifier/warp_option_notifier.dart';
 import 'package:hiddify/features/settings/widgets/settings_input_dialog.dart';
@@ -31,6 +32,18 @@ class WarpOptionsTiles extends HookConsumerWidget {
     final warpOptions = ref.watch(warpOptionNotifierProvider);
     final warpPrefaceCompleted = warpOptions.consentGiven;
     final canChangeOptions = warpPrefaceCompleted && options.enableWarp;
+
+    ref.listen(
+      warpOptionNotifierProvider.select((value) => value.configGeneration),
+      (previous, next) async {
+        if (next case AsyncData(value: final log) when log.isNotEmpty) {
+          await CustomAlertDialog(
+            title: t.settings.config.warpConfigGenerated,
+            message: log,
+          ).show(context);
+        }
+      },
+    );
 
     return Column(
       children: [

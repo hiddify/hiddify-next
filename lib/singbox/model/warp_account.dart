@@ -1,17 +1,26 @@
-import 'package:flutter/foundation.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'dart:convert';
 
-part 'warp_account.freezed.dart';
-part 'warp_account.g.dart';
+typedef WarpResponse = ({
+  String log,
+  String accountId,
+  String accessToken,
+  String wireguardConfig,
+});
 
-@freezed
-class WarpAccount with _$WarpAccount {
-  const factory WarpAccount({
-    required String licenseKey,
-    required String accountId,
-    required String accessToken,
-  }) = _WarpAccount;
-
-  factory WarpAccount.fromJson(Map<String, dynamic> json) =>
-      _$WarpAccountFromJson(json);
+WarpResponse warpFromJson(dynamic json) {
+  if (json
+      case {
+        "account-id": final String newAccountId,
+        "access-token": final String newAccessToken,
+        "log": final String log,
+        "config": final Map<String, dynamic> wireguardConfig,
+      }) {
+    return (
+      log: log,
+      accountId: newAccountId,
+      accessToken: newAccessToken,
+      wireguardConfig: jsonEncode(wireguardConfig),
+    );
+  }
+  throw Exception("invalid response");
 }

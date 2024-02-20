@@ -18,7 +18,7 @@ abstract interface class ConfigOptionRepository {
     ConfigOptionPatch patch,
   );
   TaskEither<ConfigOptionFailure, Unit> resetConfigOption();
-  TaskEither<ConfigOptionFailure, Unit> generateWarpConfig();
+  TaskEither<ConfigOptionFailure, String> generateWarpConfig();
 }
 
 abstract interface class SingBoxConfigOptionRepository {
@@ -115,7 +115,7 @@ class ConfigOptionRepositoryImpl
   }
 
   @override
-  TaskEither<ConfigOptionFailure, Unit> generateWarpConfig() {
+  TaskEither<ConfigOptionFailure, String> generateWarpConfig() {
     return exceptionHandler(
       () async {
         final options = getConfigOption().getOrElse((l) => throw l);
@@ -131,8 +131,9 @@ class ConfigOptionRepositoryImpl
                 ConfigOptionPatch(
                   warpAccountId: warp.accountId,
                   warpAccessToken: warp.accessToken,
+                  warpWireguardConfig: warp.wireguardConfig,
                 ),
-              ),
+              ).map((_) => warp.log),
             )
             .run();
       },

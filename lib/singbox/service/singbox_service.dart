@@ -87,7 +87,7 @@ abstract interface class SingboxService {
 
   TaskEither<String, Unit> clearLogs();
 
-  TaskEither<String, WarpAccount> generateWarpConfig({
+  TaskEither<String, WarpResponse> generateWarpConfig({
     required String licenseKey,
     required String previousAccountId,
     required String previousAccessToken,

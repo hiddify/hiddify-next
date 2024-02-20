@@ -68,6 +68,7 @@ class ConfigOptionEntity with _$ConfigOptionEntity {
     @OptionalRangeJsonConverter()
     @Default(OptionalRange())
     OptionalRange warpNoise,
+    @Default("") String warpWireguardConfig,
   }) = _ConfigOptionEntity;
 
   factory ConfigOptionEntity.initial() => ConfigOptionEntity(
@@ -140,6 +141,7 @@ class ConfigOptionEntity with _$ConfigOptionEntity {
       warpCleanIp: patch.warpCleanIp ?? warpCleanIp,
       warpPort: patch.warpPort ?? warpPort,
       warpNoise: patch.warpNoise ?? warpNoise,
+      warpWireguardConfig: patch.warpWireguardConfig ?? warpWireguardConfig,
     );
   }
 
@@ -184,17 +186,20 @@ class ConfigOptionEntity with _$ConfigOptionEntity {
       muxPadding: muxPadding,
       muxMaxStreams: muxMaxStreams,
       muxProtocol: muxProtocol,
-      enableWarp: enableWarp,
-      warpDetourMode: warpDetourMode,
-      warpLicenseKey: warpLicenseKey,
-      warpAccountId: warpAccountId,
-      warpAccessToken: warpAccessToken,
-      warpCleanIp: warpCleanIp,
-      warpPort: warpPort,
-      warpNoise: warpNoise,
       geoipPath: geoipPath,
       geositePath: geositePath,
       rules: rules,
+      warp: SingboxWarpOption(
+        enable: enableWarp,
+        mode: warpDetourMode,
+        licenseKey: warpLicenseKey,
+        accountId: warpAccountId,
+        accessToken: warpAccessToken,
+        cleanIp: warpCleanIp,
+        cleanPort: warpPort,
+        warpNoise: warpNoise,
+        wireguardConfig: warpWireguardConfig,
+      ),
     );
   }
 
@@ -248,6 +253,7 @@ class ConfigOptionPatch with _$ConfigOptionPatch {
     String? warpCleanIp,
     int? warpPort,
     @OptionalRangeJsonConverter() OptionalRange? warpNoise,
+    String? warpWireguardConfig,
   }) = _ConfigOptionPatch;
 
   factory ConfigOptionPatch.fromJson(Map<String, dynamic> json) =>

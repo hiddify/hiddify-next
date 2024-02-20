@@ -51,17 +51,10 @@ class SingboxConfigOption with _$SingboxConfigOption {
     required bool muxPadding,
     required int muxMaxStreams,
     required MuxProtocol muxProtocol,
-    required bool enableWarp,
-    required WarpDetourMode warpDetourMode,
-    required String warpLicenseKey,
-    required String warpAccountId,
-    required String warpAccessToken,
-    required String warpCleanIp,
-    required int warpPort,
-    @OptionalRangeJsonConverter() required OptionalRange warpNoise,
     required String geoipPath,
     required String geositePath,
     required List<SingboxRule> rules,
+    required SingboxWarpOption warp,
   }) = _SingboxConfigOption;
 
   String format() {
@@ -71,4 +64,22 @@ class SingboxConfigOption with _$SingboxConfigOption {
 
   factory SingboxConfigOption.fromJson(Map<String, dynamic> json) =>
       _$SingboxConfigOptionFromJson(json);
+}
+
+@freezed
+class SingboxWarpOption with _$SingboxWarpOption {
+  const factory SingboxWarpOption({
+    required bool enable,
+    required WarpDetourMode mode,
+    required String wireguardConfig,
+    required String licenseKey,
+    required String accountId,
+    required String accessToken,
+    required String cleanIp,
+    required int cleanPort,
+    @OptionalRangeJsonConverter() required OptionalRange warpNoise,
+  }) = _SingboxWarpOption;
+
+  factory SingboxWarpOption.fromJson(Map<String, dynamic> json) =>
+      _$SingboxWarpOptionFromJson(json);
 }

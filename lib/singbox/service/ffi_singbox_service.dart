@@ -457,7 +457,7 @@ class FFISingboxService with InfraLogger implements SingboxService {
   }
 
   @override
-  TaskEither<String, WarpAccount> generateWarpConfig({
+  TaskEither<String, WarpResponse> generateWarpConfig({
     required String licenseKey,
     required String previousAccountId,
     required String previousAccessToken,
@@ -477,20 +477,7 @@ class FFISingboxService with InfraLogger implements SingboxService {
           if (response.startsWith("error:")) {
             return left(response.replaceFirst('error:', ""));
           }
-          if (jsonDecode(response)
-              case {
-                "account-id": final String newAccountId,
-                "access-token": final String newAccessToken,
-              }) {
-            return right(
-              WarpAccount(
-                licenseKey: licenseKey,
-                accountId: newAccountId,
-                accessToken: newAccessToken,
-              ),
-            );
-          }
-          return left("invalid response");
+          return right(warpFromJson(jsonDecode(response)));
         },
       ),
     );

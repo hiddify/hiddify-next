@@ -266,7 +266,7 @@ class PlatformSingboxService with InfraLogger implements SingboxService {
   }
 
   @override
-  TaskEither<String, WarpAccount> generateWarpConfig({
+  TaskEither<String, WarpResponse> generateWarpConfig({
     required String licenseKey,
     required String previousAccountId,
     required String previousAccessToken,
@@ -282,20 +282,7 @@ class PlatformSingboxService with InfraLogger implements SingboxService {
             "previous-access-token": previousAccessToken,
           },
         );
-        if (jsonDecode(warpConfig as String)
-            case {
-              "account-id": final String newAccountId,
-              "access-token": final String newAccessToken,
-            }) {
-          return right(
-            WarpAccount(
-              licenseKey: licenseKey,
-              accountId: newAccountId,
-              accessToken: newAccessToken,
-            ),
-          );
-        }
-        return left("invalid response");
+        return right(warpFromJson(jsonDecode(warpConfig as String)));
       },
     );
   }
