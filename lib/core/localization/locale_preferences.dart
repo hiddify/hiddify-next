@@ -1,11 +1,12 @@
 import 'package:hiddify/core/preferences/preferences_provider.dart';
 import 'package:hiddify/gen/translations.g.dart';
+import 'package:hiddify/utils/custom_loggers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'locale_preferences.g.dart';
 
 @Riverpod(keepAlive: true)
-class LocalePreferences extends _$LocalePreferences {
+class LocalePreferences extends _$LocalePreferences with AppLogger {
   @override
   AppLocale build() {
     final persisted =
@@ -15,7 +16,12 @@ class LocalePreferences extends _$LocalePreferences {
     if (persisted == "zh") {
       return AppLocale.zhCn;
     }
-    return AppLocale.values.byName(persisted);
+    try {
+      return AppLocale.values.byName(persisted);
+    } catch (e) {
+      loggy.error("error setting locale: [$persisted]", e);
+      return AppLocale.en;
+    }
   }
 
   Future<void> changeLocale(AppLocale value) async {

@@ -13,6 +13,7 @@ extension AppLocaleX on AppLocale {
         "zh_TW" => "中文 (台湾)",
         "tr" => "Türkçe",
         "es" => "Spanish",
+        "pt_BR" => "Portuguese (Brazil)",
         _ => "Unknown",
       };
 }
