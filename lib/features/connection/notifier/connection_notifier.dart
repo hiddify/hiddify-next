@@ -25,6 +25,17 @@ class ConnectionNotifier extends _$ConnectionNotifier with AppLogger {
       }).run();
     }
 
+    ref.listenSelf(
+      (previous, next) async {
+        if (previous == next) return;
+        if (previous case AsyncData(:final value) when !value.isConnected) {
+          if (next case AsyncData(value: final Connected _)) {
+            await ref.read(hapticServiceProvider.notifier).heavyImpact();
+          }
+        }
+      },
+    );
+
     ref.listen(
       activeProfileProvider.select((value) => value.asData?.value),
       (previous, next) async {

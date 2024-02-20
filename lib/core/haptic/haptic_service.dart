@@ -32,4 +32,10 @@ class HapticService extends _$HapticService {
       await HapticFeedback.mediumImpact();
     }
   }
+
+  Future<void> heavyImpact() async {
+    if (state) {
+      await HapticFeedback.heavyImpact();
+    }
+  }
 }
