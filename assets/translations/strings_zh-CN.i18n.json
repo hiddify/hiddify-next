@@ -60,7 +60,7 @@
             "upload": "上传",
             "download": "下载",
             "total": "总流量",
-            "expireDate": "过期时间"
+            "expireDate": "到期时间"
         },
         "sortBy": {
             "lastUpdate": "最近更新",
@@ -129,18 +129,18 @@
         "emptyProxiesMsg": "没有可用的代理",
         "delayTestTooltip": "测试延迟",
         "sortTooltip": "对代理进行排序",
-        "checkIp": "检查IP",
-        "unknownIp": "未知IP",
+        "checkIp": "检测IP地址",
+        "unknownIp": "未知的IP",
         "sortOptions": {
             "unsorted": "默认",
             "name": "按字母顺序",
             "delay": "按延迟顺序"
         },
-        "activeProxySemanticLabel": "活动proxy",
+        "activeProxySemanticLabel": "活跃的代理",
         "delaySemantics": {
-            "result": "延迟: ${delay}ms",
+            "result": "延迟:${delay}ms",
             "timeout": "延迟测试超时",
-            "testing": "延迟: 测试中..."
+            "testing": "正在测试延迟"
         },
         "ipInfoSemantics": {
             "address": "IP地址",
@@ -148,7 +148,7 @@
         },
         "statsSemantics": {
             "speed": "速度",
-            "totalTransferred": "总流量"
+            "totalTransferred": "总传输量"
         }
     },
     "logs": {
@@ -193,7 +193,8 @@
             "ignoreBatteryOptimizations": "禁用电池优化",
             "ignoreBatteryOptimizationsMsg": "消除限制以获得最佳 VPN 性能",
             "dynamicNotification": "在通知中显示速度",
-            "autoIpCheck": "自动检查连接IP"
+            "hapticFeedback": "触觉反馈",
+            "autoIpCheck": "自动检查连接的 IP"
         },
         "advanced": {
             "sectionTitle": "高级选项",
@@ -240,7 +241,7 @@
                 "title": "Cloudflare WARP 同意",
                 "description(rich)": "Cloudflare WARP 是免费的 WireGuard VPN 提供商。启用此选项即表示您同意 Cloudflare WARP 的 ${tos(服务条款)} 和 ${privacy(隐私政策)}"
             },
-            "generateWarpConfig": "生成WARP配置",
+            "generateWarpConfig": "生成WARP配置文件",
             "missingWarpConfig": "WARP配置缺失",
             "pageTitle": "配置选项",
             "logLevel": "日志级别",
