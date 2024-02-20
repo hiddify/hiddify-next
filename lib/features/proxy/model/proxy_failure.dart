@@ -20,6 +20,12 @@ sealed class ProxyFailure with _$ProxyFailure, Failure {
   @With<ExpectedFailure>()
   const factory ProxyFailure.unknownIp() = UnknownIp;
 
+  @With<ExpectedMeasuredFailure>()
+  const factory ProxyFailure.unableToRetrieveIp([
+    Object? error,
+    StackTrace? stackTrace,
+  ]) = UnableToRetrieveIp;
+
   @override
   ({String type, String? message}) present(TranslationsEn t) {
     return switch (this) {
@@ -32,6 +38,10 @@ sealed class ProxyFailure with _$ProxyFailure, Failure {
           message: null,
         ),
       UnknownIp() => (type: t.general.unknown, message: null),
+      UnableToRetrieveIp() => (
+          type: t.failure.unexpected,
+          message: null,
+        ),
     };
   }
 }

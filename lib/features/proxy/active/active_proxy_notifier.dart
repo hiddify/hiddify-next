@@ -51,7 +51,7 @@ class IpInfoNotifier extends _$IpInfoNotifier with AppLogger {
         .getCurrentIpInfo(cancelToken)
         .getOrElse(
       (err) {
-        loggy.error("error getting proxy ip info", err);
+        loggy.warning("error getting proxy ip info", err, StackTrace.current);
         throw err;
       },
     ).run();
@@ -111,7 +111,7 @@ class ActiveProxyNotifier extends _$ActiveProxyNotifier with AppLogger {
               .read(proxyRepositoryProvider)
               .urlTest(groupTag)
               .getOrElse((err) {
-            loggy.error("error testing group", err);
+            loggy.warning("error testing group", err);
             throw err;
           }).run();
         }

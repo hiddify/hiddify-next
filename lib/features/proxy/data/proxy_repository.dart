@@ -129,6 +129,7 @@ class ProxyRepositoryImpl
   TaskEither<ProxyFailure, IpInfo> getCurrentIpInfo(CancelToken cancelToken) {
     return TaskEither.tryCatch(
       () async {
+        Object? error;
         for (final source in _ipInfoSources.entries) {
           try {
             loggy.debug("getting current ip info using [${source.key}]");
@@ -139,12 +140,13 @@ class ProxyRepositoryImpl
             if (response.statusCode == 200 && response.data != null) {
               return source.value(response.data!);
             }
-          } catch (e) {
-            loggy.debug("failed getting ip info using [${source.key}]", e);
+          } catch (e, s) {
+            loggy.debug("failed getting ip info using [${source.key}]", e, s);
+            error = e;
             continue;
           }
         }
-        throw const ProxyFailure.unexpected();
+        throw UnableToRetrieveIp(error, StackTrace.current);
       },
       ProxyUnexpectedFailure.new,
     );
