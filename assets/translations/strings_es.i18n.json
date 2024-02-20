@@ -1,7 +1,7 @@
 {
     "general": {
-        "reset": "Renicio",
         "appTitle": "Hiddify",
+        "reset": "Renicio",
         "toggle": {
             "enabled": "Activado",
             "disabled": "Desactivado"
@@ -211,6 +211,10 @@
                 "warp": "WARP Options",
                 "misc": "Opciones varias"
             },
+            "warpConsent": {
+                "title": "Consentimiento WARP de Cloudflare",
+                "description(rich)": "Cloudflare WARP es un proveedor de VPN WireGuard gratuito. Al habilitar esta opción, acepta los ${tos(Términos de servicio)} y ${privacy(Política de privacidad)} de Cloudflare WARP."
+            },
             "pageTitle": "Opciones de configuración",
             "logLevel": "Registro del Nivel",
             "resolveDestination": "Resolver Destino",
@@ -258,11 +262,7 @@
             "warpLicenseKey": "License Key",
             "warpCleanIp": "Clean IP",
             "warpPort": "Port",
-            "warpNoise": "Noise",
-            "warpConsent": {
-                "title": "Consentimiento WARP de Cloudflare",
-                "description(rich)": "Cloudflare WARP es un proveedor de VPN WireGuard gratuito. Al habilitar esta opción, acepta los ${tos(Términos de servicio)} y ${privacy(Política de privacidad)} de Cloudflare WARP."
-            }
+            "warpNoise": "Noise"
         },
         "geoAssets": {
             "pageTitle": "Activos de enrutamiento",

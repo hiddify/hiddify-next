@@ -211,6 +211,10 @@
                 "warp": "WARP Options",
                 "misc": "تنظیمات متفرقه"
             },
+            "warpConsent": {
+                "title": "رضایت Cloudflare WARP",
+                "description(rich)": "Cloudflare WARP یک ارائه دهنده رایگان WireGuard VPN است. با فعال کردن این گزینه، با ${tos(شرایط خدمات)} و ${privacy(خط‌مشی رازداری)} Cloudflare WARP موافقت می‌کنید."
+            },
             "pageTitle": "تنظیمات کانفیگ",
             "logLevel": "سطح لاگ",
             "resolveDestination": "جایگذاری IP مقصد",
@@ -258,11 +262,7 @@
             "warpLicenseKey": "License Key",
             "warpCleanIp": "Clean IP",
             "warpPort": "Port",
-            "warpNoise": "Noise",
-            "warpConsent": {
-                "title": "رضایت Cloudflare WARP",
-                "description(rich)": "Cloudflare WARP یک ارائه دهنده رایگان WireGuard VPN است. با فعال کردن این گزینه، با ${tos(شرایط خدمات)} و ${privacy(خط‌مشی رازداری)} Cloudflare WARP موافقت می‌کنید."
-            }
+            "warpNoise": "Noise"
         },
         "geoAssets": {
             "pageTitle": "فایل‌های مسیریابی",
