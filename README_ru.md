@@ -18,42 +18,38 @@
 </div>
 
 ## Что такое Hiddify-Next?
-Многоплатформенный авто-клиент на основе [Sing-box](https://github.com/SagerNet/sing-box), который служит универсальным набором инструментов прокси. Это приложение предлагает широкий спектр возможностей, которые перечислены ниже. Он также поддерживает большое количество протоколов. Приложение бесплатное, без рекламы и с открытым исходным кодом. Он предоставляет безопасный и конфиденциальный инструмент для получения доступа к бесплатному Интернету.
-
-Приложение разработано с использованием [Flutter](https://flutter.dev/) и [Go](https://go.dev/). Для получения дополнительной информации о разработке вы можете прочитать наши [Рекомендации по участию](CONTRIBUTING.md) .
+Кроссплатформенный прокси-клиент на основе ядра [Sing-box](https://github.com/SagerNet/sing-box). Hiddify предлагает широкий спектр возможностей, таких как автоматический выбор узла, режим TUN, удалённые конфигурации (подписки). Приложение с открытым исходным кодом, без рекламы. Поддерживая широкий спектр протоколов, мы обеспечиваем безопасный и конфиденциальный доступ к свободному интернету.
 
 <div align=center>
 <img width=90% alt="English Demo" src="https://github.com/hiddify/hiddify-next/assets/125398461/1b592bf9-b19f-4592-b02d-a3fa6216d257">
 </div>
 
 ## 🚀 Основные особенности
-⭐ Простота использования благодаря простому пользовательскому интерфейсу.
+⭐ Простотой и лаконичный интерфейс
 
-✈️ Мультиплатформенность: Android, Windows, Linux и macOS (PR для iOS приветствуются)
+✈️ Кроссплатформенность: Android, Windows, Linux и macOS
 
-🔍 Автоматический выбор по задержке
+🔍 Автоматический выбор профиля с наименьшей задержкой
 
-🟡 Широкий выбор протоколов: ECH, Sing-box, V2ray, Xray, Vless, Vmess, Reality, TUIC, Hysteria, ShadowTLS, SSH, Clash, Clash мета.
+🟡 Широкий выбор протоколов: Vless, Vmess, Reality, TUIC, Hysteria, SSH и прочие
 
-🟡 Ссылки на подписку: Clash, Clash мета, Sing-box и Shadowsocks.
+🟡 Поддержка всех основных форматов подписки: Sing-box, V2ray, Clash, Clash meta
 
 🔄 Автоматическое обновление подписки
 
-🔎 Отображать информацию профиля, включая оставшиеся дни и использование трафика.
+🔎 Отображение информации профиля, включая оставшиеся дни и использованный трафик.
 
-💻 Совершенно бесплатно, без рекламы и перебоев.
+🛡 Открытый исходный код, безопасность, разрабатывается сообществом людей
 
-🛡 Открытый исходный код, безопасный и управляемый сообществом
+🌙 Темная и светлая темы
 
-🌙 Темный и светлый режимы
-
-⚙ Совместим со всеми панелями управления прокси.
+⚙ Совместимость со всеми панелями управления прокси.
 
 ⭐ Подходящая конфигурация для Ирана, Китая, России и других стран.
 
 📱 Доступно в [Google Play](https://play.google.com/store/apps/details?id=app.hiddify.com)
 
-## Скачать
+## 🔗 Скачать
 <div align=left>
 <table>
     <thead align=left>
@@ -64,7 +60,7 @@
     </thead>
     <tbody align=left>
         <tr>
-        <td>Андроид</td><td>
+        <td>Android</td><td>
             <a href="https://play.google.com/store/apps/details?id=app.hiddify.com"><img width=150px src="https://github.com/hiddify/hiddify-next/blob/main/docs/google-play-badge.png"></a><br>
             <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-universal.apk"><img src="https://img.shields.io/badge/APK-Universal-044d29.svg?logo=github"></a><br>
             <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-arm64.apk"><img src="https://img.shields.io/badge/APK-ArmV8-168039.svg?logo=github"></a><br>
@@ -73,23 +69,23 @@
         </td>
         </tr>
         <tr>
-            <td>Окна</td>
+            <td>Windows</td>
             <td><a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-windows-x64-setup.zip"><img src="https://img.shields.io/badge/Setup-x64-0078d7.svg?logo=github"></a><br>
             <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-windows-x64-portable.zip"><img src="https://img.shields.io/badge/Portable-x64-2d7d9a.svg?logo=github"></a>
         </td>
         </tr>
         <tr>
-            <td>Мак</td>
+            <td>Mac OS</td>
             <td><a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-macos-universal.zip"><img src="https://img.shields.io/badge/DMG-Universal-ea005e.svg?logo=github"></a></td>
         </tr>
         <tr>
-            <td>Линукс</td>
+            <td>Linux</td>
             <td><a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-linux-x64.zip"><img src="https://img.shields.io/badge/AppImage-amd64-f84e29.svg?logo=github"> </a></td>
         </tr>
     </tbody>
 </table>
 
-## Установка и руководства
+## ⚙️ Установка и руководства
 
 **Соответствующую информацию можно найти на нашей вики-странице, нажав на изображение ниже.**
 
@@ -99,25 +95,30 @@
 
 </div>
 
-## Улучшите переводы
-Вы можете легко внести свой вклад в этот проект, используя следующие ссылки для улучшения переводов:
-- [Русский](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=ru)
-- [Английский](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en)
-- [персидский](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=fa)
-- [Китайский](https://inlang.com/editor/github.com/hiddify/hiddify-next?lang=en&lang=zh-CN)
+## 🌎 Переводы
 
-## Благодарности
+<div align=center>
+    
+[![inlang панель статуса](https://inlang.com/badge?url=github.com/hiddify/hiddify-next)](https://inlang.com/editor/github.com/hiddify/hiddify-next?ref=badge)
+</div>
+
+Улучшайте существующие языки или добавляйте новые, вручную редактируя JSON-файлы, расположенные в `/assets/translations`, или используя [Онлайн редактор Inlang](https://inlang.com/editor/github.com/hiddify/hiddify-next)
+
+
+## ✏️ Благодарности
 Мы хотели бы выразить нашу искреннюю признательность участникам следующих проектов, чья прочная основа и инновационные функции значительно повысили успех и функциональность этого проекта.
+
 - [Sing-box](https://github.com/SagerNet/sing-box)
 - [Sing-box для Android](https://github.com/SagerNet/sing-box-for-android)
+- [Sing-box для Apple](https://github.com/SagerNet/sing-box-for-apple)
 - [Clash](https://github.com/Dreamacro/clash)
-- [Мета Clash](https://github.com/MetaCubeX/Clash.Meta)
+- [Clash Meta](https://github.com/MetaCubeX/Clash.Meta)
 - [FClash](https://github.com/Fclash/Fclash)
-- [Шрифт Vazirmatn от Sabre Rastikerdar] (https://github.com/rastikerdar/vazirmatn)
-- [Другие](./pubspec.yaml)
+- [Шрифт Vazirmatn от Saber Rastikerdar](https://github.com/rastikerdar/vazirmatn)
+- [Others](./pubspec.yaml)
 
 
-## Пожертвования и поддержка
+## 🎯 Пожертвования и поддержка
 Самый простой способ поддержать нас — нажать на звездочку (⭐) вверху этой страницы.
 
 <div align=center>
@@ -127,24 +128,20 @@
 </div>
 
 
-Нам также нужна финансовая поддержка для наших услуг. Вся наша деятельность осуществляется на добровольных началах, а финансовая поддержка будет направлена на развитие проекта. Вы можете просмотреть адреса нашей поддержки [здесь](https://github.com/hiddify/hiddify-server/wiki/support).
+Нам также нужна финансовая поддержка для наших сервисов. Вся наша деятельность осуществляется на добровольных началах, а финансовая поддержка будет направлена на развитие проекта. Вы можете просмотреть адреса нашей поддержки [здесь](https://github.com/hiddify/hiddify-server/wiki/support).
 
-## Сотрудничество и контактная информация
+## 👩‍🏫 Сотрудничество и контактная информация
 
-Нам нужно ваше сотрудничество для развития этого проекта. Если вы являетесь специалистом в этих областях, пожалуйста, не стесняйтесь обращаться к нам и упомянуть свои навыки.
+Hiddify - это проект, развиваемый сообществом. Если вас интересует возможность внести свой вклад, пожалуйста, ознакомьтесь с [руководством](./CONTRIBUTING.md).  Мы бы особенно оценили любую помощь в следующих областях: **Flutter, Go, iOS разработка (Swift), Android разработка (Kotlin).**
 
-- Flutter Разработка
-- Swift Разработка
-- Коtlin Разработка
-- Go Разработка
 
 <div align=center>
 
 <br>
 
 [![Email](https://img.shields.io/badge/Email-contribute@hiddify.com-005FF9?style=flat-square&logo=mail.ru)](mailto:contribute@hiddify.com)
-[![Telegram Channel](https://img.shields.io/endpoint?label=Channel&style=flat-square&url=https%3A%2F%2Ftg.sumanjay.workers.dev%2Fhiddify&color=blue)](https://telegram.dog/hiddify)
-[![Telegram Group](https://img.shields.io/endpoint?color=neon&label=Support%20Group&style=flat-square&url=https%3A%2F%2Ftg.sumanjay.workers.dev%2Fhiddify_board)](https://telegram.dog/hiddify_board)
+[![Telegram Канал](https://img.shields.io/endpoint?label=Channel&style=flat-square&url=https%3A%2F%2Ftg.sumanjay.workers.dev%2Fhiddify&color=blue)](https://telegram.dog/hiddify)
+[![Группа в Telegram](https://img.shields.io/endpoint?color=neon&label=Support%20Group&style=flat-square&url=https%3A%2F%2Ftg.sumanjay.workers.dev%2Fhiddify_board)](https://telegram.dog/hiddify_board)
 [![Youtube](https://img.shields.io/youtube/channel/views/UCxrmeMvVryNfB4XL35lXQNg?label=Youtube&style=flat-square&logo=youtube)](https://www.youtube.com/@hiddify)
 [![Twitter](https://img.shields.io/twitter/follow/hiddify_com?color=%231DA1F2&logo=twitter&logoColor=1DA1F2&style=flat-square)](https://twitter.com/intent/follow?screen_name=hiddify_com)
 
