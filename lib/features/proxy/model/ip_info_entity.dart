@@ -7,8 +7,8 @@ class IpInfo with IpInfoMappable {
   const IpInfo({
     required this.ip,
     required this.countryCode,
-    required this.region,
-    required this.city,
+    this.region,
+    this.city,
     this.timezone,
     this.asn,
     this.org,
@@ -16,8 +16,8 @@ class IpInfo with IpInfoMappable {
 
   final String ip;
   final String countryCode;
-  final String region;
-  final String city;
+  final String? region;
+  final String? city;
   final String? timezone;
   final String? asn;
   final String? org;
@@ -27,16 +27,16 @@ class IpInfo with IpInfoMappable {
       {
         "ip": final String ip,
         "country": final String country,
-        "region": final String region,
-        "city": final String city,
+        // "region": final String region, //sometime is not available
+        // "city": final String city,//sometime is not available
         "timezone": final String timezone,
         "org": final String org,
       } =>
         IpInfo(
           ip: ip,
           countryCode: country,
-          region: region,
-          city: city,
+          // region: region,
+          // city: city,
           timezone: timezone,
           org: org,
         ),
@@ -49,8 +49,8 @@ class IpInfo with IpInfoMappable {
       {
         "ip": final String ip,
         "country_code": final String countryCode,
-        "region": final String region,
-        "city": final String city,
+        // "region": final String region, //sometime is not available
+        // "city": final String city,//sometime is not available
         "timezone": final String timezone,
         "asn": final String asn,
         "org": final String org,
@@ -58,8 +58,8 @@ class IpInfo with IpInfoMappable {
         IpInfo(
           ip: ip,
           countryCode: countryCode,
-          region: region,
-          city: city,
+          // region: region,
+          // city: city,
           timezone: timezone,
           asn: asn,
           org: org,
@@ -73,8 +73,8 @@ class IpInfo with IpInfoMappable {
       {
         "ip": final String ip,
         "country_code": final String countryCode,
-        "region": final String region,
-        "city": final String city,
+        // "region": final String region,
+        // "city": final String city,
         "timezone": final String timezone,
         "asn": final int asn,
         "asn_organization": final String org,
@@ -82,8 +82,8 @@ class IpInfo with IpInfoMappable {
         IpInfo(
           ip: ip,
           countryCode: countryCode,
-          region: region,
-          city: city,
+          // region: region,
+          // city: city,
           timezone: timezone,
           asn: '$asn',
           org: org,
@@ -97,13 +97,13 @@ class IpInfo with IpInfoMappable {
       {
         "ip": final String ip,
         "country_code": final String countryCode,
-        "state": final String region,
+        // "state": final String region,
         "city": final String city
       } =>
         IpInfo(
           ip: ip,
           countryCode: countryCode,
-          region: region,
+          // region: region,
           city: city,
         ),
       _ => throw const FormatException("invalid json"),
