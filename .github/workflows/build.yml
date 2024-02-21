@@ -75,7 +75,7 @@ jobs:
             targets: dmg,pkg
 
     runs-on: ${{ matrix.os }}
-    if: ${{ inputs.upload-artifact }} || !startsWith(matrix.platform,'android-aab') 
+    if: matrix.platform!='android-aab'  || ${{ inputs.upload-artifact && inputs.tag-name != 'draft' }}
     steps:
       - name: checkout
         uses: actions/checkout@v3
