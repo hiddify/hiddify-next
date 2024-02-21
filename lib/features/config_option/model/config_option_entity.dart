@@ -66,8 +66,11 @@ class ConfigOptionEntity with _$ConfigOptionEntity {
     @Default("auto") String warpCleanIp,
     @Default(0) int warpPort,
     @OptionalRangeJsonConverter()
-    @Default(OptionalRange())
+    @Default(OptionalRange(min: 5, max: 10))
     OptionalRange warpNoise,
+    @OptionalRangeJsonConverter()
+    @Default(OptionalRange(min: 20, max: 200))
+    OptionalRange warpNoiseDelay,
     @Default("") String warpWireguardConfig,
   }) = _ConfigOptionEntity;
 
@@ -141,6 +144,7 @@ class ConfigOptionEntity with _$ConfigOptionEntity {
       warpCleanIp: patch.warpCleanIp ?? warpCleanIp,
       warpPort: patch.warpPort ?? warpPort,
       warpNoise: patch.warpNoise ?? warpNoise,
+      warpNoiseDelay: patch.warpNoiseDelay ?? warpNoiseDelay,
       warpWireguardConfig: patch.warpWireguardConfig ?? warpWireguardConfig,
     );
   }
@@ -198,6 +202,7 @@ class ConfigOptionEntity with _$ConfigOptionEntity {
         cleanIp: warpCleanIp,
         cleanPort: warpPort,
         warpNoise: warpNoise,
+        warpNoiseDelay: warpNoiseDelay,
         wireguardConfig: warpWireguardConfig,
       ),
     );
@@ -253,6 +258,7 @@ class ConfigOptionPatch with _$ConfigOptionPatch {
     String? warpCleanIp,
     int? warpPort,
     @OptionalRangeJsonConverter() OptionalRange? warpNoise,
+    @OptionalRangeJsonConverter() OptionalRange? warpNoiseDelay,
     String? warpWireguardConfig,
   }) = _ConfigOptionPatch;
 

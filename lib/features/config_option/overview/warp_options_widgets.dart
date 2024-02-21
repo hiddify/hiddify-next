@@ -172,6 +172,25 @@ class WarpOptionsTiles extends HookConsumerWidget {
             );
           },
         ),
+        ListTile(
+          title: Text(t.settings.config.warpNoiseDelay),
+          subtitle: Text(options.warpNoiseDelay.present(t)),
+          enabled: canChangeOptions,
+          onTap: () async {
+            final warpNoiseDelay = await SettingsInputDialog(
+              title: t.settings.config.warpNoiseDelay,
+              initialValue: options.warpNoiseDelay.format(),
+              resetValue: defaultOptions.warpNoiseDelay.format(),
+            ).show(context);
+            if (warpNoiseDelay == null) return;
+            await onChange(
+              ConfigOptionPatch(
+                warpNoise:
+                    OptionalRange.tryParse(warpNoiseDelay, allowEmpty: true),
+              ),
+            );
+          },
+        )
       ],
     );
   }

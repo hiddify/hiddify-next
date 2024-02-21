@@ -77,7 +77,11 @@ class DioHttpClient with InfraLogger {
       url,
       path,
       cancelToken: cancelToken,
-      options: _options(url, userAgent: userAgent, credentials: credentials),
+      options: _options(
+        url,
+        userAgent: userAgent,
+        credentials: credentials,
+      ),
     );
   }
 
@@ -104,6 +108,8 @@ class DioHttpClient with InfraLogger {
       headers: {
         if (userAgent != null) "User-Agent": userAgent,
         if (basicAuth != null) "authorization": basicAuth,
+        // "Accept": "application/json",
+        // "Content-Type": "application/json",
       },
     );
   }

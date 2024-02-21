@@ -291,7 +291,8 @@
             "warpLicenseKey": "License Key",
             "warpCleanIp": "Clean IP",
             "warpPort": "Port",
-            "warpNoise": "Noise"
+            "warpNoise": "Noise Count",
+            "warpNoiseDelay": "Noise Delay"
         },
         "geoAssets": {
             "pageTitle": "Routing Assets",

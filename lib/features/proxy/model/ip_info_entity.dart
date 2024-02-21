@@ -67,4 +67,46 @@ class IpInfo with IpInfoMappable {
       _ => throw const FormatException("invalid json"),
     };
   }
+
+  static IpInfo fromIpSbJson(Map<String, dynamic> json) {
+    return switch (json) {
+      {
+        "ip": final String ip,
+        "country_code": final String countryCode,
+        "region": final String region,
+        "city": final String city,
+        "timezone": final String timezone,
+        "asn": final int asn,
+        "asn_organization": final String org,
+      } =>
+        IpInfo(
+          ip: ip,
+          countryCode: countryCode,
+          region: region,
+          city: city,
+          timezone: timezone,
+          asn: '$asn',
+          org: org,
+        ),
+      _ => throw const FormatException("invalid json"),
+    };
+  }
+
+  static IpInfo fromGeolocationDbComJson(Map<String, dynamic> json) {
+    return switch (json) {
+      {
+        "ip": final String ip,
+        "country_code": final String countryCode,
+        "state": final String region,
+        "city": final String city
+      } =>
+        IpInfo(
+          ip: ip,
+          countryCode: countryCode,
+          region: region,
+          city: city,
+        ),
+      _ => throw const FormatException("invalid json"),
+    };
+  }
 }
