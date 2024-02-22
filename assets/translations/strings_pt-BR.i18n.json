@@ -20,7 +20,7 @@
         "timeout": "tempo esgotado"
     },
     "intro": {
-        "termsAndPolicyCaution(rich)": "ao continuar você concorda com ${tap( @:about .termsAndConditions)}",
+        "termsAndPolicyCaution(rich)": "ao continuar você concorda com ${tap( @:about.termsAndConditions)}",
         "start": "Começar"
     },
     "home": {
@@ -138,7 +138,7 @@
         },
         "activeProxySemanticLabel": "Proxy ativo",
         "delaySemantics": {
-            "result": "atraso: ${atraso}ms",
+            "result": "atraso: ${delay}ms",
             "timeout": "atrasar o tempo limite do teste",
             "testing": "atraso: testando..."
         },
@@ -320,7 +320,7 @@
     "appUpdate": {
         "notAvailableMsg": "Já usando a versão mais recente",
         "dialogTitle": "Atualização disponível",
-        "updateMsg": "Uma nova versão de @:general .appTitle está disponível. Gostaria de atualizar agora?",
+        "updateMsg": "Uma nova versão de @:general.appTitle está disponível. Gostaria de atualizar agora?",
         "currentVersionLbl": "Versão Atual",
         "newVersionLbl": "Nova versão",
         "updateNowBtnTxt": "Atualizar agora",
