@@ -39,6 +39,8 @@
         "stats": {
             "traffic": "Tráfego ao vivo",
             "trafficTotal": "Tráfego total",
+            "uplink": "Ligação ascendente",
+            "downlink": "Link descendente",
             "connection": "Conexão"
         }
     },
