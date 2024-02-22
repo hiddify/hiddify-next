@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/gestures.dart';
+import 'package:hiddify/core/http_client/dio_http_client.dart';
 import 'package:timezone_to_country/timezone_to_country.dart';
 
 import 'package:flutter/material.dart';
@@ -15,19 +16,22 @@ import 'package:hiddify/features/common/general_pref_tiles.dart';
 import 'package:hiddify/gen/assets.gen.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:http/http.dart' as http;
+
 import 'package:sliver_tools/sliver_tools.dart';
 
 class IntroPage extends HookConsumerWidget with PresLogger {
-  const IntroPage({super.key});
-
+  bool locationInfoLoaded = false;
+  IntroPage({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = ref.watch(translationsProvider);
 
     final isStarting = useState(false);
-    autoSelectRegion(ref)
-        .then((value) => loggy.debug("Auto Region selection finished!"));
+    if (!locationInfoLoaded) {
+      autoSelectRegion(ref)
+          .then((value) => loggy.debug("Auto Region selection finished!"));
+      locationInfoLoaded = true;
+    }
     return Scaffold(
       body: SafeArea(
         child: CustomScrollView(
@@ -132,16 +136,25 @@ class IntroPage extends HookConsumerWidget with PresLogger {
           .changeLocale(regionLocale.locale);
       return;
     } catch (e) {
-      loggy.warning('Could not get the local country code based on timezone');
+      loggy.warning(
+        'Could not get the local country code based on timezone',
+        e,
+      );
     }
 
     try {
-      final response = await http.get(Uri.parse('https://api.ip.sb/json/'));
+      final DioHttpClient client = DioHttpClient(
+          timeout: const Duration(seconds: 2),
+          userAgent:
+              "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:123.0) Gecko/20100101 Firefox/123.0",
+          debug: true);
+      final response =
+          await client.get<Map<String, dynamic>>('https://api.ip.sb/geoip/');
 
       if (response.statusCode == 200) {
-        final jsonData = jsonDecode(response.body);
+        final jsonData = response.data!;
         final regionLocale =
-            _getRegionLocale(jsonData['country']?.toString() ?? "");
+            _getRegionLocale(jsonData['country_code']?.toString() ?? "");
 
         loggy.debug(
           'Region: ${regionLocale.region} Locale: ${regionLocale.locale}',
@@ -170,6 +183,10 @@ class IntroPage extends HookConsumerWidget with PresLogger {
         return RegionLocale(Region.ru, AppLocale.ru);
       case "AF":
         return RegionLocale(Region.af, AppLocale.fa);
+      case "BR":
+        return RegionLocale(Region.other, AppLocale.ptBr);
+      case "TR":
+        return RegionLocale(Region.other, AppLocale.tr);
       default:
         return RegionLocale(Region.other, AppLocale.en);
     }

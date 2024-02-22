@@ -154,7 +154,7 @@ class IntroRoute extends GoRouteData {
 
   @override
   Page<void> buildPage(BuildContext context, GoRouterState state) {
-    return const MaterialPage(
+    return MaterialPage(
       fullscreenDialog: true,
       name: name,
       child: IntroPage(),

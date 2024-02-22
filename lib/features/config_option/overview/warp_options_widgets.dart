@@ -185,7 +185,7 @@ class WarpOptionsTiles extends HookConsumerWidget {
             if (warpNoiseDelay == null) return;
             await onChange(
               ConfigOptionPatch(
-                warpNoise:
+                warpNoiseDelay:
                     OptionalRange.tryParse(warpNoiseDelay, allowEmpty: true),
               ),
             );
