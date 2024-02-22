@@ -119,9 +119,13 @@ class ConnectionNotifier extends _$ConnectionNotifier with AppLogger {
 
   Future<void> _connect() async {
     final activeProfile = await ref.read(activeProfileProvider.future);
+    if (activeProfile == null) {
+      loggy.info("no active profile, not connecting");
+      return;
+    }
     await _connectionRepo
         .connect(
-      activeProfile!.id,
+      activeProfile.id,
       activeProfile.name,
       ref.read(disableMemoryLimitProvider),
     )
