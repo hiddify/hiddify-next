@@ -112,7 +112,12 @@ class ProxyRepositoryImpl
   }
 
   @override
-  TaskEither<ProxyFailure, Unit> urlTest(String groupTag) {
+  TaskEither<ProxyFailure, Unit> urlTest(String groupTag_) {
+    var groupTag = groupTag_;
+    if (!["auto", "select"].contains(groupTag)) {
+      loggy.warning("only proxy group can do url test");
+      groupTag = "select";
+    }
     return exceptionHandler(
       () => singbox.urlTest(groupTag).mapLeft(ProxyUnexpectedFailure.new).run(),
       ProxyUnexpectedFailure.new,
