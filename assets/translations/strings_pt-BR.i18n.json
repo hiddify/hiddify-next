@@ -51,7 +51,7 @@
         "activeProfileBtnSemanticLabel": "Ver todos os perfis.",
         "nonActiveProfileBtnSemanticLabel": "Selecione \"${name}\" como perfil ativo.",
         "subscription": {
-            "traffic": "Tráfico",
+            "traffic": "Tráfego",
             "updatedTimeAgo": "Atualizado ${timeago}",
             "remainingDuration": "${duration} dias restantes",
             "remainingTrafficSemanticLabel": "${consumed} de ${total} tráfego consumido.",
