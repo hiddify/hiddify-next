@@ -11,50 +11,89 @@
         },
         "sort": "Ordernar",
         "sortBy": "Ordenar Por",
+        "addToClipboard": "Adicionar à área de transferência",
+        "notSet": "Não configurado",
         "agree": "Aceitar",
         "decline": "Recusar",
-        "unknown": "Desconhecido"
+        "unknown": "Desconhecido",
+        "hidden": "Escondido",
+        "timeout": "tempo esgotado"
     },
     "intro": {
+        "termsAndPolicyCaution(rich)": "ao continuar você concorda com ${tap( @:about .termsAndConditions)}",
         "start": "Começar"
     },
     "home": {
         "pageTitle": "Inicio",
+        "emptyProfilesMsg": "Comece adicionando um perfil de assinatura",
         "noActiveProfileMsg": "Escolha um perfil",
         "connection": {
+            "tapToConnect": "Toque para conectar",
             "connecting": "Conectando",
             "disconnecting": "Desconectando",
             "connected": "Conectado",
+            "experimentalNotice": "Recursos experimentais em uso",
             "disableExperimentalNotice": "Não mostrar novamente"
         },
         "stats": {
+            "traffic": "Tráfego ao vivo",
+            "trafficTotal": "Tráfego total",
             "connection": "Conexão"
         }
     },
     "profile": {
         "overviewPageTitle": "Perfis",
         "detailsPageTitle": "Perfil",
+        "activeProfileNameSemanticLabel": "Nome do perfil ativo: \"${name}\".",
         "activeProfileBtnSemanticLabel": "Ver todos os perfis.",
+        "nonActiveProfileBtnSemanticLabel": "Selecione \"${name}\" como perfil ativo.",
         "subscription": {
             "traffic": "Tráfico",
+            "updatedTimeAgo": "Atualizado ${timeago}",
+            "remainingDuration": "${duration} dias restantes",
+            "remainingTrafficSemanticLabel": "${consumed} de ${total} tráfego consumido.",
             "expired": "Expirado",
+            "noTraffic": "Fora da cota",
             "upload": "Upload",
-            "download": "Download"
+            "download": "Download",
+            "total": "Tráfego total",
+            "expireDate": "Data de validade"
+        },
+        "sortBy": {
+            "lastUpdate": "Atualizado recentemente",
+            "name": "Alfabeticamente"
         },
         "add": {
             "buttonText": "Novo Perfil",
             "shortBtnTxt": "Novo Perfil",
+            "fromClipboard": "Adicionar da área de transferência",
+            "scanQr": "Digitalize o código QR",
+            "qrScanner": {
+                "permissionDeniedError": "Permissão negada",
+                "unexpectedError": "Algo deu errado",
+                "torchSemanticLabel": "Luz do flash",
+                "facingSemanticLabel": "Câmera voltada"
+            },
+            "manually": "Entrada manual",
             "addingProfileMsg": "Adicionando Perfil",
             "failureMsg": "Falha ao adicionar perfil"
         },
         "update": {
             "buttonTxt": "Atualizar",
             "tooltip": "Atualizar Perfil",
+            "updateSubscriptions": "Atualizar assinaturas",
             "failureMsg": "Falha ao atualizar perfil",
-            "successMsg": "Perfil atualizado com sucesso"
+            "successMsg": "Perfil atualizado com sucesso",
+            "namedFailureMsg": "Falha ao atualizar \"${name}\"",
+            "namedSuccessMsg": "\"${name}\" atualizado com sucesso"
         },
         "share": {
-            "buttonText": "Compartilhar"
+            "buttonText": "Compartilhar",
+            "exportToClipboardSuccess": "Exportado para a área de transferência",
+            "exportSubLinkToClipboard": "Exportar link de assinatura para a área de transferência",
+            "subLinkQrCode": "Código QR do link de assinatura",
+            "exportConfigToClipboard": "Exportar configuração para a área de transferência",
+            "exportConfigToClipboardSuccess": "Configuração copiada para a área de transferência"
         },
         "edit": {
             "buttonTxt": "Editar",
@@ -74,33 +113,61 @@
             "nameLabel": "Nome",
             "nameHint": "Nome do Perfil",
             "urlLabel": "URL",
+            "urlHint": "URL de configuração completo",
             "emptyNameMsg": "Nome é obrigatório ",
             "invalidUrlMsg": "URL inválido",
             "lastUpdate": "Ultima Atualização",
-            "updateInterval": "Atualização Automática "
+            "updateInterval": "Atualização Automática ",
+            "updateIntervalDialogTitle": "Intervalo de atualização automática (em horas)"
         }
     },
     "proxies": {
+        "pageTitle": "Proxies",
+        "emptyProxiesMsg": "Nenhum proxy disponível",
+        "delayTestTooltip": "Atraso de teste",
+        "sortTooltip": "Ordenar proxies",
+        "checkIp": "Verifique o IP",
+        "unknownIp": "IP desconhecido",
+        "sortOptions": {
+            "unsorted": "Padrão",
+            "name": "Alfabeticamente",
+            "delay": "Por atraso"
+        },
+        "activeProxySemanticLabel": "Proxy ativo",
+        "delaySemantics": {
+            "result": "atraso: ${atraso}ms",
+            "timeout": "atrasar o tempo limite do teste",
+            "testing": "atraso: testando..."
+        },
         "ipInfoSemantics": {
             "address": "Endereço de IP",
             "country": "País"
         },
         "statsSemantics": {
-            "speed": "Velocidade"
+            "speed": "Velocidade",
+            "totalTransferred": "Total transferido"
         }
     },
     "logs": {
+        "pageTitle": "Histórico",
         "filterHint": "Filtro",
+        "allLevelsFilter": "Todos",
+        "shareCoreLogs": "Compartilhe registros principais",
+        "shareAppLogs": "Compartilhe registros de aplicativos",
         "pauseTooltip": "Pausar",
         "resumeTooltip": "Resumir",
         "clearTooltip": "Limpar"
     },
     "settings": {
         "pageTitle": "Configurações",
+        "requiresRestartMsg": "Para que isso tenha efeito, reinicie o aplicativo",
+        "experimental": "Experimental",
+        "experimentalMsg": "Os recursos com sinalização Experimental ainda estão em desenvolvimento e podem causar problemas.",
         "general": {
             "sectionTitle": "Geral",
             "locale": "Linguagem",
             "region": "Região",
+            "regionMsg": "Ajuda a definir opções padrão para ignorar endereços domésticos",
             "regions": {
                 "other": "Outro"
             },
