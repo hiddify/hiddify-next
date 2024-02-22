@@ -112,7 +112,7 @@ class _CustomAdaptiveScaffold extends HookConsumerWidget {
       key: RootScaffold.stateKey,
       drawer: Breakpoints.small.isActive(context)
           ? Drawer(
-              width: (MediaQuery.sizeOf(context).width * 0.88).clamp(0, 304),
+              width: (MediaQuery.sizeOf(context).width * 0.88).clamp(1, 304),
               child: NavigationRail(
                 extended: true,
                 selectedIndex: selectedWithOffset(drawerDestinationRange),
