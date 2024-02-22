@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/gestures.dart';
+import 'package:timezone_to_country/timezone_to_country.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -117,28 +118,48 @@ class IntroPage extends HookConsumerWidget with PresLogger {
   }
 
   Future<void> autoSelectRegion(WidgetRef ref) async {
-    final response = await http.get(Uri.parse('https://ipapi.co/json/'));
-
-    if (response.statusCode == 200) {
-      final jsonData = jsonDecode(response.body);
-      final regionLocale =
-          _getRegionLocale(jsonData['country']?.toString() ?? "");
-
+    try {
+      final countryCode = await TimeZoneToCountry.getLocalCountryCode();
+      final regionLocale = _getRegionLocale(countryCode);
       loggy.debug(
-          'Region: ${regionLocale.region} Locale: ${regionLocale.locale}',);
+        'Timezone Region: ${regionLocale.region} Locale: ${regionLocale.locale}',
+      );
       await ref
           .read(regionNotifierProvider.notifier)
           .update(regionLocale.region);
       await ref
           .read(localePreferencesProvider.notifier)
           .changeLocale(regionLocale.locale);
-    } else {
-      loggy.warning('Request failed with status: ${response.statusCode}');
+    } catch (e) {
+      loggy.warning('Could not get the local country code based on timezone');
+    }
+    try {
+      final response = await http.get(Uri.parse('https://api.ip.sb/json/'));
+
+      if (response.statusCode == 200) {
+        final jsonData = jsonDecode(response.body);
+        final regionLocale =
+            _getRegionLocale(jsonData['country']?.toString() ?? "");
+
+        loggy.debug(
+          'Region: ${regionLocale.region} Locale: ${regionLocale.locale}',
+        );
+        await ref
+            .read(regionNotifierProvider.notifier)
+            .update(regionLocale.region);
+        await ref
+            .read(localePreferencesProvider.notifier)
+            .changeLocale(regionLocale.locale);
+      } else {
+        loggy.warning('Request failed with status: ${response.statusCode}');
+      }
+    } catch (e) {
+      loggy.warning('Could not get the local country code from ip');
     }
   }
 
   RegionLocale _getRegionLocale(String country) {
-    switch (country) {
+    switch (country.toUpperCase()) {
       case "IR":
         return RegionLocale(Region.ir, AppLocale.fa);
       case "CN":
