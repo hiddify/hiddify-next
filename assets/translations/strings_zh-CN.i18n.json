@@ -243,6 +243,7 @@
             },
             "generateWarpConfig": "生成WARP配置文件",
             "missingWarpConfig": "WARP配置缺失",
+            "warpConfigGenerated": "WARP 配置已生成",
             "pageTitle": "配置选项",
             "logLevel": "日志级别",
             "resolveDestination": "解析目标地址",
@@ -290,7 +291,8 @@
             "warpLicenseKey": "许可证密钥",
             "warpCleanIp": "干净 IP",
             "warpPort": "端口",
-            "warpNoise": "噪音"
+            "warpNoise": "噪音",
+            "warpNoiseDelay": "噪音延迟"
         },
         "geoAssets": {
             "pageTitle": "路由资源文件",
