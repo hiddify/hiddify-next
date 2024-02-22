@@ -252,7 +252,65 @@
                 "prefer": "Preferido",
                 "only": "Exclusivo"
             },
-            "mtu": "MTU"
+            "remoteDnsAddress": "DNS remoto",
+            "remoteDnsDomainStrategy": "Estratégia de Domínio DNS Remoto",
+            "directDnsAddress": "DNS direto",
+            "directDnsDomainStrategy": "Estratégia de Domínio DNS Direto",
+            "mixedPort": "Porta Mista",
+            "localDnsPort": "Porta DNS local",
+            "allowConnectionFromLan": "Permitir conexão da LAN",
+            "tunImplementation": "Implementação TUN",
+            "mtu": "MTU",
+            "connectionTestUrl": "URL de teste de conexão",
+            "urlTestInterval": "Intervalo de teste de URL",
+            "enableClashApi": "Ativar API Clash",
+            "clashApiPort": "Porta da API Clash",
+            "enableTun": "Ativar TUN",
+            "setSystemProxy": "Definir proxy do sistema",
+            "enableDnsRouting": "Habilitar roteamento DNS",
+            "enableFakeDns": "Habilitar DNS falso",
+            "bypassLan": "Ignorar LAN",
+            "strictRoute": "Rota Estrita",
+            "enableTlsFragment": "Habilitar fragmento TLS",
+            "tlsFragmentSize": "Tamanho do fragmento TLS",
+            "tlsFragmentSleep": "Suspensão do fragmento TLS",
+            "enableTlsMixedSniCase": "Habilitar caso SNI misto TLS",
+            "enableTlsPadding": "Habilitar preenchimento TLS",
+            "tlsPaddingSize": "Preenchimento TLS",
+            "enableMux": "Habilitar Mux",
+            "muxProtocol": "Protocolo Mux",
+            "muxMaxStreams": "Máximo de fluxos simultâneos",
+            "enableWarp": "Habilitar WARP",
+            "warpDetourMode": "Modo de desvio",
+            "warpDetourModes": {
+                "inbound": "Desvie o WARP através de proxies",
+                "outbound": "Desviar proxies através do WARP"
+            },
+            "warpLicenseKey": "Chave de licença",
+            "warpCleanIp": "Limpar IP",
+            "warpPort": "Porta",
+            "warpNoise": "Contagem de ruído",
+            "warpNoiseDelay": "Atraso de ruído"
+        },
+        "geoAssets": {
+            "pageTitle": "Ativos de roteamento",
+            "geoip": "GeoIP",
+            "geosite": "Geossítio",
+            "version": "Versão ${version}",
+            "fileMissing": "Arquivo faltando",
+            "update": "Atualizar",
+            "download": "Download",
+            "failureMsg": "Falha ao atualizar o recurso",
+            "successMsg": "Recurso atualizado com sucesso",
+            "addRecommended": "Adicionar recursos recomendados",
+            "missingGeoAssetsMsg": "Os arquivos dos ativos de roteamento selecionados estão ausentes. Baixe-os ou escolha os existentes."
         }
+    },
+    "about": {
+        "pageTitle": "Sobre",
+        "version": "Versão",
+        "sourceCode": "Código fonte",
+        "telegramChannel": "Canal Telegram",
+        "checkForUpdate": "Verifique atualizações"
     }
 }
