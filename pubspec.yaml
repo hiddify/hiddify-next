@@ -75,6 +75,7 @@ dependencies:
   fluentui_system_icons: ^1.1.226
   circle_flags: ^4.0.2
   http: ^1.2.0
+  timezone_to_country: ^2.1.0
 
 dev_dependencies:
   flutter_test:
