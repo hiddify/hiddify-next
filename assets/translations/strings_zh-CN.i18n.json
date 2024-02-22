@@ -292,7 +292,7 @@
             "warpCleanIp": "干净 IP",
             "warpPort": "端口",
             "warpNoise": "噪音",
-            "warpNoiseDelay": "噪声延迟"
+            "warpNoiseDelay": "噪音延迟"
         },
         "geoAssets": {
             "pageTitle": "路由资源文件",
