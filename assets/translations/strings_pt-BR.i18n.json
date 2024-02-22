@@ -1,5 +1,7 @@
 {
     "general": {
+        "appTitle": "Hiddify",
+        "reset": "Restaurar",
         "toggle": {
             "enabled": "Habilitado",
             "disabled": "Desabilitado"
@@ -10,7 +12,11 @@
         "sort": "Ordernar",
         "sortBy": "Ordenar Por",
         "agree": "Aceitar",
-        "decline": "Recusar"
+        "decline": "Recusar",
+        "unknown": "Desconhecido"
+    },
+    "intro": {
+        "start": "Começar"
     },
     "home": {
         "pageTitle": "Inicio",
@@ -18,7 +24,8 @@
         "connection": {
             "connecting": "Conectando",
             "disconnecting": "Desconectando",
-            "connected": "Conectado"
+            "connected": "Conectado",
+            "disableExperimentalNotice": "Não mostrar novamente"
         },
         "stats": {
             "connection": "Conexão"
@@ -30,11 +37,15 @@
         "activeProfileBtnSemanticLabel": "Ver todos os perfis.",
         "subscription": {
             "traffic": "Tráfico",
-            "expired": "Expirado"
+            "expired": "Expirado",
+            "upload": "Upload",
+            "download": "Download"
         },
         "add": {
             "buttonText": "Novo Perfil",
-            "shortBtnTxt": "Novo Perfil"
+            "shortBtnTxt": "Novo Perfil",
+            "addingProfileMsg": "Adicionando Perfil",
+            "failureMsg": "Falha ao adicionar perfil"
         },
         "update": {
             "buttonTxt": "Atualizar",
@@ -46,19 +57,78 @@
             "buttonText": "Compartilhar"
         },
         "edit": {
-            "buttonTxt": "Editar"
+            "buttonTxt": "Editar",
+            "selectActiveTxt": "Selecionar perfil ativo"
         },
         "delete": {
-            "buttonTxt": "Deletar"
+            "buttonTxt": "Deletar",
+            "confirmationMsg": "Deletar perfil permanentemente?",
+            "successMsg": "Perfil deletado com sucesso"
         },
         "save": {
-            "buttonText": "Salvar"
+            "buttonText": "Salvar",
+            "successMsg": "Perfil salvo com sucesso",
+            "failureMsg": "Falha ao salvar perfil"
         },
         "detailsForm": {
             "nameLabel": "Nome",
             "nameHint": "Nome do Perfil",
             "urlLabel": "URL",
-            "invalidUrlMsg": "URL inválido"
+            "emptyNameMsg": "Nome é obrigatório ",
+            "invalidUrlMsg": "URL inválido",
+            "lastUpdate": "Ultima Atualização",
+            "updateInterval": "Atualização Automática "
+        }
+    },
+    "proxies": {
+        "ipInfoSemantics": {
+            "address": "Endereço de IP",
+            "country": "País"
+        },
+        "statsSemantics": {
+            "speed": "Velocidade"
+        }
+    },
+    "logs": {
+        "filterHint": "Filtro",
+        "pauseTooltip": "Pausar",
+        "resumeTooltip": "Resumir",
+        "clearTooltip": "Limpar"
+    },
+    "settings": {
+        "pageTitle": "Configurações",
+        "general": {
+            "sectionTitle": "Geral",
+            "locale": "Linguagem",
+            "region": "Região",
+            "regions": {
+                "other": "Outro"
+            },
+            "themeModes": {
+                "dark": "Modo Escuro",
+                "light": "Modo Claro",
+                "black": "Modo Preto"
+            }
+        },
+        "advanced": {
+            "sectionTitle": "Avançado",
+            "debugMode": "Modo de desenvolvedor",
+            "memoryLimit": "Limite de memória"
+        },
+        "network": {
+            "perAppProxyModes": {
+                "off": "Tudo"
+            }
+        },
+        "config": {
+            "serviceModes": {
+                "tun": "VPN"
+            },
+            "ipv6Modes": {
+                "disable": "Desabilitar",
+                "enable": "Habilitar"
+            },
+            "mtu": "MTU"
         }
     }
 }
