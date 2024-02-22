@@ -311,6 +311,76 @@
         "version": "Versão",
         "sourceCode": "Código fonte",
         "telegramChannel": "Canal Telegram",
-        "checkForUpdate": "Verifique atualizações"
+        "checkForUpdate": "Verifique atualizações",
+        "privacyPolicy": "Política de Privacidade",
+        "termsAndConditions": "Termos e Condições"
+    },
+    "appUpdate": {
+        "notAvailableMsg": "Já usando a versão mais recente",
+        "dialogTitle": "Atualização disponível",
+        "updateMsg": "Uma nova versão de @:general .appTitle está disponível. Gostaria de atualizar agora?",
+        "currentVersionLbl": "Versão Atual",
+        "newVersionLbl": "Nova versão",
+        "updateNowBtnTxt": "Atualizar agora",
+        "laterBtnTxt": "Mais tarde",
+        "ignoreBtnTxt": "Ignorar"
+    },
+    "tray": {
+        "dashboard": "Painel",
+        "quit": "Sair",
+        "open": "Abrir",
+        "status": {
+            "connect": "Conectar",
+            "connecting": "Conectando",
+            "disconnect": "desconectar",
+            "disconnecting": "Desconectando"
+        }
+    },
+    "failure": {
+        "unexpected": "Erro inesperado",
+        "clash": {
+            "unexpected": "Erro inesperado",
+            "core": "Erro de conflito ${reason}"
+        },
+        "singbox": {
+            "unexpected": "Erro de serviço inesperado",
+            "serviceNotRunning": "O serviço não está em execução",
+            "missingPrivilege": "Privilégio ausente",
+            "missingPrivilegeMsg": "O modo VPN requer privilégios de administrador. Reinicie o aplicativo como administrador ou altere o modo de serviço.",
+            "missingGeoAssets": "Recursos geográficos ausentes",
+            "missingGeoAssetsMsg": "Os recursos geográficos estão faltando. considere alterar o recurso ativo ou baixar um selecionado nas configurações.",
+            "invalidConfigOptions": "Opções de configuração inválidas",
+            "invalidConfig": "Configuração inválida",
+            "create": "Erro ao criar serviço",
+            "start": "Erro de inicialização do serviço"
+        },
+        "connectivity": {
+            "unexpected": "Falha inesperada",
+            "missingVpnPermission": "Permissão VPN ausente",
+            "missingNotificationPermission": "Permissão de notificação ausente",
+            "core": "Erro central"
+        },
+        "profiles": {
+            "unexpected": "Erro inesperado",
+            "notFound": "Perfil Não Encontrado",
+            "invalidConfig": "Configurações inválidas",
+            "invalidUrl": "URL inválida"
+        },
+        "connection": {
+            "unexpected": "Erro de conexão inesperado",
+            "timeout": "Tempo limite de conexão",
+            "badResponse": "Erro na Resposta",
+            "connectionError": "Erro de conexão",
+            "badCertificate": "Erro no certificado"
+        },
+        "geoAssets": {
+            "unexpected": "Erro inesperado",
+            "notUpdate": "Nenhuma atualização disponível",
+            "activeNotFound": "Recurso geográfico ativo não encontrado"
+        }
+    },
+    "play": {
+        "title": "Hiddify (Pré-visualização)",
+        "short_description": "Auto, SSH, VLESS, Vmess, Trojan, Reality, Sing-Box, Clash, Xray, Shadowsocks"
     }
 }
