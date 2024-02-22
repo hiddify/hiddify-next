@@ -52,7 +52,8 @@ class IpInfoNotifier extends _$IpInfoNotifier with AppLogger {
         .getOrElse(
       (err) {
         loggy.warning("error getting proxy ip info", err, StackTrace.current);
-        throw err;
+        // throw err; //hiddify: remove exception to be logged
+        throw const UnknownIp();
       },
     ).run();
 
@@ -101,10 +102,15 @@ class ActiveProxyNotifier extends _$ActiveProxyNotifier with AppLogger {
 
   final _urlTestThrottler = Throttler(const Duration(seconds: 2));
 
-  Future<void> urlTest(String groupTag) async {
+  Future<void> urlTest(String groupTag_) async {
+    var groupTag = groupTag_;
     _urlTestThrottler(
       () async {
         loggy.debug("testing group: [$groupTag]");
+        if (!["auto", "select"].contains(groupTag)) {
+          loggy.warning("only proxy group can do url test");
+          groupTag = "select";
+        }
         if (state case AsyncData()) {
           await ref.read(hapticServiceProvider.notifier).lightImpact();
           await ref

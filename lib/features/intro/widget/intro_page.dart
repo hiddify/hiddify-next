@@ -130,9 +130,11 @@ class IntroPage extends HookConsumerWidget with PresLogger {
       await ref
           .read(localePreferencesProvider.notifier)
           .changeLocale(regionLocale.locale);
+      return;
     } catch (e) {
       loggy.warning('Could not get the local country code based on timezone');
     }
+
     try {
       final response = await http.get(Uri.parse('https://api.ip.sb/json/'));
 
