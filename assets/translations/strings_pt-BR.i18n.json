@@ -33,6 +33,7 @@
             "disconnecting": "Desconectando",
             "connected": "Conectado",
             "experimentalNotice": "Recursos experimentais em uso",
+            "experimentalNoticeMsg": "Você ativou alguns recursos experimentais que podem afetar a qualidade da conexão e causar erros inesperados. Você sempre pode alterar ou redefinir essas opções na página de opções de configuração.",
             "disableExperimentalNotice": "Não mostrar novamente"
         },
         "stats": {
@@ -169,31 +170,87 @@
             "region": "Região",
             "regionMsg": "Ajuda a definir opções padrão para ignorar endereços domésticos",
             "regions": {
+                "ir": "Irã (ir)",
+                "cn": "China (cn)",
+                "ru": "Rússia (ru)",
+                "af": "Afeganistão (af)",
                 "other": "Outro"
             },
+            "themeMode": "Modo de Tema",
             "themeModes": {
+                "system": "Seguir o tema do sistema",
                 "dark": "Modo Escuro",
                 "light": "Modo Claro",
                 "black": "Modo Preto"
-            }
+            },
+            "enableAnalytics": "Habilitar Análise",
+            "enableAnalyticsMsg": "Dê permissão para coletar análises e enviar relatórios de falhas para melhorar o aplicativo",
+            "autoStart": "Inicializar no login",
+            "silentStart": "Inicializar minimizado",
+            "openWorkingDir": "Abra o diretório de trabalho",
+            "ignoreBatteryOptimizations": "Desative a otimização da bateria",
+            "ignoreBatteryOptimizationsMsg": "Remova as restrições para obter o desempenho ideal da VPN",
+            "dynamicNotification": "Exibir velocidade na notificação",
+            "hapticFeedback": "Feedback tátil",
+            "autoIpCheck": "Verifique automaticamente o IP da conexão"
         },
         "advanced": {
             "sectionTitle": "Avançado",
             "debugMode": "Modo de desenvolvedor",
-            "memoryLimit": "Limite de memória"
+            "debugModeMsg": "Reinicie o aplicativo para aplicar esta alteração",
+            "memoryLimit": "Limite de memória",
+            "memoryLimitMsg": "Ative se você estiver enfrentando erros de falta de memória ou travamentos frequentes do aplicativo",
+            "resetTunnel": "Redefinir perfil VPN"
         },
         "network": {
+            "perAppProxyPageTitle": "Proxy por aplicativo",
             "perAppProxyModes": {
-                "off": "Tudo"
-            }
+                "off": "Tudo",
+                "offMsg": "Proxy de todos os aplicativos",
+                "include": "Proxy",
+                "includeMsg": "Aplicativos selecionados apenas por proxy",
+                "exclude": "Ignorar",
+                "excludeMsg": "Não faça proxy de aplicativos selecionados"
+            },
+            "showSystemApps": "Mostrar aplicativos do sistema",
+            "hideSystemApps": "Ocultar aplicativos do sistema",
+            "clearSelection": "Limpar seleção"
         },
         "config": {
+            "resetBtn": "Redefinir opções",
+            "serviceMode": "Modo de serviço",
             "serviceModes": {
-                "tun": "VPN"
+                "proxy": "Somente serviço de proxy",
+                "systemProxy": "Definir proxy do sistema",
+                "tun": "VPN",
+                "tunService": "Serviço VPN"
             },
+            "section": {
+                "route": "Opções de rota",
+                "dns": "Opções de DNS",
+                "inbound": "Opções de entrada",
+                "mux": "Multiplexador",
+                "outbound": "Opções de saída",
+                "tlsTricks": "Truques TLS",
+                "warp": "Opções de WARP",
+                "misc": "Opções diversas"
+            },
+            "warpConsent": {
+                "title": "Consentimento WARP da Cloudflare",
+                "description(rich)": "Cloudflare WARP é um provedor VPN WireGuard gratuito. Ao ativar esta opção, você concorda com os ${tos(Termos de Serviço)} e ${privacy(Política de Privacidade)} do WARP da Cloudflare."
+            },
+            "generateWarpConfig": "Gerar configuração WARP",
+            "missingWarpConfig": "Configuração WARP ausente",
+            "warpConfigGenerated": "Configuração WARP gerada",
+            "pageTitle": "Opções de configuração",
+            "logLevel": "Nível de registro",
+            "resolveDestination": "Resolver destino",
+            "ipv6Mode": "Rota IPv6",
             "ipv6Modes": {
                 "disable": "Desabilitar",
-                "enable": "Habilitar"
+                "enable": "Habilitar",
+                "prefer": "Preferido",
+                "only": "Exclusivo"
             },
             "mtu": "MTU"
         }
