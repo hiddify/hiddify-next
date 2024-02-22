@@ -1,0 +1,64 @@
+{
+    "general": {
+        "toggle": {
+            "enabled": "Habilitado",
+            "disabled": "Desabilitado"
+        },
+        "state": {
+            "disable": "Desabilitar"
+        },
+        "sort": "Ordernar",
+        "sortBy": "Ordenar Por",
+        "agree": "Aceitar",
+        "decline": "Recusar"
+    },
+    "home": {
+        "pageTitle": "Inicio",
+        "noActiveProfileMsg": "Escolha um perfil",
+        "connection": {
+            "connecting": "Conectando",
+            "disconnecting": "Desconectando",
+            "connected": "Conectado"
+        },
+        "stats": {
+            "connection": "Conexão"
+        }
+    },
+    "profile": {
+        "overviewPageTitle": "Perfis",
+        "detailsPageTitle": "Perfil",
+        "activeProfileBtnSemanticLabel": "Ver todos os perfis.",
+        "subscription": {
+            "traffic": "Tráfico",
+            "expired": "Expirado"
+        },
+        "add": {
+            "buttonText": "Novo Perfil",
+            "shortBtnTxt": "Novo Perfil"
+        },
+        "update": {
+            "buttonTxt": "Atualizar",
+            "tooltip": "Atualizar Perfil",
+            "failureMsg": "Falha ao atualizar perfil",
+            "successMsg": "Perfil atualizado com sucesso"
+        },
+        "share": {
+            "buttonText": "Compartilhar"
+        },
+        "edit": {
+            "buttonTxt": "Editar"
+        },
+        "delete": {
+            "buttonTxt": "Deletar"
+        },
+        "save": {
+            "buttonText": "Salvar"
+        },
+        "detailsForm": {
+            "nameLabel": "Nome",
+            "nameHint": "Nome do Perfil",
+            "urlLabel": "URL",
+            "invalidUrlMsg": "URL inválido"
+        }
+    }
+}
