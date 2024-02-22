@@ -127,6 +127,7 @@ class ProxyRepositoryImpl
   final Map<String, IpInfo Function(Map<String, dynamic> response)>
       _ipInfoSources = {
     // "https://geolocation-db.com/json/": IpInfo.fromGeolocationDbComJson, //bug response is not json
+    "https://ipwho.is/": IpInfo.fromIpwhoIsJson,
     "https://api.ip.sb/geoip/": IpInfo.fromIpSbJson,
     "https://ipapi.co/json/": IpInfo.fromIpApiCoJson,
     "https://ipinfo.io/json/": IpInfo.fromIpInfoIoJson,

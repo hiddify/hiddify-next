@@ -92,6 +92,30 @@ class IpInfo with IpInfoMappable {
     };
   }
 
+  static IpInfo fromIpwhoIsJson(Map<String, dynamic> json) {
+    return switch (json) {
+      {
+        "ip": final String ip,
+        "country_code": final String countryCode,
+        // "region": final String region,
+        // "city": final String city,
+        // "timezone": final String timezone,
+        // "asn": final int asn,
+        "connection": final Map<String, dynamic> connection,
+      } =>
+        IpInfo(
+          ip: ip,
+          countryCode: countryCode,
+          // region: region,
+          // city: city,
+          // timezone: timezone,
+          asn: '$connection["asn"]',
+          org: '$connection["org"]',
+        ),
+      _ => throw const FormatException("invalid json"),
+    };
+  }
+
   static IpInfo fromGeolocationDbComJson(Map<String, dynamic> json) {
     return switch (json) {
       {
