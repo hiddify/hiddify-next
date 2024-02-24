@@ -87,8 +87,8 @@ install(FILES "${FLUTTER_LIBRARY}" DESTINATION "${INSTALL_BUNDLE_LIB_DIR}"
 install(FILES "../libcore/bin/libcore.dll" DESTINATION "${INSTALL_BUNDLE_LIB_DIR}"
 COMPONENT Runtime RENAME libcore.dll)
 
-install(FILES "../libcore/bin/HiddifyService.exe" DESTINATION "${CMAKE_INSTALL_PREFIX}"
-COMPONENT Runtime RENAME HiddifyService.exe)
+# install(FILES "../libcore/bin/HiddifyService.exe" DESTINATION "${CMAKE_INSTALL_PREFIX}"
+# COMPONENT Runtime RENAME HiddifyService.exe)
 
 
 if(PLUGIN_BUNDLED_LIBRARIES)
