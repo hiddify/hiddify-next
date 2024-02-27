@@ -25,7 +25,7 @@ OPTIND=1
 # It is a good idea to make OPTIND local if you process options in a function.
 
 # if no arg is provided, execute hiddify app
-[[ $# == 0 ]] && exec hiddify
+[[ $# == 0 ]] && exec ./hiddify
 
 # processing arguments
 while getopts s:vh opt; do
