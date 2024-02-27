@@ -4,7 +4,7 @@
 
 #include "flutter_window.h"
 #include "utils.h"
-
+#include <protocol_handler_windows/protocol_handler_windows_plugin_c_api.h>
 
 
 int APIENTRY wWinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prev,

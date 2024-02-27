@@ -173,7 +173,7 @@ class ConfigOptionEntity with _$ConfigOptionEntity {
       enableClashApi: enableClashApi,
       clashApiPort: clashApiPort,
       enableTun: serviceMode == ServiceMode.tun,
-      enableTunService: false && serviceMode == ServiceMode.tunService,
+      enableTunService: serviceMode == ServiceMode.tunService,
       setSystemProxy: serviceMode == ServiceMode.systemProxy,
       bypassLan: bypassLan,
       allowConnectionFromLan: allowConnectionFromLan,

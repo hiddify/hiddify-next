@@ -62,7 +62,7 @@ jobs:
           - platform: windows
             os: windows-2019
             aarch: amd64
-            targets: exe
+            targets: exe,msix
 
           - platform: linux
             os: ubuntu-22.04
@@ -118,6 +118,14 @@ jobs:
           echo "keyPassword=${{ secrets.ANDROID_SIGNING_KEY_PASSWORD }}" >> android/key.properties
           echo "keyAlias=${{ secrets.ANDROID_SIGNING_KEY_ALIAS }}" >> android/key.properties
 
+      - name: Setup Windows Signing Properties
+        if: ${{ inputs.upload-artifact && startsWith(matrix.platform,'windows') }}
+        run: |
+            $decodedText = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String("${{ secrets.WINDOWS_SIGNING_KEY }}"))
+            Set-Content -Path "windows\sign.pfx" -Value $decodedText
+            (Get-Content "windows\packaging\msix\make_config.yaml") -replace '^certificate_password:\s.*$', 'certificate_password: ${{ secrets.WINDOWS_SIGNING_PASSWORD }}' | Set-Content "windows\packaging\msix\make_config.yaml"
+
+  
       - name: Setup Apple certificate and provisioning profile
         if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') }}
         env:
@@ -224,8 +232,8 @@ jobs:
       - name: Clean up keychain and provisioning profile
         if: ${{ always() && startsWith(matrix.os,'macos')}}
         run: |
-          security delete-keychain $RUNNER_TEMP/app-signing.keychain-db
-          rm ~/Library/MobileDevice/Provisioning\ Profiles/build_pp.mobileprovision
+          security delete-keychain $RUNNER_TEMP/app-signing.keychain-db ||echo ok
+          rm ~/Library/MobileDevice/Provisioning\ Profiles/build_pp.mobileprovision ||echo ok
 
       - name: Upload Artifact
         if: env.UPLOAD_ARTIFACT == 'true'

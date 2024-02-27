@@ -93,6 +93,7 @@ Future<void> lazyBootstrap(
   final debug = container.read(debugModeNotifierProvider) || kDebugMode;
 
   if (PlatformUtils.isDesktop) {
+    Logger.bootstrap.info("Starting Window Contoller");
     await _init(
       "window controller",
       () => container.read(windowNotifierProvider.future),
@@ -106,39 +107,43 @@ Future<void> lazyBootstrap(
     } else {
       Logger.bootstrap.debug("silent start, remain hidden accessible via tray");
     }
-
+    Logger.bootstrap.info("Starting Auto Start Service");
     await _init(
       "auto start service",
       () => container.read(autoStartNotifierProvider.future),
     );
   }
-
+  Logger.bootstrap.info("Starting Log Repository");
   await _init(
     "logs repository",
     () => container.read(logRepositoryProvider.future),
   );
+  Logger.bootstrap.info("Starting Logger Contoller");
   await _init("logger controller", () => LoggerController.postInit(debug));
-  Logger.bootstrap.info(appInfo.format());
 
+  Logger.bootstrap.info(appInfo.format());
+  Logger.bootstrap.info("Starting GeoAssets");
   await _init(
     "geo assets repository",
     () => container.read(geoAssetRepositoryProvider.future),
   );
+  Logger.bootstrap.info("Starting Profile Repository");
   await _init(
     "profile repository",
     () => container.read(profileRepositoryProvider.future),
   );
-
+  Logger.bootstrap.info("Starting Singbox Service Provider");
   await _init(
     "sing-box",
     () => container.read(singboxServiceProvider).init(),
   );
-
+  Logger.bootstrap.info("Starting Active Profile");
   await _safeInit(
     "active profile",
     () => container.read(activeProfileProvider.future),
     timeout: 1000,
   );
+  Logger.bootstrap.info("Starting Deep Link Service");
   await _safeInit(
     "deep link service",
     () => container.read(deepLinkNotifierProvider.future),
@@ -146,14 +151,17 @@ Future<void> lazyBootstrap(
   );
 
   if (PlatformUtils.isDesktop) {
+    Logger.bootstrap.info("Starting System Tray");
     await _safeInit(
       "system tray",
       () => container.read(systemTrayNotifierProvider.future),
       timeout: 1000,
     );
+    Logger.bootstrap.info("System Tray initialized");
   }
 
   if (Platform.isAndroid) {
+    Logger.bootstrap.info("Starting FlutterDisplayMode.setHighRefreshRate");
     await _safeInit(
       "android display mode",
       () async {

@@ -48,6 +48,8 @@ class AnalyticsController extends _$AnalyticsController with AppLogger {
           options.debug = kDebugMode;
           options.enableNativeCrashHandling = true;
           options.enableNdkScopeSync = true;
+          // options.attachScreenshot = true;
+          options.serverName = "";
           options.attachThreads = true;
           options.tracesSampleRate = 0.20;
           options.enableUserInteractionTracing = true;
