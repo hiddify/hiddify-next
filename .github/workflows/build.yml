@@ -123,7 +123,7 @@ jobs:
         run: |
             $decodedText = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String("${{ secrets.WINDOWS_SIGNING_KEY }}"))
             Set-Content -Path "windows\sign.pfx" -Value $decodedText
-            (Get-Content "windows\packaging\msix\make_config.yaml") -replace '^certificate_password:\s.*$', 'certificate_password: ${{ secrets.WINDOWS_SIGNING_PASSWORD }}' | Set-Content "windows\packaging\msix\make_config.yaml"
+            (Get-Content "windows\packaging\msix\make_config.yaml") -replace '^certificate_password:.*$', 'certificate_password: ${{ secrets.WINDOWS_SIGNING_PASSWORD }}' | Set-Content "windows\packaging\msix\make_config.yaml"
 
   
       - name: Setup Apple certificate and provisioning profile
