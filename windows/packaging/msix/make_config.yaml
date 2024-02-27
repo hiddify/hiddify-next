@@ -1,6 +1,6 @@
 display_name: Hiddify
-publisher_display_name: Hiddify
-identity_name: app.hiddify.com
+publisher_display_name: Hiddify.HiddifyNext
+identity_name: Hiddify.HiddifyNext
 msix_version: 0.16.16.0
 logo_path: windows\runner\resources\app_icon.ico
 capabilities: internetClient, internetClientServer, privateNetworkClientServer
@@ -9,7 +9,7 @@ protocol_activation: hiddify
 execution_alias: hiddify
 certificate_path: windows\sign.pfx
 certificate_password:
-publisher: CN=Hiddify, O=Hiddify, C=US
+publisher: CN=8CB43675-F44B-4AA5-9372-E8727781BDC4
 install_certificate: "false"
 enable_at_startup: "true"
 startup_task:
