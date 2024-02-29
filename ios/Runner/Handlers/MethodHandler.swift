@@ -172,6 +172,16 @@ public class MethodHandler: NSObject, FlutterPlugin {
                 return
             }
             result(config)
+        case "generate_warp_config":
+            guard let args = call.arguments as? [String: Any],
+                  let licenseKey = args["license-key"] as? String,
+                  let accountId = args["previous-account-id"] as? String,
+                  let accessToken = args["previous-access-token"] as? String else {
+                result(FlutterError(code: "INVALID_ARGS", message: nil, details: nil))
+                return
+            }
+            let warpConfig = MobileGenerateWarpConfig(licenseKey, accountId, accessToken, nil)
+            result(warpConfig)
         default:
             result(FlutterMethodNotImplemented)
         }
