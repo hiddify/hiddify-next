@@ -12,7 +12,8 @@ class SettingsInputDialog<T> extends HookConsumerWidget with PresLogger {
     required this.initialValue,
     this.mapTo,
     this.validator,
-    this.resetValue,
+    this.valueFormatter,
+    this.onReset,
     this.optionalAction,
     this.icon,
     this.digitsOnly = false,
@@ -22,7 +23,8 @@ class SettingsInputDialog<T> extends HookConsumerWidget with PresLogger {
   final T initialValue;
   final T? Function(String value)? mapTo;
   final bool Function(String value)? validator;
-  final T? resetValue;
+  final String Function(T value)? valueFormatter;
+  final VoidCallback? onReset;
   final (String text, VoidCallback)? optionalAction;
   final IconData? icon;
   final bool digitsOnly;
@@ -41,7 +43,7 @@ class SettingsInputDialog<T> extends HookConsumerWidget with PresLogger {
     final localizations = MaterialLocalizations.of(context);
 
     final textController = useTextEditingController(
-      text: initialValue?.toString(),
+      text: valueFormatter?.call(initialValue) ?? initialValue.toString(),
     );
 
     return FocusTraversalGroup(
@@ -74,12 +76,13 @@ class SettingsInputDialog<T> extends HookConsumerWidget with PresLogger {
                 child: Text(optionalAction!.$1.toUpperCase()),
               ),
             ),
-          if (resetValue != null)
+          if (onReset != null)
             FocusTraversalOrder(
               order: const NumericFocusOrder(4),
               child: TextButton(
                 onPressed: () async {
-                  await Navigator.of(context).maybePop(resetValue);
+                  onReset!();
+                  await Navigator.of(context).maybePop(null);
                 },
                 child: Text(t.general.reset.toUpperCase()),
               ),
@@ -123,14 +126,14 @@ class SettingsPickerDialog<T> extends HookConsumerWidget with PresLogger {
     required this.selected,
     required this.options,
     required this.getTitle,
-    this.resetValue,
+    this.onReset,
   });
 
   final String title;
   final T selected;
   final List<T> options;
   final String Function(T e) getTitle;
-  final T? resetValue;
+  final VoidCallback? onReset;
 
   Future<T?> show(BuildContext context) async {
     return showDialog(
@@ -162,10 +165,11 @@ class SettingsPickerDialog<T> extends HookConsumerWidget with PresLogger {
             .toList(),
       ),
       actions: [
-        if (resetValue != null)
+        if (onReset != null)
           TextButton(
             onPressed: () async {
-              await Navigator.of(context).maybePop(resetValue);
+              onReset!();
+              await Navigator.of(context).maybePop(null);
             },
             child: Text(t.general.reset.toUpperCase()),
           ),
@@ -186,7 +190,7 @@ class SettingsSliderDialog extends HookConsumerWidget with PresLogger {
     super.key,
     required this.title,
     required this.initialValue,
-    this.resetValue,
+    this.onReset,
     this.min = 0,
     this.max = 1,
     this.divisions,
@@ -195,7 +199,7 @@ class SettingsSliderDialog extends HookConsumerWidget with PresLogger {
 
   final String title;
   final double initialValue;
-  final double? resetValue;
+  final VoidCallback? onReset;
   final double min;
   final double max;
   final int? divisions;
@@ -229,10 +233,11 @@ class SettingsSliderDialog extends HookConsumerWidget with PresLogger {
         ),
       ),
       actions: [
-        if (resetValue != null)
+        if (onReset != null)
           TextButton(
             onPressed: () async {
-              await Navigator.of(context).maybePop(resetValue);
+              onReset!();
+              await Navigator.of(context).maybePop(null);
             },
             child: Text(t.general.reset.toUpperCase()),
           ),

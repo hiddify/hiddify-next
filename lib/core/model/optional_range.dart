@@ -16,9 +16,9 @@ class OptionalRange with OptionalRangeMappable {
   String present(TranslationsEn t) =>
       format().isEmpty ? t.general.notSet : format();
 
-  factory OptionalRange._fromString(
+  factory OptionalRange.parse(
     String input, {
-    bool allowEmpty = true,
+    bool allowEmpty = false,
   }) =>
       switch (input.split("-")) {
         [final String val] when val.isEmpty && allowEmpty =>
@@ -36,7 +36,7 @@ class OptionalRange with OptionalRangeMappable {
     bool allowEmpty = false,
   }) {
     try {
-      return OptionalRange._fromString(input);
+      return OptionalRange.parse(input, allowEmpty: allowEmpty);
     } catch (_) {
       return null;
     }
@@ -48,7 +48,8 @@ class OptionalRangeJsonConverter
   const OptionalRangeJsonConverter();
 
   @override
-  OptionalRange fromJson(String json) => OptionalRange._fromString(json);
+  OptionalRange fromJson(String json) =>
+      OptionalRange.parse(json, allowEmpty: true);
 
   @override
   String toJson(OptionalRange object) => object.format();

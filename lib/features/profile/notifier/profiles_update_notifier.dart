@@ -36,7 +36,7 @@ class ForegroundProfilesUpdateNotifier
       _scheduler = null;
     });
 
-    if (ref.watch(introCompletedProvider)) {
+    if (ref.watch(Preferences.introCompleted)) {
       loggy.debug("intro done, starting");
       _scheduler?.start();
     } else {

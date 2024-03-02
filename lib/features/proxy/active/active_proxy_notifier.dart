@@ -33,7 +33,7 @@ class IpInfoNotifier extends _$IpInfoNotifier with AppLogger {
       (_, next) => _idle = false,
     );
 
-    final autoCheck = ref.watch(autoCheckIpProvider);
+    final autoCheck = ref.watch(Preferences.autoCheckIp);
     final serviceRunning = await ref.watch(serviceRunningProvider.future);
     // loggy.debug(
     //   "idle? [$_idle], forced? [$_forceCheck], connected? [$serviceRunning]",

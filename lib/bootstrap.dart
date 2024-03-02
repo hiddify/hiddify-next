@@ -99,7 +99,7 @@ Future<void> lazyBootstrap(
       () => container.read(windowNotifierProvider.future),
     );
 
-    final silentStart = container.read(silentStartNotifierProvider);
+    final silentStart = container.read(Preferences.silentStart);
     Logger.bootstrap
         .debug("silent start [${silentStart ? "Enabled" : "Disabled"}]");
     if (!silentStart) {

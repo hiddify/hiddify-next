@@ -1,12 +1,9 @@
-import 'dart:convert';
 import 'package:flutter/gestures.dart';
-import 'package:hiddify/core/http_client/dio_http_client.dart';
-import 'package:timezone_to_country/timezone_to_country.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hiddify/core/analytics/analytics_controller.dart';
+import 'package:hiddify/core/http_client/dio_http_client.dart';
 import 'package:hiddify/core/localization/locale_preferences.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/model/constants.dart';
@@ -16,12 +13,14 @@ import 'package:hiddify/features/common/general_pref_tiles.dart';
 import 'package:hiddify/gen/assets.gen.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:sliver_tools/sliver_tools.dart';
+import 'package:timezone_to_country/timezone_to_country.dart';
 
 class IntroPage extends HookConsumerWidget with PresLogger {
-  bool locationInfoLoaded = false;
   IntroPage({super.key});
+
+  bool locationInfoLoaded = false;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = ref.watch(translationsProvider);
@@ -101,7 +100,7 @@ class IntroPage extends HookConsumerWidget with PresLogger {
                           }
                         }
                         await ref
-                            .read(introCompletedProvider.notifier)
+                            .read(Preferences.introCompleted.notifier)
                             .update(true);
                       },
                       child: isStarting.value
@@ -128,9 +127,7 @@ class IntroPage extends HookConsumerWidget with PresLogger {
       loggy.debug(
         'Timezone Region: ${regionLocale.region} Locale: ${regionLocale.locale}',
       );
-      await ref
-          .read(regionNotifierProvider.notifier)
-          .update(regionLocale.region);
+      await ref.read(Preferences.region.notifier).update(regionLocale.region);
       await ref
           .read(localePreferencesProvider.notifier)
           .changeLocale(regionLocale.locale);
@@ -144,10 +141,11 @@ class IntroPage extends HookConsumerWidget with PresLogger {
 
     try {
       final DioHttpClient client = DioHttpClient(
-          timeout: const Duration(seconds: 2),
-          userAgent:
-              "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:123.0) Gecko/20100101 Firefox/123.0",
-          debug: true);
+        timeout: const Duration(seconds: 2),
+        userAgent:
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:123.0) Gecko/20100101 Firefox/123.0",
+        debug: true,
+      );
       final response =
           await client.get<Map<String, dynamic>>('https://api.ip.sb/geoip/');
 
@@ -159,9 +157,7 @@ class IntroPage extends HookConsumerWidget with PresLogger {
         loggy.debug(
           'Region: ${regionLocale.region} Locale: ${regionLocale.locale}',
         );
-        await ref
-            .read(regionNotifierProvider.notifier)
-            .update(regionLocale.region);
+        await ref.read(Preferences.region.notifier).update(regionLocale.region);
         await ref
             .read(localePreferencesProvider.notifier)
             .changeLocale(regionLocale.locale);

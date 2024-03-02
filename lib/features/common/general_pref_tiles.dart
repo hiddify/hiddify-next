@@ -57,7 +57,7 @@ class RegionPrefTile extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final t = ref.watch(translationsProvider);
 
-    final region = ref.watch(regionNotifierProvider);
+    final region = ref.watch(Preferences.region);
 
     return ListTile(
       title: Text(t.settings.general.region),
@@ -83,9 +83,7 @@ class RegionPrefTile extends HookConsumerWidget {
           },
         );
         if (selectedRegion != null) {
-          await ref
-              .read(regionNotifierProvider.notifier)
-              .update(selectedRegion);
+          await ref.read(Preferences.region.notifier).update(selectedRegion);
         }
       },
     );

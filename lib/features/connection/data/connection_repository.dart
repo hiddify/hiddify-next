@@ -38,7 +38,7 @@ class ConnectionRepositoryImpl
     required this.directories,
     required this.singbox,
     required this.platformSource,
-    required this.singBoxConfigOptionRepository,
+    required this.configOptionRepository,
     required this.profilePathResolver,
     required this.geoAssetPathResolver,
   });
@@ -46,7 +46,7 @@ class ConnectionRepositoryImpl
   final Directories directories;
   final SingboxService singbox;
   final ConnectionPlatformSource platformSource;
-  final SingBoxConfigOptionRepository singBoxConfigOptionRepository;
+  final ConfigOptionRepository configOptionRepository;
   final ProfilePathResolver profilePathResolver;
   final GeoAssetPathResolver geoAssetPathResolver;
 
@@ -83,7 +83,7 @@ class ConnectionRepositoryImpl
     return TaskEither<ConnectionFailure, SingboxConfigOption>.Do(
       ($) async {
         final options = await $(
-          singBoxConfigOptionRepository
+          configOptionRepository
               .getFullSingboxConfigOption()
               .mapLeft((l) => const InvalidConfigOption()),
         );

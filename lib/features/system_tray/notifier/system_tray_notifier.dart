@@ -3,8 +3,7 @@ import 'dart:io';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/model/constants.dart';
 import 'package:hiddify/core/router/router.dart';
-import 'package:hiddify/features/config_option/model/config_option_entity.dart';
-import 'package:hiddify/features/config_option/notifier/config_option_notifier.dart';
+import 'package:hiddify/features/config_option/data/config_option_repository.dart';
 import 'package:hiddify/features/connection/model/connection_status.dart';
 import 'package:hiddify/features/connection/notifier/connection_notifier.dart';
 import 'package:hiddify/features/window/notifier/window_notifier.dart';
@@ -36,9 +35,7 @@ class SystemTrayNotifier extends _$SystemTrayNotifier with AppLogger {
       connection = const ConnectionStatus.disconnected();
     }
 
-    final serviceMode = await ref
-        .watch(configOptionNotifierProvider.future)
-        .then((value) => value.serviceMode);
+    final serviceMode = ref.watch(ConfigOptions.serviceMode);
 
     final t = ref.watch(translationsProvider);
     final destinations = <(String label, String location)>[
@@ -88,8 +85,8 @@ class SystemTrayNotifier extends _$SystemTrayNotifier with AppLogger {
                     final newMode = ServiceMode.values.byName(menuItem.key!);
                     loggy.debug("switching service mode: [$newMode]");
                     await ref
-                        .read(configOptionNotifierProvider.notifier)
-                        .updateOption(ConfigOptionPatch(serviceMode: newMode));
+                        .read(ConfigOptions.serviceMode.notifier)
+                        .update(newMode);
                   },
                 ),
               ),

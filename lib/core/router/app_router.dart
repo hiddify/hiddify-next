@@ -85,7 +85,7 @@ class RouterListenable extends _$RouterListenable
 
   @override
   Future<void> build() async {
-    _introCompleted = ref.watch(introCompletedProvider);
+    _introCompleted = ref.watch(Preferences.introCompleted);
 
     ref.listenSelf((_, __) {
       if (state.isLoading) return;

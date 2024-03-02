@@ -18,8 +18,8 @@ class AdvancedSettingTiles extends HookConsumerWidget {
     final t = ref.watch(translationsProvider);
 
     final debug = ref.watch(debugModeNotifierProvider);
-    final perAppProxy = ref.watch(perAppProxyModeNotifierProvider).enabled;
-    final disableMemoryLimit = ref.watch(disableMemoryLimitProvider);
+    final perAppProxy = ref.watch(Preferences.perAppProxyMode).enabled;
+    final disableMemoryLimit = ref.watch(Preferences.disableMemoryLimit);
 
     return Column(
       children: [
@@ -43,7 +43,7 @@ class AdvancedSettingTiles extends HookConsumerWidget {
                 final newMode =
                     perAppProxy ? PerAppProxyMode.off : PerAppProxyMode.exclude;
                 await ref
-                    .read(perAppProxyModeNotifierProvider.notifier)
+                    .read(Preferences.perAppProxyMode.notifier)
                     .update(newMode);
                 if (!perAppProxy && context.mounted) {
                   await const PerAppProxyRoute().push(context);
@@ -53,7 +53,7 @@ class AdvancedSettingTiles extends HookConsumerWidget {
             onTap: () async {
               if (!perAppProxy) {
                 await ref
-                    .read(perAppProxyModeNotifierProvider.notifier)
+                    .read(Preferences.perAppProxyMode.notifier)
                     .update(PerAppProxyMode.exclude);
               }
               if (context.mounted) await const PerAppProxyRoute().push(context);
@@ -66,7 +66,9 @@ class AdvancedSettingTiles extends HookConsumerWidget {
           value: !disableMemoryLimit,
           secondary: const Icon(FluentIcons.developer_board_24_regular),
           onChanged: (value) async {
-            await ref.read(disableMemoryLimitProvider.notifier).update(!value);
+            await ref
+                .read(Preferences.disableMemoryLimit.notifier)
+                .update(!value);
           },
         ),
         if (Platform.isIOS)

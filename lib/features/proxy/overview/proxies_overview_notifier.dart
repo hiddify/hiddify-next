@@ -5,11 +5,11 @@ import 'package:dartx/dartx.dart';
 import 'package:hiddify/core/haptic/haptic_service.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/preferences/preferences_provider.dart';
+import 'package:hiddify/core/utils/preferences_utils.dart';
 import 'package:hiddify/features/connection/notifier/connection_notifier.dart';
 import 'package:hiddify/features/proxy/data/proxy_data_providers.dart';
 import 'package:hiddify/features/proxy/model/proxy_entity.dart';
 import 'package:hiddify/features/proxy/model/proxy_failure.dart';
-import 'package:hiddify/utils/pref_notifier.dart';
 import 'package:hiddify/utils/riverpod_utils.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -31,24 +31,24 @@ enum ProxiesSort {
 
 @Riverpod(keepAlive: true)
 class ProxiesSortNotifier extends _$ProxiesSortNotifier with AppLogger {
-  late final _pref = Pref(
-    ref.watch(sharedPreferencesProvider).requireValue,
-    "proxies_sort_mode",
-    ProxiesSort.delay,
+  late final _pref = PreferencesEntry(
+    preferences: ref.watch(sharedPreferencesProvider).requireValue,
+    key: "proxies_sort_mode",
+    defaultValue: ProxiesSort.delay,
     mapFrom: ProxiesSort.values.byName,
     mapTo: (value) => value.name,
   );
 
   @override
   ProxiesSort build() {
-    final sortBy = _pref.getValue();
+    final sortBy = _pref.read();
     loggy.info("sort proxies by: [${sortBy.name}]");
     return sortBy;
   }
 
   Future<void> update(ProxiesSort value) {
     state = value;
-    return _pref.update(value);
+    return _pref.write(value);
   }
 }
 

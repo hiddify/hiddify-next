@@ -1,7 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hiddify/core/preferences/preferences_provider.dart';
-import 'package:hiddify/features/config_option/data/config_option_data_providers.dart';
+import 'package:hiddify/features/config_option/data/config_option_repository.dart';
 import 'package:hiddify/features/config_option/model/config_option_failure.dart';
+import 'package:hiddify/singbox/service/singbox_service_provider.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -46,15 +47,28 @@ class WarpOptionNotifier extends _$WarpOptionNotifier with AppLogger {
   Future<void> generateWarpConfig() async {
     if (state.configGeneration.isLoading) return;
     state = state.copyWith(configGeneration: const AsyncLoading());
-    final result = await AsyncValue.guard(
-      () async => await ref
-          .read(configOptionRepositoryProvider)
-          .generateWarpConfig()
-          .getOrElse((l) {
-        loggy.warning("error generating warp config: $l", l);
-        throw l;
-      }).run(),
-    );
+
+    final result = await AsyncValue.guard(() async {
+      final warp = await ref
+          .read(singboxServiceProvider)
+          .generateWarpConfig(
+            licenseKey: ref.read(ConfigOptions.warpLicenseKey),
+            previousAccountId: ref.read(ConfigOptions.warpAccountId),
+            previousAccessToken: ref.read(ConfigOptions.warpAccessToken),
+          )
+          .getOrElse((l) => throw l)
+          .run();
+
+      await ref
+          .read(ConfigOptions.warpAccountId.notifier)
+          .update(warp.accountId);
+      await ref
+          .read(ConfigOptions.warpAccessToken.notifier)
+          .update(warp.accessToken);
+
+      return warp.log;
+    });
+
     state = state.copyWith(configGeneration: result);
   }
 

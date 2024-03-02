@@ -58,7 +58,7 @@ class AddProfile extends _$AddProfile with AppLogger {
       () async {
         final activeProfile = await ref.read(activeProfileProvider.future);
         final markAsActive =
-            activeProfile == null || ref.read(markNewProfileActiveProvider);
+            activeProfile == null || ref.read(Preferences.markNewProfileActive);
         final TaskEither<ProfileFailure, Unit> task;
         if (LinkParser.parse(rawInput) case (final link)?) {
           loggy.debug("adding profile, url: [${link.url}]");

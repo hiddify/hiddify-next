@@ -1,17 +1,15 @@
 import 'package:dartx/dartx.dart';
-import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
 import 'package:hiddify/core/localization/translations.dart';
-import 'package:hiddify/core/model/failures.dart';
 import 'package:hiddify/core/model/optional_range.dart';
 import 'package:hiddify/core/widget/adaptive_icon.dart';
 import 'package:hiddify/core/widget/tip_card.dart';
 import 'package:hiddify/features/common/nested_app_bar.dart';
-import 'package:hiddify/features/config_option/model/config_option_entity.dart';
+import 'package:hiddify/features/config_option/data/config_option_repository.dart';
 import 'package:hiddify/features/config_option/notifier/config_option_notifier.dart';
 import 'package:hiddify/features/config_option/overview/warp_options_widgets.dart';
+import 'package:hiddify/features/config_option/widget/preference_tile.dart';
 import 'package:hiddify/features/log/model/log_level.dart';
 import 'package:hiddify/features/settings/widgets/sections_widgets.dart';
 import 'package:hiddify/features/settings/widgets/settings_input_dialog.dart';
@@ -27,13 +25,6 @@ class ConfigOptionsPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final t = ref.watch(translationsProvider);
 
-    final defaultOptions = ConfigOptionEntity.initial();
-    final asyncOptions = ref.watch(configOptionNotifierProvider);
-
-    Future<void> changeOption(ConfigOptionPatch patch) async {
-      await ref.read(configOptionNotifierProvider.notifier).updateOption(patch);
-    }
-
     String experimental(String txt) {
       return "$txt (${t.settings.experimental})";
     }
@@ -44,462 +35,259 @@ class ConfigOptionsPage extends HookConsumerWidget {
           NestedAppBar(
             title: Text(t.settings.config.pageTitle),
             actions: [
-              if (asyncOptions case AsyncData(value: final options))
-                PopupMenuButton(
-                  icon: Icon(AdaptiveIcon(context).more),
-                  itemBuilder: (context) {
-                    return [
-                      PopupMenuItem(
-                        child: Text(t.general.addToClipboard),
-                        onTap: () {
-                          Clipboard.setData(
-                            ClipboardData(text: options.format()),
-                          );
-                        },
-                      ),
-                      PopupMenuItem(
-                        child: Text(t.settings.config.resetBtn),
-                        onTap: () async {
-                          await ref
-                              .read(configOptionNotifierProvider.notifier)
-                              .resetOption();
-                        },
-                      ),
-                    ];
-                  },
-                ),
-            ],
-          ),
-          switch (asyncOptions) {
-            AsyncData(value: final options) => SliverList.list(
-                children: [
-                  TipCard(message: t.settings.experimentalMsg),
-                  ListTile(
-                    title: Text(t.settings.config.logLevel),
-                    subtitle: Text(options.logLevel.name.toUpperCase()),
-                    onTap: () async {
-                      final logLevel = await SettingsPickerDialog(
-                        title: t.settings.config.logLevel,
-                        selected: options.logLevel,
-                        options: LogLevel.choices,
-                        getTitle: (e) => e.name.toUpperCase(),
-                        resetValue: defaultOptions.logLevel,
-                      ).show(context);
-                      if (logLevel == null) return;
-                      await changeOption(ConfigOptionPatch(logLevel: logLevel));
-                    },
-                  ),
-                  const SettingsDivider(),
-                  SettingsSection(t.settings.config.section.route),
-                  SwitchListTile(
-                    title: Text(experimental(t.settings.config.bypassLan)),
-                    value: options.bypassLan,
-                    onChanged: (value) async =>
-                        changeOption(ConfigOptionPatch(bypassLan: value)),
-                  ),
-                  SwitchListTile(
-                    title: Text(t.settings.config.resolveDestination),
-                    value: options.resolveDestination,
-                    onChanged: (value) async => changeOption(
-                      ConfigOptionPatch(resolveDestination: value),
+              PopupMenuButton(
+                icon: Icon(AdaptiveIcon(context).more),
+                itemBuilder: (context) {
+                  return [
+                    PopupMenuItem(
+                      onTap: ref
+                          .read(configOptionNotifierProvider.notifier)
+                          .exportJsonToClipboard,
+                      child: Text(t.general.addToClipboard),
                     ),
-                  ),
-                  ListTile(
-                    title: Text(t.settings.config.ipv6Mode),
-                    subtitle: Text(options.ipv6Mode.present(t)),
-                    onTap: () async {
-                      final ipv6Mode = await SettingsPickerDialog(
-                        title: t.settings.config.ipv6Mode,
-                        selected: options.ipv6Mode,
-                        options: IPv6Mode.values,
-                        getTitle: (e) => e.present(t),
-                        resetValue: defaultOptions.ipv6Mode,
-                      ).show(context);
-                      if (ipv6Mode == null) return;
-                      await changeOption(ConfigOptionPatch(ipv6Mode: ipv6Mode));
-                    },
-                  ),
-                  const SettingsDivider(),
-                  SettingsSection(t.settings.config.section.dns),
-                  ListTile(
-                    title: Text(t.settings.config.remoteDnsAddress),
-                    subtitle: Text(options.remoteDnsAddress),
-                    onTap: () async {
-                      final url = await SettingsInputDialog(
-                        title: t.settings.config.remoteDnsAddress,
-                        initialValue: options.remoteDnsAddress,
-                        resetValue: defaultOptions.remoteDnsAddress,
-                      ).show(context);
-                      if (url == null || url.isEmpty) return;
-                      await changeOption(
-                        ConfigOptionPatch(remoteDnsAddress: url),
-                      );
-                    },
-                  ),
-                  ListTile(
-                    title: Text(t.settings.config.remoteDnsDomainStrategy),
-                    subtitle: Text(options.remoteDnsDomainStrategy.displayName),
-                    onTap: () async {
-                      final domainStrategy = await SettingsPickerDialog(
-                        title: t.settings.config.remoteDnsDomainStrategy,
-                        selected: options.remoteDnsDomainStrategy,
-                        options: DomainStrategy.values,
-                        getTitle: (e) => e.displayName,
-                        resetValue: defaultOptions.remoteDnsDomainStrategy,
-                      ).show(context);
-                      if (domainStrategy == null) return;
-                      await changeOption(
-                        ConfigOptionPatch(
-                          remoteDnsDomainStrategy: domainStrategy,
-                        ),
-                      );
-                    },
-                  ),
-                  ListTile(
-                    title: Text(t.settings.config.directDnsAddress),
-                    subtitle: Text(options.directDnsAddress),
-                    onTap: () async {
-                      final url = await SettingsInputDialog(
-                        title: t.settings.config.directDnsAddress,
-                        initialValue: options.directDnsAddress,
-                        resetValue: defaultOptions.directDnsAddress,
-                      ).show(context);
-                      if (url == null || url.isEmpty) return;
-                      await changeOption(
-                        ConfigOptionPatch(directDnsAddress: url),
-                      );
-                    },
-                  ),
-                  ListTile(
-                    title: Text(t.settings.config.directDnsDomainStrategy),
-                    subtitle: Text(options.directDnsDomainStrategy.displayName),
-                    onTap: () async {
-                      final domainStrategy = await SettingsPickerDialog(
-                        title: t.settings.config.directDnsDomainStrategy,
-                        selected: options.directDnsDomainStrategy,
-                        options: DomainStrategy.values,
-                        getTitle: (e) => e.displayName,
-                        resetValue: defaultOptions.directDnsDomainStrategy,
-                      ).show(context);
-                      if (domainStrategy == null) return;
-                      await changeOption(
-                        ConfigOptionPatch(
-                          directDnsDomainStrategy: domainStrategy,
-                        ),
-                      );
-                    },
-                  ),
-                  SwitchListTile(
-                    title: Text(t.settings.config.enableDnsRouting),
-                    value: options.enableDnsRouting,
-                    onChanged: (value) => changeOption(
-                      ConfigOptionPatch(enableDnsRouting: value),
-                    ),
-                  ),
-                  const SettingsDivider(),
-                  SettingsSection(experimental(t.settings.config.section.mux)),
-                  SwitchListTile(
-                    title: Text(t.settings.config.enableMux),
-                    value: options.enableMux,
-                    onChanged: (value) => changeOption(
-                      ConfigOptionPatch(enableMux: value),
-                    ),
-                  ),
-                  ListTile(
-                    title: Text(t.settings.config.muxProtocol),
-                    subtitle: Text(options.muxProtocol.name),
-                    onTap: () async {
-                      final pickedProtocol = await SettingsPickerDialog(
-                        title: t.settings.config.muxProtocol,
-                        selected: options.muxProtocol,
-                        options: MuxProtocol.values,
-                        getTitle: (e) => e.name,
-                        resetValue: defaultOptions.muxProtocol,
-                      ).show(context);
-                      if (pickedProtocol == null) return;
-                      await changeOption(
-                        ConfigOptionPatch(muxProtocol: pickedProtocol),
-                      );
-                    },
-                  ),
-                  ListTile(
-                    title: Text(t.settings.config.muxMaxStreams),
-                    subtitle: Text(options.muxMaxStreams.toString()),
-                    onTap: () async {
-                      final maxStreams = await SettingsInputDialog(
-                        title: t.settings.config.muxMaxStreams,
-                        initialValue: options.muxMaxStreams,
-                        resetValue: defaultOptions.muxMaxStreams,
-                        mapTo: int.tryParse,
-                        digitsOnly: true,
-                      ).show(context);
-                      if (maxStreams == null || maxStreams < 1) return;
-                      await changeOption(
-                        ConfigOptionPatch(muxMaxStreams: maxStreams),
-                      );
-                    },
-                  ),
-                  const SettingsDivider(),
-                  SettingsSection(t.settings.config.section.inbound),
-                  ListTile(
-                    title: Text(t.settings.config.serviceMode),
-                    subtitle: Text(options.serviceMode.present(t)),
-                    onTap: () async {
-                      final pickedMode = await SettingsPickerDialog(
-                        title: t.settings.config.serviceMode,
-                        selected: options.serviceMode,
-                        options: ServiceMode.choices,
-                        getTitle: (e) => e.present(t),
-                        resetValue: ServiceMode.defaultMode,
-                      ).show(context);
-                      if (pickedMode == null) return;
-                      await changeOption(
-                        ConfigOptionPatch(serviceMode: pickedMode),
-                      );
-                    },
-                  ),
-                  SwitchListTile(
-                    title: Text(t.settings.config.strictRoute),
-                    value: options.strictRoute,
-                    onChanged: (value) async =>
-                        changeOption(ConfigOptionPatch(strictRoute: value)),
-                  ),
-                  ListTile(
-                    title: Text(t.settings.config.tunImplementation),
-                    subtitle: Text(options.tunImplementation.name),
-                    onTap: () async {
-                      final tunImplementation = await SettingsPickerDialog(
-                        title: t.settings.config.tunImplementation,
-                        selected: options.tunImplementation,
-                        options: TunImplementation.values,
-                        getTitle: (e) => e.name,
-                        resetValue: defaultOptions.tunImplementation,
-                      ).show(context);
-                      if (tunImplementation == null) return;
-                      await changeOption(
-                        ConfigOptionPatch(tunImplementation: tunImplementation),
-                      );
-                    },
-                  ),
-                  ListTile(
-                    title: Text(t.settings.config.mixedPort),
-                    subtitle: Text(options.mixedPort.toString()),
-                    onTap: () async {
-                      final mixedPort = await SettingsInputDialog(
-                        title: t.settings.config.mixedPort,
-                        initialValue: options.mixedPort,
-                        resetValue: defaultOptions.mixedPort,
-                        validator: isPort,
-                        mapTo: int.tryParse,
-                        digitsOnly: true,
-                      ).show(context);
-                      if (mixedPort == null) return;
-                      await changeOption(
-                        ConfigOptionPatch(mixedPort: mixedPort),
-                      );
-                    },
-                  ),
-                  ListTile(
-                    title: Text(t.settings.config.localDnsPort),
-                    subtitle: Text(options.localDnsPort.toString()),
-                    onTap: () async {
-                      final localDnsPort = await SettingsInputDialog(
-                        title: t.settings.config.localDnsPort,
-                        initialValue: options.localDnsPort,
-                        resetValue: defaultOptions.localDnsPort,
-                        validator: isPort,
-                        mapTo: int.tryParse,
-                        digitsOnly: true,
-                      ).show(context);
-                      if (localDnsPort == null) return;
-                      await changeOption(
-                        ConfigOptionPatch(localDnsPort: localDnsPort),
-                      );
-                    },
-                  ),
-                  SwitchListTile(
-                    title: Text(
-                      experimental(t.settings.config.allowConnectionFromLan),
-                    ),
-                    value: options.allowConnectionFromLan,
-                    onChanged: (value) => changeOption(
-                      ConfigOptionPatch(allowConnectionFromLan: value),
-                    ),
-                  ),
-                  const SettingsDivider(),
-                  SettingsSection(t.settings.config.section.tlsTricks),
-                  SwitchListTile(
-                    title:
-                        Text(experimental(t.settings.config.enableTlsFragment)),
-                    value: options.enableTlsFragment,
-                    onChanged: (value) async => changeOption(
-                      ConfigOptionPatch(enableTlsFragment: value),
-                    ),
-                  ),
-                  ListTile(
-                    title: Text(t.settings.config.tlsFragmentSize),
-                    subtitle: Text(options.tlsFragmentSize.present(t)),
-                    onTap: () async {
-                      final range = await SettingsInputDialog(
-                        title: t.settings.config.tlsFragmentSize,
-                        initialValue: options.tlsFragmentSize.format(),
-                        resetValue: defaultOptions.tlsFragmentSize.format(),
-                      ).show(context);
-                      if (range == null) return;
-                      await changeOption(
-                        ConfigOptionPatch(
-                          tlsFragmentSize: OptionalRange.tryParse(range),
-                        ),
-                      );
-                    },
-                  ),
-                  ListTile(
-                    title: Text(t.settings.config.tlsFragmentSleep),
-                    subtitle: Text(options.tlsFragmentSleep.present(t)),
-                    onTap: () async {
-                      final range = await SettingsInputDialog(
-                        title: t.settings.config.tlsFragmentSleep,
-                        initialValue: options.tlsFragmentSleep.format(),
-                        resetValue: defaultOptions.tlsFragmentSleep.format(),
-                      ).show(context);
-                      if (range == null) return;
-                      await changeOption(
-                        ConfigOptionPatch(
-                          tlsFragmentSleep: OptionalRange.tryParse(range),
-                        ),
-                      );
-                    },
-                  ),
-                  SwitchListTile(
-                    title: Text(
-                      experimental(t.settings.config.enableTlsMixedSniCase),
-                    ),
-                    value: options.enableTlsMixedSniCase,
-                    onChanged: (value) async => changeOption(
-                      ConfigOptionPatch(enableTlsMixedSniCase: value),
-                    ),
-                  ),
-                  SwitchListTile(
-                    title:
-                        Text(experimental(t.settings.config.enableTlsPadding)),
-                    value: options.enableTlsPadding,
-                    onChanged: (value) async => changeOption(
-                      ConfigOptionPatch(enableTlsPadding: value),
-                    ),
-                  ),
-                  ListTile(
-                    title: Text(t.settings.config.tlsPaddingSize),
-                    subtitle: Text(options.tlsPaddingSize.present(t)),
-                    onTap: () async {
-                      final range = await SettingsInputDialog(
-                        title: t.settings.config.tlsPaddingSize,
-                        initialValue: options.tlsPaddingSize.format(),
-                        resetValue: defaultOptions.tlsPaddingSize.format(),
-                      ).show(context);
-                      if (range == null) return;
-                      await changeOption(
-                        ConfigOptionPatch(
-                          tlsPaddingSize: OptionalRange.tryParse(range),
-                        ),
-                      );
-                    },
-                  ),
-                  const SettingsDivider(),
-                  SettingsSection(experimental(t.settings.config.section.warp)),
-                  WarpOptionsTiles(
-                    options: options,
-                    defaultOptions: defaultOptions,
-                    onChange: changeOption,
-                  ),
-                  const SettingsDivider(),
-                  SettingsSection(t.settings.config.section.misc),
-                  ListTile(
-                    title: Text(t.settings.config.connectionTestUrl),
-                    subtitle: Text(options.connectionTestUrl),
-                    onTap: () async {
-                      final url = await SettingsInputDialog(
-                        title: t.settings.config.connectionTestUrl,
-                        initialValue: options.connectionTestUrl,
-                        resetValue: defaultOptions.connectionTestUrl,
-                      ).show(context);
-                      if (url == null || url.isEmpty || !isUrl(url)) return;
-                      await changeOption(
-                        ConfigOptionPatch(connectionTestUrl: url),
-                      );
-                    },
-                  ),
-                  ListTile(
-                    title: Text(t.settings.config.urlTestInterval),
-                    subtitle: Text(
-                      options.urlTestInterval
-                          .toApproximateTime(isRelativeToNow: false),
-                    ),
-                    onTap: () async {
-                      final urlTestInterval = await SettingsSliderDialog(
-                        title: t.settings.config.urlTestInterval,
-                        initialValue: options.urlTestInterval.inMinutes
-                            .coerceIn(0, 60)
-                            .toDouble(),
-                        resetValue:
-                            defaultOptions.urlTestInterval.inMinutes.toDouble(),
-                        min: 1,
-                        max: 60,
-                        divisions: 60,
-                        labelGen: (value) => Duration(minutes: value.toInt())
-                            .toApproximateTime(isRelativeToNow: false),
-                      ).show(context);
-                      if (urlTestInterval == null) return;
-                      await changeOption(
-                        ConfigOptionPatch(
-                          urlTestInterval:
-                              Duration(minutes: urlTestInterval.toInt()),
-                        ),
-                      );
-                    },
-                  ),
-                  ListTile(
-                    title: Text(t.settings.config.clashApiPort),
-                    subtitle: Text(options.clashApiPort.toString()),
-                    onTap: () async {
-                      final clashApiPort = await SettingsInputDialog(
-                        title: t.settings.config.clashApiPort,
-                        initialValue: options.clashApiPort,
-                        resetValue: defaultOptions.clashApiPort,
-                        validator: isPort,
-                        mapTo: int.tryParse,
-                        digitsOnly: true,
-                      ).show(context);
-                      if (clashApiPort == null) return;
-                      await changeOption(
-                        ConfigOptionPatch(clashApiPort: clashApiPort),
-                      );
-                    },
-                  ),
-                  const Gap(24),
-                ],
-              ),
-            AsyncError(:final error) => SliverFillRemaining(
-                hasScrollBody: false,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(FluentIcons.error_circle_24_regular),
-                    const Gap(2),
-                    Text(t.presentShortError(error)),
-                    const Gap(2),
-                    TextButton(
-                      onPressed: () async {
+                    PopupMenuItem(
+                      child: Text(t.settings.config.resetBtn),
+                      onTap: () async {
                         await ref
                             .read(configOptionNotifierProvider.notifier)
                             .resetOption();
                       },
-                      child: Text(t.settings.config.resetBtn),
                     ),
-                  ],
-                ),
+                  ];
+                },
               ),
-            _ => const SliverToBoxAdapter(),
-          },
+            ],
+          ),
+          SliverList.list(
+            children: [
+              TipCard(message: t.settings.experimentalMsg),
+              ChoicePreferenceWidget(
+                selected: ref.watch(ConfigOptions.logLevel),
+                preferences: ref.watch(ConfigOptions.logLevel.notifier),
+                choices: LogLevel.choices,
+                title: t.settings.config.logLevel,
+                presentChoice: (value) => value.name.toUpperCase(),
+              ),
+              const SettingsDivider(),
+              SettingsSection(t.settings.config.section.route),
+              SwitchListTile(
+                title: Text(experimental(t.settings.config.bypassLan)),
+                value: ref.watch(ConfigOptions.bypassLan),
+                onChanged: ref.watch(ConfigOptions.bypassLan.notifier).update,
+              ),
+              SwitchListTile(
+                title: Text(t.settings.config.resolveDestination),
+                value: ref.watch(ConfigOptions.resolveDestination),
+                onChanged:
+                    ref.watch(ConfigOptions.resolveDestination.notifier).update,
+              ),
+              ChoicePreferenceWidget(
+                selected: ref.watch(ConfigOptions.ipv6Mode),
+                preferences: ref.watch(ConfigOptions.ipv6Mode.notifier),
+                choices: IPv6Mode.values,
+                title: t.settings.config.ipv6Mode,
+                presentChoice: (value) => value.present(t),
+              ),
+              const SettingsDivider(),
+              SettingsSection(t.settings.config.section.dns),
+              ValuePreferenceWidget(
+                value: ref.watch(ConfigOptions.remoteDnsAddress),
+                preferences: ref.watch(ConfigOptions.remoteDnsAddress.notifier),
+                title: t.settings.config.remoteDnsAddress,
+              ),
+              ChoicePreferenceWidget(
+                selected: ref.watch(ConfigOptions.remoteDnsDomainStrategy),
+                preferences:
+                    ref.watch(ConfigOptions.remoteDnsDomainStrategy.notifier),
+                choices: DomainStrategy.values,
+                title: t.settings.config.remoteDnsDomainStrategy,
+                presentChoice: (value) => value.displayName,
+              ),
+              ValuePreferenceWidget(
+                value: ref.watch(ConfigOptions.directDnsAddress),
+                preferences: ref.watch(ConfigOptions.directDnsAddress.notifier),
+                title: t.settings.config.directDnsAddress,
+              ),
+              ChoicePreferenceWidget(
+                selected: ref.watch(ConfigOptions.directDnsDomainStrategy),
+                preferences:
+                    ref.watch(ConfigOptions.directDnsDomainStrategy.notifier),
+                choices: DomainStrategy.values,
+                title: t.settings.config.directDnsDomainStrategy,
+                presentChoice: (value) => value.displayName,
+              ),
+              SwitchListTile(
+                title: Text(t.settings.config.enableDnsRouting),
+                value: ref.watch(ConfigOptions.enableDnsRouting),
+                onChanged:
+                    ref.watch(ConfigOptions.enableDnsRouting.notifier).update,
+              ),
+              const SettingsDivider(),
+              SettingsSection(experimental(t.settings.config.section.mux)),
+              SwitchListTile(
+                title: Text(t.settings.config.enableMux),
+                value: ref.watch(ConfigOptions.enableMux),
+                onChanged: ref.watch(ConfigOptions.enableMux.notifier).update,
+              ),
+              ChoicePreferenceWidget(
+                selected: ref.watch(ConfigOptions.muxProtocol),
+                preferences: ref.watch(ConfigOptions.muxProtocol.notifier),
+                choices: MuxProtocol.values,
+                title: t.settings.config.muxProtocol,
+                presentChoice: (value) => value.name,
+              ),
+              ValuePreferenceWidget(
+                value: ref.watch(ConfigOptions.muxMaxStreams),
+                preferences: ref.watch(ConfigOptions.muxMaxStreams.notifier),
+                title: t.settings.config.muxMaxStreams,
+                inputToValue: int.tryParse,
+                digitsOnly: true,
+              ),
+              const SettingsDivider(),
+              SettingsSection(t.settings.config.section.inbound),
+              ChoicePreferenceWidget(
+                selected: ref.watch(ConfigOptions.serviceMode),
+                preferences: ref.watch(ConfigOptions.serviceMode.notifier),
+                choices: ServiceMode.choices,
+                title: t.settings.config.serviceMode,
+                presentChoice: (value) => value.present(t),
+              ),
+              SwitchListTile(
+                title: Text(t.settings.config.strictRoute),
+                value: ref.watch(ConfigOptions.strictRoute),
+                onChanged: ref.watch(ConfigOptions.strictRoute.notifier).update,
+              ),
+              ChoicePreferenceWidget(
+                selected: ref.watch(ConfigOptions.tunImplementation),
+                preferences:
+                    ref.watch(ConfigOptions.tunImplementation.notifier),
+                choices: TunImplementation.values,
+                title: t.settings.config.tunImplementation,
+                presentChoice: (value) => value.name,
+              ),
+              ValuePreferenceWidget(
+                value: ref.watch(ConfigOptions.mixedPort),
+                preferences: ref.watch(ConfigOptions.mixedPort.notifier),
+                title: t.settings.config.mixedPort,
+                inputToValue: int.tryParse,
+                digitsOnly: true,
+                validateInput: isPort,
+              ),
+              ValuePreferenceWidget(
+                value: ref.watch(ConfigOptions.localDnsPort),
+                preferences: ref.watch(ConfigOptions.localDnsPort.notifier),
+                title: t.settings.config.localDnsPort,
+                inputToValue: int.tryParse,
+                digitsOnly: true,
+                validateInput: isPort,
+              ),
+              SwitchListTile(
+                title: Text(
+                  experimental(t.settings.config.allowConnectionFromLan),
+                ),
+                value: ref.watch(ConfigOptions.allowConnectionFromLan),
+                onChanged: ref
+                    .read(ConfigOptions.allowConnectionFromLan.notifier)
+                    .update,
+              ),
+              const SettingsDivider(),
+              SettingsSection(t.settings.config.section.tlsTricks),
+              SwitchListTile(
+                title: Text(experimental(t.settings.config.enableTlsFragment)),
+                value: ref.watch(ConfigOptions.enableTlsFragment),
+                onChanged:
+                    ref.watch(ConfigOptions.enableTlsFragment.notifier).update,
+              ),
+              ValuePreferenceWidget(
+                value: ref.watch(ConfigOptions.tlsFragmentSize),
+                preferences: ref.watch(ConfigOptions.tlsFragmentSize.notifier),
+                title: t.settings.config.tlsFragmentSize,
+                inputToValue: OptionalRange.tryParse,
+                presentValue: (value) => value.present(t),
+                formatInputValue: (value) => value.format(),
+              ),
+              ValuePreferenceWidget(
+                value: ref.watch(ConfigOptions.tlsFragmentSleep),
+                preferences: ref.watch(ConfigOptions.tlsFragmentSleep.notifier),
+                title: t.settings.config.tlsFragmentSleep,
+                inputToValue: OptionalRange.tryParse,
+                presentValue: (value) => value.present(t),
+                formatInputValue: (value) => value.format(),
+              ),
+              SwitchListTile(
+                title: Text(
+                  experimental(t.settings.config.enableTlsMixedSniCase),
+                ),
+                value: ref.watch(ConfigOptions.enableTlsMixedSniCase),
+                onChanged: ref
+                    .watch(ConfigOptions.enableTlsMixedSniCase.notifier)
+                    .update,
+              ),
+              SwitchListTile(
+                title: Text(experimental(t.settings.config.enableTlsPadding)),
+                value: ref.watch(ConfigOptions.enableTlsPadding),
+                onChanged:
+                    ref.watch(ConfigOptions.enableTlsPadding.notifier).update,
+              ),
+              ValuePreferenceWidget(
+                value: ref.watch(ConfigOptions.tlsPaddingSize),
+                preferences: ref.watch(ConfigOptions.tlsPaddingSize.notifier),
+                title: t.settings.config.tlsPaddingSize,
+                inputToValue: OptionalRange.tryParse,
+                presentValue: (value) => value.format(),
+                formatInputValue: (value) => value.format(),
+              ),
+              const SettingsDivider(),
+              SettingsSection(experimental(t.settings.config.section.warp)),
+              const WarpOptionsTiles(),
+              const SettingsDivider(),
+              SettingsSection(t.settings.config.section.misc),
+              ValuePreferenceWidget(
+                value: ref.watch(ConfigOptions.connectionTestUrl),
+                preferences:
+                    ref.watch(ConfigOptions.connectionTestUrl.notifier),
+                title: t.settings.config.connectionTestUrl,
+              ),
+              ListTile(
+                title: Text(t.settings.config.urlTestInterval),
+                subtitle: Text(
+                  ref
+                      .watch(ConfigOptions.urlTestInterval)
+                      .toApproximateTime(isRelativeToNow: false),
+                ),
+                onTap: () async {
+                  final urlTestInterval = await SettingsSliderDialog(
+                    title: t.settings.config.urlTestInterval,
+                    initialValue: ref
+                        .watch(ConfigOptions.urlTestInterval)
+                        .inMinutes
+                        .coerceIn(0, 60)
+                        .toDouble(),
+                    onReset:
+                        ref.read(ConfigOptions.urlTestInterval.notifier).reset,
+                    min: 1,
+                    max: 60,
+                    divisions: 60,
+                    labelGen: (value) => Duration(minutes: value.toInt())
+                        .toApproximateTime(isRelativeToNow: false),
+                  ).show(context);
+                  if (urlTestInterval == null) return;
+                  await ref
+                      .read(ConfigOptions.urlTestInterval.notifier)
+                      .update(Duration(minutes: urlTestInterval.toInt()));
+                },
+              ),
+              ValuePreferenceWidget(
+                value: ref.watch(ConfigOptions.clashApiPort),
+                preferences: ref.watch(ConfigOptions.clashApiPort.notifier),
+                title: t.settings.config.clashApiPort,
+                validateInput: isPort,
+                digitsOnly: true,
+                inputToValue: int.tryParse,
+              ),
+              const Gap(24),
+            ],
+          ),
         ],
       ),
     );
