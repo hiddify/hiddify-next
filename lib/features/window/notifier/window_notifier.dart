@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:hiddify/features/connection/notifier/connection_notifier.dart';
@@ -30,11 +31,17 @@ class WindowNotifier extends _$WindowNotifier with AppLogger {
   Future<void> open({bool focus = true}) async {
     await windowManager.show();
     if (focus) await windowManager.focus();
+    if (Platform.isMacOS) {
+      await windowManager.setSkipTaskbar(false);
+    }
   }
 
   // TODO add option to quit or minimize to tray
   Future<void> close() async {
     await windowManager.hide();
+    if (Platform.isMacOS) {
+      await windowManager.setSkipTaskbar(true);
+    }
   }
 
   Future<void> quit() async {
