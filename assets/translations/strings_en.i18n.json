@@ -220,6 +220,8 @@
         },
         "config": {
             "resetBtn": "Reset options",
+            "reconnectMsg": "Reconnect for changes to take effect",
+            "reconnectBtn": "Reconnect",
             "serviceMode": "Service Mode",
             "serviceModes": {
                 "proxy": "Proxy Service Only",

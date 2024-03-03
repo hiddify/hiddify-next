@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:hiddify/core/model/failures.dart';
 import 'package:hiddify/features/common/adaptive_root_scaffold.dart';
 import 'package:hiddify/utils/utils.dart';
@@ -85,6 +86,51 @@ class InAppNotificationController with AppLogger {
       return;
     }
     CustomAlertDialog.fromErr(error).show(context);
+  }
+
+  void showActionToast(
+    String message, {
+    required String actionText,
+    required VoidCallback callback,
+    Duration duration = const Duration(seconds: 5),
+  }) {
+    final context = RootScaffold.stateKey.currentContext;
+    if (context == null) return;
+    toastification.dismissAll();
+
+    toastification.showCustom(
+      context: context,
+      autoCloseDuration: duration,
+      alignment: Alignment.bottomLeft,
+      builder: (context, holder) {
+        return GestureDetector(
+          onTap: () => toastification.dismiss(holder),
+          child: Card(
+            margin: const EdgeInsets.all(8),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              child: Row(
+                children: [
+                  Expanded(child: Text(message)),
+                  const Gap(8),
+                  Row(
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          toastification.dismiss(holder);
+                          callback();
+                        },
+                        child: Text(actionText),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
   }
 }
 

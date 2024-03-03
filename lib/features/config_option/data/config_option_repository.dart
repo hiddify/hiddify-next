@@ -2,10 +2,12 @@ import 'package:dartx/dartx.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:hiddify/core/model/optional_range.dart';
 import 'package:hiddify/core/model/region.dart';
+import 'package:hiddify/core/preferences/general_preferences.dart';
 import 'package:hiddify/core/utils/exception_handler.dart';
 import 'package:hiddify/core/utils/json_converters.dart';
 import 'package:hiddify/core/utils/preferences_utils.dart';
 import 'package:hiddify/features/config_option/model/config_option_failure.dart';
+import 'package:hiddify/features/geo_asset/data/geo_asset_data_providers.dart';
 import 'package:hiddify/features/geo_asset/data/geo_asset_path_resolver.dart';
 import 'package:hiddify/features/geo_asset/data/geo_asset_repository.dart';
 import 'package:hiddify/features/log/model/log_level.dart';
@@ -323,6 +325,107 @@ abstract class ConfigOptions {
     warpNoise,
     warpWireguardConfig,
   ];
+
+  static final singboxConfigOptions = FutureProvider<SingboxConfigOption>(
+    (ref) async {
+      final region = ref.watch(Preferences.region);
+      final rules = switch (region) {
+        Region.ir => [
+            const SingboxRule(
+              domains: "domain:.ir,geosite:ir",
+              ip: "geoip:ir",
+              outbound: RuleOutbound.bypass,
+            ),
+          ],
+        Region.cn => [
+            const SingboxRule(
+              domains: "domain:.cn,geosite:cn",
+              ip: "geoip:cn",
+              outbound: RuleOutbound.bypass,
+            ),
+          ],
+        Region.ru => [
+            const SingboxRule(
+              domains: "domain:.ru",
+              ip: "geoip:ru",
+              outbound: RuleOutbound.bypass,
+            ),
+          ],
+        Region.af => [
+            const SingboxRule(
+              domains: "domain:.af,geosite:af",
+              ip: "geoip:af",
+              outbound: RuleOutbound.bypass,
+            ),
+          ],
+        _ => <SingboxRule>[],
+      };
+
+      final geoAssetsRepo = await ref.watch(geoAssetRepositoryProvider.future);
+      final geoAssets =
+          await geoAssetsRepo.getActivePair().getOrElse((l) => throw l).run();
+
+      final mode = ref.watch(serviceMode);
+      return SingboxConfigOption(
+        executeConfigAsIs: false,
+        logLevel: ref.watch(logLevel),
+        resolveDestination: ref.watch(resolveDestination),
+        ipv6Mode: ref.watch(ipv6Mode),
+        remoteDnsAddress: ref.watch(remoteDnsAddress),
+        remoteDnsDomainStrategy: ref.watch(remoteDnsDomainStrategy),
+        directDnsAddress: ref.watch(directDnsAddress),
+        directDnsDomainStrategy: ref.watch(directDnsDomainStrategy),
+        mixedPort: ref.watch(mixedPort),
+        localDnsPort: ref.watch(localDnsPort),
+        tunImplementation: ref.watch(tunImplementation),
+        mtu: ref.watch(mtu),
+        strictRoute: ref.watch(strictRoute),
+        connectionTestUrl: ref.watch(connectionTestUrl),
+        urlTestInterval: ref.watch(urlTestInterval),
+        enableClashApi: ref.watch(enableClashApi),
+        clashApiPort: ref.watch(clashApiPort),
+        enableTun: mode == ServiceMode.tun,
+        enableTunService: mode == ServiceMode.tunService,
+        setSystemProxy: mode == ServiceMode.systemProxy,
+        bypassLan: ref.watch(bypassLan),
+        allowConnectionFromLan: ref.watch(allowConnectionFromLan),
+        enableFakeDns: ref.watch(enableFakeDns),
+        enableDnsRouting: ref.watch(enableDnsRouting),
+        independentDnsCache: ref.watch(independentDnsCache),
+        enableTlsFragment: ref.watch(enableTlsFragment),
+        tlsFragmentSize: ref.watch(tlsFragmentSize),
+        tlsFragmentSleep: ref.watch(tlsFragmentSleep),
+        enableTlsMixedSniCase: ref.watch(enableTlsMixedSniCase),
+        enableTlsPadding: ref.watch(enableTlsPadding),
+        tlsPaddingSize: ref.watch(tlsPaddingSize),
+        enableMux: ref.watch(enableMux),
+        muxPadding: ref.watch(muxPadding),
+        muxMaxStreams: ref.watch(muxMaxStreams),
+        muxProtocol: ref.watch(muxProtocol),
+        warp: SingboxWarpOption(
+          enable: ref.watch(enableWarp),
+          mode: ref.watch(warpDetourMode),
+          wireguardConfig: ref.watch(warpWireguardConfig),
+          licenseKey: ref.watch(warpLicenseKey),
+          accountId: ref.watch(warpAccountId),
+          accessToken: ref.watch(warpAccessToken),
+          cleanIp: ref.watch(warpCleanIp),
+          cleanPort: ref.watch(warpPort),
+          warpNoise: ref.watch(warpNoise),
+          warpNoiseDelay: ref.watch(warpNoiseDelay),
+        ),
+        geoipPath: ref.watch(geoAssetPathResolverProvider).relativePath(
+              geoAssets.geoip.providerName,
+              geoAssets.geoip.fileName,
+            ),
+        geositePath: ref.watch(geoAssetPathResolverProvider).relativePath(
+              geoAssets.geosite.providerName,
+              geoAssets.geosite.fileName,
+            ),
+        rules: rules,
+      );
+    },
+  );
 
   /// singbox options
   ///

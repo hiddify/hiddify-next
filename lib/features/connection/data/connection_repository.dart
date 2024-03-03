@@ -16,6 +16,8 @@ import 'package:hiddify/utils/utils.dart';
 import 'package:meta/meta.dart';
 
 abstract interface class ConnectionRepository {
+  SingboxConfigOption? get configOptionsSnapshot;
+
   TaskEither<ConnectionFailure, Unit> setup();
   Stream<ConnectionStatus> watchConnectionStatus();
   TaskEither<ConnectionFailure, Unit> connect(
@@ -49,6 +51,10 @@ class ConnectionRepositoryImpl
   final ConfigOptionRepository configOptionRepository;
   final ProfilePathResolver profilePathResolver;
   final GeoAssetPathResolver geoAssetPathResolver;
+
+  SingboxConfigOption? _configOptionsSnapshot;
+  @override
+  SingboxConfigOption? get configOptionsSnapshot => _configOptionsSnapshot;
 
   bool _initialized = false;
 
@@ -112,6 +118,7 @@ class ConnectionRepositoryImpl
   ) {
     return exceptionHandler(
       () {
+        _configOptionsSnapshot = options;
         return singbox
             .changeOptions(options)
             .mapLeft(InvalidConfigOption.new)
