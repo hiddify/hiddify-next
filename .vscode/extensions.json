@@ -5,6 +5,7 @@
 		"github.vscode-github-actions",
 		"golang.go",
 		"redhat.vscode-yaml",
-		"codeium.codeium"
+		"codeium.codeium",
+		"kangping.protobuf"
 	]
 }
