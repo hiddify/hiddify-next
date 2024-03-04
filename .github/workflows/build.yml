@@ -184,12 +184,10 @@ jobs:
           
       - name: Code Sign
         if: ${{ inputs.upload-artifact && startsWith(matrix.platform,'windows') }}
-        uses: skymatic/code-sign-action@v1
+        uses: hiddify/code-sign-action@main
         with:
           certificate: '${{ secrets.WINDOWS_SIGNING_KEY }}'
           password: '${{ secrets.WINDOWS_SIGNING_PASSWORD }}'
-          certificatesha1: '${{ secrets.WINDOWS_SIGNING_SHA1 }}'
-          certificatename: 'Hiddify.Hiddify'
           folder: 'out'
           recursive: true
           description: 'Hiddify'
