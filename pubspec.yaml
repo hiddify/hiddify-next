@@ -76,6 +76,7 @@ dependencies:
   circle_flags: ^4.0.2
   http: ^1.2.0
   timezone_to_country: ^2.1.0
+  json_path: ^0.7.1
 
 dev_dependencies:
   flutter_test:

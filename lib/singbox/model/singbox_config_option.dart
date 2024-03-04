@@ -68,6 +68,7 @@ class SingboxConfigOption with _$SingboxConfigOption {
 
 @freezed
 class SingboxWarpOption with _$SingboxWarpOption {
+  @JsonSerializable(fieldRename: FieldRename.kebab, createFieldMap: true)
   const factory SingboxWarpOption({
     required bool enable,
     required WarpDetourMode mode,
@@ -77,8 +78,8 @@ class SingboxWarpOption with _$SingboxWarpOption {
     required String accessToken,
     required String cleanIp,
     required int cleanPort,
-    @OptionalRangeJsonConverter() required OptionalRange warpNoise,
-    @OptionalRangeJsonConverter() required OptionalRange warpNoiseDelay,
+    @OptionalRangeJsonConverter() required OptionalRange noise,
+    @OptionalRangeJsonConverter() required OptionalRange noiseDelay,
   }) = _SingboxWarpOption;
 
   factory SingboxWarpOption.fromJson(Map<String, dynamic> json) =>

@@ -17,7 +17,8 @@
         "decline": "Decline",
         "unknown": "Unknown",
         "hidden": "Hidden",
-        "timeout": "timeout"
+        "timeout": "timeout",
+        "clipboardExportSuccessMsg": "Added to Clipboard"
     },
     "intro": {
         "termsAndPolicyCaution(rich)": "by continuing you agree with ${tap(@:about.termsAndConditions)}",
@@ -166,6 +167,10 @@
         "requiresRestartMsg": "For this to take effect restart the app",
         "experimental": "Experimental",
         "experimentalMsg": "Features with Experimental flag are still in development and might cause issues.",
+        "exportOptions": "Export Options to Clipboard",
+        "exportAllOptions": "Export Options to Clipboard (debug)",
+        "importOptions": "Import Options from Clipboard",
+        "importOptionsMsg": "This will rewrite all config options with provided values. Are you sure?",
         "general": {
             "sectionTitle": "General",
             "locale": "Language",

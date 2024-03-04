@@ -71,6 +71,17 @@ class PreferencesEntry<T, P> with InfraLogger {
     }
   }
 
+  Future<T?> writeRaw(P input) async {
+    final T value;
+    if (mapFrom != null) {
+      value = mapFrom!(input);
+    } else {
+      value = input as T;
+    }
+    if (await write(value)) return value;
+    return null;
+  }
+
   Future<void> remove() async {
     try {
       await preferences.remove(key);
@@ -143,6 +154,11 @@ class PreferencesNotifier<T, P> extends StateNotifier<T> {
     final value = overrideValue ?? state;
     if (entry.mapTo != null) return entry.mapTo!(value);
     return value as P;
+  }
+
+  Future<void> updateRaw(P input) async {
+    final value = await entry.writeRaw(input);
+    if (value != null) state = value;
   }
 
   Future<void> update(T value) async {

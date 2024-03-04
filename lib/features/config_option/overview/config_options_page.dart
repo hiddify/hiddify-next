@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/model/optional_range.dart';
+import 'package:hiddify/core/notification/in_app_notification_controller.dart';
+import 'package:hiddify/core/preferences/general_preferences.dart';
 import 'package:hiddify/core/widget/adaptive_icon.dart';
 import 'package:hiddify/core/widget/tip_card.dart';
+import 'package:hiddify/features/common/confirmation_dialogs.dart';
 import 'package:hiddify/features/common/nested_app_bar.dart';
 import 'package:hiddify/features/config_option/data/config_option_repository.dart';
 import 'package:hiddify/features/config_option/notifier/config_option_notifier.dart';
@@ -40,10 +43,50 @@ class ConfigOptionsPage extends HookConsumerWidget {
                 itemBuilder: (context) {
                   return [
                     PopupMenuItem(
-                      onTap: ref
+                      onTap: () async => ref
                           .read(configOptionNotifierProvider.notifier)
-                          .exportJsonToClipboard,
-                      child: Text(t.general.addToClipboard),
+                          .exportJsonToClipboard()
+                          .then((success) {
+                        if (success) {
+                          ref
+                              .read(inAppNotificationControllerProvider)
+                              .showSuccessToast(
+                                t.general.clipboardExportSuccessMsg,
+                              );
+                        }
+                      }),
+                      child: Text(t.settings.exportOptions),
+                    ),
+                    if (ref.watch(debugModeNotifierProvider))
+                      PopupMenuItem(
+                        onTap: () async => ref
+                            .read(configOptionNotifierProvider.notifier)
+                            .exportJsonToClipboard(excludePrivate: false)
+                            .then((success) {
+                          if (success) {
+                            ref
+                                .read(inAppNotificationControllerProvider)
+                                .showSuccessToast(
+                                  t.general.clipboardExportSuccessMsg,
+                                );
+                          }
+                        }),
+                        child: Text(t.settings.exportAllOptions),
+                      ),
+                    PopupMenuItem(
+                      onTap: () async {
+                        final shouldImport = await showConfirmationDialog(
+                          context,
+                          title: t.settings.importOptions,
+                          message: t.settings.importOptionsMsg,
+                        );
+                        if (shouldImport) {
+                          await ref
+                              .read(configOptionNotifierProvider.notifier)
+                              .importFromClipboard();
+                        }
+                      },
+                      child: Text(t.settings.importOptions),
                     ),
                     PopupMenuItem(
                       child: Text(t.settings.config.resetBtn),

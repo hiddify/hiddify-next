@@ -327,6 +327,7 @@ class ProfileActionsMenu extends HookConsumerWidget {
             context,
             title: t.profile.delete.buttonTxt,
             message: t.profile.delete.confirmationMsg,
+            icon: FluentIcons.delete_24_regular,
           );
           if (deleteConfirmed) {
             deleteProfileMutation.setFuture(

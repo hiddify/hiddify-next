@@ -1,4 +1,3 @@
-import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -13,7 +12,7 @@ Future<bool> showConfirmationDialog(
     builder: (context) {
       final localizations = MaterialLocalizations.of(context);
       return AlertDialog(
-        icon: const Icon(FluentIcons.delete_24_regular),
+        icon: icon != null ? Icon(icon) : null,
         title: Text(title),
         content: Text(message),
         actions: [
