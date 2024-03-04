@@ -184,10 +184,12 @@ jobs:
           
       - name: Code Sign
         if: ${{ inputs.upload-artifact && startsWith(matrix.platform,'windows') }}
-        uses: dlemstra/code-sign-action@v1
+        uses: skymatic/code-sign-action@v1
         with:
           certificate: '${{ secrets.WINDOWS_SIGNING_KEY }}'
           password: '${{ secrets.WINDOWS_SIGNING_PASSWORD }}'
+          certificatesha1: '${{ secrets.WINDOWS_SIGNING_SHA1 }}'
+          certificatename: 'Hiddify.Hiddify'
           folder: 'out'
           recursive: true
           description: 'Hiddify'
