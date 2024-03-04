@@ -184,7 +184,7 @@ jobs:
           
       - name: Code Sign
         if: ${{ inputs.upload-artifact && startsWith(matrix.platform,'windows') }}
-        uses: hiddify/code-sign-action@main
+        uses: hiddify/signtool-code-sign-sha256@main
         with:
           certificate: '${{ secrets.WINDOWS_SIGNING_KEY }}'
           password: '${{ secrets.WINDOWS_SIGNING_PASSWORD }}'
