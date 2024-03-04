@@ -182,16 +182,16 @@ jobs:
           tree
           .\scripts\package_windows.ps1
           
-      - name: Code Sign
-        if: ${{ inputs.upload-artifact && startsWith(matrix.platform,'windows') }}
-        uses: dlemstra/code-sign-action@v1
-        with:
-          certificate: '-----BEGIN CERTIFICATE-----\n${{ secrets.WINDOWS_SIGNING_KEY }}-----END CERTIFICATE-----\n'
-          password: '${{ secrets.WINDOWS_SIGNING_PASSWORD }}'
-          folder: 'out'
-          recursive: true
+      # - name: Code Sign
+      #   if: ${{ inputs.upload-artifact && startsWith(matrix.platform,'windows') }}
+      #   uses: dlemstra/code-sign-action@v1
+      #   with:
+      #     certificate: '-----BEGIN CERTIFICATE-----\n${{ secrets.WINDOWS_SIGNING_KEY }}-----END CERTIFICATE-----\n'
+      #     password: '${{ secrets.WINDOWS_SIGNING_PASSWORD }}'
+      #     folder: 'out'
+      #     recursive: true
           
-          description: 'Hiddify'
+      #     description: 'Hiddify'
               
       - name: Copy to out Android APK
         if: matrix.platform == 'android-apk'
