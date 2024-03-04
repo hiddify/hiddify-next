@@ -1,5 +1,10 @@
 [![Release Downloads](https://img.shields.io/github/downloads/hiddify/hiddify-next/RELEASE_TAG/total?style=flat-square&logo=github)](https://img.shields.io/github/downloads/hiddify/hiddify-next/RELEASE_TAG/)
 
+<a href="https://apps.microsoft.com/detail/Hiddify/9pdfnl3qv2s5?mode=mini" target="_blank">
+<img src="https://github.com/hiddify/hiddify-next/assets/114227601/88210921-4d33-46e5-ac6a-89b4ffe13ae8" width="200">
+</a>
+
+
 **Release Highlights:**
 
 -
