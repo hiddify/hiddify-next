@@ -58,7 +58,12 @@ Vless, Vmess, Reality, TUIC, Hysteria, SSH etc.
 
 📱 Available on [Google Play](https://play.google.com/store/apps/details?id=app.hiddify.com)
 
-## 🔗 Download
+## Get It On Stores
+<a href="https://play.google.com/store/apps/details?id=app.hiddify.com"><img height=50px src="https://github.com/hiddify/hiddify-next/blob/main/docs/google-play-badge.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://apps.microsoft.com/detail/Hiddify/9pdfnl3qv2s5?mode=mini" target="_blank"><img height=50px src="https://github.com/hiddify/hiddify-next/assets/125398461/620750bb-4459-41b5-9f86-ba82119345b8" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+## 🔗 Direct Download
 
 <div align=left>
 <table>
@@ -71,7 +76,6 @@ Vless, Vmess, Reality, TUIC, Hysteria, SSH etc.
     <tbody align=left>
         <tr>
         <td>Android</td><td>
-            <a href="https://play.google.com/store/apps/details?id=app.hiddify.com"><img width=150px src="https://github.com/hiddify/hiddify-next/blob/main/docs/google-play-badge.png"></a><br>
             <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-universal.apk"><img src="https://img.shields.io/badge/APK-Universal-044d29.svg?logo=github"></a><br>
             <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-arm64.apk"><img src="https://img.shields.io/badge/APK-ARMv8-168039.svg?logo=github"></a><br>
             <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-arm7.apk"><img src="https://img.shields.io/badge/APK-ARMv7-45bf55.svg?logo=github"></a><br>
@@ -86,11 +90,14 @@ Vless, Vmess, Reality, TUIC, Hysteria, SSH etc.
         </tr>
         <tr>
             <td>macOS</td>
-            <td><a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-macos-universal.zip"><img src="https://img.shields.io/badge/DMG-Universal-ea005e.svg?logo=github"></a></td>
+            <td><a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-macos-universal.zip"><img src="https://img.shields.io/badge/DMG-Universal-ea005e.svg?logo=github"></a><br>
+            <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/Hiddify-MacOS-Installer.pkg"><img src="https://img.shields.io/badge/PKG-Universal-bc544b.svg?logo=github" /></a></a></td>
         </tr>
         <tr>
             <td>Linux</td>
-            <td><a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-linux-x64.zip"><img src="https://img.shields.io/badge/AppImage-x64-f84e29.svg?logo=github"> </a></td>
+            <td><a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-linux-x64.zip"><img src="https://img.shields.io/badge/AppImage-x64-f84e29.svg?logo=github"> </a><br>
+            <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/Hiddify-Debian-x64.deb"><img src="https://img.shields.io/badge/DebPackage-x64-FF9966.svg?logo=github"> </a><br>
+            <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/Hiddify-rpm-x64.rpm"><img src="https://img.shields.io/badge/RpmPackage-x64-F1B42F.svg?logo=github"> </a></td>
         </tr>
     </tbody>
 </table>
