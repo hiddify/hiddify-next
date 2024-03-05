@@ -63,7 +63,7 @@ Vless, Vmess, Reality, TUIC, Hysteria, SSH etc.
 <a href="https://apps.microsoft.com/detail/Hiddify/9pdfnl3qv2s5?mode=mini" target="_blank"><img height=50px src="https://github.com/hiddify/hiddify-next/assets/125398461/620750bb-4459-41b5-9f86-ba82119345b8" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 
-## 🔗 Direct Download
+## 📥 Direct Download
 
 <div align=left>
 <table>
