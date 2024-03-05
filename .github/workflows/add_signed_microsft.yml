@@ -18,7 +18,7 @@ jobs:
 
     steps:
     - name: Upload store MSIX to release
-      uses: JasonWei512/Upload-Microsoft-Store-MSIX-Package-to-GitHub-Release@v1
+      uses: hiddify/Upload-Microsoft-Store-MSIX-Package-to-GitHub-Release@develop
       with:
         store-id: 9pdfnl3qv2s5
         token: ${{ secrets.GITHUB_TOKEN }}

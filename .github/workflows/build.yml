@@ -187,8 +187,9 @@ jobs:
         uses: hiddify/signtool-code-sign-sha256@main
         with:
           certificate: '${{ secrets.WINDOWS_SIGNING_KEY }}'
-          password: '${{ secrets.WINDOWS_SIGNING_PASSWORD }}'
+          cert-password: '${{ secrets.WINDOWS_SIGNING_PASSWORD }}'
           folder: 'out'
+          timestamp-server: 'http://timestamp.digicert.com'
           recursive: true
           description: 'Hiddify'
               
