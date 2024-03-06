@@ -138,7 +138,12 @@ Future<void> lazyBootstrap(
     () => container.read(singboxServiceProvider).init(),
   );
   Logger.bootstrap.info("Starting Active Profile");
-  await _safeInit(
+  // await _safeInit(
+  //   "active profile",
+  //   () => container.read(activeProfileProvider.future),
+  //   timeout: 1000,
+  // );
+  await _init(
     "active profile",
     () => container.read(activeProfileProvider.future),
     timeout: 1000,
@@ -196,8 +201,8 @@ Future<T> _init<T>(
       : initializer();
   try {
     final result = await func();
-    Logger.bootstrap
-        .debug("[$name] initialized in ${stopWatch.elapsedMilliseconds}ms");
+    Logger.bootstrap.debug(
+        "[$name] initialized in ${stopWatch.elapsedMilliseconds}ms ${result}");
     return result;
   } catch (e, stackTrace) {
     Logger.bootstrap.error("[$name] error initializing", e, stackTrace);
