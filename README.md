@@ -56,7 +56,7 @@ Vless, Vmess, Reality, TUIC, Hysteria, SSH etc.
 
 ⭐ Appropriate configuration for Iran, China, Russia and other countries
 
-📱 Available on [Google Play](https://play.google.com/store/apps/details?id=app.hiddify.com)
+📱 Available on official stores
 
 ## 🛍️ Get It On Stores
 <a href="https://play.google.com/store/apps/details?id=app.hiddify.com"><img height=50px src="https://github.com/hiddify/hiddify-next/blob/main/docs/google-play-badge.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
