@@ -88,7 +88,8 @@ jobs:
       - name: update draft version
         if: ${{ inputs.upload-artifact && inputs.tag-name == 'draft' }}
         run: | 
-          python -c "import re; content = open('pubspec.yaml').read(); content = re.sub(r'(version: [0-9.]*\+)', r'\1{}'.format('${{ needs.test.outputs.draftBuildCode }}'), content, count=1); open('pubspec.yaml', 'w').write(content)"
+          python -c "import re; content = open('pubspec.yaml').read(); content = re.sub(r'version: [^\+]*', f'version: ${{ needs.test.outputs.draftBuildCode }}', content, count=1); open('pubspec.yaml', 'w').write(content)"
+          
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
