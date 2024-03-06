@@ -87,9 +87,8 @@ jobs:
         uses: actions/checkout@v3
       - name: update draft version
         if: ${{ inputs.upload-artifact && inputs.tag-name == 'draft' }}
-        run: |
-          draftBuildCode="${{ needs.test.outputs.draftBuildCode }}"
-          sed -i "0,/version: [0-9.]*+/{s/version: [0-9.]*+/version: $draftBuildCode/}" pubspec.yaml
+        run: | 
+          python -c "import re; content = open('pubspec.yaml').read(); content = re.sub(r'(version: [0-9.]*\+)', r'\1{}'.format('${{ needs.test.outputs.draftBuildCode }}'), content, count=1); open('pubspec.yaml', 'w').write(content)"
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
