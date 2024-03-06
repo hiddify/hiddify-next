@@ -89,7 +89,7 @@ jobs:
         if: ${{ inputs.upload-artifact && inputs.tag-name == 'draft' }}
         run: |
           draftBuildCode="${{ needs.test.outputs.draftBuildCode }}"
-          sed -i "0,/version: [0-9.]*+/{s/version: [0-9.]*+/version: $draftBuildCode/}" pubspec.yml
+          sed -i "0,/version: [0-9.]*+/{s/version: [0-9.]*+/version: $draftBuildCode/}" pubspec.yaml
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
