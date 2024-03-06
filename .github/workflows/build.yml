@@ -31,6 +31,8 @@ env:
 
 jobs:
   test:
+    outputs:
+      draftBuildCode: ${{ steps.draftBuildCode.outputs.datetime }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -43,6 +45,11 @@ jobs:
         run: make linux-prepare
       - name: Test
         run: flutter test
+
+      - name: make draftBuildCode
+        id: draftBuildCode
+        run: echo "::set-output name=datetime::$(date +'%m-%dT%H-%M')"
+
 
   build:
     needs: test
@@ -78,6 +85,11 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
+      - name: update draft version
+        if: ${{ inputs.upload-artifact && inputs.tag-name == 'draft' }}
+        run: |
+          draftBuildCode="${{ needs.test.outputs.draftBuildCode }}"
+          sed -i "0,/version: [0-9.]*+/{s/version: [0-9.]*+/version: $draftBuildCode/}" pubspec.yml
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
@@ -175,7 +187,7 @@ jobs:
           SENTRY_DIST: ${{ matrix.platform == 'android-aab' && 'google-play' || 'general' }}
         run: |
           flutter packages pub run sentry_dart_plugin
-
+      
       - name: Copy to out Windows
         if: matrix.platform == 'windows'
         run: |

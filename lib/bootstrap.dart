@@ -132,18 +132,9 @@ Future<void> lazyBootstrap(
     "profile repository",
     () => container.read(profileRepositoryProvider.future),
   );
-  Logger.bootstrap.info("Starting Singbox Service Provider");
-  await _init(
-    "sing-box",
-    () => container.read(singboxServiceProvider).init(),
-  );
+
   Logger.bootstrap.info("Starting Active Profile");
-  // await _safeInit(
-  //   "active profile",
-  //   () => container.read(activeProfileProvider.future),
-  //   timeout: 1000,
-  // );
-  await _init(
+  await _safeInit(
     "active profile",
     () => container.read(activeProfileProvider.future),
     timeout: 1000,
@@ -154,7 +145,11 @@ Future<void> lazyBootstrap(
     () => container.read(deepLinkNotifierProvider.future),
     timeout: 1000,
   );
-
+  Logger.bootstrap.info("Starting Singbox Service Provider");
+  await _init(
+    "sing-box",
+    () => container.read(singboxServiceProvider).init(),
+  );
   if (PlatformUtils.isDesktop) {
     Logger.bootstrap.info("Starting System Tray");
     await _safeInit(
@@ -202,7 +197,7 @@ Future<T> _init<T>(
   try {
     final result = await func();
     Logger.bootstrap.debug(
-        "[$name] initialized in ${stopWatch.elapsedMilliseconds}ms ${result}");
+        "[$name] initialized in ${stopWatch.elapsedMilliseconds}ms $result");
     return result;
   } catch (e, stackTrace) {
     Logger.bootstrap.error("[$name] error initializing", e, stackTrace);
@@ -219,7 +214,7 @@ Future<T?> _safeInit<T>(
 }) async {
   try {
     return await _init(name, initializer, timeout: timeout);
-  } catch (_) {
+  } catch (e) {
     return null;
   }
 }
