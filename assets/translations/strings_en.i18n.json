@@ -33,6 +33,7 @@
             "connecting": "Connecting",
             "disconnecting": "Disconnecting",
             "connected": "Connected",
+            "reconnect": "Reconnect",
             "experimentalNotice": "Experimental Features In Use",
             "experimentalNoticeMsg": "You've enabled some experimental features which might affect connection quality and cause unexpected errors. You can always change or reset these options from Config options page.",
             "disableExperimentalNotice": "Don't show again"
@@ -228,9 +229,18 @@
             "reconnectMsg": "Reconnect for changes to take effect",
             "reconnectBtn": "Reconnect",
             "serviceMode": "Service Mode",
+            "quickSettings": "Quick Settings",
+            "setupWarp": "Setup WARP",
+            "allOptions": "All Config Options",
             "serviceModes": {
                 "proxy": "Proxy Service Only",
                 "systemProxy": "Set System Proxy",
+                "tun": "VPN",
+                "tunService": "VPN Service"
+            },
+            "shortServiceModes": {
+                "proxy": "Proxy",
+                "systemProxy": "System Proxy",
                 "tun": "VPN",
                 "tunService": "VPN Service"
             },

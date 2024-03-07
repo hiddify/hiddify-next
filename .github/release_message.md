@@ -1,8 +1,6 @@
 [![Release Downloads](https://img.shields.io/github/downloads/hiddify/hiddify-next/RELEASE_TAG/total?style=flat-square&logo=github)](https://img.shields.io/github/downloads/hiddify/hiddify-next/RELEASE_TAG/)
 
-<a href="https://apps.microsoft.com/detail/Hiddify/9pdfnl3qv2s5?mode=mini" target="_blank">
-<img src="https://github.com/hiddify/hiddify-next/assets/114227601/88210921-4d33-46e5-ac6a-89b4ffe13ae8" width="200">
-</a>
+
 
 
 **Release Highlights:**
@@ -27,6 +25,8 @@
 
 </div>
 
+
+
 <div align=left>
 <table>
     <thead align=left>
@@ -45,14 +45,16 @@
         </td>
         </tr>
         <tr>
-            <td>Windows</td>
-            <td><a href="https://github.com/hiddify/hiddify-next/releases/download/RELEASE_TAG/Hiddify-Windows-Setup-x64.exe"><img src="https://img.shields.io/badge/Setup-x64-0078d7.svg?logo=github"></a><br>
-            <a href="https://github.com/hiddify/hiddify-next/releases/download/RELEASE_TAG/Hiddify-Windows-Portable-x64.zip"><img src="https://img.shields.io/badge/Portable-x64-2d7d9a.svg?logo=github"></a>
+            <td>Windows</td><td>
+                <a href="https://github.com/hiddify/hiddify-next/releases/download/RELEASE_TAG/Hiddify-Windows-Setup-x64.Msix"><img src="https://img.shields.io/badge/OfficialSetup-x64-0078d7.svg?logo=github"></a><br>
+                <a href="https://github.com/hiddify/hiddify-next/releases/download/RELEASE_TAG/Hiddify-Windows-Setup-x64.exe"><img src="https://img.shields.io/badge/Setup-x64-2d7d9a.svg?logo=github"></a><br>
+                <a href="https://github.com/hiddify/hiddify-next/releases/download/RELEASE_TAG/Hiddify-Windows-Portable-x64.zip"><img src="https://img.shields.io/badge/Portable-x64-67b7d1.svg?logo=github"></a>
         </td>
         </tr>
         <tr>
             <td>macOS (v10.15+)</td>
-            <td><a href="https://github.com/hiddify/hiddify-next/releases/download/RELEASE_TAG/Hiddify-MacOS.dmg"><img src="https://img.shields.io/badge/DMG-Universal-ea005e.svg?logo=github"></a></td>
+            <td><a href="https://github.com/hiddify/hiddify-next/releases/download/RELEASE_TAG/Hiddify-MacOS.dmg"><img src="https://img.shields.io/badge/DMG-Universal-ea005e.svg?logo=github"></a><br>
+            <a href="https://github.com/hiddify/hiddify-next/releases/download/RELEASE_TAG/Hiddify-MacOS-Installer.pkg"><img src="https://img.shields.io/badge/PKG-Universal-bc544b.svg?logo=github" /></a></a></td>
         </tr>
         <tr>
             <td>Linux</td>
@@ -62,6 +64,7 @@
         </tr>
     </tbody>
 </table>
+
 
 </div>
 

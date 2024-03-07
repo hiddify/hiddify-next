@@ -4,7 +4,7 @@ publish_to: "none"
 version: 0.16.16+1616
 
 environment:
-  sdk: ">=3.2.0 <4.0.0"
+  sdk: ">=3.3.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -13,8 +13,8 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.6
   intl: ^0.18.1
-  slang: ^3.29.0
-  slang_flutter: ^3.29.0
+  slang: ^3.30.1
+  slang_flutter: ^3.30.0
   fpdart: ^1.1.0
   freezed_annotation: ^2.4.1
   json_annotation: ^4.8.1
@@ -22,11 +22,11 @@ dependencies:
   flutter_hooks: ^0.20.5
   riverpod_annotation: ^2.3.4
   rxdart: ^0.27.7
-  drift: ^2.15.0
+  drift: ^2.16.0
   sqlite3_flutter_libs: ^0.5.20
   shared_preferences: ^2.2.2
   dio: ^5.4.1
-  ffi: ^2.1.0
+  ffi: ^2.1.2
   path_provider: ^2.1.1
   mobile_scanner: ^4.0.0
   protocol_handler: ^0.2.0
@@ -35,12 +35,12 @@ dependencies:
   window_manager: ^0.3.8
   tray_manager: ^0.2.1
   package_info_plus: ^5.0.1
-  url_launcher: ^6.2.4
+  url_launcher: ^6.2.5
   vclibs: ^0.1.2
   launch_at_startup: ^0.2.2
   sentry_flutter: ^7.16.1
   sentry_dart_plugin: ^1.7.1
-  combine: ^0.5.6
+  combine: ^0.5.7-0.1.pre
   path: ^1.8.3
   loggy: ^2.0.3
   flutter_loggy: ^2.0.2
@@ -54,7 +54,7 @@ dependencies:
   go_router: ^13.2.0
   flex_color_scheme: ^7.3.1
   flutter_animate: ^4.5.0
-  flutter_svg: ^2.0.9
+  flutter_svg: ^2.0.10+1
   gap: ^3.0.1
   percent_indicator: ^4.2.3
   sliver_tools: ^0.2.12
@@ -71,8 +71,8 @@ dependencies:
   dio_smart_retry: ^6.0.0
   cupertino_http: ^1.3.0
   wolt_modal_sheet: ^0.4.1
-  dart_mappable: ^4.2.0
-  fluentui_system_icons: ^1.1.226
+  dart_mappable: ^4.2.1
+  fluentui_system_icons: ^1.1.229
   circle_flags: ^4.0.2
   http: ^1.2.0
   timezone_to_country: ^2.1.0
@@ -86,13 +86,17 @@ dev_dependencies:
   json_serializable: ^6.7.1
   freezed: ^2.4.7
   riverpod_generator: ^2.3.11
-  drift_dev: ^2.15.0
+  drift_dev: ^2.16.0
   ffigen: ^8.0.2
-  slang_build_runner: ^3.29.0
+  slang_build_runner: ^3.30.0
   flutter_gen_runner: ^5.4.0
   go_router_builder: ^2.4.1
   dependency_validator: ^3.2.3
-  dart_mappable_builder: ^4.2.0
+  dart_mappable_builder: ^4.2.1
+
+dependency_overrides:
+  # drift & package_info_plus are not compatible
+  web: ^0.5.1
 
 flutter:
   uses-material-design: true
