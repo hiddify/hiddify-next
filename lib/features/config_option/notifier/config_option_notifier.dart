@@ -24,7 +24,7 @@ class ConfigOptionNotifier extends _$ConfigOptionNotifier with AppLogger {
         if (next case AsyncData(:final value) when next != previous) {
           if (_lastUpdate == null ||
               DateTime.now().difference(_lastUpdate!) >
-                  const Duration(seconds: 3)) {
+                  const Duration(milliseconds: 100)) {
             _lastUpdate = DateTime.now();
             state = AsyncData(value != serviceSingboxOptions);
           }

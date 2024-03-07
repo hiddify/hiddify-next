@@ -5,9 +5,11 @@ import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/model/failures.dart';
 import 'package:hiddify/core/theme/theme_extensions.dart';
 import 'package:hiddify/features/config_option/data/config_option_repository.dart';
+import 'package:hiddify/features/config_option/notifier/config_option_notifier.dart';
 import 'package:hiddify/features/connection/model/connection_status.dart';
 import 'package:hiddify/features/connection/notifier/connection_notifier.dart';
 import 'package:hiddify/features/connection/widget/experimental_feature_notice.dart';
+import 'package:hiddify/features/profile/notifier/active_profile_notifier.dart';
 import 'package:hiddify/gen/assets.gen.dart';
 import 'package:hiddify/utils/alerts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -20,6 +22,8 @@ class ConnectionButton extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final t = ref.watch(translationsProvider);
     final connectionStatus = ref.watch(connectionNotifierProvider);
+    final requiresReconnect =
+        ref.watch(configOptionNotifierProvider).valueOrNull;
 
     ref.listen(
       connectionNotifierProvider,
@@ -37,55 +41,58 @@ class ConnectionButton extends HookConsumerWidget {
 
     final buttonTheme = Theme.of(context).extension<ConnectionButtonTheme>()!;
 
-    switch (connectionStatus) {
-      case AsyncData(value: final status):
-        final Color connectionLogoColor = status.isConnected
-            ? buttonTheme.connectedColor!
-            : buttonTheme.idleColor!;
+    Future<bool> showExperimentalNotice() async {
+      final hasExperimental = ref.read(ConfigOptions.hasExperimentalFeatures);
+      final canShowNotice = !ref.read(disableExperimentalFeatureNoticeProvider);
+      if (hasExperimental && canShowNotice && context.mounted) {
+        return await const ExperimentalFeatureNoticeDialog().show(context) ??
+            true;
+      }
+      return true;
+    }
 
-        return _ConnectionButton(
-          onTap: () async {
-            var canConnect = true;
-            if (status case Disconnected()) {
-              final hasExperimental =
-                  ref.read(ConfigOptions.hasExperimentalFeatures);
-              final canShowNotice =
-                  !ref.read(disableExperimentalFeatureNoticeProvider);
-
-              if (hasExperimental && canShowNotice && context.mounted) {
-                canConnect = await const ExperimentalFeatureNoticeDialog()
-                        .show(context) ??
-                    true;
-              }
-            }
-
-            if (canConnect) {
-              await ref
+    return _ConnectionButton(
+      onTap: switch (connectionStatus) {
+        AsyncData(value: Disconnected()) || AsyncError() => () async {
+            if (await showExperimentalNotice()) {
+              return await ref
                   .read(connectionNotifierProvider.notifier)
                   .toggleConnection();
             }
           },
-          enabled: !status.isSwitching,
-          label: status.present(t),
-          buttonColor: connectionLogoColor,
-        );
-      case AsyncError():
-        return _ConnectionButton(
-          onTap: () =>
-              ref.read(connectionNotifierProvider.notifier).toggleConnection(),
-          enabled: true,
-          label: const Disconnected().present(t),
-          buttonColor: buttonTheme.idleColor!,
-        );
-      default:
-        // HACK
-        return _ConnectionButton(
-          onTap: () {},
-          enabled: false,
-          label: "",
-          buttonColor: Colors.red,
-        );
-    }
+        AsyncData(value: Connected()) => () async {
+            if (requiresReconnect == true && await showExperimentalNotice()) {
+              return await ref
+                  .read(connectionNotifierProvider.notifier)
+                  .reconnect(await ref.read(activeProfileProvider.future));
+            }
+            return await ref
+                .read(connectionNotifierProvider.notifier)
+                .toggleConnection();
+          },
+        _ => () {},
+      },
+      enabled: switch (connectionStatus) {
+        AsyncData(value: Connected()) ||
+        AsyncData(value: Disconnected()) ||
+        AsyncError() =>
+          true,
+        _ => false,
+      },
+      label: switch (connectionStatus) {
+        AsyncData(value: Connected()) when requiresReconnect == true =>
+          t.home.connection.reconnect,
+        AsyncData(value: final status) => status.present(t),
+        _ => "",
+      },
+      buttonColor: switch (connectionStatus) {
+        AsyncData(value: Connected()) when requiresReconnect == true =>
+          Colors.teal,
+        AsyncData(value: Connected()) => buttonTheme.connectedColor!,
+        AsyncData(value: _) => buttonTheme.idleColor!,
+        _ => Colors.red,
+      },
+    );
   }
 }
 
@@ -132,11 +139,17 @@ class _ConnectionButton extends StatelessWidget {
                 onTap: onTap,
                 child: Padding(
                   padding: const EdgeInsets.all(36),
-                  child: Assets.images.logo.svg(
-                    colorFilter: ColorFilter.mode(
-                      buttonColor,
-                      BlendMode.srcIn,
-                    ),
+                  child: TweenAnimationBuilder(
+                    tween: ColorTween(end: buttonColor),
+                    duration: const Duration(milliseconds: 250),
+                    builder: (context, value, child) {
+                      return Assets.images.logo.svg(
+                        colorFilter: ColorFilter.mode(
+                          value!,
+                          BlendMode.srcIn,
+                        ),
+                      );
+                    },
                   ),
                 ),
               ),
@@ -147,9 +160,25 @@ class _ConnectionButton extends StatelessWidget {
         ),
         const Gap(16),
         ExcludeSemantics(
-          child: Text(
-            label,
-            style: Theme.of(context).textTheme.titleMedium,
+          child: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 250),
+            transitionBuilder: (child, animation) {
+              return SlideTransition(
+                position: Tween<Offset>(
+                  begin: const Offset(0.0, -0.2),
+                  end: Offset.zero,
+                ).animate(animation),
+                child: FadeTransition(
+                  opacity: animation,
+                  child: child,
+                ),
+              );
+            },
+            child: Text(
+              label,
+              key: ValueKey<String>(label),
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
           ),
         ),
       ],
