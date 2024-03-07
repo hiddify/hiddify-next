@@ -23,7 +23,7 @@
 
 
 
-## Hiddify-Next とは？
+## Hiddify App とは？
 
 <p dir="ltr" style="font-size: 16px"><a href="https://github.com/SagerNet/sing-box">Sing-box</a> ユニバーサルプロキシツールチェーンに基づくマルチプラットフォームプロキシクライアントです。Hiddify は、自動ノード選択、TUN モード、リモートプロファイルなど、幅広い機能を提供します。Hiddify は無料でオープンソースです。幅広いプロトコルをサポートし、無料インターネットにアクセスするための安全でプライベートな方法を提供します。</p>
 
