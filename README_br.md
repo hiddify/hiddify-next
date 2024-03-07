@@ -22,7 +22,7 @@
 
 
 
-## O que é Hiddify-Next?
+## O que é Hiddify App?
 
 <p dir="ltr" style="font-size: 16px">Um cliente de proxy multiplataforma baseado na ferramenta de proxy universal <a href="https://github.com/SagerNet/sing-box">Sing-box</a>. O Hiddify oferece uma ampla gama de recursos, como seleção automática de nós, modo TUN, perfis remotos, etc. O Hiddify é livre de anúncios e de código aberto. Com suporte para uma ampla variedade de protocolos, ele oferece uma maneira segura e privada de acessar a internet gratuitamente.</p>
 
