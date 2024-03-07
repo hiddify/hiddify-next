@@ -17,7 +17,7 @@
 
 
 
-## Hiddify-Next 是什么？
+## Hiddify App 是什么？
 
 <p dir="ltr" style="font-size: 16px">一款基于 <a href="https://github.com/SagerNet/sing-box">Sing-box</a> 通用代理工具的跨平台代理客户端。Hiddify 提供了较全面的代理功能，例如自动选择节点、TUN 模式、使用远程配置文件等。Hiddify 无广告，并且代码开源。它为大家自由访问互联网提供了一个支持多种协议的、安全且私密的工具。</p>
 
