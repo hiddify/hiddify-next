@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/router/app_router.dart';
 import 'package:hiddify/features/common/adaptive_root_scaffold.dart';
 import 'package:hiddify/features/config_option/overview/config_options_page.dart';
+import 'package:hiddify/features/config_option/widget/quick_settings_modal.dart';
 import 'package:hiddify/features/geo_asset/overview/geo_assets_overview_page.dart';
 import 'package:hiddify/features/home/widget/home_page.dart';
 import 'package:hiddify/features/intro/widget/intro_page.dart';
@@ -46,6 +47,10 @@ GlobalKey<NavigatorState>? _dynamicRootKey =
         TypedGoRoute<ConfigOptionsRoute>(
           path: "config-options",
           name: ConfigOptionsRoute.name,
+        ),
+        TypedGoRoute<QuickSettingsRoute>(
+          path: "quick-settings",
+          name: QuickSettingsRoute.name,
         ),
         TypedGoRoute<SettingsRoute>(
           path: "settings",
@@ -107,6 +112,10 @@ class MobileWrapperRoute extends ShellRouteData {
         TypedGoRoute<ProfileDetailsRoute>(
           path: "profiles/:id",
           name: ProfileDetailsRoute.name,
+        ),
+        TypedGoRoute<QuickSettingsRoute>(
+          path: "quick-settings",
+          name: QuickSettingsRoute.name,
         ),
       ],
     ),
@@ -277,6 +286,22 @@ class LogsOverviewRoute extends GoRouteData {
   }
 }
 
+class QuickSettingsRoute extends GoRouteData {
+  const QuickSettingsRoute();
+  static const name = "Quick Settings";
+
+  static final GlobalKey<NavigatorState> $parentNavigatorKey = rootNavigatorKey;
+
+  @override
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    return BottomSheetPage(
+      fixed: true,
+      name: name,
+      builder: (controller) => const QuickSettingsModal(),
+    );
+  }
+}
+
 class SettingsRoute extends GoRouteData {
   const SettingsRoute();
   static const name = "Settings";
@@ -296,7 +321,8 @@ class SettingsRoute extends GoRouteData {
 }
 
 class ConfigOptionsRoute extends GoRouteData {
-  const ConfigOptionsRoute();
+  const ConfigOptionsRoute({this.section});
+  final String? section;
   static const name = "Config Options";
 
   static final GlobalKey<NavigatorState>? $parentNavigatorKey = _dynamicRootKey;
@@ -304,12 +330,15 @@ class ConfigOptionsRoute extends GoRouteData {
   @override
   Page<void> buildPage(BuildContext context, GoRouterState state) {
     if (useMobileRouter) {
-      return const MaterialPage(
+      return MaterialPage(
         name: name,
-        child: ConfigOptionsPage(),
+        child: ConfigOptionsPage(section: section),
       );
     }
-    return const NoTransitionPage(name: name, child: ConfigOptionsPage());
+    return NoTransitionPage(
+      name: name,
+      child: ConfigOptionsPage(section: section),
+    );
   }
 }
 
