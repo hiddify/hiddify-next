@@ -391,7 +391,8 @@ class ProfileSubscriptionInfo extends HookConsumerWidget {
                 consumed: subInfo.consumption.sizeGB(),
                 total: subInfo.total.sizeGB(),
               ),
-              style: theme.textTheme.bodySmall,
+              style: theme.textTheme.bodySmall
+                  ?.copyWith(fontFamily: getEmojiFont4Desktop()),
               overflow: TextOverflow.ellipsis,
             ),
           ),

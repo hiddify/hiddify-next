@@ -113,6 +113,9 @@ flutter:
     - family: Shabnam
       fonts:
         - asset: assets/fonts/Shabnam.ttf
+    - family: Emoji
+      fonts:
+        - asset: assets/fonts/Emoji.ttf
 
 flutter_gen:
   output: lib/gen/
