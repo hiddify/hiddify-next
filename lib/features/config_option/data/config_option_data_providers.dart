@@ -11,7 +11,7 @@ ConfigOptionRepository configOptionRepository(
 ) {
   return ConfigOptionRepository(
     preferences: ref.watch(sharedPreferencesProvider).requireValue,
-    getConfigOptions: () => ConfigOptions.singboxOptions(ref),
+    getConfigOptions: () => ref.read(ConfigOptions.singboxConfigOptions.future),
     geoAssetRepository: ref.watch(geoAssetRepositoryProvider).requireValue,
     geoAssetPathResolver: ref.watch(geoAssetPathResolverProvider),
   );

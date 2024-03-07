@@ -215,7 +215,7 @@ abstract class ConfigOptions {
   static final warpDetourMode =
       PreferencesNotifier.create<WarpDetourMode, String>(
     "warp-detour-mode",
-    WarpDetourMode.outbound,
+    WarpDetourMode.proxyOverWarp,
     mapFrom: WarpDetourMode.values.byName,
     mapTo: (value) => value.name,
   );
@@ -313,16 +313,20 @@ abstract class ConfigOptions {
     "bypass-lan": bypassLan,
     "allow-connection-from-lan": allowConnectionFromLan,
     "enable-dns-routing": enableDnsRouting,
-    "enable-tls-fragment": enableTlsFragment,
-    "tls-fragment-size": tlsFragmentSize,
-    "tls-fragment-sleep": tlsFragmentSleep,
-    "enable-tls-mixed-sni-case": enableTlsMixedSniCase,
-    "enable-tls-padding": enableTlsPadding,
-    "tls-padding-size": tlsPaddingSize,
-    "enable-mux": enableMux,
-    "mux-padding": muxPadding,
-    "mux-max-streams": muxMaxStreams,
-    "mux-protocol": muxProtocol,
+
+    // mux
+    "mux.enable": enableMux,
+    "mux.padding": muxPadding,
+    "mux.max-streams": muxMaxStreams,
+    "mux.protocol": muxProtocol,
+
+    // tls-tricks
+    "tls-tricks.enable-fragment": enableTlsFragment,
+    "tls-tricks.fragment-size": tlsFragmentSize,
+    "tls-tricks.fragment-sleep": tlsFragmentSleep,
+    "tls-tricks.mixed-sni-case": enableTlsMixedSniCase,
+    "tls-tricks.enable-padding": enableTlsPadding,
+    "tls-tricks.padding-size": tlsPaddingSize,
 
     // warp
     "warp.enable": enableWarp,
@@ -403,16 +407,20 @@ abstract class ConfigOptions {
         enableFakeDns: ref.watch(enableFakeDns),
         enableDnsRouting: ref.watch(enableDnsRouting),
         independentDnsCache: ref.watch(independentDnsCache),
-        enableTlsFragment: ref.watch(enableTlsFragment),
-        tlsFragmentSize: ref.watch(tlsFragmentSize),
-        tlsFragmentSleep: ref.watch(tlsFragmentSleep),
-        enableTlsMixedSniCase: ref.watch(enableTlsMixedSniCase),
-        enableTlsPadding: ref.watch(enableTlsPadding),
-        tlsPaddingSize: ref.watch(tlsPaddingSize),
-        enableMux: ref.watch(enableMux),
-        muxPadding: ref.watch(muxPadding),
-        muxMaxStreams: ref.watch(muxMaxStreams),
-        muxProtocol: ref.watch(muxProtocol),
+        mux: SingboxMuxOption(
+          enable: ref.watch(enableMux),
+          padding: ref.watch(muxPadding),
+          maxStreams: ref.watch(muxMaxStreams),
+          protocol: ref.watch(muxProtocol),
+        ),
+        tlsTricks: SingboxTlsTricks(
+          enableFragment: ref.watch(enableTlsFragment),
+          fragmentSize: ref.watch(tlsFragmentSize),
+          fragmentSleep: ref.watch(tlsFragmentSleep),
+          mixedSniCase: ref.watch(enableTlsMixedSniCase),
+          enablePadding: ref.watch(enableTlsPadding),
+          paddingSize: ref.watch(tlsPaddingSize),
+        ),
         warp: SingboxWarpOption(
           enable: ref.watch(enableWarp),
           mode: ref.watch(warpDetourMode),
@@ -437,65 +445,6 @@ abstract class ConfigOptions {
       );
     },
   );
-
-  /// singbox options
-  ///
-  /// **this is partial, don't use it directly**
-  static SingboxConfigOption singboxOptions(ProviderRef ref) {
-    final mode = ref.read(serviceMode);
-    return SingboxConfigOption(
-      executeConfigAsIs: false,
-      logLevel: ref.read(logLevel),
-      resolveDestination: ref.read(resolveDestination),
-      ipv6Mode: ref.read(ipv6Mode),
-      remoteDnsAddress: ref.read(remoteDnsAddress),
-      remoteDnsDomainStrategy: ref.read(remoteDnsDomainStrategy),
-      directDnsAddress: ref.read(directDnsAddress),
-      directDnsDomainStrategy: ref.read(directDnsDomainStrategy),
-      mixedPort: ref.read(mixedPort),
-      localDnsPort: ref.read(localDnsPort),
-      tunImplementation: ref.read(tunImplementation),
-      mtu: ref.read(mtu),
-      strictRoute: ref.read(strictRoute),
-      connectionTestUrl: ref.read(connectionTestUrl),
-      urlTestInterval: ref.read(urlTestInterval),
-      enableClashApi: ref.read(enableClashApi),
-      clashApiPort: ref.read(clashApiPort),
-      enableTun: mode == ServiceMode.tun,
-      enableTunService: mode == ServiceMode.tunService,
-      setSystemProxy: mode == ServiceMode.systemProxy,
-      bypassLan: ref.read(bypassLan),
-      allowConnectionFromLan: ref.read(allowConnectionFromLan),
-      enableFakeDns: ref.read(enableFakeDns),
-      enableDnsRouting: ref.read(enableDnsRouting),
-      independentDnsCache: ref.read(independentDnsCache),
-      enableTlsFragment: ref.read(enableTlsFragment),
-      tlsFragmentSize: ref.read(tlsFragmentSize),
-      tlsFragmentSleep: ref.read(tlsFragmentSleep),
-      enableTlsMixedSniCase: ref.read(enableTlsMixedSniCase),
-      enableTlsPadding: ref.read(enableTlsPadding),
-      tlsPaddingSize: ref.read(tlsPaddingSize),
-      enableMux: ref.read(enableMux),
-      muxPadding: ref.read(muxPadding),
-      muxMaxStreams: ref.read(muxMaxStreams),
-      muxProtocol: ref.read(muxProtocol),
-      warp: SingboxWarpOption(
-        enable: ref.read(enableWarp),
-        mode: ref.read(warpDetourMode),
-        wireguardConfig: ref.read(warpWireguardConfig),
-        licenseKey: ref.read(warpLicenseKey),
-        accountId: ref.read(warpAccountId),
-        accessToken: ref.read(warpAccessToken),
-        cleanIp: ref.read(warpCleanIp),
-        cleanPort: ref.read(warpPort),
-        noise: ref.read(warpNoise),
-        noiseDelay: ref.read(warpNoiseDelay),
-      ),
-      geoipPath: "",
-      geositePath: "",
-      rules: [],
-    );
-  }
 }
 
 class ConfigOptionRepository with ExceptionHandler, InfraLogger {
@@ -507,7 +456,7 @@ class ConfigOptionRepository with ExceptionHandler, InfraLogger {
   });
 
   final SharedPreferences preferences;
-  final SingboxConfigOption Function() getConfigOptions;
+  final Future<SingboxConfigOption> Function() getConfigOptions;
   final GeoAssetRepository geoAssetRepository;
   final GeoAssetPathResolver geoAssetPathResolver;
 
@@ -515,57 +464,7 @@ class ConfigOptionRepository with ExceptionHandler, InfraLogger {
       getFullSingboxConfigOption() {
     return exceptionHandler(
       () async {
-        final region =
-            Region.values.byName(preferences.getString("region") ?? "other");
-        final rules = switch (region) {
-          Region.ir => [
-              const SingboxRule(
-                domains: "domain:.ir,geosite:ir",
-                ip: "geoip:ir",
-                outbound: RuleOutbound.bypass,
-              ),
-            ],
-          Region.cn => [
-              const SingboxRule(
-                domains: "domain:.cn,geosite:cn",
-                ip: "geoip:cn",
-                outbound: RuleOutbound.bypass,
-              ),
-            ],
-          Region.ru => [
-              const SingboxRule(
-                domains: "domain:.ru",
-                ip: "geoip:ru",
-                outbound: RuleOutbound.bypass,
-              ),
-            ],
-          Region.af => [
-              const SingboxRule(
-                domains: "domain:.af,geosite:af",
-                ip: "geoip:af",
-                outbound: RuleOutbound.bypass,
-              ),
-            ],
-          _ => <SingboxRule>[],
-        };
-
-        final geoAssets = await geoAssetRepository
-            .getActivePair()
-            .getOrElse((l) => throw l)
-            .run();
-
-        final singboxConfigOption = getConfigOptions().copyWith(
-          geoipPath: geoAssetPathResolver.relativePath(
-            geoAssets.geoip.providerName,
-            geoAssets.geoip.fileName,
-          ),
-          geositePath: geoAssetPathResolver.relativePath(
-            geoAssets.geosite.providerName,
-            geoAssets.geosite.fileName,
-          ),
-          rules: rules,
-        );
-        return right(singboxConfigOption);
+        return right(await getConfigOptions());
       },
       ConfigOptionUnexpectedFailure.new,
     );
