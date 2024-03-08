@@ -276,7 +276,9 @@ abstract class ConfigOptions {
           ref.watch(enableTlsMixedSniCase) ||
           ref.watch(enableTlsPadding) ||
           ref.watch(enableMux) ||
-          ref.watch(enableWarp)) {
+          ref.watch(enableWarp) ||
+          ref.watch(bypassLan) ||
+          ref.watch(allowConnectionFromLan)) {
         return true;
       }
 

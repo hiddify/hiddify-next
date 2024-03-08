@@ -284,10 +284,11 @@ class ConfigOptionsPage extends HookConsumerWidget {
                         .update,
                   ),
                   const SettingsDivider(),
-                  SettingsSection(t.settings.config.section.tlsTricks),
+                  SettingsSection(
+                    experimental(t.settings.config.section.tlsTricks),
+                  ),
                   SwitchListTile(
-                    title:
-                        Text(experimental(t.settings.config.enableTlsFragment)),
+                    title: Text(t.settings.config.enableTlsFragment),
                     value: ref.watch(ConfigOptions.enableTlsFragment),
                     onChanged: ref
                         .watch(ConfigOptions.enableTlsFragment.notifier)
@@ -312,17 +313,14 @@ class ConfigOptionsPage extends HookConsumerWidget {
                     formatInputValue: (value) => value.format(),
                   ),
                   SwitchListTile(
-                    title: Text(
-                      experimental(t.settings.config.enableTlsMixedSniCase),
-                    ),
+                    title: Text(t.settings.config.enableTlsMixedSniCase),
                     value: ref.watch(ConfigOptions.enableTlsMixedSniCase),
                     onChanged: ref
                         .watch(ConfigOptions.enableTlsMixedSniCase.notifier)
                         .update,
                   ),
                   SwitchListTile(
-                    title:
-                        Text(experimental(t.settings.config.enableTlsPadding)),
+                    title: Text(t.settings.config.enableTlsPadding),
                     value: ref.watch(ConfigOptions.enableTlsPadding),
                     onChanged: ref
                         .watch(ConfigOptions.enableTlsPadding.notifier)

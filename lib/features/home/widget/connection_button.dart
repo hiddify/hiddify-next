@@ -47,7 +47,7 @@ class ConnectionButton extends HookConsumerWidget {
       final canShowNotice = !ref.read(disableExperimentalFeatureNoticeProvider);
       if (hasExperimental && canShowNotice && context.mounted) {
         return await const ExperimentalFeatureNoticeDialog().show(context) ??
-            true;
+            false;
       }
       return true;
     }
