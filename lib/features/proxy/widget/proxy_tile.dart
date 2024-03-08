@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hiddify/core/localization/locale_extensions.dart';
 import 'package:hiddify/gen/fonts.gen.dart';
 import 'package:hiddify/features/proxy/model/proxy_entity.dart';
 import 'package:hiddify/utils/custom_loggers.dart';
@@ -26,7 +27,7 @@ class ProxyTile extends HookConsumerWidget with PresLogger {
       title: Text(
         proxy.name,
         overflow: TextOverflow.ellipsis,
-        style: TextStyle(fontFamily: getEmojiFont4Desktop()),
+        style: TextStyle(fontFamily: FontFamily.emoji),
       ),
       leading: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8),

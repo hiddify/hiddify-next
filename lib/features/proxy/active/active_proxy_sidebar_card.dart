@@ -7,6 +7,7 @@ import 'package:hiddify/core/widget/shimmer_skeleton.dart';
 import 'package:hiddify/features/proxy/active/active_proxy_notifier.dart';
 import 'package:hiddify/features/proxy/active/ip_widget.dart';
 import 'package:hiddify/features/proxy/model/proxy_failure.dart';
+import 'package:hiddify/gen/fonts.gen.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ActiveProxySideBarCard extends HookConsumerWidget {
@@ -34,7 +35,8 @@ class ActiveProxySideBarCard extends HookConsumerWidget {
       return Text(
         txt,
         overflow: TextOverflow.ellipsis,
-        style: theme.textTheme.bodySmall,
+        style:
+            theme.textTheme.bodySmall?.copyWith(fontFamily: FontFamily.emoji),
       );
     }
 

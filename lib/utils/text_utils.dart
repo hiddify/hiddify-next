@@ -29,10 +29,3 @@ extension TextEditingControllerX on TextEditingController {
     return text.textDirection;
   }
 }
-
-String getEmojiFont4Desktop() {
-  if (Platform.isLinux || Platform.isWindows) {
-    return FontFamily.emoji;
-  }
-  return "";
-}

@@ -124,10 +124,10 @@ android-aab-release:
 	ls -R build/app/outputs
 
 windows-release:
-	flutter_distributor package --flutter-build-args=--enable-software-rendering --platform windows --targets exe,msix $(DISTRIBUTOR_ARGS)
+	flutter_distributor package --flutter-build-args=verbose --platform windows --targets exe,msix $(DISTRIBUTOR_ARGS)
 
 linux-release: 
-	flutter_distributor package --flutter-build-args=--enable-software-rendering --platform linux --targets deb,rpm,appimage $(DISTRIBUTOR_ARGS)
+	flutter_distributor package --flutter-build-args=verbose --platform linux --targets deb,rpm,appimage $(DISTRIBUTOR_ARGS)
 
 macos-release:
 	flutter_distributor package --platform macos --targets dmg,pkg $(DISTRIBUTOR_ARGS)

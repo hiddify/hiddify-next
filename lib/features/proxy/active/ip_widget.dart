@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hiddify/core/haptic/haptic_service.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/utils/ip_utils.dart';
+import 'package:hiddify/gen/fonts.gen.dart';
 import 'package:hiddify/utils/riverpod_utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -33,7 +34,10 @@ class IPText extends HookConsumerWidget {
     final t = ref.watch(translationsProvider);
     final isVisible = ref.watch(_showIp);
     final textTheme = Theme.of(context).textTheme;
-    final ipStyle = constrained ? textTheme.labelMedium : textTheme.labelLarge;
+    final ipStyle =
+        (constrained ? textTheme.labelMedium : textTheme.labelLarge)?.copyWith(
+      fontFamily: FontFamily.emoji,
+    );
 
     return Semantics(
       label: t.proxies.ipInfoSemantics.address,
