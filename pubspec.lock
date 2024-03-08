@@ -172,10 +172,11 @@ packages:
   circle_flags:
     dependency: "direct main"
     description:
-      name: circle_flags
-      sha256: "028d5ca1bb12b9a4b29dc1a25f32a428ffd69e91343274375d9e574855af2daa"
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: patch-1
+      resolved-ref: f78f22dcc19306f2a602b1c50f3c7a324456be9c
+      url: "https://github.com/hiddify-com/flutter_circle_flags.git"
+    source: git
     version: "4.0.2"
   cli_util:
     dependency: transitive

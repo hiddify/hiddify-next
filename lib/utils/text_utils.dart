@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hiddify/gen/fonts.gen.dart';
 import 'package:intl/intl.dart' as intl;
-import 'dart:io';
 
 extension TextAlignX on BuildContext {
   bool get isRtl => Directionality.of(this) == TextDirection.rtl;

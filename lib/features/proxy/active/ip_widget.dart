@@ -131,7 +131,9 @@ class IPCountryFlag extends HookConsumerWidget {
         width: size,
         height: size,
         padding: const EdgeInsets.all(2),
-        child: Center(child: CircleFlag(countryCode)),
+        child: Center(
+          child: CircleFlag(countryCode == "ir" ? "ir-shir" : countryCode),
+        ),
       ),
     );
   }
