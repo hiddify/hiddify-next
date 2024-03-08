@@ -1,388 +1,386 @@
 {
-    "general": {
-        "appTitle": "Hiddify",
-        "reset": "Restaurar",
-        "toggle": {
-            "enabled": "Habilitado",
-            "disabled": "Desabilitado"
-        },
-        "state": {
-            "disable": "Desabilitar"
-        },
-        "sort": "Ordernar",
-        "sortBy": "Ordenar Por",
-        "addToClipboard": "Adicionar à área de transferência",
-        "notSet": "Não configurado",
-        "agree": "Aceitar",
-        "decline": "Recusar",
-        "unknown": "Desconhecido",
-        "hidden": "Escondido",
-        "timeout": "tempo esgotado"
+  "general": {
+    "appTitle": "Hiddify",
+    "reset": "Restaurar",
+    "toggle": {
+      "enabled": "Habilitado",
+      "disabled": "Desabilitado"
     },
-    "intro": {
-        "termsAndPolicyCaution(rich)": "ao continuar você concorda com ${tap( @:about.termsAndConditions)}",
-        "start": "Começar"
+    "state": {
+      "disable": "Desabilitar"
     },
-    "home": {
-        "pageTitle": "Inicio",
-        "emptyProfilesMsg": "Comece adicionando um perfil de assinatura",
-        "noActiveProfileMsg": "Escolha um perfil",
-        "connection": {
-            "tapToConnect": "Toque para conectar",
-            "connecting": "Conectando",
-            "disconnecting": "Desconectando",
-            "connected": "Conectado",
-            "experimentalNotice": "Recursos experimentais em uso",
-            "experimentalNoticeMsg": "Você ativou alguns recursos experimentais que podem afetar a qualidade da conexão e causar erros inesperados. Você sempre pode alterar ou redefinir essas opções na página de opções de configuração.",
-            "disableExperimentalNotice": "Não mostrar novamente"
-        },
-        "stats": {
-            "traffic": "Tráfego ao vivo",
-            "trafficTotal": "Tráfego total",
-            "uplink": "Ligação ascendente",
-            "downlink": "Link descendente",
-            "connection": "Conexão"
-        }
-    },
-    "profile": {
-        "overviewPageTitle": "Perfis",
-        "detailsPageTitle": "Perfil",
-        "activeProfileNameSemanticLabel": "Nome do perfil ativo: \"${name}\".",
-        "activeProfileBtnSemanticLabel": "Ver todos os perfis.",
-        "nonActiveProfileBtnSemanticLabel": "Selecione \"${name}\" como perfil ativo.",
-        "subscription": {
-            "traffic": "Tráfego",
-            "updatedTimeAgo": "Atualizado ${timeago}",
-            "remainingDuration": "${duration} dias restantes",
-            "remainingTrafficSemanticLabel": "${consumed} de ${total} tráfego consumido.",
-            "expired": "Expirado",
-            "noTraffic": "Fora da cota",
-            "upload": "Upload",
-            "download": "Download",
-            "total": "Tráfego total",
-            "expireDate": "Data de validade"
-        },
-        "sortBy": {
-            "lastUpdate": "Atualizado recentemente",
-            "name": "Alfabeticamente"
-        },
-        "add": {
-            "buttonText": "Novo Perfil",
-            "shortBtnTxt": "Novo Perfil",
-            "fromClipboard": "Adicionar da área de transferência",
-            "scanQr": "Digitalize o código QR",
-            "qrScanner": {
-                "permissionDeniedError": "Permissão negada",
-                "unexpectedError": "Algo deu errado",
-                "torchSemanticLabel": "Luz do flash",
-                "facingSemanticLabel": "Câmera voltada"
-            },
-            "manually": "Entrada manual",
-            "addingProfileMsg": "Adicionando Perfil",
-            "failureMsg": "Falha ao adicionar perfil"
-        },
-        "update": {
-            "buttonTxt": "Atualizar",
-            "tooltip": "Atualizar Perfil",
-            "updateSubscriptions": "Atualizar assinaturas",
-            "failureMsg": "Falha ao atualizar perfil",
-            "successMsg": "Perfil atualizado com sucesso",
-            "namedFailureMsg": "Falha ao atualizar \"${name}\"",
-            "namedSuccessMsg": "\"${name}\" atualizado com sucesso"
-        },
-        "share": {
-            "buttonText": "Compartilhar",
-            "exportToClipboardSuccess": "Exportado para a área de transferência",
-            "exportSubLinkToClipboard": "Exportar link de assinatura para a área de transferência",
-            "subLinkQrCode": "Código QR do link de assinatura",
-            "exportConfigToClipboard": "Exportar configuração para a área de transferência",
-            "exportConfigToClipboardSuccess": "Configuração copiada para a área de transferência"
-        },
-        "edit": {
-            "buttonTxt": "Editar",
-            "selectActiveTxt": "Selecionar perfil ativo"
-        },
-        "delete": {
-            "buttonTxt": "Deletar",
-            "confirmationMsg": "Deletar perfil permanentemente?",
-            "successMsg": "Perfil deletado com sucesso"
-        },
-        "save": {
-            "buttonText": "Salvar",
-            "successMsg": "Perfil salvo com sucesso",
-            "failureMsg": "Falha ao salvar perfil"
-        },
-        "detailsForm": {
-            "nameLabel": "Nome",
-            "nameHint": "Nome do Perfil",
-            "urlLabel": "URL",
-            "urlHint": "URL de configuração completo",
-            "emptyNameMsg": "Nome é obrigatório ",
-            "invalidUrlMsg": "URL inválido",
-            "lastUpdate": "Ultima Atualização",
-            "updateInterval": "Atualização Automática ",
-            "updateIntervalDialogTitle": "Intervalo de atualização automática (em horas)"
-        }
-    },
-    "proxies": {
-        "pageTitle": "Proxies",
-        "emptyProxiesMsg": "Nenhum proxy disponível",
-        "delayTestTooltip": "Atraso de teste",
-        "sortTooltip": "Ordenar proxies",
-        "checkIp": "Verifique o IP",
-        "unknownIp": "IP desconhecido",
-        "sortOptions": {
-            "unsorted": "Padrão",
-            "name": "Alfabeticamente",
-            "delay": "Por atraso"
-        },
-        "activeProxySemanticLabel": "Proxy ativo",
-        "delaySemantics": {
-            "result": "atraso: ${delay}ms",
-            "timeout": "atrasar o tempo limite do teste",
-            "testing": "atraso: testando..."
-        },
-        "ipInfoSemantics": {
-            "address": "Endereço de IP",
-            "country": "País"
-        },
-        "statsSemantics": {
-            "speed": "Velocidade",
-            "totalTransferred": "Total transferido"
-        }
-    },
-    "logs": {
-        "pageTitle": "Histórico",
-        "filterHint": "Filtro",
-        "allLevelsFilter": "Todos",
-        "shareCoreLogs": "Compartilhe registros principais",
-        "shareAppLogs": "Compartilhe registros de aplicativos",
-        "pauseTooltip": "Pausar",
-        "resumeTooltip": "Resumir",
-        "clearTooltip": "Limpar"
-    },
-    "settings": {
-        "pageTitle": "Configurações",
-        "requiresRestartMsg": "Para que isso tenha efeito, reinicie o aplicativo",
-        "experimental": "Experimental",
-        "experimentalMsg": "Os recursos com sinalização Experimental ainda estão em desenvolvimento e podem causar problemas.",
-        "general": {
-            "sectionTitle": "Geral",
-            "locale": "Linguagem",
-            "region": "Região",
-            "regionMsg": "Ajuda a definir opções padrão para ignorar endereços domésticos",
-            "regions": {
-                "ir": "Irã (ir)",
-                "cn": "China (cn)",
-                "ru": "Rússia (ru)",
-                "af": "Afeganistão (af)",
-                "other": "Outro"
-            },
-            "themeMode": "Modo de Tema",
-            "themeModes": {
-                "system": "Seguir o tema do sistema",
-                "dark": "Modo Escuro",
-                "light": "Modo Claro",
-                "black": "Modo Preto"
-            },
-            "enableAnalytics": "Habilitar Análise",
-            "enableAnalyticsMsg": "Dê permissão para coletar análises e enviar relatórios de falhas para melhorar o aplicativo",
-            "autoStart": "Inicializar no login",
-            "silentStart": "Inicializar minimizado",
-            "openWorkingDir": "Abra o diretório de trabalho",
-            "ignoreBatteryOptimizations": "Desative a otimização da bateria",
-            "ignoreBatteryOptimizationsMsg": "Remova as restrições para obter o desempenho ideal da VPN",
-            "dynamicNotification": "Exibir velocidade na notificação",
-            "hapticFeedback": "Feedback tátil",
-            "autoIpCheck": "Verifique automaticamente o IP da conexão"
-        },
-        "advanced": {
-            "sectionTitle": "Avançado",
-            "debugMode": "Modo de desenvolvedor",
-            "debugModeMsg": "Reinicie o aplicativo para aplicar esta alteração",
-            "memoryLimit": "Limite de memória",
-            "memoryLimitMsg": "Ative se você estiver enfrentando erros de falta de memória ou travamentos frequentes do aplicativo",
-            "resetTunnel": "Redefinir perfil VPN"
-        },
-        "network": {
-            "perAppProxyPageTitle": "Proxy por aplicativo",
-            "perAppProxyModes": {
-                "off": "Tudo",
-                "offMsg": "Proxy de todos os aplicativos",
-                "include": "Proxy",
-                "includeMsg": "Aplicativos selecionados apenas por proxy",
-                "exclude": "Ignorar",
-                "excludeMsg": "Não faça proxy de aplicativos selecionados"
-            },
-            "showSystemApps": "Mostrar aplicativos do sistema",
-            "hideSystemApps": "Ocultar aplicativos do sistema",
-            "clearSelection": "Limpar seleção"
-        },
-        "config": {
-            "resetBtn": "Redefinir opções",
-            "serviceMode": "Modo de serviço",
-            "serviceModes": {
-                "proxy": "Somente serviço de proxy",
-                "systemProxy": "Definir proxy do sistema",
-                "tun": "VPN",
-                "tunService": "Serviço VPN"
-            },
-            "section": {
-                "route": "Opções de rota",
-                "dns": "Opções de DNS",
-                "inbound": "Opções de entrada",
-                "mux": "Multiplexador",
-                "outbound": "Opções de saída",
-                "tlsTricks": "Truques TLS",
-                "warp": "Opções de WARP",
-                "misc": "Opções diversas"
-            },
-            "warpConsent": {
-                "title": "Consentimento WARP da Cloudflare",
-                "description(rich)": "Cloudflare WARP é um provedor VPN WireGuard gratuito. Ao ativar esta opção, você concorda com os ${tos(Termos de Serviço)} e ${privacy(Política de Privacidade)} do WARP da Cloudflare."
-            },
-            "generateWarpConfig": "Gerar configuração WARP",
-            "missingWarpConfig": "Configuração WARP ausente",
-            "warpConfigGenerated": "Configuração WARP gerada",
-            "pageTitle": "Opções de configuração",
-            "logLevel": "Nível de registro",
-            "resolveDestination": "Resolver destino",
-            "ipv6Mode": "Rota IPv6",
-            "ipv6Modes": {
-                "disable": "Desabilitar",
-                "enable": "Habilitar",
-                "prefer": "Preferido",
-                "only": "Exclusivo"
-            },
-            "remoteDnsAddress": "DNS remoto",
-            "remoteDnsDomainStrategy": "Estratégia de Domínio DNS Remoto",
-            "directDnsAddress": "DNS direto",
-            "directDnsDomainStrategy": "Estratégia de Domínio DNS Direto",
-            "mixedPort": "Porta Mista",
-            "localDnsPort": "Porta DNS local",
-            "allowConnectionFromLan": "Permitir conexão da LAN",
-            "tunImplementation": "Implementação TUN",
-            "mtu": "MTU",
-            "connectionTestUrl": "URL de teste de conexão",
-            "urlTestInterval": "Intervalo de teste de URL",
-            "enableClashApi": "Ativar API Clash",
-            "clashApiPort": "Porta da API Clash",
-            "enableTun": "Ativar TUN",
-            "setSystemProxy": "Definir proxy do sistema",
-            "enableDnsRouting": "Habilitar roteamento DNS",
-            "enableFakeDns": "Habilitar DNS falso",
-            "bypassLan": "Ignorar LAN",
-            "strictRoute": "Rota Estrita",
-            "enableTlsFragment": "Habilitar fragmento TLS",
-            "tlsFragmentSize": "Tamanho do fragmento TLS",
-            "tlsFragmentSleep": "Suspensão do fragmento TLS",
-            "enableTlsMixedSniCase": "Habilitar caso SNI misto TLS",
-            "enableTlsPadding": "Habilitar preenchimento TLS",
-            "tlsPaddingSize": "Preenchimento TLS",
-            "enableMux": "Habilitar Mux",
-            "muxProtocol": "Protocolo Mux",
-            "muxMaxStreams": "Máximo de fluxos simultâneos",
-            "enableWarp": "Habilitar WARP",
-            "warpDetourMode": "Modo de desvio",
-            "warpDetourModes": {
-                "inbound": "Desvie o WARP através de proxies",
-                "outbound": "Desviar proxies através do WARP"
-            },
-            "warpLicenseKey": "Chave de licença",
-            "warpCleanIp": "Limpar IP",
-            "warpPort": "Porta",
-            "warpNoise": "Contagem de ruído",
-            "warpNoiseDelay": "Atraso de ruído"
-        },
-        "geoAssets": {
-            "pageTitle": "Ativos de roteamento",
-            "geoip": "GeoIP",
-            "geosite": "Geossítio",
-            "version": "Versão ${version}",
-            "fileMissing": "Arquivo faltando",
-            "update": "Atualizar",
-            "download": "Download",
-            "failureMsg": "Falha ao atualizar o recurso",
-            "successMsg": "Recurso atualizado com sucesso",
-            "addRecommended": "Adicionar recursos recomendados",
-            "missingGeoAssetsMsg": "Os arquivos dos ativos de roteamento selecionados estão ausentes. Baixe-os ou escolha os existentes."
-        }
-    },
-    "about": {
-        "pageTitle": "Sobre",
-        "version": "Versão",
-        "sourceCode": "Código fonte",
-        "telegramChannel": "Canal Telegram",
-        "checkForUpdate": "Verifique atualizações",
-        "privacyPolicy": "Política de Privacidade",
-        "termsAndConditions": "Termos e Condições"
-    },
-    "appUpdate": {
-        "notAvailableMsg": "Já usando a versão mais recente",
-        "dialogTitle": "Atualização disponível",
-        "updateMsg": "Uma nova versão de @:general.appTitle está disponível. Gostaria de atualizar agora?",
-        "currentVersionLbl": "Versão Atual",
-        "newVersionLbl": "Nova versão",
-        "updateNowBtnTxt": "Atualizar agora",
-        "laterBtnTxt": "Mais tarde",
-        "ignoreBtnTxt": "Ignorar"
-    },
-    "tray": {
-        "dashboard": "Painel",
-        "quit": "Sair",
-        "open": "Abrir",
-        "status": {
-            "connect": "Conectar",
-            "connecting": "Conectando",
-            "disconnect": "desconectar",
-            "disconnecting": "Desconectando"
-        }
-    },
-    "failure": {
-        "unexpected": "Erro inesperado",
-        "clash": {
-            "unexpected": "Erro inesperado",
-            "core": "Erro de conflito ${reason}"
-        },
-        "singbox": {
-            "unexpected": "Erro de serviço inesperado",
-            "serviceNotRunning": "O serviço não está em execução",
-            "missingPrivilege": "Privilégio ausente",
-            "missingPrivilegeMsg": "O modo VPN requer privilégios de administrador. Reinicie o aplicativo como administrador ou altere o modo de serviço.",
-            "missingGeoAssets": "Recursos geográficos ausentes",
-            "missingGeoAssetsMsg": "Os recursos geográficos estão faltando. considere alterar o recurso ativo ou baixar um selecionado nas configurações.",
-            "invalidConfigOptions": "Opções de configuração inválidas",
-            "invalidConfig": "Configuração inválida",
-            "create": "Erro ao criar serviço",
-            "start": "Erro de inicialização do serviço"
-        },
-        "connectivity": {
-            "unexpected": "Falha inesperada",
-            "missingVpnPermission": "Permissão VPN ausente",
-            "missingNotificationPermission": "Permissão de notificação ausente",
-            "core": "Erro central"
-        },
-        "profiles": {
-            "unexpected": "Erro inesperado",
-            "notFound": "Perfil Não Encontrado",
-            "invalidConfig": "Configurações inválidas",
-            "invalidUrl": "URL inválida"
-        },
-        "connection": {
-            "unexpected": "Erro de conexão inesperado",
-            "timeout": "Tempo limite de conexão",
-            "badResponse": "Erro na Resposta",
-            "connectionError": "Erro de conexão",
-            "badCertificate": "Erro no certificado"
-        },
-        "geoAssets": {
-            "unexpected": "Erro inesperado",
-            "notUpdate": "Nenhuma atualização disponível",
-            "activeNotFound": "Recurso geográfico ativo não encontrado"
-        }
-    },
-    "play": {
-        "title": "Hiddify (Pré-visualização)",
-        "short_description": "Auto, SSH, VLESS, Vmess, Trojan, Reality, Sing-Box, Clash, Xray, Shadowsocks"
+    "sort": "Ordernar",
+    "sortBy": "Ordenar Por",
+    "addToClipboard": "Adicionar à área de transferência",
+    "notSet": "Não configurado",
+    "agree": "Aceitar",
+    "decline": "Recusar",
+    "unknown": "Desconhecido",
+    "hidden": "Escondido",
+    "timeout": "tempo esgotado"
+  },
+  "intro": {
+    "termsAndPolicyCaution(rich)": "ao continuar você concorda com ${tap( @:about.termsAndConditions)}",
+    "start": "Começar"
+  },
+  "home": {
+    "pageTitle": "Inicio",
+    "emptyProfilesMsg": "Comece adicionando um perfil de assinatura",
+    "noActiveProfileMsg": "Escolha um perfil",
+    "connection": {
+      "tapToConnect": "Toque para conectar",
+      "connecting": "Conectando",
+      "disconnecting": "Desconectando",
+      "connected": "Conectado",
+      "experimentalNotice": "Recursos experimentais em uso",
+      "experimentalNoticeMsg": "Você ativou alguns recursos experimentais que podem afetar a qualidade da conexão e causar erros inesperados. Você sempre pode alterar ou redefinir essas opções na página de opções de configuração.",
+      "disableExperimentalNotice": "Não mostrar novamente"
     }
+  },
+  "stats": {
+    "trafficLive": "Tráfego ao vivo",
+    "trafficTotal": "Tráfego total",
+    "uplink": "Ligação ascendente",
+    "downlink": "Link descendente",
+    "connection": "Conexão",
+    "speed": "Velocidade",
+    "totalTransferred": "Total transferido"
+  },
+  "profile": {
+    "overviewPageTitle": "Perfis",
+    "detailsPageTitle": "Perfil",
+    "activeProfileNameSemanticLabel": "Nome do perfil ativo: \"${name}\".",
+    "activeProfileBtnSemanticLabel": "Ver todos os perfis.",
+    "nonActiveProfileBtnSemanticLabel": "Selecione \"${name}\" como perfil ativo.",
+    "subscription": {
+      "traffic": "Tráfego",
+      "updatedTimeAgo": "Atualizado ${timeago}",
+      "remainingDuration": "${duration} dias restantes",
+      "remainingTrafficSemanticLabel": "${consumed} de ${total} tráfego consumido.",
+      "expired": "Expirado",
+      "noTraffic": "Fora da cota",
+      "upload": "Upload",
+      "download": "Download",
+      "total": "Tráfego total",
+      "expireDate": "Data de validade"
+    },
+    "sortBy": {
+      "lastUpdate": "Atualizado recentemente",
+      "name": "Alfabeticamente"
+    },
+    "add": {
+      "buttonText": "Novo Perfil",
+      "shortBtnTxt": "Novo Perfil",
+      "fromClipboard": "Adicionar da área de transferência",
+      "scanQr": "Digitalize o código QR",
+      "qrScanner": {
+        "permissionDeniedError": "Permissão negada",
+        "unexpectedError": "Algo deu errado",
+        "torchSemanticLabel": "Luz do flash",
+        "facingSemanticLabel": "Câmera voltada"
+      },
+      "manually": "Entrada manual",
+      "addingProfileMsg": "Adicionando Perfil",
+      "failureMsg": "Falha ao adicionar perfil"
+    },
+    "update": {
+      "buttonTxt": "Atualizar",
+      "tooltip": "Atualizar Perfil",
+      "updateSubscriptions": "Atualizar assinaturas",
+      "failureMsg": "Falha ao atualizar perfil",
+      "successMsg": "Perfil atualizado com sucesso",
+      "namedFailureMsg": "Falha ao atualizar \"${name}\"",
+      "namedSuccessMsg": "\"${name}\" atualizado com sucesso"
+    },
+    "share": {
+      "buttonText": "Compartilhar",
+      "exportToClipboardSuccess": "Exportado para a área de transferência",
+      "exportSubLinkToClipboard": "Exportar link de assinatura para a área de transferência",
+      "subLinkQrCode": "Código QR do link de assinatura",
+      "exportConfigToClipboard": "Exportar configuração para a área de transferência",
+      "exportConfigToClipboardSuccess": "Configuração copiada para a área de transferência"
+    },
+    "edit": {
+      "buttonTxt": "Editar",
+      "selectActiveTxt": "Selecionar perfil ativo"
+    },
+    "delete": {
+      "buttonTxt": "Deletar",
+      "confirmationMsg": "Deletar perfil permanentemente?",
+      "successMsg": "Perfil deletado com sucesso"
+    },
+    "save": {
+      "buttonText": "Salvar",
+      "successMsg": "Perfil salvo com sucesso",
+      "failureMsg": "Falha ao salvar perfil"
+    },
+    "detailsForm": {
+      "nameLabel": "Nome",
+      "nameHint": "Nome do Perfil",
+      "urlLabel": "URL",
+      "urlHint": "URL de configuração completo",
+      "emptyNameMsg": "Nome é obrigatório ",
+      "invalidUrlMsg": "URL inválido",
+      "lastUpdate": "Ultima Atualização",
+      "updateInterval": "Atualização Automática ",
+      "updateIntervalDialogTitle": "Intervalo de atualização automática (em horas)"
+    }
+  },
+  "proxies": {
+    "pageTitle": "Proxies",
+    "emptyProxiesMsg": "Nenhum proxy disponível",
+    "delayTestTooltip": "Atraso de teste",
+    "sortTooltip": "Ordenar proxies",
+    "checkIp": "Verifique o IP",
+    "unknownIp": "IP desconhecido",
+    "sortOptions": {
+      "unsorted": "Padrão",
+      "name": "Alfabeticamente",
+      "delay": "Por atraso"
+    },
+    "activeProxySemanticLabel": "Proxy ativo",
+    "delaySemantics": {
+      "result": "atraso: ${delay}ms",
+      "timeout": "atrasar o tempo limite do teste",
+      "testing": "atraso: testando..."
+    },
+    "ipInfoSemantics": {
+      "address": "Endereço de IP",
+      "country": "País"
+    }
+  },
+  "logs": {
+    "pageTitle": "Histórico",
+    "filterHint": "Filtro",
+    "allLevelsFilter": "Todos",
+    "shareCoreLogs": "Compartilhe registros principais",
+    "shareAppLogs": "Compartilhe registros de aplicativos",
+    "pauseTooltip": "Pausar",
+    "resumeTooltip": "Resumir",
+    "clearTooltip": "Limpar"
+  },
+  "settings": {
+    "pageTitle": "Configurações",
+    "requiresRestartMsg": "Para que isso tenha efeito, reinicie o aplicativo",
+    "experimental": "Experimental",
+    "experimentalMsg": "Os recursos com sinalização Experimental ainda estão em desenvolvimento e podem causar problemas.",
+    "general": {
+      "sectionTitle": "Geral",
+      "locale": "Linguagem",
+      "region": "Região",
+      "regionMsg": "Ajuda a definir opções padrão para ignorar endereços domésticos",
+      "regions": {
+        "ir": "Irã (ir)",
+        "cn": "China (cn)",
+        "ru": "Rússia (ru)",
+        "af": "Afeganistão (af)",
+        "other": "Outro"
+      },
+      "themeMode": "Modo de Tema",
+      "themeModes": {
+        "system": "Seguir o tema do sistema",
+        "dark": "Modo Escuro",
+        "light": "Modo Claro",
+        "black": "Modo Preto"
+      },
+      "enableAnalytics": "Habilitar Análise",
+      "enableAnalyticsMsg": "Dê permissão para coletar análises e enviar relatórios de falhas para melhorar o aplicativo",
+      "autoStart": "Inicializar no login",
+      "silentStart": "Inicializar minimizado",
+      "openWorkingDir": "Abra o diretório de trabalho",
+      "ignoreBatteryOptimizations": "Desative a otimização da bateria",
+      "ignoreBatteryOptimizationsMsg": "Remova as restrições para obter o desempenho ideal da VPN",
+      "dynamicNotification": "Exibir velocidade na notificação",
+      "hapticFeedback": "Feedback tátil",
+      "autoIpCheck": "Verifique automaticamente o IP da conexão"
+    },
+    "advanced": {
+      "sectionTitle": "Avançado",
+      "debugMode": "Modo de desenvolvedor",
+      "debugModeMsg": "Reinicie o aplicativo para aplicar esta alteração",
+      "memoryLimit": "Limite de memória",
+      "memoryLimitMsg": "Ative se você estiver enfrentando erros de falta de memória ou travamentos frequentes do aplicativo",
+      "resetTunnel": "Redefinir perfil VPN"
+    },
+    "network": {
+      "perAppProxyPageTitle": "Proxy por aplicativo",
+      "perAppProxyModes": {
+        "off": "Tudo",
+        "offMsg": "Proxy de todos os aplicativos",
+        "include": "Proxy",
+        "includeMsg": "Aplicativos selecionados apenas por proxy",
+        "exclude": "Ignorar",
+        "excludeMsg": "Não faça proxy de aplicativos selecionados"
+      },
+      "showSystemApps": "Mostrar aplicativos do sistema",
+      "hideSystemApps": "Ocultar aplicativos do sistema",
+      "clearSelection": "Limpar seleção"
+    },
+    "config": {
+      "resetBtn": "Redefinir opções",
+      "serviceMode": "Modo de serviço",
+      "serviceModes": {
+        "proxy": "Somente serviço de proxy",
+        "systemProxy": "Definir proxy do sistema",
+        "tun": "VPN",
+        "tunService": "Serviço VPN"
+      },
+      "section": {
+        "route": "Opções de rota",
+        "dns": "Opções de DNS",
+        "inbound": "Opções de entrada",
+        "mux": "Multiplexador",
+        "outbound": "Opções de saída",
+        "tlsTricks": "Truques TLS",
+        "warp": "Opções de WARP",
+        "misc": "Opções diversas"
+      },
+      "warpConsent": {
+        "title": "Consentimento WARP da Cloudflare",
+        "description(rich)": "Cloudflare WARP é um provedor VPN WireGuard gratuito. Ao ativar esta opção, você concorda com os ${tos(Termos de Serviço)} e ${privacy(Política de Privacidade)} do WARP da Cloudflare."
+      },
+      "generateWarpConfig": "Gerar configuração WARP",
+      "missingWarpConfig": "Configuração WARP ausente",
+      "warpConfigGenerated": "Configuração WARP gerada",
+      "pageTitle": "Opções de configuração",
+      "logLevel": "Nível de registro",
+      "resolveDestination": "Resolver destino",
+      "ipv6Mode": "Rota IPv6",
+      "ipv6Modes": {
+        "disable": "Desabilitar",
+        "enable": "Habilitar",
+        "prefer": "Preferido",
+        "only": "Exclusivo"
+      },
+      "remoteDnsAddress": "DNS remoto",
+      "remoteDnsDomainStrategy": "Estratégia de Domínio DNS Remoto",
+      "directDnsAddress": "DNS direto",
+      "directDnsDomainStrategy": "Estratégia de Domínio DNS Direto",
+      "mixedPort": "Porta Mista",
+      "localDnsPort": "Porta DNS local",
+      "allowConnectionFromLan": "Permitir conexão da LAN",
+      "tunImplementation": "Implementação TUN",
+      "mtu": "MTU",
+      "connectionTestUrl": "URL de teste de conexão",
+      "urlTestInterval": "Intervalo de teste de URL",
+      "enableClashApi": "Ativar API Clash",
+      "clashApiPort": "Porta da API Clash",
+      "enableTun": "Ativar TUN",
+      "setSystemProxy": "Definir proxy do sistema",
+      "enableDnsRouting": "Habilitar roteamento DNS",
+      "enableFakeDns": "Habilitar DNS falso",
+      "bypassLan": "Ignorar LAN",
+      "strictRoute": "Rota Estrita",
+      "enableTlsFragment": "Habilitar fragmento TLS",
+      "tlsFragmentSize": "Tamanho do fragmento TLS",
+      "tlsFragmentSleep": "Suspensão do fragmento TLS",
+      "enableTlsMixedSniCase": "Habilitar caso SNI misto TLS",
+      "enableTlsPadding": "Habilitar preenchimento TLS",
+      "tlsPaddingSize": "Preenchimento TLS",
+      "enableMux": "Habilitar Mux",
+      "muxProtocol": "Protocolo Mux",
+      "muxMaxStreams": "Máximo de fluxos simultâneos",
+      "enableWarp": "Habilitar WARP",
+      "warpDetourMode": "Modo de desvio",
+      "warpDetourModes": {
+        "inbound": "Desvie o WARP através de proxies",
+        "outbound": "Desviar proxies através do WARP"
+      },
+      "warpLicenseKey": "Chave de licença",
+      "warpCleanIp": "Limpar IP",
+      "warpPort": "Porta",
+      "warpNoise": "Contagem de ruído",
+      "warpNoiseDelay": "Atraso de ruído"
+    },
+    "geoAssets": {
+      "pageTitle": "Ativos de roteamento",
+      "geoip": "GeoIP",
+      "geosite": "Geossítio",
+      "version": "Versão ${version}",
+      "fileMissing": "Arquivo faltando",
+      "update": "Atualizar",
+      "download": "Download",
+      "failureMsg": "Falha ao atualizar o recurso",
+      "successMsg": "Recurso atualizado com sucesso",
+      "addRecommended": "Adicionar recursos recomendados",
+      "missingGeoAssetsMsg": "Os arquivos dos ativos de roteamento selecionados estão ausentes. Baixe-os ou escolha os existentes."
+    }
+  },
+  "about": {
+    "pageTitle": "Sobre",
+    "version": "Versão",
+    "sourceCode": "Código fonte",
+    "telegramChannel": "Canal Telegram",
+    "checkForUpdate": "Verifique atualizações",
+    "privacyPolicy": "Política de Privacidade",
+    "termsAndConditions": "Termos e Condições"
+  },
+  "appUpdate": {
+    "notAvailableMsg": "Já usando a versão mais recente",
+    "dialogTitle": "Atualização disponível",
+    "updateMsg": "Uma nova versão de @:general.appTitle está disponível. Gostaria de atualizar agora?",
+    "currentVersionLbl": "Versão Atual",
+    "newVersionLbl": "Nova versão",
+    "updateNowBtnTxt": "Atualizar agora",
+    "laterBtnTxt": "Mais tarde",
+    "ignoreBtnTxt": "Ignorar"
+  },
+  "tray": {
+    "dashboard": "Painel",
+    "quit": "Sair",
+    "open": "Abrir",
+    "status": {
+      "connect": "Conectar",
+      "connecting": "Conectando",
+      "disconnect": "desconectar",
+      "disconnecting": "Desconectando"
+    }
+  },
+  "failure": {
+    "unexpected": "Erro inesperado",
+    "clash": {
+      "unexpected": "Erro inesperado",
+      "core": "Erro de conflito ${reason}"
+    },
+    "singbox": {
+      "unexpected": "Erro de serviço inesperado",
+      "serviceNotRunning": "O serviço não está em execução",
+      "missingPrivilege": "Privilégio ausente",
+      "missingPrivilegeMsg": "O modo VPN requer privilégios de administrador. Reinicie o aplicativo como administrador ou altere o modo de serviço.",
+      "missingGeoAssets": "Recursos geográficos ausentes",
+      "missingGeoAssetsMsg": "Os recursos geográficos estão faltando. considere alterar o recurso ativo ou baixar um selecionado nas configurações.",
+      "invalidConfigOptions": "Opções de configuração inválidas",
+      "invalidConfig": "Configuração inválida",
+      "create": "Erro ao criar serviço",
+      "start": "Erro de inicialização do serviço"
+    },
+    "connectivity": {
+      "unexpected": "Falha inesperada",
+      "missingVpnPermission": "Permissão VPN ausente",
+      "missingNotificationPermission": "Permissão de notificação ausente",
+      "core": "Erro central"
+    },
+    "profiles": {
+      "unexpected": "Erro inesperado",
+      "notFound": "Perfil Não Encontrado",
+      "invalidConfig": "Configurações inválidas",
+      "invalidUrl": "URL inválida"
+    },
+    "connection": {
+      "unexpected": "Erro de conexão inesperado",
+      "timeout": "Tempo limite de conexão",
+      "badResponse": "Erro na Resposta",
+      "connectionError": "Erro de conexão",
+      "badCertificate": "Erro no certificado"
+    },
+    "geoAssets": {
+      "unexpected": "Erro inesperado",
+      "notUpdate": "Nenhuma atualização disponível",
+      "activeNotFound": "Recurso geográfico ativo não encontrado"
+    }
+  },
+  "play": {
+    "title": "Hiddify (Pré-visualização)",
+    "short_description": "Auto, SSH, VLESS, Vmess, Trojan, Reality, Sing-Box, Clash, Xray, Shadowsocks"
+  }
 }

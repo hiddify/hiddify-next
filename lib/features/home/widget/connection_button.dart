@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/model/failures.dart';
 import 'package:hiddify/core/theme/theme_extensions.dart';
+import 'package:hiddify/core/widget/animated_text.dart';
 import 'package:hiddify/features/config_option/data/config_option_repository.dart';
 import 'package:hiddify/features/config_option/notifier/config_option_notifier.dart';
 import 'package:hiddify/features/connection/model/connection_status.dart';
@@ -160,25 +161,9 @@ class _ConnectionButton extends StatelessWidget {
         ),
         const Gap(16),
         ExcludeSemantics(
-          child: AnimatedSwitcher(
-            duration: const Duration(milliseconds: 250),
-            transitionBuilder: (child, animation) {
-              return SlideTransition(
-                position: Tween<Offset>(
-                  begin: const Offset(0.0, -0.2),
-                  end: Offset.zero,
-                ).animate(animation),
-                child: FadeTransition(
-                  opacity: animation,
-                  child: child,
-                ),
-              );
-            },
-            child: Text(
-              label,
-              key: ValueKey<String>(label),
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
+          child: AnimatedText(
+            label,
+            style: Theme.of(context).textTheme.titleMedium,
           ),
         ),
       ],

@@ -128,13 +128,13 @@ class _StatsColumn extends HookConsumerWidget {
             _InfoProp(
               icon: FluentIcons.arrow_bidirectional_up_down_20_regular,
               text: (stats?.downlinkTotal ?? 0).size(),
-              semanticLabel: t.proxies.statsSemantics.totalTransferred,
+              semanticLabel: t.stats.totalTransferred,
             ),
             const Gap(8),
             _InfoProp(
               icon: FluentIcons.arrow_download_20_regular,
               text: (stats?.downlink ?? 0).speed(),
-              semanticLabel: t.proxies.statsSemantics.speed,
+              semanticLabel: t.stats.speed,
             ),
           ],
         ),
