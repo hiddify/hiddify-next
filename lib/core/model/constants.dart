@@ -15,3 +15,5 @@ abstract class Constants {
   static const cfWarpTermsOfService =
       "https://www.cloudflare.com/application/terms/";
 }
+
+const kAnimationDuration = Duration(milliseconds: 250);

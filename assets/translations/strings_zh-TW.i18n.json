@@ -1,340 +1,340 @@
 {
-    "general": {
-        "appTitle": "Hiddify Next",
-        "reset": "重置",
-        "toggle": {
-            "enabled": "啟用",
-            "disabled": "停用"
-        },
-        "state": {
-            "disable": "停用"
-        },
-        "sort": "排序",
-        "sortBy": "排序方式",
-        "addToClipboard": "新增到剪貼簿"
+  "general": {
+    "appTitle": "Hiddify Next",
+    "reset": "重置",
+    "toggle": {
+      "enabled": "啟用",
+      "disabled": "停用"
     },
-    "intro": {
-        "termsAndPolicyCaution(rich)": "繼續即表示您同意 ${tap(@:about.termsAndConditions)}",
-        "start": "開始"
+    "state": {
+      "disable": "停用"
     },
-    "home": {
-        "pageTitle": "主頁",
-        "emptyProfilesMsg": "首先新增訂閱設定檔",
-        "noActiveProfileMsg": "選擇設定檔",
-        "connection": {
-            "tapToConnect": "點擊以連接",
-            "connecting": "連接中",
-            "disconnecting": "斷連中",
-            "connected": "已連接",
-            "experimentalNotice": "使用中的實驗性功能",
-            "experimentalNoticeMsg": "您啟用了一些實驗性功能，這些功能可能會影響連線品質並導致意外錯誤。您始終可以從「配置選項」頁面變更或重設這些選項。",
-            "disableExperimentalNotice": "不再提示"
-        },
-        "stats": {
-            "traffic": "即時流量",
-            "trafficTotal": "總流量",
-            "uplink": "上行",
-            "downlink": "下行"
-        }
-    },
-    "profile": {
-        "overviewPageTitle": "設定檔",
-        "detailsPageTitle": "設定檔",
-        "activeProfileNameSemanticLabel": "活動設定檔名稱：“${name}”。",
-        "activeProfileBtnSemanticLabel": "查看所有設定檔。",
-        "nonActiveProfileBtnSemanticLabel": "選擇“${name}”作為活動設定檔。",
-        "subscription": {
-            "traffic": "流量",
-            "updatedTimeAgo": "更新${timeago}",
-            "remainingDuration": "剩餘 ${duration} 天",
-            "remainingTrafficSemanticLabel": "已使用 ${consumed} 流量，總共 ${total} 流量。",
-            "expired": "已到期",
-            "noTraffic": "超過配額"
-        },
-        "sortBy": {
-            "lastUpdate": "最近更新",
-            "name": "按字母順序"
-        },
-        "add": {
-            "buttonText": "新的設定檔",
-            "shortBtnTxt": "新的設定檔",
-            "fromClipboard": "從剪貼簿添加",
-            "scanQr": "掃描 QR code",
-            "qrScanner": {
-                "permissionDeniedError": "沒有權限",
-                "unexpectedError": "出了點問題",
-                "torchSemanticLabel": "手電筒",
-                "facingSemanticLabel": "相機朝向"
-            },
-            "manually": "手動輸入",
-            "addingProfileMsg": "新增設定檔",
-            "failureMsg": "新增設定檔失敗"
-        },
-        "update": {
-            "buttonTxt": "更新",
-            "tooltip": "更新設定檔",
-            "updateSubscriptions": "更新訂閱",
-            "failureMsg": "更新設定檔失敗",
-            "successMsg": "設定檔更新成功",
-            "namedFailureMsg": "無法更新“${name}”",
-            "namedSuccessMsg": "“${name}” 更新成功"
-        },
-        "share": {
-            "buttonText": "分享",
-            "exportToClipboardSuccess": "匯出到剪貼簿",
-            "exportSubLinkToClipboard": "將訂閱連結匯出到剪貼簿",
-            "subLinkQrCode": "訂閱連結 QR code",
-            "exportConfigToClipboard": "將配置匯出到剪貼簿",
-            "exportConfigToClipboardSuccess": "配置已複製到剪貼簿"
-        },
-        "edit": {
-            "buttonTxt": "編輯",
-            "selectActiveTxt": "選擇並激活設定檔"
-        },
-        "delete": {
-            "buttonTxt": "刪除",
-            "confirmationMsg": "永久刪除設定檔嗎？",
-            "successMsg": "設定檔刪除成功"
-        },
-        "save": {
-            "buttonText": "儲存",
-            "successMsg": "設定檔儲存成功",
-            "failureMsg": "設定檔儲存失敗"
-        },
-        "detailsForm": {
-            "nameLabel": "名稱",
-            "nameHint": "設定檔名稱",
-            "urlLabel": "網址",
-            "urlHint": "完整配置網址",
-            "emptyNameMsg": "名稱為必填項",
-            "invalidUrlMsg": "無效的網址",
-            "lastUpdate": "最後更新",
-            "updateInterval": "自動更新",
-            "updateIntervalDialogTitle": "自動更新間隔（以小時為單位）"
-        }
-    },
-    "proxies": {
-        "pageTitle": "代理",
-        "emptyProxiesMsg": "沒有可用的代理",
-        "delayTestTooltip": "測試延遲",
-        "sortTooltip": "對代理進行排序",
-        "sortOptions": {
-            "unsorted": "預設",
-            "name": "按字母排序",
-            "delay": "按延遲排序"
-        }
-    },
-    "logs": {
-        "pageTitle": "日誌",
-        "filterHint": "篩選",
-        "allLevelsFilter": "全部",
-        "shareCoreLogs": "分享核心日誌",
-        "shareAppLogs": "共享應用程式日誌",
-        "pauseTooltip": "暫停",
-        "resumeTooltip": "恢復",
-        "clearTooltip": "清除"
-    },
-    "settings": {
-        "pageTitle": "設定",
-        "requiresRestartMsg": "若要使其生效，請重新啟動應用程式",
-        "experimental": "實驗性的",
-        "experimentalMsg": "帶有實驗標誌的功能仍在開發中，可能會導致問題。",
-        "general": {
-            "sectionTitle": "一般的",
-            "locale": "語言",
-            "region": "地區",
-            "regionMsg": "幫助設定預設選項以繞過國內地址",
-            "regions": {
-                "ir": "伊朗 (ir)",
-                "cn": "中國 (cn)",
-                "ru": "俄羅斯 (ru)",
-                "af": "阿富汗 (af)",
-                "other": "其他"
-            },
-            "themeMode": "主題模式",
-            "themeModes": {
-                "system": "遵循系統主題",
-                "dark": "深色",
-                "light": "淺色",
-                "black": "黑色"
-            },
-            "enableAnalytics": "啟用分析",
-            "enableAnalyticsMsg": "授予收集分析並發送崩潰報告以改進應用程式的權限",
-            "autoStart": "隨系統啟動",
-            "silentStart": "啟動最小化",
-            "openWorkingDir": "開啟工作目錄",
-            "ignoreBatteryOptimizations": "停用電池優化",
-            "ignoreBatteryOptimizationsMsg": "消除限制以獲得最佳 VPN 效能",
-            "dynamicNotification": "在通知中顯示速度"
-        },
-        "advanced": {
-            "sectionTitle": "高級設定",
-            "debugMode": "偵錯模式",
-            "debugModeMsg": "重新啟動應用程式以應用此更改",
-            "memoryLimit": "記憶體限制",
-            "memoryLimitMsg": "如果您遇到記憶體不足錯誤或頻繁應用程式崩潰，請啟用",
-            "resetTunnel": "重置 VPN 設定檔"
-        },
-        "network": {
-            "perAppProxyPageTitle": "應用程式 VPN 模式",
-            "perAppProxyModes": {
-                "off": "全部",
-                "offMsg": "代理所有應用程式",
-                "include": "代理",
-                "includeMsg": "僅代理選定的應用程式",
-                "exclude": "略過",
-                "excludeMsg": "不代理選定的應用程式"
-            },
-            "showSystemApps": "顯示系統應用程式",
-            "hideSystemApps": "隱藏系統應用程式",
-            "clearSelection": "清空選項"
-        },
-        "config": {
-            "resetBtn": "重置選項",
-            "serviceMode": "服務模式",
-            "serviceModes": {
-                "proxy": "僅代理",
-                "systemProxy": "系統代理",
-                "tun": "VPN"
-            },
-            "section": {
-                "route": "路由選項",
-                "dns": "DNS 選項",
-                "inbound": "入站選項",
-                "mux": "復用器",
-                "outbound": "出站選項",
-                "tlsTricks": "TLS Tricks",
-                "misc": "其他選項"
-            },
-            "pageTitle": "配置選項",
-            "logLevel": "日誌等級",
-            "resolveDestination": "解析目標地址",
-            "ipv6Mode": "IPv6 路由",
-            "ipv6Modes": {
-                "disable": "停用",
-                "enable": "啟用",
-                "prefer": "首選",
-                "only": "僅"
-            },
-            "remoteDnsAddress": "遠端 DNS",
-            "remoteDnsDomainStrategy": "遠端 DNS 網域策略",
-            "directDnsAddress": "直連 DNS",
-            "directDnsDomainStrategy": "直連 DNS 網域策略",
-            "mixedPort": "混合連接埠",
-            "localDnsPort": "本地 DNS 連接埠",
-            "allowConnectionFromLan": "允許區域網路連接",
-            "tunImplementation": "TUN 實現",
-            "mtu": "MTU",
-            "connectionTestUrl": "連接測試網址",
-            "urlTestInterval": "URL 測試間隔",
-            "enableClashApi": "啟用 Clash API",
-            "clashApiPort": "Clash API 連接埠",
-            "enableTun": "啟用 TUN",
-            "setSystemProxy": "設定系統代理",
-            "enableDnsRouting": "啟用 DNS 路由",
-            "enableFakeDns": "啟用 Fake DNS",
-            "bypassLan": "繞過區域網路",
-            "strictRoute": "嚴格路由",
-            "enableTlsFragment": "啟用 TLS 分段",
-            "tlsFragmentSize": "TLS 分段大小",
-            "tlsFragmentSleep": "TLS 分段睡眠",
-            "enableTlsMixedSniCase": "啟用 TLS 混合 SNI 情況",
-            "enableTlsPadding": "啟用 TLS 填充",
-            "tlsPaddingSize": "TLS 填充",
-            "enableMux": "啟用復用器",
-            "muxProtocol": "復用器控制",
-            "muxMaxStreams": "最大並發數"
-        },
-        "geoAssets": {
-            "pageTitle": "路由資源文件",
-            "geoip": "Geoip",
-            "geosite": "Geosite",
-            "version": "版本${version}",
-            "fileMissing": "文件遺失",
-            "update": "更新",
-            "download": "下載",
-            "failureMsg": "更新資源文件失敗",
-            "successMsg": "已成功更新資源文件",
-            "addRecommended": "新增推薦的資源文件",
-            "missingGeoAssetsMsg": "所選路由資源的檔案遺失。下載它們或選擇現有的。"
-        }
-    },
-    "about": {
-        "pageTitle": "關於",
-        "version": "版本",
-        "sourceCode": "原始代碼",
-        "telegramChannel": "Telegram 頻道",
-        "checkForUpdate": "檢查更新",
-        "privacyPolicy": "隱私政策",
-        "termsAndConditions": "條款與條件"
-    },
-    "appUpdate": {
-        "notAvailableMsg": "已經是最新版本",
-        "dialogTitle": "有可用更新",
-        "updateMsg": "@:general.appTitle 的更新版本現已推出。您想現在更新嗎？",
-        "currentVersionLbl": "目前版本",
-        "newVersionLbl": "新版本",
-        "updateNowBtnTxt": "現在更新",
-        "laterBtnTxt": "之後再說",
-        "ignoreBtnTxt": "忽略"
-    },
-    "tray": {
-        "dashboard": "儀表板",
-        "quit": "退出",
-        "open": "打開",
-        "status": {
-            "connect": "連接",
-            "connecting": "連接中",
-            "disconnect": "斷開連接",
-            "disconnecting": "斷連中"
-        }
-    },
-    "failure": {
-        "unexpected": "意外錯誤",
-        "clash": {
-            "unexpected": "意外錯誤",
-            "core": "Clash 錯誤 ${reason}"
-        },
-        "singbox": {
-            "unexpected": "意外服務錯誤",
-            "serviceNotRunning": "服務未運行",
-            "missingPrivilege": "缺乏權限",
-            "missingPrivilegeMsg": "VPN 模式需要管理員權限。以管理員身分重新啟動應用程式或變更服務模式。",
-            "missingGeoAssets": "缺少 GEO 資源文件",
-            "missingGeoAssetsMsg": "GEO 資源文件缺失。請考慮更改活動資源文件或在設定中下載選定的資源文件。",
-            "invalidConfigOptions": "配置選項無效",
-            "invalidConfig": "無效配置",
-            "create": "服務建立錯誤",
-            "start": "服務啟動錯誤"
-        },
-        "connectivity": {
-            "unexpected": "意外失敗",
-            "missingVpnPermission": "缺少 VPN 權限",
-            "missingNotificationPermission": "缺少通知權限",
-            "core": "核心錯誤"
-        },
-        "profiles": {
-            "unexpected": "意外錯誤",
-            "notFound": "未找到設定檔",
-            "invalidConfig": "無效配置",
-            "invalidUrl": "無效網址"
-        },
-        "connection": {
-            "unexpected": "意外連線錯誤",
-            "timeout": "連線過時",
-            "badResponse": "錯誤反應",
-            "connectionError": "連線錯誤",
-            "badCertificate": "無效證書"
-        },
-        "geoAssets": {
-            "unexpected": "意外錯誤",
-            "notUpdate": "無可用更新",
-            "activeNotFound": "未找到活動 GEO 資源文件"
-        }
-    },
-    "play": {
-        "title": "Hiddify Next（預覽）",
-        "short_description": "自動、SSH、VLESS、Vmess、Trojan、Reality、Sing-Box、Clash、Xray、Shadowsocks",
-        "full_description": "HiddifyNext 的主要目標是提供安全、使用者友好且高效率的隧道用戶端。它使您能夠利用 VPN 服務權限將所有流量或選定的應用程式流量路由到您選擇的遠端伺服器。\n\n註：我們不提供任何伺服器；使用者需要使用自己的自託管伺服器或受信任的伺服器來確保其線上活動的隱私。\n\n我們透過以下方式支援伺服器：\n - 普通 V2ray/Xray 訂閱連結\n - Clash 訂閱連結\n - Sing-Box 訂閱連結\n\n 我們的獨特功能是什麼？\n - 使用者友善\n - 最佳化且快速\n - 自動選擇最低延遲\n - 顯示使用者使用資訊\n - 使用一鍵連結輕鬆導入\n - 免費且無廣告\n - 輕鬆切換線路\n - 等等\n 支援：\n - Sing-Box 支援的所有協定 \n - VLESS + XTLS Reality、Vision 協定 \n - VMESS\n - Trojan\n - ShoadowSocks\n - Reality\n - V2ray\n - Hystria2\n - TUIC \n - SSH\n - ShadowTLS\n\n\n 原始碼位於 https://github.com/hiddify/Hiddify-Next\n 應用程式核心基於開源的 Sing-Box。\n\n權限說明：\n\n - VPN 服務：由於此應用程式的目標是提供安全性、使用者友好且高效的隧道用戶端，因此我們需要此權限才能透過隧道將流量路由到遠端伺服器。\n - 獲取應用程式列表：此權限用於允許使用者包含或排除隧道的特定應用程式。\n - 接收啟動廣播：可以從應用程式設定中啟用或停用此權限，以在裝置啟動時啟動此應用程式。\n - 發送通知：此權限至關重要，因為我們使用前台服務來確保 VPN 服務的持續運作。\n - 該應用程式沒有廣告。分析和崩潰數據僅在用戶首次使用應用程式時明確同意的情況下才會出現。"
+    "sort": "排序",
+    "sortBy": "排序方式",
+    "addToClipboard": "新增到剪貼簿"
+  },
+  "intro": {
+    "termsAndPolicyCaution(rich)": "繼續即表示您同意 ${tap(@:about.termsAndConditions)}",
+    "start": "開始"
+  },
+  "home": {
+    "pageTitle": "主頁",
+    "emptyProfilesMsg": "首先新增訂閱設定檔",
+    "noActiveProfileMsg": "選擇設定檔",
+    "connection": {
+      "tapToConnect": "點擊以連接",
+      "connecting": "連接中",
+      "disconnecting": "斷連中",
+      "connected": "已連接",
+      "experimentalNotice": "使用中的實驗性功能",
+      "experimentalNoticeMsg": "您啟用了一些實驗性功能，這些功能可能會影響連線品質並導致意外錯誤。您始終可以從「配置選項」頁面變更或重設這些選項。",
+      "disableExperimentalNotice": "不再提示"
     }
+  },
+  "stats": {
+    "trafficLive": "即時流量",
+    "trafficTotal": "總流量",
+    "uplink": "上行",
+    "downlink": "下行"
+  },
+  "profile": {
+    "overviewPageTitle": "設定檔",
+    "detailsPageTitle": "設定檔",
+    "activeProfileNameSemanticLabel": "活動設定檔名稱：“${name}”。",
+    "activeProfileBtnSemanticLabel": "查看所有設定檔。",
+    "nonActiveProfileBtnSemanticLabel": "選擇“${name}”作為活動設定檔。",
+    "subscription": {
+      "traffic": "流量",
+      "updatedTimeAgo": "更新${timeago}",
+      "remainingDuration": "剩餘 ${duration} 天",
+      "remainingTrafficSemanticLabel": "已使用 ${consumed} 流量，總共 ${total} 流量。",
+      "expired": "已到期",
+      "noTraffic": "超過配額"
+    },
+    "sortBy": {
+      "lastUpdate": "最近更新",
+      "name": "按字母順序"
+    },
+    "add": {
+      "buttonText": "新的設定檔",
+      "shortBtnTxt": "新的設定檔",
+      "fromClipboard": "從剪貼簿添加",
+      "scanQr": "掃描 QR code",
+      "qrScanner": {
+        "permissionDeniedError": "沒有權限",
+        "unexpectedError": "出了點問題",
+        "torchSemanticLabel": "手電筒",
+        "facingSemanticLabel": "相機朝向"
+      },
+      "manually": "手動輸入",
+      "addingProfileMsg": "新增設定檔",
+      "failureMsg": "新增設定檔失敗"
+    },
+    "update": {
+      "buttonTxt": "更新",
+      "tooltip": "更新設定檔",
+      "updateSubscriptions": "更新訂閱",
+      "failureMsg": "更新設定檔失敗",
+      "successMsg": "設定檔更新成功",
+      "namedFailureMsg": "無法更新“${name}”",
+      "namedSuccessMsg": "“${name}” 更新成功"
+    },
+    "share": {
+      "buttonText": "分享",
+      "exportToClipboardSuccess": "匯出到剪貼簿",
+      "exportSubLinkToClipboard": "將訂閱連結匯出到剪貼簿",
+      "subLinkQrCode": "訂閱連結 QR code",
+      "exportConfigToClipboard": "將配置匯出到剪貼簿",
+      "exportConfigToClipboardSuccess": "配置已複製到剪貼簿"
+    },
+    "edit": {
+      "buttonTxt": "編輯",
+      "selectActiveTxt": "選擇並激活設定檔"
+    },
+    "delete": {
+      "buttonTxt": "刪除",
+      "confirmationMsg": "永久刪除設定檔嗎？",
+      "successMsg": "設定檔刪除成功"
+    },
+    "save": {
+      "buttonText": "儲存",
+      "successMsg": "設定檔儲存成功",
+      "failureMsg": "設定檔儲存失敗"
+    },
+    "detailsForm": {
+      "nameLabel": "名稱",
+      "nameHint": "設定檔名稱",
+      "urlLabel": "網址",
+      "urlHint": "完整配置網址",
+      "emptyNameMsg": "名稱為必填項",
+      "invalidUrlMsg": "無效的網址",
+      "lastUpdate": "最後更新",
+      "updateInterval": "自動更新",
+      "updateIntervalDialogTitle": "自動更新間隔（以小時為單位）"
+    }
+  },
+  "proxies": {
+    "pageTitle": "代理",
+    "emptyProxiesMsg": "沒有可用的代理",
+    "delayTestTooltip": "測試延遲",
+    "sortTooltip": "對代理進行排序",
+    "sortOptions": {
+      "unsorted": "預設",
+      "name": "按字母排序",
+      "delay": "按延遲排序"
+    }
+  },
+  "logs": {
+    "pageTitle": "日誌",
+    "filterHint": "篩選",
+    "allLevelsFilter": "全部",
+    "shareCoreLogs": "分享核心日誌",
+    "shareAppLogs": "共享應用程式日誌",
+    "pauseTooltip": "暫停",
+    "resumeTooltip": "恢復",
+    "clearTooltip": "清除"
+  },
+  "settings": {
+    "pageTitle": "設定",
+    "requiresRestartMsg": "若要使其生效，請重新啟動應用程式",
+    "experimental": "實驗性的",
+    "experimentalMsg": "帶有實驗標誌的功能仍在開發中，可能會導致問題。",
+    "general": {
+      "sectionTitle": "一般的",
+      "locale": "語言",
+      "region": "地區",
+      "regionMsg": "幫助設定預設選項以繞過國內地址",
+      "regions": {
+        "ir": "伊朗 (ir)",
+        "cn": "中國 (cn)",
+        "ru": "俄羅斯 (ru)",
+        "af": "阿富汗 (af)",
+        "other": "其他"
+      },
+      "themeMode": "主題模式",
+      "themeModes": {
+        "system": "遵循系統主題",
+        "dark": "深色",
+        "light": "淺色",
+        "black": "黑色"
+      },
+      "enableAnalytics": "啟用分析",
+      "enableAnalyticsMsg": "授予收集分析並發送崩潰報告以改進應用程式的權限",
+      "autoStart": "隨系統啟動",
+      "silentStart": "啟動最小化",
+      "openWorkingDir": "開啟工作目錄",
+      "ignoreBatteryOptimizations": "停用電池優化",
+      "ignoreBatteryOptimizationsMsg": "消除限制以獲得最佳 VPN 效能",
+      "dynamicNotification": "在通知中顯示速度"
+    },
+    "advanced": {
+      "sectionTitle": "高級設定",
+      "debugMode": "偵錯模式",
+      "debugModeMsg": "重新啟動應用程式以應用此更改",
+      "memoryLimit": "記憶體限制",
+      "memoryLimitMsg": "如果您遇到記憶體不足錯誤或頻繁應用程式崩潰，請啟用",
+      "resetTunnel": "重置 VPN 設定檔"
+    },
+    "network": {
+      "perAppProxyPageTitle": "應用程式 VPN 模式",
+      "perAppProxyModes": {
+        "off": "全部",
+        "offMsg": "代理所有應用程式",
+        "include": "代理",
+        "includeMsg": "僅代理選定的應用程式",
+        "exclude": "略過",
+        "excludeMsg": "不代理選定的應用程式"
+      },
+      "showSystemApps": "顯示系統應用程式",
+      "hideSystemApps": "隱藏系統應用程式",
+      "clearSelection": "清空選項"
+    },
+    "config": {
+      "resetBtn": "重置選項",
+      "serviceMode": "服務模式",
+      "serviceModes": {
+        "proxy": "僅代理",
+        "systemProxy": "系統代理",
+        "tun": "VPN"
+      },
+      "section": {
+        "route": "路由選項",
+        "dns": "DNS 選項",
+        "inbound": "入站選項",
+        "mux": "復用器",
+        "outbound": "出站選項",
+        "tlsTricks": "TLS Tricks",
+        "misc": "其他選項"
+      },
+      "pageTitle": "配置選項",
+      "logLevel": "日誌等級",
+      "resolveDestination": "解析目標地址",
+      "ipv6Mode": "IPv6 路由",
+      "ipv6Modes": {
+        "disable": "停用",
+        "enable": "啟用",
+        "prefer": "首選",
+        "only": "僅"
+      },
+      "remoteDnsAddress": "遠端 DNS",
+      "remoteDnsDomainStrategy": "遠端 DNS 網域策略",
+      "directDnsAddress": "直連 DNS",
+      "directDnsDomainStrategy": "直連 DNS 網域策略",
+      "mixedPort": "混合連接埠",
+      "localDnsPort": "本地 DNS 連接埠",
+      "allowConnectionFromLan": "允許區域網路連接",
+      "tunImplementation": "TUN 實現",
+      "mtu": "MTU",
+      "connectionTestUrl": "連接測試網址",
+      "urlTestInterval": "URL 測試間隔",
+      "enableClashApi": "啟用 Clash API",
+      "clashApiPort": "Clash API 連接埠",
+      "enableTun": "啟用 TUN",
+      "setSystemProxy": "設定系統代理",
+      "enableDnsRouting": "啟用 DNS 路由",
+      "enableFakeDns": "啟用 Fake DNS",
+      "bypassLan": "繞過區域網路",
+      "strictRoute": "嚴格路由",
+      "enableTlsFragment": "啟用 TLS 分段",
+      "tlsFragmentSize": "TLS 分段大小",
+      "tlsFragmentSleep": "TLS 分段睡眠",
+      "enableTlsMixedSniCase": "啟用 TLS 混合 SNI 情況",
+      "enableTlsPadding": "啟用 TLS 填充",
+      "tlsPaddingSize": "TLS 填充",
+      "enableMux": "啟用復用器",
+      "muxProtocol": "復用器控制",
+      "muxMaxStreams": "最大並發數"
+    },
+    "geoAssets": {
+      "pageTitle": "路由資源文件",
+      "geoip": "Geoip",
+      "geosite": "Geosite",
+      "version": "版本${version}",
+      "fileMissing": "文件遺失",
+      "update": "更新",
+      "download": "下載",
+      "failureMsg": "更新資源文件失敗",
+      "successMsg": "已成功更新資源文件",
+      "addRecommended": "新增推薦的資源文件",
+      "missingGeoAssetsMsg": "所選路由資源的檔案遺失。下載它們或選擇現有的。"
+    }
+  },
+  "about": {
+    "pageTitle": "關於",
+    "version": "版本",
+    "sourceCode": "原始代碼",
+    "telegramChannel": "Telegram 頻道",
+    "checkForUpdate": "檢查更新",
+    "privacyPolicy": "隱私政策",
+    "termsAndConditions": "條款與條件"
+  },
+  "appUpdate": {
+    "notAvailableMsg": "已經是最新版本",
+    "dialogTitle": "有可用更新",
+    "updateMsg": "@:general.appTitle 的更新版本現已推出。您想現在更新嗎？",
+    "currentVersionLbl": "目前版本",
+    "newVersionLbl": "新版本",
+    "updateNowBtnTxt": "現在更新",
+    "laterBtnTxt": "之後再說",
+    "ignoreBtnTxt": "忽略"
+  },
+  "tray": {
+    "dashboard": "儀表板",
+    "quit": "退出",
+    "open": "打開",
+    "status": {
+      "connect": "連接",
+      "connecting": "連接中",
+      "disconnect": "斷開連接",
+      "disconnecting": "斷連中"
+    }
+  },
+  "failure": {
+    "unexpected": "意外錯誤",
+    "clash": {
+      "unexpected": "意外錯誤",
+      "core": "Clash 錯誤 ${reason}"
+    },
+    "singbox": {
+      "unexpected": "意外服務錯誤",
+      "serviceNotRunning": "服務未運行",
+      "missingPrivilege": "缺乏權限",
+      "missingPrivilegeMsg": "VPN 模式需要管理員權限。以管理員身分重新啟動應用程式或變更服務模式。",
+      "missingGeoAssets": "缺少 GEO 資源文件",
+      "missingGeoAssetsMsg": "GEO 資源文件缺失。請考慮更改活動資源文件或在設定中下載選定的資源文件。",
+      "invalidConfigOptions": "配置選項無效",
+      "invalidConfig": "無效配置",
+      "create": "服務建立錯誤",
+      "start": "服務啟動錯誤"
+    },
+    "connectivity": {
+      "unexpected": "意外失敗",
+      "missingVpnPermission": "缺少 VPN 權限",
+      "missingNotificationPermission": "缺少通知權限",
+      "core": "核心錯誤"
+    },
+    "profiles": {
+      "unexpected": "意外錯誤",
+      "notFound": "未找到設定檔",
+      "invalidConfig": "無效配置",
+      "invalidUrl": "無效網址"
+    },
+    "connection": {
+      "unexpected": "意外連線錯誤",
+      "timeout": "連線過時",
+      "badResponse": "錯誤反應",
+      "connectionError": "連線錯誤",
+      "badCertificate": "無效證書"
+    },
+    "geoAssets": {
+      "unexpected": "意外錯誤",
+      "notUpdate": "無可用更新",
+      "activeNotFound": "未找到活動 GEO 資源文件"
+    }
+  },
+  "play": {
+    "title": "Hiddify Next（預覽）",
+    "short_description": "自動、SSH、VLESS、Vmess、Trojan、Reality、Sing-Box、Clash、Xray、Shadowsocks",
+    "full_description": "HiddifyNext 的主要目標是提供安全、使用者友好且高效率的隧道用戶端。它使您能夠利用 VPN 服務權限將所有流量或選定的應用程式流量路由到您選擇的遠端伺服器。\n\n註：我們不提供任何伺服器；使用者需要使用自己的自託管伺服器或受信任的伺服器來確保其線上活動的隱私。\n\n我們透過以下方式支援伺服器：\n - 普通 V2ray/Xray 訂閱連結\n - Clash 訂閱連結\n - Sing-Box 訂閱連結\n\n 我們的獨特功能是什麼？\n - 使用者友善\n - 最佳化且快速\n - 自動選擇最低延遲\n - 顯示使用者使用資訊\n - 使用一鍵連結輕鬆導入\n - 免費且無廣告\n - 輕鬆切換線路\n - 等等\n 支援：\n - Sing-Box 支援的所有協定 \n - VLESS + XTLS Reality、Vision 協定 \n - VMESS\n - Trojan\n - ShoadowSocks\n - Reality\n - V2ray\n - Hystria2\n - TUIC \n - SSH\n - ShadowTLS\n\n\n 原始碼位於 https://github.com/hiddify/Hiddify-Next\n 應用程式核心基於開源的 Sing-Box。\n\n權限說明：\n\n - VPN 服務：由於此應用程式的目標是提供安全性、使用者友好且高效的隧道用戶端，因此我們需要此權限才能透過隧道將流量路由到遠端伺服器。\n - 獲取應用程式列表：此權限用於允許使用者包含或排除隧道的特定應用程式。\n - 接收啟動廣播：可以從應用程式設定中啟用或停用此權限，以在裝置啟動時啟動此應用程式。\n - 發送通知：此權限至關重要，因為我們使用前台服務來確保 VPN 服務的持續運作。\n - 該應用程式沒有廣告。分析和崩潰數據僅在用戶首次使用應用程式時明確同意的情況下才會出現。"
+  }
 }

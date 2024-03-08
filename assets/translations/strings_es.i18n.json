@@ -33,12 +33,6 @@
             "experimentalNotice": "Funciones experimentales en uso",
             "experimentalNoticeMsg": "Ha habilitado algunas funciones experimentales que podrían afectar la calidad de la conexión y provocar errores inesperados. Siempre puede cambiar o restablecer estas opciones desde la página de opciones de configuración.",
             "disableExperimentalNotice": "No volver a mostrar"
-        },
-        "stats": {
-            "traffic": "Tráfico en vivo",
-            "trafficTotal": "Tráfico total",
-            "uplink": "Enlace ascendente",
-            "downlink": "Enlace descendente"
         }
     },
     "profile": {

@@ -9,6 +9,7 @@ import 'package:hiddify/features/proxy/active/active_proxy_notifier.dart';
 import 'package:hiddify/features/proxy/active/ip_widget.dart';
 import 'package:hiddify/features/proxy/model/proxy_failure.dart';
 import 'package:hiddify/features/stats/notifier/stats_notifier.dart';
+import 'package:hiddify/gen/fonts.gen.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -128,13 +129,13 @@ class _StatsColumn extends HookConsumerWidget {
             _InfoProp(
               icon: FluentIcons.arrow_bidirectional_up_down_20_regular,
               text: (stats?.downlinkTotal ?? 0).size(),
-              semanticLabel: t.proxies.statsSemantics.totalTransferred,
+              semanticLabel: t.stats.totalTransferred,
             ),
             const Gap(8),
             _InfoProp(
               icon: FluentIcons.arrow_download_20_regular,
               text: (stats?.downlink ?? 0).speed(),
-              semanticLabel: t.proxies.statsSemantics.speed,
+              semanticLabel: t.stats.speed,
             ),
           ],
         ),
@@ -165,7 +166,10 @@ class _InfoProp extends StatelessWidget {
           Flexible(
             child: Text(
               text,
-              style: Theme.of(context).textTheme.labelMedium,
+              style: Theme.of(context)
+                  .textTheme
+                  .labelMedium
+                  ?.copyWith(fontFamily: FontFamily.emoji),
               overflow: TextOverflow.ellipsis,
             ),
           ),
