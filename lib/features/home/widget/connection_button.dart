@@ -82,7 +82,7 @@ class ConnectionButton extends HookConsumerWidget {
       },
       label: switch (connectionStatus) {
         AsyncData(value: Connected()) when requiresReconnect == true =>
-          t.home.connection.reconnect,
+          t.connection.reconnect,
         AsyncData(value: final status) => status.present(t),
         _ => "",
       },

@@ -26,16 +26,7 @@
   "home": {
     "pageTitle": "Inicio",
     "emptyProfilesMsg": "Comece adicionando um perfil de assinatura",
-    "noActiveProfileMsg": "Escolha um perfil",
-    "connection": {
-      "tapToConnect": "Toque para conectar",
-      "connecting": "Conectando",
-      "disconnecting": "Desconectando",
-      "connected": "Conectado",
-      "experimentalNotice": "Recursos experimentais em uso",
-      "experimentalNoticeMsg": "Você ativou alguns recursos experimentais que podem afetar a qualidade da conexão e causar erros inesperados. Você sempre pode alterar ou redefinir essas opções na página de opções de configuração.",
-      "disableExperimentalNotice": "Não mostrar novamente"
-    }
+    "noActiveProfileMsg": "Escolha um perfil"
   },
   "stats": {
     "trafficLive": "Tráfego ao vivo",
@@ -216,82 +207,6 @@
       "hideSystemApps": "Ocultar aplicativos do sistema",
       "clearSelection": "Limpar seleção"
     },
-    "config": {
-      "resetBtn": "Redefinir opções",
-      "serviceMode": "Modo de serviço",
-      "serviceModes": {
-        "proxy": "Somente serviço de proxy",
-        "systemProxy": "Definir proxy do sistema",
-        "tun": "VPN",
-        "tunService": "Serviço VPN"
-      },
-      "section": {
-        "route": "Opções de rota",
-        "dns": "Opções de DNS",
-        "inbound": "Opções de entrada",
-        "mux": "Multiplexador",
-        "outbound": "Opções de saída",
-        "tlsTricks": "Truques TLS",
-        "warp": "Opções de WARP",
-        "misc": "Opções diversas"
-      },
-      "warpConsent": {
-        "title": "Consentimento WARP da Cloudflare",
-        "description(rich)": "Cloudflare WARP é um provedor VPN WireGuard gratuito. Ao ativar esta opção, você concorda com os ${tos(Termos de Serviço)} e ${privacy(Política de Privacidade)} do WARP da Cloudflare."
-      },
-      "generateWarpConfig": "Gerar configuração WARP",
-      "missingWarpConfig": "Configuração WARP ausente",
-      "warpConfigGenerated": "Configuração WARP gerada",
-      "pageTitle": "Opções de configuração",
-      "logLevel": "Nível de registro",
-      "resolveDestination": "Resolver destino",
-      "ipv6Mode": "Rota IPv6",
-      "ipv6Modes": {
-        "disable": "Desabilitar",
-        "enable": "Habilitar",
-        "prefer": "Preferido",
-        "only": "Exclusivo"
-      },
-      "remoteDnsAddress": "DNS remoto",
-      "remoteDnsDomainStrategy": "Estratégia de Domínio DNS Remoto",
-      "directDnsAddress": "DNS direto",
-      "directDnsDomainStrategy": "Estratégia de Domínio DNS Direto",
-      "mixedPort": "Porta Mista",
-      "localDnsPort": "Porta DNS local",
-      "allowConnectionFromLan": "Permitir conexão da LAN",
-      "tunImplementation": "Implementação TUN",
-      "mtu": "MTU",
-      "connectionTestUrl": "URL de teste de conexão",
-      "urlTestInterval": "Intervalo de teste de URL",
-      "enableClashApi": "Ativar API Clash",
-      "clashApiPort": "Porta da API Clash",
-      "enableTun": "Ativar TUN",
-      "setSystemProxy": "Definir proxy do sistema",
-      "enableDnsRouting": "Habilitar roteamento DNS",
-      "enableFakeDns": "Habilitar DNS falso",
-      "bypassLan": "Ignorar LAN",
-      "strictRoute": "Rota Estrita",
-      "enableTlsFragment": "Habilitar fragmento TLS",
-      "tlsFragmentSize": "Tamanho do fragmento TLS",
-      "tlsFragmentSleep": "Suspensão do fragmento TLS",
-      "enableTlsMixedSniCase": "Habilitar caso SNI misto TLS",
-      "enableTlsPadding": "Habilitar preenchimento TLS",
-      "tlsPaddingSize": "Preenchimento TLS",
-      "enableMux": "Habilitar Mux",
-      "muxProtocol": "Protocolo Mux",
-      "muxMaxStreams": "Máximo de fluxos simultâneos",
-      "enableWarp": "Habilitar WARP",
-      "warpDetourMode": "Modo de desvio",
-      "warpDetourModes": {
-        "inbound": "Desvie o WARP através de proxies",
-        "outbound": "Desviar proxies através do WARP"
-      },
-      "warpLicenseKey": "Chave de licença",
-      "warpCleanIp": "Limpar IP",
-      "warpPort": "Porta",
-      "warpNoise": "Contagem de ruído",
-      "warpNoiseDelay": "Atraso de ruído"
-    },
     "geoAssets": {
       "pageTitle": "Ativos de roteamento",
       "geoip": "GeoIP",
@@ -382,5 +297,90 @@
   "play": {
     "title": "Hiddify (Pré-visualização)",
     "short_description": "Auto, SSH, VLESS, Vmess, Trojan, Reality, Sing-Box, Clash, Xray, Shadowsocks"
+  },
+  "connection": {
+    "tapToConnect": "Toque para conectar",
+    "connecting": "Conectando",
+    "disconnecting": "Desconectando",
+    "connected": "Conectado",
+    "experimentalNotice": "Recursos experimentais em uso",
+    "experimentalNoticeMsg": "Você ativou alguns recursos experimentais que podem afetar a qualidade da conexão e causar erros inesperados. Você sempre pode alterar ou redefinir essas opções na página de opções de configuração.",
+    "disableExperimentalNotice": "Não mostrar novamente"
+  },
+  "config": {
+    "resetBtn": "Redefinir opções",
+    "serviceMode": "Modo de serviço",
+    "serviceModes": {
+      "proxy": "Somente serviço de proxy",
+      "systemProxy": "Definir proxy do sistema",
+      "tun": "VPN",
+      "tunService": "Serviço VPN"
+    },
+    "section": {
+      "route": "Opções de rota",
+      "dns": "Opções de DNS",
+      "inbound": "Opções de entrada",
+      "mux": "Multiplexador",
+      "outbound": "Opções de saída",
+      "tlsTricks": "Truques TLS",
+      "warp": "Opções de WARP",
+      "misc": "Opções diversas"
+    },
+    "warpConsent": {
+      "title": "Consentimento WARP da Cloudflare",
+      "description(rich)": "Cloudflare WARP é um provedor VPN WireGuard gratuito. Ao ativar esta opção, você concorda com os ${tos(Termos de Serviço)} e ${privacy(Política de Privacidade)} do WARP da Cloudflare."
+    },
+    "generateWarpConfig": "Gerar configuração WARP",
+    "missingWarpConfig": "Configuração WARP ausente",
+    "warpConfigGenerated": "Configuração WARP gerada",
+    "pageTitle": "Opções de configuração",
+    "logLevel": "Nível de registro",
+    "resolveDestination": "Resolver destino",
+    "ipv6Mode": "Rota IPv6",
+    "ipv6Modes": {
+      "disable": "Desabilitar",
+      "enable": "Habilitar",
+      "prefer": "Preferido",
+      "only": "Exclusivo"
+    },
+    "remoteDnsAddress": "DNS remoto",
+    "remoteDnsDomainStrategy": "Estratégia de Domínio DNS Remoto",
+    "directDnsAddress": "DNS direto",
+    "directDnsDomainStrategy": "Estratégia de Domínio DNS Direto",
+    "mixedPort": "Porta Mista",
+    "localDnsPort": "Porta DNS local",
+    "allowConnectionFromLan": "Permitir conexão da LAN",
+    "tunImplementation": "Implementação TUN",
+    "mtu": "MTU",
+    "connectionTestUrl": "URL de teste de conexão",
+    "urlTestInterval": "Intervalo de teste de URL",
+    "enableClashApi": "Ativar API Clash",
+    "clashApiPort": "Porta da API Clash",
+    "enableTun": "Ativar TUN",
+    "setSystemProxy": "Definir proxy do sistema",
+    "enableDnsRouting": "Habilitar roteamento DNS",
+    "enableFakeDns": "Habilitar DNS falso",
+    "bypassLan": "Ignorar LAN",
+    "strictRoute": "Rota Estrita",
+    "enableTlsFragment": "Habilitar fragmento TLS",
+    "tlsFragmentSize": "Tamanho do fragmento TLS",
+    "tlsFragmentSleep": "Suspensão do fragmento TLS",
+    "enableTlsMixedSniCase": "Habilitar caso SNI misto TLS",
+    "enableTlsPadding": "Habilitar preenchimento TLS",
+    "tlsPaddingSize": "Preenchimento TLS",
+    "enableMux": "Habilitar Mux",
+    "muxProtocol": "Protocolo Mux",
+    "muxMaxStreams": "Máximo de fluxos simultâneos",
+    "enableWarp": "Habilitar WARP",
+    "warpDetourMode": "Modo de desvio",
+    "warpDetourModes": {
+      "inbound": "Desvie o WARP através de proxies",
+      "outbound": "Desviar proxies através do WARP"
+    },
+    "warpLicenseKey": "Chave de licença",
+    "warpCleanIp": "Limpar IP",
+    "warpPort": "Porta",
+    "warpNoise": "Contagem de ruído",
+    "warpNoiseDelay": "Atraso de ruído"
   }
 }

@@ -48,7 +48,7 @@ class HomePage extends HookConsumerWidget {
                   IconButton(
                     onPressed: () => const QuickSettingsRoute().push(context),
                     icon: const Icon(FluentIcons.options_24_filled),
-                    tooltip: t.settings.config.quickSettings,
+                    tooltip: t.config.quickSettings,
                   ),
                   IconButton(
                     onPressed: () => const AddProfileRoute().push(context),

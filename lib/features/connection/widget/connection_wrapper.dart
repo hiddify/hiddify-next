@@ -27,8 +27,8 @@ class _ConnectionWrapperState extends ConsumerState<ConnectionWrapper>
       if (next case AsyncData(value: true)) {
         final t = ref.read(translationsProvider);
         ref.watch(inAppNotificationControllerProvider).showActionToast(
-          t.settings.config.reconnectMsg,
-          actionText: t.settings.config.reconnectBtn,
+          t.connection.reconnectMsg,
+          actionText: t.connection.reconnect,
           callback: () async {
             await ref
                 .read(connectionNotifierProvider.notifier)

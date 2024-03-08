@@ -35,7 +35,7 @@ class AdaptiveRootScaffold extends HookConsumerWidget {
       ),
       NavigationDestination(
         icon: const Icon(FluentIcons.box_edit_20_filled),
-        label: t.settings.config.pageTitle,
+        label: t.config.pageTitle,
       ),
       NavigationDestination(
         icon: const Icon(FluentIcons.settings_20_filled),

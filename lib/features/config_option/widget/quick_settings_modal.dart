@@ -49,11 +49,11 @@ class QuickSettingsModal extends HookConsumerWidget {
             SwitchListTile(
               value: ref.watch(ConfigOptions.enableWarp),
               onChanged: ref.watch(ConfigOptions.enableWarp.notifier).update,
-              title: Text(t.settings.config.enableWarp),
+              title: Text(t.config.enableWarp),
             )
           else
             ListTile(
-              title: Text(t.settings.config.setupWarp),
+              title: Text(t.config.setupWarp),
               trailing: const Icon(FluentIcons.chevron_right_24_regular),
               onTap: () =>
                   ConfigOptionsRoute(section: ConfigOptionSection.warp.name)
@@ -63,15 +63,15 @@ class QuickSettingsModal extends HookConsumerWidget {
             value: ref.watch(ConfigOptions.enableTlsFragment),
             onChanged:
                 ref.watch(ConfigOptions.enableTlsFragment.notifier).update,
-            title: Text(t.settings.config.enableTlsFragment),
+            title: Text(t.config.enableTlsFragment),
           ),
           SwitchListTile(
             value: ref.watch(ConfigOptions.enableMux),
             onChanged: ref.watch(ConfigOptions.enableMux.notifier).update,
-            title: Text(t.settings.config.enableMux),
+            title: Text(t.config.enableMux),
           ),
           ListTile(
-            title: Text(t.settings.config.allOptions),
+            title: Text(t.config.allOptions),
             trailing: const Icon(FluentIcons.chevron_right_24_regular),
             dense: true,
             onTap: () => const ConfigOptionsRoute().go(context),

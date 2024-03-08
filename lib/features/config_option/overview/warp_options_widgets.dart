@@ -29,7 +29,7 @@ class WarpOptionsTiles extends HookConsumerWidget {
       (previous, next) async {
         if (next case AsyncData(value: final log) when log.isNotEmpty) {
           await CustomAlertDialog(
-            title: t.settings.config.warpConfigGenerated,
+            title: t.config.warpConfigGenerated,
             message: log,
           ).show(context);
         }
@@ -39,7 +39,7 @@ class WarpOptionsTiles extends HookConsumerWidget {
     return Column(
       children: [
         SwitchListTile(
-          title: Text(t.settings.config.enableWarp),
+          title: Text(t.config.enableWarp),
           value: enableWarp,
           onChanged: (value) async {
             if (!warpPrefaceCompleted) {
@@ -57,12 +57,12 @@ class WarpOptionsTiles extends HookConsumerWidget {
           },
         ),
         ListTile(
-          title: Text(t.settings.config.generateWarpConfig),
+          title: Text(t.config.generateWarpConfig),
           subtitle: canChangeOptions
               ? switch (warpOptions.configGeneration) {
                   AsyncLoading() => const LinearProgressIndicator(),
                   AsyncError() => Text(
-                      t.settings.config.missingWarpConfig,
+                      t.config.missingWarpConfig,
                       style:
                           TextStyle(color: Theme.of(context).colorScheme.error),
                     ),
@@ -81,27 +81,27 @@ class WarpOptionsTiles extends HookConsumerWidget {
           preferences: ref.watch(ConfigOptions.warpDetourMode.notifier),
           enabled: canChangeOptions,
           choices: WarpDetourMode.values,
-          title: t.settings.config.warpDetourMode,
+          title: t.config.warpDetourMode,
           presentChoice: (value) => value.present(t),
         ),
         ValuePreferenceWidget(
           value: ref.watch(ConfigOptions.warpLicenseKey),
           preferences: ref.watch(ConfigOptions.warpLicenseKey.notifier),
           enabled: canChangeOptions,
-          title: t.settings.config.warpLicenseKey,
+          title: t.config.warpLicenseKey,
           presentValue: (value) => value.isEmpty ? t.general.notSet : value,
         ),
         ValuePreferenceWidget(
           value: ref.watch(ConfigOptions.warpCleanIp),
           preferences: ref.watch(ConfigOptions.warpCleanIp.notifier),
           enabled: canChangeOptions,
-          title: t.settings.config.warpCleanIp,
+          title: t.config.warpCleanIp,
         ),
         ValuePreferenceWidget(
           value: ref.watch(ConfigOptions.warpPort),
           preferences: ref.watch(ConfigOptions.warpPort.notifier),
           enabled: canChangeOptions,
-          title: t.settings.config.warpPort,
+          title: t.config.warpPort,
           inputToValue: int.tryParse,
           validateInput: isPort,
           digitsOnly: true,
@@ -110,7 +110,7 @@ class WarpOptionsTiles extends HookConsumerWidget {
           value: ref.watch(ConfigOptions.warpNoise),
           preferences: ref.watch(ConfigOptions.warpNoise.notifier),
           enabled: canChangeOptions,
-          title: t.settings.config.warpNoise,
+          title: t.config.warpNoise,
           inputToValue: (input) =>
               OptionalRange.tryParse(input, allowEmpty: true),
           presentValue: (value) => value.present(t),
@@ -120,7 +120,7 @@ class WarpOptionsTiles extends HookConsumerWidget {
           value: ref.watch(ConfigOptions.warpNoiseDelay),
           preferences: ref.watch(ConfigOptions.warpNoiseDelay.notifier),
           enabled: canChangeOptions,
-          title: t.settings.config.warpNoiseDelay,
+          title: t.config.warpNoiseDelay,
           inputToValue: (input) =>
               OptionalRange.tryParse(input, allowEmpty: true),
           presentValue: (value) => value.present(t),
@@ -139,9 +139,9 @@ class WarpLicenseAgreementModal extends HookConsumerWidget {
     final t = ref.watch(translationsProvider);
 
     return AlertDialog(
-      title: Text(t.settings.config.warpConsent.title),
+      title: Text(t.config.warpConsent.title),
       content: Text.rich(
-        t.settings.config.warpConsent.description(
+        t.config.warpConsent.description(
           tos: (text) => TextSpan(
             text: text,
             style: const TextStyle(color: Colors.blue),

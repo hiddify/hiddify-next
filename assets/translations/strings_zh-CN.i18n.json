@@ -26,16 +26,7 @@
   "home": {
     "pageTitle": "主页",
     "emptyProfilesMsg": "首先添加订阅配置文件",
-    "noActiveProfileMsg": "选择配置文件",
-    "connection": {
-      "tapToConnect": "点击连接",
-      "connecting": "正在连接",
-      "disconnecting": "正在断开连接",
-      "connected": "已连接",
-      "experimentalNotice": "使用中的实验功能",
-      "experimentalNoticeMsg": "您启用了一些实验性功能，这些功能可能会影响连接质量并导致意外错误。您始终可以从“配置选项”页面更改或重置这些选项。",
-      "disableExperimentalNotice": "不再显示"
-    }
+    "noActiveProfileMsg": "选择配置文件"
   },
   "stats": {
     "trafficLive": "实时流量",
@@ -216,82 +207,6 @@
       "hideSystemApps": "隐藏系统应用程序",
       "clearSelection": "清空选项"
     },
-    "config": {
-      "resetBtn": "重置选项",
-      "serviceMode": "服务模式",
-      "serviceModes": {
-        "proxy": "仅代理",
-        "systemProxy": "系统代理",
-        "tun": "VPN",
-        "tunService": "VPN服务"
-      },
-      "section": {
-        "route": "路由选项",
-        "dns": "DNS 选项",
-        "inbound": "入站选项",
-        "mux": "复用器",
-        "outbound": "出站选项",
-        "tlsTricks": "TLS Tricks",
-        "warp": "WARP 选项",
-        "misc": "其他选项"
-      },
-      "warpConsent": {
-        "title": "Cloudflare WARP 同意",
-        "description(rich)": "Cloudflare WARP 是免费的 WireGuard VPN 提供商。启用此选项即表示您同意 Cloudflare WARP 的 ${tos(服务条款)} 和 ${privacy(隐私政策)}"
-      },
-      "generateWarpConfig": "生成WARP配置文件",
-      "missingWarpConfig": "WARP配置缺失",
-      "warpConfigGenerated": "WARP 配置已生成",
-      "pageTitle": "配置选项",
-      "logLevel": "日志级别",
-      "resolveDestination": "解析目标地址",
-      "ipv6Mode": "IPv6 路由",
-      "ipv6Modes": {
-        "disable": "禁用",
-        "enable": "启用",
-        "prefer": "首选",
-        "only": "仅"
-      },
-      "remoteDnsAddress": "远程 DNS",
-      "remoteDnsDomainStrategy": "远程 DNS 域名策略",
-      "directDnsAddress": "直连 DNS",
-      "directDnsDomainStrategy": "直连 DNS 域名策略",
-      "mixedPort": "混合端口",
-      "localDnsPort": "本地 DNS 端口",
-      "allowConnectionFromLan": "允许局域网连接",
-      "tunImplementation": "TUN 实现",
-      "mtu": "MTU",
-      "connectionTestUrl": "连接测试网址",
-      "urlTestInterval": "网址测试间隔",
-      "enableClashApi": "启用 Clash API",
-      "clashApiPort": "Clash API 端口",
-      "enableTun": "启用 TUN",
-      "setSystemProxy": "设置系统代理",
-      "enableDnsRouting": "启用 DNS 路由",
-      "enableFakeDns": "启用 Fake DNS",
-      "bypassLan": "绕过局域网",
-      "strictRoute": "严格路由",
-      "enableTlsFragment": "启用 TLS 数据分段",
-      "tlsFragmentSize": "TLS 分段大小",
-      "tlsFragmentSleep": "TLS 分段休眠",
-      "enableTlsMixedSniCase": "启用 TLS 混合 SNI 情形",
-      "enableTlsPadding": "启用 TLS 填充",
-      "tlsPaddingSize": "TLS 填充",
-      "enableMux": "启用Mux多路复用",
-      "muxProtocol": "Mux多路复用控制",
-      "muxMaxStreams": "Mux最大并发数",
-      "enableWarp": "启用 WARP",
-      "warpDetourMode": "链式代理",
-      "warpDetourModes": {
-        "inbound": "通过代理绕过 WARP",
-        "outbound": "通过 WARP 绕过代理"
-      },
-      "warpLicenseKey": "许可证密钥",
-      "warpCleanIp": "干净 IP",
-      "warpPort": "端口",
-      "warpNoise": "噪音",
-      "warpNoiseDelay": "噪音延迟"
-    },
     "geoAssets": {
       "pageTitle": "路由资源文件",
       "geoip": "Geoip",
@@ -383,5 +298,90 @@
     "title": "Hiddify（预览）",
     "short_description": "自动，SSH, VLESS, Vmess, Trojan, Reality, Sing-Box, Clash, Xray, Shadowsocks",
     "full_description": "Hiddify 的主要目标是提供安全、用户友好且高效的隧道客户端。它使您能够利用 VPN 服务权限将所有流量或选定的应用程序流量路由到您选择的远程服务器。\n\n注：我们不提供任何服务器；用户需要使用自己托管的服务器或可信的服务器来确保您在线活动的私密性。\n \n我们支持以下类型的服务器：\n- 普通 V2ray/Xray 订阅链接\n- Clash 订阅链接\n- Sing-Box 订阅链接\n\n我们的特色是什么？\n\n- 用户友好\n- 优化和高速\n- 自动选择最低延迟\n- 显示用户使用信息\n- 通过一键链接轻松导入\n- 免费且无广告\n- 轻松切换线路\n- 等等\n\n支持：\n- Sing-Box 支持的所有协议\n- VLESS + XTLS Reality、Vision 协议\n- VMESS\n- Trojan\n- Shoadowsocks\n- Reality\n- V2ray\n- Hystria2\n- TUIC\n- SSH\n- ShadowTLS\n\n\n源代码位于 https://github.com/hiddify/Hiddify-Next\n应用程序核心基于开源的 Sing-Box。\n\n权限说明：\n\n- VPN 服务：由于此应用程序的目标是提供安全、用户友好和高效的隧道客户端，我们需要此权限以能够通过隧道将流量路由到远程服务器。\n获取应用程序列表：此权限用于允许用户包括或排除特定应用程序以进行隧道传输。\n- 接收开机广播：可以从应用程序设置中启用或禁用此权限，以便在设备启动时激活此应用程序。\n- 发送通知：此权限是必需的，因为我们使用前台服务来确保 VPN 服务的持续运行。\n- 本应用程序没有广告。分析和崩溃数据仅在首次使用应用程序时经用户明确同意的情况下发生。"
+  },
+  "connection": {
+    "tapToConnect": "点击连接",
+    "connecting": "正在连接",
+    "disconnecting": "正在断开连接",
+    "connected": "已连接",
+    "experimentalNotice": "使用中的实验功能",
+    "experimentalNoticeMsg": "您启用了一些实验性功能，这些功能可能会影响连接质量并导致意外错误。您始终可以从“配置选项”页面更改或重置这些选项。",
+    "disableExperimentalNotice": "不再显示"
+  },
+  "config": {
+    "resetBtn": "重置选项",
+    "serviceMode": "服务模式",
+    "serviceModes": {
+      "proxy": "仅代理",
+      "systemProxy": "系统代理",
+      "tun": "VPN",
+      "tunService": "VPN服务"
+    },
+    "section": {
+      "route": "路由选项",
+      "dns": "DNS 选项",
+      "inbound": "入站选项",
+      "mux": "复用器",
+      "outbound": "出站选项",
+      "tlsTricks": "TLS Tricks",
+      "warp": "WARP 选项",
+      "misc": "其他选项"
+    },
+    "warpConsent": {
+      "title": "Cloudflare WARP 同意",
+      "description(rich)": "Cloudflare WARP 是免费的 WireGuard VPN 提供商。启用此选项即表示您同意 Cloudflare WARP 的 ${tos(服务条款)} 和 ${privacy(隐私政策)}"
+    },
+    "generateWarpConfig": "生成WARP配置文件",
+    "missingWarpConfig": "WARP配置缺失",
+    "warpConfigGenerated": "WARP 配置已生成",
+    "pageTitle": "配置选项",
+    "logLevel": "日志级别",
+    "resolveDestination": "解析目标地址",
+    "ipv6Mode": "IPv6 路由",
+    "ipv6Modes": {
+      "disable": "禁用",
+      "enable": "启用",
+      "prefer": "首选",
+      "only": "仅"
+    },
+    "remoteDnsAddress": "远程 DNS",
+    "remoteDnsDomainStrategy": "远程 DNS 域名策略",
+    "directDnsAddress": "直连 DNS",
+    "directDnsDomainStrategy": "直连 DNS 域名策略",
+    "mixedPort": "混合端口",
+    "localDnsPort": "本地 DNS 端口",
+    "allowConnectionFromLan": "允许局域网连接",
+    "tunImplementation": "TUN 实现",
+    "mtu": "MTU",
+    "connectionTestUrl": "连接测试网址",
+    "urlTestInterval": "网址测试间隔",
+    "enableClashApi": "启用 Clash API",
+    "clashApiPort": "Clash API 端口",
+    "enableTun": "启用 TUN",
+    "setSystemProxy": "设置系统代理",
+    "enableDnsRouting": "启用 DNS 路由",
+    "enableFakeDns": "启用 Fake DNS",
+    "bypassLan": "绕过局域网",
+    "strictRoute": "严格路由",
+    "enableTlsFragment": "启用 TLS 数据分段",
+    "tlsFragmentSize": "TLS 分段大小",
+    "tlsFragmentSleep": "TLS 分段休眠",
+    "enableTlsMixedSniCase": "启用 TLS 混合 SNI 情形",
+    "enableTlsPadding": "启用 TLS 填充",
+    "tlsPaddingSize": "TLS 填充",
+    "enableMux": "启用Mux多路复用",
+    "muxProtocol": "Mux多路复用控制",
+    "muxMaxStreams": "Mux最大并发数",
+    "enableWarp": "启用 WARP",
+    "warpDetourMode": "链式代理",
+    "warpDetourModes": {
+      "inbound": "通过代理绕过 WARP",
+      "outbound": "通过 WARP 绕过代理"
+    },
+    "warpLicenseKey": "许可证密钥",
+    "warpCleanIp": "干净 IP",
+    "warpPort": "端口",
+    "warpNoise": "噪音",
+    "warpNoiseDelay": "噪音延迟"
   }
 }

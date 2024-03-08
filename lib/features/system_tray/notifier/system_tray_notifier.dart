@@ -73,7 +73,7 @@ class SystemTrayNotifier extends _$SystemTrayNotifier with AppLogger {
           },
         ),
         MenuItem.submenu(
-          label: t.settings.config.serviceMode,
+          label: t.config.serviceMode,
           submenu: Menu(
             items: [
               ...ServiceMode.values.map(

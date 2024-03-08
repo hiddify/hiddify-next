@@ -25,7 +25,7 @@ sealed class ConfigOptionFailure with _$ConfigOptionFailure, Failure {
           message: null,
         ),
       MissingWarpConfigFailure() => (
-          type: t.settings.config.missingWarpConfig,
+          type: t.config.missingWarpConfig,
           message: null,
         ),
     };

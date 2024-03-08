@@ -33,9 +33,9 @@ sealed class ConnectionStatus with _$ConnectionStatus {
       };
 
   String present(TranslationsEn t) => switch (this) {
-        Disconnected() => t.home.connection.tapToConnect,
-        Connecting() => t.home.connection.connecting,
-        Connected() => t.home.connection.connected,
-        Disconnecting() => t.home.connection.disconnecting,
+        Disconnected() => t.connection.tapToConnect,
+        Connecting() => t.connection.connecting,
+        Connected() => t.connection.connected,
+        Disconnecting() => t.connection.disconnecting,
       };
 }

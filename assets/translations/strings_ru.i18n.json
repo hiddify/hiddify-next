@@ -24,16 +24,7 @@
   "home": {
     "pageTitle": "Главная",
     "emptyProfilesMsg": "Начните с добавления профиля подписки",
-    "noActiveProfileMsg": "Выберите профиль",
-    "connection": {
-      "tapToConnect": "Нажмите для подключения",
-      "connecting": "Подключение",
-      "disconnecting": "Отключение",
-      "connected": "Подключено",
-      "experimentalNotice": "Экспериментальные функции в использовании",
-      "experimentalNoticeMsg": "Вы включили некоторые экспериментальные функции, которые могут повлиять на качество соединения и вызвать непредвиденные ошибки. Вы всегда можете изменить или сбросить эти параметры на странице параметров конфигурации.",
-      "disableExperimentalNotice": "Больше не показывать"
-    }
+    "noActiveProfileMsg": "Выберите профиль"
   },
   "stats": {
     "trafficLive": "Текущий трафик",
@@ -193,77 +184,6 @@
       "hideSystemApps": "Скрыть системные приложения",
       "clearSelection": "Очистить выбор"
     },
-    "config": {
-      "resetBtn": "Сбросить параметры",
-      "serviceMode": "Режим работы",
-      "serviceModes": {
-        "proxy": "Прокси",
-        "systemProxy": "Системный прокси",
-        "tun": "VPN"
-      },
-      "section": {
-        "route": "Варианты маршрутизации",
-        "dns": "Параметры DNS",
-        "inbound": "Входящие параметры",
-        "mux": "Multiplexer",
-        "outbound": "Outbound Options",
-        "tlsTricks": "TLS Tricks",
-        "warp": "WARP Options",
-        "misc": "Разные параметры"
-      },
-      "warpConsent": {
-        "title": "Согласие Cloudflare WARP",
-        "description(rich)": "Cloudflare WARP — бесплатный провайдер WireGuard VPN. Включая эту опцию, вы соглашаетесь с ${tos(Условиями обслуживания)} и ${privacy(Политикой конфиденциальности)} Cloudflare WARP."
-      },
-      "pageTitle": "Параметры конфигурации",
-      "logLevel": "Подробность журналирования",
-      "resolveDestination": "Определять назначение",
-      "ipv6Mode": "Маршрутизация IPv6",
-      "ipv6Modes": {
-        "disable": "Отключено",
-        "enable": "Включено",
-        "prefer": "Предпочтительно",
-        "only": "Исключительно"
-      },
-      "remoteDnsAddress": "Удалённый DNS",
-      "remoteDnsDomainStrategy": "Стратегия удалённого домена DNS",
-      "directDnsAddress": "Прямой DNS",
-      "directDnsDomainStrategy": "Стратегия прямого домена DNS",
-      "mixedPort": "Смешанный порт",
-      "localDnsPort": "Локальный порт DNS",
-      "allowConnectionFromLan": "Allow Connection from LAN",
-      "tunImplementation": "Реализация TUN",
-      "mtu": "MTU",
-      "connectionTestUrl": "URL проверки подключения",
-      "urlTestInterval": "Интервал проверки URL",
-      "enableClashApi": "Использовать Clash API",
-      "clashApiPort": "Порт Clash API",
-      "enableTun": "Использовать TUN",
-      "setSystemProxy": "Использовать системный прокси",
-      "enableDnsRouting": "Enable DNS Routing",
-      "enableFakeDns": "Использовать поддельную DNS",
-      "bypassLan": "Обход локальной сети",
-      "strictRoute": "Строгая маршрутизация",
-      "enableTlsFragment": "Enable TLS Fragment",
-      "tlsFragmentSize": "TLS Fragment Size",
-      "tlsFragmentSleep": "TLS Fragment Sleep",
-      "enableTlsMixedSniCase": "Enable TLS Mixed SNI Case",
-      "enableTlsPadding": "Enable TLS Padding",
-      "tlsPaddingSize": "TLS Padding",
-      "enableMux": "Enable Mux",
-      "muxProtocol": "Mux Protocol",
-      "muxMaxStreams": "Max Concurrent Streams",
-      "enableWarp": "Enable WARP",
-      "warpDetourMode": "Detour Mode",
-      "warpDetourModes": {
-        "inbound": "Detour WARP through proxies",
-        "outbound": "Detour proxies through WARP"
-      },
-      "warpLicenseKey": "License Key",
-      "warpCleanIp": "Clean IP",
-      "warpPort": "Port",
-      "warpNoise": "Noise"
-    },
     "geoAssets": {
       "pageTitle": "Активы маршрутизации",
       "geoip": "Geoip",
@@ -355,5 +275,85 @@
     "title": "Hiddify (Preview)",
     "short_description": "Автовыбор, SSH, VLESS, Vmess, Trojan, Reality, Sing-Box, Clash, Xray, Shadowsocks",
     "full_description": "Основная цель Hiddify — предоставить безопасный, удобный и эффективный клиент туннелирования. Он позволяет направлять весь трафик или трафик выбранного приложения на указанный Вами удалённый сервер.\nПримечание: мы не предоставляем серверы, пользователи должны сами обеспечивать конфиденциальность своих действий в Интернете, используя собственный сервер или доверенные серверы. Поддерживаются сервера с:— Обычной ссылка на подписку V2ray/Xray— Ссылкой на подписку Clash— Ссылко на подписку на Sing–Box\nВ чём уникальные особенности? — Удобство — Оптимизация и скорость — Автоматический выбор минимальной задержки — Отображение информации об использовании — Простой импорт ссылок одним щелчком мыши — Бесплатно и без рекламы — Простое переключение ссылок — …и много больше\nПоддерживаются:• Все протоколы, поддерживаемые Sing-Box• VLESS + xtls reality, vision• VMESS• Trojan• ShoadowSocks• Reality• V2ray• Hystria2• TUIC• SSH• ShadowTLS\nИсходный код доступен по адресу https://github.com/hiddify/Hiddify-Next.Ядро приложения основано на открытом исходном коде Sing–Box.\nОписание разрешений:— СЛУЖБА VPN: поскольку целью данного приложения является предоставление безопасного, удобного и эффективного клиента туннелирования, это разрешение необходимо, чтобы иметь возможность направлять трафик через туннель на удалённый сервер.— ЗАПРОС ВСЕХ ПАКЕТОВ: это разрешение позволяет добавлять или удалять определённые приложения из списка для туннелирования.— ИНФОРМИРОВАНИЕ О ЗАВЕРШЕНИИ ЗАГРУЗКИ: это разрешение можно включить или отключить в настройках приложения, чтобы (де)активировать запуск приложения при загрузке устройства.— ПОСТОЯННОЕ УВЕДОМЛЕНИЕ: это разрешение необходимо, так как используется приоритетная служба для обеспечения непрерывной работы VPN.— Приложение не содержит рекламы. Сбор аналитики и данных о сбоях происходят только с явного согласия пользователя при первом использовании приложения."
+  },
+  "connection": {
+    "tapToConnect": "Нажмите для подключения",
+    "connecting": "Подключение",
+    "disconnecting": "Отключение",
+    "connected": "Подключено",
+    "experimentalNotice": "Экспериментальные функции в использовании",
+    "experimentalNoticeMsg": "Вы включили некоторые экспериментальные функции, которые могут повлиять на качество соединения и вызвать непредвиденные ошибки. Вы всегда можете изменить или сбросить эти параметры на странице параметров конфигурации.",
+    "disableExperimentalNotice": "Больше не показывать"
+  },
+  "config": {
+    "resetBtn": "Сбросить параметры",
+    "serviceMode": "Режим работы",
+    "serviceModes": {
+      "proxy": "Прокси",
+      "systemProxy": "Системный прокси",
+      "tun": "VPN"
+    },
+    "section": {
+      "route": "Варианты маршрутизации",
+      "dns": "Параметры DNS",
+      "inbound": "Входящие параметры",
+      "mux": "Multiplexer",
+      "outbound": "Outbound Options",
+      "tlsTricks": "TLS Tricks",
+      "warp": "WARP Options",
+      "misc": "Разные параметры"
+    },
+    "warpConsent": {
+      "title": "Согласие Cloudflare WARP",
+      "description(rich)": "Cloudflare WARP — бесплатный провайдер WireGuard VPN. Включая эту опцию, вы соглашаетесь с ${tos(Условиями обслуживания)} и ${privacy(Политикой конфиденциальности)} Cloudflare WARP."
+    },
+    "pageTitle": "Параметры конфигурации",
+    "logLevel": "Подробность журналирования",
+    "resolveDestination": "Определять назначение",
+    "ipv6Mode": "Маршрутизация IPv6",
+    "ipv6Modes": {
+      "disable": "Отключено",
+      "enable": "Включено",
+      "prefer": "Предпочтительно",
+      "only": "Исключительно"
+    },
+    "remoteDnsAddress": "Удалённый DNS",
+    "remoteDnsDomainStrategy": "Стратегия удалённого домена DNS",
+    "directDnsAddress": "Прямой DNS",
+    "directDnsDomainStrategy": "Стратегия прямого домена DNS",
+    "mixedPort": "Смешанный порт",
+    "localDnsPort": "Локальный порт DNS",
+    "allowConnectionFromLan": "Allow Connection from LAN",
+    "tunImplementation": "Реализация TUN",
+    "mtu": "MTU",
+    "connectionTestUrl": "URL проверки подключения",
+    "urlTestInterval": "Интервал проверки URL",
+    "enableClashApi": "Использовать Clash API",
+    "clashApiPort": "Порт Clash API",
+    "enableTun": "Использовать TUN",
+    "setSystemProxy": "Использовать системный прокси",
+    "enableDnsRouting": "Enable DNS Routing",
+    "enableFakeDns": "Использовать поддельную DNS",
+    "bypassLan": "Обход локальной сети",
+    "strictRoute": "Строгая маршрутизация",
+    "enableTlsFragment": "Enable TLS Fragment",
+    "tlsFragmentSize": "TLS Fragment Size",
+    "tlsFragmentSleep": "TLS Fragment Sleep",
+    "enableTlsMixedSniCase": "Enable TLS Mixed SNI Case",
+    "enableTlsPadding": "Enable TLS Padding",
+    "tlsPaddingSize": "TLS Padding",
+    "enableMux": "Enable Mux",
+    "muxProtocol": "Mux Protocol",
+    "muxMaxStreams": "Max Concurrent Streams",
+    "enableWarp": "Enable WARP",
+    "warpDetourMode": "Detour Mode",
+    "warpDetourModes": {
+      "inbound": "Detour WARP through proxies",
+      "outbound": "Detour proxies through WARP"
+    },
+    "warpLicenseKey": "License Key",
+    "warpCleanIp": "Clean IP",
+    "warpPort": "Port",
+    "warpNoise": "Noise"
   }
 }
