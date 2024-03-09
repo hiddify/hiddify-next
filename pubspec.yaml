@@ -81,6 +81,7 @@ dependencies:
   http: ^1.2.0
   timezone_to_country: ^2.1.0
   json_path: ^0.7.1
+  permission_handler: ^11.3.0
 
 dev_dependencies:
   flutter_test:
