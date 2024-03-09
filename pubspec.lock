@@ -173,11 +173,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: patch-1
-      resolved-ref: f78f22dcc19306f2a602b1c50f3c7a324456be9c
+      ref: main
+      resolved-ref: "19d83cba60de91143491a441b5076583bf1681a8"
       url: "https://github.com/hiddify-com/flutter_circle_flags.git"
     source: git
-    version: "4.0.2"
+    version: "4.1.0"
   cli_util:
     dependency: transitive
     description:

@@ -77,7 +77,7 @@ dependencies:
   circle_flags:
     git:
       url: https://github.com/hiddify-com/flutter_circle_flags.git
-      ref: patch-1
+      ref: main
   http: ^1.2.0
   timezone_to_country: ^2.1.0
   json_path: ^0.7.1
