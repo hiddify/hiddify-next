@@ -6,10 +6,8 @@ export LD_LIBRARY_PATH=usr/lib
 # Usage info
 show_help() {
 cat << EOF
-Usage: ${0##*/} [-s | -v | -h ] ...
-start Hiddify or HiddifyService, when no parameter is given, Hiddify is executed.
-    -h              display this help and exit
-    -s start|stop   start/stop HiddifyService.
+Usage: ${0##*/} ...
+start Hiddify or HiddifyCli, when no parameter is given, Hiddify is executed.
     -v              show version
 EOF
 }
@@ -25,11 +23,17 @@ OPTIND=1
 # It is a good idea to make OPTIND local if you process options in a function.
 
 # if no arg is provided, execute hiddify app
-[[ $# == 0 ]] && exec ./hiddify
+if [[ $# == 0 ]];then 
+    exec ./hiddify
+else
 
 # processing arguments
-while getopts s:vh opt; do
-    case $opt in
+
+    case $1 in
+        HiddifyCli)  
+            exec ./HiddifyCli ${@:3}
+            exit 0
+            ;;
         h)
             show_help
             exit 0
@@ -37,21 +41,12 @@ while getopts s:vh opt; do
         v)  show_version
             exit 0
             ;;
-        s)  action="$OPTARG"
-            ((service++))
-            ;;
         *)
             show_help >&2
             exit 1
             ;;
     esac
-done
-shift "$((OPTIND-1))"   # Discard the options and sentinel --
 
-# argument -s is given, do HiddfyService
-if [[ "$service" == 1 ]]; then
-    if [[ "$action" =~ start|stop ]]; then
-        exec ./HiddifyService "$action"
-    fi
+
+
 fi
-

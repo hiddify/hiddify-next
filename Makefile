@@ -20,7 +20,7 @@ GEO_ASSETS_DIR=assets$(SEP)core
 CORE_PRODUCT_NAME=hiddify-core
 CORE_NAME=$(CORE_PRODUCT_NAME)
 LIB_NAME=libcore
-SRV_NAME=HiddifyService
+
 ifeq ($(CHANNEL),prod)
 	CORE_URL=https://github.com/hiddify/hiddify-next-core/releases/download/v$(core.version)
 else
@@ -146,7 +146,7 @@ windows-libs:
 	$(MKDIR) $(DESKTOP_OUT) || echo Folder already exists. Skipping...
 	curl -L $(CORE_URL)/$(CORE_NAME)-windows-amd64.tar.gz | tar xz -C $(DESKTOP_OUT)$(SEP)
 	ls $(DESKTOP_OUT) || dir $(DESKTOP_OUT)$(SEP)
-	#$(RM) $(DESKTOP_OUT)$(SEP)HiddifyService.exe 
+	#$(RM) $(DESKTOP_OUT)$(SEP)HiddifyCli.exe 
 	#temporary disable windows service
 
 linux-libs:

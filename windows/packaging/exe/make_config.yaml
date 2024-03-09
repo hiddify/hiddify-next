@@ -13,4 +13,4 @@ locales:
   - ru
   - pt
   - tr
-#script_template: inno_setup.sas
+script_template: inno_setup.sas
