@@ -143,6 +143,7 @@ class MainActivity : FlutterFragmentActivity(), ServiceConnection.Callback {
                 startService()
             } else onServiceAlert(Alert.RequestNotificationPermission, null)
         }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -20,7 +20,9 @@
     "timeout": "timeout",
     "clipboardExportSuccessMsg": "Added to Clipboard",
     "showMore": "Show More",
-    "showLess": "Show Less"
+    "showLess": "Show Less",
+    "openAppSettings": "Open App Settings",
+    "grantPermission": "Grant Permission"
   },
   "intro": {
     "termsAndPolicyCaution(rich)": "by continuing you agree with ${tap(@:about.termsAndConditions)}",
