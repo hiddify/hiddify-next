@@ -24,23 +24,9 @@
     "home": {
         "pageTitle": "Utama",
         "emptyProfilesMsg": "Mulai menambahkan langganan profil",
-        "noActiveProfileMsg": "Pilih profil",
-        "connection": {
-            "tapToConnect": "Ketuk untuk Sambung",
-            "connecting": "Sambungkan",
-            "disconnecting": "Putus Sambungan",
-            "connected": "Tersambung",
-            "experimentalNotice": "Fitur Experimental digunakan",
-            "experimentalNoticeMsg": "Kamu telah mengaktifkan fitur experimental yang mungkin mempengaruhi kualitas sambungan dan error tidak terduga. Kamu tetap bisa merubah atau set ulang opsi dari Halaman Konfigurasi",
-            "disableExperimentalNotice": "Jangan tampil lagi"
-        },
-        "stats": {
-            "traffic": "Trafik Langsung",
-            "trafficTotal": "Total Trafik",
-            "uplink": "Uplink",
-            "downlink": "Downlink",
-            "connection": "Sambungan"
-        }
+        "noActiveProfileMsg": "Pilih profil"
+        
+        
     },
     "profile": {
         "overviewPageTitle": "Beberapa Profil",
@@ -194,77 +180,7 @@
             "hideSystemApps": "Sembunyikan aplikasi sistem",
             "clearSelection": "Bersihkan seleksi"
         },
-        "config": {
-            "resetBtn": "Set Ulang Opsi",
-            "serviceMode": "Sambung ulang agar perubahan diterapkan",
-            "serviceModes": {
-                "proxy": "Proxy",
-                "systemProxy": "Sistem Proxy",
-                "tun": "VPN"
-            },
-            "section": {
-                "route": "Opsi Route",
-                "dns": "Opsi DNS",
-                "inbound": "Opsi Inbound",
-                "mux": "Multiplexer",
-                "outbound": "Opsi Outbound",
-                "tlsTricks": "TLS Tricks",
-                "warp": "Opsi WARP",
-                "misc": "Opsi Misc"
-            },
-            "warpConsent": {
-                "title": "Persetujuan Cloudflare WARP",
-                "description(rich)": "Cloudflare WARP adalah WireGuard VPN Provider gratis. Dengan mengaktifkan opsi/pilihan ini berarti kamu setuju pada Cloudflare WARP's ${tos(Terms of Service)} dan ${privacy(Privacy Policy)}."
-            },
-            "pageTitle": "Opsi Konfig",
-            "logLevel": "Log Level",
-            "resolveDestination": "Resolve Destination",
-            "ipv6Mode": "IPv6 Route",
-            "ipv6Modes": {
-                "disable": "Nonaktifkan",
-                "enable": "Aktifkan",
-                "prefer": "Prefer",
-                "only": "Exclusive"
-            },
-            "remoteDnsAddress": "Remote DNS",
-            "remoteDnsDomainStrategy": "Remote DNS Domain Strategy",
-            "directDnsAddress": "Direct DNS",
-            "directDnsDomainStrategy": "Direct DNS Domain Strategy",
-            "mixedPort": "Mixed Port",
-            "localDnsPort": "DNS Port Lokal",
-            "allowConnectionFromLan": "Perbolehkan Sambungan LAN",
-            "tunImplementation": "Implementasi TUN",
-            "mtu": "MTU",
-            "connectionTestUrl": "URL Tes Sambungan",
-            "urlTestInterval": "URL Test Interval",
-            "enableClashApi": "Aktifkan Clash API",
-            "clashApiPort": "Clash API Port",
-            "enableTun": "Aktifkan TUN",
-            "setSystemProxy": "Atur Sistem Proxy",
-            "enableDnsRouting": "Aktifkan DNS Routing",
-            "enableFakeDns": "Aktifkan DNS Palsu",
-            "bypassLan": "Bypass LAN",
-            "strictRoute": "Strict Route",
-            "enableTlsFragment": "Aktifkan TLS Fragment",
-            "tlsFragmentSize": "TLS Fragment Size",
-            "tlsFragmentSleep": "TLS Fragment Sleep",
-            "enableTlsMixedSniCase": "Aktifkan TLS Mixed SNI Case",
-            "enableTlsPadding": "Aktifkan TLS Padding",
-            "tlsPaddingSize": "TLS Padding",
-            "enableMux": "Enable Mux",
-            "muxProtocol": "Mux Protocol",
-            "muxMaxStreams": "Max Concurrent Streams",
-            "enableWarp": "Enable WARP",
-            "warpDetourMode": "Detour Mode",
-            "warpDetourModes": {
-                "inbound": "Detour WARP through proxies",
-                "outbound": "Detour proxies through WARP"
-            },
-            "warpLicenseKey": "License Key",
-            "warpCleanIp": "Clean IP",
-            "warpPort": "Port",
-            "warpNoise": "Noise"
-        },
+        
         "geoAssets": {
             "pageTitle": "Rute Aset",
             "geoip": "Geoip",
@@ -356,5 +272,92 @@
         "title": "Hiddify (Preview)",
         "short_description": "Otomatik, SSH, VLESS, Vmess, Trojan, Reality, Sing-Box, Clash, Xray, Shadowsocks",
         "full_description": "Tujuan utama Hiddify adalah memberikan keamanan, user-friendly dan client tunnel yg efisien. Hiddify mengizinkanmu untuk mengarahkan semua atau beberapa trafik data aplikasi terpilih ke server remot pilihanmu, memanfaatkan izin VPN-Service.\n\nNote: Kami tidak menyediakan server apapun; pengguna diwajibkan untuk memastikan aktivitas online mereka tetap private dengan menggunakan self-hosted server atau server yg dipercaya pilihan mereka sendiri. \n \nKami mendukung server dengan:\n- Normal V2ray/Xray Subscription Link\n- Clash Subscription Link\n- Sing-Box Subscription Link\n\nApa fitur unik kami?\n - User Friendly\n - Cepat dan teroptimasi\n - Otomatis pilihan PING terendah \n - Menampilkan informasi penggunaan user\n - Dengan mudah import sublink dengan satu klik menggunakan deeplinking \n - Bebas dan tanpa iklan\n - Dengan mudah berganti user sublink\n - dan sebagainya\n\nSupport:\n- Semua protokol di dukung oleh Sing-Box \n- VLESS + xtls reality, vision\n- VMESS\n- Trojan\n- ShadowSocks\n- Reality\n- V2ray\n- Hystria2\n- TUIC\n- SSH\n- ShadowTLS\n\n\nCode Sumber ada di https://github.com/hiddify/Hiddify-Next\nInti Aplikasi didasarkan pada Sing-Box Open Source.\n\nDeskripsi Izin:\n- VPN Servis: Tujuan aplikasi ini menyediakan keamanan, user-friendly dan tunneling client efisien, kami membutuhkan izin untuk bisa mengarahkan traffic data melalui kanal remot server. \n- QUERY ALL PACKAGES: izin ini digunakan untuk memperbolehkan pengguna masuk atau mengeluarkan aplikasi tertentu untuk tunneling.\n- RECEIVE BOOT COMPLETED: izin ini dapat diaktifkan atau dinonaktifkan dari setting aplikasi untuk mengaktikan aplikasi ini saat boot device.\n- POST NOTIFICATIONS: izin ini penting karena kami menggunakan foreground service untuk memastikan operasi berkelanjutan dari VPN Servis.\n- Aplikasi ini bebas dari iklan. Analitik dan data crash hanya terjadi dengan persetujuan eksplisit dari pengguna pada saat penggunaan pertama kali"
+    },
+    "config": {
+        "resetBtn": "Set Ulang Opsi",
+        "serviceMode": "Sambung ulang agar perubahan diterapkan",
+        "serviceModes": {
+            "proxy": "Proxy",
+            "systemProxy": "Sistem Proxy",
+            "tun": "VPN"
+        },
+        "section": {
+            "route": "Opsi Route",
+            "dns": "Opsi DNS",
+            "inbound": "Opsi Inbound",
+            "mux": "Multiplexer",
+            "outbound": "Opsi Outbound",
+            "tlsTricks": "TLS Tricks",
+            "warp": "Opsi WARP",
+            "misc": "Opsi Misc"
+        },
+        "warpConsent": {
+            "title": "Persetujuan Cloudflare WARP",
+            "description(rich)": "Cloudflare WARP adalah WireGuard VPN Provider gratis. Dengan mengaktifkan opsi/pilihan ini berarti kamu setuju pada Cloudflare WARP's ${tos(Terms of Service)} dan ${privacy(Privacy Policy)}."
+        },
+        "pageTitle": "Opsi Konfig",
+        "logLevel": "Log Level",
+        "resolveDestination": "Resolve Destination",
+        "ipv6Mode": "IPv6 Route",
+        "ipv6Modes": {
+            "disable": "Nonaktifkan",
+            "enable": "Aktifkan",
+            "prefer": "Prefer",
+            "only": "Exclusive"
+        },
+        "remoteDnsAddress": "Remote DNS",
+        "remoteDnsDomainStrategy": "Remote DNS Domain Strategy",
+        "directDnsAddress": "Direct DNS",
+        "directDnsDomainStrategy": "Direct DNS Domain Strategy",
+        "mixedPort": "Mixed Port",
+        "localDnsPort": "DNS Port Lokal",
+        "allowConnectionFromLan": "Perbolehkan Sambungan LAN",
+        "tunImplementation": "Implementasi TUN",
+        "mtu": "MTU",
+        "connectionTestUrl": "URL Tes Sambungan",
+        "urlTestInterval": "URL Test Interval",
+        "enableClashApi": "Aktifkan Clash API",
+        "clashApiPort": "Clash API Port",
+        "enableTun": "Aktifkan TUN",
+        "setSystemProxy": "Atur Sistem Proxy",
+        "enableDnsRouting": "Aktifkan DNS Routing",
+        "enableFakeDns": "Aktifkan DNS Palsu",
+        "bypassLan": "Bypass LAN",
+        "strictRoute": "Strict Route",
+        "enableTlsFragment": "Aktifkan TLS Fragment",
+        "tlsFragmentSize": "TLS Fragment Size",
+        "tlsFragmentSleep": "TLS Fragment Sleep",
+        "enableTlsMixedSniCase": "Aktifkan TLS Mixed SNI Case",
+        "enableTlsPadding": "Aktifkan TLS Padding",
+        "tlsPaddingSize": "TLS Padding",
+        "enableMux": "Enable Mux",
+        "muxProtocol": "Mux Protocol",
+        "muxMaxStreams": "Max Concurrent Streams",
+        "enableWarp": "Enable WARP",
+        "warpDetourMode": "Detour Mode",
+        "warpDetourModes": {
+            "inbound": "Detour WARP through proxies",
+            "outbound": "Detour proxies through WARP"
+        },
+        "warpLicenseKey": "License Key",
+        "warpCleanIp": "Clean IP",
+        "warpPort": "Port",
+        "warpNoise": "Noise"
+    },
+    "connection": {
+        "tapToConnect": "Ketuk untuk Sambung",
+        "connecting": "Sambungkan",
+        "disconnecting": "Putus Sambungan",
+        "connected": "Tersambung",
+        "experimentalNotice": "Fitur Experimental digunakan",
+        "experimentalNoticeMsg": "Kamu telah mengaktifkan fitur experimental yang mungkin mempengaruhi kualitas sambungan dan error tidak terduga. Kamu tetap bisa merubah atau set ulang opsi dari Halaman Konfigurasi",
+        "disableExperimentalNotice": "Jangan tampil lagi"
+    },
+    "stats": {
+        "traffic": "Trafik Langsung",
+        "trafficTotal": "Total Trafik",
+        "uplink": "Uplink",
+        "downlink": "Downlink",
+        "connection": "Sambungan"
     }
 }
