@@ -108,7 +108,7 @@ install(CODE "
 set(INSTALL_BUNDLE_DATA_DIR "${CMAKE_INSTALL_PREFIX}/data")
 set(INSTALL_BUNDLE_LIB_DIR "${CMAKE_INSTALL_PREFIX}/lib")
 
-install(FILES "../libcore/bin/libcore.so" DESTINATION "${INSTALL_BUNDLE_LIB_DIR}"
+install(FILES "../libcore/bin/lib/libcore.so" DESTINATION "${INSTALL_BUNDLE_LIB_DIR}"
   COMPONENT Runtime)
 
 install(
