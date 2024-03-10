@@ -173,7 +173,13 @@ jobs:
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
         run: |
           make ${{ matrix.platform }}-release
-
+      
+      - name: Copy to out Windows
+        if: matrix.platform == 'windows'
+        run: |
+          tree
+          .\scripts\package_windows.ps1
+          
       - name: Upload Debug Symbols
         if: ${{ inputs.upload-artifact && inputs.tag-name != 'draft' }}
         env:
@@ -184,12 +190,7 @@ jobs:
         run: |
           dart run sentry_dart_plugin
       
-      - name: Copy to out Windows
-        if: matrix.platform == 'windows'
-        run: |
-          tree
-          .\scripts\package_windows.ps1
-          
+      
       - name: Code Sign
         if: ${{ inputs.upload-artifact && startsWith(matrix.platform,'windows') }}
         uses: hiddify/signtool-code-sign-sha256@main
