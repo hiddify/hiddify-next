@@ -180,6 +180,7 @@ jobs:
           tree
           .\scripts\package_windows.ps1
           
+          
       - name: Upload Debug Symbols
         if: ${{ inputs.upload-artifact && inputs.tag-name != 'draft' }}
         env:
@@ -188,7 +189,8 @@ jobs:
           SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
           SENTRY_DIST: ${{ matrix.platform == 'android-aab' && 'google-play' || 'general' }}
         run: |
-          dart run sentry_dart_plugin
+          dart pub global activate sentry_dart_plugin
+          dart run sentry_dart_plugin || echo "Error in sentry_dart_plugin"
       
       
       - name: Code Sign
