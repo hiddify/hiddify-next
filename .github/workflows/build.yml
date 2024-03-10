@@ -182,7 +182,7 @@ jobs:
           SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
           SENTRY_DIST: ${{ matrix.platform == 'android-aab' && 'google-play' || 'general' }}
         run: |
-          flutter packages pub run sentry_dart_plugin
+          dart run sentry_dart_plugin
       
       - name: Copy to out Windows
         if: matrix.platform == 'windows'

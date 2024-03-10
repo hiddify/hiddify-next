@@ -13,3 +13,4 @@ xcopy "build\windows\x64\runner\Release" "dist\tmp\hiddify-next" /E/H/C/I/Y
 xcopy ".github\help\mac-windows\*.url" "dist\tmp\hiddify-next" /E/H/C/I/Y
 Compress-Archive -Force -Path "dist\tmp\hiddify-next" -DestinationPath "out\Hiddify-Windows-Portable-x64.zip" -ErrorAction SilentlyContinue
 
+Remove-Item -Path "C:\Users\runneradmin\.pub-cache\git\cache\flutter_circle_flags*" -Force -Recurse -ErrorAction SilentlyContinue
