@@ -129,8 +129,7 @@ jobs:
       - name: Setup Windows Signing Properties
         if: ${{ inputs.upload-artifact && startsWith(matrix.platform,'windows') }}
         run: |
-            $decodedText = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String("${{ secrets.WINDOWS_SIGNING_KEY }}"))
-            Set-Content -Path "windows\sign.pfx" -Value $decodedText
+            [IO.File]::WriteAllBytes("windows\sign.pfx", [Convert]::FromBase64String("${{ secrets.WINDOWS_SIGNING_KEY }}"))
             (Get-Content "windows\packaging\msix\make_config.yaml") -replace '^certificate_password:.*$', 'certificate_password: ${{ secrets.WINDOWS_SIGNING_PASSWORD }}' | Set-Content "windows\packaging\msix\make_config.yaml"
 
   
@@ -181,7 +180,7 @@ jobs:
           certificate: '${{ secrets.WINDOWS_SIGNING_KEY }}'
           cert-password: '${{ secrets.WINDOWS_SIGNING_PASSWORD }}'
           cert-sha1: '${{ secrets.WINDOWS_SIGNING_SHA1 }}'
-          folder: 'out'
+          folder: 'dist'
           timestamp-server: 'http://timestamp.digicert.com'
           recursive: true
           description: 'Hiddify'
