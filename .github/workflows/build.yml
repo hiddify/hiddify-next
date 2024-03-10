@@ -173,7 +173,19 @@ jobs:
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
         run: |
           make ${{ matrix.platform }}-release
-      
+
+      - name: Code Sign
+        if: ${{ inputs.upload-artifact && startsWith(matrix.platform,'windows') }}
+        uses: hiddify/signtool-code-sign-sha256@main
+        with:
+          certificate: '${{ secrets.WINDOWS_SIGNING_KEY }}'
+          cert-password: '${{ secrets.WINDOWS_SIGNING_PASSWORD }}'
+          cert-sha1: '${{ secrets.WINDOWS_SIGNING_SHA1 }}'
+          folder: 'out'
+          timestamp-server: 'http://timestamp.digicert.com'
+          recursive: true
+          description: 'Hiddify'
+
       - name: Copy to out Windows
         if: matrix.platform == 'windows'
         run: |
@@ -193,16 +205,7 @@ jobs:
           dart run sentry_dart_plugin 
       
       
-      - name: Code Sign
-        if: ${{ inputs.upload-artifact && startsWith(matrix.platform,'windows') }}
-        uses: hiddify/signtool-code-sign-sha256@main
-        with:
-          certificate: '${{ secrets.WINDOWS_SIGNING_KEY }}'
-          cert-password: '${{ secrets.WINDOWS_SIGNING_PASSWORD }}'
-          folder: 'out'
-          timestamp-server: 'http://timestamp.digicert.com'
-          recursive: true
-          description: 'Hiddify'
+
               
       - name: Copy to out Android APK
         if: matrix.platform == 'android-apk'
