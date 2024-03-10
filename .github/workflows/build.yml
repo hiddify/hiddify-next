@@ -15,7 +15,7 @@ on:
 env:
   IS_GITHUB_ACTIONS: 1
   CHANNEL: "${{ inputs.channel }}"
-  FLUTTER_VERSION: '3.19.x'
+  FLUTTER_VERSION: '3.20.0-1.2.pre'
   NDK_VERSION: r26b
   UPLOAD_ARTIFACT: "${{ inputs.upload-artifact }}"
   TAG_NAME: "${{ inputs.tag-name }}"
@@ -36,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: subosito/flutter-action@v2
+      - uses: subosito/flutter-action@v2.12.0 #issue with 2.13
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: 'stable'
@@ -87,7 +87,7 @@ jobs:
         uses: actions/checkout@v3
       
       - name: Setup Flutter
-        uses: subosito/flutter-action@v2
+        uses: subosito/flutter-action@v2.12.0 #issue with 2.13
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: 'stable'
