@@ -182,7 +182,7 @@ jobs:
           
           
       - name: Upload Debug Symbols
-        if: ${{ inputs.upload-artifact && inputs.tag-name != 'draft' }}
+        if: ${{ inputs.upload-artifact && inputs.tag-name != 'draft' &&  !startsWith(matrix.platform,'windows')  }}
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_ORG: ${{ secrets.SENTRY_ORG }}

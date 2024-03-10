@@ -15,4 +15,4 @@ Compress-Archive -Force -Path "dist\tmp\hiddify-next" -DestinationPath "out\Hidd
 
 Remove-Item -Path "$HOME\.pub-cache\git\cache\flutter_circle_flags*" -Force -Recurse -ErrorAction SilentlyContinue
 
-echo "D"
+echo "Done"
