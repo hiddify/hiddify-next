@@ -19,6 +19,7 @@ part 'system_tray_notifier.g.dart';
 class SystemTrayNotifier extends _$SystemTrayNotifier with AppLogger {
   @override
   Future<void> build() async {
+    if (true) return;
     if (!PlatformUtils.isDesktop) return;
     try {
       await trayManager.setIcon(
