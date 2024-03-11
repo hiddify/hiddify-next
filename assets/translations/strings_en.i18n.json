@@ -277,7 +277,7 @@
       "invalidConfigOptions": "Invalid Configuration Options",
       "invalidConfig": "Invalid Configuration",
       "create": "Service Creation Error",
-      "start": "Service startup error"
+      "start": "Service Startup Error"
     },
     "connectivity": {
       "unexpected": "Unexpected Failure",
