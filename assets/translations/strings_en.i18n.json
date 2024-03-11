@@ -109,7 +109,7 @@
     "save": {
       "buttonText": "Save",
       "successMsg": "Profile Saved Successfully",
-      "failureMsg": "Failed to save profile"
+      "failureMsg": "Failed to Save Profile"
     },
     "detailsForm": {
       "nameLabel": "Name",
