@@ -322,7 +322,7 @@
     "reconnectMsg": "Reconnect for Changes to Take Effect"
   },
   "config": {
-    "resetBtn": "Reset options",
+    "resetBtn": "Reset Options",
     "serviceMode": "Service Mode",
     "quickSettings": "Quick Settings",
     "setupWarp": "Setup WARP",
