@@ -137,7 +137,7 @@
     },
     "activeProxySemanticLabel": "Active Proxy",
     "delaySemantics": {
-      "result": "delay: ${delay}ms",
+      "result": "Delay: ${delay}ms",
       "timeout": "delay test timeout",
       "testing": "delay: testing..."
     },
