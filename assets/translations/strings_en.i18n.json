@@ -228,7 +228,7 @@
       "failureMsg": "Failed to Update Asset",
       "successMsg": "Successfully Updated Asset",
       "addRecommended": "Add Recommended Assets",
-      "missingGeoAssetsMsg": "Selected Routing Assets' files are missing. Either download them or choose existing ones."
+      "missingGeoAssetsMsg": "Selected Routing Assets' files are missing. Either download them or choose existing ones"
     }
   },
   "about": {
