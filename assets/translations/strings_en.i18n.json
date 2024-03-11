@@ -181,7 +181,7 @@
       "themeModes": {
         "system": "Follow System Theme",
         "dark": "Dark Mode",
-        "light": "Light mode",
+        "light": "Light Mode",
         "black": "Black mode"
       },
       "enableAnalytics": "Enable Analytics",
