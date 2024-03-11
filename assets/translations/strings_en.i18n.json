@@ -220,7 +220,7 @@
     "geoAssets": {
       "pageTitle": "Routing Assets",
       "geoip": "GeoIP",
-      "geosite": "Geosite",
+      "geosite": "GeoSite",
       "version": "Version ${version}",
       "fileMissing": "File Missing",
       "update": "Update",
