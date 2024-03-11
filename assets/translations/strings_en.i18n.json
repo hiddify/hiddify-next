@@ -354,7 +354,7 @@
       "description(rich)": "Cloudflare WARP is a Free WireGuard VPN Provider. By enabling this option you are agreeing to the Cloudflare WARP's ${tos(Terms of Service)} and ${privacy(Privacy Policy)}."
     },
     "generateWarpConfig": "Generate WARP Config",
-    "missingWarpConfig": "Missing WARP config",
+    "missingWarpConfig": "Missing WARP Config ",
     "warpConfigGenerated": "WARP config generated",
     "pageTitle": "Config Options",
     "logLevel": "Log Level",
