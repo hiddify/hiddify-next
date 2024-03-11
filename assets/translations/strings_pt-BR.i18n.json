@@ -17,7 +17,7 @@
     "decline": "Recusar",
     "unknown": "Desconhecido",
     "hidden": "Escondido",
-    "timeout": "tempo esgotado"
+    "timeout": "Tempo Esgotado"
   },
   "intro": {
     "termsAndPolicyCaution(rich)": "ao continuar você concorda com ${tap( @:about.termsAndConditions)}",
