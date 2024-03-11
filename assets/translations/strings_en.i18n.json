@@ -78,7 +78,7 @@
       },
       "manually": "Manual Entry",
       "addingProfileMsg": "Adding Profile",
-      "failureMsg": "Failed to add profile"
+      "failureMsg": "Failed to Add Profile"
     },
     "update": {
       "buttonTxt": "Update",
