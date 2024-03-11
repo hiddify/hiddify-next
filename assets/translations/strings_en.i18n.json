@@ -355,7 +355,7 @@
     },
     "generateWarpConfig": "Generate WARP Config",
     "missingWarpConfig": "Missing WARP Config",
-    "warpConfigGenerated": "WARP config generated",
+    "warpConfigGenerated": "WARP Config Generated",
     "pageTitle": "Config Options",
     "logLevel": "Log Level",
     "resolveDestination": "Resolve Destination",
