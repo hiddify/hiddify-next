@@ -53,7 +53,7 @@
     "add": {
       "buttonText": "افزودن پروفایل جدید",
       "shortBtnTxt": "افزودن",
-      "fromClipboard": "افزودن از کلیپ‌بورد",
+      "fromClipboard": "افزودن از کلیپ بورد",
       "scanQr": "اسکن QR کد",
       "qrScanner": {
         "permissionDeniedError": "اجازه رد شد",
