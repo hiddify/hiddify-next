@@ -135,7 +135,7 @@
       "name": "Alphabetically",
       "delay": "By Delay"
     },
-    "activeProxySemanticLabel": "Active proxy",
+    "activeProxySemanticLabel": "Active Proxy",
     "delaySemantics": {
       "result": "delay: ${delay}ms",
       "timeout": "delay test timeout",
