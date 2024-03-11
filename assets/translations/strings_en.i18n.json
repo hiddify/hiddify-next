@@ -138,7 +138,7 @@
     "activeProxySemanticLabel": "Active Proxy",
     "delaySemantics": {
       "result": "Delay: ${delay}ms",
-      "timeout": "delay test timeout",
+      "timeout": "Delay Test Timeout",
       "testing": "delay: testing..."
     },
     "ipInfoSemantics": {
