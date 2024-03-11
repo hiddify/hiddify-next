@@ -85,7 +85,7 @@
       "tooltip": "Update Profile",
       "updateSubscriptions": "Update Subscriptions",
       "failureMsg": "Failed to Update Profile",
-      "successMsg": "Profile updated successfully",
+      "successMsg": "Profile Updated Successfully",
       "namedFailureMsg": "Failed to update \"${name}\"",
       "namedSuccessMsg": "\"${name}\" updated successfully"
     },
