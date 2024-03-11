@@ -399,7 +399,8 @@
     "warpDetourModes": {
       "proxyOverWarp": "Detour Proxies Through WARP",
       "warpOverProxy": "Detour WARP Through Proxies",
-      "inbound": "Detour WARP Through Proxies"
+      "inbound": "Detour WARP Through Proxies",
+      "outbound": "Detour Proxies Through WARP"
     },
     "warpLicenseKey": "License Key",
     "warpCleanIp": "Clean IP",

@@ -353,7 +353,7 @@
     "warpNoise": "Noise",
     "warpDetourModes": {
       "inbound": "Detour WARP Through Proxies",
-      "outbound": "Detour proxies through WARP"
+      "outbound": "Detour Proxies Through WARP"
     }
   }
 }
