@@ -36,7 +36,7 @@
     "overviewPageTitle": "Profiller",
     "detailsPageTitle": "Profil",
     "activeProfileNameSemanticLabel": "Aktif profil adı: \"${name}\".",
-    "activeProfileBtnSemanticLabel": "Tüm profilleri görüntüleyin.",
+    "activeProfileBtnSemanticLabel": "Tüm profilleri görüntüleyin",
     "nonActiveProfileBtnSemanticLabel": "Aktif profil olarak \"${name}\" seçeneğini seçin.",
     "subscription": {
       "traffic": "Trafik",

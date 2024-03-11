@@ -41,7 +41,7 @@
     "overviewPageTitle": "Perfis",
     "detailsPageTitle": "Perfil",
     "activeProfileNameSemanticLabel": "Nome do perfil ativo: \"${name}\".",
-    "activeProfileBtnSemanticLabel": "Ver todos os perfis.",
+    "activeProfileBtnSemanticLabel": "Ver todos os perfis",
     "nonActiveProfileBtnSemanticLabel": "Selecione \"${name}\" como perfil ativo.",
     "subscription": {
       "traffic": "Tráfego",

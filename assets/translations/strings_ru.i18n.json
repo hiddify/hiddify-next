@@ -36,7 +36,7 @@
     "overviewPageTitle": "Профили",
     "detailsPageTitle": "Профиль",
     "activeProfileNameSemanticLabel": "Имя активного профиля: «${name}».",
-    "activeProfileBtnSemanticLabel": "Посмотреть все профили.",
+    "activeProfileBtnSemanticLabel": "Посмотреть все профили",
     "nonActiveProfileBtnSemanticLabel": "Выберите «${name}» в качестве активного профиля.",
     "subscription": {
       "traffic": "Трафик",
