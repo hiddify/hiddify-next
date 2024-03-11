@@ -87,7 +87,7 @@
       "failureMsg": "Failed to Update Profile",
       "successMsg": "Profile Updated Successfully",
       "namedFailureMsg": "Failed to Update \"${name}\"",
-      "namedSuccessMsg": "\"${name}\" updated successfully"
+      "namedSuccessMsg": "\"${name}\" Updated Successfully"
     },
     "share": {
       "buttonText": "Share",
