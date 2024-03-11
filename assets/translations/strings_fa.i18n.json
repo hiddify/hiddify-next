@@ -297,7 +297,7 @@
       "route": "تنظیمات مسیریاب",
       "dns": "تنظیمات DNS",
       "inbound": "تنظیمات ورودی",
-      "mux": "Multiplexer",
+      "mux": "MultiPlexer",
       "outbound": "Outbound Options",
       "tlsTricks": "TLS Tricks",
       "warp": "WARP Options",

@@ -343,7 +343,7 @@
       "route": "Route Options",
       "dns": "DNS Options",
       "inbound": "Inbound Options",
-      "mux": "Multiplexer",
+      "mux": "MultiPlexer",
       "outbound": "Outbound Options",
       "tlsTricks": "TLS Tricks",
       "warp": "WARP Options",
