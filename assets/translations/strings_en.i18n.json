@@ -276,7 +276,7 @@
       "missingGeoAssetsMsg": "Geo Assets Are Missing. consider changing active asset or download selected one in the settings.",
       "invalidConfigOptions": "Invalid Configuration Options",
       "invalidConfig": "Invalid Configuration",
-      "create": "Service creation error",
+      "create": "Service Creation Error",
       "start": "Service startup error"
     },
     "connectivity": {
