@@ -162,7 +162,7 @@
     "experimental": "Experimental",
     "experimentalMsg": "Features with Experimental flag are still in development and might cause issues.",
     "exportOptions": "Export Options to Clipboard",
-    "exportAllOptions": "Export Options to Clipboard (debug)",
+    "exportAllOptions": "Export Options to Clipboard (Debug)",
     "importOptions": "Import Options from Clipboard",
     "importOptionsMsg": "This will rewrite all config options with provided values. Are you sure?",
     "general": {
