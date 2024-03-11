@@ -286,7 +286,7 @@
     "disableExperimentalNotice": "دیگر نشان نده"
   },
   "config": {
-    "resetBtn": "گزینه ها را بازنشانی کنید",
+    "resetBtn": "بازگشت به تنظیمات اولیه",
     "serviceMode": "حالت سرویس",
     "serviceModes": {
       "proxy": "فقط سرویس پروکسی",
