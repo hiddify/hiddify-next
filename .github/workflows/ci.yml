@@ -7,8 +7,6 @@ on:
       - '.vscode/'
       - 'appcast.xml'
   push:
-    branches:
-      - main
     paths-ignore:
       - '**.md'
       - 'docs/**'
