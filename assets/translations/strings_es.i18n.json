@@ -50,7 +50,7 @@
       "fromClipboard": "Agregar desde el portapapeles",
       "scanQr": "Escanear código QR",
       "qrScanner": {
-        "permissionDeniedError": "Permiso denegado",
+        "permissionDeniedError": "Permiso Denegado",
         "unexpectedError": "Algo salió mal",
         "torchSemanticLabel": "Linterna",
         "facingSemanticLabel": "Frente a la cámara"

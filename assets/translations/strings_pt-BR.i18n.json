@@ -65,7 +65,7 @@
       "fromClipboard": "Adicionar da área de transferência",
       "scanQr": "Digitalize o código QR",
       "qrScanner": {
-        "permissionDeniedError": "Permissão negada",
+        "permissionDeniedError": "Permissão Negada",
         "unexpectedError": "Algo deu errado",
         "torchSemanticLabel": "Luz do flash",
         "facingSemanticLabel": "Câmera voltada"
