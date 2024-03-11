@@ -53,7 +53,7 @@
       "traffic": "Traffic",
       "updatedTimeAgo": "Updated ${timeago}",
       "remainingDuration": "${duration} Days Remaining",
-      "remainingTrafficSemanticLabel": "${consumed} of ${total} traffic consumed.",
+      "remainingTrafficSemanticLabel": "${consumed} of ${total} Traffic Consumed",
       "expired": "Expired",
       "noTraffic": "Out of Quota",
       "upload": "Upload",
