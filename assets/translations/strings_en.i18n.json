@@ -142,7 +142,7 @@
       "testing": "Delay: Testing..."
     },
     "ipInfoSemantics": {
-      "address": "IP address",
+      "address": "IP Address",
       "country": "Country"
     }
   },
