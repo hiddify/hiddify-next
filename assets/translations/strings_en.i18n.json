@@ -69,7 +69,7 @@
       "buttonText": "New Profile",
       "shortBtnTxt": "New Profile",
       "fromClipboard": "Add From Clipboard",
-      "scanQr": "Scan QR code",
+      "scanQr": "Scan QR Code",
       "qrScanner": {
         "permissionDeniedError": "Permission denied",
         "unexpectedError": "Something went wrong",
