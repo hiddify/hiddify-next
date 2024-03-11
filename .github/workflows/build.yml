@@ -117,10 +117,6 @@ jobs:
         run: |
           make ${{ matrix.platform }}-install-dependencies
 
-      - name: Prepare for ${{ matrix.platform }}
-        run: |
-          make ${{ matrix.platform }}-prepare
-          tree
 
       - name: Setup Android Signing Properties
         if: ${{ inputs.upload-artifact && startsWith(matrix.platform,'android') }}
@@ -147,7 +143,7 @@ jobs:
         if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') }}
         uses: Apple-Actions/download-provisioning-profiles@v1
         with:
-          bundle-id: app.hiddify.com
+          bundle-id: 3JFTY5BP58.app.hiddify.com
           issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
           api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
           api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
@@ -186,6 +182,10 @@ jobs:
       #     cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
       #     cp $PP_PACKET_TUNNEL_PATH ~/Library/MobileDevice/Provisioning\ Profiles
 
+      - name: Prepare for ${{ matrix.platform }}
+        run: |
+          make ${{ matrix.platform }}-prepare
+          tree
       - name: Build ${{ matrix.platform }}
         env:
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
