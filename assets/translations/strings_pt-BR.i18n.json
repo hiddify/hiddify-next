@@ -296,7 +296,7 @@
   },
   "play": {
     "title": "Hiddify (Pré-visualização)",
-    "short_description": "Auto, SSH, VLESS, Vmess, Trojan, Reality, Sing-Box, Clash, Xray, Shadowsocks"
+    "short_description": "Auto, SSH, VLESS, VMess, Trojan, Reality, Sing-Box, Clash, XRay, Shadowsocks"
   },
   "connection": {
     "tapToConnect": "Toque para conectar",
