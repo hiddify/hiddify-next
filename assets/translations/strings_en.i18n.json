@@ -25,7 +25,7 @@
     "grantPermission": "Grant Permission"
   },
   "intro": {
-    "termsAndPolicyCaution(rich)": "By continuing you agree with ${tap(@:about.termsAndConditions)}",
+    "termsAndPolicyCaution(rich)": "By Continuing You Agree With ${tap(@:about.termsAndConditions)}",
     "start": "Start"
   },
   "home": {
