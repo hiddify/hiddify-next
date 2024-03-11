@@ -104,7 +104,7 @@
     "delete": {
       "buttonTxt": "Delete",
       "confirmationMsg": "Delete Profile Permanently?",
-      "successMsg": "Profile deleted successfully"
+      "successMsg": "Profile Deleted Successfully"
     },
     "save": {
       "buttonText": "Save",
