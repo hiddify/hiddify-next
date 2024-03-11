@@ -141,8 +141,8 @@ jobs:
         if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') }}
         uses: apple-actions/import-codesign-certs@v2
         with: 
-            p12-file-base64: ${{ secrets.CERTIFICATES_P12 }}
-            p12-password: ${{ secrets.CERTIFICATES_P12_PASSWORD }}
+            p12-file-base64: ${{ secrets.APPLE_CERTIFICATES_P12 }}
+            p12-password: ${{ secrets.APPLE_CERTIFICATES_P12_PASSWORD }}
       - name: Download Provisioning Profile
         if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') }}
         uses: Apple-Actions/download-provisioning-profiles@v1
