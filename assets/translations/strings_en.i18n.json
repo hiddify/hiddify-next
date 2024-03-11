@@ -180,7 +180,7 @@
       "themeMode": "Theme Mode",
       "themeModes": {
         "system": "Follow System Theme",
-        "dark": "Dark mode",
+        "dark": "Dark Mode",
         "light": "Light mode",
         "black": "Black mode"
       },
