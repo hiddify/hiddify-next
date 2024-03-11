@@ -193,7 +193,7 @@
       "ignoreBatteryOptimizationsMsg": "Remove Restrictions For Optimal VPN Performance",
       "dynamicNotification": "Display Speed in Notification",
       "hapticFeedback": "Haptic Feedback",
-      "autoIpCheck": "Automatically check connection IP"
+      "autoIpCheck": "Automatically Check Connection IP"
     },
     "advanced": {
       "sectionTitle": "Advanced",
