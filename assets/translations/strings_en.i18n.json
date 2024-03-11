@@ -209,7 +209,7 @@
         "off": "All",
         "offMsg": "Proxy All Apps",
         "include": "Proxy",
-        "includeMsg": "Proxy only selected apps",
+        "includeMsg": "Proxy Only Selected Apps",
         "exclude": "Bypass",
         "excludeMsg": "Do not proxy selected apps"
       },
