@@ -63,7 +63,7 @@ Future<void> lazyBootstrap(
   );
 
   final enableAnalytics =
-      await container.read(analyticsControllerProvider.future);
+      true || await container.read(analyticsControllerProvider.future);
   if (enableAnalytics) {
     await _init(
       "analytics",
@@ -178,6 +178,7 @@ Future<T> _init<T>(
   Future<T> Function() initializer, {
   int? timeout,
 }) async {
+  Logger.bootstrap.warning("$name starting seconds");
   final stopWatch = Stopwatch()..start();
   Logger.bootstrap.info("initializing [$name]");
   Future<T> func() => timeout != null
@@ -187,13 +188,20 @@ Future<T> _init<T>(
     final result = await func();
     Logger.bootstrap
         .debug("[$name] initialized in ${stopWatch.elapsedMilliseconds}ms");
+
+    Logger.bootstrap.warning("$name done successfully waiting 2 seconds");
+    await Future.delayed(Duration(seconds: 2));
     return result;
   } catch (e, stackTrace) {
     Logger.bootstrap.error("[$name] error initializing", e, stackTrace);
+    Logger.bootstrap.warning("$name done with error waiting 2 seconds");
+    await Future.delayed(Duration(seconds: 2));
     rethrow;
   } finally {
     stopWatch.stop();
   }
+  Logger.bootstrap.warning("$name done with unknown state waiting 2 seconds");
+  await Future.delayed(Duration(seconds: 2));
 }
 
 Future<T?> _safeInit<T>(
