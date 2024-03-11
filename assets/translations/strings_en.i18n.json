@@ -71,7 +71,7 @@
       "fromClipboard": "Add From Clipboard",
       "scanQr": "Scan QR Code",
       "qrScanner": {
-        "permissionDeniedError": "Permission denied",
+        "permissionDeniedError": "Permission Denied",
         "unexpectedError": "Something went wrong",
         "torchSemanticLabel": "Flash light",
         "facingSemanticLabel": "Camera facing"
