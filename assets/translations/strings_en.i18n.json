@@ -125,7 +125,7 @@
   },
   "proxies": {
     "pageTitle": "Proxies",
-    "emptyProxiesMsg": "No proxies available",
+    "emptyProxiesMsg": "No Proxies Available",
     "delayTestTooltip": "Test Delay",
     "sortTooltip": "Sort Proxies",
     "checkIp": "Check IP",
