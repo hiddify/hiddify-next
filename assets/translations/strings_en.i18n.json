@@ -296,7 +296,7 @@
       "timeout": "Connection Timeout",
       "badResponse": "Bad Response",
       "connectionError": "Connection Error",
-      "badCertificate": "Bad certificate"
+      "badCertificate": "Bad Certificate"
     },
     "geoAssets": {
       "unexpected": "Unexpected Error",
