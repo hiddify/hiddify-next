@@ -269,7 +269,7 @@
     },
     "singbox": {
       "unexpected": "Unexpected Service Error",
-      "serviceNotRunning": "Service is not running",
+      "serviceNotRunning": "Service is Not Running",
       "missingPrivilege": "Missing Privilege",
       "missingPrivilegeMsg": "VPN mode requires administrator privileges. Either relaunch the app as administrator or change service mode.",
       "missingGeoAssets": "Missing Geo Assets",
