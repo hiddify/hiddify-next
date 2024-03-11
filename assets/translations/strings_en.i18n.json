@@ -191,7 +191,7 @@
       "openWorkingDir": "Open Working Directory",
       "ignoreBatteryOptimizations": "Disable Battery Optimization",
       "ignoreBatteryOptimizationsMsg": "Remove Restrictions For Optimal VPN Performance",
-      "dynamicNotification": "Display speed in notification",
+      "dynamicNotification": "Display Speed in Notification",
       "hapticFeedback": "Haptic Feedback",
       "autoIpCheck": "Automatically check connection IP"
     },
