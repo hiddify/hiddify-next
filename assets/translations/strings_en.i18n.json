@@ -139,7 +139,7 @@
     "delaySemantics": {
       "result": "Delay: ${delay}ms",
       "timeout": "Delay Test Timeout",
-      "testing": "delay: testing..."
+      "testing": "Delay: Testing..."
     },
     "ipInfoSemantics": {
       "address": "IP address",
