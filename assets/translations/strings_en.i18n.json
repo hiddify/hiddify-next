@@ -94,7 +94,7 @@
       "exportToClipboardSuccess": "Exported to Clipboard",
       "exportSubLinkToClipboard": "Export Subscription Link to Clipboard",
       "subLinkQrCode": "Subscription Link QR Code",
-      "exportConfigToClipboard": "Export configuration to clipboard",
+      "exportConfigToClipboard": "Export Configuration to Clipboard",
       "exportConfigToClipboardSuccess": "Configuration copied to clipboard"
     },
     "edit": {
