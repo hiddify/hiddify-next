@@ -238,7 +238,7 @@
     "telegramChannel": "Telegram Channel",
     "checkForUpdate": "Check For Update",
     "privacyPolicy": "Privacy Policy",
-    "termsAndConditions": "Terms And Conditions"
+    "termsAndConditions": "Terms and Conditions"
   },
   "appUpdate": {
     "notAvailableMsg": "Already using the latest version",
