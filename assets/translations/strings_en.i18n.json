@@ -103,7 +103,7 @@
     },
     "delete": {
       "buttonTxt": "Delete",
-      "confirmationMsg": "Delete profile permanently?",
+      "confirmationMsg": "Delete Profile Permanently?",
       "successMsg": "Profile deleted successfully"
     },
     "save": {
