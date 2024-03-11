@@ -13,20 +13,24 @@ class DeepLinkNotifier extends _$DeepLinkNotifier
     with ProtocolListener, InfraLogger {
   @override
   Future<NewProfileLink?> build() async {
-    if (Platform.isLinux) return null;
-    for (final protocol in LinkParser.protocols) {
-      await protocolHandler.register(protocol);
-    }
-    protocolHandler.addListener(this);
-    ref.onDispose(() {
-      protocolHandler.removeListener(this);
-    });
+    // if (Platform.isLinux) return null;
+    try {
+      for (final protocol in LinkParser.protocols) {
+        await protocolHandler.register(protocol);
+      }
+      protocolHandler.addListener(this);
+      ref.onDispose(() {
+        protocolHandler.removeListener(this);
+      });
 
-    final initialPayload = await protocolHandler.getInitialUrl();
-    if (initialPayload != null) {
-      loggy.debug('initial payload: [$initialPayload]');
-      final link = LinkParser.deep(initialPayload);
-      return link;
+      final initialPayload = await protocolHandler.getInitialUrl();
+      if (initialPayload != null) {
+        loggy.debug('initial payload: [$initialPayload]');
+        final link = LinkParser.deep(initialPayload);
+        return link;
+      }
+    } catch (e) {
+      loggy.error("failed to init deeplink", e);
     }
     return null;
   }
