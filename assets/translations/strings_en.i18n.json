@@ -241,7 +241,7 @@
     "termsAndConditions": "Terms and Conditions"
   },
   "appUpdate": {
-    "notAvailableMsg": "Already using the latest version",
+    "notAvailableMsg": "Already Using The Latest Version",
     "dialogTitle": "Update Available",
     "updateMsg": "A new version of @:general.appTitle is available. Would you like to update now?",
     "currentVersionLbl": "Current Version",
