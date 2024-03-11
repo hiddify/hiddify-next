@@ -31,7 +31,7 @@
   "home": {
     "pageTitle": "Home",
     "emptyProfilesMsg": "Begin by Adding a Subscription Profile",
-    "noActiveProfileMsg": "Choose a profile"
+    "noActiveProfileMsg": "Choose a Profile"
   },
   "stats": {
     "traffic": "Traffic",
