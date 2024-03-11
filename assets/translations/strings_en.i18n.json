@@ -219,7 +219,7 @@
     },
     "geoAssets": {
       "pageTitle": "Routing Assets",
-      "geoip": "Geoip",
+      "geoip": "GeoIP",
       "geosite": "Geosite",
       "version": "Version ${version}",
       "fileMissing": "File Missing",

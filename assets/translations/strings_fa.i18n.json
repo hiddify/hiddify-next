@@ -186,7 +186,7 @@
     },
     "geoAssets": {
       "pageTitle": "فایل‌های مسیریابی",
-      "geoip": "Geoip",
+      "geoip": "GeoIP",
       "geosite": "Geosite",
       "version": "نسخه ${version}",
       "fileMissing": "فایل موجود نیست",

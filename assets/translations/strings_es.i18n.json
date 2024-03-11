@@ -180,7 +180,7 @@
     },
     "geoAssets": {
       "pageTitle": "Activos de enrutamiento",
-      "geoip": "Geoip",
+      "geoip": "GeoIP",
       "geosite": "Geosite",
       "version": "Versión ${version}",
       "fileMissing": "Archivo faltante",

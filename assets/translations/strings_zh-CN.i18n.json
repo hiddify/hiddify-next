@@ -209,7 +209,7 @@
     },
     "geoAssets": {
       "pageTitle": "路由资源文件",
-      "geoip": "Geoip",
+      "geoip": "GeoIP",
       "geosite": "Geosite",
       "version": "版本 ${version}",
       "fileMissing": "文件丢失",

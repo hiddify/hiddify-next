@@ -186,7 +186,7 @@
     },
     "geoAssets": {
       "pageTitle": "Varlıkları Yönlendirme",
-      "geoip": "Geoip",
+      "geoip": "GeoIP",
       "geosite": "Geosite",
       "version": "Sürüm ${version}",
       "fileMissing": "Eksik dosya",
