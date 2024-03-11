@@ -84,7 +84,7 @@
       "buttonTxt": "Update",
       "tooltip": "Update Profile",
       "updateSubscriptions": "Update Subscriptions",
-      "failureMsg": "Failed to update profile",
+      "failureMsg": "Failed to Update Profile",
       "successMsg": "Profile updated successfully",
       "namedFailureMsg": "Failed to update \"${name}\"",
       "namedSuccessMsg": "\"${name}\" updated successfully"
