@@ -190,7 +190,7 @@
       "silentStart": "Start Minimized",
       "openWorkingDir": "Open Working Directory",
       "ignoreBatteryOptimizations": "Disable Battery Optimization",
-      "ignoreBatteryOptimizationsMsg": "Remove restrictions for optimal VPN performance",
+      "ignoreBatteryOptimizationsMsg": "Remove Restrictions For Optimal VPN Performance",
       "dynamicNotification": "Display speed in notification",
       "hapticFeedback": "Haptic Feedback",
       "autoIpCheck": "Automatically check connection IP"
