@@ -72,7 +72,7 @@
       "scanQr": "Scan QR Code",
       "qrScanner": {
         "permissionDeniedError": "Permission Denied",
-        "unexpectedError": "Something went wrong",
+        "unexpectedError": "Something Went Wrong",
         "torchSemanticLabel": "Flash light",
         "facingSemanticLabel": "Camera facing"
       },
