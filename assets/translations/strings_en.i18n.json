@@ -204,7 +204,7 @@
       "resetTunnel": "Reset VPN Profile"
     },
     "network": {
-      "perAppProxyPageTitle": "Per-app Proxy",
+      "perAppProxyPageTitle": "Per-App Proxy",
       "perAppProxyModes": {
         "off": "All",
         "offMsg": "Proxy all apps",
