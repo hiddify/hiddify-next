@@ -115,7 +115,7 @@
       "nameLabel": "Name",
       "nameHint": "Profile Name",
       "urlLabel": "URL",
-      "urlHint": "Full config URL",
+      "urlHint": "Full Config URL",
       "emptyNameMsg": "Name is required",
       "invalidUrlMsg": "Invalid URL",
       "lastUpdate": "Last Update",
