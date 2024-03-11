@@ -225,7 +225,7 @@
       "fileMissing": "File Missing",
       "update": "Update",
       "download": "Download",
-      "failureMsg": "Failed to update asset",
+      "failureMsg": "Failed to Update Asset",
       "successMsg": "Successfully updated asset",
       "addRecommended": "Add Recommended Assets",
       "missingGeoAssetsMsg": "Selected routing assets' files are missing. Either download them or choose existing ones."
