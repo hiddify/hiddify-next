@@ -214,7 +214,7 @@
         "excludeMsg": "Do Not Proxy Selected Apps"
       },
       "showSystemApps": "Show System Apps",
-      "hideSystemApps": "Hide system apps",
+      "hideSystemApps": "Hide System Apps",
       "clearSelection": "Clear selection"
     },
     "geoAssets": {
