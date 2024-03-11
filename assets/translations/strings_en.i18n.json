@@ -293,7 +293,7 @@
     },
     "connection": {
       "unexpected": "Unexpected Connection Error",
-      "timeout": "Connection timeout",
+      "timeout": "Connection Timeout",
       "badResponse": "Bad response",
       "connectionError": "Connection error",
       "badCertificate": "Bad certificate"
