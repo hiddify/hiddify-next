@@ -113,7 +113,7 @@
     },
     "detailsForm": {
       "nameLabel": "Name",
-      "nameHint": "Profile name",
+      "nameHint": "Profile Name",
       "urlLabel": "URL",
       "urlHint": "Full config URL",
       "emptyNameMsg": "Name is required",
