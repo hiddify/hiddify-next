@@ -120,7 +120,7 @@
       "invalidUrlMsg": "Invalid URL",
       "lastUpdate": "Last Update",
       "updateInterval": "Auto Update",
-      "updateIntervalDialogTitle": "Auto Update Interval (in hours)"
+      "updateIntervalDialogTitle": "Auto Update Interval (in Hours)"
     }
   },
   "proxies": {
