@@ -73,7 +73,7 @@
       "qrScanner": {
         "permissionDeniedError": "Permission Denied",
         "unexpectedError": "Something Went Wrong",
-        "torchSemanticLabel": "Flash light",
+        "torchSemanticLabel": "Flash Light",
         "facingSemanticLabel": "Camera facing"
       },
       "manually": "Manual Entry",
