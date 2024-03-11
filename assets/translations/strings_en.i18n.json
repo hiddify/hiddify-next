@@ -47,7 +47,7 @@
     "overviewPageTitle": "Profiles",
     "detailsPageTitle": "Profile",
     "activeProfileNameSemanticLabel": "Active Profile Name: \"${name}\".",
-    "activeProfileBtnSemanticLabel": "View all profiles.",
+    "activeProfileBtnSemanticLabel": "View All Profiles",
     "nonActiveProfileBtnSemanticLabel": "Select \"${name}\" as active profile.",
     "subscription": {
       "traffic": "Traffic",
