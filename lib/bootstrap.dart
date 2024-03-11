@@ -132,31 +132,31 @@ Future<void> lazyBootstrap(
     () => container.read(activeProfileProvider.future),
     timeout: 1000,
   );
-  await _safeInit(
-    "deep link service",
-    () => container.read(deepLinkNotifierProvider.future),
-    timeout: 1000,
-  );
-  await _init(
-    "sing-box",
-    () => container.read(singboxServiceProvider).init(),
-  );
-  if (PlatformUtils.isDesktop) {
-    await _safeInit(
-      "system tray",
-      () => container.read(systemTrayNotifierProvider.future),
-      timeout: 1000,
-    );
-  }
+  // await _safeInit(
+  //   "deep link service",
+  //   () => container.read(deepLinkNotifierProvider.future),
+  //   timeout: 1000,
+  // );
+  // await _init(
+  //   "sing-box",
+  //   () => container.read(singboxServiceProvider).init(),
+  // );
+  // if (PlatformUtils.isDesktop) {
+  //   await _safeInit(
+  //     "system tray",
+  //     () => container.read(systemTrayNotifierProvider.future),
+  //     timeout: 1000,
+  //   );
+  // }
 
-  if (Platform.isAndroid) {
-    await _safeInit(
-      "android display mode",
-      () async {
-        await FlutterDisplayMode.setHighRefreshRate();
-      },
-    );
-  }
+  // if (Platform.isAndroid) {
+  //   await _safeInit(
+  //     "android display mode",
+  //     () async {
+  //       await FlutterDisplayMode.setHighRefreshRate();
+  //     },
+  //   );
+  // }
 
   Logger.bootstrap.info("bootstrap took [${stopWatch.elapsedMilliseconds}ms]");
   stopWatch.stop();

@@ -4,8 +4,6 @@
 #include <flutter_windows.h>
 
 #include "resource.h"
-#include <protocol_handler_windows/protocol_handler_windows_plugin_c_api.h>
-
 
 namespace {
 
@@ -125,11 +123,6 @@ Win32Window::~Win32Window() {
 bool Win32Window::Create(const std::wstring& title,
                          const Point& origin,
                          const Size& size) {
-  if (SendAppLinkToInstance(title))
-  {
-    return false;
-  }
-
   Destroy();
 
   const wchar_t* window_class =
@@ -142,9 +135,7 @@ bool Win32Window::Create(const std::wstring& title,
   double scale_factor = dpi / 96.0;
 
   HWND window = CreateWindow(
-      // window_class, title.c_str(), WS_OVERLAPPEDWINDOW, // window_manager hidden at launch
-      window_class, title.c_str(),
-      WS_OVERLAPPEDWINDOW, // do not add WS_VISIBLE since the window will be shown later
+      window_class, title.c_str(), WS_OVERLAPPEDWINDOW,
       Scale(origin.x, scale_factor), Scale(origin.y, scale_factor),
       Scale(size.width, scale_factor), Scale(size.height, scale_factor),
       nullptr, nullptr, GetModuleHandle(nullptr), this);
@@ -160,44 +151,6 @@ bool Win32Window::Create(const std::wstring& title,
 
 bool Win32Window::Show() {
   return ShowWindow(window_handle_, SW_SHOWNORMAL);
-}
-
-
-bool Win32Window::SendAppLinkToInstance(const std::wstring &title)
-{
-  // Find our exact window
-  HWND hwnd = ::FindWindow(kWindowClassName, title.c_str());
-
-  if (hwnd)
-  {
-    // Dispatch new link to current window
-    DispatchToProtocolHandler(hwnd);
-
-    // (Optional) Restore our window to front in same state
-    WINDOWPLACEMENT place = {sizeof(WINDOWPLACEMENT)};
-    GetWindowPlacement(hwnd, &place);
-
-    switch (place.showCmd)
-    {
-    case SW_SHOWMAXIMIZED:
-      ShowWindow(hwnd, SW_SHOWMAXIMIZED);
-      break;
-    case SW_SHOWMINIMIZED:
-      ShowWindow(hwnd, SW_RESTORE);
-      break;
-    default:
-      ShowWindow(hwnd, SW_NORMAL);
-      break;
-    }
-
-    SetWindowPos(0, HWND_TOP, 0, 0, 0, 0, SWP_SHOWWINDOW | SWP_NOSIZE | SWP_NOMOVE);
-    SetForegroundWindow(hwnd);
-
-    // Window has been found, don't create another one.
-    return true;
-  }
-
-  return false;
 }
 
 // static
