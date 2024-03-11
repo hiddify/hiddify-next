@@ -182,7 +182,7 @@
         "system": "Follow System Theme",
         "dark": "Dark Mode",
         "light": "Light Mode",
-        "black": "Black mode"
+        "black": "Black Mode"
       },
       "enableAnalytics": "Enable Analytics",
       "enableAnalyticsMsg": "Give permission to collect analytics and send crash reports to improve the app",
