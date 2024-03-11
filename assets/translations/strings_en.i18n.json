@@ -211,7 +211,7 @@
         "include": "Proxy",
         "includeMsg": "Proxy Only Selected Apps",
         "exclude": "Bypass",
-        "excludeMsg": "Do not proxy selected apps"
+        "excludeMsg": "Do Not Proxy Selected Apps"
       },
       "showSystemApps": "Show system apps",
       "hideSystemApps": "Hide system apps",
