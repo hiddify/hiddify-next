@@ -292,7 +292,7 @@
       "invalidUrl": "Invalid URL"
     },
     "connection": {
-      "unexpected": "Unexpected connection error",
+      "unexpected": "Unexpected Connection Error",
       "timeout": "Connection timeout",
       "badResponse": "Bad response",
       "connectionError": "Connection error",
