@@ -147,6 +147,14 @@ jobs:
           issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
           api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
           api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
+      - name: Download Provisioning Profile  SingBoxPacketTunnel
+        if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') }}
+        uses: Apple-Actions/download-provisioning-profiles@v1
+        with:
+          bundle-id: app.hiddify.com.SingBoxPacketTunnel
+          issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
+          api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
+          api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
 
       # - name: Setup Apple certificate and provisioning profile
       #   if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') }}
