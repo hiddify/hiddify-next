@@ -213,7 +213,7 @@
         "exclude": "Bypass",
         "excludeMsg": "Do Not Proxy Selected Apps"
       },
-      "showSystemApps": "Show system apps",
+      "showSystemApps": "Show System Apps",
       "hideSystemApps": "Hide system apps",
       "clearSelection": "Clear selection"
     },
