@@ -42,7 +42,7 @@
       "traffic": "Трафик",
       "updatedTimeAgo": "Обновлено ${timeago}",
       "remainingDuration": "Ещё ${duration} дн",
-      "remainingTrafficSemanticLabel": "Использовано ${consumed} трафика из ${total}.",
+      "remainingTrafficSemanticLabel": "Использовано ${consumed} трафика из ${total}",
       "expired": "Истекло",
       "noTraffic": "Нет доступного трафика"
     },

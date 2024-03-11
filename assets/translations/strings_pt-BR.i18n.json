@@ -47,7 +47,7 @@
       "traffic": "Tráfego",
       "updatedTimeAgo": "Atualizado ${timeago}",
       "remainingDuration": "${duration} dias restantes",
-      "remainingTrafficSemanticLabel": "${consumed} de ${total} tráfego consumido.",
+      "remainingTrafficSemanticLabel": "${consumed} de ${total} tráfego consumido",
       "expired": "Expirado",
       "noTraffic": "Fora da cota",
       "upload": "Upload",

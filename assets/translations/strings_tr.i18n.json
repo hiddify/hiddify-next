@@ -42,7 +42,7 @@
       "traffic": "Trafik",
       "updatedTimeAgo": "${timeago} güncellendi",
       "remainingDuration": "${duration} Gün Kaldı",
-      "remainingTrafficSemanticLabel": "${consumed}/${total} trafik tüketildi.",
+      "remainingTrafficSemanticLabel": "${consumed}/${total} trafik tüketildi",
       "expired": "Süresi Doldu",
       "noTraffic": "Kotal Doldu"
     },
