@@ -294,7 +294,7 @@
     "connection": {
       "unexpected": "Unexpected Connection Error",
       "timeout": "Connection Timeout",
-      "badResponse": "Bad response",
+      "badResponse": "Bad Response",
       "connectionError": "Connection error",
       "badCertificate": "Bad certificate"
     },
