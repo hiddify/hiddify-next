@@ -179,7 +179,7 @@
       },
       "themeMode": "Theme Mode",
       "themeModes": {
-        "system": "Follow system theme",
+        "system": "Follow System Theme",
         "dark": "Dark mode",
         "light": "Light mode",
         "black": "Black mode"
