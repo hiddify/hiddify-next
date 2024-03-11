@@ -77,7 +77,9 @@ macos-install-dependencies:
 	dart pub global activate flutter_distributor
 
 ios-install-dependencies: 
-	echo "not yet implemented"
+	brew install create-dmg tree 
+	npm install -g appdmg
+	dart pub global activate flutter_distributor
 
 android-install-dependencies: 
 	echo "nothing yet"
