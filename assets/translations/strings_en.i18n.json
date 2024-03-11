@@ -74,7 +74,7 @@
         "permissionDeniedError": "Permission Denied",
         "unexpectedError": "Something Went Wrong",
         "torchSemanticLabel": "Flash Light",
-        "facingSemanticLabel": "Camera facing"
+        "facingSemanticLabel": "Camera Facing"
       },
       "manually": "Manual Entry",
       "addingProfileMsg": "Adding Profile",
