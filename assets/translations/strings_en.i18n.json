@@ -92,7 +92,7 @@
     "share": {
       "buttonText": "Share",
       "exportToClipboardSuccess": "Exported to Clipboard",
-      "exportSubLinkToClipboard": "Export subscription link to clipboard",
+      "exportSubLinkToClipboard": "Export Subscription Link to Clipboard",
       "subLinkQrCode": "Subscription link QR code",
       "exportConfigToClipboard": "Export configuration to clipboard",
       "exportConfigToClipboardSuccess": "Configuration copied to clipboard"
