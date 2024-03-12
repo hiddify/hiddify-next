@@ -306,7 +306,15 @@ jobs:
           name: artifact
           path: ./out
           retention-days: 2
-
+      - name: 'Upload app to TestFlight'
+        if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') }}
+        # if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') && inputs.tag-name != 'draft' }}
+        uses: apple-actions/upload-testflight-build@v1
+        with:           
+          app-path: 'out/Hiddify-iOS.ipa' 
+          issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
+          api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
+          api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
   update-draft:
     permissions: write-all
     if: ${{ inputs.upload-artifact }}
@@ -355,13 +363,6 @@ jobs:
           tag_name: 'draft'
           body_path: './release.md'
           prerelease: true
-      - name: 'Upload app to TestFlight'
-        uses: apple-actions/upload-testflight-build@v1
-        with:           
-          app-path: 'out/Hiddify-iOS.ipa' 
-          issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
-          api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
-          api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
   upload-release:
     permissions: write-all
     if: ${{ inputs.upload-artifact && inputs.tag-name != 'draft' }}
@@ -411,11 +412,3 @@ jobs:
           track: 'beta'
 
 
-
-      - name: 'Upload app to TestFlight'
-        uses: apple-actions/upload-testflight-build@v1
-        with:           
-          app-path: 'out/Hiddify-iOS.ipa' 
-          issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
-          api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
-          api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
