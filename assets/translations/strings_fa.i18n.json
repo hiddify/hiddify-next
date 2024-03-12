@@ -351,18 +351,19 @@
     "enableTlsMixedSniCase": "Enable TLS Mixed SNI Case",
     "enableTlsPadding": "Enable TLS Padding",
     "tlsPaddingSize": "TLS Padding",
-    "enableMux": "Enable Mux",
-    "muxProtocol": "Mux Protocol",
+    "enableMux": "فعال کردن موکس",
+    "muxProtocol": " پروتکل موکس",
     "muxMaxStreams": "Max Concurrent Streams",
-    "enableWarp": "Enable WARP",
+    "enableWarp": "فعال کردن وارپ",
     "warpDetourMode": "Detour Mode",
     "warpDetourModes": {
       "inbound": "Detour WARP Through Proxies",
       "outbound": "Detour Proxies Through WARP"
     },
-    "warpLicenseKey": "License Key",
-    "warpCleanIp": "Clean IP",
-    "warpPort": "Port",
-    "warpNoise": "Noise"
+    "warpLicenseKey": "کلید لایسنس",
+    "warpCleanIp": "ای پی تمیز",
+    "warpPort": "پورت",
+    "warpNoise": "نویز",
+    "warpNoiseDelay": "تاخیر نویز"
   }
 }
