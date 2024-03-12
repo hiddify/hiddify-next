@@ -139,6 +139,13 @@ jobs:
         with: 
             p12-file-base64: "${{ secrets.APPLE_CERTIFICATE_P12 }}"
             p12-password: "${{ secrets.APPLE_CERTIFICATE_P12_PASSWORD }}"
+
+      - name: Import Apple Mobile Provisioning Profile
+        if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') }}
+        run: |
+          echo "${{secrets.APPLE_MOBILE_PROVISIONING_PROFILES_TARGZ_BASE64}}"|base64 --decode | tar xz -C ~/Library/MobileDevice/
+
+
       - name: Download Provisioning Profile
         if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') }}
         uses: Apple-Actions/download-provisioning-profiles@v1
