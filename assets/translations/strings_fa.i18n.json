@@ -3,19 +3,24 @@
     "appTitle": "هیدیفای",
     "reset": "بازنشانی",
     "toggle": {
-      "enabled": "فعال",
-      "disabled": "غیر فعال"
+      "enabled": "فعال شد",
+      "disabled": "غیر فعال شد"
     },
     "state": {
       "disable": "غیر فعال"
     },
     "sort": "مرتب‌سازی",
     "sortBy": "مرتب‌سازی براساس",
-    "addToClipboard": "به کلیپ بورد اضافه کنید",
+    "addToClipboard": "اضافه کردن به کلیپ بورد",
     "notSet": "تنظیم نشده",
     "agree": "موافقم",
-    "decline": "رد",
-    "unknown": "ناشناخته"
+    "decline": "رد کردن",
+    "unknown": "ناشناخته",
+    "hidden": "مخفی",
+    "timeout": "تایم اوت",
+    "clipboardExportSuccessMsg": "به کلیپ برد اضافه شد",
+    "showMore": "بیشتر",
+    "grantPermission": "اجازه دادن"
   },
   "intro": {
     "termsAndPolicyCaution(rich)": "در صورت ادامه با ${tap(@:about.termsAndConditions)} موافقت میکنید",
@@ -27,10 +32,12 @@
     "noActiveProfileMsg": "یک پروفایل انتخاب کنید"
   },
   "stats": {
+    "traffic": "مصرف",
     "trafficLive": "مصرف لحظه‌ای",
     "trafficTotal": "مصرف کل",
     "uplink": "ارسال",
-    "downlink": "دریافت"
+    "downlink": "دریافت",
+    "speed": "سرعت"
   },
   "profile": {
     "overviewPageTitle": "پروفایل‌ها",
@@ -44,7 +51,9 @@
       "remainingDuration": "${duration} روز باقی مانده",
       "remainingTrafficSemanticLabel": "${consumed} از ${total} ترافیک مصرف شده",
       "expired": "منقضی شده",
-      "noTraffic": "پایان ترافیک"
+      "noTraffic": "پایان ترافیک",
+      "download": "دریافت",
+      "expireDate": "تاریخ انقضا"
     },
     "sortBy": {
       "lastUpdate": "اخیرا بروز شده",
@@ -347,13 +356,13 @@
     "muxMaxStreams": "Max Concurrent Streams",
     "enableWarp": "Enable WARP",
     "warpDetourMode": "Detour Mode",
-    "warpLicenseKey": "License Key",
-    "warpCleanIp": "Clean IP",
-    "warpPort": "Port",
-    "warpNoise": "Noise",
     "warpDetourModes": {
       "inbound": "Detour WARP Through Proxies",
       "outbound": "Detour Proxies Through WARP"
-    }
+    },
+    "warpLicenseKey": "License Key",
+    "warpCleanIp": "Clean IP",
+    "warpPort": "Port",
+    "warpNoise": "Noise"
   }
 }

@@ -45,7 +45,8 @@
       "remainingDuration": "Tersisa ${duration} hari lagi",
       "remainingTrafficSemanticLabel": "${consumed}/${total} trafik terpakai",
       "expired": "Kadaluarsa",
-      "noTraffic": "Kuota Habis"
+      "noTraffic": "Kuota Habis",
+      "upload": "بارگذاری"
     },
     "sortBy": {
       "lastUpdate": "Baru diperbaharui",
@@ -348,13 +349,13 @@
     "muxMaxStreams": "Max Concurrent Streams",
     "enableWarp": "Enable WARP",
     "warpDetourMode": "Detour Mode",
-    "warpLicenseKey": "License Key",
-    "warpCleanIp": "Clean IP",
-    "warpPort": "Port",
-    "warpNoise": "Noise",
     "warpDetourModes": {
       "inbound": "Detour WARP through proxies",
       "outbound": "Detour proxies through WARP"
-    }
+    },
+    "warpLicenseKey": "License Key",
+    "warpCleanIp": "Clean IP",
+    "warpPort": "Port",
+    "warpNoise": "Noise"
   }
 }
