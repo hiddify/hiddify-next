@@ -281,8 +281,8 @@ jobs:
               cp ./.github/help/mac-windows/* tmp_out/
             fi
             if [[ "${{matrix.platform}}" == 'ios' ]];then
-              echo mv tmp_out/${FILENAME}.$EXT bin/
-              mv tmp_out/${FILENAME}.$EXT bin/
+              echo mv tmp_out/${FILENAME}.$EXT out/
+              mv tmp_out/${FILENAME}.$EXT out/
             else
               cd tmp_out
               # 7z a ${FILENAME}.zip ./
