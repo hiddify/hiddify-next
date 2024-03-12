@@ -273,6 +273,7 @@ jobs:
             FILENAME=${!KEY}
             echo "For $EXT ($KEY) filename is ${FILENAME}"
             mv dist/*/*.$EXT tmp_out/${FILENAME}.$EXT
+            ls tmp_out
             chmod +x tmp_out/${FILENAME}.$EXT
             if [ "${{matrix.platform}}" == "linux" ];then
               cp ./.github/help/linux/* tmp_out/
@@ -280,7 +281,8 @@ jobs:
               cp ./.github/help/mac-windows/* tmp_out/
             fi
             if [[ "${{matrix.platform}}" == 'ios' ]];then
-              mv tmp_out/${FILENAME}.$EXT bin/${FILENAME}.$EXT
+              echo mv tmp_out/${FILENAME}.$EXT bin/
+              mv tmp_out/${FILENAME}.$EXT bin/
             else
               cd tmp_out
               # 7z a ${FILENAME}.zip ./
