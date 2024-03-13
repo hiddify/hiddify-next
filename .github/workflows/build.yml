@@ -90,6 +90,40 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
+        - name: Import Apple Codesign Certificates
+        if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') }}
+        uses: apple-actions/import-codesign-certs@v2
+        with: 
+            p12-file-base64: "${{ secrets.APPLE_CERTIFICATE_P12 }}"
+            p12-password: "${{ secrets.APPLE_CERTIFICATE_P12_PASSWORD }}"
+
+      - name: Import Apple Mobile Provisioning Profile
+        if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') }}
+        run: |
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          echo "${{secrets.APPLE_MOBILE_PROVISIONING_PROFILES_TARGZ_BASE64}}"|base64 --decode | tar xz -C ~/Library/MobileDevice/Provisioning\ Profiles
+          # echo "${{secrets.APPLE_DEVLOP_PROVISIONING_PROFILES_TARGZ_BASE64}}"|base64 --decode | tar xz -C ~/Library/MobileDevice/Provisioning\ Profiles
+          
+
+
+
+      - name: Download Provisioning Profile
+        if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') }}
+        uses: Apple-Actions/download-provisioning-profiles@v1
+        with:
+          bundle-id: app.hiddify.com
+          issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
+          api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
+          api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
+      - name: Download Provisioning Profile  SingBoxPacketTunnel
+        if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') }}
+        uses: Apple-Actions/download-provisioning-profiles@v1
+        with:
+          bundle-id: app.hiddify.com.SingBoxPacketTunnel
+          issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
+          api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
+          api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
+
       
       - name: Setup Flutter
         uses: subosito/flutter-action@v2.12.0 #issue with 2.13
@@ -133,40 +167,6 @@ jobs:
             [IO.File]::WriteAllBytes("windows\sign.pfx", [Convert]::FromBase64String("${{ secrets.WINDOWS_SIGNING_KEY }}"))
             (Get-Content "windows\packaging\msix\make_config.yaml") -replace '^certificate_password:.*$', 'certificate_password: ${{ secrets.WINDOWS_SIGNING_PASSWORD }}' | Set-Content "windows\packaging\msix\make_config.yaml"
         
-      - name: Import Apple Codesign Certificates
-        if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') }}
-        uses: apple-actions/import-codesign-certs@v2
-        with: 
-            p12-file-base64: "${{ secrets.APPLE_CERTIFICATE_P12 }}"
-            p12-password: "${{ secrets.APPLE_CERTIFICATE_P12_PASSWORD }}"
-
-      - name: Import Apple Mobile Provisioning Profile
-        if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') }}
-        run: |
-          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          echo "${{secrets.APPLE_MOBILE_PROVISIONING_PROFILES_TARGZ_BASE64}}"|base64 --decode | tar xz -C ~/Library/MobileDevice/Provisioning\ Profiles
-          # echo "${{secrets.APPLE_DEVLOP_PROVISIONING_PROFILES_TARGZ_BASE64}}"|base64 --decode | tar xz -C ~/Library/MobileDevice/Provisioning\ Profiles
-          
-
-
-
-      - name: Download Provisioning Profile
-        if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') }}
-        uses: Apple-Actions/download-provisioning-profiles@v1
-        with:
-          bundle-id: app.hiddify.com
-          issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
-          api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
-          api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
-      - name: Download Provisioning Profile  SingBoxPacketTunnel
-        if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') }}
-        uses: Apple-Actions/download-provisioning-profiles@v1
-        with:
-          bundle-id: app.hiddify.com.SingBoxPacketTunnel
-          issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
-          api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
-          api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
-
       # - name: Setup Apple certificate and provisioning profile
       #   if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') }}
       #   env:
