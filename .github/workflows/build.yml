@@ -58,28 +58,28 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # - platform: android-apk
-          #   os: ubuntu-latest
-          #   targets: apk
+          - platform: android-apk
+            os: ubuntu-latest
+            targets: apk
 
-          # - platform: android-aab
-          #   os: ubuntu-latest
-          #   targets: aab
+          - platform: android-aab
+            os: ubuntu-latest
+            targets: aab
 
-          # - platform: windows
-          #   os: windows-2019
-          #   aarch: amd64
-          #   targets: exe,msix
+          - platform: windows
+            os: windows-2019
+            aarch: amd64
+            targets: exe,msix
 
-          # - platform: linux
-          #   os: ubuntu-22.04
-          #   aarch: amd64
-          #   targets: AppImage,deb,rpm
+          - platform: linux
+            os: ubuntu-22.04
+            aarch: amd64
+            targets: AppImage,deb,rpm
 
-          # - platform: macos
-          #   os: macos-13
-          #   aarch: universal
-          #   targets: dmg,pkg
+          - platform: macos
+            os: macos-13
+            aarch: universal
+            targets: dmg,pkg
             
           - platform: ios
             os: macos-13
@@ -167,39 +167,6 @@ jobs:
             [IO.File]::WriteAllBytes("windows\sign.pfx", [Convert]::FromBase64String("${{ secrets.WINDOWS_SIGNING_KEY }}"))
             (Get-Content "windows\packaging\msix\make_config.yaml") -replace '^certificate_password:.*$', 'certificate_password: ${{ secrets.WINDOWS_SIGNING_PASSWORD }}' | Set-Content "windows\packaging\msix\make_config.yaml"
         
-      # - name: Setup Apple certificate and provisioning profile
-      #   if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') }}
-      #   env:
-      #     BUILD_CERTIFICATE_BASE64: ${{ secrets.APPLE_BUILD_CERTIFICATE_BASE64 }}
-      #     P12_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_P12_PASSWORD }}
-      #     BUILD_PROVISION_PROFILE_BASE64: ${{ secrets.APPLE_BUILD_PROVISION_PROFILE_BASE64 }}
-      #     BUILD_PACKET_TUNNEL_PROVISION_PROFILE_BASE64: ${{ secrets.APPLE_BUILD_PACKET_TUNNEL_PROVISION_PROFILE_BASE64 }}
-      #     KEYCHAIN_PASSWORD: ${{ secrets.APPLE_KEYCHAIN_PASSWORD }}
-      #   run: |
-      #     # create variables
-      #     CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
-      #     PP_PATH=$RUNNER_TEMP/build_pp.mobileprovision
-      #     PP_PACKET_TUNNEL_PATH=$RUNNER_TEMP/build_pppt.mobileprovision
-      #     KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
-
-      #     # import certificate and provisioning profile from secrets
-      #     echo -n "$BUILD_CERTIFICATE_BASE64" | base64 --decode -o $CERTIFICATE_PATH
-      #     echo -n "$BUILD_PROVISION_PROFILE_BASE64" | base64 --decode -o $PP_PATH
-      #     echo -n "$BUILD_PACKET_TUNNEL_PROVISION_PROFILE_BASE64" | base64 --decode -o $PP_PACKET_TUNNEL_PATH
-
-      #     # create temporary keychain
-      #     security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
-      #     security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
-      #     security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
-
-      #     # import certificate to keychain
-      #     security import $CERTIFICATE_PATH -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
-      #     security list-keychain -d user -s $KEYCHAIN_PATH
-
-      #     # apply provisioning profile
-      #     mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-      #     cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
-      #     cp $PP_PACKET_TUNNEL_PATH ~/Library/MobileDevice/Provisioning\ Profiles
       - name: Temporary disable Permission Handler for windows due to its issue in permission
         if: ${{ startsWith(matrix.platform,'windows') }}
         run: |
