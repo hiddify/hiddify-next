@@ -107,22 +107,22 @@ jobs:
 
 
 
-      - name: Download Provisioning Profile
-        if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') }}
-        uses: Apple-Actions/download-provisioning-profiles@v1
-        with:
-          bundle-id: app.hiddify.com
-          issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
-          api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
-          api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
-      - name: Download Provisioning Profile  SingBoxPacketTunnel
-        if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') }}
-        uses: Apple-Actions/download-provisioning-profiles@v1
-        with:
-          bundle-id: app.hiddify.com.SingBoxPacketTunnel
-          issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
-          api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
-          api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
+      # - name: Download Provisioning Profile
+      #   if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') }}
+      #   uses: Apple-Actions/download-provisioning-profiles@v1
+      #   with:
+      #     bundle-id: app.hiddify.com
+      #     issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
+      #     api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
+      #     api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
+      # - name: Download Provisioning Profile  SingBoxPacketTunnel
+      #   if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') }}
+      #   uses: Apple-Actions/download-provisioning-profiles@v1
+      #   with:
+      #     bundle-id: app.hiddify.com.SingBoxPacketTunnel
+      #     issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
+      #     api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
+      #     api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
 
       
       - name: Setup Flutter
@@ -274,6 +274,7 @@ jobs:
       - name: 'Upload app to TestFlight'
         if: ${{ inputs.upload-artifact && matrix.platform == 'ios' && inputs.tag-name != 'draft' }}
         uses: apple-actions/upload-testflight-build@v1
+        continue-on-error: true
         with:           
           app-path: 'out/Hiddify-iOS.ipa' 
           issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
