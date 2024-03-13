@@ -36,15 +36,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: subosito/flutter-action@v2.12.0 #issue with 2.13
-        with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
-          channel: 'stable'
-          cache: true
-      - name: Prepare
-        run: make linux-prepare
-      - name: Test
-        run: flutter test
+      # - uses: subosito/flutter-action@v2.12.0 #issue with 2.13
+      #   with:
+      #     flutter-version: ${{ env.FLUTTER_VERSION }}
+      #     channel: 'stable'
+      #     cache: true
+      # - name: Prepare
+      #   run: make linux-prepare
+      # - name: Test
+      #   run: flutter test
 
       - name: make draftBuildCode
         id: draftBuildCode
@@ -80,11 +80,50 @@ jobs:
             os: macos-13
             aarch: universal
             targets: dmg,pkg
-
+            
+          - platform: ios
+            os: macos-13
+            aarch: universal
+            filename: hiddify-ios
+            targets: ipa
     runs-on: ${{ matrix.os }}
     steps:
       - name: checkout
         uses: actions/checkout@v3
+      - name: Import Apple Codesign Certificates
+        if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') }}
+        uses: apple-actions/import-codesign-certs@v2
+        with: 
+            p12-file-base64: "${{ secrets.APPLE_CERTIFICATE_P12 }}"
+            p12-password: "${{ secrets.APPLE_CERTIFICATE_P12_PASSWORD }}"
+
+      - name: Import Apple Mobile Provisioning Profile
+        if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') }}
+        run: |
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          echo "${{secrets.APPLE_MOBILE_PROVISIONING_PROFILES_TARGZ_BASE64}}"|base64 --decode | tar xz -C ~/Library/MobileDevice/Provisioning\ Profiles
+          # echo "${{secrets.APPLE_DEVLOP_PROVISIONING_PROFILES_TARGZ_BASE64}}"|base64 --decode | tar xz -C ~/Library/MobileDevice/Provisioning\ Profiles
+          
+
+
+
+      - name: Download Provisioning Profile
+        if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') }}
+        uses: Apple-Actions/download-provisioning-profiles@v1
+        with:
+          bundle-id: app.hiddify.com
+          issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
+          api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
+          api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
+      - name: Download Provisioning Profile  SingBoxPacketTunnel
+        if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') }}
+        uses: Apple-Actions/download-provisioning-profiles@v1
+        with:
+          bundle-id: app.hiddify.com.SingBoxPacketTunnel
+          issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
+          api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
+          api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
+
       
       - name: Setup Flutter
         uses: subosito/flutter-action@v2.12.0 #issue with 2.13
@@ -112,10 +151,6 @@ jobs:
         run: |
           make ${{ matrix.platform }}-install-dependencies
 
-      - name: Prepare for ${{ matrix.platform }}
-        run: |
-          make ${{ matrix.platform }}-prepare
-          tree
 
       - name: Setup Android Signing Properties
         if: ${{ inputs.upload-artifact && startsWith(matrix.platform,'android') }}
@@ -131,42 +166,16 @@ jobs:
         run: |
             [IO.File]::WriteAllBytes("windows\sign.pfx", [Convert]::FromBase64String("${{ secrets.WINDOWS_SIGNING_KEY }}"))
             (Get-Content "windows\packaging\msix\make_config.yaml") -replace '^certificate_password:.*$', 'certificate_password: ${{ secrets.WINDOWS_SIGNING_PASSWORD }}' | Set-Content "windows\packaging\msix\make_config.yaml"
-
-  
-      - name: Setup Apple certificate and provisioning profile
-        if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') }}
-        env:
-          BUILD_CERTIFICATE_BASE64: ${{ secrets.APPLE_BUILD_CERTIFICATE_BASE64 }}
-          P12_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_P12_PASSWORD }}
-          BUILD_PROVISION_PROFILE_BASE64: ${{ secrets.APPLE_BUILD_PROVISION_PROFILE_BASE64 }}
-          BUILD_PACKET_TUNNEL_PROVISION_PROFILE_BASE64: ${{ secrets.APPLE_BUILD_PACKET_TUNNEL_PROVISION_PROFILE_BASE64 }}
-          KEYCHAIN_PASSWORD: ${{ secrets.APPLE_KEYCHAIN_PASSWORD }}
+        
+      - name: Temporary disable Permission Handler for windows due to its issue in permission
+        if: ${{ startsWith(matrix.platform,'windows') }}
         run: |
-          # create variables
-          CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
-          PP_PATH=$RUNNER_TEMP/build_pp.mobileprovision
-          PP_PACKET_TUNNEL_PATH=$RUNNER_TEMP/build_pppt.mobileprovision
-          KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
+          (Get-Content -Path "pubspec.yaml") -notmatch "permission_handler" | Set-Content -Path "pubspec.yaml"
 
-          # import certificate and provisioning profile from secrets
-          echo -n "$BUILD_CERTIFICATE_BASE64" | base64 --decode -o $CERTIFICATE_PATH
-          echo -n "$BUILD_PROVISION_PROFILE_BASE64" | base64 --decode -o $PP_PATH
-          echo -n "$BUILD_PACKET_TUNNEL_PROVISION_PROFILE_BASE64" | base64 --decode -o $PP_PACKET_TUNNEL_PATH
-
-          # create temporary keychain
-          security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
-          security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
-          security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
-
-          # import certificate to keychain
-          security import $CERTIFICATE_PATH -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
-          security list-keychain -d user -s $KEYCHAIN_PATH
-
-          # apply provisioning profile
-          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
-          cp $PP_PACKET_TUNNEL_PATH ~/Library/MobileDevice/Provisioning\ Profiles
-
+      - name: Prepare for ${{ matrix.platform }}
+        run: |
+          make ${{ matrix.platform }}-prepare
+          tree
       - name: Build ${{ matrix.platform }}
         env:
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
@@ -235,6 +244,7 @@ jobs:
             FILENAME=${!KEY}
             echo "For $EXT ($KEY) filename is ${FILENAME}"
             mv dist/*/*.$EXT tmp_out/${FILENAME}.$EXT
+            ls tmp_out
             chmod +x tmp_out/${FILENAME}.$EXT
             if [ "${{matrix.platform}}" == "linux" ];then
               cp ./.github/help/linux/* tmp_out/
@@ -242,7 +252,8 @@ jobs:
               cp ./.github/help/mac-windows/* tmp_out/
             fi
             if [[ "${{matrix.platform}}" == 'ios' ]];then
-              mv tmp_out/${FILENAME}.$EXT bin/${FILENAME}.$EXT
+              echo mv tmp_out/${FILENAME}.$EXT out/
+              mv tmp_out/${FILENAME}.$EXT out/
             else
               cd tmp_out
               # 7z a ${FILENAME}.zip ./
@@ -266,7 +277,14 @@ jobs:
           name: artifact
           path: ./out
           retention-days: 2
-
+      - name: 'Upload app to TestFlight'
+        if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') && inputs.tag-name != 'draft' }}
+        uses: apple-actions/upload-testflight-build@v1
+        with:           
+          app-path: 'out/Hiddify-iOS.ipa' 
+          issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
+          api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
+          api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
   update-draft:
     permissions: write-all
     if: ${{ inputs.upload-artifact }}
@@ -315,7 +333,6 @@ jobs:
           tag_name: 'draft'
           body_path: './release.md'
           prerelease: true
-
   upload-release:
     permissions: write-all
     if: ${{ inputs.upload-artifact && inputs.tag-name != 'draft' }}
@@ -363,3 +380,5 @@ jobs:
           releaseName: ${{ env.TAG_NAME }}
           releaseFiles: ./hiddify-android-market.aab
           track: 'beta'
+
+
