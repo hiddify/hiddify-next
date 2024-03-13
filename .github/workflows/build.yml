@@ -278,8 +278,7 @@ jobs:
           path: ./out
           retention-days: 2
       - name: 'Upload app to TestFlight'
-        if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') }}
-        # if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') && inputs.tag-name != 'draft' }}
+        if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') && inputs.tag-name != 'draft' }}
         uses: apple-actions/upload-testflight-build@v1
         with:           
           app-path: 'out/Hiddify-iOS.ipa' 
