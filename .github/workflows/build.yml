@@ -100,11 +100,8 @@ jobs:
       - name: Import Apple Mobile Provisioning Profile
         if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') }}
         run: |
-          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          echo "${{secrets.APPLE_PROVISION_PROFILE}}"|base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/dist.mobileprovision
-
-        #   mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-        #   echo "${{secrets.APPLE_MOBILE_PROVISIONING_PROFILES_TARGZ_BASE64}}"|base64 --decode | tar xz -C ~/Library/MobileDevice/Provisioning\ Profiles
+           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+           echo "${{secrets.APPLE_MOBILE_PROVISIONING_PROFILES_TARGZ_BASE64}}"|base64 --decode | tar xz -C ~/Library/MobileDevice/Provisioning\ Profiles
         #   # echo "${{secrets.APPLE_DEVLOP_PROVISIONING_PROFILES_TARGZ_BASE64}}"|base64 --decode | tar xz -C ~/Library/MobileDevice/Provisioning\ Profiles
           
 
