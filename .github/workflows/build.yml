@@ -144,8 +144,8 @@ jobs:
         if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') }}
         run: |
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          echo "${{secrets.APPLE_MOBILE_PROVISIONING_PROFILES_TARGZ_BASE64}}"|base64 --decode | tar xz -C ~/Library/MobileDevice/
-          echo "${{secrets.APPLE_DEVLOP_PROVISIONING_PROFILES_TARGZ_BASE64}}"|base64 --decode | tar xz -C ~/Library/MobileDevice/
+          echo "${{secrets.APPLE_MOBILE_PROVISIONING_PROFILES_TARGZ_BASE64}}"|base64 --decode | tar xz -C ~/Library/MobileDevice/Provisioning\ Profiles
+          # echo "${{secrets.APPLE_DEVLOP_PROVISIONING_PROFILES_TARGZ_BASE64}}"|base64 --decode | tar xz -C ~/Library/MobileDevice/Provisioning\ Profiles
           
 
 
@@ -200,6 +200,10 @@ jobs:
       #     mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
       #     cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
       #     cp $PP_PACKET_TUNNEL_PATH ~/Library/MobileDevice/Provisioning\ Profiles
+      - name: Temporary disable Permission Handler for windows due to its issue in permission
+        if: ${{ startsWith(matrix.platform,'windows') }}
+        run: |
+          (Get-Content -Path "pubspec.yaml") -notmatch "permission_handler" | Set-Content -Path "pubspec.yaml"
 
       - name: Prepare for ${{ matrix.platform }}
         run: |
