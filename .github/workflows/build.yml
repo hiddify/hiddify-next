@@ -397,7 +397,7 @@ jobs:
       - name: Import Apple Mobile Provisioning Profile
         run: |
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          echo "${{secrets.APPLE_PROVISION_PROFILE}}"> ~/Library/MobileDevice/Provisioning\ Profiles/dist.mobileprovision
+          echo "${{secrets.APPLE_PROVISION_PROFILE}}"|base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/dist.mobileprovision
 
       - uses: Apple-Actions/upload-testflight-build@v1
         with:
