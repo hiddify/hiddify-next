@@ -385,12 +385,20 @@ jobs:
           p12-file-base64: ${{ secrets.APPLE_UPLOAD_CERTIFICATE_P12 }}
           p12-password: ${{ secrets.APPLE_CERTIFICATE_P12_PASSWORD }}
 
-      - uses: Apple-Actions/download-provisioning-profiles@v1
-        with:
-          bundle-id: app.hiddify.com
-          issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
-          api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
-          api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
+      # - uses: Apple-Actions/download-provisioning-profiles@v1
+      #   with:
+      #     bundle-id: app.hiddify.com
+      #     issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
+      #     api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
+      #     api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
+
+
+
+      - name: Import Apple Mobile Provisioning Profile
+        run: |
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          echo "${{secrets.APPLE_PROVISION_PROFILE}}"> ~/Library/MobileDevice/Provisioning\ Profiles/dist.mobileprovision
+
       - uses: Apple-Actions/upload-testflight-build@v1
         with:
           app-path: 'out/Hiddify-iOS.ipa' 
