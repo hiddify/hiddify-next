@@ -120,14 +120,12 @@ class AddProfileModal extends HookConsumerWidget {
                             icon: FluentIcons.qr_code_24_regular,
                             size: buttonWidth,
                             onTap: () async {
-                              final captureResult =
-                                  await const QRCodeScannerScreen()
-                                      .open(context);
-                              if (captureResult == null) return;
+                              final cr =
+                                  await QRCodeScannerScreen().open(context);
+
+                              if (cr == null) return;
                               if (addProfileState.isLoading) return;
-                              ref
-                                  .read(addProfileProvider.notifier)
-                                  .add(captureResult);
+                              ref.read(addProfileProvider.notifier).add(cr);
                             },
                           )
                         else
