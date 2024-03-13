@@ -367,6 +367,7 @@ jobs:
 
 
   upload-to-testflight:
+    needs: [build]
     # if: ${{ inputs.upload-artifact &&  inputs.tag-name != 'draft' }}
     if: ${{ inputs.upload-artifact }}
     runs-on: macOS-latest
@@ -388,8 +389,8 @@ jobs:
         with:
           bundle-id: app.hiddify.com
           issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
-          api-key-id: ${{ secrets.APPSTORE_KEY_ID }}
-          api-private-key: ${{ secrets.APPSTORE_PRIVATE_KEY }}
+          api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
+          api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
       - uses: Apple-Actions/upload-testflight-build@v1
         with:
           app-path: 'out/Hiddify-iOS.ipa' 
