@@ -264,12 +264,6 @@ jobs:
             fi
           done
 
-      - name: Clean up keychain and provisioning profile
-        if: ${{ always() && startsWith(matrix.os,'macos')}}
-        run: |
-          security delete-keychain $RUNNER_TEMP/app-signing.keychain-db ||echo ok
-          rm ~/Library/MobileDevice/Provisioning\ Profiles/build_pp.mobileprovision ||echo ok
-
       - name: Upload Artifact
         if: env.UPLOAD_ARTIFACT == 'true'
         uses: actions/upload-artifact@v3
@@ -278,13 +272,19 @@ jobs:
           path: ./out
           retention-days: 2
       - name: 'Upload app to TestFlight'
-        if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') && inputs.tag-name != 'draft' }}
+        if: ${{ inputs.upload-artifact && matrix.platform == 'ios' && inputs.tag-name != 'draft' }}
         uses: apple-actions/upload-testflight-build@v1
         with:           
           app-path: 'out/Hiddify-iOS.ipa' 
           issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
           api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
           api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
+
+      - name: Clean up keychain and provisioning profile
+        if: ${{ always() && startsWith(matrix.os,'macos')}}
+        run: |
+          security delete-keychain $RUNNER_TEMP/app-signing.keychain-db ||echo ok
+          rm ~/Library/MobileDevice/Provisioning\ Profiles/build_pp.mobileprovision ||echo ok
   update-draft:
     permissions: write-all
     if: ${{ inputs.upload-artifact }}
