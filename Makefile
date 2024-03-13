@@ -58,6 +58,7 @@ prepare:
 	@echo    make ios-prepare
 
 windows-prepare: get-geo-assets get gen translate windows-libs
+	
 ios-prepare: get-geo-assets get gen translate ios-libs
 macos-prepare: get-geo-assets get gen translate macos-libs
 linux-prepare: get-geo-assets get gen translate linux-libs
@@ -77,9 +78,29 @@ macos-install-dependencies:
 	dart pub global activate flutter_distributor
 
 ios-install-dependencies: 
+    if [ "$(flutter)" = "true" ]; then 
+		curl -l -o ~/Downloads/flutter_macos_3.19.3-stable.zip https://storage.googleapis.com/flutter_infra_release/releases/stable/macos/flutter_macos_3.19.3-stable.zip; 
+		mkdir -p ~/develop; 
+		cd ~/develop; 
+		unzip ~/Downloads/flutter_macos_3.19.3-stable.zip; 
+		export PATH="$$PATH:$$HOME/develop/flutter/bin"; 
+		echo 'export PATH="$$PATH:$$HOME/develop/flutter/bin"' >> ~/.zshrc; 
+
+		export PATH="$PATH:$HOME/develop/flutter/bin"; 
+		echo 'export PATH="$PATH:$HOME/develop/flutter/bin"' >> ~/.zshrc; 
+
+		curl -sSL https://rvm.io/mpapis.asc | gpg --import -
+		curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
+		curl -sSL https://get.rvm.io | bash -s stable
+		brew install openssl@1.1
+		PKG_CONFIG_PATH=$(brew --prefix openssl@1.1)/lib/pkgconfig rvm install 2.7.5
+		sudo gem install cocoapods -V
+	fi
 	brew install create-dmg tree 
 	npm install -g appdmg
+	
 	dart pub global activate flutter_distributor
+	
 
 android-install-dependencies: 
 	echo "nothing yet"
@@ -226,3 +247,4 @@ ios-temp-prepare:
 	cd ios
 	pod install
 	
+
