@@ -2,20 +2,19 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>destination</key>
+	<string>export</string>
+	<key>manageAppVersionAndBuildNumber</key>
+	<true/>
 	<key>method</key>
-	<string>development</string>
-	<key>provisioningProfiles</key>
-	<dict>
-		<key>com.hiddify.ios</key>
-		<string>iOS Team Provisioning Profile: com.hiddify.ios</string>
-		<key>hiddify.SingBoxPacketTunnel</key>
-		<string>iOS Team Provisioning Profile: com.hiddify.ios.SingBoxPacketTunnel</string>
-	</dict>
-	<key>signingCertificate</key>
-	<string>Apple Development</string>
+	<string>app-store</string>
 	<key>signingStyle</key>
 	<string>automatic</string>
+	<key>stripSwiftSymbols</key>
+	<true/>
 	<key>teamID</key>
 	<string>3JFTY5BP58</string>
+	<key>uploadSymbols</key>
+	<true/>
 </dict>
 </plist>
