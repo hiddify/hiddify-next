@@ -8,8 +8,17 @@
 	<true/>
 	<key>method</key>
 	<string>app-store</string>
+	<key>provisioningProfiles</key>
+	<dict>
+		<key>app.hiddify.com</key>
+		<string>dist.apple.app.hiddify.com</string>
+		<key>app.hiddify.com.SingBoxPacketTunnel</key>
+		<string>dist.apple.app.hiddify.com.singboxpackettunnel</string>
+	</dict>
+	<key>signingCertificate</key>
+	<string>E2217AF6F3AD11BA09F9FD95E025D7E637F8B081</string>
 	<key>signingStyle</key>
-	<string>automatic</string>
+	<string>manual</string>
 	<key>stripSwiftSymbols</key>
 	<true/>
 	<key>teamID</key>
