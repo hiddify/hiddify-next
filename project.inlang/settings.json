@@ -9,7 +9,8 @@
     "pt-BR",
     "ru",
     "tr",
-    "zh-CN"
+    "zh-CN",
+    "zh-TW"
   ],
   "modules": [
     "https://cdn.jsdelivr.net/npm/@inlang/plugin-i18next@4/dist/index.js",
