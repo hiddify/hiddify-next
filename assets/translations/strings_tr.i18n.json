@@ -347,13 +347,13 @@
     "muxMaxStreams": "Max Concurrent Streams",
     "enableWarp": "Enable WARP",
     "warpDetourMode": "Detour Mode",
-    "warpLicenseKey": "License Key",
-    "warpCleanIp": "Clean IP",
-    "warpPort": "Port",
-    "warpNoise": "Noise",
     "warpDetourModes": {
       "inbound": "Detour WARP through proxies",
       "outbound": "Detour proxies through WARP"
-    }
+    },
+    "warpLicenseKey": "License Key",
+    "warpCleanIp": "Clean IP",
+    "warpPort": "Port",
+    "warpNoise": "Noise"
   }
 }

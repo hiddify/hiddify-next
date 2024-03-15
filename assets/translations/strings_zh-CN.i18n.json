@@ -374,14 +374,14 @@
     "muxMaxStreams": "Mux最大并发数",
     "enableWarp": "启用 WARP",
     "warpDetourMode": "链式代理",
+    "warpDetourModes": {
+      "inbound": "通过代理绕过 WARP",
+      "outbound": "通过 WARP 绕过代理"
+    },
     "warpLicenseKey": "许可证密钥",
     "warpCleanIp": "干净 IP",
     "warpPort": "端口",
     "warpNoise": "噪音",
-    "warpNoiseDelay": "噪音延迟",
-    "warpDetourModes": {
-      "inbound": "通过代理绕过 WARP",
-      "outbound": "通过 WARP 绕过代理"
-    }
+    "warpNoiseDelay": "噪音延迟"
   }
 }
