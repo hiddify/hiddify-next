@@ -8,8 +8,7 @@
     "ru",
     "tr",
     "id",
-    "zh-CN",
-    "zh-TW"
+    "zh-CN"
   ],
   "modules": [
     "https://cdn.jsdelivr.net/npm/@inlang/plugin-i18next@4/dist/index.js",
