@@ -4,7 +4,8 @@
   "languageTags": [
     "en",
     "fa",
-    "es"
+    "es",
+    "id"
   ],
   "modules": [
     "https://cdn.jsdelivr.net/npm/@inlang/plugin-i18next@4/dist/index.js",
