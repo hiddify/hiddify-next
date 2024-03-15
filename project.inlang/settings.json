@@ -6,7 +6,8 @@
     "fa",
     "es",
     "id",
-    "pt-BR"
+    "pt-BR",
+    "ru"
   ],
   "modules": [
     "https://cdn.jsdelivr.net/npm/@inlang/plugin-i18next@4/dist/index.js",
