@@ -9,11 +9,14 @@ import 'package:hiddify/singbox/model/singbox_outbound.dart';
 import 'package:hiddify/singbox/model/singbox_stats.dart';
 import 'package:hiddify/singbox/model/singbox_status.dart';
 import 'package:hiddify/singbox/model/warp_account.dart';
+import 'package:hiddify/singbox/service/core_singbox_service.dart';
 import 'package:hiddify/singbox/service/singbox_service.dart';
 import 'package:hiddify/utils/custom_loggers.dart';
 import 'package:rxdart/rxdart.dart';
 
-class PlatformSingboxService with InfraLogger implements SingboxService {
+class PlatformSingboxService extends CoreSingboxService
+    with InfraLogger
+    implements SingboxService {
   static const channelPrefix = "com.hiddify.app";
 
   static const methodChannel = MethodChannel("$channelPrefix/method");
@@ -46,30 +49,9 @@ class PlatformSingboxService with InfraLogger implements SingboxService {
   TaskEither<String, Unit> setup(Directories directories, bool debug) {
     return TaskEither(
       () async {
-        if (!Platform.isIOS) {
-          return right(unit);
-        }
-
         await methodChannel.invokeMethod("setup");
-        return right(unit);
-      },
-    );
-  }
 
-  @override
-  TaskEither<String, Unit> validateConfigByPath(
-    String path,
-    String tempPath,
-    bool debug,
-  ) {
-    return TaskEither(
-      () async {
-        final message = await methodChannel.invokeMethod<String>(
-          "parse_config",
-          {"path": path, "tempPath": tempPath, "debug": debug},
-        );
-        if (message == null || message.isEmpty) return right(unit);
-        return left(message);
+        return right(unit);
       },
     );
   }
@@ -84,23 +66,6 @@ class PlatformSingboxService with InfraLogger implements SingboxService {
           jsonEncode(options.toJson()),
         );
         return right(unit);
-      },
-    );
-  }
-
-  @override
-  TaskEither<String, String> generateFullConfigByPath(String path) {
-    return TaskEither(
-      () async {
-        loggy.debug("generating full config by path");
-        final configJson = await methodChannel.invokeMethod<String>(
-          "generate_config",
-          {"path": path},
-        );
-        if (configJson == null || configJson.isEmpty) {
-          return left("null response");
-        }
-        return right(configJson);
       },
     );
   }

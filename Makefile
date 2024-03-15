@@ -70,7 +70,11 @@ android-prepare: get-geo-assets get gen translate android-libs
 android-apk-prepare:android-prepare
 android-aab-prepare:android-prepare
 
-	
+
+.PHONY: protos
+protos:
+	make -C libcore -f Makefile protos
+	protoc --dart_out=grpc:lib/singbox/generated --proto_path=libcore/protos libcore/protos/*.proto
 
 macos-install-dependencies:
 	brew install create-dmg tree 

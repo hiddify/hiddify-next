@@ -10,6 +10,7 @@ import io.nekohasekai.libbox.Libbox
 import io.nekohasekai.mobile.Mobile
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -22,6 +23,7 @@ class MethodHandler(private val scope: CoroutineScope) : FlutterPlugin,
         const val channelName = "com.hiddify.app/method"
 
         enum class Trigger(val method: String) {
+            Setup("setup"),
             ParseConfig("parse_config"),
             ChangeConfigOptions("change_config_options"),
             GenerateConfig("generate_config"),
@@ -49,6 +51,15 @@ class MethodHandler(private val scope: CoroutineScope) : FlutterPlugin,
 
     override fun onMethodCall(call: MethodCall, result: MethodChannel.Result) {
         when (call.method) {
+            Trigger.Setup.method -> {
+                GlobalScope.launch {
+                    result.runCatching {
+                        Mobile.setup()
+                        success("")
+                    }
+                }
+            }
+
             Trigger.ParseConfig.method -> {
                 scope.launch(Dispatchers.IO) {
                     result.runCatching {
