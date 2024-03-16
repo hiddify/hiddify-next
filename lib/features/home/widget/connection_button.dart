@@ -93,6 +93,16 @@ class ConnectionButton extends HookConsumerWidget {
         AsyncData(value: _) => buttonTheme.idleColor!,
         _ => Colors.red,
       },
+      image:switch (connectionStatus) {
+        AsyncData(value: Connected()) when requiresReconnect == true =>
+        Assets.images.disconnectNorouz,
+        AsyncData(value: Connected()) => Assets.images.connectNorouz,
+        AsyncData(value: _) => Assets.images.disconnectNorouz,
+        _ => Assets.images.disconnectNorouz,
+        AsyncData(value: Disconnected()) || AsyncError() => Assets.images.disconnectNorouz,
+        AsyncData(value: Connected())  => Assets.images.connectNorouz,
+        _ =>Assets.images.disconnectNorouz,
+      }
     );
   }
 }
@@ -103,12 +113,14 @@ class _ConnectionButton extends StatelessWidget {
     required this.enabled,
     required this.label,
     required this.buttonColor,
+    required this.image,
   });
 
   final VoidCallback onTap;
   final bool enabled;
   final String label;
   final Color buttonColor;
+  final AssetGenImage image;
 
   @override
   Widget build(BuildContext context) {
@@ -144,12 +156,7 @@ class _ConnectionButton extends StatelessWidget {
                     tween: ColorTween(end: buttonColor),
                     duration: const Duration(milliseconds: 250),
                     builder: (context, value, child) {
-                      return Assets.images.logo.svg(
-                        colorFilter: ColorFilter.mode(
-                          value!,
-                          BlendMode.srcIn,
-                        ),
-                      );
+                      return image.image();
                     },
                   ),
                 ),
