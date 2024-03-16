@@ -111,6 +111,8 @@ flutter:
     - assets/images/tray_icon.png
     - assets/images/tray_icon_connected.ico
     - assets/images/tray_icon_disconnected.ico
+    - assets/images/connect_norouz.PNG
+    - assets/images/disconnect_norouz.PNG
 
   fonts:
     - family: Shabnam
