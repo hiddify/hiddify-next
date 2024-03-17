@@ -7,6 +7,8 @@
             "type": "dart",
             "flutterMode": "debug",
             "program": "lib/main.dart",
+            // "args": ["-d","192.168.1.35:36463"]
+            
         },
         {
             "name": "Hiddify Dev Release",
@@ -36,7 +38,7 @@
             "program": "lib/main.dart",
             "args": [
                 "--app-id",
-                "com.hiddify.ios"
+                "app.hiddify.com"
             ],
             "deviceId": "designed-for-ipad",
         }
