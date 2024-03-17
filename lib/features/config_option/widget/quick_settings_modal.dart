@@ -65,11 +65,11 @@ class QuickSettingsModal extends HookConsumerWidget {
                 ref.watch(ConfigOptions.enableTlsFragment.notifier).update,
             title: Text(t.config.enableTlsFragment),
           ),
-          SwitchListTile(
-            value: ref.watch(ConfigOptions.enableMux),
-            onChanged: ref.watch(ConfigOptions.enableMux.notifier).update,
-            title: Text(t.config.enableMux),
-          ),
+          // SwitchListTile(
+          //   value: ref.watch(ConfigOptions.enableMux),
+          //   onChanged: ref.watch(ConfigOptions.enableMux.notifier).update,
+          //   title: Text(t.config.enableMux),
+          // ),
           ListTile(
             title: Text(t.config.allOptions),
             trailing: const Icon(FluentIcons.chevron_right_24_regular),
