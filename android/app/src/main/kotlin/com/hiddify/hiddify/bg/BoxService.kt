@@ -292,7 +292,7 @@ class BoxService(
             }
         }
     }
-    private fun postServiceClose(){
+    override fun postServiceClose(){
         //TODO:
     }
 
