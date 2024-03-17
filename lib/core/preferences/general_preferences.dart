@@ -64,6 +64,11 @@ abstract class Preferences {
     "started_by_user",
     false,
   );
+
+  static final storeReviewedByUser = PreferencesNotifier.create<bool, bool>(
+    "store_reviewed_by_user",
+    false,
+  );
 }
 
 @Riverpod(keepAlive: true)

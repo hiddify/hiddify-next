@@ -11,6 +11,7 @@ import 'package:hiddify/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:in_app_review/in_app_review.dart';
 
 part 'connection_notifier.g.dart';
 
@@ -30,6 +31,14 @@ class ConnectionNotifier extends _$ConnectionNotifier with AppLogger {
         if (previous case AsyncData(:final value) when !value.isConnected) {
           if (next case AsyncData(value: final Connected _)) {
             await ref.read(hapticServiceProvider.notifier).heavyImpact();
+
+            if (Platform.isAndroid &&
+                !ref.read(Preferences.storeReviewedByUser)) {
+              if (await InAppReview.instance.isAvailable()) {
+                InAppReview.instance.requestReview();
+                ref.read(Preferences.storeReviewedByUser.notifier).update(true);
+              }
+            }
           }
         }
       },

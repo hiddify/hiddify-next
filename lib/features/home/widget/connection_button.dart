@@ -94,18 +94,19 @@ class ConnectionButton extends HookConsumerWidget {
         AsyncData(value: _) => buttonTheme.idleColor!,
         _ => Colors.red,
       },
-      image:switch (connectionStatus) {
+      image: switch (connectionStatus) {
         AsyncData(value: Connected()) when requiresReconnect == true =>
-        Assets.images.disconnectNorouz,
+          Assets.images.disconnectNorouz,
         AsyncData(value: Connected()) => Assets.images.connectNorouz,
         AsyncData(value: _) => Assets.images.disconnectNorouz,
         _ => Assets.images.disconnectNorouz,
-        AsyncData(value: Disconnected()) || AsyncError() => Assets.images.disconnectNorouz,
-        AsyncData(value: Connected())  => Assets.images.connectNorouz,
-        _ =>Assets.images.disconnectNorouz,
+        AsyncData(value: Disconnected()) ||
+        AsyncError() =>
+          Assets.images.disconnectNorouz,
+        AsyncData(value: Connected()) => Assets.images.connectNorouz,
+        _ => Assets.images.disconnectNorouz,
       },
-      useImage:today.day>=19 && today.day<=23 && today.month==3 ,
-
+      useImage: today.day >= 19 && today.day <= 23 && today.month == 3,
     );
   }
 }
@@ -161,12 +162,9 @@ class _ConnectionButton extends StatelessWidget {
                     tween: ColorTween(end: buttonColor),
                     duration: const Duration(milliseconds: 250),
                     builder: (context, value, child) {
-                      if(useImage) {
-                        return image.image(
-                            filterQuality: FilterQuality.medium
-                        );
-                      }
-                      else{
+                      if (useImage) {
+                        return image.image(filterQuality: FilterQuality.medium);
+                      } else {
                         return Assets.images.logo.svg(
                           colorFilter: ColorFilter.mode(
                             value!,
