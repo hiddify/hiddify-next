@@ -225,4 +225,5 @@ public class ExtensionPlatformInterface: NSObject, LibboxPlatformInterfaceProtoc
     func reset() {
         networkSettings = nil
     }
+
 }

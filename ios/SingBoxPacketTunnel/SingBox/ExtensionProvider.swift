@@ -137,6 +137,9 @@ open class ExtensionProvider: NEPacketTunnelProvider {
         stopService()
         await startService()
     }
+    func postServiceClose() async {
+        // TODO
+    }
 
     override open func stopTunnel(with reason: NEProviderStopReason) async {
         writeMessage("(packet-tunnel) stopping, reason: \(reason)")
