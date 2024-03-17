@@ -218,17 +218,17 @@
       "clearSelection": "حذف انتخاب‌ها"
     },
     "geoAssets": {
-      "pageTitle": "دارایی‌های مسیریابی",
+      "pageTitle": "فایل‌های مسیریابی",
       "geoip": "ژئو آی‌پی",
       "geosite": "ژئو سایت",
       "version": "نسخه ${version}",
       "fileMissing": "فایل موجود نیست",
       "update": "به‌روزرسانی",
       "download": "دانلود",
-      "failureMsg": "به‌روزرسانی دارایی انجام نشد",
-      "successMsg": "دارایی با موفقیت به‌روزرسانی شد",
-      "addRecommended": "افزودن دارایی‌های توصیه‌شده",
-      "missingGeoAssetsMsg": "فایل‌های دارایی‌های مسیریابی انتخابی وجود ندارد. یا آن‌ها را دانلود کنید و یا موارد موجود را انتخاب کنید"
+      "failureMsg": "به‌روزرسانی فایل انجام نشد",
+      "successMsg": "فایل‌ با موفقیت به‌روزرسانی شد",
+      "addRecommended": "افزودن فایل‌های توصیه‌شده",
+      "missingGeoAssetsMsg": "فایل‌های مسیریابی انتخابی وجود ندارد. یا آن‌ها را دانلود کنید و یا موارد موجود را انتخاب کنید"
     }
   },
   "about": {
@@ -272,8 +272,8 @@
       "serviceNotRunning": "سرویس در حال اجرا نیست",
       "missingPrivilege": "نیازمند دسترسی",
       "missingPrivilegeMsg": "حالت VPN به دسترسی سرپرست نیاز دارد. یا برنامه را دوباره به‌عنوان سرپرست راه‌اندازی کنید یا حالت سرویس را تغییر دهید.",
-      "missingGeoAssets": "دارایی‌های جغرافیایی وجود ندارد",
-      "missingGeoAssetsMsg": "دارایی‌های جغرافیایی گم شده‌اند. تغییر دارایی فعال را در نظر بگیرید و یا یکی را در تنظیمات دانلود کنید.",
+      "missingGeoAssets": "فایل‌های جغرافیایی وجود ندارد",
+      "missingGeoAssetsMsg": "فایل‌های جغرافیایی گم شده‌اند. تغییر فایل فعال را در نظر بگیرید و یا یکی را در تنظیمات دانلود کنید.",
       "invalidConfigOptions": "تنظیمات پیکربندی نامعتبر",
       "invalidConfig": "پیکربندی نامعتبر",
       "create": "خطای ایجاد سرویس",
@@ -301,7 +301,7 @@
     "geoAssets": {
       "unexpected": "خطای غیرمنتظره",
       "notUpdate": "هیچ به‌روزرسانی موجود نیست",
-      "activeNotFound": "دارایی فعال ژئو یافت نشد"
+      "activeNotFound": "فایل فعال ژئو یافت نشد"
     }
   },
   "play": {
@@ -372,7 +372,7 @@
     "directDnsDomainStrategy": "استراتژی دامنه DNS مستقیم",
     "mixedPort": "درگاه چندمنظوره",
     "localDnsPort": "درگاه DNS داخلی",
-    "allowConnectionFromLan": "اجازه‌ی اتصال از LAN",
+    "allowConnectionFromLan": "اشتراک فیلترشکن در شبکه",
     "tunImplementation": "پیاده‌سازی TUN",
     "mtu": "سایز بسته‌ها",
     "connectionTestUrl": "لینک بررسی ارتباط",
@@ -395,15 +395,15 @@
     "muxProtocol": "پروتکل Mux",
     "muxMaxStreams": "حداکثر جریان‌های هم‌زمان",
     "enableWarp": "فعال‌سازی WARP",
-    "warpDetourMode": "حالت انحرافی",
+    "warpDetourMode": "حالت وارپ",
     "warpDetourModes": {
-      "proxyOverWarp": "انحراف پراکسی‌ها از طریق WARP",
-      "warpOverProxy": "انحراف WARP از طریق پراکسی‌ها",
-      "inbound": "انحراف WARP از طریق پراکسی‌ها",
-      "outbound": "انحراف پراکسی‌ها از طریق WARP"
+      "proxyOverWarp": "عبور پراکسی‌ها از طریق WARP",
+      "warpOverProxy": "عبور WARP از طریق پراکسی‌ها",
+      "inbound": "عبور WARP از طریق پراکسی‌ها",
+      "outbound": "عبور پراکسی‌ها از طریق WARP"
     },
     "warpLicenseKey": "کلید مجوز",
-    "warpCleanIp": "پاک‌سازی آی‌پی",
+    "warpCleanIp": "آی‌پی تمیز",
     "warpPort": "درگاه",
     "warpNoise": "تعداد نویز",
     "warpNoiseDelay": "تأخیر نویز"
