@@ -74,7 +74,8 @@
         "permissionDeniedError": "دسترسی داده نشد",
         "unexpectedError": "خطایی رخ داده است",
         "torchSemanticLabel": "نور فلاش",
-        "facingSemanticLabel": "رو به دوربین"
+        "facingSemanticLabel": "رو به دوربین",
+        "permissionRequest": "ارائه دسترسی به دوربین برای اسکن QR Code"
       },
       "manually": "افزودن دستی",
       "addingProfileMsg": "در حال افزودن نمایه",
