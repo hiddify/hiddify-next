@@ -30,8 +30,8 @@
   },
   "home": {
     "pageTitle": "خانه",
-    "emptyProfilesMsg": "با افزودن یک نمایه‌ی اشتراک آغاز کنید",
-    "noActiveProfileMsg": "یک نمایه انتخاب کنید"
+    "emptyProfilesMsg": "با افزودن یک پروفایل اشتراک آغاز کنید",
+    "noActiveProfileMsg": "یک پروفایل انتخاب کنید"
   },
   "stats": {
     "traffic": "مصرف",
@@ -44,18 +44,18 @@
     "totalTransferred": "کل تبادل"
   },
   "profile": {
-    "overviewPageTitle": "نمایه‌ها",
-    "detailsPageTitle": "نمایه",
-    "activeProfileNameSemanticLabel": "نام نمایه‌ی فعال: ${name}",
-    "activeProfileBtnSemanticLabel": "نمایش همه‌ی نمایه‌ها",
-    "nonActiveProfileBtnSemanticLabel": "انتخاب ${name} به‌عنوان نمایه‌ی فعال",
+    "overviewPageTitle": "پروفایل‌ها",
+    "detailsPageTitle": "پروفایل",
+    "activeProfileNameSemanticLabel": "نام پروفایل فعال: ${name}",
+    "activeProfileBtnSemanticLabel": "نمایش همه‌ی پروفایل‌ها",
+    "nonActiveProfileBtnSemanticLabel": "انتخاب ${name} به‌عنوان پروفایل فعال",
     "subscription": {
       "traffic": "ترافیک",
       "updatedTimeAgo": "به‌روزرسانی شده در ${timeago}",
       "remainingDuration": "${duration} روز باقی مانده",
       "remainingTrafficSemanticLabel": "${consumed} از ${total} ترافیک مصرف شده",
       "expired": "منقضی شده",
-      "noTraffic": "خارج از سهمیه",
+      "noTraffic": "اتمام سهمیه",
       "upload": "آپلود",
       "download": "دانلود",
       "total": "کل ترافیک",
@@ -66,26 +66,26 @@
       "name": "براساس نام"
     },
     "add": {
-      "buttonText": "افزودن نمایه‌ی جدید",
-      "shortBtnTxt": "نمایه‌ی جدید",
+      "buttonText": "افزودن پروفایل جدید",
+      "shortBtnTxt": "پروفایل جدید",
       "fromClipboard": "افزودن از کلیپ‌بورد",
       "scanQr": "اسکن QR کد",
       "qrScanner": {
         "permissionDeniedError": "دسترسی داده نشد",
         "unexpectedError": "خطایی رخ داده است",
         "torchSemanticLabel": "نور فلاش",
-        "facingSemanticLabel": "رو به دوربین"
+        "facingSemanticLabel": "جهت دوربین"
       },
       "manually": "افزودن دستی",
-      "addingProfileMsg": "در حال افزودن نمایه",
-      "failureMsg": "در افزودن نمایه خطایی رخ داد"
+      "addingProfileMsg": "در حال افزودن پروفایل",
+      "failureMsg": "در افزودن پروفایل خطایی رخ داد"
     },
     "update": {
       "buttonTxt": "به‌روزرسانی",
-      "tooltip": "به‌روزرسانی نمایه",
+      "tooltip": "به‌روزرسانی پروفایل",
       "updateSubscriptions": "به‌روزرسانی اشتراک‌ها",
-      "failureMsg": "در به‌روزرسانی نمایه خطایی رخ داد",
-      "successMsg": "نمایه با موفقیت به‌روزرسانی شد",
+      "failureMsg": "در به‌روزرسانی پروفایل خطایی رخ داد",
+      "successMsg": "پروفایل با موفقیت به‌روزرسانی شد",
       "namedFailureMsg": "در به‌روزرسانی \"${name}\" خطایی رخ داد",
       "namedSuccessMsg": "\"${name}\" با موفقیت به‌روز شد"
     },
@@ -99,25 +99,25 @@
     },
     "edit": {
       "buttonTxt": "ویرایش",
-      "selectActiveTxt": "انتخاب نمایه‌ی فعال"
+      "selectActiveTxt": "انتخاب پروفایل فعال"
     },
     "delete": {
       "buttonTxt": "حذف",
-      "confirmationMsg": "نمایه برای همیشه حذف شود؟",
-      "successMsg": "نمایه با موفقیت حذف شد"
+      "confirmationMsg": "پروفایل برای همیشه حذف شود؟",
+      "successMsg": "پروفایل با موفقیت حذف شد"
     },
     "save": {
       "buttonText": "ذخیره",
-      "successMsg": "نمایه با موفقیت ذخیره شد",
-      "failureMsg": "خطا در ذخیره‌ی نمایه"
+      "successMsg": "پروفایل با موفقیت ذخیره شد",
+      "failureMsg": "خطا در ذخیره‌ی پروفایل"
     },
     "detailsForm": {
       "nameLabel": "نام",
-      "nameHint": "نام نمایه",
+      "nameHint": "نام پروفایل",
       "urlLabel": "لینک",
       "urlHint": "لینک کامل پیکربندی",
       "emptyNameMsg": "نام نمی‌تواند خالی باشد",
-      "invalidUrlMsg": "لینک نامعتبر",
+      "invalidUrlMsg": "لینک نامعتبر است",
       "lastUpdate": "آخرین به‌روزرسانی",
       "updateInterval": "به‌روزرسانی خودکار",
       "updateIntervalDialogTitle": "فاصله‌ی زمانی به‌روزرسانی خودکار (ساعت)"
@@ -125,8 +125,8 @@
   },
   "proxies": {
     "pageTitle": "پراکسی‌ها",
-    "emptyProxiesMsg": "پراکسی وجود ندارد",
-    "delayTestTooltip": "آزمون تأخیر",
+    "emptyProxiesMsg": "هیچ پراکسی موجود نیست",
+    "delayTestTooltip": "آزمایش تأخیر",
     "sortTooltip": "مرتب‌سازی پراکسی‌ها",
     "checkIp": "بررسی آی‌پی",
     "unknownIp": "آی‌پی ناشناخته",
@@ -138,7 +138,7 @@
     "activeProxySemanticLabel": "پراکسی فعال",
     "delaySemantics": {
       "result": "تأخیر: ${delay}ms",
-      "timeout": "مهلت تست تأخیر",
+      "timeout": "مهلت آزمایش تأخیر به اتمام رسید",
       "testing": "تأخیر: در حال آزمایش..."
     },
     "ipInfoSemantics": {
@@ -160,7 +160,7 @@
     "pageTitle": "تنظیمات",
     "requiresRestartMsg": "برای اعمال این تنظیم، برنامه را بازنشانی کنید",
     "experimental": "آزمایشی",
-    "experimentalMsg": "تنظیماتی که عنوان آزمایشی دارند، هم‌چنان در دست توسعه هستند و فعال‌سازی آن‌ها می‌تواند خطاهایی به‌وجود آورد.",
+    "experimentalMsg": "تنظیماتی که عنوان آزمایشی دارند، هم‌چنان در دست توسعه هستند و فعال‌سازی آن‌ها می‌تواند خطاهایی به‌وجود بیاورد.",
     "exportOptions": "صادر کردن تنظیمات به کلیپ‌بورد",
     "exportAllOptions": "صادر کردن تنظیمات به کلیپ‌بورد (اشکال‌زدایی)",
     "importOptions": "وارد کردن تنظیمات از کلیپ‌بورد",
@@ -177,12 +177,12 @@
         "af": "افغانستان (af)",
         "other": "سایر"
       },
-      "themeMode": "حالت تم",
+      "themeMode": "حالت پوسته",
       "themeModes": {
-        "system": "پیروی از تم دستگاه",
-        "dark": "تم تیره",
-        "light": "تم روشن",
-        "black": "تم سیاه"
+        "system": "پیروی از پوسته‌ی دستگاه",
+        "dark": "پوسته‌ی تیره",
+        "light": "پوسته‌ی روشن",
+        "black": "پوسته‌ی سیاه"
       },
       "enableAnalytics": "فعال‌سازی تجزیه و تحلیل‌ها",
       "enableAnalyticsMsg": "ارائه‌ی دسترسی جمع‌آوری تجزیه و تحلیل‌ها و ارسال گزارش‌های خطا برای بهبود عملکرد برنامه",
@@ -190,7 +190,7 @@
       "silentStart": "اجرای ساکت",
       "openWorkingDir": "باز کردن دایرکتوری فعال",
       "ignoreBatteryOptimizations": "غیرفعال کردن بهینه‌سازی باتری",
-      "ignoreBatteryOptimizationsMsg": "حذف محدودیت‌ها برای عملکرد بهینه‌ی VPN",
+      "ignoreBatteryOptimizationsMsg": "برطرف کردن محدودیت‌ها برای عملکرد بهینه‌ی VPN",
       "dynamicNotification": "نمایش سرعت در نوار اعلان",
       "hapticFeedback": "بازخورد لمسی",
       "autoIpCheck": "بررسی خودکار آی‌پی ارتباط"
@@ -198,10 +198,10 @@
     "advanced": {
       "sectionTitle": "پیشرفته",
       "debugMode": "حالت اشکال‌زدایی",
-      "debugModeMsg": "برنامه را برای اعمال این تغییر بازنشانی کنید",
+      "debugModeMsg": "برنامه را برای اعمال این تغییر دوباره راه‌اندازی کنید",
       "memoryLimit": "محدودیت حافظه",
-      "memoryLimitMsg": "اگر با خطاهای کمبود حافظه یا خرابی مکرر برنامه مواجه شدید، فعال کنید",
-      "resetTunnel": "‌بازنشانی نمایه‌ی VPN"
+      "memoryLimitMsg": "اگر با خطاهای کمبود حافظه یا خرابی مکرر برنامه مواجه می‌شوید، فعال کنید",
+      "resetTunnel": "‌بازنشانی پروفایل VPN"
     },
     "network": {
       "perAppProxyPageTitle": "پراکسی برنامه‌ها",
@@ -210,12 +210,12 @@
         "offMsg": "همه‌ی برنامه‌ها پراکسی شوند",
         "include": "پراکسی",
         "includeMsg": "تنها برنامه‌های انتخاب‌شده پراکسی شوند",
-        "exclude": "میان‌بر",
-        "excludeMsg": "همه به‌جز برنامه‌های انتخاب‌شده پراکسی می‌شوند"
+        "exclude": "کنار گذاشتن",
+        "excludeMsg": "برنامه‌های انتخاب‌شده پراکسی نشوند"
       },
       "showSystemApps": "نمایش برنامه‌های سیستمی",
       "hideSystemApps": "پنهان کردن برنامه‌های سیستمی",
-      "clearSelection": "حذف انتخاب‌ها"
+      "clearSelection": "پاک کردن انتخاب‌ها"
     },
     "geoAssets": {
       "pageTitle": "دارایی‌های مسیریابی",
@@ -227,7 +227,7 @@
       "download": "دانلود",
       "failureMsg": "به‌روزرسانی دارایی انجام نشد",
       "successMsg": "دارایی با موفقیت به‌روزرسانی شد",
-      "addRecommended": "افزودن دارایی‌های توصیه‌شده",
+      "addRecommended": "افزودن دارایی‌های پیشنهادی",
       "missingGeoAssetsMsg": "فایل‌های دارایی‌های مسیریابی انتخابی وجود ندارد. یا آن‌ها را دانلود کنید و یا موارد موجود را انتخاب کنید"
     }
   },
@@ -237,11 +237,11 @@
     "sourceCode": "کد منبع",
     "telegramChannel": "کانال تلگرام",
     "checkForUpdate": "بررسی برای به‌روزرسانی",
-    "privacyPolicy": "سیاست حفظ حریم خصوصی",
+    "privacyPolicy": "سیاست‌های حفظ حریم خصوصی",
     "termsAndConditions": "شرایط و ضوابط استفاده"
   },
   "appUpdate": {
-    "notAvailableMsg": "در حال استفاده از آخرین نسخه",
+    "notAvailableMsg": "در حال استفاده از آخرین نسخه هستید",
     "dialogTitle": "به‌روزرسانی موجود است",
     "updateMsg": "نسخه‌ی جدیدی از general.appTitle در دسترس است. آیا می‌خواهید اکنون به‌روزرسانی کنید؟",
     "currentVersionLbl": "نسخه‌ی فعلی",
@@ -265,17 +265,17 @@
     "unexpected": "خطای غیرمنتظره",
     "clash": {
       "unexpected": "خطای غیرمنتظره",
-      "core": "خطای کلش ${reason}"
+      "core": "خطای Clash ${reason}"
     },
     "singbox": {
       "unexpected": "خطای غیرمنتظره در سرویس",
       "serviceNotRunning": "سرویس در حال اجرا نیست",
       "missingPrivilege": "نیازمند دسترسی",
-      "missingPrivilegeMsg": "حالت VPN به دسترسی سرپرست نیاز دارد. یا برنامه را دوباره به‌عنوان سرپرست راه‌اندازی کنید یا حالت سرویس را تغییر دهید.",
-      "missingGeoAssets": "دارایی‌های جغرافیایی وجود ندارد",
+      "missingPrivilegeMsg": "حالت VPN به دسترسی سرپرست نیاز دارد. یا برنامه را دوباره به‌عنوان سرپرست راه‌اندازی کنید و یا حالت سرویس را تغییر دهید.",
+      "missingGeoAssets": "دارایی‌های جغرافیایی وجود ندارند",
       "missingGeoAssetsMsg": "دارایی‌های جغرافیایی گم شده‌اند. تغییر دارایی فعال را در نظر بگیرید و یا یکی را در تنظیمات دانلود کنید.",
-      "invalidConfigOptions": "تنظیمات پیکربندی نامعتبر",
-      "invalidConfig": "پیکربندی نامعتبر",
+      "invalidConfigOptions": "تنظیمات پیکربندی نامعتبر است",
+      "invalidConfig": "پیکربندی نامعتبر است",
       "create": "خطای ایجاد سرویس",
       "start": "خطای راه‌اندازی سرویس"
     },
@@ -287,13 +287,13 @@
     },
     "profiles": {
       "unexpected": "خطای غیرمنتظره",
-      "notFound": "نمایه یافت نشد",
-      "invalidConfig": "پیکربندی‌های نامعتبر",
-      "invalidUrl": "لینک نامعتبر"
+      "notFound": "پروفایل یافت نشد",
+      "invalidConfig": "پیکربندی‌ها نامعتبر هستند",
+      "invalidUrl": "لینک نامعتبر است"
     },
     "connection": {
       "unexpected": " خطای غیرمنتظره در اتصال",
-      "timeout": "درخواست بیش از حد مجاز زمان برد",
+      "timeout": "مهلت اتصال به پایان رسید",
       "badResponse": "پاسخ نامعتبر",
       "connectionError": "خطای اتصال",
       "badCertificate": "خطای اعتبارسنجی"
@@ -317,7 +317,7 @@
     "reconnect": "اتصال دوباره",
     "connectAnyWay": "متصل کردن",
     "experimentalNotice": "ویژگی‌های آزمایشی در حال استفاده",
-    "experimentalNoticeMsg": "شما برخی از ویژگی‌های آزمایشی را فعال کرده‌اید که ممکن است بر کیفیت اتصال تأثیر بگذارد و باعث خطاهای غیرمنتظره شود. همیشه می‌توانید این گزینه‌ها را از صفحه‌ی تنظیمات پیکربندی تغییر دهید یا بازنشانی کنید.",
+    "experimentalNoticeMsg": "شما برخی از ویژگی‌های آزمایشی را فعال کرده‌اید که ممکن است بر کیفیت ارتباط تأثیر بگذارد و باعث خطاهای غیرمنتظره شود. همیشه می‌توانید این گزینه‌ها را از صفحه‌ی تنظیمات پیکربندی تغییر دهید یا بازنشانی کنید.",
     "disableExperimentalNotice": "دیگر نشان نده",
     "reconnectMsg": "دوباره وصل شوید تا تغییرات اعمال شوند"
   },
@@ -340,7 +340,7 @@
       "tunService": "سرویس VPN"
     },
     "section": {
-      "route": "تنظیمات مسیریاب",
+      "route": "تنظیمات مسیریابی",
       "dns": "تنظیمات DNS",
       "inbound": "تنظیمات ورودی",
       "mux": "مالتی پلکسر",
@@ -350,7 +350,7 @@
       "misc": "تنظیمات متفرقه"
     },
     "warpConsent": {
-      "title": "رضایت Cloudflare WARP",
+      "title": "توافق‌نامه‌ی Cloudflare WARP",
       "description(rich)": "Cloudflare WARP یک ارائه‌دهنده‌ی رایگان WireGuard VPN است. با فعال کردن این گزینه، با ${tos(شرایط خدمات)} و ${privacy(خط‌ مشی رازداری)} Cloudflare WARP موافقت می‌کنید."
     },
     "generateWarpConfig": "ایجاد پیکربندی WARP",
@@ -359,20 +359,20 @@
     "pageTitle": "تنظیمات پیکربندی",
     "logLevel": "سطح گزارش",
     "resolveDestination": "جایگذاری مقصد",
-    "ipv6Mode": "مسیریابی IPV6",
+    "ipv6Mode": "مسیریابی IPv6",
     "ipv6Modes": {
       "disable": "غیرفعال",
       "enable": "فعال",
-      "prefer": "ترجیح",
+      "prefer": "ترجیح داده شده",
       "only": "اختصاصی"
     },
     "remoteDnsAddress": "DNS خارجی",
-    "remoteDnsDomainStrategy": "استراتژی دامنه DNS از راه دور",
+    "remoteDnsDomainStrategy": "استراتژی دامنه DNS خارجی",
     "directDnsAddress": "DNS مستقیم",
     "directDnsDomainStrategy": "استراتژی دامنه DNS مستقیم",
     "mixedPort": "درگاه چندمنظوره",
     "localDnsPort": "درگاه DNS داخلی",
-    "allowConnectionFromLan": "اجازه‌ی اتصال از LAN",
+    "allowConnectionFromLan": "اجازه‌ی ارتباط از LAN",
     "tunImplementation": "پیاده‌سازی TUN",
     "mtu": "سایز بسته‌ها",
     "connectionTestUrl": "لینک بررسی ارتباط",
@@ -387,10 +387,10 @@
     "strictRoute": "مسیر دقیق",
     "enableTlsFragment": "فعال‌سازی TLS Fragment",
     "tlsFragmentSize": "اندازه‌ی TLS Fragment ",
-    "tlsFragmentSleep": "خواب TLS Fragment",
+    "tlsFragmentSleep": "کنار گذاشتن TLS Fragment",
     "enableTlsMixedSniCase": "فعال‌سازی TLS Mixed SNI Case",
     "enableTlsPadding": "فعال‌سازی TLS Padding",
-    "tlsPaddingSize": "TLS Padding",
+    "tlsPaddingSize": "اندازه‌ی TLS Padding",
     "enableMux": "فعال‌سازی Mux",
     "muxProtocol": "پروتکل Mux",
     "muxMaxStreams": "حداکثر جریان‌های هم‌زمان",
