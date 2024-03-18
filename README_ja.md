@@ -57,9 +57,14 @@ Vless、Vmess、Reality、TUIC、Hysteria、SSHなど。
 
 ⭐ イラン、中国、ロシア、その他の国に適した構成
 
-📱 [Google Play](https://play.google.com/store/apps/details?id=app.hiddify.com) で入手可能
+📱公式ストアで購入可能
 
-## 🔗 ダウンロード
+## 🛍️ 店舗で入手
+<a href="https://play.google.com/store/apps/details?id=app.hiddify.com"><img height=50px src="https://github.com/hiddify/hiddify-next/blob/main/docs/google-play-badge.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://apps.microsoft.com/detail/Hiddify/9pdfnl3qv2s5?mode=mini" target="_blank"><img height=50px src="https://github.com/hiddify/hiddify-next/assets/125398461/620750bb-4459-41b5-9f86-ba82119345b8" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+## 📥 直接ダウンロード
 
 <div align=left>
 <table>
