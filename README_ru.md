@@ -46,9 +46,14 @@
 
 ⭐ Подходящая конфигурация для Ирана, Китая, России и других стран.
 
-📱 Доступно в [Google Play](https://play.google.com/store/apps/details?id=app.hiddify.com)
+📱Доступно в официальных магазинах.
 
-## 🔗 Скачать
+## 🛍️ Приобретите в магазинах
+<a href="https://play.google.com/store/apps/details?id=app.hiddify.com"><img height=50px src="https://github.com/hiddify/hiddify-next/blob/main/docs/google-play-badge.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://apps.microsoft.com/detail/Hiddify/9pdfnl3qv2s5?mode=mini" target="_blank"><img height=50px src="https://github.com/hiddify/hiddify-next/assets/125398461/620750bb-4459-41b5-9f86-ba82119345b8" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+## 📥 Прямая загрузка
 <div align=left>
 <table>
     <thead align=left>
@@ -90,7 +95,6 @@
         </tr>
         <tr>
             <td>Linux</td>
-            <tr>
             <td>
                 <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/Hiddify-Linux-x64.AppImage"><img src="https://img.shields.io/badge/AppImage-x64-f84e29.svg?logo=linux"> </a><br>
                 <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/Hiddify-Debian-x64.deb"><img src="https://img.shields.io/badge/DebPackage-x64-FF9966.svg?logo=debian"> </a><br>
