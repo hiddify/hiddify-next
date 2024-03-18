@@ -1,21 +1,8 @@
+<div align=center>
+    
 [![Release Downloads](https://img.shields.io/github/downloads/hiddify/hiddify-next/RELEASE_TAG/total?style=flat-square&logo=github)](https://img.shields.io/github/downloads/hiddify/hiddify-next/RELEASE_TAG/)
 
-
-
-
-**Release Highlights:**
-
--
--
-
-<details markdown=1 dir="rtl">
-<summary>تغییرات اصلی به فارسی</summary>
-
--
--
--
-
-</details>
+</div>
 
 **Download based on your OS:**
 
