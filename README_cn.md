@@ -50,9 +50,14 @@
 
 ⭐ 适用于伊朗、中国、俄罗斯或其他国家的配置
 
-📱 可在 [Google Play](https://play.google.com/store/apps/details?id=app.hiddify.com) 上获取
+📱 官方商店有售
 
-## 🔗 下载
+## 🛍️ 在商店购买
+<a href="https://play.google.com/store/apps/details?id=app.hiddify.com"><img height=50px src="https://github.com/hiddify/hiddify-next/blob/main/docs/google-play-badge.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://apps.microsoft.com/detail/Hiddify/9pdfnl3qv2s5?mode=mini" target="_blank"><img height=50px src="https://github.com/hiddify/hiddify-next/assets/125398461/620750bb-4459-41b5-9f86-ba82119345b8" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+## 📥 直接下载
 
 <div align=left>
 <table>
