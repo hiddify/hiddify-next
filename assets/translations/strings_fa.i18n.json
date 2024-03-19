@@ -30,8 +30,8 @@
   },
   "home": {
     "pageTitle": "خانه",
-    "emptyProfilesMsg": "با افزودن یک نمایه‌ی اشتراک آغاز کنید",
-    "noActiveProfileMsg": "یک نمایه انتخاب کنید"
+    "emptyProfilesMsg": "با افزودن یک پروفایل اشتراک آغاز کنید",
+    "noActiveProfileMsg": "یک پروفایل انتخاب کنید"
   },
   "stats": {
     "traffic": "مصرف",
@@ -44,18 +44,18 @@
     "totalTransferred": "کل تبادل"
   },
   "profile": {
-    "overviewPageTitle": "نمایه‌ها",
-    "detailsPageTitle": "نمایه",
-    "activeProfileNameSemanticLabel": "نام نمایه‌ی فعال: ${name}",
-    "activeProfileBtnSemanticLabel": "نمایش همه‌ی نمایه‌ها",
-    "nonActiveProfileBtnSemanticLabel": "انتخاب ${name} به‌عنوان نمایه‌ی فعال",
+    "overviewPageTitle": "پروفایل‌ها",
+    "detailsPageTitle": "پروفایل",
+    "activeProfileNameSemanticLabel": "نام پروفایل فعال: ${name}",
+    "activeProfileBtnSemanticLabel": "نمایش همه‌ی پروفایل‌ها",
+    "nonActiveProfileBtnSemanticLabel": "انتخاب ${name} به‌عنوان پروفایل فعال",
     "subscription": {
       "traffic": "ترافیک",
       "updatedTimeAgo": "به‌روزرسانی شده در ${timeago}",
       "remainingDuration": "${duration} روز باقی مانده",
       "remainingTrafficSemanticLabel": "${consumed} از ${total} ترافیک مصرف شده",
       "expired": "منقضی شده",
-      "noTraffic": "خارج از سهمیه",
+      "noTraffic": "اتمام سهمیه",
       "upload": "آپلود",
       "download": "دانلود",
       "total": "کل ترافیک",
@@ -63,29 +63,29 @@
     },
     "sortBy": {
       "lastUpdate": "اخیراً به‌روز شده",
-      "name": "براساس نام"
+      "name": "بر اساس نام"
     },
     "add": {
-      "buttonText": "افزودن نمایه‌ی جدید",
-      "shortBtnTxt": "نمایه‌ی جدید",
+      "buttonText": "افزودن پروفایل جدید",
+      "shortBtnTxt": "پروفایل جدید",
       "fromClipboard": "افزودن از کلیپ‌بورد",
       "scanQr": "اسکن QR کد",
       "qrScanner": {
         "permissionDeniedError": "دسترسی داده نشد",
         "unexpectedError": "خطایی رخ داده است",
         "torchSemanticLabel": "نور فلاش",
-        "facingSemanticLabel": "رو به دوربین"
+        "facingSemanticLabel": "جهت دوربین"
       },
       "manually": "افزودن دستی",
-      "addingProfileMsg": "در حال افزودن نمایه",
-      "failureMsg": "در افزودن نمایه خطایی رخ داد"
+      "addingProfileMsg": "در حال افزودن پروفایل",
+      "failureMsg": "در افزودن پروفایل خطایی رخ داد"
     },
     "update": {
       "buttonTxt": "به‌روزرسانی",
-      "tooltip": "به‌روزرسانی نمایه",
+      "tooltip": "به‌روزرسانی پروفایل",
       "updateSubscriptions": "به‌روزرسانی اشتراک‌ها",
-      "failureMsg": "در به‌روزرسانی نمایه خطایی رخ داد",
-      "successMsg": "نمایه با موفقیت به‌روزرسانی شد",
+      "failureMsg": "در به‌روزرسانی پروفایل خطایی رخ داد",
+      "successMsg": "پروفایل با موفقیت به‌روزرسانی شد",
       "namedFailureMsg": "در به‌روزرسانی \"${name}\" خطایی رخ داد",
       "namedSuccessMsg": "\"${name}\" با موفقیت به‌روز شد"
     },
@@ -99,25 +99,25 @@
     },
     "edit": {
       "buttonTxt": "ویرایش",
-      "selectActiveTxt": "انتخاب نمایه‌ی فعال"
+      "selectActiveTxt": "انتخاب پروفایل فعال"
     },
     "delete": {
       "buttonTxt": "حذف",
-      "confirmationMsg": "نمایه برای همیشه حذف شود؟",
-      "successMsg": "نمایه با موفقیت حذف شد"
+      "confirmationMsg": "پروفایل برای همیشه حذف شود؟",
+      "successMsg": "پروفایل با موفقیت حذف شد"
     },
     "save": {
       "buttonText": "ذخیره",
-      "successMsg": "نمایه با موفقیت ذخیره شد",
-      "failureMsg": "خطا در ذخیره‌ی نمایه"
+      "successMsg": "پروفایل با موفقیت ذخیره شد",
+      "failureMsg": "خطا در ذخیره‌ی پروفایل"
     },
     "detailsForm": {
       "nameLabel": "نام",
-      "nameHint": "نام نمایه",
+      "nameHint": "نام پروفایل",
       "urlLabel": "لینک",
       "urlHint": "لینک کامل پیکربندی",
       "emptyNameMsg": "نام نمی‌تواند خالی باشد",
-      "invalidUrlMsg": "لینک نامعتبر",
+      "invalidUrlMsg": "لینک نامعتبر است",
       "lastUpdate": "آخرین به‌روزرسانی",
       "updateInterval": "به‌روزرسانی خودکار",
       "updateIntervalDialogTitle": "فاصله‌ی زمانی به‌روزرسانی خودکار (ساعت)"
@@ -125,8 +125,8 @@
   },
   "proxies": {
     "pageTitle": "پراکسی‌ها",
-    "emptyProxiesMsg": "پراکسی وجود ندارد",
-    "delayTestTooltip": "آزمون تأخیر",
+    "emptyProxiesMsg": "هیچ پراکسی موجود نیست",
+    "delayTestTooltip": "آزمایش تأخیر",
     "sortTooltip": "مرتب‌سازی پراکسی‌ها",
     "checkIp": "بررسی آی‌پی",
     "unknownIp": "آی‌پی ناشناخته",
@@ -138,7 +138,7 @@
     "activeProxySemanticLabel": "پراکسی فعال",
     "delaySemantics": {
       "result": "تأخیر: ${delay}ms",
-      "timeout": "مهلت تست تأخیر",
+      "timeout": "مهلت آزمایش تأخیر به اتمام رسید",
       "testing": "تأخیر: در حال آزمایش..."
     },
     "ipInfoSemantics": {
@@ -153,18 +153,18 @@
     "shareCoreLogs": "اشتراک‌گذاری گزارش‌های هسته",
     "shareAppLogs": "اشتراک‌گذاری گزارش‌های برنامه",
     "pauseTooltip": "مکث",
-    "resumeTooltip": "از سرگیری",
+    "resumeTooltip": "ادامه دادن",
     "clearTooltip": "پاک‌سازی"
   },
   "settings": {
     "pageTitle": "تنظیمات",
-    "requiresRestartMsg": "برای اعمال این تنظیم، برنامه را بازنشانی کنید",
+    "requiresRestartMsg": "برای اعمال این تنظیم، برنامه را دوباره راه‌اندازی کنید",
     "experimental": "آزمایشی",
-    "experimentalMsg": "تنظیماتی که عنوان آزمایشی دارند، هم‌چنان در دست توسعه هستند و فعال‌سازی آن‌ها می‌تواند خطاهایی به‌وجود آورد.",
+    "experimentalMsg": "تنظیماتی که عنوان آزمایشی دارند، هم‌چنان در دست توسعه هستند و فعال‌سازی آن‌ها می‌تواند خطاهایی به‌وجود بیاورد.",
     "exportOptions": "صادر کردن تنظیمات به کلیپ‌بورد",
     "exportAllOptions": "صادر کردن تنظیمات به کلیپ‌بورد (اشکال‌زدایی)",
     "importOptions": "وارد کردن تنظیمات از کلیپ‌بورد",
-    "importOptionsMsg": "این اقدام، همه‌ی گزینه‌های پیکربندی را با مقادیر اولیه بازنویسی می‌کند. مطمئن هستید؟",
+    "importOptionsMsg": "این اقدام، همه‌ی تنظیمات پیکربندی را با مقادیر اولیه بازنویسی می‌کند. مطمئن هستید؟",
     "general": {
       "sectionTitle": "عمومی",
       "locale": "زبان",
@@ -177,12 +177,12 @@
         "af": "افغانستان (af)",
         "other": "سایر"
       },
-      "themeMode": "حالت تم",
+      "themeMode": "حالت پوسته",
       "themeModes": {
-        "system": "پیروی از تم دستگاه",
-        "dark": "تم تیره",
-        "light": "تم روشن",
-        "black": "تم سیاه"
+        "system": "پیروی از پوسته‌ی دستگاه",
+        "dark": "پوسته‌ی تیره",
+        "light": "پوسته‌ی روشن",
+        "black": "پوسته‌ی سیاه"
       },
       "enableAnalytics": "فعال‌سازی تجزیه و تحلیل‌ها",
       "enableAnalyticsMsg": "ارائه‌ی دسترسی جمع‌آوری تجزیه و تحلیل‌ها و ارسال گزارش‌های خطا برای بهبود عملکرد برنامه",
@@ -190,7 +190,7 @@
       "silentStart": "اجرای ساکت",
       "openWorkingDir": "باز کردن دایرکتوری فعال",
       "ignoreBatteryOptimizations": "غیرفعال کردن بهینه‌سازی باتری",
-      "ignoreBatteryOptimizationsMsg": "حذف محدودیت‌ها برای عملکرد بهینه‌ی VPN",
+      "ignoreBatteryOptimizationsMsg": "برطرف کردن محدودیت‌ها برای عملکرد بهینه‌ی VPN",
       "dynamicNotification": "نمایش سرعت در نوار اعلان",
       "hapticFeedback": "بازخورد لمسی",
       "autoIpCheck": "بررسی خودکار آی‌پی ارتباط"
@@ -198,24 +198,24 @@
     "advanced": {
       "sectionTitle": "پیشرفته",
       "debugMode": "حالت اشکال‌زدایی",
-      "debugModeMsg": "برنامه را برای اعمال این تغییر بازنشانی کنید",
+      "debugModeMsg": "برنامه را برای اعمال این تغییر دوباره راه‌اندازی کنید",
       "memoryLimit": "محدودیت حافظه",
-      "memoryLimitMsg": "اگر با خطاهای کمبود حافظه یا خرابی مکرر برنامه مواجه شدید، فعال کنید",
-      "resetTunnel": "‌بازنشانی نمایه‌ی VPN"
+      "memoryLimitMsg": "اگر با خطاهای کمبود حافظه یا خرابی مکرر برنامه مواجه می‌شوید، فعال کنید",
+      "resetTunnel": "‌بازنشانی پروفایل VPN"
     },
     "network": {
-      "perAppProxyPageTitle": "پراکسی برنامه‌ها",
+      "perAppProxyPageTitle": "سفارشی‌سازی پراکسی برنامه‌ها",
       "perAppProxyModes": {
         "off": "همه",
         "offMsg": "همه‌ی برنامه‌ها پراکسی شوند",
         "include": "پراکسی",
         "includeMsg": "تنها برنامه‌های انتخاب‌شده پراکسی شوند",
-        "exclude": "میان‌بر",
-        "excludeMsg": "همه به‌جز برنامه‌های انتخاب‌شده پراکسی می‌شوند"
+        "exclude": "کنار گذاشتن",
+        "excludeMsg": "برنامه‌های انتخاب‌شده پراکسی نشوند"
       },
       "showSystemApps": "نمایش برنامه‌های سیستمی",
       "hideSystemApps": "پنهان کردن برنامه‌های سیستمی",
-      "clearSelection": "حذف انتخاب‌ها"
+      "clearSelection": "پاک کردن انتخاب‌ها"
     },
     "geoAssets": {
       "pageTitle": "فایل‌های مسیریابی",
@@ -237,16 +237,16 @@
     "sourceCode": "کد منبع",
     "telegramChannel": "کانال تلگرام",
     "checkForUpdate": "بررسی برای به‌روزرسانی",
-    "privacyPolicy": "سیاست حفظ حریم خصوصی",
+    "privacyPolicy": "سیاست‌های حفظ حریم خصوصی",
     "termsAndConditions": "شرایط و ضوابط استفاده"
   },
   "appUpdate": {
-    "notAvailableMsg": "در حال استفاده از آخرین نسخه",
+    "notAvailableMsg": "در حال استفاده از آخرین نسخه هستید",
     "dialogTitle": "به‌روزرسانی موجود است",
-    "updateMsg": "نسخه‌ی جدیدی از general.appTitle در دسترس است. آیا می‌خواهید اکنون به‌روزرسانی کنید؟",
+    "updateMsg": "نسخه‌ی جدیدی از general.appTitle در دسترس است. آیا می‌خواهید هم‌اکنون به‌روزرسانی کنید؟",
     "currentVersionLbl": "نسخه‌ی فعلی",
     "newVersionLbl": "نسخه‌ی جدید",
-    "updateNowBtnTxt": "اکنون به‌روزرسانی شود",
+    "updateNowBtnTxt": "هم‌اکنون به‌روزرسانی شود",
     "laterBtnTxt": "بعداً",
     "ignoreBtnTxt": "نادیده‌گرفتن"
   },
@@ -265,12 +265,13 @@
     "unexpected": "خطای غیرمنتظره",
     "clash": {
       "unexpected": "خطای غیرمنتظره",
-      "core": "خطای کلش ${reason}"
+      "core": "خطای Clash ${reason}"
     },
     "singbox": {
       "unexpected": "خطای غیرمنتظره در سرویس",
       "serviceNotRunning": "سرویس در حال اجرا نیست",
       "missingPrivilege": "نیازمند دسترسی",
+
       "missingPrivilegeMsg": "حالت VPN به دسترسی سرپرست نیاز دارد. یا برنامه را دوباره به‌عنوان سرپرست راه‌اندازی کنید یا حالت سرویس را تغییر دهید.",
       "missingGeoAssets": "فایل‌های جغرافیایی وجود ندارد",
       "missingGeoAssetsMsg": "فایل‌های جغرافیایی گم شده‌اند. تغییر فایل فعال را در نظر بگیرید و یا یکی را در تنظیمات دانلود کنید.",
@@ -287,13 +288,13 @@
     },
     "profiles": {
       "unexpected": "خطای غیرمنتظره",
-      "notFound": "نمایه یافت نشد",
-      "invalidConfig": "پیکربندی‌های نامعتبر",
-      "invalidUrl": "لینک نامعتبر"
+      "notFound": "پروفایل یافت نشد",
+      "invalidConfig": "پیکربندی‌ها نامعتبر هستند",
+      "invalidUrl": "لینک نامعتبر است"
     },
     "connection": {
       "unexpected": " خطای غیرمنتظره در اتصال",
-      "timeout": "درخواست بیش از حد مجاز زمان برد",
+      "timeout": "مهلت اتصال به پایان رسید",
       "badResponse": "پاسخ نامعتبر",
       "connectionError": "خطای اتصال",
       "badCertificate": "خطای اعتبارسنجی"
@@ -307,7 +308,7 @@
   "play": {
     "title": "هیدیفای (نمایشی)",
     "short_description": "Auto, SSH, VLESS, VMess, Trojan, Reality, Sing-Box, Clash, XRay, Shadowsocks",
-    "full_description": "هدف اصلی هیدیفای ارائه یک کلاینت تونل زنی ایمن، کاربرپسند و کارآمد است. این به شما امکان می‌دهد تا با استفاده از مجوز سرویس VPN، تمام ترافیک یا ترافیک برنامه‌ی انتخابی را به یک سرور راه دور مورد نظر خود هدایت کنید.\nتوجه: ما هیچ سروری ارائه نمی‌دهیم. کاربران موظف هستند با استفاده از سرورهای خود، میزبان یا سرورهای مورد اعتماد، فعالیت‌های آنلاین خود را خصوصی نگه دارند. ما از این سرورها پشتیبانی می‌کنیم:- لینک اشتراک V2Ray/XRay معمولی- لینک اشتراک کلش- لینک اشتراک Sing-Box\nویژگی‌های منحصر به فرد این برنامه چیست؟  - کاربر پسند  - بهینه و سریع  - به طور خودکار کمترین پینگ را انتخاب کنید  - نمایش اطلاعات استفاده کاربر  - به راحتی لینک فرعی را با یک کلیک با استفاده از دیپ لینک وارد کنید  - رایگان و بدون تبلیغات  - به راحتی پیوندهای فرعی کاربر را تغییر دهید  - بیشتر و بیشتر\nپشتیبانی از:- همه‌ی پروتکل‌های پشتیبانی‌شده توسط Sing-Box- VLESS + XTLS Reality، Vision- VMess- Trojan- ShoadowSocks- Reality- WireGuard- V2Ray- Hysteria2- TUICv5- SSH- ShadowTLS\nکد منبع در https://github.com/hiddify/Hiddify-Next وجود داردهسته‌ی برنامه مبتنی بر منبع باز Sing-Box است.\nتوضیحات مجوز:- VPN Service: از آنجا که هدف این برنامه ارائه یک کلاینت تونل‌زنی ایمن، کاربر پسند و کارآمد است، ما به این مجوز نیاز داریم تا بتوانیم ترافیک را از طریق تونل به سرور راه دور هدایت کنیم.- QUERY ALL PACKAGES: این مجوز برای اجازه دادن به کاربران برای گنجاندن یا حذف برنامه‌های کاربردی خاص برای تونل‌زدن استفاده می‌شود.- RECEIVE BOOT COMPLETED: این مجوز را می توان از تنظیمات برنامه فعال یا غیرفعال کرد تا این برنامه پس از بوت شدن دستگاه فعال شود.- POST NOTIFICATIONS: این مجوز ضروری است زیرا ما از یک سرویس پیش زمینه برای اطمینان از عملکرد مداوم سرویس VPN استفاده می کنیم.- این برنامه بدون تبلیغات است. تجزیه و تحلیل و داده‌های خرابی فقط با رضایت صریح کاربر در اولین استفاده از برنامه اتفاق می‌افتد."
+    "full_description": "هدف اصلی هیدیفای ارائه یک کلاینت تونل‌زنی ایمن، کاربرپسند و کارآمد است. این به شما امکان می‌دهد تا با استفاده از مجوز سرویس VPN، تمام ترافیک یا ترافیک برنامه‌ی انتخابی را به یک سرور راه دور مورد نظر خود هدایت کنید.\nتوجه: ما هیچ سروری ارائه نمی‌دهیم. کاربران موظف هستند با استفاده از سرورهای خود، میزبان یا سرورهای مورد اعتماد، فعالیت‌های آنلاین خود را خصوصی نگه دارند. ما از این سرورها پشتیبانی می‌کنیم:- لینک اشتراک V2Ray/XRay معمولی- لینک اشتراک کلش- لینک اشتراک Sing-Box\nویژگی‌های منحصر به فرد این برنامه چیست؟  - کاربر پسند  - بهینه و سریع  - به صورت خودکار کمترین پینگ را انتخاب کنید  - نمایش اطلاعات استفاده کاربر  - به راحتی لینک فرعی را با یک کلیک با استفاده از دیپ لینک وارد کنید  - رایگان و بدون تبلیغات  - به‌راحتی پیوندهای فرعی کاربر را تغییر دهید  - بیشتر و بیشتر\nپشتیبانی از:- همه‌ی پروتکل‌های پشتیبانی‌شده توسط Sing-Box- VLESS + XTLS Reality، Vision- VMess- Trojan- ShoadowSocks- Reality- WireGuard- V2Ray- Hysteria2- TUICv5- SSH- ShadowTLS\nکد منبع در https://github.com/hiddify/Hiddify-Next وجود داردهسته‌ی برنامه مبتنی بر منبع باز Sing-Box است.\nتوضیحات مجوز:- VPN Service: از آن‌جا که هدف این برنامه ارائه‌ی یک کلاینت تونل‌زنی ایمن، کاربر پسند و کارآمد است، ما به این مجوز نیاز داریم تا بتوانیم ترافیک را از طریق تونل به سرور راه دور هدایت کنیم.- QUERY ALL PACKAGES: این مجوز برای اجازه دادن به کاربران برای گنجاندن یا حذف برنامه‌های کاربردی خاص برای تونل‌زدن استفاده می‌شود.- RECEIVE BOOT COMPLETED: این مجوز را می‌توان از تنظیمات برنامه فعال یا غیرفعال کرد تا این برنامه پس از بوت شدن دستگاه فعال شود.- POST NOTIFICATIONS: این مجوز ضروری است زیرا ما از یک سرویس پیش‌زمینه برای اطمینان از عملکرد مداوم سرویس VPN استفاده می‌کنیم.- این برنامه بدون تبلیغات است. تجزیه و تحلیل و داده‌های خرابی فقط با رضایت صریح کاربر در اولین استفاده از برنامه اتفاق می‌افتد."
   },
   "connection": {
     "tapToConnect": "برای اتصال ضربه بزنید",
@@ -317,7 +318,7 @@
     "reconnect": "اتصال دوباره",
     "connectAnyWay": "متصل کردن",
     "experimentalNotice": "ویژگی‌های آزمایشی در حال استفاده",
-    "experimentalNoticeMsg": "شما برخی از ویژگی‌های آزمایشی را فعال کرده‌اید که ممکن است بر کیفیت اتصال تأثیر بگذارد و باعث خطاهای غیرمنتظره شود. همیشه می‌توانید این گزینه‌ها را از صفحه‌ی تنظیمات پیکربندی تغییر دهید یا بازنشانی کنید.",
+    "experimentalNoticeMsg": "شما برخی از ویژگی‌های آزمایشی را فعال کرده‌اید که ممکن است بر کیفیت ارتباط تأثیر بگذارد و باعث خطاهای غیرمنتظره شود. همیشه می‌توانید این گزینه‌ها را از صفحه‌ی تنظیمات پیکربندی تغییر دهید یا بازنشانی کنید.",
     "disableExperimentalNotice": "دیگر نشان نده",
     "reconnectMsg": "دوباره وصل شوید تا تغییرات اعمال شوند"
   },
@@ -340,7 +341,7 @@
       "tunService": "سرویس VPN"
     },
     "section": {
-      "route": "تنظیمات مسیریاب",
+      "route": "تنظیمات مسیریابی",
       "dns": "تنظیمات DNS",
       "inbound": "تنظیمات ورودی",
       "mux": "مالتی پلکسر",
@@ -350,7 +351,7 @@
       "misc": "تنظیمات متفرقه"
     },
     "warpConsent": {
-      "title": "رضایت Cloudflare WARP",
+      "title": "توافق‌نامه‌ی Cloudflare WARP",
       "description(rich)": "Cloudflare WARP یک ارائه‌دهنده‌ی رایگان WireGuard VPN است. با فعال کردن این گزینه، با ${tos(شرایط خدمات)} و ${privacy(خط‌ مشی رازداری)} Cloudflare WARP موافقت می‌کنید."
     },
     "generateWarpConfig": "ایجاد پیکربندی WARP",
@@ -359,15 +360,15 @@
     "pageTitle": "تنظیمات پیکربندی",
     "logLevel": "سطح گزارش",
     "resolveDestination": "جایگذاری مقصد",
-    "ipv6Mode": "مسیریابی IPV6",
+    "ipv6Mode": "مسیریابی IPv6",
     "ipv6Modes": {
       "disable": "غیرفعال",
       "enable": "فعال",
-      "prefer": "ترجیح",
+      "prefer": "ترجیح داده شده",
       "only": "اختصاصی"
     },
     "remoteDnsAddress": "DNS خارجی",
-    "remoteDnsDomainStrategy": "استراتژی دامنه DNS از راه دور",
+    "remoteDnsDomainStrategy": "استراتژی دامنه DNS خارجی",
     "directDnsAddress": "DNS مستقیم",
     "directDnsDomainStrategy": "استراتژی دامنه DNS مستقیم",
     "mixedPort": "درگاه چندمنظوره",
@@ -387,10 +388,10 @@
     "strictRoute": "مسیر دقیق",
     "enableTlsFragment": "فعال‌سازی TLS Fragment",
     "tlsFragmentSize": "اندازه‌ی TLS Fragment ",
-    "tlsFragmentSleep": "خواب TLS Fragment",
+    "tlsFragmentSleep": "کنار گذاشتن TLS Fragment",
     "enableTlsMixedSniCase": "فعال‌سازی TLS Mixed SNI Case",
     "enableTlsPadding": "فعال‌سازی TLS Padding",
-    "tlsPaddingSize": "TLS Padding",
+    "tlsPaddingSize": "اندازه‌ی TLS Padding",
     "enableMux": "فعال‌سازی Mux",
     "muxProtocol": "پروتکل Mux",
     "muxMaxStreams": "حداکثر جریان‌های هم‌زمان",
