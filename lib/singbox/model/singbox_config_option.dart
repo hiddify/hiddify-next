@@ -25,6 +25,7 @@ class SingboxConfigOption with _$SingboxConfigOption {
     required String directDnsAddress,
     required DomainStrategy directDnsDomainStrategy,
     required int mixedPort,
+    required int tproxyPort,
     required int localDnsPort,
     required TunImplementation tunImplementation,
     required int mtu,
