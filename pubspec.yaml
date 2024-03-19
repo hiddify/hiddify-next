@@ -52,7 +52,6 @@ dependencies:
   neat_periodic_task: ^2.0.1
   watcher: ^1.1.0
   go_router: ^13.2.0
-  flex_color_scheme: ^7.3.1
   flutter_animate: ^4.5.0
   flutter_svg: ^2.0.10+1
   gap: ^3.0.1
@@ -84,6 +83,7 @@ dependencies:
     git: https://github.com/hiddify-com/flutter_circle_flags.git
   protobuf: ^3.1.0
   grpc: ^3.2.4
+  dynamic_color: ^1.7.0
 
 dev_dependencies:
   flutter_test:
