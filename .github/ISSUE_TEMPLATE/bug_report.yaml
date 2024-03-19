@@ -32,7 +32,7 @@ body:
     attributes:
       label: Reproduce the Bug
       description: |
-        Please tell us the steps to reproduce the bug.
+        Please tell us the steps to reproduce the bug. A [Minimal Reproducible (MRE)](https://stackoverflow.com/help/minimal-reproducible-example) is needed.
       placeholder: |
         1. Go to '...'
         2. Click on '....'
