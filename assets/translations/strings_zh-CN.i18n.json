@@ -17,7 +17,12 @@
     "decline": "衰退",
     "unknown": "未知",
     "hidden": "隐藏",
-    "timeout": "超时"
+    "timeout": "超时",
+    "clipboardExportSuccessMsg": "添加到剪切板",
+    "showMore": "显示更多",
+    "showLess": "显示更少",
+    "openAppSettings": "打开 APP 设置",
+    "grantPermission": "授予权限"
   },
   "intro": {
     "termsAndPolicyCaution(rich)": "继续即表示您同意 ${tap(@:about.termsAndConditions)}",
@@ -29,6 +34,7 @@
     "noActiveProfileMsg": "选择配置文件"
   },
   "stats": {
+    "traffic": "传输",
     "trafficLive": "实时流量",
     "trafficTotal": "总流量",
     "uplink": "上行",
@@ -68,7 +74,8 @@
         "permissionDeniedError": "权限不足",
         "unexpectedError": "出了些问题",
         "torchSemanticLabel": "手电筒",
-        "facingSemanticLabel": "相机朝向"
+        "facingSemanticLabel": "相机朝向",
+        "permissionRequest": "授予摄像头权限以允许扫描二维码"
       },
       "manually": "手动输入",
       "addingProfileMsg": "添加配置文件",
@@ -155,6 +162,10 @@
     "requiresRestartMsg": "要使其生效，请重新启动应用程序",
     "experimental": "实验性选项",
     "experimentalMsg": "带有实验标志的功能仍在开发中，可能会出现问题。",
+    "exportOptions": "导出选项到剪切板",
+    "exportAllOptions": "导出选项到剪切板（Debug）",
+    "importOptions": "从剪切板导入选项",
+    "importOptionsMsg": "这将使用提供的值重写所有配置选项。你确定吗？",
     "general": {
       "sectionTitle": "一般选项",
       "locale": "语言",
@@ -304,18 +315,30 @@
     "connecting": "正在连接",
     "disconnecting": "正在断开连接",
     "connected": "已连接",
+    "reconnect": "重新连接",
+    "connectAnyWay": "连接",
     "experimentalNotice": "使用中的实验功能",
     "experimentalNoticeMsg": "您启用了一些实验性功能，这些功能可能会影响连接质量并导致意外错误。您始终可以从“配置选项”页面更改或重置这些选项。",
-    "disableExperimentalNotice": "不再显示"
+    "disableExperimentalNotice": "不再显示",
+    "reconnectMsg": "重新连接以使更改生效"
   },
   "config": {
     "resetBtn": "重置选项",
     "serviceMode": "服务模式",
+    "quickSettings": "快速设置",
+    "setupWarp": "设置 WARP",
+    "allOptions": "全部配置选项",
     "serviceModes": {
       "proxy": "仅代理",
       "systemProxy": "系统代理",
       "tun": "VPN",
       "tunService": "VPN服务"
+    },
+    "shortServiceModes": {
+      "proxy": "仅代理",
+      "systemProxy": "系统代理",
+      "tun": "VPN",
+      "tunService": "VPN 服务"
     },
     "section": {
       "route": "路由选项",
@@ -323,7 +346,7 @@
       "inbound": "入站选项",
       "mux": "复用器",
       "outbound": "出站选项",
-      "tlsTricks": "TLS Tricks",
+      "tlsTricks": "TLS 技巧",
       "warp": "WARP 选项",
       "misc": "其他选项"
     },
@@ -375,6 +398,8 @@
     "enableWarp": "启用 WARP",
     "warpDetourMode": "链式代理",
     "warpDetourModes": {
+      "proxyOverWarp": "通过 WARP 连接代理",
+      "warpOverProxy": "通过代理连接 WARP",
       "inbound": "通过代理绕过 WARP",
       "outbound": "通过 WARP 绕过代理"
     },
