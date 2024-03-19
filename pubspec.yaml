@@ -113,6 +113,8 @@ flutter:
     - assets/images/logo.svg
     - assets/images/tray_icon.ico
     - assets/images/tray_icon.png
+    - assets/images/tray_icon_dark.ico
+    - assets/images/tray_icon_dark.png
     - assets/images/tray_icon_connected.ico
     - assets/images/tray_icon_disconnected.ico
     - assets/images/connect_norouz.PNG
