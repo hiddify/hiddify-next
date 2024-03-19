@@ -152,7 +152,7 @@
     "filterHint": "筛选",
     "allLevelsFilter": "全部",
     "shareCoreLogs": "分享核心日志",
-    "shareAppLogs": "分享應用日志",
+    "shareAppLogs": "分享应用日志",
     "pauseTooltip": "暂停",
     "resumeTooltip": "恢复",
     "clearTooltip": "清除"
@@ -372,6 +372,7 @@
     "directDnsAddress": "直连 DNS",
     "directDnsDomainStrategy": "直连 DNS 域名策略",
     "mixedPort": "混合端口",
+    "tproxyPort": "透明代理端口",
     "localDnsPort": "本地 DNS 端口",
     "allowConnectionFromLan": "允许局域网连接",
     "tunImplementation": "TUN 实现",
