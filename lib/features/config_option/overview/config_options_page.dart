@@ -267,6 +267,14 @@ class ConfigOptionsPage extends HookConsumerWidget {
                     validateInput: isPort,
                   ),
                   ValuePreferenceWidget(
+                    value: ref.watch(ConfigOptions.tproxyPort),
+                    preferences: ref.watch(ConfigOptions.tproxyPort.notifier),
+                    title: t.config.tproxyPort,
+                    inputToValue: int.tryParse,
+                    digitsOnly: true,
+                    validateInput: isPort,
+                  ),
+                  ValuePreferenceWidget(
                     value: ref.watch(ConfigOptions.localDnsPort),
                     preferences: ref.watch(ConfigOptions.localDnsPort.notifier),
                     title: t.config.localDnsPort,

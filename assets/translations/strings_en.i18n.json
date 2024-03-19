@@ -372,6 +372,7 @@
     "directDnsAddress": "Direct DNS",
     "directDnsDomainStrategy": "Direct DNS Domain Strategy",
     "mixedPort": "Mixed Port",
+    "tproxyPort": "Transparent Proxy Port",
     "localDnsPort": "Local DNS Port",
     "allowConnectionFromLan": "Share VPN in Local Network",
     "tunImplementation": "TUN Implementation",
