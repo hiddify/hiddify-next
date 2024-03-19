@@ -405,9 +405,9 @@
       "outbound": "通过 WARP 绕过代理"
     },
     "warpLicenseKey": "许可证密钥",
-    "warpCleanIp": "干净 IP",
+    "warpCleanIp": "清理 IP",
     "warpPort": "端口",
-    "warpNoise": "噪音",
+    "warpNoise": "噪音计数",
     "warpNoiseDelay": "噪音延迟"
   }
 }
