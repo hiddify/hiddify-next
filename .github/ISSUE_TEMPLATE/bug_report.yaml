@@ -78,6 +78,14 @@ body:
         If applicable, add screenshots, screen recordings or additional context to help explain your problem.
     validations:
       required: false
+
+  - type: textarea
+    id: configs
+    attributes:
+      label: Application Config Options
+      description: Please copy and paste Application config
+      render: shell
+
   - type: textarea
     id: logs
     attributes:
