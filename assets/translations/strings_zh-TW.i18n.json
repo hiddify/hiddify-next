@@ -334,7 +334,22 @@
     "enableTlsPadding": "啟用 TLS 填充",
     "tlsPaddingSize": "TLS 填充",
     "enableMux": "啟用復用器",
-    "muxProtocol": "復用器控制",
-    "muxMaxStreams": "最大並發數"
+    "muxProtocol": "復用器控制",        
+    "muxMaxStreams": "最大併發數",
+    "enableWarp": "啟用 WARP",
+    "warpDetourMode": "鏈式代理",
+    "warpDetourModes": {
+      "proxyOverWarp": "透過 WARP 連線代理",
+      "warpOverProxy": "透過代理連線 WARP",
+      "inbound": "透過代理繞過 WARP",
+      "outbound": "透過 WARP 繞過代理"
+    },
+    "warpLicenseKey": "許可證金鑰",
+    "warpCleanIp": "清理 IP",
+    "warpPort": "埠",
+    "warpNoise": "噪音計數",
+    "warpNoiseDelay": "噪音延遲"
+  }
+}
   }
 }
