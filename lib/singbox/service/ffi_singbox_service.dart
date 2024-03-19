@@ -287,7 +287,7 @@ class FFISingboxService with InfraLogger implements SingboxService {
         logger.debug("stopping");
         receiver.close();
         _outboundsStream = null;
-        final err = _box.stopCommandClient(4).cast<Utf8>().toDartString();
+        final err = _box.stopCommandClient(5).cast<Utf8>().toDartString();
         if (err.isNotEmpty) {
           _logger.error("error stopping group client");
         }
@@ -311,7 +311,7 @@ class FFISingboxService with InfraLogger implements SingboxService {
 
     try {
       final err = _box
-          .startCommandClient(4, receiver.sendPort.nativePort)
+          .startCommandClient(5, receiver.sendPort.nativePort)
           .cast<Utf8>()
           .toDartString();
       if (err.isNotEmpty) {
@@ -334,7 +334,7 @@ class FFISingboxService with InfraLogger implements SingboxService {
       onCancel: (_) {
         logger.debug("stopping");
         receiver.close();
-        final err = _box.stopCommandClient(12).cast<Utf8>().toDartString();
+        final err = _box.stopCommandClient(13).cast<Utf8>().toDartString();
         if (err.isNotEmpty) {
           logger.error("failed stopping: $err");
         }
@@ -358,7 +358,7 @@ class FFISingboxService with InfraLogger implements SingboxService {
 
     try {
       final err = _box
-          .startCommandClient(12, receiver.sendPort.nativePort)
+          .startCommandClient(13, receiver.sendPort.nativePort)
           .cast<Utf8>()
           .toDartString();
       if (err.isNotEmpty) {

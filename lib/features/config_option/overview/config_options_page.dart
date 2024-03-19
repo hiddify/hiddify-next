@@ -212,29 +212,29 @@ class ConfigOptionsPage extends HookConsumerWidget {
                         .watch(ConfigOptions.enableDnsRouting.notifier)
                         .update,
                   ),
-                  const SettingsDivider(),
-                  SettingsSection(experimental(t.config.section.mux)),
-                  SwitchListTile(
-                    title: Text(t.config.enableMux),
-                    value: ref.watch(ConfigOptions.enableMux),
-                    onChanged:
-                        ref.watch(ConfigOptions.enableMux.notifier).update,
-                  ),
-                  ChoicePreferenceWidget(
-                    selected: ref.watch(ConfigOptions.muxProtocol),
-                    preferences: ref.watch(ConfigOptions.muxProtocol.notifier),
-                    choices: MuxProtocol.values,
-                    title: t.config.muxProtocol,
-                    presentChoice: (value) => value.name,
-                  ),
-                  ValuePreferenceWidget(
-                    value: ref.watch(ConfigOptions.muxMaxStreams),
-                    preferences:
-                        ref.watch(ConfigOptions.muxMaxStreams.notifier),
-                    title: t.config.muxMaxStreams,
-                    inputToValue: int.tryParse,
-                    digitsOnly: true,
-                  ),
+                  // const SettingsDivider(),
+                  // SettingsSection(experimental(t.config.section.mux)),
+                  // SwitchListTile(
+                  //   title: Text(t.config.enableMux),
+                  //   value: ref.watch(ConfigOptions.enableMux),
+                  //   onChanged:
+                  //       ref.watch(ConfigOptions.enableMux.notifier).update,
+                  // ),
+                  // ChoicePreferenceWidget(
+                  //   selected: ref.watch(ConfigOptions.muxProtocol),
+                  //   preferences: ref.watch(ConfigOptions.muxProtocol.notifier),
+                  //   choices: MuxProtocol.values,
+                  //   title: t.config.muxProtocol,
+                  //   presentChoice: (value) => value.name,
+                  // ),
+                  // ValuePreferenceWidget(
+                  //   value: ref.watch(ConfigOptions.muxMaxStreams),
+                  //   preferences:
+                  //       ref.watch(ConfigOptions.muxMaxStreams.notifier),
+                  //   title: t.config.muxMaxStreams,
+                  //   inputToValue: int.tryParse,
+                  //   digitsOnly: true,
+                  // ),
                   const SettingsDivider(),
                   SettingsSection(t.config.section.inbound),
                   ChoicePreferenceWidget(

@@ -74,7 +74,8 @@
         "permissionDeniedError": "Permission Denied",
         "unexpectedError": "Something Went Wrong",
         "torchSemanticLabel": "Flash Light",
-        "facingSemanticLabel": "Camera Facing"
+        "facingSemanticLabel": "Camera Facing",
+        "permissionRequest": "Permission to camera to scan QR Code"
       },
       "manually": "Manual Entry",
       "addingProfileMsg": "Adding Profile",
@@ -372,7 +373,7 @@
     "directDnsDomainStrategy": "Direct DNS Domain Strategy",
     "mixedPort": "Mixed Port",
     "localDnsPort": "Local DNS Port",
-    "allowConnectionFromLan": "Allow Connection from LAN",
+    "allowConnectionFromLan": "Share VPN in Local Network",
     "tunImplementation": "TUN Implementation",
     "mtu": "MTU",
     "connectionTestUrl": "Connection Test URL",

@@ -30,9 +30,9 @@ body:
   - type: textarea
     id: reproduce
     attributes:
-      label: Reproduce the Bug
+      label: Minimal Reproducible Example (MRE)
       description: |
-        Please tell us the steps to reproduce the bug.
+        Please tell us the steps to reproduce the bug. A [Minimal Reproducible Example (MRE)](https://stackoverflow.com/help/minimal-reproducible-example) is needed.
       placeholder: |
         1. Go to '...'
         2. Click on '....'
@@ -78,6 +78,14 @@ body:
         If applicable, add screenshots, screen recordings or additional context to help explain your problem.
     validations:
       required: false
+
+  - type: textarea
+    id: configs
+    attributes:
+      label: Application Config Options
+      description: Please copy and paste Application config
+      render: shell
+
   - type: textarea
     id: logs
     attributes:

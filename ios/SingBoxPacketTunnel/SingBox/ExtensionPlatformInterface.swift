@@ -222,7 +222,12 @@ public class ExtensionPlatformInterface: NSObject, LibboxPlatformInterfaceProtoc
         }
     }
 
+    public func postServiceClose() {
+        // TODO
+    }
+
     func reset() {
         networkSettings = nil
     }
+
 }

@@ -65,7 +65,9 @@ class WarpOptionNotifier extends _$WarpOptionNotifier with AppLogger {
       await ref
           .read(ConfigOptions.warpAccessToken.notifier)
           .update(warp.accessToken);
-
+      await ref
+          .read(ConfigOptions.warpWireguardConfig.notifier)
+          .update(warp.wireguardConfig);
       return warp.log;
     });
 

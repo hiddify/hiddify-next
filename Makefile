@@ -59,7 +59,7 @@ prepare:
 
 windows-prepare: get-geo-assets get gen translate windows-libs
 	
-ios-prepare: get-geo-assets get gen translate ios-libs
+ios-prepare: get-geo-assets get gen translate ios-libs 
 macos-prepare: get-geo-assets get gen translate macos-libs
 linux-prepare: get-geo-assets get gen translate linux-libs
 linux-appimage-prepare:linux-prepare

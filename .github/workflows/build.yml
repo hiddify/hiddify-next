@@ -36,15 +36,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      # - uses: subosito/flutter-action@v2.12.0 #issue with 2.13
-      #   with:
-      #     flutter-version: ${{ env.FLUTTER_VERSION }}
-      #     channel: 'stable'
-      #     cache: true
-      # - name: Prepare
-      #   run: make linux-prepare
-      # - name: Test
-      #   run: flutter test
+      - uses: subosito/flutter-action@v2.12.0 #issue with 2.13
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: 'stable'
+          cache: true
+      - name: Prepare
+        run: make linux-prepare
+      - name: Test
+        run: flutter test
 
       - name: make draftBuildCode
         id: draftBuildCode
@@ -149,13 +149,13 @@ jobs:
             [IO.File]::WriteAllBytes("windows\sign.pfx", [Convert]::FromBase64String("${{ secrets.WINDOWS_SIGNING_KEY }}"))
             (Get-Content "windows\packaging\msix\make_config.yaml") -replace '^certificate_password:.*$', 'certificate_password: ${{ secrets.WINDOWS_SIGNING_PASSWORD }}' | Set-Content "windows\packaging\msix\make_config.yaml"
         
-      - name: Temporary disable Permission Handler for windows due to its issue in permission
-        if: ${{ startsWith(matrix.platform,'windows') }}
-        run: |
-          (Get-Content -Path "pubspec.yaml") -notmatch "permission_handler" | Set-Content -Path "pubspec.yaml"
-          (Get-Content -Path "lib\features\profile\add\add_profile_modal.dart") -notmatch "qr_code_scanner_screen" | Set-Content -Path "lib\features\profile\add\add_profile_modal.dart"
-          (Get-Content -Path lib\features\profile\add\add_profile_modal.dart) -replace 'await QRCodeScannerScreen\(\).open\(context\);', 'null;' | Set-Content -Path lib\features\profile\add\add_profile_modal.dart
-          Remove-Item -Path "lib\features\common\qr_code_scanner_screen.dart"
+      # - name: Temporary disable Permission Handler for windows due to its issue in permission
+      #   if: ${{ startsWith(matrix.platform,'windows') }}
+      #   run: |
+      #     (Get-Content -Path "pubspec.yaml") -notmatch "permission_handler" | Set-Content -Path "pubspec.yaml"
+      #     (Get-Content -Path "lib\features\profile\add\add_profile_modal.dart") -notmatch "qr_code_scanner_screen" | Set-Content -Path "lib\features\profile\add\add_profile_modal.dart"
+      #     (Get-Content -Path lib\features\profile\add\add_profile_modal.dart) -replace 'await QRCodeScannerScreen\(\).open\(context\);', 'null;' | Set-Content -Path lib\features\profile\add\add_profile_modal.dart
+      #     Remove-Item -Path "lib\features\common\qr_code_scanner_screen.dart"
 
 
 
@@ -368,8 +368,8 @@ jobs:
 
   upload-to-testflight:
     needs: [build]
-    # if: ${{ inputs.upload-artifact &&  inputs.tag-name != 'draft' }}
-    if: ${{ inputs.upload-artifact }}
+    if: ${{ inputs.upload-artifact &&  inputs.tag-name != 'draft' }}
+    #if: ${{ inputs.upload-artifact }}
     runs-on: macOS-latest
     timeout-minutes: 30
     steps:
