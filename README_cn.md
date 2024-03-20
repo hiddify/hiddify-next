@@ -34,7 +34,7 @@
 
 🔍 基于延迟自动选择节点
 
-🟡 全面的协议支持：**Vless、Vmess、Reality、TUIC、Hysteria、SSH**
+🟡 全面的协议支持：**Vless、Vmess、Reality、TUIC、Wireguard、Hysteria、SSH**
 
 🟡 多种订阅链接和配置文件格式支持： **Sing-box、V2ray、Clash、Clash meta**
 
