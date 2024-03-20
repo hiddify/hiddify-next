@@ -74,7 +74,8 @@
         "permissionDeniedError": "دسترسی داده نشد",
         "unexpectedError": "خطایی رخ داده است",
         "torchSemanticLabel": "نور فلاش",
-        "facingSemanticLabel": "جهت دوربین"
+        "facingSemanticLabel": "جهت دوربین",
+        "permissionRequest": "دسترسی به دوربین برای اسکن کد QR"
       },
       "manually": "افزودن دستی",
       "addingProfileMsg": "در حال افزودن پروفایل",
@@ -371,6 +372,7 @@
     "directDnsAddress": "DNS مستقیم",
     "directDnsDomainStrategy": "استراتژی دامنه DNS مستقیم",
     "mixedPort": "درگاه چندمنظوره",
+    "tproxyPort": "پورت پروکسی نامرئی",
     "localDnsPort": "درگاه DNS داخلی",
     "allowConnectionFromLan": "اشتراک فیلترشکن در شبکه",
     "tunImplementation": "پیاده‌سازی TUN",
