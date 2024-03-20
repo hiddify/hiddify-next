@@ -41,7 +41,7 @@
 🔍 遅延に基づいたノード選択
 
 🟡 幅広いプロトコル:
-Vless、Vmess、Reality、TUIC、Hysteria、SSHなど。
+Vless、Vmess、Reality、TUIC、Hysteria、Wireguard、 SSH など。
 
 🟡 サブスクリプションのリンクと設定フォーマット
 
