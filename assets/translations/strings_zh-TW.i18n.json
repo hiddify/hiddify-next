@@ -1,6 +1,6 @@
 {
   "general": {
-    "appTitle": "Hiddify Next",
+    "appTitle": "Hiddify",
     "reset": "重置",
     "toggle": {
       "enabled": "啟用",
@@ -14,7 +14,7 @@
     "addToClipboard": "新增到剪貼簿"
   },
   "intro": {
-    "termsAndPolicyCaution(rich)": "繼續即表示您同意 ${tap(@:about.termsAndConditions)}",
+    "termsAndPolicyCaution(rich)": "繼續即表示您同意協議 ${tap(@:about.termsAndConditions)}",
     "start": "開始"
   },
   "home": {
@@ -137,10 +137,10 @@
       "regionMsg": "幫助設定預設選項以繞過國內地址",
       "regions": {
         "ir": "伊朗 (ir)",
-        "cn": "中國 (cn)",
+        "cn": "中國大陸 (cn)",
         "ru": "俄羅斯 (ru)",
         "af": "阿富汗 (af)",
-        "other": "其他"
+        "other": "其他地區"
       },
       "themeMode": "主題模式",
       "themeModes": {
@@ -256,19 +256,19 @@
     },
     "connection": {
       "unexpected": "意外連線錯誤",
-      "timeout": "連線過時",
+      "timeout": "連線超時",
       "badResponse": "錯誤反應",
       "connectionError": "連線錯誤",
       "badCertificate": "無效證書"
     },
     "geoAssets": {
       "unexpected": "意外錯誤",
-      "notUpdate": "無可用更新",
+      "notUpdate": "暫無可用更新",
       "activeNotFound": "未找到活動 GEO 資源文件"
     }
   },
   "play": {
-    "title": "Hiddify Next（預覽）",
+    "title": "Hiddify（預覽）",
     "short_description": "自動、SSH、VLESS、Vmess、Trojan、Reality、Sing-Box、Clash、Xray、Shadowsocks",
     "full_description": "HiddifyNext 的主要目標是提供安全、使用者友好且高效率的隧道用戶端。它使您能夠利用 VPN 服務權限將所有流量或選定的應用程式流量路由到您選擇的遠端伺服器。\n\n註：我們不提供任何伺服器；使用者需要使用自己的自託管伺服器或受信任的伺服器來確保其線上活動的隱私。\n\n我們透過以下方式支援伺服器：\n - 普通 V2ray/Xray 訂閱連結\n - Clash 訂閱連結\n - Sing-Box 訂閱連結\n\n 我們的獨特功能是什麼？\n - 使用者友善\n - 最佳化且快速\n - 自動選擇最低延遲\n - 顯示使用者使用資訊\n - 使用一鍵連結輕鬆導入\n - 免費且無廣告\n - 輕鬆切換線路\n - 等等\n 支援：\n - Sing-Box 支援的所有協定 \n - VLESS + XTLS Reality、Vision 協定 \n - VMESS\n - Trojan\n - ShoadowSocks\n - Reality\n - WireGuard\n - V2ray\n - Hystria2\n - TUIC \n - SSH\n - ShadowTLS\n\n\n 原始碼位於 https://github.com/hiddify/Hiddify-Next\n 應用程式核心基於開源的 Sing-Box。\n\n權限說明：\n\n - VPN 服務：由於此應用程式的目標是提供安全性、使用者友好且高效的隧道用戶端，因此我們需要此權限才能透過隧道將流量路由到遠端伺服器。\n - 獲取應用程式列表：此權限用於允許使用者包含或排除隧道的特定應用程式。\n - 接收啟動廣播：可以從應用程式設定中啟用或停用此權限，以在裝置啟動時啟動此應用程式。\n - 發送通知：此權限至關重要，因為我們使用前台服務來確保 VPN 服務的持續運作。\n - 該應用程式沒有廣告。分析和崩潰數據僅在用戶首次使用應用程式時明確同意的情況下才會出現。"
   },
@@ -278,11 +278,11 @@
     "disconnecting": "斷連中",
     "connected": "已連接",
     "experimentalNotice": "使用中的實驗性功能",
-    "experimentalNoticeMsg": "您啟用了一些實驗性功能，這些功能可能會影響連線品質並導致意外錯誤。您始終可以從「配置選項」頁面變更或重設這些選項。",
+    "experimentalNoticeMsg": "您啟用了一些實驗性功能，這些功能可能會影響連線品質並導致某些意外錯誤。您始終可以從「配置選項」頁面變更或重設這些選項。",
     "disableExperimentalNotice": "不再提示"
   },
   "config": {
-    "resetBtn": "重置選項",
+    "resetBtn": "重置選頂",
     "serviceMode": "服務模式",
     "serviceModes": {
       "proxy": "僅代理",
@@ -310,12 +310,13 @@
     },
     "remoteDnsAddress": "遠端 DNS",
     "remoteDnsDomainStrategy": "遠端 DNS 網域策略",
-    "directDnsAddress": "直連 DNS",
-    "directDnsDomainStrategy": "直連 DNS 網域策略",
-    "mixedPort": "混合連接埠",
-    "localDnsPort": "本地 DNS 連接埠",
-    "allowConnectionFromLan": "允許區域網路連接",
-    "tunImplementation": "TUN 實現",
+      "directDnsAddress": "直連 DNS", 
+      "directDnsDomainStrategy": "直連 DNS 網域策略", 
+      "mixedPort": "混合連接埠", 
+     "tproxyPort": "透明代理埠", 
+      "localDnsPort": "本地 DNS 連接埠", 
+      "allowConnectionFromLan": "允許區域網連線", 
+      "tunImplementation": "TUN 實現",
     "mtu": "MTU",
     "connectionTestUrl": "連接測試網址",
     "urlTestInterval": "URL 測試間隔",
@@ -334,7 +335,20 @@
     "enableTlsPadding": "啟用 TLS 填充",
     "tlsPaddingSize": "TLS 填充",
     "enableMux": "啟用復用器",
-    "muxProtocol": "復用器控制",
-    "muxMaxStreams": "最大並發數"
+    "muxProtocol": "復用器控制",        
+    "muxMaxStreams": "最大並發數",
+    "enableWarp": "啟用 WARP",
+    "warpDetourMode": "鏈式代理",
+    "warpDetourModes": {
+      "proxyOverWarp": "透過 WARP 連線代理",
+      "warpOverProxy": "透過代理連線 WARP",
+      "inbound": "透過代理繞過 WARP",
+      "outbound": "透過 WARP 繞過代理"
+    },
+    "warpLicenseKey": "許可證金鑰",
+    "warpCleanIp": "清理 IP",
+    "warpPort": "埠",
+    "warpNoise": "噪音計數",
+    "warpNoiseDelay": "噪音延遲"
   }
 }
