@@ -40,7 +40,7 @@
 🔍 Delay based node selection
 
 🟡 Wide range of protocols:
-Vless, Vmess, Reality, TUIC, Hysteria, SSH etc.
+Vless, Vmess, Reality, TUIC, Hysteria, Wireguard, SSH etc.
 
 🟡 Subscription link and configuration formats: Sing-box, V2ray, Clash, Clash meta
 
