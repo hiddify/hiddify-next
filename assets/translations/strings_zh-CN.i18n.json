@@ -12,16 +12,16 @@
     "sort": "排序",
     "sortBy": "排序方式",
     "addToClipboard": "添加到剪贴板",
-    "notSet": "没有设置",
+    "notSet": "未设置",
     "agree": "同意",
-    "decline": "衰退",
+    "decline": "拒绝",
     "unknown": "未知",
     "hidden": "隐藏",
     "timeout": "超时",
-    "clipboardExportSuccessMsg": "添加到剪切板",
+    "clipboardExportSuccessMsg": "已导出到剪切板",
     "showMore": "显示更多",
     "showLess": "显示更少",
-    "openAppSettings": "打开 APP 设置",
+    "openAppSettings": "打开应用设置",
     "grantPermission": "授予权限"
   },
   "intro": {
@@ -30,11 +30,11 @@
   },
   "home": {
     "pageTitle": "主页",
-    "emptyProfilesMsg": "首先添加订阅配置文件",
+    "emptyProfilesMsg": "从添加订阅配置文件开始",
     "noActiveProfileMsg": "选择配置文件"
   },
   "stats": {
-    "traffic": "传输",
+    "traffic": "流量",
     "trafficLive": "实时流量",
     "trafficTotal": "总流量",
     "uplink": "上行",
@@ -46,12 +46,12 @@
   "profile": {
     "overviewPageTitle": "配置文件",
     "detailsPageTitle": "配置文件",
-    "activeProfileNameSemanticLabel": "活动配置文件名称：“${name}”。",
-    "activeProfileBtnSemanticLabel": "查看所有配置文件。",
-    "nonActiveProfileBtnSemanticLabel": "选择 “${name}” 作为活动配置文件。",
+    "activeProfileNameSemanticLabel": "激活的配置文件名称：“${name}”。",
+    "activeProfileBtnSemanticLabel": "查看所有配置文件",
+    "nonActiveProfileBtnSemanticLabel": "选择 “${name}” 作为激活的配置文件",
     "subscription": {
       "traffic": "流量",
-      "updatedTimeAgo": "更新 ${timeago}",
+      "updatedTimeAgo": "更新于 ${timeago}",
       "remainingDuration": "剩余 ${duration} 天",
       "remainingTrafficSemanticLabel": "已使用 ${consumed} 流量，共 ${total} 流量。",
       "expired": "已过期",
@@ -63,7 +63,7 @@
     },
     "sortBy": {
       "lastUpdate": "最近更新",
-      "name": "按字母顺序"
+      "name": "字母顺序"
     },
     "add": {
       "buttonText": "新的配置文件",
@@ -73,9 +73,9 @@
       "qrScanner": {
         "permissionDeniedError": "权限不足",
         "unexpectedError": "出了些问题",
-        "torchSemanticLabel": "手电筒",
-        "facingSemanticLabel": "相机朝向",
-        "permissionRequest": "授予摄像头权限以允许扫描二维码"
+        "torchSemanticLabel": "闪光灯",
+        "facingSemanticLabel": "切换摄像头",
+        "permissionRequest": "授予相机权限以允许扫描二维码"
       },
       "manually": "手动输入",
       "addingProfileMsg": "添加配置文件",
@@ -126,24 +126,24 @@
   },
   "proxies": {
     "pageTitle": "代理",
-    "emptyProxiesMsg": "没有可用的代理",
+    "emptyProxiesMsg": "无可用的代理",
     "delayTestTooltip": "测试延迟",
     "sortTooltip": "对代理进行排序",
-    "checkIp": "检测IP地址",
-    "unknownIp": "未知的IP",
+    "checkIp": "检测 IP 地址",
+    "unknownIp": "未知的 IP",
     "sortOptions": {
       "unsorted": "默认",
       "name": "按字母顺序",
       "delay": "按延迟顺序"
     },
-    "activeProxySemanticLabel": "活跃的代理",
+    "activeProxySemanticLabel": "激活的代理",
     "delaySemantics": {
-      "result": "延迟:${delay}ms",
+      "result": "延迟: ${delay}ms",
       "timeout": "延迟测试超时",
       "testing": "正在测试延迟"
     },
     "ipInfoSemantics": {
-      "address": "IP地址",
+      "address": "IP 地址",
       "country": "国家"
     }
   },
@@ -163,9 +163,9 @@
     "experimental": "实验性选项",
     "experimentalMsg": "带有实验标志的功能仍在开发中，可能会出现问题。",
     "exportOptions": "导出选项到剪切板",
-    "exportAllOptions": "导出选项到剪切板（Debug）",
+    "exportAllOptions": "导出选项到剪切板（用于调试）",
     "importOptions": "从剪切板导入选项",
-    "importOptionsMsg": "这将使用提供的值重写所有配置选项。你确定吗？",
+    "importOptionsMsg": "这将使用提供的值重写所有配置选项。您确定吗？",
     "general": {
       "sectionTitle": "一般选项",
       "locale": "语言",
@@ -176,7 +176,7 @@
         "cn": "中国 (cn)",
         "ru": "俄罗斯 (ru)",
         "af": "阿富汗 (af)",
-        "other": "其他"
+        "other": "其它"
       },
       "themeMode": "主题模式",
       "themeModes": {
@@ -192,7 +192,7 @@
       "openWorkingDir": "打开工作目录",
       "ignoreBatteryOptimizations": "禁用电池优化",
       "ignoreBatteryOptimizationsMsg": "消除限制以获得最佳 VPN 性能",
-      "dynamicNotification": "在通知中显示速度",
+      "dynamicNotification": "在通知中显示网络速度",
       "hapticFeedback": "触觉反馈",
       "autoIpCheck": "自动检查连接的 IP"
     },
@@ -318,7 +318,7 @@
     "reconnect": "重新连接",
     "connectAnyWay": "连接",
     "experimentalNotice": "使用中的实验功能",
-    "experimentalNoticeMsg": "您启用了一些实验性功能，这些功能可能会影响连接质量并导致意外错误。您始终可以从“配置选项”页面更改或重置这些选项。",
+    "experimentalNoticeMsg": "您启用了一些实验性功能，这些功能可能会影响连接质量并导致意外错误。您可以随时从“配置”页面更改或重置这些选项。",
     "disableExperimentalNotice": "不再显示",
     "reconnectMsg": "重新连接以使更改生效"
   },
@@ -326,13 +326,13 @@
     "resetBtn": "重置选项",
     "serviceMode": "服务模式",
     "quickSettings": "快速设置",
-    "setupWarp": "设置 WARP",
+    "setupWarp": "配置 WARP",
     "allOptions": "全部配置选项",
     "serviceModes": {
       "proxy": "仅代理",
       "systemProxy": "系统代理",
       "tun": "VPN",
-      "tunService": "VPN服务"
+      "tunService": "VPN 服务"
     },
     "shortServiceModes": {
       "proxy": "仅代理",
@@ -344,20 +344,20 @@
       "route": "路由选项",
       "dns": "DNS 选项",
       "inbound": "入站选项",
-      "mux": "复用器",
+      "mux": "多路复用",
       "outbound": "出站选项",
-      "tlsTricks": "TLS 技巧",
+      "tlsTricks": "TLS 特性",
       "warp": "WARP 选项",
-      "misc": "其他选项"
+      "misc": "其它选项"
     },
     "warpConsent": {
-      "title": "Cloudflare WARP 同意",
-      "description(rich)": "Cloudflare WARP 是免费的 WireGuard VPN 提供商。启用此选项即表示您同意 Cloudflare WARP 的 ${tos(服务条款)} 和 ${privacy(隐私政策)}"
+      "title": "Cloudflare WARP 许可条款",
+      "description(rich)": "Cloudflare WARP 是一个免费的 WireGuard VPN 提供商。启用此选项即表示您同意 Cloudflare WARP 的 ${tos(服务条款)} 和 ${privacy(隐私政策)}"
     },
-    "generateWarpConfig": "生成WARP配置文件",
-    "missingWarpConfig": "WARP配置缺失",
-    "warpConfigGenerated": "WARP 配置已生成",
-    "pageTitle": "配置选项",
+    "generateWarpConfig": "生成 WARP 配置文件",
+    "missingWarpConfig": "WARP 配置文件缺失",
+    "warpConfigGenerated": "WARP 配置文件已生成",
+    "pageTitle": "配置",
     "logLevel": "日志级别",
     "resolveDestination": "解析目标地址",
     "ipv6Mode": "IPv6 路由",
@@ -365,7 +365,7 @@
       "disable": "禁用",
       "enable": "启用",
       "prefer": "首选",
-      "only": "仅"
+      "only": "仅限"
     },
     "remoteDnsAddress": "远程 DNS",
     "remoteDnsDomainStrategy": "远程 DNS 域名策略",
@@ -393,9 +393,9 @@
     "enableTlsMixedSniCase": "启用 TLS 混合 SNI 情形",
     "enableTlsPadding": "启用 TLS 填充",
     "tlsPaddingSize": "TLS 填充",
-    "enableMux": "启用Mux多路复用",
-    "muxProtocol": "Mux多路复用控制",
-    "muxMaxStreams": "Mux最大并发数",
+    "enableMux": "启用 Mux 多路复用",
+    "muxProtocol": "Mux 协议",
+    "muxMaxStreams": "Mux 最大并发数",
     "enableWarp": "启用 WARP",
     "warpDetourMode": "链式代理",
     "warpDetourModes": {
