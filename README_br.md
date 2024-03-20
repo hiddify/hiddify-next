@@ -40,7 +40,7 @@
 🔍 Seleção de nós baseada em atraso
 
 🟡 Amplas opções de protocolos:
-Vless, Vmess, Reality, TUIC, Hysteria, SSH, etc.
+Vless, Vmess, Reality, TUIC, Hysteria, Wireguard, SSH, etc.
 
 🟡 Links de assinatura e formatos de configuração: Sing-box, V2ray, Clash, Clash meta
 
