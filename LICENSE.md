@@ -4,7 +4,8 @@
 ## Summary:
 - The forks of the app are not allowed to be listed on F-Droid or other app stores under the original name or original design.
 - Any forks should be published open-source under the same license.
-- You need prior consent to publish a fork or use any part of this code in an application published in AppStore or publish for iOS or macOS (we may change this in future after finishing development for iOS and macOS).
+- Prior consent is required to publish a fork or utilize any part of this repository (github.com/hiddify/hiddify-next and github.com/hiddify/hiddify-next-core) in an application intended for publication on the App Store or for iOS/macOS platforms. (We reserve the right to modify this requirement in the future after completing development for iOS and macOS).
+- You need prior consent to publish a fork or use any part of this code in an application published in AppStore or publish for iOS or macOS. (We reserve the right to modify this requirement in the future after completing development for iOS and macOS).
 - You are free to:
   - Share — copy and redistribute the material in any medium or format with 
   - Adapt — remix, transform, and build upon the material
