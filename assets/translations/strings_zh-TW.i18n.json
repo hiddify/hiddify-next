@@ -306,7 +306,7 @@
       "disable": "停用",
       "enable": "啟用",
       "prefer": "首選",
-      "only": "僅"
+      "only": "僅限"
     },
     "remoteDnsAddress": "遠端 DNS",
     "remoteDnsDomainStrategy": "遠端 DNS 網域策略",
