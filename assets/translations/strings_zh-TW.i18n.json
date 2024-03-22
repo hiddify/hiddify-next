@@ -303,7 +303,7 @@
       "misc": "其他選項"
     },    
     "warpConsent": {
-      "title": "Cloudflare WARP 許可條款",
+      "title": "Cloudflare WARP 許可條款"
     },
     "generateWarpConfig": "生成 WARP 配置檔案",
     "missingWarpConfig": "WARP 配置檔案缺失",

@@ -111,10 +111,11 @@ android-aab-install-dependencies: android-install-dependencies
 
 linux-install-dependencies:
 	if [ "$(flutter)" = "true" ]; then \
-		wget -O ~/Downloads/flutter_linux_3.16.9-stable.tar.xz https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.16.9-stable.tar.xz; \
 		mkdir -p ~/develop; \
 		cd ~/develop; \
-		tar xf ~/Downloads/flutter_linux_3.16.9-stable.tar.xz; \
+		wget -O flutter_linux-stable.tar.xz https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.19.4-stable.tar.xz; \
+		tar xf flutter_linux-stable.tar.xz; \
+		rm flutter_linux-stable.tar.xz;\
 		export PATH="$$PATH:$$HOME/develop/flutter/bin"; \
 		echo 'export PATH="$$PATH:$$HOME/develop/flutter/bin"' >> ~/.bashrc; \
 	fi
