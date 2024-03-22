@@ -11,7 +11,7 @@
     },
     "sort": "排序",
     "sortBy": "排序方式",
-    "addToClipboard": "新增到剪貼簿"
+    "addToClipboard": "新增至剪貼簿"
   },
   "intro": {
     "termsAndPolicyCaution(rich)": "繼續即表示您同意協議 ${tap(@:about.termsAndConditions)}",
@@ -270,7 +270,7 @@
   "play": {
     "title": "Hiddify（預覽）",
     "short_description": "自動、SSH、VLESS、Vmess、Trojan、Reality、Sing-Box、Clash、Xray、Shadowsocks",
-    "full_description": "HiddifyNext 的主要目標是提供安全、使用者友好且高效率的隧道用戶端。它使您能夠利用 VPN 服務權限將所有流量或選定的應用程式流量路由到您選擇的遠端伺服器。\n\n註：我們不提供任何伺服器；使用者需要使用自己的自託管伺服器或受信任的伺服器來確保其線上活動的隱私。\n\n我們透過以下方式支援伺服器：\n - 普通 V2ray/Xray 訂閱連結\n - Clash 訂閱連結\n - Sing-Box 訂閱連結\n\n 我們的獨特功能是什麼？\n - 使用者友善\n - 最佳化且快速\n - 自動選擇最低延遲\n - 顯示使用者使用資訊\n - 使用一鍵連結輕鬆導入\n - 免費且無廣告\n - 輕鬆切換線路\n - 等等\n 支援：\n - Sing-Box 支援的所有協定 \n - VLESS + XTLS Reality、Vision 協定 \n - VMESS\n - Trojan\n - ShoadowSocks\n - Reality\n - WireGuard\n - V2ray\n - Hystria2\n - TUIC \n - SSH\n - ShadowTLS\n\n\n 原始碼位於 https://github.com/hiddify/Hiddify-Next\n 應用程式核心基於開源的 Sing-Box。\n\n權限說明：\n\n - VPN 服務：由於此應用程式的目標是提供安全性、使用者友好且高效的隧道用戶端，因此我們需要此權限才能透過隧道將流量路由到遠端伺服器。\n - 獲取應用程式列表：此權限用於允許使用者包含或排除隧道的特定應用程式。\n - 接收啟動廣播：可以從應用程式設定中啟用或停用此權限，以在裝置啟動時啟動此應用程式。\n - 發送通知：此權限至關重要，因為我們使用前台服務來確保 VPN 服務的持續運作。\n - 該應用程式沒有廣告。分析和崩潰數據僅在用戶首次使用應用程式時明確同意的情況下才會出現。"
+    "full_description": "Hiddify 的主要目標是提供安全、使用者友好且高效率的隧道用戶端。它使您能夠利用 VPN 服務權限將所有流量或選定的應用程式流量路由到您選擇的遠端伺服器。\n\n註：我們不提供任何伺服器；使用者需要使用自己的自託管伺服器或受信任的伺服器來確保其線上活動的隱私。\n\n我們透過以下方式支援伺服器：\n - 普通 V2ray/Xray 訂閱連結\n - Clash 訂閱連結\n - Sing-Box 訂閱連結\n\n 我們的獨特功能是什麼？\n - 使用者友善\n - 最佳化且快速\n - 自動選擇最低延遲\n - 顯示使用者使用資訊\n - 使用一鍵連結輕鬆導入\n - 免費且無廣告\n - 輕鬆切換線路\n - 等等\n 支援：\n - Sing-Box 支援的所有協定 \n - VLESS + XTLS Reality、Vision 協定 \n - VMESS\n - Trojan\n - ShoadowSocks\n - Reality\n - WireGuard\n - V2ray\n - Hystria2\n - TUIC \n - SSH\n - ShadowTLS\n\n\n 原始碼位於 https://github.com/hiddify/Hiddify-Next\n 應用程式核心基於開源的 Sing-Box。\n\n權限說明：\n\n - VPN 服務：由於此應用程式的目標是提供安全性、使用者友好且高效的隧道用戶端，因此我們需要此權限才能透過隧道將流量路由到遠端伺服器。\n - 獲取應用程式列表：此權限用於允許使用者包含或排除隧道的特定應用程式。\n - 接收啟動廣播：可以從應用程式設定中啟用或停用此權限，以在裝置啟動時啟動此應用程式。\n - 發送通知：此權限至關重要，因為我們使用前台服務來確保 VPN 服務的持續運作。\n - 該應用程式沒有廣告。分析和崩潰數據僅在用戶首次使用應用程式時明確同意的情況下才會出現。"
   },
   "connection": {
     "tapToConnect": "點擊以連接",
@@ -282,12 +282,16 @@
     "disableExperimentalNotice": "不再提示"
   },
   "config": {
-    "resetBtn": "重置選頂",
+    "resetBtn": "重置選項",
+    "serviceMode": "服務模式",
+    "quickSettings": "快速設定",
+    "setupWarp": "配置 WARP",
     "serviceMode": "服務模式",
     "serviceModes": {
       "proxy": "僅代理",
       "systemProxy": "系統代理",
-      "tun": "VPN"
+      "tun": "VPN",
+      "tunService": "VPN 服務"
     },
     "section": {
       "route": "路由選項",
@@ -297,7 +301,13 @@
       "outbound": "出站選項",
       "tlsTricks": "TLS Tricks",
       "misc": "其他選項"
+    },    
+    "warpConsent": {
+      "title": "Cloudflare WARP 許可條款",
     },
+    "generateWarpConfig": "生成 WARP 配置檔案",
+    "missingWarpConfig": "WARP 配置檔案缺失",
+    "warpConfigGenerated": "WARP 配置檔案已生成",
     "pageTitle": "配置選項",
     "logLevel": "日誌等級",
     "resolveDestination": "解析目標地址",
@@ -306,7 +316,7 @@
       "disable": "停用",
       "enable": "啟用",
       "prefer": "首選",
-      "only": "僅"
+      "only": "僅限"
     },
     "remoteDnsAddress": "遠端 DNS",
     "remoteDnsDomainStrategy": "遠端 DNS 網域策略",
