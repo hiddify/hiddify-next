@@ -274,7 +274,7 @@
       "missingPrivilege": "Missing Privilege",
       "missingPrivilegeMsg": "VPN Mode Requires Administrator Privileges. Either relaunch the app as administrator or change service mode.",
       "missingGeoAssets": "Missing Geo Assets",
-      "missingGeoAssetsMsg": "Geo Assets Are Missing. consider changing active asset or download selected one in the settings.",
+      "missingGeoAssetsMsg": "Geo Assets Are Missing. Consider changing active asset or download selected one in the settings.",
       "invalidConfigOptions": "Invalid Configuration Options",
       "invalidConfig": "Invalid Configuration",
       "create": "Service Creation Error",
