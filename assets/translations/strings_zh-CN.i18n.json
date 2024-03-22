@@ -176,7 +176,7 @@
         "cn": "中国 (cn)",
         "ru": "俄罗斯 (ru)",
         "af": "阿富汗 (af)",
-        "other": "其他"
+        "other": "其他地区"
       },
       "themeMode": "主题模式",
       "themeModes": {
@@ -325,8 +325,8 @@
   "config": {
     "resetBtn": "重置选项",
     "serviceMode": "服务模式",
-    "quickSettings": "快速设置",
-    "setupWarp": "设置 WARP",
+    "quickSettings": "快速配置",
+    "setupWarp": "配置 WARP",
     "allOptions": "全部配置选项",
     "serviceModes": {
       "proxy": "仅代理",
@@ -365,7 +365,7 @@
       "disable": "禁用",
       "enable": "启用",
       "prefer": "首选",
-      "only": "仅"
+      "only": "仅限"
     },
     "remoteDnsAddress": "远程 DNS",
     "remoteDnsDomainStrategy": "远程 DNS 域名策略",
