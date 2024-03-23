@@ -110,6 +110,7 @@ Vless, Vmess, Reality, TUIC, Hysteria, Wireguard, SSH etc.
                 <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/Hiddify-Linux-x64.AppImage"><img src="https://img.shields.io/badge/AppImage-x64-f84e29.svg?logo=linux"> </a><br>
                 <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/Hiddify-Debian-x64.deb"><img src="https://img.shields.io/badge/DebPackage-x64-FF9966.svg?logo=debian"> </a><br>
                 <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/Hiddify-rpm-x64.rpm"><img src="https://img.shields.io/badge/RpmPackage-x64-F1B42F.svg?logo=redhat"> </a>
+                <a href="https://aur.archlinux.org/packages/hiddify-next-bin"><img src="https://img.shields.io/badge/AUR%20package-x64-3b9bf5.svg?logo=archlinux"> </a>
             </td>
         </tr>
     </tbody>
