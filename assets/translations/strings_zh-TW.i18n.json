@@ -286,7 +286,6 @@
     "serviceMode": "服務模式",
     "quickSettings": "快速設定",
     "setupWarp": "配置 WARP",
-    "serviceMode": "服務模式",
     "serviceModes": {
       "proxy": "僅代理",
       "systemProxy": "系統代理",
@@ -301,7 +300,7 @@
       "outbound": "出站選項",
       "tlsTricks": "TLS Tricks",
       "misc": "其他選項"
-    },    
+    },
     "warpConsent": {
       "title": "Cloudflare WARP 許可條款"
     },

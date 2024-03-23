@@ -1,0 +1,18 @@
+{
+  "general": {
+    "appTitle": "هیدیفای",
+    "reset": "ڕێکخستنەوە",
+    "toggle": {
+      "enabled": "چالاک",
+      "disabled": "بێتوانا"
+    },
+    "state": {
+      "disable": "بێتوانا"
+    },
+    "sort": "ڕیزکردن",
+    "sortBy": "ڕیزکردن بەپێی",
+    "addToClipboard": "زیادکردن بۆ کلیپبۆرد",
+    "notSet": "دانەنراوە",
+    "agree": "ڕازی بوون"
+  }
+}
