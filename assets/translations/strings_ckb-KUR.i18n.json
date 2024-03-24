@@ -342,7 +342,34 @@
     },
     "section": {
       "route": "ڕێکخستنەکانی ڕێڕەودانان",
-      "dns": "ڕێکخستنەکانی DNS"
-    }
+      "dns": "ڕێکخستنەکانی DNS",
+      "inbound": "ڕێکخستنەکانی Inbound",
+      "mux": "مالتیپلێکسێر",
+      "outbound": "ڕێکخستنەکانی دەرچوون",
+      "tlsTricks": "فێڵەکانی TLS",
+      "warp": "ڕێکخستنەکانی WARP",
+      "misc": "ڕێکخستنەکانی جۆراوجۆر"
+    },
+    "warpConsent": {
+      "title": "ڕێککەوتنی WARP ی Cloudflare",
+      "description(rich)": "Cloudflare WARP دابینکەرێکی VPN ی بێبەرامبەری WireGuard ە. بە چالاککردنی ئەم بژاردە، تۆ ڕەزامەندیت لەسەر ${tos(مەرجەکانی خزمەتگوزاری)} و ${privacy(سیاسەتی نهێنی)} ی Cloudflare WARP."
+    },
+    "generateWarpConfig": "دروستکردنی ڕێکخستنی WARP",
+    "missingWarpConfig": "ڕێکخستنی WARP بەردەست نییە",
+    "warpConfigGenerated": "ڕێکخستنی WARP دروست کراوە",
+    "pageTitle": "ڕێکخستنەکان",
+    "logLevel": "ئاستی گوزارش",
+    "resolveDestination": "لکاندنی شوێنی مەبەست",
+    "ipv6Mode": "ڕێڕەوکردنی IPv6",
+    "ipv6Modes": {
+      "disable": "ناچالاک",
+      "enable": "چالاک",
+      "prefer": "پەسەندترە",
+      "only": "تایبەت"
+    },
+    "remoteDnsAddress": "DNS دەرەکی",
+    "remoteDnsDomainStrategy": "ستراتیژی دۆمەینی DNS لە دوورەوە",
+    "directDnsAddress": "DNS ی ڕاستەوخۆ",
+    "directDnsDomainStrategy": "ستراتیژی ڕاستەوخۆی دۆمەینی DNS"
   }
 }
