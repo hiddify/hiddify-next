@@ -42,5 +42,43 @@
     "connection": "په‌یوه‌ندی",
     "speed": "خێرایی",
     "totalTransferred": "کۆی گشتی گواستراو"
+  },
+  "profile": {
+    "overviewPageTitle": "پرۆفایلەکان",
+    "detailsPageTitle": "پرۆفایل",
+    "activeProfileNameSemanticLabel": "ناوی پڕۆفایلی چالاک: \"${name}\".",
+    "activeProfileBtnSemanticLabel": "بینینی هەموو پڕۆفایلیەکان",
+    "nonActiveProfileBtnSemanticLabel": "\"${name}\" وەکو پرۆفایلی چالاک هەڵبژێرە",
+    "subscription": {
+      "traffic": "هاتوچۆ",
+      "updatedTimeAgo": "نوێکرایەوە ${timeago}",
+      "remainingDuration": "${duration} ڕۆژانی ماوەتەوە",
+      "remainingTrafficSemanticLabel": "${consumed} لە ${total} هاتوچۆی بەکارهێنراو",
+      "expired": "بەسەرچوو",
+      "noTraffic": "کۆتایی بەش",
+      "upload": "بارکردن",
+      "download": "داگرتن",
+      "total": "کۆی گشتی هاتوچۆ",
+      "expireDate": "ڕۆژى بەسەرچوون"
+    },
+    "sortBy": {
+      "lastUpdate": "بەم دواییە نوێکراوەتەوە",
+      "name": "بە پێی ئەلفوبێ"
+    },
+    "add": {
+      "buttonText": "زیادکردنی پڕۆفایلی نوێ",
+      "shortBtnTxt": "پڕۆفایلی نوێ",
+      "fromClipboard": "زیادکردن لە کلیپبۆردەوە",
+      "scanQr": "سکانکردنی QR Code",
+      "qrScanner": {
+        "permissionDeniedError": "ڕێگا نەدرا",
+        "unexpectedError": "هەڵەیەک رووی داوە",
+        "torchSemanticLabel": "فلاش لایت",
+        "facingSemanticLabel": "ڕووی کامێرا",
+        "permissionRequest": "ڕێگەدان بە کامێرا بۆ سکانکردنی QR Code"
+      },
+      "manually": "نووسینی دەستی",
+      "addingProfileMsg": "خەریکی زیادکردنی پرۆفایل"
+    }
   }
 }
