@@ -325,6 +325,24 @@
   "config": {
     "resetBtn": "ڕێکخستنەکان ڕێکبخەرەوە",
     "serviceMode": "دۆخی خزمەتگوزاری",
-    "quickSettings": "ڕێکخستنەکانی خێرا"
+    "quickSettings": "ڕێکخستنەکانی خێرا",
+    "setupWarp": "ڕێکخستنی WARP",
+    "allOptions": "سەرجەم ڕێکخستنەکانی ڕێکخستن",
+    "serviceModes": {
+      "proxy": "تەنها خزمەتگوزاری پرۆکسی",
+      "systemProxy": "ڕێکخستنی پرۆکسی سیستەم",
+      "tun": "VPN",
+      "tunService": "خزمەتگوزاری VPN"
+    },
+    "shortServiceModes": {
+      "proxy": "پرۆکسی",
+      "systemProxy": "پرۆکسی سیستەم",
+      "tun": "VPN",
+      "tunService": "خزمەتگوزاری VPN"
+    },
+    "section": {
+      "route": "ڕێکخستنەکانی ڕێڕەودانان",
+      "dns": "ڕێکخستنەکانی DNS"
+    }
   }
 }
