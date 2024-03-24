@@ -78,7 +78,8 @@
         "permissionRequest": "ڕێگەدان بە کامێرا بۆ سکانکردنی QR Code"
       },
       "manually": "نووسینی دەستی",
-      "addingProfileMsg": "خەریکی زیادکردنی پرۆفایل"
+      "addingProfileMsg": "خەریکی زیادکردنی پرۆفایل",
+      "failureMsg": "زیادکردنی پڕۆفایل شکستی هێنا"
     }
   }
 }
