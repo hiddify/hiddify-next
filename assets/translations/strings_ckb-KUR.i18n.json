@@ -370,6 +370,18 @@
     "remoteDnsAddress": "DNS دەرەکی",
     "remoteDnsDomainStrategy": "ستراتیژی دۆمەینی DNS لە دوورەوە",
     "directDnsAddress": "DNS ی ڕاستەوخۆ",
-    "directDnsDomainStrategy": "ستراتیژی ڕاستەوخۆی دۆمەینی DNS"
+    "directDnsDomainStrategy": "ستراتیژی ڕاستەوخۆی دۆمەینی DNS",
+    "mixedPort": "پۆرتی تێکەڵاو",
+    "tproxyPort": "پۆرتی پرۆکسی نەبینراو",
+    "localDnsPort": "پۆرتی DNS ناوخۆیی",
+    "allowConnectionFromLan": "هاوبەشکردنی VPN لەسەر تۆڕی ناوخۆیی",
+    "tunImplementation": "جێبەجێکردنی TUN",
+    "mtu": "قەبارەی پاکەت (MTU)",
+    "connectionTestUrl": "URLی تاقیکردنەوەی پەیوەندی",
+    "urlTestInterval": "ماوەی پشکنینی بەستەر",
+    "enableClashApi": "چالاک کردنی Clash API",
+    "clashApiPort": "پۆرتی Clash API",
+    "enableTun": "TUN چالاککردن",
+    "setSystemProxy": "ڕێکخستنی پرۆکسی سیستەم"
   }
 }
