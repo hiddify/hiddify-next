@@ -123,5 +123,9 @@
       "updateInterval": "بەڕۆژکردنی خۆکار",
       "updateIntervalDialogTitle": "ماوەی بەڕۆژکردنی خۆکار (کاتژمێر)"
     }
+  },
+  "proxies": {
+    "pageTitle": "پرۆکسیەکان",
+    "emptyProxiesMsg": "هیچ پرۆکسییەک بەردەست نییە"
   }
 }
