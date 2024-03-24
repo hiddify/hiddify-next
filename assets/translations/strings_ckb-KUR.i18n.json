@@ -101,6 +101,27 @@
     "edit": {
       "buttonTxt": "ده‌ستكاری",
       "selectActiveTxt": "هەڵبژاردنی پرۆفایلی چالاک"
+    },
+    "delete": {
+      "buttonTxt": "سڕینەوە",
+      "confirmationMsg": "سڕینەوەی پڕۆفایل بۆ هەمیشە؟",
+      "successMsg": "پڕۆفایلی بە سەرکەوتوویی سڕاوەتەوە"
+    },
+    "save": {
+      "buttonText": "پاشەکەوت",
+      "successMsg": "پڕۆفایل بە سەرکەوتوویی پاشەکەوت کراوە",
+      "failureMsg": "پاشەکەوتکردنی پڕۆفایل شکستی هێنا"
+    },
+    "detailsForm": {
+      "nameLabel": "ناو",
+      "nameHint": "ناوی پرۆفایل",
+      "urlLabel": "URL",
+      "urlHint": "URLی تەواوی ڕێکخستن",
+      "emptyNameMsg": "ناو پێویستە",
+      "invalidUrlMsg": "URLێکی نادروست",
+      "lastUpdate": "دوایین بەڕۆژبوون",
+      "updateInterval": "بەڕۆژکردنی خۆکار",
+      "updateIntervalDialogTitle": "ماوەی بەڕۆژکردنی خۆکار (کاتژمێر)"
     }
   }
 }
