@@ -151,6 +151,13 @@
     "pageTitle": "گوزارشەکان",
     "filterHint": "پاڵێو",
     "allLevelsFilter": "هەموو",
-    "shareCoreLogs": "هاوبەشکردن گوزارشەکانی ناوک"
+    "shareCoreLogs": "هاوبەشکردن گوزارشەکانی ناوک",
+    "shareAppLogs": "هاوبەشکردن گوزارشەکانی ئەپەکە",
+    "pauseTooltip": "وه‌ستان",
+    "resumeTooltip": "به‌رده‌وامبوونه‌وه‌",
+    "clearTooltip": "سڕینەوە"
+  },
+  "settings": {
+    "pageTitle": "ڕێکخستنه‌کان"
   }
 }
