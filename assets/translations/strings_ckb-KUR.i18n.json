@@ -126,6 +126,31 @@
   },
   "proxies": {
     "pageTitle": "پرۆکسیەکان",
-    "emptyProxiesMsg": "هیچ پرۆکسییەک بەردەست نییە"
+    "emptyProxiesMsg": "هیچ پرۆکسییەک بەردەست نییە",
+    "delayTestTooltip": "تاقیکردنەوەی دواکەوتن",
+    "sortTooltip": "ڕیزکردنی پرۆکسیەکان",
+    "checkIp": "IP پشکنینی",
+    "unknownIp": "ئایپی نەناسراو",
+    "sortOptions": {
+      "unsorted": "بنەڕەتی",
+      "name": "بە پێی ئەلفوبێ",
+      "delay": "بە پێی دواکەوتن"
+    },
+    "activeProxySemanticLabel": "پرۆکسی چالاک",
+    "delaySemantics": {
+      "result": "دواکەوتن: ${delay}ms",
+      "timeout": "وادەی تاقیکردنەوەی دواکەوتن بەسەرچوو",
+      "testing": "دواکەوتن: خەریکی تاقیکردنەوە..."
+    },
+    "ipInfoSemantics": {
+      "address": "ناونیشانی IP",
+      "country": "وڵات"
+    }
+  },
+  "logs": {
+    "pageTitle": "گوزارشەکان",
+    "filterHint": "پاڵێو",
+    "allLevelsFilter": "هەموو",
+    "shareCoreLogs": "هاوبەشکردن گوزارشەکانی ناوک"
   }
 }
