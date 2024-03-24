@@ -382,6 +382,21 @@
     "enableClashApi": "چالاک کردنی Clash API",
     "clashApiPort": "پۆرتی Clash API",
     "enableTun": "TUN چالاککردن",
-    "setSystemProxy": "ڕێکخستنی پرۆکسی سیستەم"
+    "setSystemProxy": "ڕێکخستنی پرۆکسی سیستەم",
+    "enableDnsRouting": "ڕێڕەوی DNS چالاک کردنی",
+    "enableFakeDns": "چالاککردنی DNS ساختە",
+    "bypassLan": "دەرباز کردنی LAN",
+    "strictRoute": "ڕێگای ورد",
+    "enableTlsFragment": "TLS Fragment چالاک کردنی",
+    "tlsFragmentSize": "قەبارەی TLS Fragment ",
+    "tlsFragmentSleep": "لابردنی TLS Fragment",
+    "enableTlsMixedSniCase": "چالاک کردنی TLS Mixed SNI Case",
+    "enableTlsPadding": "چالاک کردنی TLS Padding",
+    "tlsPaddingSize": "قەبارەی TLS Padding",
+    "enableMux": "چالاک کردنی Mux",
+    "muxProtocol": "پرۆتۆکۆڵی Mux",
+    "muxMaxStreams": "زۆرترین ڕەوتی هاوکات",
+    "enableWarp": "چالاک کردنی WARP",
+    "warpDetourMode": "دۆخی وارپ"
   }
 }
