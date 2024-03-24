@@ -214,7 +214,20 @@
         "exclude": "لاتێپه‌ڕی",
         "excludeMsg": "بەرنامە هەڵبژێردراوەکان بە پرۆکسی مەکە"
       },
-      "showSystemApps": "نیشاندانی ئەپەکانی سیستەم"
+      "showSystemApps": "نیشاندانی ئەپەکانی سیستەم",
+      "hideSystemApps": "شاردنەوەی بەرنامەکانی سیستەم",
+      "clearSelection": "سڕینەوەی هەڵبژاردنەکان"
+    },
+    "geoAssets": {
+      "pageTitle": "پەڕگەکانی ڕێڕەو",
+      "geoip": "GeoIP",
+      "geosite": "GeoSite",
+      "version": "وەشان ${version}",
+      "fileMissing": "پەڕگە بوونی نییە",
+      "update": "بەڕۆژکردن",
+      "download": "داگرتن",
+      "failureMsg": "شکستی هێنا لە نوێکردنەوەی پەڕگە",
+      "successMsg": "پەڕگەکە بە سەرکەوتوویی نوێکرایەوە"
     }
   }
 }
