@@ -13,6 +13,34 @@
     "sortBy": "ڕیزکردن بەپێی",
     "addToClipboard": "زیادکردن بۆ کلیپبۆرد",
     "notSet": "دانەنراوە",
-    "agree": "ڕازی بوون"
+    "agree": "ڕازی بوون",
+    "decline": " پەسەند نەکردن",
+    "unknown": "نەناسراو",
+    "hidden": "په‌نهان",
+    "timeout": "کات تەواوبوو",
+    "clipboardExportSuccessMsg": "زیاد کرا بۆ کلیپبۆرد",
+    "showMore": "زیاتر پێشان بدە",
+    "showLess": "کەمتر پێشان بدە",
+    "openAppSettings": "کردنەوەی ڕێکخستنەکانی ئەپەکە",
+    "grantPermission": "مۆڵەتدان"
+  },
+  "intro": {
+    "termsAndPolicyCaution(rich)": "بە بەردەوام بوون تۆ ڕازیت لەگەڵ ${tap(@:about.termsAndConditions)}",
+    "start": "دەستپێک"
+  },
+  "home": {
+    "pageTitle": "سەرەتا",
+    "emptyProfilesMsg": "سەرەتا بە زیادکردنی پرۆفایلی ئابوونە دەست پێ بکە",
+    "noActiveProfileMsg": "پرۆفایلێک هەڵبژێرە"
+  },
+  "stats": {
+    "traffic": "هاتوچۆی داتا",
+    "trafficLive": "هاتوچۆی ڕاستەوخۆ",
+    "trafficTotal": "کۆی گشتی هاتوچۆ",
+    "uplink": "باركردن",
+    "downlink": "داگرتن",
+    "connection": "په‌یوه‌ندی",
+    "speed": "خێرایی",
+    "totalTransferred": "کۆی گشتی گواستراو"
   }
 }
