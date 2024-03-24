@@ -227,7 +227,42 @@
       "update": "بەڕۆژکردن",
       "download": "داگرتن",
       "failureMsg": "شکستی هێنا لە نوێکردنەوەی پەڕگە",
-      "successMsg": "پەڕگەکە بە سەرکەوتوویی نوێکرایەوە"
+      "successMsg": "پەڕگەکە بە سەرکەوتوویی نوێکرایەوە",
+      "addRecommended": "زیادکردنی فایلەکانی پێشنیار کراو",
+      "missingGeoAssetsMsg": "فایلەکانی ڕێڕەوی هەڵبژێردراو بوونیان نییە. یان دایانبگرە یان یەکێک لەوانە هەڵبژێرە کە بەردەستە"
     }
+  },
+  "about": {
+    "pageTitle": "سەبارەت",
+    "version": "وەشان",
+    "sourceCode": "سه‌رچاوه‌ کۆد",
+    "telegramChannel": "کەناڵی تێلێگرام",
+    "checkForUpdate": "پشکنین بۆ نوێکاریی و بەڕۆژبوون",
+    "privacyPolicy": "سیاسەتی پاراستنی نهێنی",
+    "termsAndConditions": "مەرج و ڕێسای بەکارهێنان"
+  },
+  "appUpdate": {
+    "notAvailableMsg": "نوێترین وەشانی هیدیفای بەکاردەهێنیت",
+    "dialogTitle": "نوێکاری بەردەستە",
+    "updateMsg": "وەشانی نوێی @:general.appTitle بەردەستە. دەتەوێت بەڕۆژی بکەیتەوە؟",
+    "currentVersionLbl": "وەشانی ئێستا",
+    "newVersionLbl": "وەشانى نوێ",
+    "updateNowBtnTxt": "ئیستا بەڕۆژی کەرەوە",
+    "laterBtnTxt": "دواتر",
+    "ignoreBtnTxt": "پشتگوێخستن"
+  },
+  "tray": {
+    "dashboard": "داشبۆرد",
+    "quit": "داخستن",
+    "open": "کردنەوە",
+    "status": {
+      "connect": "بەستنەوە",
+      "connecting": "پەیوەندیکردن",
+      "disconnect": "پچڕانی پەیوەندی",
+      "disconnecting": "پچڕانی پەیوەندی..."
+    }
+  },
+  "failure": {
+    "unexpected": "هەڵەیەکی چاوەڕواننەکراو"
   }
 }
