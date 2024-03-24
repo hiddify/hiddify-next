@@ -80,6 +80,27 @@
       "manually": "نووسینی دەستی",
       "addingProfileMsg": "خەریکی زیادکردنی پرۆفایل",
       "failureMsg": "زیادکردنی پڕۆفایل شکستی هێنا"
+    },
+    "update": {
+      "buttonTxt": "بەڕۆژکردنەوە",
+      "tooltip": "بەڕۆژکردنەوەی پرۆفایل",
+      "updateSubscriptions": "بەڕۆژکردنەوەی ئابوونەکان",
+      "failureMsg": "بەڕۆژکردنەوەی پرۆفایل شکستی هێنا  ",
+      "successMsg": "بەڕۆژکردنەوەی پرۆفایل بە سەرکەوتوویی",
+      "namedFailureMsg": "شکستی هێنا لە بەڕۆژکردنەوەی \"${name}\"",
+      "namedSuccessMsg": "\"${name}\" بە سەرکەوتوویی بەڕۆژکرایەوە"
+    },
+    "share": {
+      "buttonText": "هاوبەش کردن",
+      "exportToClipboardSuccess": "هەناردە کراوە بۆ کلیپبۆرد",
+      "exportSubLinkToClipboard": "هەناردەکردنی بەستەری بەشداربوون بۆ کلیپبۆرد",
+      "subLinkQrCode": "بەستەری بەشداریکردن QR Code",
+      "exportConfigToClipboard": "ڕێکخستن هەناردە بکە بۆ کلیپبۆرد",
+      "exportConfigToClipboardSuccess": "ڕێکخستن کۆپی کرا بۆ کلیپبۆرد"
+    },
+    "edit": {
+      "buttonTxt": "ده‌ستكاری",
+      "selectActiveTxt": "هەڵبژاردنی پرۆفایلی چالاک"
     }
   }
 }
