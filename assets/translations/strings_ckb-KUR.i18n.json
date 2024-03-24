@@ -397,6 +397,17 @@
     "muxProtocol": "پرۆتۆکۆڵی Mux",
     "muxMaxStreams": "زۆرترین ڕەوتی هاوکات",
     "enableWarp": "چالاک کردنی WARP",
-    "warpDetourMode": "دۆخی وارپ"
+    "warpDetourMode": "دۆخی وارپ",
+    "warpDetourModes": {
+      "proxyOverWarp": "تێپەڕاندنی پرۆکسیەکان لە ڕێگەی WARP",
+      "warpOverProxy": "تێپەڕاندنی WARP لە ڕێگەی پرۆکسیەوە",
+      "inbound": "تێپەڕاندنی WARP لە ڕێگەی پرۆکسیەوە",
+      "outbound": "تێپەڕاندنی پرۆکسیەکان لە ڕێگەی WARP"
+    },
+    "warpLicenseKey": "کلیلی مۆڵەت",
+    "warpCleanIp": "IP خاوێن",
+    "warpPort": "پۆرت",
+    "warpNoise": "ژمارەی ژاوەژاو",
+    "warpNoiseDelay": "دواکەوتنی ژاوەژاو"
   }
 }
