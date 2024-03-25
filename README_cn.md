@@ -118,7 +118,7 @@
 
 <div align=center>
     
-[![Wiki上的所有教程](https://github.com/hiddify/hiddify-next/assets/125398461/95bb5cf8-c143-4934-87d6-b9d4c31e035e)](https://github.com/hiddify/hiddify-next/wiki)
+[![Wiki上的所有教程](https://github.com/hiddify/hiddify-next/assets/125398461/95bb5cf8-c143-4934-87d6-b9d4c31e035e)](https://hiddify.com/app/)
 
 </div>
  
