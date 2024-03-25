@@ -123,7 +123,7 @@ Vless, Vmess, Reality, TUIC, Hysteria, Wireguard, SSH, etc.
 
 <div align="center">
 
-[![همه آموزش‌ها در ویکی](https://github.com/hiddify/hiddify-next/assets/125398461/3b9ec2fe-9057-45fc-b19f-a1356e94525f)](https://github.com/hiddify/hiddify-next/wiki/Home_fa)
+[![همه آموزش‌ها در ویکی](https://github.com/hiddify/hiddify-next/assets/125398461/3b9ec2fe-9057-45fc-b19f-a1356e94525f)](https://hiddify.com/fa/app/)
 
 </div>
 
