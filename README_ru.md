@@ -110,7 +110,7 @@
 
 <div align="center" width="100%">
  
-[![Все уроки на Wiki](https://github.com/hiddify/hiddify-next/assets/125398461/708a4fdf-fcef-4b22-acc6-67e630687f0a)](https://github.com/hiddify/hiddify-next/wiki)
+[![Все уроки на Wiki](https://github.com/hiddify/hiddify-next/assets/125398461/708a4fdf-fcef-4b22-acc6-67e630687f0a)](https://hiddify.com/app/)
 
 </div>
 
