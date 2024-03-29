@@ -125,14 +125,16 @@ class SystemTrayNotifier extends _$SystemTrayNotifier with AppLogger {
   }
 
   static String get _trayIconPath {
-    final Brightness brightness = WidgetsBinding.instance.platformDispatcher.platformBrightness;
-    bool isDarkMode = brightness == Brightness.dark;
-    if (isDarkMode) {
-      if (Platform.isWindows) return Assets.images.trayIconIco;
-      return Assets.images.trayIconPng.path;
-    } else {
-      if (Platform.isWindows) return Assets.images.trayIconDarkIco;
-      return Assets.images.trayIconDarkPng.path;
+    if (Platform.isWindows) {
+      final Brightness brightness = WidgetsBinding.instance.platformDispatcher.platformBrightness;
+      bool isDarkMode = brightness == Brightness.dark;
+      if (isDarkMode) {
+        return Assets.images.trayIconIco;
+      } else {
+        return Assets.images.trayIconDarkIco;
+      }
     }
+    
+    return Assets.images.trayIconPng.path;
   }
 }
