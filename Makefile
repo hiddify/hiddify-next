@@ -11,6 +11,7 @@ ifeq ($(OS),Windows_NT)
 	endif
 endif
 
+
 BINDIR=libcore$(SEP)bin
 ANDROID_OUT=android$(SEP)app$(SEP)libs
 IOS_OUT=ios$(SEP)Frameworks
