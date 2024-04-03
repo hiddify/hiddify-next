@@ -15,7 +15,13 @@
     "notSet": "Не задано",
     "agree": "Соглашаться",
     "decline": "Отклонить",
-    "unknown": "Неизвестный"
+    "unknown": "Неизвестный",
+    "timeout": "Таймаут",
+    "clipboardExportSuccessMsg": "Скопировано",
+    "showMore": "Развернуть ",
+    "showLess": "Свернуть ",
+    "openAppSettings": "Открыть настройки",
+    "grantPermission": "Дать права доступа"
   },
   "intro": {
     "termsAndPolicyCaution(rich)": "Продолжая, Вы соглашаетесь с ${tap(@:about.termsAndConditions)}",
@@ -27,10 +33,14 @@
     "noActiveProfileMsg": "Выберите профиль"
   },
   "stats": {
+    "traffic": "Трафик",
     "trafficLive": "Текущий трафик",
     "trafficTotal": "Трафик",
     "uplink": "Скорость отправки",
-    "downlink": "Скорость загрузки"
+    "downlink": "Скорость загрузки",
+    "connection": "Соединение ",
+    "speed": "Скорость",
+    "totalTransferred": "Всего передано"
   },
   "profile": {
     "overviewPageTitle": "Профили",
@@ -44,7 +54,11 @@
       "remainingDuration": "Ещё ${duration} дн",
       "remainingTrafficSemanticLabel": "Использовано ${consumed} трафика из ${total}",
       "expired": "Истекло",
-      "noTraffic": "Нет доступного трафика"
+      "noTraffic": "Нет доступного трафика",
+      "upload": "Отправлено ",
+      "download": "Скачано",
+      "total": "Всего трафика",
+      "expireDate": "Дата окончания подписки "
     },
     "sortBy": {
       "lastUpdate": "по последнему обновлению",
@@ -59,7 +73,8 @@
         "permissionDeniedError": "Нет прав",
         "unexpectedError": "Неизвестная ошибка",
         "torchSemanticLabel": "Вспышка",
-        "facingSemanticLabel": "Фронтальная камера"
+        "facingSemanticLabel": "Фронтальная камера",
+        "permissionRequest": "Права на использование камеры для считывания QR"
       },
       "manually": "Ввести вручную",
       "addingProfileMsg": "Добавление профиля",
@@ -113,10 +128,22 @@
     "emptyProxiesMsg": "Нет доступных прокси",
     "delayTestTooltip": "Тестирование задержки",
     "sortTooltip": "Сортировка прокси",
+    "checkIp": "Проверить IP",
+    "unknownIp": "Неизвестный IP",
     "sortOptions": {
       "unsorted": "По умолчанию",
       "name": "По алфавиту",
       "delay": "По задержке"
+    },
+    "activeProxySemanticLabel": "Активный прокси",
+    "delaySemantics": {
+      "result": "Задержка: ${delay}мс",
+      "timeout": "Тайм-аут при тестировании задержки",
+      "testing": "Задержка: Тестирование..."
+    },
+    "ipInfoSemantics": {
+      "address": "IP адрес",
+      "country": "Страна"
     }
   },
   "logs": {
