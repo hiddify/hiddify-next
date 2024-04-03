@@ -15,7 +15,14 @@
     "notSet": "Не задано",
     "agree": "Соглашаться",
     "decline": "Отклонить",
-    "unknown": "Неизвестный"
+    "unknown": "Неизвестный",
+    "hidden": "Скрытый",
+    "timeout": "Таймаут",
+    "clipboardExportSuccessMsg": "Добавлено в буфер обмена",
+    "showMore": "Раскрыть",
+    "showLess": "Свернуть",
+    "openAppSettings": "Открыть настройки приложения",
+    "grantPermission": "Дать разрешение"
   },
   "intro": {
     "termsAndPolicyCaution(rich)": "Продолжая, Вы соглашаетесь с ${tap(@:about.termsAndConditions)}",
@@ -27,10 +34,14 @@
     "noActiveProfileMsg": "Выберите профиль"
   },
   "stats": {
+    "traffic": "Трафик",
     "trafficLive": "Текущий трафик",
     "trafficTotal": "Трафик",
     "uplink": "Скорость отправки",
-    "downlink": "Скорость загрузки"
+    "downlink": "Скорость загрузки",
+    "connection": "Соединение",
+    "speed": "Скорость",
+    "totalTransferred": "В общем передано"
   },
   "profile": {
     "overviewPageTitle": "Профили",
@@ -44,7 +55,11 @@
       "remainingDuration": "Ещё ${duration} дн",
       "remainingTrafficSemanticLabel": "Использовано ${consumed} трафика из ${total}",
       "expired": "Истекло",
-      "noTraffic": "Нет доступного трафика"
+      "noTraffic": "Нет доступного трафика",
+      "upload": "Загрузка",
+      "download": "Скачивание",
+      "total": "Общий трафик",
+      "expireDate": "Истечение срока действия"
     },
     "sortBy": {
       "lastUpdate": "по последнему обновлению",
@@ -59,7 +74,8 @@
         "permissionDeniedError": "Нет прав",
         "unexpectedError": "Неизвестная ошибка",
         "torchSemanticLabel": "Вспышка",
-        "facingSemanticLabel": "Фронтальная камера"
+        "facingSemanticLabel": "Фронтальная камера",
+        "permissionRequest": "Разрешение камере сканировать QR-код"
       },
       "manually": "Ввести вручную",
       "addingProfileMsg": "Добавление профиля",
@@ -113,10 +129,22 @@
     "emptyProxiesMsg": "Нет доступных прокси",
     "delayTestTooltip": "Тестирование задержки",
     "sortTooltip": "Сортировка прокси",
+    "checkIp": "Проверить IP",
+    "unknownIp": "Неизвестный IP",
     "sortOptions": {
       "unsorted": "По умолчанию",
       "name": "По алфавиту",
       "delay": "По задержке"
+    },
+    "activeProxySemanticLabel": "Активный прокси",
+    "delaySemantics": {
+      "result": "Задержка: ${delay}ms",
+      "timeout": "Тест задержки по таймауту",
+      "testing": "Задержка: Тестирование..."
+    },
+    "ipInfoSemantics": {
+      "address": "IP адрес",
+      "country": "Страна"
     }
   },
   "logs": {
@@ -134,6 +162,10 @@
     "requiresRestartMsg": "Чтобы применить изменения, перезапустите приложение.",
     "experimental": "Экспериментальный",
     "experimentalMsg": "Функции с флагом «Экспериментально» все еще находятся в разработке и могут вызвать проблемы.",
+    "exportOptions": "Экспорт параметров в буфер обмена",
+    "exportAllOptions": "Экспорт параметров в буфер обмена (отладка)",
+    "importOptions": "Импорт параметров из буфера обмена",
+    "importOptionsMsg": "Это перезапишет все параметры конфига предоставленными значениями. Вы уверены?",
     "general": {
       "sectionTitle": "Основные",
       "locale": "Язык",
@@ -160,7 +192,8 @@
       "openWorkingDir": "Открыть рабочую папку",
       "ignoreBatteryOptimizations": "Отключить оптимизацию батареи",
       "ignoreBatteryOptimizationsMsg": "Отключение ограничений для оптимальной производительности VPN.",
-      "dynamicNotification": "Отображение скорости в уведомлении"
+      "dynamicNotification": "Отображение скорости в уведомлении",
+      "autoIpCheck": "Автоматически проверять IP соединение"
     },
     "advanced": {
       "sectionTitle": "Расширенные",
@@ -281,17 +314,30 @@
     "connecting": "Подключение",
     "disconnecting": "Отключение",
     "connected": "Подключено",
+    "reconnect": "Переподключение",
+    "connectAnyWay": "Подключение",
     "experimentalNotice": "Экспериментальные функции в использовании",
     "experimentalNoticeMsg": "Вы включили некоторые экспериментальные функции, которые могут повлиять на качество соединения и вызвать непредвиденные ошибки. Вы всегда можете изменить или сбросить эти параметры на странице параметров конфигурации.",
-    "disableExperimentalNotice": "Больше не показывать"
+    "disableExperimentalNotice": "Больше не показывать",
+    "reconnectMsg": "Переподключить для применения изменений"
   },
   "config": {
     "resetBtn": "Сбросить параметры",
     "serviceMode": "Режим работы",
+    "quickSettings": "Быстрые настройки",
+    "setupWarp": "Настроить WARP",
+    "allOptions": "Все параметры конфига",
     "serviceModes": {
       "proxy": "Прокси",
       "systemProxy": "Системный прокси",
-      "tun": "VPN"
+      "tun": "VPN",
+      "tunService": "VPN сервис"
+    },
+    "shortServiceModes": {
+      "proxy": "Прокси",
+      "systemProxy": "Системный прокси",
+      "tun": "VPN",
+      "tunService": "VPN сервис"
     },
     "section": {
       "route": "Варианты маршрутизации",
@@ -307,6 +353,9 @@
       "title": "Согласие Cloudflare WARP",
       "description(rich)": "Cloudflare WARP — бесплатный провайдер WireGuard VPN. Включая эту опцию, вы соглашаетесь с ${tos(Условиями обслуживания)} и ${privacy(Политикой конфиденциальности)} Cloudflare WARP."
     },
+    "generateWarpConfig": "Cгенерировать WARP конфиг",
+    "missingWarpConfig": "Отсутствует WARP конфиг",
+    "warpConfigGenerated": "WARP конфиг сгенерирован",
     "pageTitle": "Параметры конфигурации",
     "logLevel": "Подробность журналирования",
     "resolveDestination": "Определять назначение",
@@ -322,6 +371,7 @@
     "directDnsAddress": "Прямой DNS",
     "directDnsDomainStrategy": "Стратегия прямого домена DNS",
     "mixedPort": "Смешанный порт",
+    "tproxyPort": "Прозрачный прокси порт",
     "localDnsPort": "Локальный порт DNS",
     "allowConnectionFromLan": "Allow Connection from LAN",
     "tunImplementation": "Реализация TUN",
@@ -348,6 +398,8 @@
     "enableWarp": "Enable WARP",
     "warpDetourMode": "Detour Mode",
     "warpDetourModes": {
+      "proxyOverWarp": "Работа прокси через WARP",
+      "warpOverProxy": "Работа WARP через прокси",
       "inbound": "Detour WARP through proxies",
       "outbound": "Detour proxies through WARP"
     },
