@@ -15,7 +15,8 @@
     "notSet": "Tidak Diatur",
     "agree": "Setuju",
     "decline": "Tolak",
-    "unknown": "Tidak Dikenal"
+    "unknown": "Tidak Dikenal",
+    "timeout": "Waktu habis"
   },
   "intro": {
     "termsAndPolicyCaution(rich)": "lanjut berarti setuju dengan ${tap(@:about.termsAndConditions)}",

@@ -15,7 +15,8 @@
     "notSet": "No establecido",
     "agree": "Aceptar",
     "decline": "Rechazar",
-    "unknown": "Desconocido"
+    "unknown": "Desconocido",
+    "timeout": "Se acabó el tiempo"
   },
   "intro": {
     "termsAndPolicyCaution(rich)": "al continuar, aceptas ${tap(@:about.termsAndConditions)}",
