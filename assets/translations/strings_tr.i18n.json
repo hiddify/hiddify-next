@@ -15,7 +15,8 @@
     "notSet": "Ayarlanmadı",
     "agree": "Kabul etmek",
     "decline": "Reddetmek",
-    "unknown": "Bilinmeyen"
+    "unknown": "Bilinmeyen",
+    "timeout": "Zaman aşımı"
   },
   "intro": {
     "termsAndPolicyCaution(rich)": "devam ederek ${tap(@:about.termsAndConditions)} kabul etmiş olursunuz",

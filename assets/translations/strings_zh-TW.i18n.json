@@ -11,7 +11,8 @@
     },
     "sort": "排序",
     "sortBy": "排序方式",
-    "addToClipboard": "新增至剪貼簿"
+    "addToClipboard": "新增至剪貼簿",
+    "timeout": "暫停"
   },
   "intro": {
     "termsAndPolicyCaution(rich)": "繼續即表示您同意協議 ${tap(@:about.termsAndConditions)}",

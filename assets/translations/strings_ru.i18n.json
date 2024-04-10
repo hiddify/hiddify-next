@@ -22,6 +22,7 @@
     "showLess": "Свернуть ",
     "openAppSettings": "Открыть настройки",
     "grantPermission": "Дать права доступа"
+    "hidden": "Скрытый",
   },
   "intro": {
     "termsAndPolicyCaution(rich)": "Продолжая, Вы соглашаетесь с ${tap(@:about.termsAndConditions)}",
@@ -41,6 +42,7 @@
     "connection": "Соединение ",
     "speed": "Скорость",
     "totalTransferred": "Всего передано"
+
   },
   "profile": {
     "overviewPageTitle": "Профили",
@@ -161,6 +163,10 @@
     "requiresRestartMsg": "Чтобы применить изменения, перезапустите приложение.",
     "experimental": "Экспериментальный",
     "experimentalMsg": "Функции с флагом «Экспериментально» все еще находятся в разработке и могут вызвать проблемы.",
+    "exportOptions": "Экспорт параметров в буфер обмена",
+    "exportAllOptions": "Экспорт параметров в буфер обмена (отладка)",
+    "importOptions": "Импорт параметров из буфера обмена",
+    "importOptionsMsg": "Это перезапишет все параметры конфига предоставленными значениями. Вы уверены?",
     "general": {
       "sectionTitle": "Основные",
       "locale": "Язык",
@@ -314,24 +320,25 @@
     "experimentalNotice": "Экспериментальные функции в использовании",
     "experimentalNoticeMsg": "Вы включили некоторые экспериментальные функции, которые могут повлиять на качество соединения и вызвать непредвиденные ошибки. Вы всегда можете изменить или сбросить эти параметры на странице параметров конфигурации.",
     "disableExperimentalNotice": "Больше не показывать",
-    "reconnectMsg": "Подключитесь повторно, чтобы изменения вступили в силу"
+    "reconnectMsg": "Переподключить для применения изменений"
   },
   "config": {
     "resetBtn": "Сбросить параметры",
     "serviceMode": "Режим работы",
     "quickSettings": "Быстрые настройки",
     "allOptions": "Все параметры ",
+    "setupWarp": "Настроить WARP",
     "serviceModes": {
       "proxy": "Прокси",
       "systemProxy": "Системный прокси",
       "tun": "VPN",
-      "tunService": "VPN-сервис"
+      "tunService": "VPN сервис"
     },
     "shortServiceModes": {
       "proxy": "Прокси",
       "systemProxy": "Системный прокси",
       "tun": "VPN",
-      "tunService": "VPN-сервис"
+      "tunService": "VPN сервис"
     },
     "section": {
       "route": "Варианты маршрутизации",
@@ -347,6 +354,9 @@
       "title": "Согласие Cloudflare WARP",
       "description(rich)": "Cloudflare WARP — бесплатный провайдер WireGuard VPN. Включая эту опцию, вы соглашаетесь с ${tos(Условиями обслуживания)} и ${privacy(Политикой конфиденциальности)} Cloudflare WARP."
     },
+    "generateWarpConfig": "Cгенерировать WARP конфиг",
+    "missingWarpConfig": "Отсутствует WARP конфиг",
+    "warpConfigGenerated": "WARP конфиг сгенерирован",
     "pageTitle": "Параметры конфигурации",
     "logLevel": "Подробность журналирования",
     "resolveDestination": "Определять назначение",
@@ -362,6 +372,7 @@
     "directDnsAddress": "Прямой DNS",
     "directDnsDomainStrategy": "Стратегия прямого домена DNS",
     "mixedPort": "Смешанный порт",
+    "tproxyPort": "Прозрачный прокси порт",
     "localDnsPort": "Локальный порт DNS",
     "allowConnectionFromLan": "Allow Connection from LAN",
     "tunImplementation": "Реализация TUN",
@@ -388,6 +399,8 @@
     "enableWarp": "Enable WARP",
     "warpDetourMode": "Detour Mode",
     "warpDetourModes": {
+      "proxyOverWarp": "Работа прокси через WARP",
+      "warpOverProxy": "Работа WARP через прокси",
       "inbound": "Detour WARP through proxies",
       "outbound": "Detour proxies through WARP"
     },
