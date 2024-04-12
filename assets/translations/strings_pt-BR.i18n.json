@@ -373,14 +373,14 @@
     "muxMaxStreams": "Máximo de fluxos simultâneos",
     "enableWarp": "Habilitar WARP",
     "warpDetourMode": "Modo de desvio",
+    "warpDetourModes": {
+      "inbound": "Desvie o WARP através de proxies",
+      "outbound": "Desviar proxies através do WARP"
+    },
     "warpLicenseKey": "Chave de licença",
     "warpCleanIp": "Limpar IP",
     "warpPort": "Porta",
     "warpNoise": "Contagem de ruído",
-    "warpNoiseDelay": "Atraso de ruído",
-    "warpDetourModes": {
-      "inbound": "Desvie o WARP através de proxies",
-      "outbound": "Desviar proxies através do WARP"
-    }
+    "warpNoiseDelay": "Atraso de ruído"
   }
 }

@@ -15,7 +15,8 @@
     "notSet": "تنظیم نشده",
     "agree": "موافقم",
     "decline": "رد",
-    "unknown": "ناشناخته"
+    "unknown": "ناشناخته",
+    "timeout": "عدم‌ ارتباط"
   },
   "intro": {
     "termsAndPolicyCaution(rich)": "در صورت ادامه با ${tap(@:about.termsAndConditions)} موافقت میکنید",
@@ -347,13 +348,13 @@
     "muxMaxStreams": "Max Concurrent Streams",
     "enableWarp": "Enable WARP",
     "warpDetourMode": "Detour Mode",
-    "warpLicenseKey": "License Key",
-    "warpCleanIp": "Clean IP",
-    "warpPort": "Port",
-    "warpNoise": "Noise",
     "warpDetourModes": {
       "inbound": "Detour WARP Through Proxies",
       "outbound": "Detour Proxies Through WARP"
-    }
+    },
+    "warpLicenseKey": "License Key",
+    "warpCleanIp": "Clean IP",
+    "warpPort": "Port",
+    "warpNoise": "Noise"
   }
 }
