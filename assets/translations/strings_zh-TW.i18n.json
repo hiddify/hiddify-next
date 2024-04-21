@@ -12,7 +12,17 @@
     "sort": "排序",
     "sortBy": "排序方式",
     "addToClipboard": "新增至剪貼簿",
-    "timeout": "暫停"
+    "notSet": "未設定",
+    "agree": "同意",
+    "decline": "拒絕",
+    "unknown": "不明",
+    "hidden": "隱藏",
+    "timeout": "超時",
+    "clipboardExportSuccessMsg": "已匯出至剪貼簿",
+    "showMore": "顯示更多",
+    "showLess": "顯示較少",
+    "openAppSettings": "開啟應用程式設定",
+    "grantPermission": "授予權限"
   },
   "intro": {
     "termsAndPolicyCaution(rich)": "繼續即表示您同意協議 ${tap(@:about.termsAndConditions)}",
