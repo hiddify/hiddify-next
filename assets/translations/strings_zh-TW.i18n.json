@@ -25,33 +25,41 @@
     "grantPermission": "授予權限"
   },
   "intro": {
-    "termsAndPolicyCaution(rich)": "繼續即表示您同意協議 ${tap(@:about.termsAndConditions)}",
+    "termsAndPolicyCaution(rich)": "繼續即表示您同意合約 ${tap(@:about.termsAndConditions)}",
     "start": "開始"
   },
   "home": {
-    "pageTitle": "主頁",
+    "pageTitle": "首頁",
     "emptyProfilesMsg": "首先新增訂閱設定檔",
     "noActiveProfileMsg": "選擇設定檔"
   },
   "stats": {
+    "traffic": "流量",
     "trafficLive": "即時流量",
     "trafficTotal": "總流量",
     "uplink": "上行",
-    "downlink": "下行"
+    "downlink": "下行",
+    "connection": "連線",
+    "speed": "速度",
+    "totalTransferred": "總傳輸量"
   },
   "profile": {
     "overviewPageTitle": "設定檔",
     "detailsPageTitle": "設定檔",
     "activeProfileNameSemanticLabel": "活動設定檔名稱：“${name}”。",
-    "activeProfileBtnSemanticLabel": "查看所有設定檔。",
+    "activeProfileBtnSemanticLabel": "查看所有設定檔",
     "nonActiveProfileBtnSemanticLabel": "選擇“${name}”作為活動設定檔。",
     "subscription": {
       "traffic": "流量",
-      "updatedTimeAgo": "更新${timeago}",
+      "updatedTimeAgo": "更新於 ${timeago}",
       "remainingDuration": "剩餘 ${duration} 天",
       "remainingTrafficSemanticLabel": "已使用 ${consumed} 流量，總共 ${total} 流量。",
       "expired": "已到期",
-      "noTraffic": "超過配額"
+      "noTraffic": "超過配額",
+      "upload": "上傳",
+      "download": "下載",
+      "total": "總流量",
+      "expireDate": "到期時間"
     },
     "sortBy": {
       "lastUpdate": "最近更新",
@@ -60,13 +68,14 @@
     "add": {
       "buttonText": "新的設定檔",
       "shortBtnTxt": "新的設定檔",
-      "fromClipboard": "從剪貼簿添加",
+      "fromClipboard": "從剪貼簿新增",
       "scanQr": "掃描 QR code",
       "qrScanner": {
         "permissionDeniedError": "沒有權限",
         "unexpectedError": "出了點問題",
         "torchSemanticLabel": "手電筒",
-        "facingSemanticLabel": "相機朝向"
+        "facingSemanticLabel": "相機朝向",
+        "permissionRequest": "授予相機權限已允許掃描 QR code"
       },
       "manually": "手動輸入",
       "addingProfileMsg": "新增設定檔",
@@ -91,11 +100,11 @@
     },
     "edit": {
       "buttonTxt": "編輯",
-      "selectActiveTxt": "選擇並激活設定檔"
+      "selectActiveTxt": "選擇活動設定檔"
     },
     "delete": {
       "buttonTxt": "刪除",
-      "confirmationMsg": "永久刪除設定檔嗎？",
+      "confirmationMsg": "要永久刪除設定檔嗎？",
       "successMsg": "設定檔刪除成功"
     },
     "save": {
@@ -120,18 +129,30 @@
     "emptyProxiesMsg": "沒有可用的代理",
     "delayTestTooltip": "測試延遲",
     "sortTooltip": "對代理進行排序",
+    "checkIp": "檢測 IP 地址",
+    "unknownIp": "不明的 IP",
     "sortOptions": {
       "unsorted": "預設",
       "name": "按字母排序",
       "delay": "按延遲排序"
+    },
+    "activeProxySemanticLabel": "生效中的代理",
+    "delaySemantics": {
+      "result": "延遲： ${delay}ms",
+      "timeout": "延遲測試超時",
+      "testing": "正在測試延遲"
+    },
+    "ipInfoSemantics": {
+      "address": "IP 地址",
+      "country": "國家"
     }
   },
   "logs": {
-    "pageTitle": "日誌",
+    "pageTitle": "記錄檔",
     "filterHint": "篩選",
     "allLevelsFilter": "全部",
-    "shareCoreLogs": "分享核心日誌",
-    "shareAppLogs": "共享應用程式日誌",
+    "shareCoreLogs": "分享核心記錄檔",
+    "shareAppLogs": "分享應用程式記錄檔",
     "pauseTooltip": "暫停",
     "resumeTooltip": "恢復",
     "clearTooltip": "清除"
@@ -141,17 +162,21 @@
     "requiresRestartMsg": "若要使其生效，請重新啟動應用程式",
     "experimental": "實驗性的",
     "experimentalMsg": "帶有實驗標誌的功能仍在開發中，可能會導致問題。",
+    "exportOptions": "匯出選項至剪貼簿",
+    "exportAllOptions": "匯出選項至剪貼不(用於偵錯) ",
+    "importOptions": "從剪貼簿匯入選項",
+    "importOptionsMsg": "浙江使用提供的值複寫所有配置選項。您確定嗎？",
     "general": {
-      "sectionTitle": "一般的",
+      "sectionTitle": "一般",
       "locale": "語言",
       "region": "地區",
       "regionMsg": "幫助設定預設選項以繞過國內地址",
       "regions": {
         "ir": "伊朗 (ir)",
-        "cn": "中國大陸 (cn)",
+        "cn": "中國 (cn)",
         "ru": "俄羅斯 (ru)",
         "af": "阿富汗 (af)",
-        "other": "其他地區"
+        "other": "其他"
       },
       "themeMode": "主題模式",
       "themeModes": {
@@ -161,18 +186,20 @@
         "black": "黑色"
       },
       "enableAnalytics": "啟用分析",
-      "enableAnalyticsMsg": "授予收集分析並發送崩潰報告以改進應用程式的權限",
+      "enableAnalyticsMsg": "授予收集分析並傳送崩潰報告以改進應用程式的權限",
       "autoStart": "隨系統啟動",
       "silentStart": "啟動最小化",
       "openWorkingDir": "開啟工作目錄",
-      "ignoreBatteryOptimizations": "停用電池優化",
+      "ignoreBatteryOptimizations": "停用電池最佳化",
       "ignoreBatteryOptimizationsMsg": "消除限制以獲得最佳 VPN 效能",
-      "dynamicNotification": "在通知中顯示速度"
+      "dynamicNotification": "在通知中顯示速度",
+      "hapticFeedback": "觸覺回饋",
+      "autoIpCheck": "自動檢查連線的 IP"
     },
     "advanced": {
-      "sectionTitle": "高級設定",
+      "sectionTitle": "進階設定",
       "debugMode": "偵錯模式",
-      "debugModeMsg": "重新啟動應用程式以應用此更改",
+      "debugModeMsg": "重新啟動應用程式以套用此變更",
       "memoryLimit": "記憶體限制",
       "memoryLimitMsg": "如果您遇到記憶體不足錯誤或頻繁應用程式崩潰，請啟用",
       "resetTunnel": "重置 VPN 設定檔"
