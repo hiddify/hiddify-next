@@ -223,7 +223,7 @@
       "geoip": "GeoIP",
       "geosite": "Geosite",
       "version": "版本${version}",
-      "fileMissing": "文件遺失",
+      "fileMissing": "檔案遺失",
       "update": "更新",
       "download": "下載",
       "failureMsg": "更新資源文件失敗",
@@ -235,7 +235,7 @@
   "about": {
     "pageTitle": "關於",
     "version": "版本",
-    "sourceCode": "原始代碼",
+    "sourceCode": "原始碼",
     "telegramChannel": "Telegram 頻道",
     "checkForUpdate": "檢查更新",
     "privacyPolicy": "隱私政策",
@@ -254,12 +254,12 @@
   "tray": {
     "dashboard": "儀表板",
     "quit": "退出",
-    "open": "打開",
+    "open": "開啟",
     "status": {
-      "connect": "連接",
-      "connecting": "連接中",
-      "disconnect": "斷開連接",
-      "disconnecting": "斷連中"
+      "connect": "連線",
+      "connecting": "連線中",
+      "disconnect": "中斷連線",
+      "disconnecting": "中斷連線中"
     }
   },
   "failure": {
@@ -270,8 +270,8 @@
     },
     "singbox": {
       "unexpected": "意外服務錯誤",
-      "serviceNotRunning": "服務未運行",
-      "missingPrivilege": "缺乏權限",
+      "serviceNotRunning": "服務未執行",
+      "missingPrivilege": "缺少權限",
       "missingPrivilegeMsg": "VPN 模式需要管理員權限。以管理員身分重新啟動應用程式或變更服務模式。",
       "missingGeoAssets": "缺少 GEO 資源文件",
       "missingGeoAssetsMsg": "GEO 資源文件缺失。請考慮更改活動資源文件或在設定中下載選定的資源文件。",
@@ -311,20 +311,30 @@
     "full_description": "Hiddify 的主要目標是提供安全、使用者友好且高效率的隧道用戶端。它使您能夠利用 VPN 服務權限將所有流量或選定的應用程式流量路由到您選擇的遠端伺服器。\n\n註：我們不提供任何伺服器；使用者需要使用自己的自託管伺服器或受信任的伺服器來確保其線上活動的隱私。\n\n我們透過以下方式支援伺服器：\n - 普通 V2ray/Xray 訂閱連結\n - Clash 訂閱連結\n - Sing-Box 訂閱連結\n\n 我們的獨特功能是什麼？\n - 使用者友善\n - 最佳化且快速\n - 自動選擇最低延遲\n - 顯示使用者使用資訊\n - 使用一鍵連結輕鬆導入\n - 免費且無廣告\n - 輕鬆切換線路\n - 等等\n 支援：\n - Sing-Box 支援的所有協定 \n - VLESS + XTLS Reality、Vision 協定 \n - VMESS\n - Trojan\n - ShoadowSocks\n - Reality\n - WireGuard\n - V2ray\n - Hystria2\n - TUIC \n - SSH\n - ShadowTLS\n\n\n 原始碼位於 https://github.com/hiddify/Hiddify-Next\n 應用程式核心基於開源的 Sing-Box。\n\n權限說明：\n\n - VPN 服務：由於此應用程式的目標是提供安全性、使用者友好且高效的隧道用戶端，因此我們需要此權限才能透過隧道將流量路由到遠端伺服器。\n - 獲取應用程式列表：此權限用於允許使用者包含或排除隧道的特定應用程式。\n - 接收啟動廣播：可以從應用程式設定中啟用或停用此權限，以在裝置啟動時啟動此應用程式。\n - 發送通知：此權限至關重要，因為我們使用前台服務來確保 VPN 服務的持續運作。\n - 該應用程式沒有廣告。分析和崩潰數據僅在用戶首次使用應用程式時明確同意的情況下才會出現。"
   },
   "connection": {
-    "tapToConnect": "點擊以連接",
-    "connecting": "連接中",
-    "disconnecting": "斷連中",
-    "connected": "已連接",
+    "tapToConnect": "點擊以連線",
+    "connecting": "連線中",
+    "disconnecting": "中斷連線中",
+    "connected": "已連線",
+    "reconnect": "重新連線",
+    "connectAnyWay": "連線",
     "experimentalNotice": "使用中的實驗性功能",
     "experimentalNoticeMsg": "您啟用了一些實驗性功能，這些功能可能會影響連線品質並導致某些意外錯誤。您始終可以從「配置選項」頁面變更或重設這些選項。",
-    "disableExperimentalNotice": "不再提示"
+    "disableExperimentalNotice": "不再提示",
+    "reconnectMsg": "重新連線以使變更生效"
   },
   "config": {
     "resetBtn": "重置選項",
     "serviceMode": "服務模式",
     "quickSettings": "快速設定",
     "setupWarp": "配置 WARP",
+    "allOptions": "全部配置選項",
     "serviceModes": {
+      "proxy": "僅代理",
+      "systemProxy": "系統代理",
+      "tun": "VPN",
+      "tunService": "VPN 服務"
+    },
+    "shortServiceModes": {
       "proxy": "僅代理",
       "systemProxy": "系統代理",
       "tun": "VPN",
@@ -336,17 +346,19 @@
       "inbound": "入站選項",
       "mux": "復用器",
       "outbound": "出站選項",
-      "tlsTricks": "TLS Tricks",
+      "tlsTricks": "TLS 特性",
+      "warp": "WARP 選項",
       "misc": "其他選項"
     },
     "warpConsent": {
-      "title": "Cloudflare WARP 許可條款"
+      "title": "Cloudflare WARP 授權條款",
+      "description(rich)": "Cloudflare WARP 是一個免費的 WireGuard VPN 提供商。啟用此選項即表示您同意 Cloudflare WARP 的 ${tos(服務條款)} 和 ${privacy(隱私權政策)}"
     },
     "generateWarpConfig": "生成 WARP 配置檔案",
     "missingWarpConfig": "WARP 配置檔案缺失",
     "warpConfigGenerated": "WARP 配置檔案已生成",
     "pageTitle": "配置選項",
-    "logLevel": "日誌等級",
+    "logLevel": "紀錄等級",
     "resolveDestination": "解析目標地址",
     "ipv6Mode": "IPv6 路由",
     "ipv6Modes": {
@@ -362,11 +374,11 @@
     "mixedPort": "混合連接埠",
     "tproxyPort": "透明代理埠",
     "localDnsPort": "本地 DNS 連接埠",
-    "allowConnectionFromLan": "允許區域網連線",
+    "allowConnectionFromLan": "允許區域網路連線",
     "tunImplementation": "TUN 實現",
     "mtu": "MTU",
-    "connectionTestUrl": "連接測試網址",
-    "urlTestInterval": "URL 測試間隔",
+    "connectionTestUrl": "連線測試網址",
+    "urlTestInterval": "網址測試間隔",
     "enableClashApi": "啟用 Clash API",
     "clashApiPort": "Clash API 連接埠",
     "enableTun": "啟用 TUN",
@@ -392,7 +404,7 @@
       "inbound": "透過代理繞過 WARP",
       "outbound": "透過 WARP 繞過代理"
     },
-    "warpLicenseKey": "許可證金鑰",
+    "warpLicenseKey": "授權金鑰",
     "warpCleanIp": "清理 IP",
     "warpPort": "埠",
     "warpNoise": "噪音計數",
