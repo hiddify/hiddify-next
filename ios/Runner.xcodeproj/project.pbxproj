@@ -152,6 +152,8 @@
 		574F12C7748958784380337F /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 		60F1D4AAC33ACF5C8307310D /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6836D3FA2B57FDFF00A79D75 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		68DCEB762BD7D7590081FF65 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		68DCEB772BD7DA3F0081FF65 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Runner-Bridging-Header.h"; sourceTree = "<group>"; };
 		74858FAE1ED2DC5600515810 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7AFA3C8E1D35360C0083082E /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Release.xcconfig; path = Flutter/Release.xcconfig; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 				03B516752AE762F700EA47E2 /* Logger.swift */,
 				03E392BC2ADDA00F000ADF15 /* Info.plist */,
 				03E392BD2ADDA00F000ADF15 /* SingBoxPacketTunnel.entitlements */,
+				68DCEB762BD7D7590081FF65 /* PrivacyInfo.xcprivacy */,
 			);
 			path = SingBoxPacketTunnel;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */,
 				1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */,
 				74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */,
+				68DCEB772BD7DA3F0081FF65 /* PrivacyInfo.xcprivacy */,
 			);
 			path = Runner;
 			sourceTree = "<group>";
