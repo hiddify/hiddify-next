@@ -12,7 +12,10 @@
     "sort": "排序",
     "sortBy": "排序方式",
     "addToClipboard": "新增至剪貼簿",
-    "timeout": "暫停"
+    "timeout": "暫停",
+    "showMore": "展示更多",
+    "showLess": "顯示較少",
+    "grantPermission": "授予權限"
   },
   "intro": {
     "termsAndPolicyCaution(rich)": "繼續即表示您同意協議 ${tap(@:about.termsAndConditions)}",
