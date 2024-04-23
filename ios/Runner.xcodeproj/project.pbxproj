@@ -38,6 +38,8 @@
 		6836D3FD2B57FE4300A79D75 /* Libcore in Frameworks */ = {isa = PBXBuildFile; productRef = 6836D3FC2B57FE4300A79D75 /* Libcore */; };
 		6836D4022B57FEFF00A79D75 /* Libcore in Frameworks */ = {isa = PBXBuildFile; productRef = 6836D4012B57FEFF00A79D75 /* Libcore */; };
 		68885DD72B4EF33400D214BA /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E392B72ADDA00E000ADF15 /* NetworkExtension.framework */; };
+		68DCEB782BD7ECE90081FF65 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 68DCEB772BD7DA3F0081FF65 /* PrivacyInfo.xcprivacy */; };
+		68DCEB792BD7ECEE0081FF65 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 68DCEB762BD7D7590081FF65 /* PrivacyInfo.xcprivacy */; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
