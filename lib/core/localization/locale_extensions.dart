@@ -6,6 +6,7 @@ extension AppLocaleX on AppLocale {
       this == AppLocale.fa ? FontFamily.shabnam : FontFamily.emoji;
 
   String get localeName => switch (flutterLocale.toString()) {
+        "ar" => "العربية",
         "en" => "English",
         "fa" => "فارسی",
         "ru" => "Русский",
