@@ -142,50 +142,56 @@ class AddProfileModal extends HookConsumerWidget {
                       ],
                     ),
                   ),
-                  if (!PlatformUtils.isDesktop)
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: buttonsPadding,
-                        vertical: 16,
-                      ),
-                      child: Semantics(
-                        button: true,
-                        child: SizedBox(
-                          height: 36,
-                          child: Material(
-                            key: const ValueKey("add_manually_button"),
-                            elevation: 8,
-                            color: theme.colorScheme.surface,
-                            surfaceTintColor: theme.colorScheme.surfaceTint,
-                            shadowColor: Colors.transparent,
-                            borderRadius: BorderRadius.circular(8),
-                            clipBehavior: Clip.antiAlias,
-                            child: InkWell(
-                              onTap: () async {
-                                context.pop();
-                                await const NewProfileRoute().push(context);
-                              },
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    FluentIcons.add_24_regular,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: buttonsPadding,
+                      vertical: 16,
+                    ),
+                    child: Semantics(
+                      button: true,
+                      child: SizedBox(
+                        height: 36,
+                        child: Material(
+                          key: const ValueKey("add_manually_button"),
+                          elevation: 8,
+                          color: theme.colorScheme.surface,
+                          surfaceTintColor: theme.colorScheme.surfaceTint,
+                          shadowColor: Colors.transparent,
+                          borderRadius: BorderRadius.circular(8),
+                          clipBehavior: Clip.antiAlias,
+                          child: InkWell(
+                            onTap: () async {
+                              context.pop();
+                              await const NewProfileRoute().push(context);
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  FluentIcons.add_24_regular,
+                                  color: theme.colorScheme.primary,
+                                ),
+                                const Gap(8),
+                                Text(
+                                  t.profile.add.addWarpConfig,
+                                  style: theme.textTheme.bodyLarge?.copyWith(
                                     color: theme.colorScheme.primary,
                                   ),
-                                  const Gap(8),
+                                ),
+                                if (!PlatformUtils.isDesktop)
                                   Text(
                                     t.profile.add.manually,
                                     style: theme.textTheme.labelLarge?.copyWith(
                                       color: theme.colorScheme.primary,
                                     ),
                                   ),
-                                ],
-                              ),
+                              ],
                             ),
                           ),
                         ),
                       ),
                     ),
+                  ),
                   const Gap(24),
                 ],
               ),

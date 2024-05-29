@@ -78,6 +78,7 @@
         "permissionRequest": "Permission to camera to scan QR Code"
       },
       "manually": "Manual Entry",
+      "addWarpConfig":"Add Warp Config",
       "addingProfileMsg": "Adding Profile",
       "failureMsg": "Failed to Add Profile"
     },
