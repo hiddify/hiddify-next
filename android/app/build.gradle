@@ -41,7 +41,8 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace "com.hiddify.hiddify"
+    namespace 'com.hiddify.hiddify'
+    testNamespace "test.com.hiddify.hiddify"
     compileSdkVersion 34
     ndkVersion "26.1.10909125"
 
