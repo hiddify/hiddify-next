@@ -12,36 +12,54 @@
     "sort": "排序",
     "sortBy": "排序方式",
     "addToClipboard": "新增至剪貼簿",
-    "timeout": "暫停"
+    "notSet": "未設定",
+    "agree": "同意",
+    "decline": "拒絕",
+    "unknown": "不明",
+    "hidden": "隱藏",
+    "timeout": "超時",
+    "clipboardExportSuccessMsg": "已匯出至剪貼簿",
+    "showMore": "顯示更多",
+    "showLess": "顯示較少",
+    "openAppSettings": "開啟應用程式設定",
+    "grantPermission": "授予權限"
   },
   "intro": {
-    "termsAndPolicyCaution(rich)": "繼續即表示您同意協議 ${tap(@:about.termsAndConditions)}",
+    "termsAndPolicyCaution(rich)": "繼續即表示您同意合約 ${tap(@:about.termsAndConditions)}",
     "start": "開始"
   },
   "home": {
-    "pageTitle": "主頁",
+    "pageTitle": "首頁",
     "emptyProfilesMsg": "首先新增訂閱設定檔",
     "noActiveProfileMsg": "選擇設定檔"
   },
   "stats": {
+    "traffic": "流量",
     "trafficLive": "即時流量",
     "trafficTotal": "總流量",
     "uplink": "上行",
-    "downlink": "下行"
+    "downlink": "下行",
+    "connection": "連線",
+    "speed": "速度",
+    "totalTransferred": "總傳輸量"
   },
   "profile": {
     "overviewPageTitle": "設定檔",
     "detailsPageTitle": "設定檔",
     "activeProfileNameSemanticLabel": "活動設定檔名稱：“${name}”。",
-    "activeProfileBtnSemanticLabel": "查看所有設定檔。",
+    "activeProfileBtnSemanticLabel": "查看所有設定檔",
     "nonActiveProfileBtnSemanticLabel": "選擇“${name}”作為活動設定檔。",
     "subscription": {
       "traffic": "流量",
-      "updatedTimeAgo": "更新${timeago}",
+      "updatedTimeAgo": "更新於 ${timeago}",
       "remainingDuration": "剩餘 ${duration} 天",
       "remainingTrafficSemanticLabel": "已使用 ${consumed} 流量，總共 ${total} 流量。",
       "expired": "已到期",
-      "noTraffic": "超過配額"
+      "noTraffic": "超過配額",
+      "upload": "上傳",
+      "download": "下載",
+      "total": "總流量",
+      "expireDate": "到期時間"
     },
     "sortBy": {
       "lastUpdate": "最近更新",
@@ -50,13 +68,14 @@
     "add": {
       "buttonText": "新的設定檔",
       "shortBtnTxt": "新的設定檔",
-      "fromClipboard": "從剪貼簿添加",
+      "fromClipboard": "從剪貼簿新增",
       "scanQr": "掃描 QR code",
       "qrScanner": {
         "permissionDeniedError": "沒有權限",
         "unexpectedError": "出了點問題",
         "torchSemanticLabel": "手電筒",
-        "facingSemanticLabel": "相機朝向"
+        "facingSemanticLabel": "相機朝向",
+        "permissionRequest": "授予相機權限已允許掃描 QR code"
       },
       "manually": "手動輸入",
       "addingProfileMsg": "新增設定檔",
@@ -81,11 +100,11 @@
     },
     "edit": {
       "buttonTxt": "編輯",
-      "selectActiveTxt": "選擇並激活設定檔"
+      "selectActiveTxt": "選擇活動設定檔"
     },
     "delete": {
       "buttonTxt": "刪除",
-      "confirmationMsg": "永久刪除設定檔嗎？",
+      "confirmationMsg": "要永久刪除設定檔嗎？",
       "successMsg": "設定檔刪除成功"
     },
     "save": {
@@ -110,18 +129,30 @@
     "emptyProxiesMsg": "沒有可用的代理",
     "delayTestTooltip": "測試延遲",
     "sortTooltip": "對代理進行排序",
+    "checkIp": "檢測 IP 地址",
+    "unknownIp": "不明的 IP",
     "sortOptions": {
       "unsorted": "預設",
       "name": "按字母排序",
       "delay": "按延遲排序"
+    },
+    "activeProxySemanticLabel": "生效中的代理",
+    "delaySemantics": {
+      "result": "延遲： ${delay}ms",
+      "timeout": "延遲測試超時",
+      "testing": "正在測試延遲"
+    },
+    "ipInfoSemantics": {
+      "address": "IP 地址",
+      "country": "國家"
     }
   },
   "logs": {
-    "pageTitle": "日誌",
+    "pageTitle": "記錄檔",
     "filterHint": "篩選",
     "allLevelsFilter": "全部",
-    "shareCoreLogs": "分享核心日誌",
-    "shareAppLogs": "共享應用程式日誌",
+    "shareCoreLogs": "分享核心記錄檔",
+    "shareAppLogs": "分享應用程式記錄檔",
     "pauseTooltip": "暫停",
     "resumeTooltip": "恢復",
     "clearTooltip": "清除"
@@ -131,17 +162,21 @@
     "requiresRestartMsg": "若要使其生效，請重新啟動應用程式",
     "experimental": "實驗性的",
     "experimentalMsg": "帶有實驗標誌的功能仍在開發中，可能會導致問題。",
+    "exportOptions": "匯出選項至剪貼簿",
+    "exportAllOptions": "匯出選項至剪貼不(用於偵錯) ",
+    "importOptions": "從剪貼簿匯入選項",
+    "importOptionsMsg": "浙江使用提供的值複寫所有配置選項。您確定嗎？",
     "general": {
-      "sectionTitle": "一般的",
+      "sectionTitle": "一般",
       "locale": "語言",
       "region": "地區",
       "regionMsg": "幫助設定預設選項以繞過國內地址",
       "regions": {
         "ir": "伊朗 (ir)",
-        "cn": "中國大陸 (cn)",
+        "cn": "中國 (cn)",
         "ru": "俄羅斯 (ru)",
         "af": "阿富汗 (af)",
-        "other": "其他地區"
+        "other": "其他"
       },
       "themeMode": "主題模式",
       "themeModes": {
@@ -151,18 +186,20 @@
         "black": "黑色"
       },
       "enableAnalytics": "啟用分析",
-      "enableAnalyticsMsg": "授予收集分析並發送崩潰報告以改進應用程式的權限",
+      "enableAnalyticsMsg": "授予收集分析並傳送崩潰報告以改進應用程式的權限",
       "autoStart": "隨系統啟動",
       "silentStart": "啟動最小化",
       "openWorkingDir": "開啟工作目錄",
-      "ignoreBatteryOptimizations": "停用電池優化",
+      "ignoreBatteryOptimizations": "停用電池最佳化",
       "ignoreBatteryOptimizationsMsg": "消除限制以獲得最佳 VPN 效能",
-      "dynamicNotification": "在通知中顯示速度"
+      "dynamicNotification": "在通知中顯示速度",
+      "hapticFeedback": "觸覺回饋",
+      "autoIpCheck": "自動檢查連線的 IP"
     },
     "advanced": {
-      "sectionTitle": "高級設定",
+      "sectionTitle": "進階設定",
       "debugMode": "偵錯模式",
-      "debugModeMsg": "重新啟動應用程式以應用此更改",
+      "debugModeMsg": "重新啟動應用程式以套用此變更",
       "memoryLimit": "記憶體限制",
       "memoryLimitMsg": "如果您遇到記憶體不足錯誤或頻繁應用程式崩潰，請啟用",
       "resetTunnel": "重置 VPN 設定檔"
@@ -186,7 +223,7 @@
       "geoip": "GeoIP",
       "geosite": "Geosite",
       "version": "版本${version}",
-      "fileMissing": "文件遺失",
+      "fileMissing": "檔案遺失",
       "update": "更新",
       "download": "下載",
       "failureMsg": "更新資源文件失敗",
@@ -198,7 +235,7 @@
   "about": {
     "pageTitle": "關於",
     "version": "版本",
-    "sourceCode": "原始代碼",
+    "sourceCode": "原始碼",
     "telegramChannel": "Telegram 頻道",
     "checkForUpdate": "檢查更新",
     "privacyPolicy": "隱私政策",
@@ -217,12 +254,12 @@
   "tray": {
     "dashboard": "儀表板",
     "quit": "退出",
-    "open": "打開",
+    "open": "開啟",
     "status": {
-      "connect": "連接",
-      "connecting": "連接中",
-      "disconnect": "斷開連接",
-      "disconnecting": "斷連中"
+      "connect": "連線",
+      "connecting": "連線中",
+      "disconnect": "中斷連線",
+      "disconnecting": "中斷連線中"
     }
   },
   "failure": {
@@ -233,8 +270,8 @@
     },
     "singbox": {
       "unexpected": "意外服務錯誤",
-      "serviceNotRunning": "服務未運行",
-      "missingPrivilege": "缺乏權限",
+      "serviceNotRunning": "服務未執行",
+      "missingPrivilege": "缺少權限",
       "missingPrivilegeMsg": "VPN 模式需要管理員權限。以管理員身分重新啟動應用程式或變更服務模式。",
       "missingGeoAssets": "缺少 GEO 資源文件",
       "missingGeoAssetsMsg": "GEO 資源文件缺失。請考慮更改活動資源文件或在設定中下載選定的資源文件。",
@@ -274,20 +311,30 @@
     "full_description": "Hiddify 的主要目標是提供安全、使用者友好且高效率的隧道用戶端。它使您能夠利用 VPN 服務權限將所有流量或選定的應用程式流量路由到您選擇的遠端伺服器。\n\n註：我們不提供任何伺服器；使用者需要使用自己的自託管伺服器或受信任的伺服器來確保其線上活動的隱私。\n\n我們透過以下方式支援伺服器：\n - 普通 V2ray/Xray 訂閱連結\n - Clash 訂閱連結\n - Sing-Box 訂閱連結\n\n 我們的獨特功能是什麼？\n - 使用者友善\n - 最佳化且快速\n - 自動選擇最低延遲\n - 顯示使用者使用資訊\n - 使用一鍵連結輕鬆導入\n - 免費且無廣告\n - 輕鬆切換線路\n - 等等\n 支援：\n - Sing-Box 支援的所有協定 \n - VLESS + XTLS Reality、Vision 協定 \n - VMESS\n - Trojan\n - ShoadowSocks\n - Reality\n - WireGuard\n - V2ray\n - Hystria2\n - TUIC \n - SSH\n - ShadowTLS\n\n\n 原始碼位於 https://github.com/hiddify/Hiddify-Next\n 應用程式核心基於開源的 Sing-Box。\n\n權限說明：\n\n - VPN 服務：由於此應用程式的目標是提供安全性、使用者友好且高效的隧道用戶端，因此我們需要此權限才能透過隧道將流量路由到遠端伺服器。\n - 獲取應用程式列表：此權限用於允許使用者包含或排除隧道的特定應用程式。\n - 接收啟動廣播：可以從應用程式設定中啟用或停用此權限，以在裝置啟動時啟動此應用程式。\n - 發送通知：此權限至關重要，因為我們使用前台服務來確保 VPN 服務的持續運作。\n - 該應用程式沒有廣告。分析和崩潰數據僅在用戶首次使用應用程式時明確同意的情況下才會出現。"
   },
   "connection": {
-    "tapToConnect": "點擊以連接",
-    "connecting": "連接中",
-    "disconnecting": "斷連中",
-    "connected": "已連接",
+    "tapToConnect": "點擊以連線",
+    "connecting": "連線中",
+    "disconnecting": "中斷連線中",
+    "connected": "已連線",
+    "reconnect": "重新連線",
+    "connectAnyWay": "連線",
     "experimentalNotice": "使用中的實驗性功能",
     "experimentalNoticeMsg": "您啟用了一些實驗性功能，這些功能可能會影響連線品質並導致某些意外錯誤。您始終可以從「配置選項」頁面變更或重設這些選項。",
-    "disableExperimentalNotice": "不再提示"
+    "disableExperimentalNotice": "不再提示",
+    "reconnectMsg": "重新連線以使變更生效"
   },
   "config": {
     "resetBtn": "重置選項",
     "serviceMode": "服務模式",
     "quickSettings": "快速設定",
     "setupWarp": "配置 WARP",
+    "allOptions": "全部配置選項",
     "serviceModes": {
+      "proxy": "僅代理",
+      "systemProxy": "系統代理",
+      "tun": "VPN",
+      "tunService": "VPN 服務"
+    },
+    "shortServiceModes": {
       "proxy": "僅代理",
       "systemProxy": "系統代理",
       "tun": "VPN",
@@ -299,17 +346,19 @@
       "inbound": "入站選項",
       "mux": "復用器",
       "outbound": "出站選項",
-      "tlsTricks": "TLS Tricks",
+      "tlsTricks": "TLS 特性",
+      "warp": "WARP 選項",
       "misc": "其他選項"
     },
     "warpConsent": {
-      "title": "Cloudflare WARP 許可條款"
+      "title": "Cloudflare WARP 授權條款",
+      "description(rich)": "Cloudflare WARP 是一個免費的 WireGuard VPN 提供商。啟用此選項即表示您同意 Cloudflare WARP 的 ${tos(服務條款)} 和 ${privacy(隱私權政策)}"
     },
     "generateWarpConfig": "生成 WARP 配置檔案",
     "missingWarpConfig": "WARP 配置檔案缺失",
     "warpConfigGenerated": "WARP 配置檔案已生成",
     "pageTitle": "配置選項",
-    "logLevel": "日誌等級",
+    "logLevel": "紀錄等級",
     "resolveDestination": "解析目標地址",
     "ipv6Mode": "IPv6 路由",
     "ipv6Modes": {
@@ -325,11 +374,11 @@
     "mixedPort": "混合連接埠",
     "tproxyPort": "透明代理埠",
     "localDnsPort": "本地 DNS 連接埠",
-    "allowConnectionFromLan": "允許區域網連線",
+    "allowConnectionFromLan": "允許區域網路連線",
     "tunImplementation": "TUN 實現",
     "mtu": "MTU",
-    "connectionTestUrl": "連接測試網址",
-    "urlTestInterval": "URL 測試間隔",
+    "connectionTestUrl": "連線測試網址",
+    "urlTestInterval": "網址測試間隔",
     "enableClashApi": "啟用 Clash API",
     "clashApiPort": "Clash API 連接埠",
     "enableTun": "啟用 TUN",
@@ -355,7 +404,7 @@
       "inbound": "透過代理繞過 WARP",
       "outbound": "透過 WARP 繞過代理"
     },
-    "warpLicenseKey": "許可證金鑰",
+    "warpLicenseKey": "授權金鑰",
     "warpCleanIp": "清理 IP",
     "warpPort": "埠",
     "warpNoise": "噪音計數",
