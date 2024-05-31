@@ -63,9 +63,9 @@ jobs:
             os: ubuntu-latest
             targets: apk
 
-          - platform: android-aab
-            os: ubuntu-latest
-            targets: aab
+          # - platform: android-aab
+          #   os: ubuntu-latest
+          #   targets: aab
 
           # - platform: windows
           #   os: windows-2019
@@ -116,11 +116,7 @@ jobs:
           channel: 'stable'
           cache: true
 
-      - name: Setup Gradle 8.5
-        if: startsWith(matrix.platform,'android')
-        uses: gradle/actions/setup-gradle@v3
-        with:
-          gradle-version: 8.1
+      
       - name: Setup Java
         if: startsWith(matrix.platform,'android')
         uses: actions/setup-java@v4
@@ -136,7 +132,11 @@ jobs:
           add-to-path: true
           link-to-sdk: true
 
-
+      - name: Setup Gradle 8.1
+        if: startsWith(matrix.platform,'android')
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: 8.1
       - name: Setup dependencies
         run: |
           make ${{ matrix.platform }}-install-dependencies
