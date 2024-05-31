@@ -54,12 +54,12 @@
       "updatedTimeAgo": "${timeago} به‌روزرسانی شد",
       "remainingDuration": "${duration} روز باقی مانده",
       "remainingTrafficSemanticLabel": "${consumed} از ${total} ترافیک مصرف شده",
-      "expired": "منقضی شده",
-      "noTraffic": "اتمام سهمیه",
+      "expired": "پایان زمان مجاز",
+      "noTraffic": "پایان حجم مجاز",
       "upload": "آپلود",
       "download": "دانلود",
       "total": "کل ترافیک",
-      "expireDate": "تاریخ انقضاء"
+      "expireDate": "تاریخ پایان"
     },
     "sortBy": {
       "lastUpdate": "اخیراً به‌روز شده",

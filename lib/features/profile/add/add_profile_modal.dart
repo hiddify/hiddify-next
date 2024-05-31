@@ -5,6 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/localization/translations.dart';
+import 'package:hiddify/core/notification/in_app_notification_controller.dart';
 import 'package:hiddify/core/preferences/preferences_provider.dart';
 import 'package:hiddify/core/router/router.dart';
 import 'package:hiddify/features/common/qr_code_scanner_screen.dart';
@@ -162,28 +163,7 @@ class AddProfileModal extends HookConsumerWidget {
                               child: InkWell(
                                 onTap: () async {
                                   Future.microtask(() async {
-                                    context.pop();
-                                    final _prefs = ref.read(sharedPreferencesProvider).requireValue;
-                                    final consent = _prefs.getBool(warpConsentGiven) ?? false;
-                                    if (!consent) {
-                                      final agreed = await showDialog<bool>(
-                                        context: context,
-                                        builder: (context) => const WarpLicenseAgreementModal(),
-                                      );
-
-                                      if (agreed ?? false) {
-                                        await ref.read(warpOptionNotifierProvider.notifier).agree();
-                                      }
-                                    }
-
-                                    final accountId = _prefs.getString("warp2-account-id");
-                                    final accessToken = _prefs.getString("warp2-access-token");
-                                    final hasWarp2Config = accountId != null && accessToken != null;
-
-                                    if (!hasWarp2Config) {
-                                      await ref.read(warpOptionNotifierProvider.notifier).generateWarp2Config();
-                                    }
-                                    await ref.read(addProfileProvider.notifier).add("#profile-title: Hiddify WARP\nwarp://p2@auto#Remote&&detour=warp://p1@auto#Local"); //
+                                    addProfileModal(context, ref);
                                   });
                                 },
                                 child: Row(
@@ -258,6 +238,43 @@ class AddProfileModal extends HookConsumerWidget {
         ),
       ),
     );
+  }
+
+  void addProfileModal(BuildContext context, WidgetRef ref) async {
+    final _prefs = ref.read(sharedPreferencesProvider).requireValue;
+    final _warp = ref.read(warpOptionNotifierProvider.notifier);
+    final _profile = ref.read(addProfileProvider.notifier);
+    final consent = _prefs.getBool(warpConsentGiven) ?? false;
+    context.pop();
+    Future.microtask(() async {
+      final t = ref.read(translationsProvider);
+      final notification = ref.read(inAppNotificationControllerProvider);
+
+      if (!consent) {
+        final agreed = await showDialog<bool>(
+          context: context,
+          builder: (context) => const WarpLicenseAgreementModal(),
+        );
+
+        if (agreed ?? false) {
+          await _prefs.setBool(warpConsentGiven, true);
+          notification.showInfoToast(t.profile.add.addingWarpMsg);
+          await _warp.generateWarpConfig();
+        } else {
+          return null;
+        }
+      }
+
+      final accountId = _prefs.getString("warp2-account-id");
+      final accessToken = _prefs.getString("warp2-access-token");
+      final hasWarp2Config = accountId != null && accessToken != null;
+
+      if (!hasWarp2Config) {
+        notification.showInfoToast(t.profile.add.addingWarpMsg);
+        await _warp.generateWarp2Config();
+      }
+      await _profile.add("#profile-title: Hiddify WARP\nwarp://p2@auto#Remote&&detour=warp://p1@auto#Local"); //
+    });
   }
 }
 

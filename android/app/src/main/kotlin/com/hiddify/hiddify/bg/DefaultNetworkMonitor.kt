@@ -1,10 +1,11 @@
 package com.hiddify.hiddify.bg
-import java.net.NetworkInterface
 
 import android.net.Network
 import android.os.Build
 import com.hiddify.hiddify.Application
 import io.nekohasekai.libbox.InterfaceUpdateListener
+
+import java.net.NetworkInterface
 
 object DefaultNetworkMonitor {
 
@@ -25,6 +26,14 @@ object DefaultNetworkMonitor {
 
     suspend fun stop() {
         DefaultNetworkListener.stop(this)
+    }
+
+    suspend fun require(): Network {
+        val network = defaultNetwork
+        if (network != null) {
+            return network
+        }
+        return DefaultNetworkListener.get()
     }
 
     fun setListener(listener: InterfaceUpdateListener?) {
@@ -48,11 +57,11 @@ object DefaultNetworkMonitor {
                     continue
                 }
                 listener.updateDefaultInterface(interfaceName, interfaceIndex)
-                break
             }
         } else {
             listener.updateDefaultInterface("", -1)
         }
     }
+
 
 }
