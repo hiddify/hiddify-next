@@ -143,7 +143,7 @@ gen_translations: #generating missing translations using google translate
 android-release: android-apk-release
 
 android-apk-release:
-	flutter build apk --verbose --target-platform android-arm,android-arm64,android-x64 --split-per-abi --target $(TARGET) $(BUILD_ARGS)
+	flutter build apk --target $(TARGET) $(BUILD_ARGS) --target-platform android-arm,android-arm64,android-x64 --split-per-abi --verbose  
 	ls -R build/app/outputs
 
 android-aab-release:
