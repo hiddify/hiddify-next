@@ -1,0 +1,413 @@
+{
+  "general": {
+    "appTitle": "Hiddify",
+    "reset": "إعادة تعيين",
+    "toggle": {
+      "enabled": "مُفعّل",
+      "disabled": "غير مُفعّل"
+    },
+    "state": {
+      "disable": "تعطيل"
+    },
+    "sort": "فرز",
+    "sortBy": "فرز حسب",
+    "addToClipboard": "إضافة إلى الحافظة",
+    "notSet": "غير مُحدد",
+    "agree": "موافقة",
+    "decline": "رفض",
+    "unknown": "غير معروف",
+    "hidden": "مخفي",
+    "timeout": "انتهاء الوقت",
+    "clipboardExportSuccessMsg": "تمت إضافة البيانات إلى الحافظة",
+    "showMore": "عرض المزيد",
+    "showLess": "عرض أقل",
+    "openAppSettings": "فتح إعدادات التطبيق",
+    "grantPermission": "منح الإذن"
+  },
+  "intro": {
+    "termsAndPolicyCaution(rich)": "بمواصلة استخدامك، فإنك توافق على ${tap(@:about.termsAndConditions)}",
+    "start": "ابدأ"
+  },
+  "home": {
+    "pageTitle": "الصفحة الرئيسية",
+    "emptyProfilesMsg": "ابدأ بإضافة ملف تعريف اشتراك",
+    "noActiveProfileMsg": "اختر ملف تعريف"
+  },
+  "stats": {
+    "traffic": "حركة المرور",
+    "trafficLive": "حركة المرور الحية",
+    "trafficTotal": "إجمالي حركة المرور",
+    "uplink": "الصعود",
+    "downlink": "الهبوط",
+    "connection": "الاتصال",
+    "speed": "السرعة",
+    "totalTransferred": "إجمالي البيانات المنقولة"
+  },
+  "profile": {
+    "overviewPageTitle": "الملفات الشخصية",
+    "detailsPageTitle": "ملف التعريف",
+    "activeProfileNameSemanticLabel": "اسم ملف التعريف النشط: \"${name}\".",
+    "activeProfileBtnSemanticLabel": "عرض جميع ملفات التعريف",
+    "nonActiveProfileBtnSemanticLabel": "اختر \"${name}\" كملف تعريف نشط",
+    "subscription": {
+      "traffic": "حركة المرور",
+      "updatedTimeAgo": "تم التحديث قبل ${timeago}",
+      "remainingDuration": "تبقى ${duration} يومًا",
+      "remainingTrafficSemanticLabel": "استُهلك ${consumed} من أصل ${total} حركة مرور",
+      "expired": "منتهي الصلاحية",
+      "noTraffic": "غير متاح",
+      "upload": "التحميل",
+      "download": "التنزيل",
+      "total": "إجمالي حركة المرور",
+      "expireDate": "تاريخ انتهاء الصلاحية"
+    },
+    "sortBy": {
+      "lastUpdate": "تم التحديث مؤخرًا",
+      "name": "أبجديًا"
+    },
+    "add": {
+      "buttonText": "ملف تعريف جديد",
+      "shortBtnTxt": "ملف تعريف جديد",
+      "fromClipboard": "إضافة من الحافظة",
+      "scanQr": "مسح رمز الاستجابة السريعة",
+      "qrScanner": {
+        "permissionDeniedError": "تم رفض الإذن",
+        "unexpectedError": "حدث خطأ ما",
+        "torchSemanticLabel": "ضوء فلاش",
+        "facingSemanticLabel": "اتجاه الكاميرا",
+        "permissionRequest": "الإذن للكاميرا لمسح رمز الاستجابة السريعة"
+      },
+      "manually": "إدخال يدوي",
+      "addingProfileMsg": "إضافة ملف التعريف",
+      "failureMsg": "فشل في إضافة ملف التعريف"
+    },
+    "update": {
+      "buttonTxt": "تحديث",
+      "tooltip": "تحديث ملف التعريف",
+      "updateSubscriptions": "تحديث الاشتراكات",
+      "failureMsg": "فشل في تحديث ملف التعريف",
+      "successMsg": "تم تحديث ملف التعريف بنجاح",
+      "namedFailureMsg": "فشل في تحديث \"${name}\"",
+      "namedSuccessMsg": "تم تحديث \"${name}\" بنجاح"
+    },
+    "share": {
+      "buttonText": "مشاركة",
+      "exportToClipboardSuccess": "تم تصدير البيانات إلى الحافظة",
+      "exportSubLinkToClipboard": "تصدير رابط الاشتراك إلى الحافظة",
+      "subLinkQrCode": "رمز الاستجابة السريعة لرابط الاشتراك",
+      "exportConfigToClipboard": "تصدير التكوين إلى الحافظة",
+      "exportConfigToClipboardSuccess": "تم نسخ التكوين إلى الحافظة"
+    },
+    "edit": {
+      "buttonTxt": "تحرير",
+      "selectActiveTxt": "اختر ملف التعريف النشط"
+    },
+    "delete": {
+      "buttonTxt": "حذف",
+      "confirmationMsg": "حذف ملف التعريف نهائياً؟",
+      "successMsg": "تم حذف ملف التعريف بنجاح"
+    },
+    "save": {
+      "buttonText": "حفظ",
+      "successMsg": "تم حفظ ملف التعريف بنجاح",
+      "failureMsg": "فشل في حفظ ملف التعريف"
+    },
+    "detailsForm": {
+      "nameLabel": "الاسم",
+      "nameHint": "اسم ملف التعريف",
+      "urlLabel": "العنوان",
+      "urlHint": "عنوان URL للتكوين الكامل",
+      "emptyNameMsg": "الاسم مطلوب",
+      "invalidUrlMsg": "عنوان URL غير صالح",
+      "lastUpdate": "آخر تحديث",
+      "updateInterval": "التحديث التلقائي",
+      "updateIntervalDialogTitle": "مُدة التحديث التلقائي (بالساعات)"
+    }
+  },
+  "proxies": {
+    "pageTitle": "الخوادم الوكيلية",
+    "emptyProxiesMsg": "لا توجد خوادم وكيلية متاحة",
+    "delayTestTooltip": "اختبار التأخير",
+    "sortTooltip": "فرز الخوادم الوكيلية",
+    "checkIp": "تحقق من عنوان IP",
+    "unknownIp": "عنوان IP غير معروف",
+    "sortOptions": {
+      "unsorted": "افتراضي",
+      "name": "أبجديًا",
+      "delay": "حسب التأخير"
+    },
+    "activeProxySemanticLabel": "الخادم الوكيل النشط",
+    "delaySemantics": {
+      "result": "التأخير: ${delay} مللي ثانية",
+      "timeout": "انتهاء الوقت في اختبار التأخير",
+      "testing": "التأخير: قيد الاختبار..."
+    },
+    "ipInfoSemantics": {
+      "address": "عنوان IP",
+      "country": "الدولة"
+    }
+  },
+  "logs": {
+    "pageTitle": "السجلات",
+    "filterHint": "تصفية",
+    "allLevelsFilter": "الكل",
+    "shareCoreLogs": "مشاركة سجلات النواة",
+    "shareAppLogs": "مشاركة سجلات التطبيق",
+    "pauseTooltip": "إيقاف مؤقت",
+    "resumeTooltip": "استئناف",
+    "clearTooltip": "مسح"
+  },
+  "settings": {
+    "pageTitle": "الإعدادات",
+    "requiresRestartMsg": "لتطبيق هذه التغييرات، أعد تشغيل التطبيق",
+    "experimental": "تجريبي",
+    "experimentalMsg": "الميزات ذات العلامة التجريبية لا تزال قيد التطوير وقد تسبب مشاكل.",
+    "exportOptions": "تصدير الخيارات إلى الحافظة",
+    "exportAllOptions": "تصدير جميع الخيارات إلى الحافظة (تصحيح الأخطاء)",
+    "importOptions": "استيراد الخيارات من الحافظة",
+    "importOptionsMsg": "سيؤدي هذا إلى إعادة كتابة جميع خيارات التكوين بالقيم المحددة. هل أنت متأكد؟",
+    "general": {
+      "sectionTitle": "عام",
+      "locale": "اللغة",
+      "region": "المنطقة",
+      "regionMsg": "يساعد على تعيين الخيارات الافتراضية لتجاوز العناوين المحلية",
+      "regions": {
+        "ir": "إيران (ir)",
+        "cn": "الصين (cn)",
+        "ru": "روسيا (ru)",
+        "af": "أفغانستان (af)",
+        "other": "أخرى"
+      },
+      "themeMode": "وضع السمة",
+      "themeModes": {
+        "system": "اتباع سمة النظام",
+        "dark": "الوضع الداكن",
+        "light": "الوضع الفاتح",
+        "black": "الوضع الأسود"
+      },
+      "enableAnalytics": "تمكين التحليلات",
+      "enableAnalyticsMsg": "منح الإذن بجمع التحليلات وإرسال تقارير الأعطال لتحسين التطبيق",
+      "autoStart": "بدء التشغيل عند تسجيل الدخول",
+      "silentStart": "بدء التشغيل مُصغر",
+      "openWorkingDir": "فتح دليل العمل",
+      "ignoreBatteryOptimizations": "تعطيل تحسينات البطارية",
+      "ignoreBatteryOptimizationsMsg": "إزالة القيود للحصول على أفضل أداء VPN",
+      "dynamicNotification": "عرض السرعة في الإشعار",
+      "hapticFeedback": "ردود فعل اللمس",
+      "autoIpCheck": "التحقق من عنوان IP للاتصال تلقائيًا"
+    },
+    "advanced": {
+      "sectionTitle": "متقدم",
+      "debugMode": "وضع تصحيح الأخطاء",
+      "debugModeMsg": "أعد تشغيل التطبيق لتطبيق هذا التغيير",
+      "memoryLimit": "حد الذاكرة",
+      "memoryLimitMsg": "قم بتمكين هذه الميزة إذا كنت تواجه أخطاء «عدم كفاية الذاكرة» أو تعطل التطبيق بشكل متكرر",
+      "resetTunnel": "إعادة تعيين ملف تعريف VPN"
+    },
+    "network": {
+      "perAppProxyPageTitle": "الوكيل لكل تطبيق",
+      "perAppProxyModes": {
+        "off": "الكل",
+        "offMsg": "وكيل جميع التطبيقات",
+        "include": "وكيل",
+        "includeMsg": "وكيل التطبيقات المحددة فقط",
+        "exclude": "تجاوز",
+        "excludeMsg": "لا تستخدم الوكيل للتطبيقات المحددة"
+      },
+      "showSystemApps": "عرض تطبيقات النظام",
+      "hideSystemApps": "إخفاء تطبيقات النظام",
+      "clearSelection": "مسح الاختيار"
+    },
+    "geoAssets": {
+      "pageTitle": "أصول التوجيه",
+      "geoip": "GeoIP",
+      "geosite": "GeoSite",
+      "version": "الإصدار ${version}",
+      "fileMissing": "الملف مفقود",
+      "update": "تحديث",
+      "download": "تنزيل",
+      "failureMsg": "فشل في تحديث الأصل",
+      "successMsg": "تم تحديث الأصل بنجاح",
+      "addRecommended": "إضافة الأصول الموصى بها",
+      "missingGeoAssetsMsg": "ملفات أصول التوجيه المحددة مفقودة. قم بتنزيلها أو اختر ملفات موجودة"
+    }
+  },
+  "about": {
+    "pageTitle": "حول\nتعريب:م. ابراهيم قاسم",
+    "version": "الإصدار",
+    "sourceCode": "رمز المصدر",
+    "telegramChannel": "قناة Telegram",
+    "checkForUpdate": "التحقق من وجود تحديث",
+    "privacyPolicy": "سياسة الخصوصية",
+    "termsAndConditions": "الشروط والأحكام"
+  },
+  "appUpdate": {
+    "notAvailableMsg": "أنت تستخدم أحدث إصدار بالفعل",
+    "dialogTitle": "تحديث متاح",
+    "updateMsg": "إصدار جديد من @:general.appTitle متاح. هل تريد التحديث الآن؟",
+    "currentVersionLbl": "الإصدار الحالي",
+    "newVersionLbl": "الإصدار الجديد",
+    "updateNowBtnTxt": "تحديث الآن",
+    "laterBtnTxt": "لاحقًا",
+    "ignoreBtnTxt": "تجاهل"
+  },
+  "tray": {
+    "dashboard": "لوحة التحكم",
+    "quit": "إنهاء",
+    "open": "فتح",
+    "status": {
+      "connect": "الاتصال",
+      "connecting": "جار الاتصال",
+      "disconnect": "فصم الاتصال",
+      "disconnecting": "جار فصم الاتصال"
+    }
+  },
+  "failure": {
+    "unexpected": "خطأ غير متوقع",
+    "clash": {
+      "unexpected": "خطأ غير متوقع",
+      "core": "خطأ في Clash ${reason}"
+    },
+    "singbox": {
+      "unexpected": "خطأ في الخدمة غير متوقع",
+      "serviceNotRunning": "الخدمة غير قيد التشغيل",
+      "missingPrivilege": "غياب الامتياز",
+      "missingPrivilegeMsg": "وضع VPN يتطلب امتيازات المسؤول. أعد تشغيل التطبيق كمسؤول أو غيّر وضع الخدمة.",
+      "missingGeoAssets": "أصول Geo مفقودة",
+      "missingGeoAssetsMsg": "أصول Geo مفقودة. فكر في تغيير الأصل النشط أو تنزيل الأصل المحدد في الإعدادات.",
+      "invalidConfigOptions": "خيارات التكوين غير صحيحة",
+      "invalidConfig": "تكوين غير صالح",
+      "create": "خطأ في إنشاء الخدمة",
+      "start": "خطأ في بدء تشغيل الخدمة"
+    },
+    "connectivity": {
+      "unexpected": "فشل غير متوقع",
+      "missingVpnPermission": "غياب إذن VPN",
+      "missingNotificationPermission": "غياب إذن الإشعارات",
+      "core": "خطأ في النواة"
+    },
+    "profiles": {
+      "unexpected": "خطأ غير متوقع",
+      "notFound": "لم يتم العثور على ملف التعريف",
+      "invalidConfig": "تكوينات غير صحيحة",
+      "invalidUrl": "عنوان URL غير صالح"
+    },
+    "connection": {
+      "unexpected": "خطأ في الاتصال غير متوقع",
+      "timeout": "انتهاء الوقت في الاتصال",
+      "badResponse": "استجابة سيئة",
+      "connectionError": "خطأ في الاتصال",
+      "badCertificate": "شهادة غير صالحة"
+    },
+    "geoAssets": {
+      "unexpected": "خطأ غير متوقع",
+      "notUpdate": "لا يوجد تحديث متاح",
+      "activeNotFound": "لم يتم العثور على أصل Geo النشط"
+    }
+  },
+  "play": {
+    "title": "Hiddify (معاينة)",
+    "short_description": "Auto, SSH, VLESS, VMess, Trojan, Reality, Sing-Box, Clash, XRay, Shadowsocks",
+    "full_description": "الهدف الرئيسي لـ Hiddify هو توفير عميل نفق آمن وسهل الاستخدام وكفاءة. يمكّنك من توجيه جميع حركة المرور أو حركة المرور من التطبيق المحدد إلى خادم بعيد من اختيارك، باستخدام إذن VPN-Service. \n\nملاحظة: لا نوفر أي خادم، ويتعين على المستخدمين ضمان بقاء أنشطتهم عبر الإنترنت خاصة باستخدام خادمهم المخصص أو الخوادم الموثوقة. \n \nندعم الخوادم مع:\n- رابط اشتراك V2Ray/XRay عادي \n- رابط اشتراك Clash \n- رابط اشتراك Sing-Box \n\nما هي ميزاتنا الفريدة؟\n - سهل الاستخدام \n - مُحسّن وسريع \n - اختيار أدنى Ping تلقائيًا \n - عرض معلومات استخدام المستخدم \n - استيراد sublink بسهولة بنقرة واحدة باستخدام deeplinking \n - مجاني وخالي من الإعلانات \n - تبديل sublinks بسهولة \n - المزيد والمزيد \n\nالدعم:\n- جميع البروتوكولات التي تدعمها Sing-Box \n- VLESS + XTLS Reality, Vision \n- VMess \n- Trojan \n- ShoadowSocks \n- Reality \n- WireGuard \n- V2Ray \n- Hysteria2 \n- TUICv5 \n- SSH \n- ShadowTLS \n\n\nرمز المصدر موجود في https://github.com/hiddify/Hiddify-Next \nتعتمد نواة التطبيق على Sing-Box مفتوحة المصدر.\n\nوصف الإذن:\n- VPN Service: نظرًا لأن هدف هذا التطبيق هو توفير عميل نفق آمن وسهل الاستخدام وكفاءة، نحتاج إلى هذا الإذن لنتمكن من توجيه حركة المرور عبر النفق إلى الخادم البعيد. \n- QUERY ALL PACKAGES: يستخدم هذا الإذن للسماح للمستخدمين بتضمين أو استبعاد تطبيقات محددة للأنفاق. \n- RECEIVE BOOT COMPLETED: يمكن تمكين أو تعطيل هذا الإذن من إعدادات التطبيق لتنشيط هذا التطبيق عند تشغيل الجهاز. \n- POST NOTIFICATIONS: هذا الإذن ضروري لأننا نستخدم خدمة المقدمة لضمان تشغيل خدمة VPN بشكل مستمر. \n- هذا التطبيق خالي من الإعلانات. يتم جمع التحليلات وبيانات الأعطال فقط بموافقة صريحة من المستخدم في أول استخدام للتطبيق."
+  },
+  "connection": {
+    "tapToConnect": "انقر للاتصال",
+    "connecting": "جار الاتصال",
+    "disconnecting": "جار فصم الاتصال",
+    "connected": "متصل",
+    "reconnect": "أعد الاتصال",
+    "connectAnyWay": "اتصل",
+    "experimentalNotice": "ميزات تجريبية قيد الاستخدام",
+    "experimentalNoticeMsg": "لقد قمت بتمكين بعض الميزات التجريبية التي قد تؤثر على جودة الاتصال وتسبب أخطاء غير متوقعة. يمكنك دائمًا تغيير هذه الخيارات أو إعادة تعيينها من صفحة خيارات التكوين.",
+    "disableExperimentalNotice": "لا تعرض مرة أخرى",
+    "reconnectMsg": "أعد الاتصال ليتم تطبيق التغييرات"
+  },
+  "config": {
+    "resetBtn": "إعادة تعيين الخيارات",
+    "serviceMode": "وضع الخدمة",
+    "quickSettings": "الإعدادات السريعة",
+    "setupWarp": "إعداد WARP",
+    "allOptions": "جميع خيارات التكوين",
+    "serviceModes": {
+      "proxy": "خدمة الوكيل فقط",
+      "systemProxy": "تعيين وكيل النظام",
+      "tun": "VPN",
+      "tunService": "خدمة VPN"
+    },
+    "shortServiceModes": {
+      "proxy": "وكيل",
+      "systemProxy": "وكيل النظام",
+      "tun": "VPN",
+      "tunService": "خدمة VPN"
+    },
+    "section": {
+      "route": "خيارات التوجيه",
+      "dns": "خيارات DNS",
+      "inbound": "خيارات الوارد",
+      "mux": "MultiPlexer",
+      "outbound": "خيارات الخارج",
+      "tlsTricks": "حيل TLS",
+      "warp": "خيارات WARP",
+      "misc": "خيارات متنوعة"
+    },
+    "warpConsent": {
+      "title": "موافقة Cloudflare WARP",
+      "description(rich)": "Cloudflare WARP هو مزود VPN مجاني لـ WireGuard. بتمكين هذا الخيار، فإنك توافق على ${tos(Terms of Service)} و ${privacy(Privacy Policy)} لـ Cloudflare WARP."
+    },
+    "generateWarpConfig": "إنشاء تكوين WARP",
+    "missingWarpConfig": "تكوين WARP مفقود",
+    "warpConfigGenerated": "تم إنشاء تكوين WARP",
+    "pageTitle": "خيارات التكوين",
+    "logLevel": "مستوى السجل",
+    "resolveDestination": "حل الوجهة",
+    "ipv6Mode": "توجيه IPv6",
+    "ipv6Modes": {
+      "disable": "تعطيل",
+      "enable": "تمكين",
+      "prefer": "مُفضل",
+      "only": "حصري"
+    },
+    "remoteDnsAddress": "DNS البعيد",
+    "remoteDnsDomainStrategy": "استراتيجية مجال DNS البعيد",
+    "directDnsAddress": "DNS المباشر",
+    "directDnsDomainStrategy": "استراتيجية مجال DNS المباشر",
+    "mixedPort": "منفذ مُختلط",
+    "tproxyPort": "منفذ الوكيل الشفاف",
+    "localDnsPort": "منفذ DNS المحلي",
+    "allowConnectionFromLan": "مشاركة VPN على الشبكة المحلية",
+    "tunImplementation": "تنفيذ TUN",
+    "mtu": "MTU",
+    "connectionTestUrl": "عنوان URL لاختبار الاتصال",
+    "urlTestInterval": "مُدة اختبار عنوان URL",
+    "enableClashApi": "تمكين Clash API",
+    "clashApiPort": "منفذ Clash API",
+    "enableTun": "تمكين TUN",
+    "setSystemProxy": "تعيين وكيل النظام",
+    "enableDnsRouting": "تمكين توجيه DNS",
+    "enableFakeDns": "تمكين DNS المزيف",
+    "bypassLan": "تجاوز LAN",
+    "strictRoute": "توجيه صارم",
+    "enableTlsFragment": "تمكين تجزئة TLS",
+    "tlsFragmentSize": "حجم تجزئة TLS",
+    "tlsFragmentSleep": "وقت تعليق تجزئة TLS",
+    "enableTlsMixedSniCase": "تمكين خلط حالات SNI في TLS",
+    "enableTlsPadding": "تمكين حشو TLS",
+    "tlsPaddingSize": "حشو TLS",
+    "enableMux": "تمكين Mux",
+    "muxProtocol": "بروتوكول Mux",
+    "muxMaxStreams": "أقصى عدد من التدفقات المتزامنة",
+    "enableWarp": "تمكين WARP",
+    "warpDetourMode": "وضع التفاف",
+    "warpDetourModes": {
+      "proxyOverWarp": "لف الخوادم الوكيلية عبر WARP",
+      "warpOverProxy": "لف WARP عبر الخوادم الوكيلية",
+      "inbound": "لف WARP عبر الخوادم الوكيلية",
+      "outbound": "لف الخوادم الوكيلية عبر WARP"
+    },
+    "warpLicenseKey": "مفتاح الترخيص",
+    "warpCleanIp": "عنوان IP نظيف",
+    "warpPort": "المنفذ",
+    "warpNoise": "عدد الضوضاء",
+    "warpNoiseDelay": "تأخير الضوضاء"
+  }
+}

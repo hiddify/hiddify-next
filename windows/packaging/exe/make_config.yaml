@@ -8,6 +8,7 @@ create_desktop_icon: true
 install_dir_name: "{autopf64}\\hiddify"
 setup_icon_file: ..\..\windows\runner\resources\app_icon.ico
 locales:
+  - ar
   - en
   - fa
   - ru
