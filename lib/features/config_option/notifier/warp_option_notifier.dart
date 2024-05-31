@@ -26,20 +26,14 @@ class WarpOptionNotifier extends _$WarpOptionNotifier with AppLogger {
 
     return WarpOptions(
       consentGiven: consent,
-      configGeneration: hasWarpConfig
-          ? const AsyncValue.data("")
-          : AsyncError(const MissingWarpConfigFailure(), StackTrace.current),
+      configGeneration: hasWarpConfig ? const AsyncValue.data("") : AsyncError(const MissingWarpConfigFailure(), StackTrace.current),
     );
   }
 
-  SharedPreferences get _prefs =>
-      ref.read(sharedPreferencesProvider).requireValue;
+  SharedPreferences get _prefs => ref.read(sharedPreferencesProvider).requireValue;
 
   Future<void> agree() async {
-    await ref
-        .read(sharedPreferencesProvider)
-        .requireValue
-        .setBool(warpConsentGiven, true);
+    await ref.read(sharedPreferencesProvider).requireValue.setBool(warpConsentGiven, true);
     state = state.copyWith(consentGiven: true);
     await generateWarpConfig();
   }
@@ -59,15 +53,33 @@ class WarpOptionNotifier extends _$WarpOptionNotifier with AppLogger {
           .getOrElse((l) => throw l)
           .run();
 
-      await ref
-          .read(ConfigOptions.warpAccountId.notifier)
-          .update(warp.accountId);
-      await ref
-          .read(ConfigOptions.warpAccessToken.notifier)
-          .update(warp.accessToken);
-      await ref
-          .read(ConfigOptions.warpWireguardConfig.notifier)
-          .update(warp.wireguardConfig);
+      await ref.read(ConfigOptions.warpAccountId.notifier).update(warp.accountId);
+      await ref.read(ConfigOptions.warpAccessToken.notifier).update(warp.accessToken);
+      await ref.read(ConfigOptions.warpWireguardConfig.notifier).update(warp.wireguardConfig);
+      return warp.log;
+    });
+
+    state = state.copyWith(configGeneration: result);
+  }
+
+  Future<void> generateWarp2Config() async {
+    if (state.configGeneration.isLoading) return;
+    state = state.copyWith(configGeneration: const AsyncLoading());
+
+    final result = await AsyncValue.guard(() async {
+      final warp = await ref
+          .read(singboxServiceProvider)
+          .generateWarpConfig(
+            licenseKey: ref.read(ConfigOptions.warpLicenseKey),
+            previousAccountId: ref.read(ConfigOptions.warp2AccountId),
+            previousAccessToken: ref.read(ConfigOptions.warp2AccessToken),
+          )
+          .getOrElse((l) => throw l)
+          .run();
+
+      await ref.read(ConfigOptions.warp2AccountId.notifier).update(warp.accountId);
+      await ref.read(ConfigOptions.warp2AccessToken.notifier).update(warp.accessToken);
+      await ref.read(ConfigOptions.warp2WireguardConfig.notifier).update(warp.wireguardConfig);
       return warp.log;
     });
 

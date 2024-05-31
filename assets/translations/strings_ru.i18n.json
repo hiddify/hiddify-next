@@ -16,13 +16,13 @@
     "agree": "Соглашаться",
     "decline": "Отклонить",
     "unknown": "Неизвестный",
-    "hidden": "Скрытый",
     "timeout": "Таймаут",
-    "clipboardExportSuccessMsg": "Добавлено в буфер обмена",
-    "showMore": "Раскрыть",
-    "showLess": "Свернуть",
-    "openAppSettings": "Открыть настройки приложения",
-    "grantPermission": "Дать разрешение"
+    "clipboardExportSuccessMsg": "Скопировано",
+    "showMore": "Развернуть ",
+    "showLess": "Свернуть ",
+    "openAppSettings": "Открыть настройки",
+    "grantPermission": "Дать права доступа",
+    "hidden": "Скрытый"
   },
   "intro": {
     "termsAndPolicyCaution(rich)": "Продолжая, Вы соглашаетесь с ${tap(@:about.termsAndConditions)}",
@@ -39,9 +39,10 @@
     "trafficTotal": "Трафик",
     "uplink": "Скорость отправки",
     "downlink": "Скорость загрузки",
-    "connection": "Соединение",
+    "connection": "Соединение ",
     "speed": "Скорость",
-    "totalTransferred": "В общем передано"
+    "totalTransferred": "Всего передано"
+
   },
   "profile": {
     "overviewPageTitle": "Профили",
@@ -56,10 +57,10 @@
       "remainingTrafficSemanticLabel": "Использовано ${consumed} трафика из ${total}",
       "expired": "Истекло",
       "noTraffic": "Нет доступного трафика",
-      "upload": "Загрузка",
-      "download": "Скачивание",
-      "total": "Общий трафик",
-      "expireDate": "Истечение срока действия"
+      "upload": "Отправлено ",
+      "download": "Скачано",
+      "total": "Всего трафика",
+      "expireDate": "Дата окончания подписки "
     },
     "sortBy": {
       "lastUpdate": "по последнему обновлению",
@@ -75,7 +76,7 @@
         "unexpectedError": "Неизвестная ошибка",
         "torchSemanticLabel": "Вспышка",
         "facingSemanticLabel": "Фронтальная камера",
-        "permissionRequest": "Разрешение камере сканировать QR-код"
+        "permissionRequest": "Права на использование камеры для считывания QR"
       },
       "manually": "Ввести вручную",
       "addingProfileMsg": "Добавление профиля",
@@ -138,8 +139,8 @@
     },
     "activeProxySemanticLabel": "Активный прокси",
     "delaySemantics": {
-      "result": "Задержка: ${delay}ms",
-      "timeout": "Тест задержки по таймауту",
+      "result": "Задержка: ${delay}мс",
+      "timeout": "Тайм-аут при тестировании задержки",
       "testing": "Задержка: Тестирование..."
     },
     "ipInfoSemantics": {
@@ -162,8 +163,7 @@
     "requiresRestartMsg": "Чтобы применить изменения, перезапустите приложение.",
     "experimental": "Экспериментальный",
     "experimentalMsg": "Функции с флагом «Экспериментально» все еще находятся в разработке и могут вызвать проблемы.",
-    "exportOptions": "Экспорт параметров в буфер обмена",
-    "exportAllOptions": "Экспорт параметров в буфер обмена (отладка)",
+    
     "importOptions": "Импорт параметров из буфера обмена",
     "importOptionsMsg": "Это перезапишет все параметры конфига предоставленными значениями. Вы уверены?",
     "general": {
@@ -193,7 +193,7 @@
       "ignoreBatteryOptimizations": "Отключить оптимизацию батареи",
       "ignoreBatteryOptimizationsMsg": "Отключение ограничений для оптимальной производительности VPN.",
       "dynamicNotification": "Отображение скорости в уведомлении",
-      "autoIpCheck": "Автоматически проверять IP соединение"
+      "autoIpCheck": "Автоматически проверять IP-адрес соединения"
     },
     "advanced": {
       "sectionTitle": "Расширенные",
@@ -314,8 +314,8 @@
     "connecting": "Подключение",
     "disconnecting": "Отключение",
     "connected": "Подключено",
-    "reconnect": "Переподключение",
-    "connectAnyWay": "Подключение",
+    "reconnect": "Восстановить соединение",
+    "connectAnyWay": "Подключиться",
     "experimentalNotice": "Экспериментальные функции в использовании",
     "experimentalNoticeMsg": "Вы включили некоторые экспериментальные функции, которые могут повлиять на качество соединения и вызвать непредвиденные ошибки. Вы всегда можете изменить или сбросить эти параметры на странице параметров конфигурации.",
     "disableExperimentalNotice": "Больше не показывать",
@@ -325,8 +325,8 @@
     "resetBtn": "Сбросить параметры",
     "serviceMode": "Режим работы",
     "quickSettings": "Быстрые настройки",
+    "allOptions": "Все параметры ",
     "setupWarp": "Настроить WARP",
-    "allOptions": "Все параметры конфига",
     "serviceModes": {
       "proxy": "Прокси",
       "systemProxy": "Системный прокси",

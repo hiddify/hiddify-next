@@ -5,9 +5,10 @@ display_name: Hiddify
 executable_name: Hiddify.exe
 output_base_file_name: Hiddify.exe
 create_desktop_icon: true
-install_dir_name: "{autopf64}\\hiddify"
+install_dir_name: "{autopf64}\\Hiddify"
 setup_icon_file: ..\..\windows\runner\resources\app_icon.ico
 locales:
+  - ar
   - en
   - fa
   - ru

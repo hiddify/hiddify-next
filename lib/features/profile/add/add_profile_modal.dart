@@ -5,11 +5,16 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hiddify/core/localization/translations.dart';
+import 'package:hiddify/core/preferences/preferences_provider.dart';
 import 'package:hiddify/core/router/router.dart';
 import 'package:hiddify/features/common/qr_code_scanner_screen.dart';
+import 'package:hiddify/features/config_option/notifier/warp_option_notifier.dart';
+import 'package:hiddify/features/config_option/overview/config_options_page.dart';
+import 'package:hiddify/features/config_option/overview/warp_options_widgets.dart';
 import 'package:hiddify/features/profile/notifier/profile_notifier.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AddProfileModal extends HookConsumerWidget {
   const AddProfileModal({
@@ -17,7 +22,7 @@ class AddProfileModal extends HookConsumerWidget {
     this.url,
     this.scrollController,
   });
-
+  static const warpConsentGiven = "warp_consent_given";
   final String? url;
   final ScrollController? scrollController;
 
@@ -58,8 +63,7 @@ class AddProfileModal extends HookConsumerWidget {
         child: LayoutBuilder(
           builder: (context, constraints) {
             // temporary solution, aspect ratio widget relies on height and in a row there no height!
-            final buttonWidth =
-                constraints.maxWidth / 2 - (buttonsPadding + (buttonsGap / 2));
+            final buttonWidth = constraints.maxWidth / 2 - (buttonsPadding + (buttonsGap / 2));
 
             return AnimatedCrossFade(
               firstChild: SizedBox(
@@ -93,8 +97,7 @@ class AddProfileModal extends HookConsumerWidget {
               secondChild: Column(
                 children: [
                   Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: buttonsPadding),
+                    padding: const EdgeInsets.symmetric(horizontal: buttonsPadding),
                     child: Row(
                       children: [
                         _Button(
@@ -103,13 +106,9 @@ class AddProfileModal extends HookConsumerWidget {
                           icon: FluentIcons.clipboard_paste_24_regular,
                           size: buttonWidth,
                           onTap: () async {
-                            final captureResult =
-                                await Clipboard.getData(Clipboard.kTextPlain)
-                                    .then((value) => value?.text ?? '');
+                            final captureResult = await Clipboard.getData(Clipboard.kTextPlain).then((value) => value?.text ?? '');
                             if (addProfileState.isLoading) return;
-                            ref
-                                .read(addProfileProvider.notifier)
-                                .add(captureResult);
+                            ref.read(addProfileProvider.notifier).add(captureResult);
                           },
                         ),
                         const Gap(buttonsGap),
@@ -120,8 +119,7 @@ class AddProfileModal extends HookConsumerWidget {
                             icon: FluentIcons.qr_code_24_regular,
                             size: buttonWidth,
                             onTap: () async {
-                              final cr =
-                                  await QRCodeScannerScreen().open(context);
+                              final cr = await QRCodeScannerScreen().open(context);
 
                               if (cr == null) return;
                               if (addProfileState.isLoading) return;
@@ -142,56 +140,118 @@ class AddProfileModal extends HookConsumerWidget {
                       ],
                     ),
                   ),
-                  if (!PlatformUtils.isDesktop)
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: buttonsPadding,
-                        vertical: 16,
-                      ),
-                      child: Semantics(
-                        button: true,
-                        child: SizedBox(
-                          height: 36,
-                          child: Material(
-                            key: const ValueKey("add_manually_button"),
-                            elevation: 8,
-                            color: theme.colorScheme.surface,
-                            surfaceTintColor: theme.colorScheme.surfaceTint,
-                            shadowColor: Colors.transparent,
-                            borderRadius: BorderRadius.circular(8),
-                            clipBehavior: Clip.antiAlias,
-                            child: InkWell(
-                              onTap: () async {
-                                context.pop();
-                                await const NewProfileRoute().push(context);
-                              },
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    FluentIcons.add_24_regular,
-                                    color: theme.colorScheme.primary,
-                                  ),
-                                  const Gap(8),
-                                  Text(
-                                    t.profile.add.manually,
-                                    style: theme.textTheme.labelLarge?.copyWith(
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: buttonsPadding,
+                      vertical: 16,
+                    ),
+                    child: Column(
+                      children: [
+                        Semantics(
+                          button: true,
+                          child: SizedBox(
+                            height: 36,
+                            child: Material(
+                              key: const ValueKey("add_warp_button"),
+                              elevation: 8,
+                              color: theme.colorScheme.surface,
+                              surfaceTintColor: theme.colorScheme.surfaceTint,
+                              shadowColor: Colors.transparent,
+                              borderRadius: BorderRadius.circular(8),
+                              clipBehavior: Clip.antiAlias,
+                              child: InkWell(
+                                onTap: () async {
+                                  Future.microtask(() async {
+                                    context.pop();
+                                    final _prefs = ref.read(sharedPreferencesProvider).requireValue;
+                                    final consent = _prefs.getBool(warpConsentGiven) ?? false;
+                                    if (!consent) {
+                                      final agreed = await showDialog<bool>(
+                                        context: context,
+                                        builder: (context) => const WarpLicenseAgreementModal(),
+                                      );
+
+                                      if (agreed ?? false) {
+                                        await ref.read(warpOptionNotifierProvider.notifier).agree();
+                                      }
+                                    }
+
+                                    final accountId = _prefs.getString("warp2-account-id");
+                                    final accessToken = _prefs.getString("warp2-access-token");
+                                    final hasWarp2Config = accountId != null && accessToken != null;
+
+                                    if (!hasWarp2Config) {
+                                      await ref.read(warpOptionNotifierProvider.notifier).generateWarp2Config();
+                                    }
+                                    await ref.read(addProfileProvider.notifier).add("#profile-title: Hiddify WARP\nwarp://p2@auto#Remote&&detour=warp://p1@auto#Local"); //
+                                  });
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      FluentIcons.add_24_regular,
                                       color: theme.colorScheme.primary,
                                     ),
-                                  ),
-                                ],
+                                    const SizedBox(width: 8),
+                                    Text(
+                                      t.profile.add.addWarp,
+                                      style: theme.textTheme.labelLarge?.copyWith(
+                                        color: theme.colorScheme.primary,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
+                        if (!PlatformUtils.isDesktop) const SizedBox(height: 16), // Spacing between the buttons
+                        if (!PlatformUtils.isDesktop)
+                          Semantics(
+                            button: true,
+                            child: SizedBox(
+                              height: 36,
+                              child: Material(
+                                key: const ValueKey("add_manually_button"),
+                                elevation: 8,
+                                color: theme.colorScheme.surface,
+                                surfaceTintColor: theme.colorScheme.surfaceTint,
+                                shadowColor: Colors.transparent,
+                                borderRadius: BorderRadius.circular(8),
+                                clipBehavior: Clip.antiAlias,
+                                child: InkWell(
+                                  onTap: () async {
+                                    context.pop();
+                                    await const NewProfileRoute().push(context);
+                                  },
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        FluentIcons.add_24_regular,
+                                        color: theme.colorScheme.primary,
+                                      ),
+                                      const SizedBox(width: 8),
+                                      Text(
+                                        t.profile.add.manually,
+                                        style: theme.textTheme.labelLarge?.copyWith(
+                                          color: theme.colorScheme.primary,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                      ],
                     ),
+                  ),
                   const Gap(24),
                 ],
               ),
-              crossFadeState: addProfileState.isLoading
-                  ? CrossFadeState.showFirst
-                  : CrossFadeState.showSecond,
+              crossFadeState: addProfileState.isLoading ? CrossFadeState.showFirst : CrossFadeState.showSecond,
               duration: const Duration(milliseconds: 250),
             );
           },
