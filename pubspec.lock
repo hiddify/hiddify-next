@@ -487,6 +487,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.0"
+  flutter_easy_permission:
+    dependency: "direct main"
+    description:
+      name: flutter_easy_permission
+      sha256: "05eb1b561c894adef28b3ae38d8087fc2635f1047c5e18cf2698fb42b6ccc132"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.2"
   flutter_gen_core:
     dependency: transitive
     description:

@@ -136,7 +136,7 @@ jobs:
         if: startsWith(matrix.platform,'android')
         uses: gradle/actions/setup-gradle@v3
         with:
-          gradle-version: 8.1
+          gradle-version: 7.5
       - name: Setup dependencies
         run: |
           make ${{ matrix.platform }}-install-dependencies

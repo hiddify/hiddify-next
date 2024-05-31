@@ -1,15 +1,15 @@
 import 'package:dartx/dartx.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_easy_permission/easy_permissions.dart';
+import 'package:flutter_easy_permission/easy_permissions.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 // import 'package:permission_handler/permission_handler.dart';
 
-// const permissions = [Permissions.CAMERA];
-// const permissionGroup = [PermissionGroup.Camera];
+const permissions = [Permissions.CAMERA];
+const permissionGroup = [PermissionGroup.Camera];
 
 class QRCodeScannerScreen extends StatefulHookConsumerWidget {
   const QRCodeScannerScreen({super.key});
@@ -31,52 +31,51 @@ class _QRCodeScannerScreenState extends ConsumerState<QRCodeScannerScreen> with 
   final controller = MobileScannerController(detectionTimeoutMs: 500, autoStart: false);
   bool started = false;
 
-  // late FlutterEasyPermission _easyPermission;
+  late FlutterEasyPermission _easyPermission;
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
 
-    // _easyPermission = FlutterEasyPermission()
-    //   ..addPermissionCallback(onGranted: (requestCode, androidPerms, iosPerm) {
-    //     debugPrint("android:$androidPerms");
-    //     debugPrint("iOS:$iosPerm");
-    //     startQrScannerIfPermissionGranted();
-    //   }, onDenied: (requestCode, androidPerms, iosPerm, isPermanent) {
-    //     if (isPermanent) {
-    //       FlutterEasyPermission.showAppSettingsDialog(title: "Camera");
-    //     } else {
-    //       debugPrint("android:$androidPerms");
-    //       debugPrint("iOS:$iosPerm");
-    //     }
-    //   }, onSettingsReturned: () {
-    //     startQrScannerIfPermissionGranted();
-    //   });
+    _easyPermission = FlutterEasyPermission()
+      ..addPermissionCallback(onGranted: (requestCode, androidPerms, iosPerm) {
+        debugPrint("android:$androidPerms");
+        debugPrint("iOS:$iosPerm");
+        startQrScannerIfPermissionGranted();
+      }, onDenied: (requestCode, androidPerms, iosPerm, isPermanent) {
+        if (isPermanent) {
+          FlutterEasyPermission.showAppSettingsDialog(title: "Camera");
+        } else {
+          debugPrint("android:$androidPerms");
+          debugPrint("iOS:$iosPerm");
+        }
+      }, onSettingsReturned: () {
+        startQrScannerIfPermissionGranted();
+      });
   }
 
   @override
   void dispose() {
     controller.stop();
-    // _easyPermission.dispose();
+    _easyPermission.dispose();
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 
   void startQrScannerIfPermissionGranted() {
-    // FlutterEasyPermission.has(perms: permissions, permsGroup: permissionGroup)
-    //     .then((value) {
-    //   if (value) {
-    //     controller.start().then((result) {
-    //       if (result != null) {
-    //         setState(() {
-    //           started = true;
-    //         });
-    //       }
-    //     }).catchError((error) {
-    //       loggy.warning("Error starting scanner: $error");
-    //     });
-    //   } else {}
-    // });
+    FlutterEasyPermission.has(perms: permissions, permsGroup: permissionGroup).then((value) {
+      if (value) {
+        controller.start().then((result) {
+          if (result != null) {
+            setState(() {
+              started = true;
+            });
+          }
+        }).catchError((error) {
+          loggy.warning("Error starting scanner: $error");
+        });
+      } else {}
+    });
   }
 
   @override
