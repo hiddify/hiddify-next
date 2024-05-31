@@ -51,8 +51,7 @@ abstract class ConfigOptions {
     validator: (value) => value.isNotBlank,
   );
 
-  static final remoteDnsDomainStrategy =
-      PreferencesNotifier.create<DomainStrategy, String>(
+  static final remoteDnsDomainStrategy = PreferencesNotifier.create<DomainStrategy, String>(
     "remote-dns-domain-strategy",
     DomainStrategy.auto,
     mapFrom: (value) => DomainStrategy.values.firstWhere((e) => e.key == value),
@@ -65,8 +64,7 @@ abstract class ConfigOptions {
     validator: (value) => value.isNotBlank,
   );
 
-  static final directDnsDomainStrategy =
-      PreferencesNotifier.create<DomainStrategy, String>(
+  static final directDnsDomainStrategy = PreferencesNotifier.create<DomainStrategy, String>(
     "direct-dns-domain-strategy",
     DomainStrategy.auto,
     mapFrom: (value) => DomainStrategy.values.firstWhere((e) => e.key == value),
@@ -91,8 +89,7 @@ abstract class ConfigOptions {
     validator: (value) => isPort(value.toString()),
   );
 
-  static final tunImplementation =
-      PreferencesNotifier.create<TunImplementation, String>(
+  static final tunImplementation = PreferencesNotifier.create<TunImplementation, String>(
     "tun-implementation",
     TunImplementation.mixed,
     mapFrom: TunImplementation.values.byName,
@@ -101,8 +98,7 @@ abstract class ConfigOptions {
 
   static final mtu = PreferencesNotifier.create<int, int>("mtu", 9000);
 
-  static final strictRoute =
-      PreferencesNotifier.create<bool, bool>("strict-route", true);
+  static final strictRoute = PreferencesNotifier.create<bool, bool>("strict-route", true);
 
   static final connectionTestUrl = PreferencesNotifier.create<String, String>(
     "connection-test-url",
@@ -128,8 +124,7 @@ abstract class ConfigOptions {
     validator: (value) => isPort(value.toString()),
   );
 
-  static final bypassLan =
-      PreferencesNotifier.create<bool, bool>("bypass-lan", false);
+  static final bypassLan = PreferencesNotifier.create<bool, bool>("bypass-lan", false);
 
   static final allowConnectionFromLan = PreferencesNotifier.create<bool, bool>(
     "allow-connection-from-lan",
@@ -156,16 +151,14 @@ abstract class ConfigOptions {
     false,
   );
 
-  static final tlsFragmentSize =
-      PreferencesNotifier.create<OptionalRange, String>(
+  static final tlsFragmentSize = PreferencesNotifier.create<OptionalRange, String>(
     "tls-fragment-size",
     const OptionalRange(min: 1, max: 500),
     mapFrom: OptionalRange.parse,
     mapTo: const OptionalRangeJsonConverter().toJson,
   );
 
-  static final tlsFragmentSleep =
-      PreferencesNotifier.create<OptionalRange, String>(
+  static final tlsFragmentSleep = PreferencesNotifier.create<OptionalRange, String>(
     "tls-fragment-sleep",
     const OptionalRange(min: 0, max: 500),
     mapFrom: OptionalRange.parse,
@@ -182,8 +175,7 @@ abstract class ConfigOptions {
     false,
   );
 
-  static final tlsPaddingSize =
-      PreferencesNotifier.create<OptionalRange, String>(
+  static final tlsPaddingSize = PreferencesNotifier.create<OptionalRange, String>(
     "tls-padding-size",
     const OptionalRange(min: 1, max: 1500),
     mapFrom: OptionalRange.parse,
@@ -218,8 +210,7 @@ abstract class ConfigOptions {
     false,
   );
 
-  static final warpDetourMode =
-      PreferencesNotifier.create<WarpDetourMode, String>(
+  static final warpDetourMode = PreferencesNotifier.create<WarpDetourMode, String>(
     "warp-detour-mode",
     WarpDetourMode.proxyOverWarp,
     mapFrom: WarpDetourMode.values.byName,
@@ -230,14 +221,26 @@ abstract class ConfigOptions {
     "warp-license-key",
     "",
   );
+  static final warp2LicenseKey = PreferencesNotifier.create<String, String>(
+    "warp2s-license-key",
+    "",
+  );
 
   static final warpAccountId = PreferencesNotifier.create<String, String>(
     "warp-account-id",
     "",
   );
+  static final warp2AccountId = PreferencesNotifier.create<String, String>(
+    "warp2-account-id",
+    "",
+  );
 
   static final warpAccessToken = PreferencesNotifier.create<String, String>(
     "warp-access-token",
+    "",
+  );
+  static final warp2AccessToken = PreferencesNotifier.create<String, String>(
+    "warp2-access-token",
     "",
   );
 
@@ -259,8 +262,7 @@ abstract class ConfigOptions {
     mapTo: const OptionalRangeJsonConverter().toJson,
   );
 
-  static final warpNoiseDelay =
-      PreferencesNotifier.create<OptionalRange, String>(
+  static final warpNoiseDelay = PreferencesNotifier.create<OptionalRange, String>(
     "warp-noise-delay",
     const OptionalRange(min: 20, max: 200),
     mapFrom: (value) => OptionalRange.parse(value, allowEmpty: true),
@@ -271,6 +273,10 @@ abstract class ConfigOptions {
     "warp-wireguard-config",
     "",
   );
+  static final warp2WireguardConfig = PreferencesNotifier.create<String, String>(
+    "warp2-wireguard-config",
+    "",
+  );
 
   static final hasExperimentalFeatures = Provider.autoDispose<bool>(
     (ref) {
@@ -278,13 +284,7 @@ abstract class ConfigOptions {
       if (PlatformUtils.isDesktop && mode == ServiceMode.tun) {
         return true;
       }
-      if (ref.watch(enableTlsFragment) ||
-          ref.watch(enableTlsMixedSniCase) ||
-          ref.watch(enableTlsPadding) ||
-          ref.watch(enableMux) ||
-          ref.watch(enableWarp) ||
-          ref.watch(bypassLan) ||
-          ref.watch(allowConnectionFromLan)) {
+      if (ref.watch(enableTlsFragment) || ref.watch(enableTlsMixedSniCase) || ref.watch(enableTlsPadding) || ref.watch(enableMux) || ref.watch(enableWarp) || ref.watch(bypassLan) || ref.watch(allowConnectionFromLan)) {
         return true;
       }
 
@@ -298,10 +298,13 @@ abstract class ConfigOptions {
     "warp.access-token",
     "warp.account-id",
     "warp.wireguard-config",
+    "warp2.license-key",
+    "warp2.access-token",
+    "warp2.account-id",
+    "warp2.wireguard-config",
   };
 
-  static final Map<String, StateNotifierProvider<PreferencesNotifier, dynamic>>
-      preferences = {
+  static final Map<String, StateNotifierProvider<PreferencesNotifier, dynamic>> preferences = {
     "service-mode": serviceMode,
     "log-level": logLevel,
     "resolve-destination": resolveDestination,
@@ -348,6 +351,10 @@ abstract class ConfigOptions {
     "warp.noise": warpNoise,
     "warp.noise-delay": warpNoiseDelay,
     "warp.wireguard-config": warpWireguardConfig,
+    "warp2.license-key": warp2LicenseKey,
+    "warp2.account-id": warp2AccountId,
+    "warp2.access-token": warp2AccessToken,
+    "warp2.wireguard-config": warp2WireguardConfig,
   };
 
   static final singboxConfigOptions = FutureProvider<SingboxConfigOption>(
@@ -386,8 +393,7 @@ abstract class ConfigOptions {
       };
 
       final geoAssetsRepo = await ref.watch(geoAssetRepositoryProvider.future);
-      final geoAssets =
-          await geoAssetsRepo.getActivePair().getOrElse((l) => throw l).run();
+      final geoAssets = await geoAssetsRepo.getActivePair().getOrElse((l) => throw l).run();
 
       final mode = ref.watch(serviceMode);
       return SingboxConfigOption(
@@ -443,6 +449,18 @@ abstract class ConfigOptions {
           noise: ref.watch(warpNoise),
           noiseDelay: ref.watch(warpNoiseDelay),
         ),
+        warp2: SingboxWarpOption(
+          enable: ref.watch(enableWarp),
+          mode: ref.watch(warpDetourMode),
+          wireguardConfig: ref.watch(warp2WireguardConfig),
+          licenseKey: ref.watch(warp2LicenseKey),
+          accountId: ref.watch(warp2AccountId),
+          accessToken: ref.watch(warp2AccessToken),
+          cleanIp: ref.watch(warpCleanIp),
+          cleanPort: ref.watch(warpPort),
+          noise: ref.watch(warpNoise),
+          noiseDelay: ref.watch(warpNoiseDelay),
+        ),
         geoipPath: ref.watch(geoAssetPathResolverProvider).relativePath(
               geoAssets.geoip.providerName,
               geoAssets.geoip.fileName,
@@ -470,8 +488,7 @@ class ConfigOptionRepository with ExceptionHandler, InfraLogger {
   final GeoAssetRepository geoAssetRepository;
   final GeoAssetPathResolver geoAssetPathResolver;
 
-  TaskEither<ConfigOptionFailure, SingboxConfigOption>
-      getFullSingboxConfigOption() {
+  TaskEither<ConfigOptionFailure, SingboxConfigOption> getFullSingboxConfigOption() {
     return exceptionHandler(
       () async {
         return right(await getConfigOptions());

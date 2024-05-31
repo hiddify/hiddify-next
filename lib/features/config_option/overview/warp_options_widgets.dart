@@ -63,17 +63,15 @@ class WarpOptionsTiles extends HookConsumerWidget {
                   AsyncLoading() => const LinearProgressIndicator(),
                   AsyncError() => Text(
                       t.config.missingWarpConfig,
-                      style:
-                          TextStyle(color: Theme.of(context).colorScheme.error),
+                      style: TextStyle(color: Theme.of(context).colorScheme.error),
                     ),
                   _ => null,
                 }
               : null,
           enabled: canChangeOptions,
           onTap: () async {
-            await ref
-                .read(warpOptionNotifierProvider.notifier)
-                .generateWarpConfig();
+            await ref.read(warpOptionNotifierProvider.notifier).generateWarpConfig();
+            await ref.read(warpOptionNotifierProvider.notifier).generateWarp2Config();
           },
         ),
         ChoicePreferenceWidget(
@@ -111,8 +109,7 @@ class WarpOptionsTiles extends HookConsumerWidget {
           preferences: ref.watch(ConfigOptions.warpNoise.notifier),
           enabled: canChangeOptions,
           title: t.config.warpNoise,
-          inputToValue: (input) =>
-              OptionalRange.tryParse(input, allowEmpty: true),
+          inputToValue: (input) => OptionalRange.tryParse(input, allowEmpty: true),
           presentValue: (value) => value.present(t),
           formatInputValue: (value) => value.format(),
         ),
@@ -121,8 +118,7 @@ class WarpOptionsTiles extends HookConsumerWidget {
           preferences: ref.watch(ConfigOptions.warpNoiseDelay.notifier),
           enabled: canChangeOptions,
           title: t.config.warpNoiseDelay,
-          inputToValue: (input) =>
-              OptionalRange.tryParse(input, allowEmpty: true),
+          inputToValue: (input) => OptionalRange.tryParse(input, allowEmpty: true),
           presentValue: (value) => value.present(t),
           formatInputValue: (value) => value.format(),
         ),

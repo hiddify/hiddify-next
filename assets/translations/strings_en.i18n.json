@@ -78,8 +78,10 @@
         "permissionRequest": "Permission to camera to scan QR Code"
       },
       "manually": "Manual Entry",
+      "addWarp": "Add Warp",
       "addingProfileMsg": "Adding Profile",
       "failureMsg": "Failed to Add Profile"
+      
     },
     "update": {
       "buttonTxt": "Update",
@@ -162,8 +164,8 @@
     "requiresRestartMsg": "For this to take effect restart the app",
     "experimental": "Experimental",
     "experimentalMsg": "Features with Experimental flag are still in development and might cause issues.",
-    "exportOptions": "Export Options to Clipboard",
-    "exportAllOptions": "Export Options to Clipboard (Debug)",
+    "exportOptions": "Copy Anonymous Options to Clipboard",
+    "exportAllOptions": "Copy All Options to Clipboard",
     "importOptions": "Import Options From Clipboard",
     "importOptionsMsg": "This will rewrite all config options with provided values. Are you sure?",
     "general": {

@@ -48,6 +48,7 @@ class SingboxConfigOption with _$SingboxConfigOption {
     required SingboxMuxOption mux,
     required SingboxTlsTricks tlsTricks,
     required SingboxWarpOption warp,
+    required SingboxWarpOption warp2,
   }) = _SingboxConfigOption;
 
   String format() {
@@ -55,8 +56,7 @@ class SingboxConfigOption with _$SingboxConfigOption {
     return encoder.convert(toJson());
   }
 
-  factory SingboxConfigOption.fromJson(Map<String, dynamic> json) =>
-      _$SingboxConfigOptionFromJson(json);
+  factory SingboxConfigOption.fromJson(Map<String, dynamic> json) => _$SingboxConfigOptionFromJson(json);
 }
 
 @freezed
@@ -75,8 +75,7 @@ class SingboxWarpOption with _$SingboxWarpOption {
     @OptionalRangeJsonConverter() required OptionalRange noiseDelay,
   }) = _SingboxWarpOption;
 
-  factory SingboxWarpOption.fromJson(Map<String, dynamic> json) =>
-      _$SingboxWarpOptionFromJson(json);
+  factory SingboxWarpOption.fromJson(Map<String, dynamic> json) => _$SingboxWarpOptionFromJson(json);
 }
 
 @freezed
@@ -89,8 +88,7 @@ class SingboxMuxOption with _$SingboxMuxOption {
     required MuxProtocol protocol,
   }) = _SingboxMuxOption;
 
-  factory SingboxMuxOption.fromJson(Map<String, dynamic> json) =>
-      _$SingboxMuxOptionFromJson(json);
+  factory SingboxMuxOption.fromJson(Map<String, dynamic> json) => _$SingboxMuxOptionFromJson(json);
 }
 
 @freezed
@@ -105,6 +103,5 @@ class SingboxTlsTricks with _$SingboxTlsTricks {
     @OptionalRangeJsonConverter() required OptionalRange paddingSize,
   }) = _SingboxTlsTricks;
 
-  factory SingboxTlsTricks.fromJson(Map<String, dynamic> json) =>
-      _$SingboxTlsTricksFromJson(json);
+  factory SingboxTlsTricks.fromJson(Map<String, dynamic> json) => _$SingboxTlsTricksFromJson(json);
 }

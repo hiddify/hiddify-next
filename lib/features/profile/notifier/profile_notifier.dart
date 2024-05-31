@@ -47,8 +47,7 @@ class AddProfile extends _$AddProfile with AppLogger {
     return const AsyncData(null);
   }
 
-  ProfileRepository get _profilesRepo =>
-      ref.read(profileRepositoryProvider).requireValue;
+  ProfileRepository get _profilesRepo => ref.read(profileRepositoryProvider).requireValue;
   CancelToken? _cancelToken;
 
   Future<void> add(String rawInput) async {
@@ -57,8 +56,7 @@ class AddProfile extends _$AddProfile with AppLogger {
     state = await AsyncValue.guard(
       () async {
         final activeProfile = await ref.read(activeProfileProvider.future);
-        final markAsActive =
-            activeProfile == null || ref.read(Preferences.markNewProfileActive);
+        final markAsActive = activeProfile == null || ref.read(Preferences.markNewProfileActive);
         final TaskEither<ProfileFailure, Unit> task;
         if (LinkParser.parse(rawInput) case (final link)?) {
           loggy.debug("adding profile, url: [${link.url}]");
@@ -70,7 +68,11 @@ class AddProfile extends _$AddProfile with AppLogger {
         } else if (LinkParser.protocol(rawInput) case (final parsed)?) {
           loggy.debug("adding profile, content");
           var name = parsed.name;
-
+          var oldItem = await _profilesRepo.getByName(name);
+          if (name == "Hiddify WARP" && oldItem != null) {
+            _profilesRepo.setAsActive(oldItem.id).run();
+            return unit;
+          }
           while (await _profilesRepo.getByName(name) != null) {
             name += '${randomInt(0, 9).run()}';
           }
@@ -122,8 +124,7 @@ class UpdateProfile extends _$UpdateProfile with AppLogger {
     return const AsyncData(null);
   }
 
-  ProfileRepository get _profilesRepo =>
-      ref.read(profileRepositoryProvider).requireValue;
+  ProfileRepository get _profilesRepo => ref.read(profileRepositoryProvider).requireValue;
 
   Future<void> updateProfile(RemoteProfileEntity profile) async {
     if (state.isLoading) return;
@@ -143,9 +144,7 @@ class UpdateProfile extends _$UpdateProfile with AppLogger {
 
             await ref.read(activeProfileProvider.future).then((active) async {
               if (active != null && active.id == profile.id) {
-                await ref
-                    .read(connectionNotifierProvider.notifier)
-                    .reconnect(profile);
+                await ref.read(connectionNotifierProvider.notifier).reconnect(profile);
               }
             });
             return unit;
