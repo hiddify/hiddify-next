@@ -168,7 +168,8 @@ public class ExtensionPlatformInterface: NSObject, LibboxPlatformInterfaceProtoc
     }
     public func includeAllNetworks() -> Bool {
         #if !os(tvOS)
-            return SharedPreferences.includeAllNetworks.getBlocking()
+            // return SharedPreferences.includeAllNetworks.getBlocking()
+            return false
         #else
             return false
         #endif
