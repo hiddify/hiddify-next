@@ -15,7 +15,7 @@ on:
 env:
   IS_GITHUB_ACTIONS: 1
   CHANNEL: "${{ inputs.channel }}"
-  FLUTTER_VERSION: '3.22.x'
+  FLUTTER_VERSION: '3.22.1'
   NDK_VERSION: r26b
   UPLOAD_ARTIFACT: "${{ inputs.upload-artifact }}"
   TAG_NAME: "${{ inputs.tag-name }}"
@@ -108,9 +108,10 @@ jobs:
 
       
       - name: Setup Flutter
-        uses: subosito/flutter-action@v2.12.0 #issue with 2.13
+        uses: subosito/flutter-action@v2.16.0 #issue with 2.13
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
+          # flutter-version-file: pubspec.yaml
           channel: 'stable'
           cache: true
       - name: Setup Java
