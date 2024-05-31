@@ -21,8 +21,8 @@
     "showMore": "Развернуть ",
     "showLess": "Свернуть ",
     "openAppSettings": "Открыть настройки",
-    "grantPermission": "Дать права доступа"
-    "hidden": "Скрытый",
+    "grantPermission": "Дать права доступа",
+    "hidden": "Скрытый"
   },
   "intro": {
     "termsAndPolicyCaution(rich)": "Продолжая, Вы соглашаетесь с ${tap(@:about.termsAndConditions)}",
