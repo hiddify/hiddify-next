@@ -115,6 +115,12 @@ jobs:
           # flutter-version-file: pubspec.yaml
           channel: 'stable'
           cache: true
+
+      - name: Setup Gradle 8.5
+        if: startsWith(matrix.platform,'android')
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: 8.1
       - name: Setup Java
         if: startsWith(matrix.platform,'android')
         uses: actions/setup-java@v4
