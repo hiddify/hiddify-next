@@ -1,11 +1,11 @@
 name: hiddify
 description: Cross Platform Multi Protocol Proxy Frontend.
 publish_to: "none"
-version: 1.1.1+10101
+version: 1.3.2+10302
 
 environment:
   sdk: ">=3.3.0 <4.0.0"
-  flutter: ">=3.22.0 <4.0.0"
+  flutter: ">=3.19.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -13,7 +13,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   cupertino_icons: ^1.0.6
-  intl: ^0.19.0
+  intl: ^0.18.1
   slang: ^3.30.1
   slang_flutter: ^3.30.0
   fpdart: ^1.1.0
@@ -59,11 +59,11 @@ dependencies:
   percent_indicator: ^4.2.3
   sliver_tools: ^0.2.12
   flutter_adaptive_scaffold: ^0.1.8
-  # humanizer: ^2.2.0
-  humanizer:
-    git:
-      url: https://github.com/alex-relov/humanizer
-      ref: up-version
+  humanizer: ^2.2.0
+  # humanizer:
+  #   git:
+  #     url: https://github.com/alex-relov/humanizer
+  #     ref: up-version
   upgrader: ^9.0.0
   toastification: ^1.2.1
   version: ^3.0.2
