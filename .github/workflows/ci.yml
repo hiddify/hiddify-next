@@ -10,6 +10,7 @@ on:
     branches:
        - main
        - dev
+       - android-fix-action-bug
     paths-ignore:
       - '**.md'
       - 'docs/**'
