@@ -47,7 +47,7 @@ abstract class ConfigOptions {
 
   static final remoteDnsAddress = PreferencesNotifier.create<String, String>(
     "remote-dns-address",
-    "udp://1.1.1.1",
+    "tls://8.8.8.8",
     validator: (value) => value.isNotBlank,
   );
 
@@ -60,7 +60,7 @@ abstract class ConfigOptions {
 
   static final directDnsAddress = PreferencesNotifier.create<String, String>(
     "direct-dns-address",
-    "1.1.1.1",
+    "local",
     validator: (value) => value.isNotBlank,
   );
 
@@ -102,7 +102,7 @@ abstract class ConfigOptions {
 
   static final connectionTestUrl = PreferencesNotifier.create<String, String>(
     "connection-test-url",
-    "http://cp.cloudflare.com/",
+    "http://www.gstatic.com/",
     validator: (value) => value.isNotBlank && isUrl(value),
   );
 
