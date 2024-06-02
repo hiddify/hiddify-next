@@ -78,6 +78,8 @@
         "permissionRequest": "دسترسی به دوربین برای اسکن کد QR"
       },
       "manually": "افزودن دستی",
+      "addWarp": "افزودن وارپ",
+      "addingWarpMsg": "لطفا صبر کنید تا وارپ ثبت شود",
       "addingProfileMsg": "در حال افزودن پروفایل",
       "failureMsg": "افزودن پروفایل ناموفق بود"
     },
