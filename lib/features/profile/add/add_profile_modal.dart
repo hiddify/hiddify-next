@@ -273,7 +273,7 @@ class AddProfileModal extends HookConsumerWidget {
         notification.showInfoToast(t.profile.add.addingWarpMsg);
         await _warp.generateWarp2Config();
       }
-      await _profile.add("#profile-title: Hiddify WARP\nwarp://p2@auto#Remote&&detour=warp://p1@auto#Local"); //
+      await _profile.add("#profile-title: Hiddify WARP\nwarp://p1@auto#National&&detour=warp://p2@auto#WoW"); //
     });
   }
 }
