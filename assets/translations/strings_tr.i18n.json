@@ -16,7 +16,11 @@
     "agree": "Kabul etmek",
     "decline": "Reddetmek",
     "unknown": "Bilinmeyen",
-    "timeout": "Zaman aşımı"
+    "hidden": "Gizlenmiş",
+    "timeout": "Zaman aşımı",
+    "showMore": "Daha fazla göster",
+    "showLess": "Daha az göster",
+    "grantPermission": "İzin Ver"
   },
   "intro": {
     "termsAndPolicyCaution(rich)": "devam ederek ${tap(@:about.termsAndConditions)} kabul etmiş olursunuz",

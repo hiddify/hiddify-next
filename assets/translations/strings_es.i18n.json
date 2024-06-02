@@ -16,7 +16,11 @@
     "agree": "Aceptar",
     "decline": "Rechazar",
     "unknown": "Desconocido",
-    "timeout": "Se acabó el tiempo"
+    "hidden": "Oculto",
+    "timeout": "Se acabó el tiempo",
+    "showMore": "Mostrar más",
+    "showLess": "Muestra menos",
+    "grantPermission": "Conceder permiso"
   },
   "intro": {
     "termsAndPolicyCaution(rich)": "al continuar, aceptas ${tap(@:about.termsAndConditions)}",
