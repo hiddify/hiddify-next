@@ -283,7 +283,7 @@ jobs:
           rm ~/Library/MobileDevice/Provisioning\ Profiles/build_pp.mobileprovision ||echo ok
   update-draft:
     permissions: write-all
-    if: ${{ inputs.upload-artifact }}
+    # if: ${{ inputs.upload-artifact }}
     needs: [build]
     runs-on: ubuntu-latest
     steps:
@@ -331,6 +331,7 @@ jobs:
           tag_name: 'draft'
           body_path: './release.md'
           prerelease: true
+
   upload-release:
     permissions: write-all
     if: ${{ inputs.upload-artifact && inputs.tag-name != 'draft' }}
