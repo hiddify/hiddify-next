@@ -10,6 +10,7 @@ extension AppLocaleX on AppLocale {
         "en" => "English",
         "fa" => "فارسی",
         "ar" => "العربية",
+        "ckb-KUR" => "کوردی سۆرانی",
         "ru" => "Русский",
         "zh" || "zh_CN" => "中文 (中国)",
         "zh_TW" => "中文 (台湾)",
