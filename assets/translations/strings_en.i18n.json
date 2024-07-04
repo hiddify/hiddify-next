@@ -361,6 +361,7 @@
     "warpConfigGenerated": "WARP Config Generated",
     "pageTitle": "Config Options",
     "logLevel": "Log Level",
+    "blockAds": "Block Advertisements",
     "resolveDestination": "Resolve Destination",
     "ipv6Mode": "IPv6 Route",
     "ipv6Modes": {

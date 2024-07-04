@@ -16,6 +16,8 @@ class SingboxConfigOption with _$SingboxConfigOption {
 
   @JsonSerializable(fieldRename: FieldRename.kebab)
   const factory SingboxConfigOption({
+    required String region,
+    required bool blockAds,
     required bool executeConfigAsIs,
     required LogLevel logLevel,
     required bool resolveDestination,
@@ -42,8 +44,8 @@ class SingboxConfigOption with _$SingboxConfigOption {
     required bool enableFakeDns,
     required bool enableDnsRouting,
     required bool independentDnsCache,
-    required String geoipPath,
-    required String geositePath,
+    // required String geoipPath,
+    // required String geositePath,
     required List<SingboxRule> rules,
     required SingboxMuxOption mux,
     required SingboxTlsTricks tlsTricks,

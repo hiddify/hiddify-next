@@ -39,36 +39,37 @@ class App extends HookConsumerWidget with PresLogger {
     return WindowWrapper(
       TrayWrapper(
         ShortcutWrapper(
-          ConnectionWrapper(DynamicColorBuilder(
-            builder:
-                (ColorScheme? lightColorScheme, ColorScheme? darkColorScheme) {
-              return MaterialApp.router(
-                routerConfig: router,
-                locale: locale.flutterLocale,
-                supportedLocales: AppLocaleUtils.supportedLocales,
-                localizationsDelegates: GlobalMaterialLocalizations.delegates,
-                debugShowCheckedModeBanner: false,
-                themeMode: themeMode.flutterThemeMode,
-                theme: theme.lightTheme(lightColorScheme),
-                darkTheme: theme.darkTheme(darkColorScheme),
-                title: Constants.appName,
-                builder: (context, child) {
-                  child = UpgradeAlert(
-                    upgrader: upgrader,
-                    navigatorKey: router.routerDelegate.navigatorKey,
-                    child: child ?? const SizedBox(),
-                  );
-                  if (kDebugMode && _debugAccessibility) {
-                    return AccessibilityTools(
-                      checkFontOverflows: true,
-                      child: child,
+          ConnectionWrapper(
+            DynamicColorBuilder(
+              builder: (ColorScheme? lightColorScheme, ColorScheme? darkColorScheme) {
+                return MaterialApp.router(
+                  routerConfig: router,
+                  locale: locale.flutterLocale,
+                  supportedLocales: AppLocaleUtils.supportedLocales,
+                  localizationsDelegates: GlobalMaterialLocalizations.delegates,
+                  debugShowCheckedModeBanner: false,
+                  themeMode: themeMode.flutterThemeMode,
+                  theme: theme.lightTheme(lightColorScheme),
+                  darkTheme: theme.darkTheme(darkColorScheme),
+                  title: Constants.appName,
+                  builder: (context, child) {
+                    child = UpgradeAlert(
+                      upgrader: upgrader,
+                      navigatorKey: router.routerDelegate.navigatorKey,
+                      child: child ?? const SizedBox(),
                     );
-                  }
-                  return child;
-                },
-              );
-            },
-          )),
+                    if (kDebugMode && _debugAccessibility) {
+                      return AccessibilityTools(
+                        checkFontOverflows: true,
+                        child: child,
+                      );
+                    }
+                    return child;
+                  },
+                );
+              },
+            ),
+          ),
         ),
       ),
     );

@@ -3,13 +3,12 @@ import 'package:fpdart/fpdart.dart';
 import 'package:hiddify/core/model/optional_range.dart';
 import 'package:hiddify/core/model/region.dart';
 import 'package:hiddify/core/preferences/general_preferences.dart';
+
 import 'package:hiddify/core/utils/exception_handler.dart';
 import 'package:hiddify/core/utils/json_converters.dart';
 import 'package:hiddify/core/utils/preferences_utils.dart';
 import 'package:hiddify/features/config_option/model/config_option_failure.dart';
-import 'package:hiddify/features/geo_asset/data/geo_asset_data_providers.dart';
-import 'package:hiddify/features/geo_asset/data/geo_asset_path_resolver.dart';
-import 'package:hiddify/features/geo_asset/data/geo_asset_repository.dart';
+
 import 'package:hiddify/features/log/model/log_level.dart';
 import 'package:hiddify/singbox/model/singbox_config_enum.dart';
 import 'package:hiddify/singbox/model/singbox_config_option.dart';
@@ -26,6 +25,17 @@ abstract class ConfigOptions {
     mapTo: (value) => value.key,
   );
 
+  static final region = PreferencesNotifier.create<Region, String>(
+    "region",
+    Region.other,
+    mapFrom: Region.values.byName,
+    mapTo: (value) => value.name,
+  );
+
+  static final blockAds = PreferencesNotifier.create<bool, bool>(
+    "block-ads",
+    false,
+  );
   static final logLevel = PreferencesNotifier.create<LogLevel, String>(
     "log-level",
     LogLevel.warn,
@@ -305,6 +315,8 @@ abstract class ConfigOptions {
   };
 
   static final Map<String, StateNotifierProvider<PreferencesNotifier, dynamic>> preferences = {
+    "region": region,
+    "block-ads": blockAds,
     "service-mode": serviceMode,
     "log-level": logLevel,
     "resolve-destination": resolveDestination,
@@ -359,44 +371,46 @@ abstract class ConfigOptions {
 
   static final singboxConfigOptions = FutureProvider<SingboxConfigOption>(
     (ref) async {
-      final region = ref.watch(Preferences.region);
-      final rules = switch (region) {
-        Region.ir => [
-            const SingboxRule(
-              domains: "domain:.ir,geosite:ir",
-              ip: "geoip:ir",
-              outbound: RuleOutbound.bypass,
-            ),
-          ],
-        Region.cn => [
-            const SingboxRule(
-              domains: "domain:.cn,geosite:cn",
-              ip: "geoip:cn",
-              outbound: RuleOutbound.bypass,
-            ),
-          ],
-        Region.ru => [
-            const SingboxRule(
-              domains: "domain:.ru",
-              ip: "geoip:ru",
-              outbound: RuleOutbound.bypass,
-            ),
-          ],
-        Region.af => [
-            const SingboxRule(
-              domains: "domain:.af,geosite:af",
-              ip: "geoip:af",
-              outbound: RuleOutbound.bypass,
-            ),
-          ],
-        _ => <SingboxRule>[],
-      };
-
-      final geoAssetsRepo = await ref.watch(geoAssetRepositoryProvider.future);
-      final geoAssets = await geoAssetsRepo.getActivePair().getOrElse((l) => throw l).run();
+      // final region = ref.watch(Preferences.region);
+      final rules = <SingboxRule>[];
+      // final rules = switch (region) {
+      //   Region.ir => [
+      //       const SingboxRule(
+      //         domains: "domain:.ir,geosite:ir",
+      //         ip: "geoip:ir",
+      //         outbound: RuleOutbound.bypass,
+      //       ),
+      //     ],
+      //   Region.cn => [
+      //       const SingboxRule(
+      //         domains: "domain:.cn,geosite:cn",
+      //         ip: "geoip:cn",
+      //         outbound: RuleOutbound.bypass,
+      //       ),
+      //     ],
+      //   Region.ru => [
+      //       const SingboxRule(
+      //         domains: "domain:.ru",
+      //         ip: "geoip:ru",
+      //         outbound: RuleOutbound.bypass,
+      //       ),
+      //     ],
+      //   Region.af => [
+      //       const SingboxRule(
+      //         domains: "domain:.af,geosite:af",
+      //         ip: "geoip:af",
+      //         outbound: RuleOutbound.bypass,
+      //       ),
+      //     ],
+      //   _ => <SingboxRule>[],
+      // };
 
       final mode = ref.watch(serviceMode);
+      // final reg = ref.watch(Preferences.region.notifier).raw();
+
       return SingboxConfigOption(
+        region: ref.watch(region).name,
+        blockAds: ref.watch(blockAds),
         executeConfigAsIs: false,
         logLevel: ref.watch(logLevel),
         resolveDestination: ref.watch(resolveDestination),
@@ -461,14 +475,14 @@ abstract class ConfigOptions {
           noise: ref.watch(warpNoise),
           noiseDelay: ref.watch(warpNoiseDelay),
         ),
-        geoipPath: ref.watch(geoAssetPathResolverProvider).relativePath(
-              geoAssets.geoip.providerName,
-              geoAssets.geoip.fileName,
-            ),
-        geositePath: ref.watch(geoAssetPathResolverProvider).relativePath(
-              geoAssets.geosite.providerName,
-              geoAssets.geosite.fileName,
-            ),
+        // geoipPath: ref.watch(geoAssetPathResolverProvider).relativePath(
+        //       geoAssets.geoip.providerName,
+        //       geoAssets.geoip.fileName,
+        //     ),
+        // geositePath: ref.watch(geoAssetPathResolverProvider).relativePath(
+        //       geoAssets.geosite.providerName,
+        //       geoAssets.geosite.fileName,
+        //     ),
         rules: rules,
       );
     },
@@ -479,14 +493,10 @@ class ConfigOptionRepository with ExceptionHandler, InfraLogger {
   ConfigOptionRepository({
     required this.preferences,
     required this.getConfigOptions,
-    required this.geoAssetRepository,
-    required this.geoAssetPathResolver,
   });
 
   final SharedPreferences preferences;
   final Future<SingboxConfigOption> Function() getConfigOptions;
-  final GeoAssetRepository geoAssetRepository;
-  final GeoAssetPathResolver geoAssetPathResolver;
 
   TaskEither<ConfigOptionFailure, SingboxConfigOption> getFullSingboxConfigOption() {
     return exceptionHandler(
