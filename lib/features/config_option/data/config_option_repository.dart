@@ -112,7 +112,7 @@ abstract class ConfigOptions {
 
   static final connectionTestUrl = PreferencesNotifier.create<String, String>(
     "connection-test-url",
-    "http://cp.cloudflare.com/",
+    "https://www.gstatic.com/generate_204",
     validator: (value) => value.isNotBlank && isUrl(value),
   );
 

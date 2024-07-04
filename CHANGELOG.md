@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.16.0.dev] - 2023-2-18
+## [0.16.0.dev] - 2024-2-18
 
 ### New Features and Improvements
 
@@ -28,7 +28,7 @@
 - Fixed UI inconsistencies
 - Fixed Readme download URL. [PR#482](https://github.com/hiddify/hiddify-next/pull/482) by [Ali Afsharzadeh](https://github.com/guoard)
 
-## [0.14.1.dev] - 2023-1-19
+## [0.14.1.dev] - 2024-1-19
 
 ### New Features and Improvements
 
@@ -46,7 +46,7 @@
 - Fixed infinite subscription traffic
 - Fixed infinite subscription expiry. [PR#334](https://github.com/hiddify/hiddify-next/pull/334) by [Pavel Volkov](https://github.com/pvolkov)
 
-## [0.14.0.dev] - 2023-1-14
+## [0.14.0.dev] - 2024-1-14
 
 ### New Features and Improvements
 
@@ -63,11 +63,11 @@
 - Fixed minor UI bugs
 - Fixed subscription profiles with infinite traffic
 
-## [0.13.6] - 2023-1-7
+## [0.13.6] - 2024-1-7
 
 - First stable 0.13.x release. check changes from 0.13.0.dev to 0.13.5.dev for more details.
 
-## [0.13.5.dev] - 2023-1-6
+## [0.13.5.dev] - 2024-1-6
 
 ### New Features and Improvements
 
@@ -82,7 +82,7 @@
 - Fixed Android service mode
 - Fixed QR code scanner not scanning deep links
 
-## [0.13.4.dev] - 2023-1-4
+## [0.13.4.dev] - 2024-1-4
 
 ### New Features and Improvements
 
@@ -96,7 +96,7 @@
 - Fixed profile auto update service
 - Fixed localization mistakes in Chinese. [PR#288](https://github.com/hiddify/hiddify-next/pull/288) by [wldjdjsks](https://github.com/huajizhige)
 
-## [0.13.3.dev] - 2023-1-2
+## [0.13.3.dev] - 2024-1-2
 
 ### New Features and Improvements
 

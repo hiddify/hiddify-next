@@ -78,6 +78,8 @@
         "permissionRequest": "ڕێگەدان بە کامێرا بۆ سکانکردنی QR Code"
       },
       "manually": "نووسینی دەستی",
+      "addWarp": "Warp زیاد بکە",
+      "addingWarpMsg": "تکایە چاوەڕێ بن تا ئێمە تۆماری WARP دەکەین.",
       "addingProfileMsg": "خەریکی زیادکردنی پرۆفایل",
       "failureMsg": "زیادکردنی پڕۆفایل شکستی هێنا"
     },
