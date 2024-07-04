@@ -20,23 +20,19 @@ import 'package:timezone_to_country/timezone_to_country.dart';
 class IntroPage extends HookConsumerWidget with PresLogger {
   IntroPage({super.key});
 
-  final locationInfoLoaded = useState(false);
+  bool locationInfoLoaded = false;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = ref.watch(translationsProvider);
 
     final isStarting = useState(false);
-    useEffect(
-      () {
-        if (!locationInfoLoaded.value) {
-          autoSelectRegion(ref).then((value) => loggy.debug("Auto Region selection finished!"));
-          locationInfoLoaded.value = true;
-        }
-        return null;
-      },
-      [],
-    );
+
+    if (!locationInfoLoaded) {
+      autoSelectRegion(ref).then((value) => loggy.debug("Auto Region selection finished!"));
+      locationInfoLoaded = true;
+    }
+
     return Scaffold(
       body: SafeArea(
         child: CustomScrollView(
