@@ -10,12 +10,11 @@ import 'package:hiddify/core/preferences/preferences_provider.dart';
 import 'package:hiddify/core/router/router.dart';
 import 'package:hiddify/features/common/qr_code_scanner_screen.dart';
 import 'package:hiddify/features/config_option/notifier/warp_option_notifier.dart';
-import 'package:hiddify/features/config_option/overview/config_options_page.dart';
+
 import 'package:hiddify/features/config_option/overview/warp_options_widgets.dart';
 import 'package:hiddify/features/profile/notifier/profile_notifier.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class AddProfileModal extends HookConsumerWidget {
   const AddProfileModal({
