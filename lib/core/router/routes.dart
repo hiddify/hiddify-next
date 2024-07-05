@@ -4,7 +4,7 @@ import 'package:hiddify/core/router/app_router.dart';
 import 'package:hiddify/features/common/adaptive_root_scaffold.dart';
 import 'package:hiddify/features/config_option/overview/config_options_page.dart';
 import 'package:hiddify/features/config_option/widget/quick_settings_modal.dart';
-import 'package:hiddify/features/geo_asset/overview/geo_assets_overview_page.dart';
+
 import 'package:hiddify/features/home/widget/home_page.dart';
 import 'package:hiddify/features/intro/widget/intro_page.dart';
 import 'package:hiddify/features/log/overview/logs_overview_page.dart';
@@ -19,8 +19,7 @@ import 'package:hiddify/utils/utils.dart';
 
 part 'routes.g.dart';
 
-GlobalKey<NavigatorState>? _dynamicRootKey =
-    useMobileRouter ? rootNavigatorKey : null;
+GlobalKey<NavigatorState>? _dynamicRootKey = useMobileRouter ? rootNavigatorKey : null;
 
 @TypedShellRoute<MobileWrapperRoute>(
   routes: [
@@ -59,10 +58,6 @@ GlobalKey<NavigatorState>? _dynamicRootKey =
             TypedGoRoute<PerAppProxyRoute>(
               path: "per-app-proxy",
               name: PerAppProxyRoute.name,
-            ),
-            TypedGoRoute<GeoAssetsRoute>(
-              path: "routing-assets",
-              name: GeoAssetsRoute.name,
             ),
           ],
         ),
@@ -130,12 +125,7 @@ class MobileWrapperRoute extends ShellRouteData {
     TypedGoRoute<SettingsRoute>(
       path: "/settings",
       name: SettingsRoute.name,
-      routes: [
-        TypedGoRoute<GeoAssetsRoute>(
-          path: "routing-assets",
-          name: GeoAssetsRoute.name,
-        ),
-      ],
+      routes: [],
     ),
     TypedGoRoute<LogsOverviewRoute>(
       path: "/logs",
@@ -229,8 +219,7 @@ class ProfilesOverviewRoute extends GoRouteData {
   Page<void> buildPage(BuildContext context, GoRouterState state) {
     return BottomSheetPage(
       name: name,
-      builder: (controller) =>
-          ProfilesOverviewModal(scrollController: controller),
+      builder: (controller) => ProfilesOverviewModal(scrollController: controller),
     );
   }
 }
@@ -354,28 +343,6 @@ class PerAppProxyRoute extends GoRouteData {
       fullscreenDialog: true,
       name: name,
       child: PerAppProxyPage(),
-    );
-  }
-}
-
-class GeoAssetsRoute extends GoRouteData {
-  const GeoAssetsRoute();
-  static const name = "Routing Assets";
-
-  static final GlobalKey<NavigatorState>? $parentNavigatorKey = _dynamicRootKey;
-
-  @override
-  Page<void> buildPage(BuildContext context, GoRouterState state) {
-    if (useMobileRouter) {
-      return const MaterialPage(
-        name: name,
-        child: GeoAssetsOverviewPage(),
-      );
-    }
-    return const MaterialPage(
-      fullscreenDialog: true,
-      name: name,
-      child: GeoAssetsOverviewPage(),
     );
   }
 }

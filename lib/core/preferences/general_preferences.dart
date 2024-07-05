@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:hiddify/core/app_info/app_info_provider.dart';
 import 'package:hiddify/core/model/environment.dart';
-import 'package:hiddify/core/model/region.dart';
+// import 'package:hiddify/core/model/region.dart';
 import 'package:hiddify/core/preferences/preferences_provider.dart';
 import 'package:hiddify/core/utils/preferences_utils.dart';
 import 'package:hiddify/features/per_app_proxy/model/per_app_proxy_mode.dart';
@@ -19,13 +19,6 @@ abstract class Preferences {
     overrideValue: _debugIntroPage && kDebugMode ? false : null,
   );
 
-  static final region = PreferencesNotifier.create<Region, String>(
-    "region",
-    Region.other,
-    mapFrom: Region.values.byName,
-    mapTo: (value) => value.name,
-  );
-
   static final silentStart = PreferencesNotifier.create<bool, bool>(
     "silent_start",
     false,
@@ -37,8 +30,7 @@ abstract class Preferences {
     PlatformUtils.isDesktop,
   );
 
-  static final perAppProxyMode =
-      PreferencesNotifier.create<PerAppProxyMode, String>(
+  static final perAppProxyMode = PreferencesNotifier.create<PerAppProxyMode, String>(
     "per_app_proxy_mode",
     PerAppProxyMode.off,
     mapFrom: PerAppProxyMode.values.byName,
@@ -103,10 +95,7 @@ class PerAppProxyList extends _$PerAppProxyList {
   );
 
   @override
-  List<String> build() =>
-      ref.watch(Preferences.perAppProxyMode) == PerAppProxyMode.include
-          ? _include.read()
-          : _exclude.read();
+  List<String> build() => ref.watch(Preferences.perAppProxyMode) == PerAppProxyMode.include ? _include.read() : _exclude.read();
 
   Future<void> update(List<String> value) {
     state = value;

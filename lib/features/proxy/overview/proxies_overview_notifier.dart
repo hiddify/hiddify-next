@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:dartx/dartx.dart';
-import 'package:fpdart/fpdart.dart';
+
 import 'package:hiddify/core/haptic/haptic_service.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/preferences/preferences_provider.dart';
@@ -128,10 +128,7 @@ class ProxiesOverviewNotifier extends _$ProxiesOverviewNotifier with AppLogger {
     );
     if (state case AsyncData(value: final outbounds)) {
       await ref.read(hapticServiceProvider.notifier).lightImpact();
-      await ref
-          .read(proxyRepositoryProvider)
-          .selectProxy(groupTag, outboundTag)
-          .getOrElse((err) {
+      await ref.read(proxyRepositoryProvider).selectProxy(groupTag, outboundTag).getOrElse((err) {
         loggy.warning("error selecting outbound", err);
         throw err;
       }).run();
@@ -149,10 +146,7 @@ class ProxiesOverviewNotifier extends _$ProxiesOverviewNotifier with AppLogger {
     loggy.debug("testing group: [$groupTag]");
     if (state case AsyncData()) {
       await ref.read(hapticServiceProvider.notifier).lightImpact();
-      await ref
-          .read(proxyRepositoryProvider)
-          .urlTest(groupTag)
-          .getOrElse((err) {
+      await ref.read(proxyRepositoryProvider).urlTest(groupTag).getOrElse((err) {
         loggy.error("error testing group", err);
         throw err;
       }).run();

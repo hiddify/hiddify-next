@@ -361,6 +361,7 @@
     "warpConfigGenerated": "پیکربندی WARP ایجاد شد",
     "pageTitle": "تنظیمات پیکربندی",
     "logLevel": "سطح گزارش",
+    "blockAds": "مسدود سازی تبلیغات",
     "resolveDestination": "جایگذاری مقصد",
     "ipv6Mode": "مسیریابی IPv6",
     "ipv6Modes": {

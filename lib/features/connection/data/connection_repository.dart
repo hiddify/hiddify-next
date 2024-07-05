@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:fpdart/fpdart.dart';
 import 'package:hiddify/core/model/directories.dart';
 import 'package:hiddify/core/utils/exception_handler.dart';
@@ -7,7 +5,7 @@ import 'package:hiddify/features/config_option/data/config_option_repository.dar
 import 'package:hiddify/features/connection/data/connection_platform_source.dart';
 import 'package:hiddify/features/connection/model/connection_failure.dart';
 import 'package:hiddify/features/connection/model/connection_status.dart';
-import 'package:hiddify/features/geo_asset/data/geo_asset_path_resolver.dart';
+
 import 'package:hiddify/features/profile/data/profile_path_resolver.dart';
 import 'package:hiddify/singbox/model/singbox_config_option.dart';
 import 'package:hiddify/singbox/model/singbox_status.dart';
@@ -33,16 +31,13 @@ abstract interface class ConnectionRepository {
   );
 }
 
-class ConnectionRepositoryImpl
-    with ExceptionHandler, InfraLogger
-    implements ConnectionRepository {
+class ConnectionRepositoryImpl with ExceptionHandler, InfraLogger implements ConnectionRepository {
   ConnectionRepositoryImpl({
     required this.directories,
     required this.singbox,
     required this.platformSource,
     required this.configOptionRepository,
     required this.profilePathResolver,
-    required this.geoAssetPathResolver,
   });
 
   final Directories directories;
@@ -50,7 +45,6 @@ class ConnectionRepositoryImpl
   final ConnectionPlatformSource platformSource;
   final ConfigOptionRepository configOptionRepository;
   final ProfilePathResolver profilePathResolver;
-  final GeoAssetPathResolver geoAssetPathResolver;
 
   SingboxConfigOption? _configOptionsSnapshot;
   @override
@@ -64,16 +58,10 @@ class ConnectionRepositoryImpl
           (event) => switch (event) {
             SingboxStopped(:final alert?, :final message) => Disconnected(
                 switch (alert) {
-                  SingboxAlert.emptyConfiguration =>
-                    ConnectionFailure.invalidConfig(message),
-                  SingboxAlert.requestNotificationPermission =>
-                    ConnectionFailure.missingNotificationPermission(message),
-                  SingboxAlert.requestVPNPermission =>
-                    ConnectionFailure.missingVpnPermission(message),
-                  SingboxAlert.startCommandServer ||
-                  SingboxAlert.createService ||
-                  SingboxAlert.startService =>
-                    ConnectionFailure.unexpected(message),
+                  SingboxAlert.emptyConfiguration => ConnectionFailure.invalidConfig(message),
+                  SingboxAlert.requestNotificationPermission => ConnectionFailure.missingNotificationPermission(message),
+                  SingboxAlert.requestVPNPermission => ConnectionFailure.missingVpnPermission(message),
+                  SingboxAlert.startCommandServer || SingboxAlert.createService || SingboxAlert.startService => ConnectionFailure.unexpected(message),
                 },
               ),
             SingboxStopped() => const Disconnected(),
@@ -89,21 +77,19 @@ class ConnectionRepositoryImpl
     return TaskEither<ConnectionFailure, SingboxConfigOption>.Do(
       ($) async {
         final options = await $(
-          configOptionRepository
-              .getFullSingboxConfigOption()
-              .mapLeft((l) => const InvalidConfigOption()),
+          configOptionRepository.getFullSingboxConfigOption().mapLeft((l) => const InvalidConfigOption()),
         );
 
         return $(
           TaskEither(
             () async {
-              final geoip = geoAssetPathResolver.resolvePath(options.geoipPath);
-              final geosite =
-                  geoAssetPathResolver.resolvePath(options.geositePath);
-              if (!await File(geoip).exists() ||
-                  !await File(geosite).exists()) {
-                return left(const ConnectionFailure.missingGeoAssets());
-              }
+              // final geoip = geoAssetPathResolver.resolvePath(options.geoipPath);
+              // final geosite =
+              //     geoAssetPathResolver.resolvePath(options.geositePath);
+              // if (!await File(geoip).exists() ||
+              //     !await File(geosite).exists()) {
+              //   return left(const ConnectionFailure.missingGeoAssets());
+              // }
               return right(options);
             },
           ),
@@ -119,10 +105,7 @@ class ConnectionRepositoryImpl
     return exceptionHandler(
       () {
         _configOptionsSnapshot = options;
-        return singbox
-            .changeOptions(options)
-            .mapLeft(InvalidConfigOption.new)
-            .run();
+        return singbox.changeOptions(options).mapLeft(InvalidConfigOption.new).run();
       },
       UnexpectedConnectionFailure.new,
     );
