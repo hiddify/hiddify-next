@@ -1485,7 +1485,7 @@ packages:
       sha256: ad29c505aee705f41a4d8963641f91ac4cee3c8fad5947e033390a7bd8180fa4
       url: "https://pub.dev"
     source: hosted
-    version: "1.4.1"
+    version: "1.5.1"
   shelf_packages_handler:
     dependency: transitive
     description:
