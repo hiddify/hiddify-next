@@ -23,7 +23,7 @@ class GeneralSettingTiles extends HookConsumerWidget {
 
     return Column(
       children: [
-        // const LocalePrefTile(),
+        const LocalePrefTile(),
         ListTile(
           title: Text(t.settings.general.themeMode),
           subtitle: Text(themeMode.present(t)),
