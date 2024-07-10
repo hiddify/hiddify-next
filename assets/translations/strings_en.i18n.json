@@ -361,6 +361,8 @@
     "warpConfigGenerated": "WARP Config Generated",
     "pageTitle": "Config Options",
     "logLevel": "Log Level",
+    "cloudflareST": "Cloudflare Speed Test",
+    "cloudflareNumber": "Cloudflare Number",
     "blockAds": "Block Advertisements",
     "resolveDestination": "Resolve Destination",
     "ipv6Mode": "IPv6 Route",
