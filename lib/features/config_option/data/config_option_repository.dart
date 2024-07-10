@@ -32,6 +32,17 @@ abstract class ConfigOptions {
     mapTo: (value) => value.name,
   );
 
+  static final CloudflareST = PreferencesNotifier.create<bool, bool>(
+    "cloudflare-st",
+    false,
+  );
+
+  static final CloudflareNumber = PreferencesNotifier.create<int, int>(
+    "cloudflare-number",
+    200,
+    validator: (value) => value > 10,
+  );
+
   static final blockAds = PreferencesNotifier.create<bool, bool>(
     "block-ads",
     false,
@@ -316,6 +327,8 @@ abstract class ConfigOptions {
 
   static final Map<String, StateNotifierProvider<PreferencesNotifier, dynamic>> preferences = {
     "region": region,
+    "cloudflare-st": CloudflareST,
+    "cloudflare-number": CloudflareNumber,
     "block-ads": blockAds,
     "service-mode": serviceMode,
     "log-level": logLevel,
@@ -410,6 +423,8 @@ abstract class ConfigOptions {
 
       return SingboxConfigOption(
         region: ref.watch(region).name,
+        cloudflareST: ref.watch(CloudflareST),
+        cloudflareNumber: ref.watch(CloudflareNumber),
         blockAds: ref.watch(blockAds),
         executeConfigAsIs: false,
         logLevel: ref.watch(logLevel),

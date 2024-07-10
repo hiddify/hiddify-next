@@ -17,6 +17,8 @@ class SingboxConfigOption with _$SingboxConfigOption {
   @JsonSerializable(fieldRename: FieldRename.kebab)
   const factory SingboxConfigOption({
     required String region,
+    required bool cloudflareST,
+    required int cloudflareNumber,
     required bool blockAds,
     required bool executeConfigAsIs,
     required LogLevel logLevel,
