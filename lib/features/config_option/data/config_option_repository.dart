@@ -32,8 +32,8 @@ abstract class ConfigOptions {
     mapTo: (value) => value.name,
   );
 
-  static final cloudflareST = PreferencesNotifier.create<bool, bool>(
-    "cloudflare",
+  static final cloudflareSpeedTest = PreferencesNotifier.create<bool, bool>(
+    "cloudflare-speed-test",
     false,
   );
 
@@ -145,7 +145,7 @@ abstract class ConfigOptions {
     validator: (value) => isPort(value.toString()),
   );
 
-  static final clashApiSecret = PreferencesNotifier.create<String, String>(
+  static final webSecret = PreferencesNotifier.create<String, String>(
     "web-secret",
     "hiddifynext",
   );
@@ -332,7 +332,7 @@ abstract class ConfigOptions {
 
   static final Map<String, StateNotifierProvider<PreferencesNotifier, dynamic>> preferences = {
     "region": region,
-    "cloudflare": cloudflareST,
+    "cloudflare-speed-test": cloudflareSpeedTest,
     "cloudflare-number": cloudflareNumber,
     "block-ads": blockAds,
     "service-mode": serviceMode,
@@ -352,7 +352,7 @@ abstract class ConfigOptions {
     "connection-test-url": connectionTestUrl,
     "url-test-interval": urlTestInterval,
     "clash-api-port": clashApiPort,
-    "web-secret": clashApiSecret,
+    "web-secret": webSecret,
     "bypass-lan": bypassLan,
     "allow-connection-from-lan": allowConnectionFromLan,
     "enable-dns-routing": enableDnsRouting,
@@ -429,7 +429,7 @@ abstract class ConfigOptions {
 
       return SingboxConfigOption(
         region: ref.watch(region).name,
-        cloudflareST: ref.watch(cloudflareST),
+        cloudflareSpeedTest: ref.watch(cloudflareSpeedTest),
         cloudflareNumber: ref.watch(cloudflareNumber),
         blockAds: ref.watch(blockAds),
         executeConfigAsIs: false,
@@ -450,7 +450,7 @@ abstract class ConfigOptions {
         urlTestInterval: ref.watch(urlTestInterval),
         enableClashApi: ref.watch(enableClashApi),
         clashApiPort: ref.watch(clashApiPort),
-        clashApiSecret: ref.watch(clashApiSecret),
+        webSecret: ref.watch(webSecret),
         enableTun: mode == ServiceMode.tun,
         enableTunService: mode == ServiceMode.tunService,
         setSystemProxy: mode == ServiceMode.systemProxy,

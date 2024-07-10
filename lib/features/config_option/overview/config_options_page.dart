@@ -148,9 +148,9 @@ class ConfigOptionsPage extends HookConsumerWidget {
                     presentChoice: (value) => value.present(t),
                   ),
                   SwitchListTile(
-                    title: Text(t.config.cloudflareST),
-                    value: ref.watch(ConfigOptions.cloudflareST),
-                    onChanged: ref.watch(ConfigOptions.cloudflareST.notifier).update,
+                    title: Text(t.config.cloudflareSpeedTest),
+                    value: ref.watch(ConfigOptions.cloudflareSpeedTest),
+                    onChanged: ref.watch(ConfigOptions.cloudflareSpeedTest.notifier).update,
                   ),
                   ValuePreferenceWidget(
                     value: ref.watch(ConfigOptions.cloudflareNumber),
@@ -369,9 +369,9 @@ class ConfigOptionsPage extends HookConsumerWidget {
                     inputToValue: int.tryParse,
                   ),
                   ValuePreferenceWidget(
-                    title: t.config.clashApiSecret,
-                    value: ref.watch(ConfigOptions.clashApiSecret),
-                    preferences: ref.watch(ConfigOptions.clashApiSecret.notifier),
+                    title: t.config.webSecret,
+                    value: ref.watch(ConfigOptions.webSecret),
+                    preferences: ref.watch(ConfigOptions.webSecret.notifier),
                   ),
                   const Gap(24),
                 ],
