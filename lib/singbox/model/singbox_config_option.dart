@@ -38,6 +38,7 @@ class SingboxConfigOption with _$SingboxConfigOption {
     @IntervalInSecondsConverter() required Duration urlTestInterval,
     required bool enableClashApi,
     required int clashApiPort,
+    required String enableClashApi,
     required bool enableTun,
     required bool enableTunService,
     required bool setSystemProxy,

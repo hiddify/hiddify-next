@@ -33,7 +33,7 @@ abstract class ConfigOptions {
   );
 
   static final cloudflareST = PreferencesNotifier.create<bool, bool>(
-    "cloudflare-st",
+    "cloudflare",
     false,
   );
 
@@ -143,6 +143,11 @@ abstract class ConfigOptions {
     "clash-api-port",
     6756,
     validator: (value) => isPort(value.toString()),
+  );
+
+  static final clashApiSecret = PreferencesNotifier.create<String, String>(
+    "web-secre",
+    "hiddifynext",
   );
 
   static final bypassLan = PreferencesNotifier.create<bool, bool>("bypass-lan", false);
@@ -327,7 +332,7 @@ abstract class ConfigOptions {
 
   static final Map<String, StateNotifierProvider<PreferencesNotifier, dynamic>> preferences = {
     "region": region,
-    "cloudflare-st": cloudflareST,
+    "cloudflare": cloudflareST,
     "cloudflare-number": cloudflareNumber,
     "block-ads": blockAds,
     "service-mode": serviceMode,
@@ -347,6 +352,7 @@ abstract class ConfigOptions {
     "connection-test-url": connectionTestUrl,
     "url-test-interval": urlTestInterval,
     "clash-api-port": clashApiPort,
+    "web-secre": clashApiSecret,
     "bypass-lan": bypassLan,
     "allow-connection-from-lan": allowConnectionFromLan,
     "enable-dns-routing": enableDnsRouting,
@@ -444,6 +450,7 @@ abstract class ConfigOptions {
         urlTestInterval: ref.watch(urlTestInterval),
         enableClashApi: ref.watch(enableClashApi),
         clashApiPort: ref.watch(clashApiPort),
+        clashApiSecret: ref.watch(ClashApiSecret),
         enableTun: mode == ServiceMode.tun,
         enableTunService: mode == ServiceMode.tunService,
         setSystemProxy: mode == ServiceMode.systemProxy,
