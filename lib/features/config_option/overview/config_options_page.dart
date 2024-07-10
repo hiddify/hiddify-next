@@ -368,10 +368,10 @@ class ConfigOptionsPage extends HookConsumerWidget {
                     digitsOnly: true,
                     inputToValue: int.tryParse,
                   ),
-                  SwitchListTile(
-                    title: Text(t.config.enableClashApi),
-                    value: ref.watch(ConfigOptions.enableClashApi),
-                    onChanged: ref.watch(ConfigOptions.enableClashApi.notifier).update,
+                  ValuePreferenceWidget(
+                    title: Text(t.config.clashApiSecret),
+                    value: ref.watch(ConfigOptions.clashApiSecret),
+                    preferences: ref.watch(ConfigOptions.clashApiSecret.notifier),
                   ),
                   const Gap(24),
                 ],

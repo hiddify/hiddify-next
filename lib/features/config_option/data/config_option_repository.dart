@@ -146,7 +146,7 @@ abstract class ConfigOptions {
   );
 
   static final clashApiSecret = PreferencesNotifier.create<String, String>(
-    "web-secre",
+    "web-secret",
     "hiddifynext",
   );
 
@@ -352,7 +352,7 @@ abstract class ConfigOptions {
     "connection-test-url": connectionTestUrl,
     "url-test-interval": urlTestInterval,
     "clash-api-port": clashApiPort,
-    "web-secre": clashApiSecret,
+    "web-secret": clashApiSecret,
     "bypass-lan": bypassLan,
     "allow-connection-from-lan": allowConnectionFromLan,
     "enable-dns-routing": enableDnsRouting,
@@ -450,7 +450,7 @@ abstract class ConfigOptions {
         urlTestInterval: ref.watch(urlTestInterval),
         enableClashApi: ref.watch(enableClashApi),
         clashApiPort: ref.watch(clashApiPort),
-        clashApiSecret: ref.watch(ClashApiSecret),
+        clashApiSecret: ref.watch(clashApiSecret),
         enableTun: mode == ServiceMode.tun,
         enableTunService: mode == ServiceMode.tunService,
         setSystemProxy: mode == ServiceMode.systemProxy,
