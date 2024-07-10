@@ -369,7 +369,7 @@ class ConfigOptionsPage extends HookConsumerWidget {
                     inputToValue: int.tryParse,
                   ),
                   ValuePreferenceWidget(
-                    title: Text(t.config.clashApiSecret),
+                    title: t.config.clashApiSecret,
                     value: ref.watch(ConfigOptions.clashApiSecret),
                     preferences: ref.watch(ConfigOptions.clashApiSecret.notifier),
                   ),
