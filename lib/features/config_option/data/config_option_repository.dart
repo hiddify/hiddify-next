@@ -267,14 +267,14 @@ abstract class ConfigOptions {
 
   static final warpNoise = PreferencesNotifier.create<OptionalRange, String>(
     "warp-noise",
-    const OptionalRange(min: 5, max: 10),
+    const OptionalRange(min: 1, max: 3),
     mapFrom: (value) => OptionalRange.parse(value, allowEmpty: true),
     mapTo: const OptionalRangeJsonConverter().toJson,
   );
 
   static final warpNoiseDelay = PreferencesNotifier.create<OptionalRange, String>(
     "warp-noise-delay",
-    const OptionalRange(min: 20, max: 200),
+    const OptionalRange(min: 10, max: 30),
     mapFrom: (value) => OptionalRange.parse(value, allowEmpty: true),
     mapTo: const OptionalRangeJsonConverter().toJson,
   );
