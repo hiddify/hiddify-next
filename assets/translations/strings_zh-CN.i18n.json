@@ -162,7 +162,9 @@
     "requiresRestartMsg": "要使其生效，请重新启动应用程序",
     "experimental": "实验性选项",
     "experimentalMsg": "带有实验标志的功能仍在开发中，可能会出现问题。",
-    "importOptions": "从剪切板导入选项",
+    "exportOptions": "将匿名选项导出到剪贴板",
+    "exportAllOptions": "将所有选项导出到剪贴板（用于调试）",
+    "importOptions": "从剪贴板导入选项",
     "importOptionsMsg": "这将使用提供的值重写所有配置选项。您确定吗？",
     "general": {
       "sectionTitle": "一般选项",
@@ -355,8 +357,9 @@
     "generateWarpConfig": "生成 WARP 配置文件",
     "missingWarpConfig": "WARP 配置文件缺失",
     "warpConfigGenerated": "WARP 配置文件已生成",
-    "pageTitle": "配置",
+    "pageTitle": "配置选项",
     "logLevel": "日志级别",
+    "blockAds": "阻止广告",
     "resolveDestination": "解析目标地址",
     "ipv6Mode": "IPv6 路由",
     "ipv6Modes": {
