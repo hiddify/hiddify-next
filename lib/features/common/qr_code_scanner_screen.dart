@@ -71,13 +71,14 @@ class _QRCodeScannerScreenState extends ConsumerState<QRCodeScannerScreen> with 
 
     final completer = Completer<bool>();
 
-    void permissionCallback(int requestCode, List<Permissions> ?perms, PermissionGroup ?perm) {
+    void permissionCallback(int requestCode, List<Permissions>? perms, PermissionGroup? perm) {
       if (!completer.isCompleted) {
         completer.complete(true);
+        startQrScannerIfPermissionIsGranted();
       }
     }
 
-    void permissionDeniedCallback(int requestCode, List<Permissions> ?perms, PermissionGroup ?perm, bool isPermanent) {
+    void permissionDeniedCallback(int requestCode, List<Permissions>? perms, PermissionGroup? perm, bool isPermanent) {
       if (!completer.isCompleted) {
         completer.complete(false);
       }
@@ -186,7 +187,7 @@ class _QRCodeScannerScreenState extends ConsumerState<QRCodeScannerScreen> with 
   Widget build(BuildContext context) {
     final Translations t = ref.watch(translationsProvider);
 
-    // startQrScannerIfPermissionGranted();
+    startQrScannerIfPermissionIsGranted();
 
     return FutureBuilder(
       future: FlutterEasyPermission.has(
@@ -207,8 +208,6 @@ class _QRCodeScannerScreenState extends ConsumerState<QRCodeScannerScreen> with 
     );
   }
 
-
-
   Widget _buildScannerUI(BuildContext context, Translations t) {
     final size = MediaQuery.sizeOf(context);
     final overlaySize = (size.shortestSide - 12).coerceAtMost(248);
@@ -218,9 +217,9 @@ class _QRCodeScannerScreenState extends ConsumerState<QRCodeScannerScreen> with 
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         iconTheme: Theme.of(context).iconTheme.copyWith(
-          color: Colors.white,
-          size: 32,
-        ),
+              color: Colors.white,
+              size: 32,
+            ),
         actions: [
           IconButton(
             icon: ValueListenableBuilder(
@@ -311,9 +310,9 @@ class _QRCodeScannerScreenState extends ConsumerState<QRCodeScannerScreen> with 
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         iconTheme: Theme.of(context).iconTheme.copyWith(
-          color: Colors.white,
-          size: 32,
-        ),
+              color: Colors.white,
+              size: 32,
+            ),
       ),
       body: Center(
         child: Column(
@@ -330,7 +329,6 @@ class _QRCodeScannerScreenState extends ConsumerState<QRCodeScannerScreen> with 
       ),
     );
   }
-
 }
 
 class ScannerOverlay extends CustomPainter {
