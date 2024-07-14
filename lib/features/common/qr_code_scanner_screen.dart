@@ -33,7 +33,7 @@ class QRCodeScannerScreen extends StatefulHookConsumerWidget {
 class _QRCodeScannerScreenState extends ConsumerState<QRCodeScannerScreen> with WidgetsBindingObserver, PresLogger {
   final MobileScannerController controller = MobileScannerController(
     detectionTimeoutMs: 500,
-    // autoStart: false,
+    autoStart: false,
   );
   bool started = false;
 
@@ -136,6 +136,8 @@ class _QRCodeScannerScreenState extends ConsumerState<QRCodeScannerScreen> with 
   }
 
   Future<void> _startScanner() async {
+    loggy.info("Starting scanner");
+    await controller.stop();
     await controller.start().whenComplete(() {
       setState(() {
         started = true;
@@ -186,8 +188,6 @@ class _QRCodeScannerScreenState extends ConsumerState<QRCodeScannerScreen> with 
   Widget build(BuildContext context) {
     final Translations t = ref.watch(translationsProvider);
 
-    startQrScannerIfPermissionIsGranted();
-
     return FutureBuilder(
       future: FlutterEasyPermission.has(
         perms: permissions,
@@ -210,7 +210,7 @@ class _QRCodeScannerScreenState extends ConsumerState<QRCodeScannerScreen> with 
   Widget _buildScannerUI(BuildContext context, Translations t) {
     final size = MediaQuery.sizeOf(context);
     final overlaySize = (size.shortestSide - 12).coerceAtMost(248);
-
+    // _startScanner();
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -221,26 +221,31 @@ class _QRCodeScannerScreenState extends ConsumerState<QRCodeScannerScreen> with 
             ),
         actions: [
           IconButton(
-            icon: ValueListenableBuilder(
-              valueListenable: controller.torchState,
-              builder: (context, state, child) {
-                switch (state) {
-                  case TorchState.off:
-                    return const Icon(
-                      FluentIcons.flash_off_24_regular,
-                      color: Colors.grey,
-                    );
-                  case TorchState.on:
-                    return const Icon(
-                      FluentIcons.flash_24_regular,
-                      color: Colors.yellow,
-                    );
-                }
-              },
-            ),
+            icon: const Icon(FluentIcons.flash_24_regular),
             tooltip: t.profile.add.qrScanner.torchSemanticLabel,
             onPressed: () => controller.toggleTorch(),
           ),
+          // IconButton(
+          //   icon: ValueListenableBuilder(
+          //     valueListenable: controller.torchState,
+          //     builder: (context, state, child) {
+          //       switch (state) {
+          //         case TorchState.off:
+          //           return const Icon(
+          //             FluentIcons.flash_off_24_regular,
+          //             color: Colors.grey,
+          //           );
+          //         case TorchState.on:
+          //           return const Icon(
+          //             FluentIcons.flash_24_regular,
+          //             color: Colors.yellow,
+          //           );
+          //       }
+          //     },
+          //   ),
+          //   tooltip: t.profile.add.qrScanner.torchSemanticLabel,
+          //   onPressed: () => controller.toggleTorch(),
+          // ),
           IconButton(
             icon: const Icon(FluentIcons.camera_switch_24_regular),
             tooltip: t.profile.add.qrScanner.facingSemanticLabel,
