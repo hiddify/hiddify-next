@@ -356,7 +356,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          prerelease: ${{ env.CHANNEL == 'dev' }}
+          # prerelease: ${{ env.CHANNEL == 'dev' }}
+          prerelease: true
           tag_name: ${{ env.TAG_NAME }}
           body_path: './release.md'
           files: ./out/*
