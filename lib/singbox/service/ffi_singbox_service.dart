@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'dart:ffi';
 import 'dart:io';
 import 'dart:isolate';
-
+import 'package:combine/combine.dart';
 import 'package:ffi/ffi.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:hiddify/core/model/directories.dart';
@@ -65,8 +65,8 @@ class FFISingboxService with InfraLogger implements SingboxService {
   ) {
     final port = _statusReceiver.sendPort.nativePort;
     return TaskEither(
-      () => Future.microtask(
-        () async {
+      () => CombineWorker().execute(
+        () {
           _box.setupOnce(NativeApi.initializeApiDLData);
           final err = _box
               .setup(
@@ -94,8 +94,8 @@ class FFISingboxService with InfraLogger implements SingboxService {
     bool debug,
   ) {
     return TaskEither(
-      () => Future.microtask(
-        () async {
+      () => CombineWorker().execute(
+        () {
           final err = _box
               .parse(
                 path.toNativeUtf8().cast(),
@@ -116,8 +116,8 @@ class FFISingboxService with InfraLogger implements SingboxService {
   @override
   TaskEither<String, Unit> changeOptions(SingboxConfigOption options) {
     return TaskEither(
-      () => Future.microtask(
-        () async {
+      () => CombineWorker().execute(
+        () {
           final json = jsonEncode(options.toJson());
           final err = _box.changeConfigOptions(json.toNativeUtf8().cast()).cast<Utf8>().toDartString();
           if (err.isNotEmpty) {
@@ -134,8 +134,8 @@ class FFISingboxService with InfraLogger implements SingboxService {
     String path,
   ) {
     return TaskEither(
-      () => Future.microtask(
-        () async {
+      () => CombineWorker().execute(
+        () {
           final response = _box
               .generateConfig(
                 path.toNativeUtf8().cast(),
@@ -159,8 +159,8 @@ class FFISingboxService with InfraLogger implements SingboxService {
   ) {
     loggy.debug("starting, memory limit: [${!disableMemoryLimit}]");
     return TaskEither(
-      () => Future.microtask(
-        () async {
+      () => CombineWorker().execute(
+        () {
           final err = _box
               .start(
                 configPath.toNativeUtf8().cast(),
@@ -180,8 +180,8 @@ class FFISingboxService with InfraLogger implements SingboxService {
   @override
   TaskEither<String, Unit> stop() {
     return TaskEither(
-      () => Future.microtask(
-        () async {
+      () => CombineWorker().execute(
+        () {
           final err = _box.stop().cast<Utf8>().toDartString();
           if (err.isNotEmpty) {
             return left(err);
@@ -200,8 +200,8 @@ class FFISingboxService with InfraLogger implements SingboxService {
   ) {
     loggy.debug("restarting, memory limit: [${!disableMemoryLimit}]");
     return TaskEither(
-      () => Future.microtask(
-        () async {
+      () => CombineWorker().execute(
+        () {
           final err = _box
               .restart(
                 configPath.toNativeUtf8().cast(),
@@ -360,8 +360,8 @@ class FFISingboxService with InfraLogger implements SingboxService {
   @override
   TaskEither<String, Unit> selectOutbound(String groupTag, String outboundTag) {
     return TaskEither(
-      () => Future.microtask(
-        () async {
+      () => CombineWorker().execute(
+        () {
           final err = _box
               .selectOutbound(
                 groupTag.toNativeUtf8().cast(),
@@ -381,8 +381,8 @@ class FFISingboxService with InfraLogger implements SingboxService {
   @override
   TaskEither<String, Unit> urlTest(String groupTag) {
     return TaskEither(
-      () => Future.microtask(
-        () async {
+      () => CombineWorker().execute(
+        () {
           final err = _box.urlTest(groupTag.toNativeUtf8().cast()).cast<Utf8>().toDartString();
           if (err.isNotEmpty) {
             return left(err);
@@ -410,8 +410,8 @@ class FFISingboxService with InfraLogger implements SingboxService {
   @override
   TaskEither<String, Unit> clearLogs() {
     return TaskEither(
-      () => Future.microtask(
-        () async {
+      () => CombineWorker().execute(
+        () {
           _logBuffer.clear();
           return right(unit);
         },
@@ -444,8 +444,8 @@ class FFISingboxService with InfraLogger implements SingboxService {
   }) {
     loggy.debug("generating warp config");
     return TaskEither(
-      () => Future.microtask(
-        () async {
+      () => CombineWorker().execute(
+        () {
           final response = _box
               .generateWarpConfig(
                 licenseKey.toNativeUtf8().cast(),

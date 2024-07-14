@@ -58,7 +58,7 @@ prepare:
 	@echo    make macos-prepare
 	@echo    make ios-prepare
 
-windows-prepare: get-geo-assets get gen translate windows-libs
+windows-prepare: get gen translate windows-libs
 	
 ios-prepare: get-geo-assets get gen translate ios-libs 
 macos-prepare: get-geo-assets get gen translate macos-libs
