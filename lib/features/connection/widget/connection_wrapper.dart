@@ -23,18 +23,19 @@ class _ConnectionWrapperState extends ConsumerState<ConnectionWrapper>
   Widget build(BuildContext context) {
     ref.listen(connectionNotifierProvider, (_, __) {});
 
-    ref.listen(configOptionNotifierProvider, (previous, next) {
+    ref.listen(configOptionNotifierProvider, (previous, next) async {
       if (next case AsyncData(value: true)) {
         final t = ref.read(translationsProvider);
-        ref.watch(inAppNotificationControllerProvider).showActionToast(
-          t.connection.reconnectMsg,
-          actionText: t.connection.reconnect,
-          callback: () async {
-            await ref
-                .read(connectionNotifierProvider.notifier)
-                .reconnect(await ref.read(activeProfileProvider.future));
-          },
-        );
+        await ref.read(connectionNotifierProvider.notifier).reconnect(await ref.read(activeProfileProvider.future));
+        // ref.watch(inAppNotificationControllerProvider).showActionToast(
+        //   t.connection.reconnectMsg,
+        //   actionText: t.connection.reconnect,
+        //   callback: () async {
+        //     await ref
+        //         .read(connectionNotifierProvider.notifier)
+        //         .reconnect(await ref.read(activeProfileProvider.future));
+        //   },
+        // );
       }
     });
 
