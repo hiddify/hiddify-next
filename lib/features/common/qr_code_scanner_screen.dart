@@ -74,7 +74,6 @@ class _QRCodeScannerScreenState extends ConsumerState<QRCodeScannerScreen> with 
     void permissionCallback(int requestCode, List<Permissions>? perms, PermissionGroup? perm) {
       if (!completer.isCompleted) {
         completer.complete(true);
-        startQrScannerIfPermissionIsGranted();
       }
     }
 
@@ -153,8 +152,8 @@ class _QRCodeScannerScreenState extends ConsumerState<QRCodeScannerScreen> with 
     );
     if (hasPermission) {
       _startScanner();
-    } else {
-      _showPermissionDialog();
+      // } else {
+      //   _showPermissionDialog();
     }
   }
 
