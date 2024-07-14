@@ -78,6 +78,7 @@
         "permissionRequest": "授予相机权限以允许扫描二维码"
       },
       "manually": "手动输入",
+      "addWarp": "添加 WARP",
       "addingWarpMsg": "我们正在注册 WARP，请稍候。",
       "addingProfileMsg": "添加配置文件",
       "failureMsg": "添加配置文件失败"
