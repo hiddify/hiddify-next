@@ -91,6 +91,8 @@ dependencies:
   protobuf: ^3.1.0
   grpc: ^3.2.4
   dynamic_color: ^1.7.0
+  image_picker: ^1.1.2
+  image: ^4.2.0
 
 dev_dependencies:
   flutter_test:

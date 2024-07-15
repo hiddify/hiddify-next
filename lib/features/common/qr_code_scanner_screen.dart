@@ -3,12 +3,17 @@ import 'dart:developer';
 
 import 'package:dartx/dartx.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_easy_permission/easy_permissions.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:meta/meta_meta.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:image/image.dart' as img;
 // import 'package:permission_handler/permission_handler.dart';
 
 const permissions = [Permissions.CAMERA];
@@ -71,13 +76,13 @@ class _QRCodeScannerScreenState extends ConsumerState<QRCodeScannerScreen> with 
 
     final completer = Completer<bool>();
 
-    void permissionCallback(int requestCode, List<Permissions>? perms, PermissionGroup? perm) {
+    void permissionCallback(int requestCode, List<Permissions> ?perms, PermissionGroup ?perm) {
       if (!completer.isCompleted) {
         completer.complete(true);
       }
     }
 
-    void permissionDeniedCallback(int requestCode, List<Permissions>? perms, PermissionGroup? perm, bool isPermanent) {
+    void permissionDeniedCallback(int requestCode, List<Permissions> ?perms, PermissionGroup ?perm, bool isPermanent) {
       if (!completer.isCompleted) {
         completer.complete(false);
       }
@@ -106,8 +111,32 @@ class _QRCodeScannerScreenState extends ConsumerState<QRCodeScannerScreen> with 
     }
   }
 
+  Future<void> _scanImageForQR(BuildContext ctx) async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+
+    if (image != null) {
+      final BarcodeCapture? result = await controller.analyzeImage(image.path);
+
+      if (result != null && result.barcodes.isNotEmpty) {
+        final List<Barcode> barcodes = result.barcodes;
+        final String? qrCode = barcodes.first.rawValue;
+        if (qrCode != null && context.mounted) {
+          Navigator.of(ctx, rootNavigator: true).pop(qrCode);
+        }
+      } else {
+        if (ctx.mounted) {
+          ScaffoldMessenger.of(ctx).showSnackBar(
+            const SnackBar(content: Text("No QR Found")),
+          );
+        }
+      }
+    }
+  }
+
   @override
   void dispose() {
+    controller.stop();
     controller.dispose();
     // _easyPermission.dispose();
     FlutterEasyPermission().dispose();
@@ -128,21 +157,24 @@ class _QRCodeScannerScreenState extends ConsumerState<QRCodeScannerScreen> with 
       perms: permissions,
       permsGroup: permissionGroup,
     );
+
     if (hasPermission) {
       _startScanner();
     } else {
-      setState(() {}); // Trigger rebuild to show permission denied UI
+      setState(() {});
     }
   }
 
   Future<void> _startScanner() async {
-    loggy.info("Starting scanner");
-    await controller.stop();
+    if(controller.value.isInitialized && controller.value.isRunning) {
+      return;
+    }
     await controller.start().whenComplete(() {
       setState(() {
         started = true;
       });
     }).catchError((error) {
+      log("CAM ERROR: $error");
       loggy.warning("Error starting scanner: $error");
     });
   }
@@ -154,26 +186,10 @@ class _QRCodeScannerScreenState extends ConsumerState<QRCodeScannerScreen> with 
     );
     if (hasPermission) {
       _startScanner();
-      // } else {
-      //   _showPermissionDialog();
+    } else {
+      _showPermissionDialog();
     }
   }
-
-  // void startQrScannerIfPermissionGranted() {
-  //   FlutterEasyPermission.has(perms: permissions, permsGroup: permissionGroup).then((value) {
-  //     if (value) {
-  //       controller.start().then((result) {
-  //         if (result != null) {
-  //           setState(() {
-  //             started = true;
-  //           });
-  //         }
-  //       }).catchError((error) {
-  //         loggy.warning("Error starting scanner: $error");
-  //       });
-  //     } else {}
-  //   });
-  // }
 
   void _showPermissionDialog() {
     FlutterEasyPermission.showAppSettingsDialog(
@@ -187,6 +203,8 @@ class _QRCodeScannerScreenState extends ConsumerState<QRCodeScannerScreen> with 
   @override
   Widget build(BuildContext context) {
     final Translations t = ref.watch(translationsProvider);
+
+    // startQrScannerIfPermissionGranted();
 
     return FutureBuilder(
       future: FlutterEasyPermission.has(
@@ -210,46 +228,75 @@ class _QRCodeScannerScreenState extends ConsumerState<QRCodeScannerScreen> with 
   Widget _buildScannerUI(BuildContext context, Translations t) {
     final size = MediaQuery.sizeOf(context);
     final overlaySize = (size.shortestSide - 12).coerceAtMost(248);
-    // _startScanner();
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         iconTheme: Theme.of(context).iconTheme.copyWith(
-              color: Colors.white,
-              size: 32,
-            ),
+          color: Colors.white,
+          size: 32,
+        ),
         actions: [
-          IconButton(
-            icon: const Icon(FluentIcons.flash_24_regular),
-            tooltip: t.profile.add.qrScanner.torchSemanticLabel,
-            onPressed: () => controller.toggleTorch(),
+          ValueListenableBuilder(
+            valueListenable: controller,
+            builder: (context, MobileScannerState state, child) {
+              if (!state.isInitialized || !state.isRunning) {
+                return const SizedBox.shrink();
+              }
+              switch (state.torchState) {
+                case TorchState.off:
+                  return IconButton(
+                    icon: const Icon(
+                      FluentIcons.flash_off_24_regular,
+                      color: Colors.grey,
+                    ),
+                    tooltip: t.profile.add.qrScanner.torchSemanticLabel,
+                    onPressed: () async {
+                      await controller.toggleTorch();
+                    },
+                  );
+                case TorchState.on:
+                  return IconButton(
+                    icon: const Icon(
+                      FluentIcons.flash_24_regular,
+                      color: Colors.yellow,
+                    ),
+                    tooltip: t.profile.add.qrScanner.torchSemanticLabel,
+                    onPressed: () async {
+                      await controller.toggleTorch();
+                    },
+                  );
+                case TorchState.auto:
+                  return IconButton(
+                    icon: const Icon(
+                      FluentIcons.flash_auto_24_regular,
+                      color: Colors.grey,
+                    ),
+                    tooltip: t.profile.add.qrScanner.torchSemanticLabel,
+                    onPressed: () async {
+                      await controller.toggleTorch();
+                    },
+                  );
+                case TorchState.unavailable:
+                  return const Icon(
+                    Icons.no_flash,
+                  );
+              }
+            },
           ),
-          // IconButton(
-          //   icon: ValueListenableBuilder(
-          //     valueListenable: controller.torchState,
-          //     builder: (context, state, child) {
-          //       switch (state) {
-          //         case TorchState.off:
-          //           return const Icon(
-          //             FluentIcons.flash_off_24_regular,
-          //             color: Colors.grey,
-          //           );
-          //         case TorchState.on:
-          //           return const Icon(
-          //             FluentIcons.flash_24_regular,
-          //             color: Colors.yellow,
-          //           );
-          //       }
-          //     },
-          //   ),
-          //   tooltip: t.profile.add.qrScanner.torchSemanticLabel,
-          //   onPressed: () => controller.toggleTorch(),
-          // ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4.0),
+            child: IconButton(
+              icon: const Icon(FluentIcons.camera_switch_24_regular),
+              tooltip: t.profile.add.qrScanner.facingSemanticLabel,
+              onPressed: () => controller.switchCamera(),
+            ),
+          ),
           IconButton(
-            icon: const Icon(FluentIcons.camera_switch_24_regular),
-            tooltip: t.profile.add.qrScanner.facingSemanticLabel,
-            onPressed: () => controller.switchCamera(),
+            icon: const Icon(FluentIcons.image_24_regular),
+            tooltip: 'Pick an Image',
+            onPressed: () => _scanImageForQR(context),
           ),
         ],
       ),
@@ -314,9 +361,9 @@ class _QRCodeScannerScreenState extends ConsumerState<QRCodeScannerScreen> with 
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         iconTheme: Theme.of(context).iconTheme.copyWith(
-              color: Colors.white,
-              size: 32,
-            ),
+          color: Colors.white,
+          size: 32,
+        ),
       ),
       body: Center(
         child: Column(
@@ -324,15 +371,23 @@ class _QRCodeScannerScreenState extends ConsumerState<QRCodeScannerScreen> with 
           children: [
             Text(t.profile.add.qrScanner.permissionDeniedError),
             const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: _showPermissionDialog,
-              child: const Text("Settings"),
-            ),
+            if(defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS)
+              ElevatedButton(
+                onPressed: _showPermissionDialog,
+                child: const Text("Settings"),
+              )
+            else
+              OutlinedButton.icon(
+                icon: const Icon(FluentIcons.image_24_regular),
+                onPressed: () => _scanImageForQR(context),
+                label: const Text('Pick an Image'),
+              ),
           ],
         ),
       ),
     );
   }
+
 }
 
 class ScannerOverlay extends CustomPainter {
