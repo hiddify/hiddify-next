@@ -1,3 +1,4 @@
+import 'package:combine/combine.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -161,9 +162,7 @@ class AddProfileModal extends HookConsumerWidget {
                               clipBehavior: Clip.antiAlias,
                               child: InkWell(
                                 onTap: () async {
-                                  Future.microtask(() async {
-                                    addProfileModal(context, ref);
-                                  });
+                                  await addProfileModal(context, ref);
                                 },
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -239,41 +238,44 @@ class AddProfileModal extends HookConsumerWidget {
     );
   }
 
-  void addProfileModal(BuildContext context, WidgetRef ref) async {
+  Future<void> addProfileModal(BuildContext context, WidgetRef ref) async {
     final _prefs = ref.read(sharedPreferencesProvider).requireValue;
     final _warp = ref.read(warpOptionNotifierProvider.notifier);
     final _profile = ref.read(addProfileProvider.notifier);
-    final consent = _prefs.getBool(warpConsentGiven) ?? false;
+    final consent = (_prefs.getBool(warpConsentGiven) ?? false);
     context.pop();
-    Future.microtask(() async {
-      final t = ref.read(translationsProvider);
-      final notification = ref.read(inAppNotificationControllerProvider);
 
-      if (!consent) {
-        final agreed = await showDialog<bool>(
-          context: context,
-          builder: (context) => const WarpLicenseAgreementModal(),
-        );
+    final t = ref.read(translationsProvider);
+    final notification = ref.read(inAppNotificationControllerProvider);
 
-        if (agreed ?? false) {
-          await _prefs.setBool(warpConsentGiven, true);
-          notification.showInfoToast(t.profile.add.addingWarpMsg);
-          await _warp.generateWarpConfig();
-        } else {
-          return null;
-        }
+    if (!consent) {
+      final agreed = await showDialog<bool>(
+        context: context,
+        builder: (context) => const WarpLicenseAgreementModal(),
+      );
+
+      if (agreed ?? false) {
+        await _prefs.setBool(warpConsentGiven, true);
+        final toast = notification.showInfoToast(t.profile.add.addingWarpMsg, duration: const Duration(milliseconds: 100));
+        toast?.pause();
+        await _warp.generateWarpConfig();
+        toast?.start();
+      } else {
+        return;
       }
+    }
 
-      final accountId = _prefs.getString("warp2-account-id");
-      final accessToken = _prefs.getString("warp2-access-token");
-      final hasWarp2Config = accountId != null && accessToken != null;
+    // final accountId = _prefs.getString("warp2-account-id");
+    // final accessToken = _prefs.getString("warp2-access-token");
+    // final hasWarp2Config = accountId != null && accessToken != null;
 
-      if (!hasWarp2Config) {
-        notification.showInfoToast(t.profile.add.addingWarpMsg);
-        await _warp.generateWarp2Config();
-      }
-      await _profile.add("#profile-title: Hiddify WARP\nwarp://p1@auto#National&&detour=warp://p2@auto#WoW"); //
-    });
+    // if (!hasWarp2Config || true) {
+    final toast = notification.showInfoToast(t.profile.add.addingWarpMsg, duration: const Duration(milliseconds: 100));
+    toast?.pause();
+    await _warp.generateWarp2Config();
+    toast?.start();
+    // }
+    await _profile.add("#profile-title: Hiddify WARP\nwarp://p1@auto#National&&detour=warp://p2@auto#WoW"); //
   }
 }
 

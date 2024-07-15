@@ -22,13 +22,13 @@ enum NotificationType {
 }
 
 class InAppNotificationController with AppLogger {
-  void showToast(
+  ToastificationItem showToast(
     BuildContext context,
     String message, {
     NotificationType type = NotificationType.info,
     Duration duration = const Duration(seconds: 3),
   }) {
-    toastification.show(
+    return toastification.show(
       context: context,
       title: Text(message),
       type: type._toastificationType,
@@ -43,13 +43,13 @@ class InAppNotificationController with AppLogger {
     );
   }
 
-  void showErrorToast(String message) {
+  ToastificationItem? showErrorToast(String message) {
     final context = RootScaffold.stateKey.currentContext;
     if (context == null) {
       loggy.warning("context is null");
-      return;
+      return null;
     }
-    showToast(
+    return showToast(
       context,
       message,
       type: NotificationType.error,
@@ -57,26 +57,26 @@ class InAppNotificationController with AppLogger {
     );
   }
 
-  void showSuccessToast(String message) {
+  ToastificationItem? showSuccessToast(String message) {
     final context = RootScaffold.stateKey.currentContext;
     if (context == null) {
       loggy.warning("context is null");
-      return;
+      return null;
     }
-    showToast(
+    return showToast(
       context,
       message,
       type: NotificationType.success,
     );
   }
 
-  void showInfoToast(String message) {
+  ToastificationItem? showInfoToast(String message, {Duration duration = const Duration(seconds: 3)}) {
     final context = RootScaffold.stateKey.currentContext;
     if (context == null) {
       loggy.warning("context is null");
-      return;
+      return null;
     }
-    showToast(context, message);
+    return showToast(context, message, duration: duration);
   }
 
   Future<void> showErrorDialog(PresentableError error) async {

@@ -23,7 +23,7 @@ on:
 env:
   IS_GITHUB_ACTIONS: 1
   CHANNEL: "${{ inputs.channel }}"
-  FLUTTER_VERSION: '3.19.x'
+  FLUTTER_VERSION: '3.22.2'
   NDK_VERSION: r26d
   UPLOAD_ARTIFACT: true
   TAG_NAME: "${{ inputs.tag-name }}"
@@ -365,7 +365,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          prerelease: ${{ env.CHANNEL == 'dev' }}
+          # prerelease: ${{ env.CHANNEL == 'dev' }}
+          prerelease: true
           tag_name: ${{ env.TAG_NAME }}
           body_path: './release.md'
           files: ./out/*

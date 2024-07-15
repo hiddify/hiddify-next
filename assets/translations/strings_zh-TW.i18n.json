@@ -78,6 +78,8 @@
         "permissionRequest": "授予相機權限已允許掃描 QR code"
       },
       "manually": "手動輸入",
+      "addWarp": "添加 WARP",
+      "addingWarpMsg": "我們正在註冊 WARP，請稍候。",
       "addingProfileMsg": "新增設定檔",
       "failureMsg": "新增設定檔失敗"
     },
@@ -163,9 +165,9 @@
     "experimental": "實驗性的",
     "experimentalMsg": "帶有實驗標誌的功能仍在開發中，可能會導致問題。",
     "exportOptions": "匯出選項至剪貼簿",
-    "exportAllOptions": "匯出選項至剪貼不(用於偵錯) ",
+    "exportAllOptions": "匯出選項至剪貼簿(用於偵錯) ",
     "importOptions": "從剪貼簿匯入選項",
-    "importOptionsMsg": "浙江使用提供的值複寫所有配置選項。您確定嗎？",
+    "importOptionsMsg": "這將使用提供的值複寫所有配置選項。您確定嗎？",
     "general": {
       "sectionTitle": "一般",
       "locale": "語言",

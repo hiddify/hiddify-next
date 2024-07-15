@@ -123,7 +123,7 @@ abstract class ConfigOptions {
 
   static final connectionTestUrl = PreferencesNotifier.create<String, String>(
     "connection-test-url",
-    "http://www.gstatic.com/",
+    "http://connectivitycheck.gstatic.com/generate_204",
     validator: (value) => value.isNotBlank && isUrl(value),
   );
 
@@ -179,14 +179,14 @@ abstract class ConfigOptions {
 
   static final tlsFragmentSize = PreferencesNotifier.create<OptionalRange, String>(
     "tls-fragment-size",
-    const OptionalRange(min: 1, max: 500),
+    const OptionalRange(min: 10, max: 30),
     mapFrom: OptionalRange.parse,
     mapTo: const OptionalRangeJsonConverter().toJson,
   );
 
   static final tlsFragmentSleep = PreferencesNotifier.create<OptionalRange, String>(
     "tls-fragment-sleep",
-    const OptionalRange(min: 0, max: 500),
+    const OptionalRange(min: 2, max: 8),
     mapFrom: OptionalRange.parse,
     mapTo: const OptionalRangeJsonConverter().toJson,
   );
@@ -283,14 +283,14 @@ abstract class ConfigOptions {
 
   static final warpNoise = PreferencesNotifier.create<OptionalRange, String>(
     "warp-noise",
-    const OptionalRange(min: 5, max: 10),
+    const OptionalRange(min: 1, max: 3),
     mapFrom: (value) => OptionalRange.parse(value, allowEmpty: true),
     mapTo: const OptionalRangeJsonConverter().toJson,
   );
 
   static final warpNoiseDelay = PreferencesNotifier.create<OptionalRange, String>(
     "warp-noise-delay",
-    const OptionalRange(min: 20, max: 200),
+    const OptionalRange(min: 10, max: 30),
     mapFrom: (value) => OptionalRange.parse(value, allowEmpty: true),
     mapTo: const OptionalRangeJsonConverter().toJson,
   );
