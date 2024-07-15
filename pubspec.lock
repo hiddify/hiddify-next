@@ -730,7 +730,7 @@ packages:
     dependency: transitive
     description:
       name: googleapis_auth
-      sha256: cafc46446574fd42826aa4cd4d623c94482598fda0a5a5649bf2781bcbc09258
+      sha256: "1401a9e55f9e0f565d3eebb18d990290f53a12d38a5f7f0230b112895778a85b"
       url: "https://pub.dev"
     source: hosted
     version: "1.5.1"
@@ -1494,7 +1494,7 @@ packages:
       sha256: ad29c505aee705f41a4d8963641f91ac4cee3c8fad5947e033390a7bd8180fa4
       url: "https://pub.dev"
     source: hosted
-    version: "1.5.1"
+    version: "1.4.1"
   shelf_packages_handler:
     dependency: transitive
     description:
@@ -1579,7 +1579,7 @@ packages:
       sha256: "14658ba5f669685cd3d63701d01b31ea748310f7ab854e471962670abcf57832"
       url: "https://pub.dev"
     source: hosted
-    version: "1.5.1"
+    version: "1.5.0"
   source_helper:
     dependency: transitive
     description:
