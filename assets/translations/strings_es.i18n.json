@@ -326,7 +326,7 @@
     "enableClashApi": "Habilitar API de choque",
     "clashApiPort": "Puerto API de choque",
     "enableTun": "Habilitar sintonización",
-    "setSystemProxy": "Establecer proxy del sistema",
+    "setSystemProxy": "stablecer proxy del sistema",
     "enableDnsRouting": "Habilitar enrutamiento DNS",
     "enableFakeDns": "Habilitar DNS falso",
     "bypassLan": "Omitir LAN",
