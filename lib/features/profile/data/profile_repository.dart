@@ -62,9 +62,7 @@ abstract interface class ProfileRepository {
   TaskEither<ProfileFailure, Unit> deleteById(String id);
 }
 
-class ProfileRepositoryImpl
-    with ExceptionHandler, InfraLogger
-    implements ProfileRepository {
+class ProfileRepositoryImpl with ExceptionHandler, InfraLogger implements ProfileRepository {
   ProfileRepositoryImpl({
     required this.profileDataSource,
     required this.profilePathResolver,
@@ -105,10 +103,7 @@ class ProfileRepositoryImpl
 
   @override
   Stream<Either<ProfileFailure, ProfileEntity?>> watchActiveProfile() {
-    return profileDataSource
-        .watchActiveProfile()
-        .map((event) => event?.toEntity())
-        .handleExceptions(
+    return profileDataSource.watchActiveProfile().map((event) => event?.toEntity()).handleExceptions(
       (error, stackTrace) {
         loggy.error("error watching active profile", error, stackTrace);
         return ProfileUnexpectedFailure(error, stackTrace);
@@ -118,10 +113,7 @@ class ProfileRepositoryImpl
 
   @override
   Stream<Either<ProfileFailure, bool>> watchHasAnyProfile() {
-    return profileDataSource
-        .watchProfilesCount()
-        .map((event) => event != 0)
-        .handleExceptions(ProfileUnexpectedFailure.new);
+    return profileDataSource.watchProfilesCount().map((event) => event != 0).handleExceptions(ProfileUnexpectedFailure.new);
   }
 
   @override
@@ -129,10 +121,7 @@ class ProfileRepositoryImpl
     ProfilesSort sort = ProfilesSort.lastUpdate,
     SortMode sortMode = SortMode.ascending,
   }) {
-    return profileDataSource
-        .watchAll(sort: sort, sortMode: sortMode)
-        .map((event) => event.map((e) => e.toEntity()).toList())
-        .handleExceptions(ProfileUnexpectedFailure.new);
+    return profileDataSource.watchAll(sort: sort, sortMode: sortMode).map((event) => event.map((e) => e.toEntity()).toList()).handleExceptions(ProfileUnexpectedFailure.new);
   }
 
   @override
@@ -143,14 +132,10 @@ class ProfileRepositoryImpl
   }) {
     return exceptionHandler(
       () async {
-        final existingProfile = await profileDataSource
-            .getByUrl(url)
-            .then((value) => value?.toEntity());
+        final existingProfile = await profileDataSource.getByUrl(url).then((value) => value?.toEntity());
         if (existingProfile case RemoteProfileEntity()) {
           loggy.info("profile with same url already exists, updating");
-          final baseProfile = markAsActive
-              ? existingProfile.copyWith(active: true)
-              : existingProfile;
+          final baseProfile = markAsActive ? existingProfile.copyWith(active: true) : existingProfile;
           return updateSubscription(
             baseProfile,
             cancelToken: cancelToken,
@@ -163,9 +148,7 @@ class ProfileRepositoryImpl
               (profile) => TaskEither(
                 () async {
                   await profileDataSource.insert(
-                    profile
-                        .copyWith(id: profileId, active: markAsActive)
-                        .toEntry(),
+                    profile.copyWith(id: profileId, active: markAsActive).toEntry(),
                   );
                   return right(unit);
                 },
@@ -188,10 +171,7 @@ class ProfileRepositoryImpl
   ) {
     return exceptionHandler(
       () {
-        return singbox
-            .validateConfigByPath(path, tempPath, debug)
-            .mapLeft(ProfileFailure.invalidConfig)
-            .run();
+        return singbox.validateConfigByPath(path, tempPath, debug).mapLeft(ProfileFailure.invalidConfig).run();
       },
       ProfileUnexpectedFailure.new,
     );
@@ -273,9 +253,7 @@ class ProfileRepositoryImpl
         final configFile = profilePathResolver.file(id);
         // TODO pass options
         return await $(
-          singbox
-              .generateFullConfigByPath(configFile.path)
-              .mapLeft(ProfileFailure.unexpected),
+          singbox.generateFullConfigByPath(configFile.path).mapLeft(ProfileFailure.unexpected),
         );
       },
     ).handleExceptions(ProfileFailure.unexpected);
@@ -296,9 +274,7 @@ class ProfileRepositoryImpl
             .flatMap(
               (remoteProfile) => TaskEither(
                 () async {
-                  final profilePatch = remoteProfile
-                      .subInfoPatch()
-                      .copyWith(lastUpdate: Value(DateTime.now()));
+                  final profilePatch = remoteProfile.subInfoPatch().copyWith(lastUpdate: Value(DateTime.now()));
 
                   await profileDataSource.edit(
                     baseProfile.id,
@@ -306,8 +282,7 @@ class ProfileRepositoryImpl
                         ? profilePatch.copyWith(
                             name: Value(baseProfile.name),
                             url: Value(baseProfile.url),
-                            updateInterval:
-                                Value(baseProfile.options?.updateInterval),
+                            updateInterval: Value(baseProfile.options?.updateInterval),
                           )
                         : profilePatch,
                   );
@@ -393,8 +368,7 @@ class ProfileRepositoryImpl
             tempFile.path,
             cancelToken: cancelToken,
           );
-          final headers =
-              await _populateHeaders(response.headers.map, tempFile.path);
+          final headers = await _populateHeaders(response.headers.map, tempFile.path);
           return await validateConfig(file.path, tempFile.path, false)
               .andThen(
                 () => TaskEither(() async {
@@ -444,15 +418,9 @@ class ProfileRepositoryImpl
       if (line.startsWith("#") || line.startsWith("//")) {
         final index = line.indexOf(':');
         if (index == -1) continue;
-        final key = line
-            .substring(0, index)
-            .replaceFirst(RegExp("^#|//"), "")
-            .trim()
-            .toLowerCase();
+        final key = line.substring(0, index).replaceFirst(RegExp("^#|//"), "").trim().toLowerCase();
         final value = line.substring(index + 1).trim();
-        if (!headers.keys.contains(key) &&
-            _subInfoHeaders.contains(key) &&
-            value.isNotEmpty) {
+        if (!headers.keys.contains(key) && _subInfoHeaders.contains(key) && value.isNotEmpty) {
           headers[key] = [value];
         }
       }

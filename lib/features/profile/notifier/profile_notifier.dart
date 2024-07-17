@@ -1,10 +1,17 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:hiddify/core/haptic/haptic_service.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/model/failures.dart';
 import 'package:hiddify/core/notification/in_app_notification_controller.dart';
 import 'package:hiddify/core/preferences/general_preferences.dart';
+import 'package:hiddify/core/preferences/preferences_provider.dart';
+import 'package:hiddify/features/common/adaptive_root_scaffold.dart';
+import 'package:hiddify/features/config_option/notifier/warp_option_notifier.dart';
+import 'package:hiddify/features/config_option/overview/warp_options_widgets.dart';
 import 'package:hiddify/features/connection/notifier/connection_notifier.dart';
 import 'package:hiddify/features/profile/data/profile_data_providers.dart';
 import 'package:hiddify/features/profile/data/profile_repository.dart';
@@ -53,6 +60,7 @@ class AddProfile extends _$AddProfile with AppLogger {
   Future<void> add(String rawInput) async {
     if (state.isLoading) return;
     state = const AsyncLoading();
+    // await check4Warp(rawInput);
     state = await AsyncValue.guard(
       () async {
         final activeProfile = await ref.read(activeProfileProvider.future);
@@ -99,6 +107,48 @@ class AddProfile extends _$AddProfile with AppLogger {
         ).run();
       },
     );
+  }
+
+  Future<void> check4Warp(String rawInput) async {
+    for (final line in rawInput.split("\n")) {
+      if (line.toLowerCase().startsWith("warp://")) {
+        final _prefs = ref.read(sharedPreferencesProvider).requireValue;
+        final _warp = ref.read(warpOptionNotifierProvider.notifier);
+
+        final consent = false && (_prefs.getBool(WarpOptionNotifier.warpConsentGiven) ?? false);
+
+        final t = ref.read(translationsProvider);
+        final notification = ref.read(inAppNotificationControllerProvider);
+
+        if (!consent) {
+          final agreed = await showDialog<bool>(
+            context: RootScaffold.stateKey.currentContext!,
+            builder: (context) => const WarpLicenseAgreementModal(),
+          );
+
+          if (agreed ?? false) {
+            await _prefs.setBool(WarpOptionNotifier.warpConsentGiven, true);
+            final toast = notification.showInfoToast(t.profile.add.addingWarpMsg, duration: const Duration(milliseconds: 100));
+            toast?.pause();
+            await _warp.generateWarpConfig();
+            toast?.start();
+          } else {
+            return;
+          }
+        }
+
+        final accountId = _prefs.getString("warp2-account-id");
+        final accessToken = _prefs.getString("warp2-access-token");
+        final hasWarp2Config = accountId != null && accessToken != null;
+
+        if (!hasWarp2Config || true) {
+          final toast = notification.showInfoToast(t.profile.add.addingWarpMsg, duration: const Duration(milliseconds: 100));
+          toast?.pause();
+          await _warp.generateWarp2Config();
+          toast?.start();
+        }
+      }
+    }
   }
 }
 
