@@ -77,7 +77,9 @@ class SingboxWarpOption with _$SingboxWarpOption {
     required String cleanIp,
     required int cleanPort,
     @OptionalRangeJsonConverter() required OptionalRange noise,
+    @OptionalRangeJsonConverter() required OptionalRange noiseSize,
     @OptionalRangeJsonConverter() required OptionalRange noiseDelay,
+    @OptionalRangeJsonConverter() required String noiseMode,
   }) = _SingboxWarpOption;
 
   factory SingboxWarpOption.fromJson(Map<String, dynamic> json) => _$SingboxWarpOptionFromJson(json);

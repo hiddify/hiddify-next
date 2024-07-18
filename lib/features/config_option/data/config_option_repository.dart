@@ -287,9 +287,19 @@ abstract class ConfigOptions {
     mapFrom: (value) => OptionalRange.parse(value, allowEmpty: true),
     mapTo: const OptionalRangeJsonConverter().toJson,
   );
+  static final warpNoiseMode = PreferencesNotifier.create<String, String>(
+    "warp-noise-mode",
+    "m6",
+  );
 
   static final warpNoiseDelay = PreferencesNotifier.create<OptionalRange, String>(
     "warp-noise-delay",
+    const OptionalRange(min: 10, max: 30),
+    mapFrom: (value) => OptionalRange.parse(value, allowEmpty: true),
+    mapTo: const OptionalRangeJsonConverter().toJson,
+  );
+  static final warpNoiseSize = PreferencesNotifier.create<OptionalRange, String>(
+    "warp-noise-size",
     const OptionalRange(min: 10, max: 30),
     mapFrom: (value) => OptionalRange.parse(value, allowEmpty: true),
     mapTo: const OptionalRangeJsonConverter().toJson,
@@ -380,6 +390,8 @@ abstract class ConfigOptions {
     "warp.clean-ip": warpCleanIp,
     "warp.clean-port": warpPort,
     "warp.noise": warpNoise,
+    "warp.noise-size": warpNoiseSize,
+    "warp.noise-mode": warpNoiseMode,
     "warp.noise-delay": warpNoiseDelay,
     "warp.wireguard-config": warpWireguardConfig,
     "warp2.license-key": warp2LicenseKey,
@@ -483,6 +495,8 @@ abstract class ConfigOptions {
           cleanIp: ref.watch(warpCleanIp),
           cleanPort: ref.watch(warpPort),
           noise: ref.watch(warpNoise),
+          noiseMode: ref.watch(warpNoiseMode),
+          noiseSize: ref.watch(warpNoiseSize),
           noiseDelay: ref.watch(warpNoiseDelay),
         ),
         warp2: SingboxWarpOption(
@@ -495,6 +509,8 @@ abstract class ConfigOptions {
           cleanIp: ref.watch(warpCleanIp),
           cleanPort: ref.watch(warpPort),
           noise: ref.watch(warpNoise),
+          noiseMode: ref.watch(warpNoiseMode),
+          noiseSize: ref.watch(warpNoiseSize),
           noiseDelay: ref.watch(warpNoiseDelay),
         ),
         // geoipPath: ref.watch(geoAssetPathResolverProvider).relativePath(

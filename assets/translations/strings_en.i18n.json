@@ -414,6 +414,8 @@
     "warpCleanIp": "Clean IP",
     "warpPort": "Port",
     "warpNoise": "Noise Count",
+    "warpNoiseSize": "Noise Size",
+    "warpNoiseMode": "Noise Mode",
     "warpNoiseDelay": "Noise Delay"
   }
 }
