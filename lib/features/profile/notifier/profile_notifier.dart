@@ -78,8 +78,7 @@ class AddProfile extends _$AddProfile with AppLogger {
           var name = parsed.name;
           var oldItem = await _profilesRepo.getByName(name);
           if (name == "Hiddify WARP" && oldItem != null) {
-            _profilesRepo.setAsActive(oldItem.id).run();
-            return unit;
+            _profilesRepo.deleteById(oldItem.id).run();
           }
           while (await _profilesRepo.getByName(name) != null) {
             name += '${randomInt(0, 9).run()}';

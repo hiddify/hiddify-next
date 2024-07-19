@@ -10,6 +10,7 @@ import 'package:hiddify/core/notification/in_app_notification_controller.dart';
 import 'package:hiddify/core/preferences/preferences_provider.dart';
 import 'package:hiddify/core/router/router.dart';
 import 'package:hiddify/features/common/qr_code_scanner_screen.dart';
+import 'package:hiddify/features/config_option/data/config_option_repository.dart';
 import 'package:hiddify/features/config_option/notifier/warp_option_notifier.dart';
 
 import 'package:hiddify/features/config_option/overview/warp_options_widgets.dart';
@@ -275,7 +276,11 @@ class AddProfileModal extends HookConsumerWidget {
     await _warp.generateWarp2Config();
     toast?.start();
     // }
-    await _profile.add("#profile-title: Hiddify WARP\nwarp://p1@auto#National&&detour=warp://p2@auto#WoW"); //
+    if (ref.read(ConfigOptions.region.notifier).raw() == "cn") {
+      await _profile.add("#profile-title: Hiddify WARP\nwarp://p1@auto#National&&detour=warp://p2@auto#WoW"); //
+    } else {
+      await _profile.add("https://raw.githubusercontent.com/hiddify/hiddify-next/main/test.configs/warp"); //
+    }
   }
 }
 

@@ -83,19 +83,19 @@ abstract class ConfigOptions {
 
   static final mixedPort = PreferencesNotifier.create<int, int>(
     "mixed-port",
-    2334,
+    12334,
     validator: (value) => isPort(value.toString()),
   );
 
   static final tproxyPort = PreferencesNotifier.create<int, int>(
     "tproxy-port",
-    2335,
+    12335,
     validator: (value) => isPort(value.toString()),
   );
 
   static final localDnsPort = PreferencesNotifier.create<int, int>(
     "local-dns-port",
-    6450,
+    16450,
     validator: (value) => isPort(value.toString()),
   );
 
@@ -130,7 +130,7 @@ abstract class ConfigOptions {
 
   static final clashApiPort = PreferencesNotifier.create<int, int>(
     "clash-api-port",
-    6756,
+    16756,
     validator: (value) => isPort(value.toString()),
   );
 
