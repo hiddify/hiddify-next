@@ -414,6 +414,13 @@ abstract class ConfigOptions {
       //         outbound: RuleOutbound.bypass,
       //       ),
       //     ],
+      //   Region.id => [
+      //       const SingboxRule(
+      //         domains: "domain:.id,geosite:id",
+      //         ip: "geoip:id",
+      //         outbound: RuleOutbound.bypass,
+      //       ),
+      //     ],
       //   _ => <SingboxRule>[],
       // };
 
