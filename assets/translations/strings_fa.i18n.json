@@ -411,6 +411,8 @@
     "warpCleanIp": "آی‌پی تمیز",
     "warpPort": "پورت",
     "warpNoise": "تعداد نویز",
+    "warpNoiseSize": "اندازه نویز",
+    "warpNoiseMode": "حالت نویز",
     "warpNoiseDelay": "تأخیر نویز"
   }
 }
