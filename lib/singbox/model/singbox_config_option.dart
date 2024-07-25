@@ -17,6 +17,8 @@ class SingboxConfigOption with _$SingboxConfigOption {
   @JsonSerializable(fieldRename: FieldRename.kebab)
   const factory SingboxConfigOption({
     required String region,
+    required bool cloudflareSpeedTest,
+    required int cloudflareNumber,
     required bool blockAds,
     required bool executeConfigAsIs,
     required LogLevel logLevel,
@@ -36,6 +38,7 @@ class SingboxConfigOption with _$SingboxConfigOption {
     @IntervalInSecondsConverter() required Duration urlTestInterval,
     required bool enableClashApi,
     required int clashApiPort,
+    required String webSecret,
     required bool enableTun,
     required bool enableTunService,
     required bool setSystemProxy,

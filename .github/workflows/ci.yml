@@ -8,7 +8,7 @@ on:
       - 'appcast.xml'
   push:
     branches:
-       - main
+      #  - main
        - dev
        - android-fix-action-bug
     paths-ignore:

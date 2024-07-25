@@ -32,6 +32,17 @@ abstract class ConfigOptions {
     mapTo: (value) => value.name,
   );
 
+  static final cloudflareSpeedTest = PreferencesNotifier.create<bool, bool>(
+    "cloudflare-speed-test",
+    false,
+  );
+
+  static final cloudflareNumber = PreferencesNotifier.create<int, int>(
+    "cloudflare-number",
+    200,
+    validator: (value) => value > 10,
+  );
+
   static final blockAds = PreferencesNotifier.create<bool, bool>(
     "block-ads",
     false,
@@ -57,7 +68,7 @@ abstract class ConfigOptions {
 
   static final remoteDnsAddress = PreferencesNotifier.create<String, String>(
     "remote-dns-address",
-    "udp://1.1.1.1",
+    "tls://8.8.8.8",
     validator: (value) => value.isNotBlank,
   );
 
@@ -70,7 +81,7 @@ abstract class ConfigOptions {
 
   static final directDnsAddress = PreferencesNotifier.create<String, String>(
     "direct-dns-address",
-    "1.1.1.1",
+    "local",
     validator: (value) => value.isNotBlank,
   );
 
@@ -132,6 +143,11 @@ abstract class ConfigOptions {
     "clash-api-port",
     16756,
     validator: (value) => isPort(value.toString()),
+  );
+
+  static final webSecret = PreferencesNotifier.create<String, String>(
+    "web-secret",
+    "hiddifynext",
   );
 
   static final bypassLan = PreferencesNotifier.create<bool, bool>("bypass-lan", false);
@@ -326,6 +342,8 @@ abstract class ConfigOptions {
 
   static final Map<String, StateNotifierProvider<PreferencesNotifier, dynamic>> preferences = {
     "region": region,
+    "cloudflare-speed-test": cloudflareSpeedTest,
+    "cloudflare-number": cloudflareNumber,
     "block-ads": blockAds,
     "service-mode": serviceMode,
     "log-level": logLevel,
@@ -344,6 +362,7 @@ abstract class ConfigOptions {
     "connection-test-url": connectionTestUrl,
     "url-test-interval": urlTestInterval,
     "clash-api-port": clashApiPort,
+    "web-secret": webSecret,
     "bypass-lan": bypassLan,
     "allow-connection-from-lan": allowConnectionFromLan,
     "enable-dns-routing": enableDnsRouting,
@@ -429,6 +448,8 @@ abstract class ConfigOptions {
 
       return SingboxConfigOption(
         region: ref.watch(region).name,
+        cloudflareSpeedTest: ref.watch(cloudflareSpeedTest),
+        cloudflareNumber: ref.watch(cloudflareNumber),
         blockAds: ref.watch(blockAds),
         executeConfigAsIs: false,
         logLevel: ref.watch(logLevel),
@@ -448,6 +469,7 @@ abstract class ConfigOptions {
         urlTestInterval: ref.watch(urlTestInterval),
         enableClashApi: ref.watch(enableClashApi),
         clashApiPort: ref.watch(clashApiPort),
+        webSecret: ref.watch(webSecret),
         enableTun: mode == ServiceMode.tun,
         enableTunService: mode == ServiceMode.tunService,
         setSystemProxy: mode == ServiceMode.systemProxy,

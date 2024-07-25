@@ -1,5 +1,10 @@
 name: Build
 on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - dev
   workflow_call:
     inputs:
       upload-artifact:
@@ -11,13 +16,16 @@ on:
       channel:
         type: string
         default: "dev"
+      apple:
+        type: boolean
+        default: false
 
 env:
   IS_GITHUB_ACTIONS: 1
   CHANNEL: "${{ inputs.channel }}"
   FLUTTER_VERSION: '3.22.3'
   NDK_VERSION: r26d
-  UPLOAD_ARTIFACT: "${{ inputs.upload-artifact }}"
+  UPLOAD_ARTIFACT: true
   TAG_NAME: "${{ inputs.tag-name }}"
   TARGET_NAME_AppImage: "Hiddify-Linux-x64"
   TARGET_NAME_deb: "Hiddify-Debian-x64"
@@ -92,14 +100,14 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
       - name: Import Apple Codesign Certificates
-        if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') }}
+        if: ${{ inputs.apple && startsWith(matrix.os,'macos') }}
         uses: apple-actions/import-codesign-certs@v2
         with: 
             p12-file-base64: "${{ secrets.APPLE_CERTIFICATE_P12 }}"
             p12-password: "${{ secrets.APPLE_CERTIFICATE_P12_PASSWORD }}"
 
       - name: Import Apple Mobile Provisioning Profile
-        if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') }}
+        if: ${{ inputs.apple && startsWith(matrix.os,'macos') }}
         run: |
            mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
            echo "${{secrets.APPLE_MOBILE_PROVISIONING_PROFILES_TARGZ_BASE64}}"|base64 --decode | tar xz -C ~/Library/MobileDevice/Provisioning\ Profiles
@@ -145,7 +153,7 @@ jobs:
       - name: Setup Android Signing Properties
         if: ${{ inputs.upload-artifact && startsWith(matrix.platform,'android') }}
         run: |
-          echo "${{ secrets.ANDROID_SIGNING_KEY }}" | base64 --decode > android/key.jks
+          # echo "${{ secrets.ANDROID_SIGNING_KEY }}" | base64 --decode > android/key.jks
           echo "storeFile=$(pwd)/android/key.jks" > android/key.properties
           echo "storePassword=${{ secrets.ANDROID_SIGNING_STORE_PASSWORD }}" >> android/key.properties
           echo "keyPassword=${{ secrets.ANDROID_SIGNING_KEY_PASSWORD }}" >> android/key.properties
@@ -275,7 +283,7 @@ jobs:
           rm ~/Library/MobileDevice/Provisioning\ Profiles/build_pp.mobileprovision ||echo ok
   update-draft:
     permissions: write-all
-    if: ${{ inputs.upload-artifact }}
+    # if: ${{ inputs.upload-artifact }}
     needs: [build]
     runs-on: ubuntu-latest
     steps:
@@ -323,6 +331,7 @@ jobs:
           tag_name: 'draft'
           body_path: './release.md'
           prerelease: true
+
   upload-release:
     permissions: write-all
     if: ${{ inputs.upload-artifact && inputs.tag-name != 'draft' }}

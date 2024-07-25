@@ -1323,7 +1323,7 @@
 /* Begin XCRemoteSwiftPackageReference section */
 		684380FC2B57068900C06CAA /* XCRemoteSwiftPackageReference "hiddify-next-core" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/hiddify/hiddify-next-core.git";
+			repositoryURL = "https://github.com/donnanszex7654/hiddify-core.git";
 			requirement = {
 				branch = main;
 				kind = branch;

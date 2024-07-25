@@ -148,6 +148,18 @@ class ConfigOptionsPage extends HookConsumerWidget {
                     presentChoice: (value) => value.present(t),
                   ),
                   SwitchListTile(
+                    title: Text(t.config.cloudflareSpeedTest),
+                    value: ref.watch(ConfigOptions.cloudflareSpeedTest),
+                    onChanged: ref.watch(ConfigOptions.cloudflareSpeedTest.notifier).update,
+                  ),
+                  ValuePreferenceWidget(
+                    value: ref.watch(ConfigOptions.cloudflareNumber),
+                    preferences: ref.watch(ConfigOptions.cloudflareNumber.notifier),
+                    title: t.config.cloudflareNumber,
+                    inputToValue: int.tryParse,
+                    digitsOnly: true,
+                  ),
+                  SwitchListTile(
                     title: Text(experimental(t.config.blockAds)),
                     value: ref.watch(ConfigOptions.blockAds),
                     onChanged: ref.watch(ConfigOptions.blockAds.notifier).update,
@@ -355,6 +367,11 @@ class ConfigOptionsPage extends HookConsumerWidget {
                     validateInput: isPort,
                     digitsOnly: true,
                     inputToValue: int.tryParse,
+                  ),
+                  ValuePreferenceWidget(
+                    title: t.config.webSecret,
+                    value: ref.watch(ConfigOptions.webSecret),
+                    preferences: ref.watch(ConfigOptions.webSecret.notifier),
                   ),
                   const Gap(24),
                 ],
