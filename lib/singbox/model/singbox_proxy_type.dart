@@ -21,6 +21,7 @@ enum ProxyType {
   selector("Selector"),
   urltest("URLTest"),
   warp("Warp"),
+  xray("XRay"),
   unknown("Unknown");
 
   const ProxyType(this.label);
