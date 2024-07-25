@@ -2038,4 +2038,4 @@ packages:
     version: "2.1.1"
 sdks:
   dart: ">=3.3.0 <4.0.0"
-  flutter: ">=3.22.2"
+  flutter: ">=3.22.3"
