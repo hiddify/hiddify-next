@@ -274,7 +274,7 @@ class ProfileRepositoryImpl with ExceptionHandler, InfraLogger implements Profil
             .flatMap(
               (remoteProfile) => TaskEither(
                 () async {
-                  final profilePatch = remoteProfile.subInfoPatch().copyWith(lastUpdate: Value(DateTime.now()));
+                  final profilePatch = remoteProfile.subInfoPatch().copyWith(lastUpdate: Value(DateTime.now()), active: Value(baseProfile.active));
 
                   await profileDataSource.edit(
                     baseProfile.id,

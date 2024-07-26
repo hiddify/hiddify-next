@@ -244,6 +244,7 @@ class AddProfileModal extends HookConsumerWidget {
     final _warp = ref.read(warpOptionNotifierProvider.notifier);
     final _profile = ref.read(addProfileProvider.notifier);
     final consent = (_prefs.getBool(warpConsentGiven) ?? false);
+    final region = ref.read(ConfigOptions.region.notifier).raw();
     context.pop();
 
     final t = ref.read(translationsProvider);
@@ -276,7 +277,7 @@ class AddProfileModal extends HookConsumerWidget {
     await _warp.generateWarp2Config();
     toast?.start();
     // }
-    if (ref.read(ConfigOptions.region.notifier).raw() == "cn") {
+    if (region == "cn") {
       await _profile.add("#profile-title: Hiddify WARP\nwarp://p1@auto#National&&detour=warp://p2@auto#WoW"); //
     } else {
       await _profile.add("https://raw.githubusercontent.com/hiddify/hiddify-next/main/test.configs/warp"); //
