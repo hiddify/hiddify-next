@@ -45,12 +45,12 @@ abstract class ConfigOptions {
 
   static final resolveDestination = PreferencesNotifier.create<bool, bool>(
     "resolve-destination",
-    false,
+    true,
   );
 
   static final ipv6Mode = PreferencesNotifier.create<IPv6Mode, String>(
     "ipv6-mode",
-    IPv6Mode.disable,
+    IPv6Mode.enable,
     mapFrom: (value) => IPv6Mode.values.firstWhere((e) => e.key == value),
     mapTo: (value) => value.key,
   );
