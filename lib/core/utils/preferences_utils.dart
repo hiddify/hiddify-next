@@ -106,12 +106,36 @@ class PreferencesNotifier<T, P> extends StateNotifier<T> {
   static StateNotifierProvider<PreferencesNotifier<T, P>, T> create<T, P>(
     String key,
     T defaultValue, {
+    T Function(Ref ref)? defaultValueFunction,
     T Function(P value)? mapFrom,
     P Function(T value)? mapTo,
     bool Function(T value)? validator,
     T? overrideValue,
   }) =>
       StateNotifierProvider(
+        (ref) => PreferencesNotifier._(
+          ref: ref,
+          entry: PreferencesEntry<T, P>(
+            preferences: ref.read(sharedPreferencesProvider).requireValue,
+            key: key,
+            defaultValue: defaultValueFunction?.call(ref) ?? defaultValue,
+            mapFrom: mapFrom,
+            mapTo: mapTo,
+            validator: validator,
+          ),
+          overrideValue: overrideValue,
+        ),
+      );
+
+  static AutoDisposeStateNotifierProvider<PreferencesNotifier<T, P>, T> createAutoDispose<T, P>(
+    String key,
+    T defaultValue, {
+    T Function(P value)? mapFrom,
+    P Function(T value)? mapTo,
+    bool Function(T value)? validator,
+    T? overrideValue,
+  }) =>
+      StateNotifierProvider.autoDispose(
         (ref) => PreferencesNotifier._(
           ref: ref,
           entry: PreferencesEntry<T, P>(
@@ -125,30 +149,6 @@ class PreferencesNotifier<T, P> extends StateNotifier<T> {
           overrideValue: overrideValue,
         ),
       );
-
-  static AutoDisposeStateNotifierProvider<PreferencesNotifier<T, P>, T>
-      createAutoDispose<T, P>(
-    String key,
-    T defaultValue, {
-    T Function(P value)? mapFrom,
-    P Function(T value)? mapTo,
-    bool Function(T value)? validator,
-    T? overrideValue,
-  }) =>
-          StateNotifierProvider.autoDispose(
-            (ref) => PreferencesNotifier._(
-              ref: ref,
-              entry: PreferencesEntry<T, P>(
-                preferences: ref.read(sharedPreferencesProvider).requireValue,
-                key: key,
-                defaultValue: defaultValue,
-                mapFrom: mapFrom,
-                mapTo: mapTo,
-                validator: validator,
-              ),
-              overrideValue: overrideValue,
-            ),
-          );
 
   P raw() {
     final value = overrideValue ?? state;

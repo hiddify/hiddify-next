@@ -124,6 +124,7 @@ class IntroPage extends HookConsumerWidget with PresLogger {
         'Timezone Region: ${regionLocale.region} Locale: ${regionLocale.locale}',
       );
       await ref.read(ConfigOptions.region.notifier).update(regionLocale.region);
+      await ref.watch(ConfigOptions.directDnsAddress.notifier).reset();
       await ref.read(localePreferencesProvider.notifier).changeLocale(regionLocale.locale);
       return;
     } catch (e) {

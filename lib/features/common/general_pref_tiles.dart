@@ -84,7 +84,10 @@ class RegionPrefTile extends HookConsumerWidget {
         );
         if (selectedRegion != null) {
           // await ref.read(Preferences.region.notifier).update(selectedRegion);
+
           await ref.watch(ConfigOptions.region.notifier).update(selectedRegion);
+
+          await ref.watch(ConfigOptions.directDnsAddress.notifier).reset();
 
           // await ref.read(configOptionNotifierProvider.notifier).build();
           // await ref.watch(ConfigOptions.resolveDestination.notifier).update(!ref.watch(ConfigOptions.resolveDestination.notifier).raw());

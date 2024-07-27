@@ -71,6 +71,7 @@ abstract class ConfigOptions {
   static final directDnsAddress = PreferencesNotifier.create<String, String>(
     "direct-dns-address",
     "1.1.1.1",
+    defaultValueFunction: (ref) => ref.read(region) == Region.cn ? "223.5.5.5" : "1.1.1.1",
     validator: (value) => value.isNotBlank,
   );
 
