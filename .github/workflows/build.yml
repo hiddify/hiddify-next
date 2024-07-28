@@ -59,28 +59,28 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - platform: android-apk
-            os: ubuntu-latest
-            targets: apk
+          # - platform: android-apk
+          #   os: ubuntu-latest
+          #   targets: apk
 
-          - platform: android-aab
-            os: ubuntu-latest
-            targets: aab
+          # - platform: android-aab
+          #   os: ubuntu-latest
+          #   targets: aab
 
-          - platform: windows
-            os: windows-2019
-            aarch: amd64
-            targets: exe,msix
+          # - platform: windows
+          #   os: windows-2019
+          #   aarch: amd64
+          #   targets: exe,msix
 
-          - platform: linux
-            os: ubuntu-22.04
-            aarch: amd64
-            targets: AppImage,deb,rpm
+          # - platform: linux
+          #   os: ubuntu-22.04
+          #   aarch: amd64
+          #   targets: AppImage,deb,rpm
 
-          - platform: macos
-            os: macos-13
-            aarch: universal
-            targets: dmg,pkg
+          # - platform: macos
+          #   os: macos-13
+          #   aarch: universal
+          #   targets: dmg,pkg
             
           - platform: ios
             os: macos-13
@@ -95,8 +95,8 @@ jobs:
         if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') }}
         uses: apple-actions/import-codesign-certs@v2
         with: 
-            p12-file-base64: "${{ secrets.NEW_APPLE_CERTIFICATE_P12 }}"
-            p12-password: "${{ secrets.NEW_APPLE_CERTIFICATE_P12_PASSWORD }}"
+            p12-file-base64: "${{ secrets.APPLE_CERTIFICATE_P12 }}"
+            p12-password: "${{ secrets.APPLE_CERTIFICATE_P12_PASSWORD }}"
 
       - name: Import Apple Mobile Provisioning Profile
         if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') }}
