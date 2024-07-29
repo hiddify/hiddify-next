@@ -21,7 +21,7 @@ class AppDatabase extends _$AppDatabase with InfraLogger {
   AppDatabase.connect() : super(openConnection());
 
   @override
-  int get schemaVersion => 3;
+  int get schemaVersion => 4;
 
   @override
   MigrationStrategy get migration {
@@ -47,6 +47,9 @@ class AppDatabase extends _$AppDatabase with InfraLogger {
         from2To3: (m, schema) async {
           await m.createTable(schema.geoAssetEntries);
           await _prePopulateGeoAssets();
+        },
+        from3To4: (m, schema) async {
+          await m.addColumn(profileEntries, profileEntries.testUrl);
         },
       ),
       beforeOpen: (details) async {

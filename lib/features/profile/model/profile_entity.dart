@@ -15,6 +15,7 @@ sealed class ProfileEntity with _$ProfileEntity {
     required String name,
     required String url,
     required DateTime lastUpdate,
+    String? testUrl,
     ProfileOptions? options,
     SubscriptionInfo? subInfo,
   }) = RemoteProfileEntity;
@@ -24,6 +25,7 @@ sealed class ProfileEntity with _$ProfileEntity {
     required bool active,
     required String name,
     required DateTime lastUpdate,
+    String? testUrl,
   }) = LocalProfileEntity;
 }
 

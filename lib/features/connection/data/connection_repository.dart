@@ -22,12 +22,14 @@ abstract interface class ConnectionRepository {
     String fileName,
     String profileName,
     bool disableMemoryLimit,
+    String? testUrl,
   );
   TaskEither<ConnectionFailure, Unit> disconnect();
   TaskEither<ConnectionFailure, Unit> reconnect(
     String fileName,
     String profileName,
     bool disableMemoryLimit,
+    String? testUrl,
   );
 }
 
@@ -101,11 +103,16 @@ class ConnectionRepositoryImpl with ExceptionHandler, InfraLogger implements Con
   @visibleForTesting
   TaskEither<ConnectionFailure, Unit> applyConfigOption(
     SingboxConfigOption options,
+    String? testUrl,
   ) {
     return exceptionHandler(
       () {
         _configOptionsSnapshot = options;
-        return singbox.changeOptions(options).mapLeft(InvalidConfigOption.new).run();
+        var newOptions = options;
+        if (testUrl != null) {
+          newOptions = options.copyWith(connectionTestUrl: testUrl);
+        }
+        return singbox.changeOptions(newOptions).mapLeft(InvalidConfigOption.new).run();
       },
       UnexpectedConnectionFailure.new,
     );
@@ -138,10 +145,11 @@ class ConnectionRepositoryImpl with ExceptionHandler, InfraLogger implements Con
     String fileName,
     String profileName,
     bool disableMemoryLimit,
+    String? testUrl,
   ) {
     return TaskEither<ConnectionFailure, Unit>.Do(
       ($) async {
-        final options = await $(getConfigOption());
+        var options = await $(getConfigOption());
         loggy.info(
           "config options: ${options.format()}\nMemory Limit: ${!disableMemoryLimit}",
         );
@@ -159,7 +167,7 @@ class ConnectionRepositoryImpl with ExceptionHandler, InfraLogger implements Con
           }),
         );
         await $(setup());
-        await $(applyConfigOption(options));
+        await $(applyConfigOption(options, testUrl));
         return await $(
           singbox
               .start(
@@ -203,23 +211,26 @@ class ConnectionRepositoryImpl with ExceptionHandler, InfraLogger implements Con
     String fileName,
     String profileName,
     bool disableMemoryLimit,
+    String? testUrl,
   ) {
-    return exceptionHandler(
-      () async {
-        return getConfigOption()
-            .flatMap((options) => applyConfigOption(options))
-            .andThen(
-              () => singbox
-                  .restart(
-                    profilePathResolver.file(fileName).path,
-                    profileName,
-                    disableMemoryLimit,
-                  )
-                  .mapLeft(UnexpectedConnectionFailure.new),
-            )
-            .run();
+    return TaskEither<ConnectionFailure, Unit>.Do(
+      ($) async {
+        var options = await $(getConfigOption());
+        loggy.info(
+          "config options: ${options.format()}\nMemory Limit: ${!disableMemoryLimit}",
+        );
+
+        await $(applyConfigOption(options, testUrl));
+        return await $(
+          singbox
+              .restart(
+                profilePathResolver.file(fileName).path,
+                profileName,
+                disableMemoryLimit,
+              )
+              .mapLeft(UnexpectedConnectionFailure.new),
+        );
       },
-      UnexpectedConnectionFailure.new,
-    );
+    ).handleExceptions(UnexpectedConnectionFailure.new);
   }
 }

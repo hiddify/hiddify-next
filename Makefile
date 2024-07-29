@@ -39,7 +39,7 @@ DISTRIBUTOR_ARGS=--skip-clean --build-target $(TARGET) --build-dart-define sentr
 
 
 
-get:
+get:	
 	flutter pub get
 
 gen:

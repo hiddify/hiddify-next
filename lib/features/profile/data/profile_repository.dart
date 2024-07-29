@@ -282,6 +282,7 @@ class ProfileRepositoryImpl with ExceptionHandler, InfraLogger implements Profil
                         ? profilePatch.copyWith(
                             name: Value(baseProfile.name),
                             url: Value(baseProfile.url),
+                            testUrl: Value(baseProfile.testUrl),
                             updateInterval: Value(baseProfile.options?.updateInterval),
                           )
                         : profilePatch,
@@ -349,6 +350,7 @@ class ProfileRepositoryImpl with ExceptionHandler, InfraLogger implements Profil
     'profile-update-interval',
     'support-url',
     'profile-web-page-url',
+    'test-url',
   ];
 
   @visibleForTesting

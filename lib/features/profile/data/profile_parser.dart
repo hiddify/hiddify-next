@@ -24,14 +24,12 @@ abstract class ProfileParser {
     var name = '';
     if (headers['profile-title'] case [final titleHeader]) {
       if (titleHeader.startsWith("base64:")) {
-        name =
-            utf8.decode(base64.decode(titleHeader.replaceFirst("base64:", "")));
+        name = utf8.decode(base64.decode(titleHeader.replaceFirst("base64:", "")));
       } else {
         name = titleHeader.trim();
       }
     }
-    if (headers['content-disposition'] case [final contentDispositionHeader]
-        when name.isEmpty) {
+    if (headers['content-disposition'] case [final contentDispositionHeader] when name.isEmpty) {
       final regExp = RegExp('filename="([^"]*)"');
       final match = regExp.firstMatch(contentDispositionHeader);
       if (match != null && match.groupCount >= 1) {
@@ -52,19 +50,20 @@ abstract class ProfileParser {
       final updateInterval = Duration(hours: int.parse(updateIntervalStr));
       options = ProfileOptions(updateInterval: updateInterval);
     }
-
+    String? testUrl;
+    if (headers['test-url'] case [final testUrl_] when isUrl(testUrl_)) {
+      testUrl = testUrl_;
+    }
     SubscriptionInfo? subInfo;
     if (headers['subscription-userinfo'] case [final subInfoStr]) {
       subInfo = parseSubscriptionInfo(subInfoStr);
     }
 
     if (subInfo != null) {
-      if (headers['profile-web-page-url'] case [final profileWebPageUrl]
-          when isUrl(profileWebPageUrl)) {
+      if (headers['profile-web-page-url'] case [final profileWebPageUrl] when isUrl(profileWebPageUrl)) {
         subInfo = subInfo.copyWith(webPageUrl: profileWebPageUrl);
       }
-      if (headers['support-url'] case [final profileSupportUrl]
-          when isUrl(profileSupportUrl)) {
+      if (headers['support-url'] case [final profileSupportUrl] when isUrl(profileSupportUrl)) {
         subInfo = subInfo.copyWith(supportUrl: profileSupportUrl);
       }
     }
@@ -77,23 +76,16 @@ abstract class ProfileParser {
       lastUpdate: DateTime.now(),
       options: options,
       subInfo: subInfo,
+      testUrl: testUrl,
     );
   }
 
   static SubscriptionInfo? parseSubscriptionInfo(String subInfoStr) {
     final values = subInfoStr.split(';');
     final map = {
-      for (final v in values)
-        v.split('=').first.trim():
-            num.tryParse(v.split('=').second.trim())?.toInt(),
+      for (final v in values) v.split('=').first.trim(): num.tryParse(v.split('=').second.trim())?.toInt(),
     };
-    if (map
-        case {
-          "upload": final upload?,
-          "download": final download?,
-          "total": var total,
-          "expire": var expire
-        }) {
+    if (map case {"upload": final upload?, "download": final download?, "total": var total, "expire": var expire}) {
       total = (total == null || total == 0) ? infiniteTrafficThreshold : total;
       expire = (expire == null || expire == 0) ? infiniteTimeThreshold : expire;
       return SubscriptionInfo(
