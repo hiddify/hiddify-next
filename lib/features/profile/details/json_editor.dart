@@ -426,6 +426,7 @@ class _JsonEditorState extends State<JsonEditor> {
                 ),
                 child: Row(
                   children: [
+                    const Text('Config Editor:  '),
                     if (!widget.hideEditorsMenuButton)
                       PopupMenuButton<Editors>(
                         initialValue: _editor,
@@ -554,8 +555,9 @@ class _JsonEditorState extends State<JsonEditor> {
                 child: TextFormField(
                   controller: _controller,
                   onChanged: parseData,
-                  maxLines: 10,
-                  // expands: true,
+                  maxLines: null,
+                  minLines: null,
+                  expands: true,
                   textAlignVertical: TextAlignVertical.top,
                   decoration: const InputDecoration(
                     border: InputBorder.none,

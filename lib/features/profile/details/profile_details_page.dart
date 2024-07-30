@@ -274,7 +274,7 @@ class ProfileDetailsPage extends HookConsumerWidget with PresLogger {
                           ],
                           if (state.isEditing) ...[
                             SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.8,
+                              height: MediaQuery.of(context).size.height * 0.9,
                               child: JsonEditor(
                                 expandedObjects: const ["outbounds"],
                                 onChanged: (value) {
