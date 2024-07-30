@@ -4,8 +4,7 @@ import 'package:hiddify/features/profile/model/profile_entity.dart';
 
 void main() {
   const validBaseUrl = "https://example.com/configurations/user1/filename.yaml";
-  const validExtendedUrl =
-      "https://example.com/configurations/user1/filename.yaml?test#b";
+  const validExtendedUrl = "https://example.com/configurations/user1/filename.yaml?test#b";
   const validSupportUrl = "https://example.com/support";
 
   group(
@@ -41,6 +40,7 @@ void main() {
           final headers = <String, List<String>>{
             "profile-title": ["base64:ZXhhbXBsZVRpdGxl"],
             "profile-update-interval": ["1"],
+            "test-url": [validBaseUrl],
             "subscription-userinfo": [
               "upload=0;download=1024;total=10240.5;expire=1704054600.55",
             ],
@@ -51,6 +51,7 @@ void main() {
 
           expect(profile.name, equals("exampleTitle"));
           expect(profile.url, equals(validExtendedUrl));
+          expect(profile.testUrl, equals(validBaseUrl));
           expect(
             profile.options,
             equals(const ProfileOptions(updateInterval: Duration(hours: 1))),
