@@ -965,7 +965,7 @@ class _ReplaceTextWithFieldState extends State<_ReplaceTextWithField> {
   Widget wrapWithColoredBox(String keyName) {
     if (widget.isHighlighted) {
       return ColoredBox(
-        color: Colors.amber,
+        color: Theme.of(context).colorScheme.errorContainer,
         child: Text(keyName, style: _textStyle),
       );
     }
@@ -993,7 +993,7 @@ class _ReplaceTextWithFieldState extends State<_ReplaceTextWithField> {
     } else if (widget.initialValue is num) {
       _constraints = const BoxConstraints(minWidth: 20, maxWidth: 80);
     } else {
-      _constraints = const BoxConstraints(minWidth: 20, maxWidth: 200);
+      _constraints = const BoxConstraints(minWidth: 20, maxWidth: 400);
     }
 
     _focusNode.addListener(handleChange);
@@ -1059,8 +1059,8 @@ class _ReplaceTextWithFieldState extends State<_ReplaceTextWithField> {
             });
             _focusNode.requestFocus();
           },
-          mouseCursor: MaterialStateMouseCursor.textable,
-          child: widget.initialValue is String && _text.isEmpty ? const SizedBox(width: 200, height: 18) : wrapWithColoredBox(_text),
+          mouseCursor: WidgetStateMouseCursor.textable,
+          child: widget.initialValue is String && _text.isEmpty ? const SizedBox(width: 400, height: 18) : wrapWithColoredBox(_text),
         );
       }
     }
@@ -1229,6 +1229,7 @@ class _SearchField extends StatelessWidget {
           TextField(
             onChanged: onChanged,
             autocorrect: false,
+            autofocus: true,
             cursorWidth: 1,
             // style: _textStyle,
             cursorHeight: 12,

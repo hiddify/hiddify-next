@@ -86,6 +86,10 @@ class ProfileDetailsNotifier extends _$ProfileDetailsNotifier with AppLogger {
     String? configContent,
   }) {
     if (state case AsyncData(:final value)) {
+      final configContentChanged = value.configContentChanged || value.configContent != configContent;
+      // if (!configContentChanged) {
+      //   return;
+      // }
       state = AsyncData(
         value.copyWith(
           profile: value.profile.map(
@@ -103,7 +107,7 @@ class ProfileDetailsNotifier extends _$ProfileDetailsNotifier with AppLogger {
             ),
             local: (lp) => lp.copyWith(name: name ?? lp.name),
           ),
-          configContentChanged: value.configContentChanged || value.configContent != configContent,
+          configContentChanged: configContentChanged,
           configContent: configContent ?? value.configContent,
         ),
       );
