@@ -60,34 +60,34 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - platform: android-apk
-            os: ubuntu-latest
-            targets: apk
+          # - platform: android-apk
+          #   os: ubuntu-latest
+          #   targets: apk
 
-          - platform: android-aab
-            os: ubuntu-latest
-            targets: aab
+          # - platform: android-aab
+          #   os: ubuntu-latest
+          #   targets: aab
 
-          - platform: windows
-            os: windows-2019
-            aarch: amd64
-            targets: exe,msix
+          # - platform: windows
+          #   os: windows-2019
+          #   aarch: amd64
+          #   targets: exe,msix
 
-          - platform: linux
-            os: ubuntu-22.04
-            aarch: amd64
-            targets: AppImage,deb,rpm
+          # - platform: linux
+          #   os: ubuntu-22.04
+          #   aarch: amd64
+          #   targets: AppImage,deb,rpm
 
-          - platform: macos
-            os: macos-13
-            aarch: universal
-            targets: dmg,pkg
-            
-          # - platform: ios
+          # - platform: macos
           #   os: macos-13
           #   aarch: universal
-          #   filename: hiddify-ios
-          #   targets: ipa
+          #   targets: dmg,pkg
+            
+          - platform: ios
+            os: macos-13
+            aarch: universal
+            filename: hiddify-ios
+            targets: ipa
     runs-on: ${{ matrix.os }}
     steps:
       - name: checkout
@@ -104,7 +104,7 @@ jobs:
         if: ${{ inputs.upload-artifact && startsWith(matrix.os,'macos') }}
         run: |
            mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-           echo "${{secrets.NEW_APPLE_MOBILE_PROVISIONING_PROFILES_TARGZ_BASE64}}"|base64 --decode | tar xJ -C ~/Library/MobileDevice/Provisioning\ Profiles
+           echo "${{secrets.NEW_APPLE_MOBILE_PROVISIONING_PROFILES_TARXZ_BASE64}}"|base64 --decode | tar xJ -C ~/Library/MobileDevice/Provisioning\ Profiles
 
         #   # echo "${{secrets.NEW_APPLE_MOBILE_PROVISIONING_PROFILES_TARGZ_BASE64_2}}"|base64 --decode | tar xz -C ~/Library/MobileDevice/Provisioning\ Profiles
         #   # echo "${{secrets.APPLE_DEVLOP_PROVISIONING_PROFILES_TARGZ_BASE64}}"|base64 --decode | tar xz -C ~/Library/MobileDevice/Provisioning\ Profiles
@@ -416,7 +416,8 @@ jobs:
       - name: Import Apple Mobile Provisioning Profile
         run: |
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          echo "${{secrets.APPLE_DIST_PROVISIONING_PROFILES_TARGZ_BASE64}}"|base64 --decode | tar xz -C ~/Library/MobileDevice/Provisioning\ Profiles
+          #echo "${{secrets.APPLE_DIST_PROVISIONING_PROFILES_TARGZ_BASE64}}"|base64 --decode | tar xz -C ~/Library/MobileDevice/Provisioning\ Profiles
+          echo "${{secrets.NEW_APPLE_STORE_PROVISIONING_PROFILES_TARXZ_BASE64}}"|base64 --decode | tar xJ -C ~/Library/MobileDevice/Provisioning\ Profiles
 
       - uses: Apple-Actions/upload-testflight-build@v1
         with:
