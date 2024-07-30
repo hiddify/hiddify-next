@@ -8,6 +8,7 @@ import 'package:hiddify/features/connection/model/connection_status.dart';
 import 'package:hiddify/features/profile/model/profile_entity.dart';
 import 'package:hiddify/features/profile/notifier/active_profile_notifier.dart';
 import 'package:hiddify/utils/utils.dart';
+import 'package:in_app_review/in_app_review.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -30,6 +31,13 @@ class ConnectionNotifier extends _$ConnectionNotifier with AppLogger {
         if (previous case AsyncData(:final value) when !value.isConnected) {
           if (next case AsyncData(value: final Connected _)) {
             await ref.read(hapticServiceProvider.notifier).heavyImpact();
+
+            if (Platform.isAndroid && !ref.read(Preferences.storeReviewedByUser)) {
+              if (await InAppReview.instance.isAvailable()) {
+                InAppReview.instance.requestReview();
+                ref.read(Preferences.storeReviewedByUser.notifier).update(true);
+              }
+            }
           }
         }
       },
@@ -46,16 +54,14 @@ class ConnectionNotifier extends _$ConnectionNotifier with AppLogger {
       },
     );
     yield* _connectionRepo.watchConnectionStatus().doOnData((event) {
-      if (event case Disconnected(connectionFailure: final _?)
-          when PlatformUtils.isDesktop) {
+      if (event case Disconnected(connectionFailure: final _?) when PlatformUtils.isDesktop) {
         ref.read(Preferences.startedByUser.notifier).update(false);
       }
       loggy.info("connection status: ${event.format()}");
     });
   }
 
-  ConnectionRepository get _connectionRepo =>
-      ref.read(connectionRepositoryProvider);
+  ConnectionRepository get _connectionRepo => ref.read(connectionRepositoryProvider);
 
   Future<void> mayConnect() async {
     if (state case AsyncData(:final value)) {
@@ -97,6 +103,7 @@ class ConnectionNotifier extends _$ConnectionNotifier with AppLogger {
         profile.id,
         profile.name,
         ref.read(Preferences.disableMemoryLimit),
+        profile.testUrl,
       )
           .mapLeft((err) {
         loggy.warning("error reconnecting", err);
@@ -127,6 +134,7 @@ class ConnectionNotifier extends _$ConnectionNotifier with AppLogger {
       activeProfile.id,
       activeProfile.name,
       ref.read(Preferences.disableMemoryLimit),
+      activeProfile.testUrl,
     )
         .mapLeft((err) async {
       loggy.warning("error connecting", err);

@@ -5,6 +5,7 @@ enum Region {
   cn,
   ru,
   af,
+  id,
   other;
 
   String present(TranslationsEn t) => switch (this) {
@@ -12,6 +13,7 @@ enum Region {
         cn => t.settings.general.regions.cn,
         ru => t.settings.general.regions.ru,
         af => t.settings.general.regions.af,
+        id => t.settings.general.regions.id,
         other => t.settings.general.regions.other,
       };
 }

@@ -4,16 +4,19 @@
 ## Summary:
 - The forks of the app are not allowed to be listed on F-Droid or other app stores under the original name or original design.
 - Any forks should be published open-source under the same license.
-- You need prior consent to publish a fork or use any part of this code in an application published in AppStore or publish for iOS or macOS (we may change this in future after finishing development for iOS and macOS).
+- Prior consent is required to publish a fork or utilize any part of this repository (github.com/hiddify/hiddify-next and github.com/hiddify/hiddify-next-core) in an application intended for publication on the App Store or for iOS/macOS platforms. (We reserve the right to modify this requirement in the future after completing development for iOS and macOS).
+- You need prior consent to publish a fork or use any part of this code in an application published in AppStore or publish for iOS or macOS. (We reserve the right to modify this requirement in the future after completing development for iOS and macOS).
 - You are free to:
-  - Share — copy and redistribute the material in any medium or format
+  - Share — copy and redistribute the material in any medium or format with 
   - Adapt — remix, transform, and build upon the material
 - Under the following terms:
   - Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
 
   - NonCommercial — You may not use the material for commercial purposes. You can not even include ads in it.
-
+  
   - ShareAlike — If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.
+ 
+  - Prior consent is required before utilizing any portion of this code for integration into an application intended for the App Store.
 
 Creative Commons Corporation (“Creative Commons”) is not a law firm and does not provide legal services or legal advice. Distribution of Creative Commons public licenses does not create a lawyer-client or other relationship. Creative Commons makes its licenses and related information available on an “as-is” basis. Creative Commons gives no warranties regarding its licenses, any material licensed under their terms and conditions, or any related information. Creative Commons disclaims all liability for damages resulting from their use to the fullest extent possible.
 

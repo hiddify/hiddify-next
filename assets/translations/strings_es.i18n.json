@@ -15,7 +15,12 @@
     "notSet": "No establecido",
     "agree": "Aceptar",
     "decline": "Rechazar",
-    "unknown": "Desconocido"
+    "unknown": "Desconocido",
+    "hidden": "Oculto",
+    "timeout": "Se acabó el tiempo",
+    "showMore": "Mostrar más",
+    "showLess": "Muestra menos",
+    "grantPermission": "Conceder permiso"
   },
   "intro": {
     "termsAndPolicyCaution(rich)": "al continuar, aceptas ${tap(@:about.termsAndConditions)}",
@@ -138,6 +143,7 @@
         "cn": "China (CN)",
         "ru": "Rusia (ru)",
         "af": "Afganistán (af)",
+        "id": "Indonesia (id)",
         "other": "Otro"
       },
       "themeMode": "Modo temático",
@@ -325,7 +331,7 @@
     "enableClashApi": "Habilitar API de choque",
     "clashApiPort": "Puerto API de choque",
     "enableTun": "Habilitar sintonización",
-    "setSystemProxy": "Establecer proxy del sistema",
+    "setSystemProxy": "stablecer proxy del sistema",
     "enableDnsRouting": "Habilitar enrutamiento DNS",
     "enableFakeDns": "Habilitar DNS falso",
     "bypassLan": "Omitir LAN",

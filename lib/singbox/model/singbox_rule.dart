@@ -9,6 +9,7 @@ class SingboxRule with _$SingboxRule {
 
   @JsonSerializable(fieldRename: FieldRename.kebab)
   const factory SingboxRule({
+    String? ruleSetUrl,
     String? domains,
     String? ip,
     String? port,
@@ -17,8 +18,7 @@ class SingboxRule with _$SingboxRule {
     @Default(RuleOutbound.proxy) RuleOutbound outbound,
   }) = _SingboxRule;
 
-  factory SingboxRule.fromJson(Map<String, dynamic> json) =>
-      _$SingboxRuleFromJson(json);
+  factory SingboxRule.fromJson(Map<String, dynamic> json) => _$SingboxRuleFromJson(json);
 }
 
 enum RuleOutbound { proxy, bypass, block }

@@ -15,8 +15,7 @@ class SingboxOutboundGroup with _$SingboxOutboundGroup {
     @Default([]) List<SingboxOutboundGroupItem> items,
   }) = _SingboxOutboundGroup;
 
-  factory SingboxOutboundGroup.fromJson(Map<String, dynamic> json) =>
-      _$SingboxOutboundGroupFromJson(json);
+  factory SingboxOutboundGroup.fromJson(Map<String, dynamic> json) => _$SingboxOutboundGroupFromJson(json);
 }
 
 @freezed
@@ -30,11 +29,9 @@ class SingboxOutboundGroupItem with _$SingboxOutboundGroupItem {
     required int urlTestDelay,
   }) = _SingboxOutboundGroupItem;
 
-  factory SingboxOutboundGroupItem.fromJson(Map<String, dynamic> json) =>
-      _$SingboxOutboundGroupItemFromJson(json);
+  factory SingboxOutboundGroupItem.fromJson(Map<String, dynamic> json) => _$SingboxOutboundGroupItemFromJson(json);
 }
 
-ProxyType _typeFromJson(dynamic type) =>
-    ProxyType.values
-        .firstOrNullWhere((e) => e.key == (type as String?)?.toLowerCase()) ??
-    ProxyType.unknown;
+final Map<String, ProxyType> _keyMap = Map.fromEntries(ProxyType.values.map((e) => MapEntry(e.key, e)));
+
+ProxyType _typeFromJson(dynamic type) => ProxyType.fromJson(type);

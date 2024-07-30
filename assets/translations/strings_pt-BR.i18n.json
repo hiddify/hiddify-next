@@ -17,7 +17,10 @@
     "decline": "Recusar",
     "unknown": "Desconhecido",
     "hidden": "Escondido",
-    "timeout": "Tempo Esgotado"
+    "timeout": "Tempo Esgotado",
+    "showMore": "Mostre mais",
+    "showLess": "Mostre menos",
+    "grantPermission": "Conceder permissão"
   },
   "intro": {
     "termsAndPolicyCaution(rich)": "ao continuar você concorda com ${tap( @:about.termsAndConditions)}",
@@ -165,6 +168,7 @@
         "cn": "China (cn)",
         "ru": "Rússia (ru)",
         "af": "Afeganistão (af)",
+        "id": "Indonesia (id)",
         "other": "Outro"
       },
       "themeMode": "Modo de Tema",

@@ -25,6 +25,7 @@ class ConnectionButton extends HookConsumerWidget {
     final connectionStatus = ref.watch(connectionNotifierProvider);
     final requiresReconnect =
         ref.watch(configOptionNotifierProvider).valueOrNull;
+    final today = DateTime.now();
 
     ref.listen(
       connectionNotifierProvider,
@@ -93,6 +94,19 @@ class ConnectionButton extends HookConsumerWidget {
         AsyncData(value: _) => buttonTheme.idleColor!,
         _ => Colors.red,
       },
+      image: switch (connectionStatus) {
+        AsyncData(value: Connected()) when requiresReconnect == true =>
+          Assets.images.disconnectNorouz,
+        AsyncData(value: Connected()) => Assets.images.connectNorouz,
+        AsyncData(value: _) => Assets.images.disconnectNorouz,
+        _ => Assets.images.disconnectNorouz,
+        AsyncData(value: Disconnected()) ||
+        AsyncError() =>
+          Assets.images.disconnectNorouz,
+        AsyncData(value: Connected()) => Assets.images.connectNorouz,
+        _ => Assets.images.disconnectNorouz,
+      },
+      useImage: today.day >= 19 && today.day <= 23 && today.month == 3,
     );
   }
 }
@@ -103,12 +117,16 @@ class _ConnectionButton extends StatelessWidget {
     required this.enabled,
     required this.label,
     required this.buttonColor,
+    required this.image,
+    required this.useImage,
   });
 
   final VoidCallback onTap;
   final bool enabled;
   final String label;
   final Color buttonColor;
+  final AssetGenImage image;
+  final bool useImage;
 
   @override
   Widget build(BuildContext context) {
@@ -144,12 +162,16 @@ class _ConnectionButton extends StatelessWidget {
                     tween: ColorTween(end: buttonColor),
                     duration: const Duration(milliseconds: 250),
                     builder: (context, value, child) {
-                      return Assets.images.logo.svg(
-                        colorFilter: ColorFilter.mode(
-                          value!,
-                          BlendMode.srcIn,
-                        ),
-                      );
+                      if (useImage) {
+                        return image.image(filterQuality: FilterQuality.medium);
+                      } else {
+                        return Assets.images.logo.svg(
+                          colorFilter: ColorFilter.mode(
+                            value!,
+                            BlendMode.srcIn,
+                          ),
+                        );
+                      }
                     },
                   ),
                 ),

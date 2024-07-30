@@ -15,7 +15,9 @@
     "notSet": "Tidak Diatur",
     "agree": "Setuju",
     "decline": "Tolak",
-    "unknown": "Tidak Dikenal"
+    "unknown": "Tidak Dikenal",
+    "hidden": "Tersembunyi",
+    "timeout": "Waktu habis"
   },
   "intro": {
     "termsAndPolicyCaution(rich)": "lanjut berarti setuju dengan ${tap(@:about.termsAndConditions)}",
@@ -145,6 +147,7 @@
         "cn": "Çin (cn)",
         "ru": "Russia (ru)",
         "af": "Afghanistan (af)",
+        "id": "Indonesia (id)",
         "other": "Lainnya"
       },
       "themeMode": "Jenis Tema",

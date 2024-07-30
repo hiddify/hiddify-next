@@ -15,8 +15,9 @@ class ProfileDetailsState with _$ProfileDetailsState {
     AsyncValue<void>? save,
     AsyncValue<void>? update,
     AsyncValue<void>? delete,
+    @Default("") String configContent,
+    @Default(false) bool configContentChanged,
   }) = _ProfileDetailsState;
 
-  bool get isBusy =>
-      save is AsyncLoading || delete is AsyncLoading || update is AsyncLoading;
+  bool get isBusy => save is AsyncLoading || delete is AsyncLoading || update is AsyncLoading;
 }

@@ -23,8 +23,7 @@ class AnalyticsController extends _$AnalyticsController with AppLogger {
     return _preferences.getBool(enableAnalyticsPrefKey) ?? true;
   }
 
-  SharedPreferences get _preferences =>
-      ref.read(sharedPreferencesProvider).requireValue;
+  SharedPreferences get _preferences => ref.read(sharedPreferencesProvider).requireValue;
 
   Future<void> enableAnalytics() async {
     if (state case AsyncData(value: final enabled)) {

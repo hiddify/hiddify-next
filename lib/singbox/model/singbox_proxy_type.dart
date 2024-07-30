@@ -21,6 +21,13 @@ enum ProxyType {
   selector("Selector"),
   urltest("URLTest"),
   warp("Warp"),
+
+  xvless("XVLESS"),
+  xvmess("XVMess"),
+  xtrojan("Xtrojan"),
+  xfreedom("Xfragment"),
+  xshadowsocks("XShadowsocks"),
+  xsocks("XSocks"),
   unknown("Unknown");
 
   const ProxyType(this.label);
@@ -32,4 +39,6 @@ enum ProxyType {
   static List<ProxyType> groupValues = [selector, urltest];
 
   bool get isGroup => ProxyType.groupValues.contains(this);
+  static final Map<String, ProxyType> _keyMap = Map.fromEntries(ProxyType.values.map((e) => MapEntry(e.key, e)));
+  static ProxyType fromJson(dynamic type) => _keyMap[(type as String?)?.toLowerCase()] ?? ProxyType.unknown;
 }

@@ -292,6 +292,9 @@ class BoxService(
             }
         }
     }
+    override fun postServiceClose() {
+        // Not used on Android
+    }
 
     private suspend fun stopAndAlert(type: Alert, message: String? = null) {
         Settings.startedByUser = false

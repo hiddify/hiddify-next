@@ -92,7 +92,7 @@ enum DomainStrategy {
 enum TunImplementation {
   mixed,
   system,
-  gVisor;
+  gvisor;
 }
 
 enum MuxProtocol {

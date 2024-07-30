@@ -2,15 +2,17 @@
   "$schema": "https://inlang.com/schema/project-settings",
   "sourceLanguageTag": "en",
   "languageTags": [
+    "ar",
     "en",
+    "ckb-KUR",
     "es",
     "fa",
+    "id",
+    "pt-BR",
     "ru",
     "tr",
-    "id",
     "zh-CN",
-    "zh-TW",
-    "pt-BR"
+    "zh-TW"
   ],
   "modules": [
     "https://cdn.jsdelivr.net/npm/@inlang/plugin-i18next@4/dist/index.js",

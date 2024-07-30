@@ -61,6 +61,7 @@ class ChoicePreferenceWidget<T> extends StatelessWidget {
     required this.title,
     required this.presentChoice,
     this.validateInput,
+    this.onChanged,
   });
 
   final T selected;
@@ -70,7 +71,7 @@ class ChoicePreferenceWidget<T> extends StatelessWidget {
   final String title;
   final String Function(T value) presentChoice;
   final bool Function(String value)? validateInput;
-
+  final ValueChanged<T>? onChanged;
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -88,7 +89,9 @@ class ChoicePreferenceWidget<T> extends StatelessWidget {
         if (selection == null) {
           return;
         }
-        await preferences.update(selection);
+        final out = await preferences.update(selection);
+        onChanged?.call(selection);
+        return out;
       },
     );
   }
