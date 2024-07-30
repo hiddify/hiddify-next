@@ -157,7 +157,14 @@ class ProfileDetailsNotifier extends _$ProfileDetailsNotifier with AppLogger {
         case LocalProfileEntity() when value.isEditing:
           loggy.debug('editing profile');
           failureOrSuccess = await _profilesRepo.patch(profile).run();
-
+          if (failureOrSuccess.isRight()) {
+            failureOrSuccess = await _profilesRepo
+                .updateContent(
+                  profile.id,
+                  value.configContent,
+                )
+                .run();
+          }
         default:
           loggy.warning("local profile can't be added manually");
       }

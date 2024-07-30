@@ -555,8 +555,7 @@ class _JsonEditorState extends State<JsonEditor> {
                   controller: _controller,
                   onChanged: parseData,
                   maxLines: 10,
-                  minLines: null,
-                  expands: true,
+                  // expands: true,
                   textAlignVertical: TextAlignVertical.top,
                   decoration: const InputDecoration(
                     border: InputBorder.none,
