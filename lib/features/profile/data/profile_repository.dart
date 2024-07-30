@@ -6,6 +6,8 @@ import 'package:fpdart/fpdart.dart';
 import 'package:hiddify/core/database/app_database.dart';
 import 'package:hiddify/core/http_client/dio_http_client.dart';
 import 'package:hiddify/core/utils/exception_handler.dart';
+import 'package:hiddify/features/config_option/data/config_option_repository.dart';
+import 'package:hiddify/features/connection/model/connection_failure.dart';
 import 'package:hiddify/features/profile/data/profile_data_mapper.dart';
 import 'package:hiddify/features/profile/data/profile_data_source.dart';
 import 'package:hiddify/features/profile/data/profile_parser.dart';
@@ -36,7 +38,10 @@ abstract interface class ProfileRepository {
     bool markAsActive = false,
     CancelToken? cancelToken,
   });
-
+  TaskEither<ProfileFailure, Unit> updateContent(
+    String profileId,
+    String content,
+  );
   TaskEither<ProfileFailure, Unit> addByContent(
     String content, {
     required String name,
@@ -67,12 +72,14 @@ class ProfileRepositoryImpl with ExceptionHandler, InfraLogger implements Profil
     required this.profileDataSource,
     required this.profilePathResolver,
     required this.singbox,
+    required this.configOptionRepository,
     required this.httpClient,
   });
 
   final ProfileDataSource profileDataSource;
   final ProfilePathResolver profilePathResolver;
   final SingboxService singbox;
+  final ConfigOptionRepository configOptionRepository;
   final DioHttpClient httpClient;
 
   @override
@@ -178,6 +185,30 @@ class ProfileRepositoryImpl with ExceptionHandler, InfraLogger implements Profil
   }
 
   @override
+  TaskEither<ProfileFailure, Unit> updateContent(
+    String profileId,
+    String content,
+  ) {
+    return exceptionHandler(
+      () async {
+        final file = profilePathResolver.file(profileId);
+        final tempFile = profilePathResolver.tempFile(profileId);
+
+        try {
+          await tempFile.writeAsString(content);
+          return await validateConfig(file.path, tempFile.path, false).run();
+        } finally {
+          if (tempFile.existsSync()) tempFile.deleteSync();
+        }
+      },
+      (error, stackTrace) {
+        loggy.warning("error adding profile by content", error, stackTrace);
+        return ProfileUnexpectedFailure(error, stackTrace);
+      },
+    );
+  }
+
+  @override
   TaskEither<ProfileFailure, Unit> addByContent(
     String content, {
     required String name,
@@ -186,28 +217,22 @@ class ProfileRepositoryImpl with ExceptionHandler, InfraLogger implements Profil
     return exceptionHandler(
       () async {
         final profileId = const Uuid().v4();
-        final file = profilePathResolver.file(profileId);
-        final tempFile = profilePathResolver.tempFile(profileId);
 
-        try {
-          await tempFile.writeAsString(content);
-          return await validateConfig(file.path, tempFile.path, false)
-              .andThen(
-                () => TaskEither(() async {
-                  final profile = LocalProfileEntity(
-                    id: profileId,
-                    active: markAsActive,
-                    name: name,
-                    lastUpdate: DateTime.now(),
-                  );
-                  await profileDataSource.insert(profile.toEntry());
-                  return right(unit);
-                }),
-              )
-              .run();
-        } finally {
-          if (tempFile.existsSync()) tempFile.deleteSync();
-        }
+        return await updateContent(profileId, content)
+            .andThen(
+              () => TaskEither(() async {
+                final profile = LocalProfileEntity(
+                  id: profileId,
+                  active: markAsActive,
+                  name: name,
+                  lastUpdate: DateTime.now(),
+                );
+                await profileDataSource.insert(profile.toEntry());
+
+                return right(unit);
+              }),
+            )
+            .run();
       },
       (error, stackTrace) {
         loggy.warning("error adding profile by content", error, stackTrace);
@@ -252,6 +277,10 @@ class ProfileRepositoryImpl with ExceptionHandler, InfraLogger implements Profil
       ($) async {
         final configFile = profilePathResolver.file(id);
         // TODO pass options
+        final options = await configOptionRepository.getConfigOptions();
+
+        singbox.changeOptions(options).mapLeft(InvalidConfigOption.new).run();
+
         return await $(
           singbox.generateFullConfigByPath(configFile.path).mapLeft(ProfileFailure.unexpected),
         );

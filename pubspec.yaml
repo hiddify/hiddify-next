@@ -20,6 +20,10 @@ dependencies:
     git:
       url: https://github.com/alex-relov/humanizer
       ref: up-version
+  # lucy_editor: ^1.0.5
+  # re_highlight: ^0.0.3
+  # json_editor_flutter: ^1.4.2
+
   slang: ^3.30.1
   slang_flutter: ^3.30.0
   fpdart: ^1.1.0
