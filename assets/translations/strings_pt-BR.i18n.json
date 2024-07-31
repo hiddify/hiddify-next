@@ -18,6 +18,7 @@
     "unknown": "Desconhecido",
     "hidden": "Escondido",
     "timeout": "Tempo Esgotado",
+    "clipboardExportSuccessMsg": "Adicionado à área de transferência",
     "showMore": "Mostre mais",
     "showLess": "Mostre menos",
     "grantPermission": "Conceder permissão"

@@ -18,6 +18,7 @@
     "unknown": "Bilinmeyen",
     "hidden": "Gizlenmiş",
     "timeout": "Zaman aşımı",
+    "clipboardExportSuccessMsg": "Panoya Eklendi",
     "showMore": "Daha fazla göster",
     "showLess": "Daha az göster",
     "grantPermission": "İzin Ver"

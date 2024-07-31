@@ -17,7 +17,8 @@
     "decline": "Tolak",
     "unknown": "Tidak Dikenal",
     "hidden": "Tersembunyi",
-    "timeout": "Waktu habis"
+    "timeout": "Waktu habis",
+    "clipboardExportSuccessMsg": "Ditambahkan ke Papan Klip"
   },
   "intro": {
     "termsAndPolicyCaution(rich)": "lanjut berarti setuju dengan ${tap(@:about.termsAndConditions)}",
