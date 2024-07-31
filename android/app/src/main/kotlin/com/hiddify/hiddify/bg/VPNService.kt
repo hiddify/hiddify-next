@@ -129,11 +129,13 @@ class VPNService : VpnService(), PlatformInterfaceWrapper {
                 if (Settings.perAppProxyMode == PerAppProxyMode.INCLUDE) {
                     appList.forEach {
                         try {
-                            builder.addAllowedApplication(it)
+                            if (it != packageName)
+                                builder.addAllowedApplication(it)
                         } catch (_: NameNotFoundException) {
                         }
                     }
-                    builder.addAllowedApplication(packageName)
+
+
                 } else {
                     appList.forEach {
                         try {
@@ -141,25 +143,37 @@ class VPNService : VpnService(), PlatformInterfaceWrapper {
                         } catch (_: NameNotFoundException) {
                         }
                     }
+                    try {
+                        builder.addDisallowedApplication(packageName)
+                    } catch (_: NameNotFoundException) {
+                    }
+
                 }
             } else {
                 val includePackage = options.includePackage
                 if (includePackage.hasNext()) {
                     while (includePackage.hasNext()) {
                         try {
-                            builder.addAllowedApplication(includePackage.next())
+                            val it = includePackage.next()
+                            if (it != packageName)
+                                builder.addAllowedApplication(it)
                         } catch (_: NameNotFoundException) {
                         }
                     }
-                }
+                } else {
 
-                val excludePackage = options.excludePackage
-                if (excludePackage.hasNext()) {
-                    while (excludePackage.hasNext()) {
-                        try {
-                            builder.addDisallowedApplication(excludePackage.next())
-                        } catch (_: NameNotFoundException) {
+                    val excludePackage = options.excludePackage
+                    if (excludePackage.hasNext()) {
+                        while (excludePackage.hasNext()) {
+                            try {
+                                builder.addDisallowedApplication(excludePackage.next())
+                            } catch (_: NameNotFoundException) {
+                            }
                         }
+                    }
+                    try {
+                        builder.addDisallowedApplication(packageName)
+                    } catch (_: NameNotFoundException) {
                     }
                 }
             }
