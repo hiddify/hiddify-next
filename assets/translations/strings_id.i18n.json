@@ -18,7 +18,11 @@
     "unknown": "Tidak Dikenal",
     "hidden": "Tersembunyi",
     "timeout": "Waktu habis",
-    "clipboardExportSuccessMsg": "Ditambahkan ke Papan Klip"
+    "clipboardExportSuccessMsg": "Ditambahkan ke Papan Klip",
+    "showMore": "Menampilkan lebih banyak",
+    "showLess": "Tampilkan Lebih Sedikit",
+    "openAppSettings": "Buka Pengaturan Aplikasi",
+    "grantPermission": "Memberikan ijin"
   },
   "intro": {
     "termsAndPolicyCaution(rich)": "lanjut berarti setuju dengan ${tap(@:about.termsAndConditions)}",
@@ -31,10 +35,13 @@
   },
   "stats": {
     "traffic": "Trafik Langsung",
+    "trafficLive": "Lalu Lintas Langsung",
     "trafficTotal": "Total Trafik",
     "uplink": "Uplink",
     "downlink": "Downlink",
-    "connection": "Sambungan"
+    "connection": "Sambungan",
+    "speed": "Kecepatan",
+    "totalTransferred": "Jumlah yang Ditransfer"
   },
   "profile": {
     "overviewPageTitle": "Beberapa Profil",
@@ -48,7 +55,11 @@
       "remainingDuration": "Tersisa ${duration} hari lagi",
       "remainingTrafficSemanticLabel": "${consumed}/${total} trafik terpakai",
       "expired": "Kadaluarsa",
-      "noTraffic": "Kuota Habis"
+      "noTraffic": "Kuota Habis",
+      "upload": "Mengunggah",
+      "download": "Unduh",
+      "total": "Jumlah Lalu Lintas",
+      "expireDate": "Tanggal kadaluarsa"
     },
     "sortBy": {
       "lastUpdate": "Baru diperbaharui",
@@ -63,9 +74,11 @@
         "permissionDeniedError": "Izin ditolak",
         "unexpectedError": "Terjadi masalah",
         "torchSemanticLabel": "Lampu Flash",
-        "facingSemanticLabel": "Hadap Kamera"
+        "facingSemanticLabel": "Hadap Kamera",
+        "permissionRequest": "Izin ke kamera untuk memindai Kode QR"
       },
       "manually": "Isian Manual",
+      "addWarp": "Tambahkan Warp",
       "addingProfileMsg": "Tambahkan Profil",
       "failureMsg": "Gagal tambahkan profil"
     },

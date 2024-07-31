@@ -21,6 +21,7 @@
     "clipboardExportSuccessMsg": "Agregado al portapapeles",
     "showMore": "Mostrar más",
     "showLess": "Muestra menos",
+    "openAppSettings": "Abrir configuración de la aplicación",
     "grantPermission": "Conceder permiso"
   },
   "intro": {
@@ -31,6 +32,16 @@
     "pageTitle": "Hogar",
     "emptyProfilesMsg": "Comience agregando un perfil de suscripción",
     "noActiveProfileMsg": "Elige un perfil"
+  },
+  "stats": {
+    "traffic": "Tráfico",
+    "trafficLive": "Tráfico en vivo",
+    "trafficTotal": "Tráfico total",
+    "uplink": "Enlace ascendente",
+    "downlink": "Enlace descendente",
+    "connection": "Conexión",
+    "speed": "Velocidad",
+    "totalTransferred": "Total transferido"
   },
   "profile": {
     "overviewPageTitle": "Perfiles",
@@ -44,7 +55,11 @@
       "remainingDuration": "${duration} días restantes",
       "remainingTrafficSemanticLabel": "${consumed} de ${total} Tráfico Consumido",
       "expired": "Caducado",
-      "noTraffic": "Fuera de cuota"
+      "noTraffic": "Fuera de cuota",
+      "upload": "Subir",
+      "download": "Descargar",
+      "total": "Tráfico total",
+      "expireDate": "Fecha de caducidad"
     },
     "sortBy": {
       "lastUpdate": "Recientemente actualizado",
@@ -59,9 +74,11 @@
         "permissionDeniedError": "Permiso Denegado",
         "unexpectedError": "Algo salió mal",
         "torchSemanticLabel": "Linterna",
-        "facingSemanticLabel": "Frente a la cámara"
+        "facingSemanticLabel": "Frente a la cámara",
+        "permissionRequest": "Permiso a la cámara para escanear el código QR"
       },
       "manually": "Entrada manual",
+      "addWarp": "Agregar deformación",
       "addingProfileMsg": "Agregar perfil",
       "failureMsg": "No se pudo agregar el perfil"
     },

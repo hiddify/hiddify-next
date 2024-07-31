@@ -21,6 +21,7 @@
     "clipboardExportSuccessMsg": "Panoya Eklendi",
     "showMore": "Daha fazla göster",
     "showLess": "Daha az göster",
+    "openAppSettings": "Uygulama Ayarlarını Aç",
     "grantPermission": "İzin Ver"
   },
   "intro": {
@@ -33,10 +34,14 @@
     "noActiveProfileMsg": "Profil seçin"
   },
   "stats": {
+    "traffic": "Trafik",
     "trafficLive": "Canlı Trafik",
     "trafficTotal": "Toplam Trafik",
     "uplink": "Çıkış Yolu",
-    "downlink": "Giriş Yolu"
+    "downlink": "Giriş Yolu",
+    "connection": "Bağlantı",
+    "speed": "Hız",
+    "totalTransferred": "Toplam Aktarılan"
   },
   "profile": {
     "overviewPageTitle": "Profiller",
@@ -50,7 +55,11 @@
       "remainingDuration": "${duration} Gün Kaldı",
       "remainingTrafficSemanticLabel": "${consumed}/${total} trafik tüketildi",
       "expired": "Süresi Doldu",
-      "noTraffic": "Kotal Doldu"
+      "noTraffic": "Kotal Doldu",
+      "upload": "Yüklemek",
+      "download": "İndirmek",
+      "total": "Toplam Trafik",
+      "expireDate": "Son kullanma tarihi"
     },
     "sortBy": {
       "lastUpdate": "Yakın zamanda güncellendi",
@@ -65,7 +74,8 @@
         "permissionDeniedError": "İzin reddedildi",
         "unexpectedError": "Bir şeyler yanlış gitti",
         "torchSemanticLabel": "El feneri",
-        "facingSemanticLabel": "Kameraya önü"
+        "facingSemanticLabel": "Kameraya önü",
+        "permissionRequest": "QR Kodunu taramak için kamera izni"
       },
       "manually": "Manuel giriş",
       "addingProfileMsg": "Profil Ekleniyor",

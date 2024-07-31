@@ -21,6 +21,7 @@
     "clipboardExportSuccessMsg": "Adicionado à área de transferência",
     "showMore": "Mostre mais",
     "showLess": "Mostre menos",
+    "openAppSettings": "Abra as configurações do aplicativo",
     "grantPermission": "Conceder permissão"
   },
   "intro": {
@@ -33,6 +34,7 @@
     "noActiveProfileMsg": "Escolha um perfil"
   },
   "stats": {
+    "traffic": "Tráfego",
     "trafficLive": "Tráfego ao vivo",
     "trafficTotal": "Tráfego total",
     "uplink": "Ligação ascendente",
@@ -72,7 +74,8 @@
         "permissionDeniedError": "Permissão Negada",
         "unexpectedError": "Algo deu errado",
         "torchSemanticLabel": "Luz do flash",
-        "facingSemanticLabel": "Câmera voltada"
+        "facingSemanticLabel": "Câmera voltada",
+        "permissionRequest": "Permissão para a câmera digitalizar o QR Code"
       },
       "manually": "Entrada manual",
       "addingProfileMsg": "Adicionando Perfil",
