@@ -3,7 +3,9 @@ library json_editor_flutter;
 import 'dart:convert';
 import 'dart:async';
 import 'dart:math';
+import 'dart:ui';
 
+import 'package:dartx/dartx.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -26,20 +28,264 @@ const _rightArrow = SizedBox(
   child: Icon(CupertinoIcons.arrowtriangle_right_fill, size: 14),
 );
 const _newDataValue = {
-  _OptionItems.string: "",
-  _OptionItems.bool: false,
-  _OptionItems.num: 0,
+  "string": "",
+  "bool": false,
+  "num": 0,
 };
 bool _enableMoreOptions = true;
 bool _enableKeyEdit = true;
 bool _enableValueEdit = true;
 
-enum _OptionItems { map, list, string, bool, num, delete }
+// enum _OptionItems { map, list, string, bool, num, delete, protocols, configElement }
+typedef _OptionItems = String;
 
 enum _SearchActions { next, prev }
 
 /// Supported editors for JSON Editor.
 enum Editors { tree, text }
+
+const Map<String, Map<String, dynamic>> protocolSchemaValues = {
+  "xray": {
+    "type": "xray",
+    "tag": "xray-out",
+    "xray_outbound_raw": {},
+    "xray_fragment": {"packets": "tlshello", "interval": "1-10", "length": "1-10"}
+  },
+  "warp": {"type": "custom", "key": "", "host": "", "port": 808, "fake_packets": "1-10", "fake_packets_size": "1-10", "fake_packets_delay": "1-10", "fake_packets_mode": "m4"},
+  "vless": {
+    "type": "vless",
+    "tag": "vless-out",
+    "server": "127.0.0.1",
+    "server_port": 1080,
+    "uuid": "bf000d23-0752-40b4-affe-68f7707a9661",
+    "flow": "xtls-rprx-vision",
+    "packet_encoding": "",
+  },
+  "vmess": {
+    "type": "vmess",
+    "tag": "vmess-out",
+    "server": "127.0.0.1",
+    "server_port": 1080,
+    "uuid": "bf000d23-0752-40b4-affe-68f7707a9661",
+    "security": "auto",
+    "global_padding": false,
+    "authenticated_length": true,
+    "packet_encoding": "",
+  },
+  "trojan": {
+    "type": "trojan",
+    "tag": "trojan-out",
+    "server": "127.0.0.1",
+    "server_port": 1080,
+    "password": "8JCsPssfgS8tiRwiMlhARg==",
+  },
+  "hysteria": {
+    "type": "hysteria",
+    "tag": "hysteria-out",
+    "server": "127.0.0.1",
+    "server_port": 1080,
+    "up": "100 Mbps",
+    "up_mbps": 100,
+    "down": "100 Mbps",
+    "down_mbps": 100,
+    "obfs": "daylight",
+    "auth": "",
+    "auth_str": "password",
+    "recv_window_conn": 0,
+    "recv_window": 0,
+    "disable_mtu_discovery": false,
+    "tls": {"enabled": true},
+  },
+  "hysteria2": {
+    "type": "hysteria2",
+    "tag": "hy2-out",
+    "server": "127.0.0.1",
+    "server_port": 1080,
+    "up_mbps": 100,
+    "down_mbps": 100,
+    "obfs": {"type": "salamander", "password": "cry_me_a_r1ver"},
+    "password": "goofy_ahh_password",
+    "tls": {
+      "enabled": true,
+    }
+  },
+  "shadowsocks": {
+    "type": "shadowsocks",
+    "tag": "ss-out",
+    "server": "127.0.0.1",
+    "server_port": 1080,
+    "method": "2022-blake3-aes-128-gcm",
+    "password": "8JCsPssfgS8tiRwiMlhARg==",
+    "plugin": "",
+    "plugin_opts": "",
+    "udp_over_tcp": false,
+  },
+  "socks": {
+    "type": "socks",
+    "tag": "socks-out",
+    "server": "127.0.0.1",
+    "server_port": 1080,
+    "version": "5",
+    "username": "",
+    "password": "",
+    "udp_over_tcp": false,
+  },
+  "http": {
+    "type": "http",
+    "tag": "http-out",
+    "server": "127.0.0.1",
+    "server_port": 1080,
+    "username": "",
+    "password": "",
+    "path": "",
+    "headers": {},
+    "tls": {"enabled": false},
+  },
+  "wireguard": {
+    "type": "wireguard",
+    "tag": "wireguard-out",
+    "server": "127.0.0.1",
+    "server_port": 1080,
+    "system_interface": false,
+    "gso": false,
+    "interface_name": "wg0",
+    "local_address": ["10.0.0.2/32"],
+    "private_key": "YNXtAzepDqRv9H52osJVDQnznT5AM11eCK3ESpwSt04=",
+    "peer_public_key": "Z1XXLsKYkYxuiYjJIkRvtIKFepCYHTgON+GwPq7SOV4=",
+    "pre_shared_key": "31aIhAPwktDGpH4JDhA8GNvjFXEf/a6+UaQRyOAiyfM=",
+    "reserved": [0, 0, 0],
+    "workers": 4,
+    "mtu": 1408,
+    "fake_packets": "1-10",
+    "fake_packets_size": "1-10",
+    "fake_packets_delay": "1-10",
+    "fake_packets_mode": "m4"
+  },
+  "tuic": {
+    "type": "tuic",
+    "tag": "tuic-out",
+    "server": "127.0.0.1",
+    "server_port": 1080,
+    "uuid": "2DD61D93-75D8-4DA4-AC0E-6AECE7EAC365",
+    "password": "hello",
+    "congestion_control": "cubic",
+    "udp_relay_mode": "native",
+    "udp_over_stream": false,
+    "zero_rtt_handshake": false,
+    "heartbeat": "10s",
+    "tls": {"enabled": true},
+  },
+  "ssh": {
+    "type": "ssh",
+    "tag": "ssh-out",
+    "server": "127.0.0.1",
+    "server_port": 22,
+    "user": "root",
+    "password": "admin",
+    "private_key": "",
+    "private_key_passphrase": "",
+    "host_key": [""],
+    "client_version": "SSH-2.0-OpenSSH_7.4p1",
+  },
+};
+const Map<String, Map<String, Map<String, dynamic>>> exampleSchemaValues = {
+  "config.outbounds.transport": {
+    "browser user-agent": {
+      "header": {"user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0"}
+    }
+  },
+  "config.outbounds.tls": {
+    "fragment": {
+      "tls_fragment": {"enabled": true, "size": "1-10", "sleep": "1-10"}
+    },
+    "utls": {
+      "utls": {"enabled": true, "fingerprint": "chrome"}
+    }
+  },
+  "config.outbounds": {
+    "multiplex": {
+      "multiplex": {
+        "enabled": true,
+        "protocol": "smux",
+        "max_connections": 4,
+        "min_streams": 4,
+        "max_streams": 0,
+        "padding": false,
+        "brutal": {"enabled": true, "up_mbps": 100, "down_mbps": 100}
+      },
+    },
+    "reality": {
+      "tls": {
+        "enabled": true,
+        "server_name": "",
+        "min_version": "",
+        "max_version": "",
+        "utls": {"enabled": true, "fingerprint": "chrome"},
+        "reality": {"enabled": true, "public_key": "", "short_id": ""}
+      },
+    },
+    "tls": {
+      "tls": {
+        "enabled": true,
+        "utls": {"enabled": true, "fingerprint": "chrome"},
+        "disable_sni": false,
+        "insecure": false,
+        "server_name": "",
+        "alpn": [],
+        "min_version": "",
+        "max_version": "",
+        "tls_fragment": {"enabled": false, "size": "1-10", "sleep": "1-10"}
+      },
+    },
+    "websocket": {
+      "transport": {"type": "ws", "path": "", "headers": {}, "max_early_data": 0, "early_data_header_name": ""}
+    },
+    "grpc": {
+      "transport": {"type": "grpc", "service_name": "TunService", "idle_timeout": "15s", "ping_timeout": "15s", "permit_without_stream": false}
+    },
+    "quic": {
+      "transport": {"type": "quic"}
+    },
+    "http": {
+      "transport": {"type": "http", "host": [], "path": "", "method": "", "headers": {}, "idle_timeout": "15s", "ping_timeout": "15s"}
+    },
+    "httpupgrade": {
+      "transport": {"type": "httpupgrade", "host": "", "path": "", "headers": {}}
+    },
+  }
+};
+
+const Map<String, List<String>> possibleValues = {
+  "config.outbounds.flow": <String>["", "xtls-rprx-vision"],
+  "config.outbounds.security": <String>["", "auto", "none", "zero", "aes-128-gcm", "chacha20-poly1305"],
+  "config.outbounds.method": <String>["", "2022-blake3-aes-128-gcm", "2022-blake3-aes-256-gcm", "2022-blake3-chacha20-poly1305", "none", "aes-128-gcm", "aes-192-gcm", "aes-256-gcm", "chacha20-ietf-poly1305", "xchacha20-ietf-poly1305"],
+  "config.outbounds.plugin": <String>["", "obfs-local", "v2ray-plugin"],
+  "config.outbounds.network": <String>["", "udp", "tcp"],
+  "config.outbounds.multiplex.protocol": <String>["", "smux", "yamux", "h2mux"],
+  "config.outbounds.tls.min_version": <String>["", "1.0", "1.1", "1.2", "1.3"],
+  "config.outbounds.tls.max_version": <String>["", "1.0", "1.1", "1.2", "1.3"],
+  "config.outbounds.tls.utls.fingerprint": <String>["", "chrome", "chrome_psk", "chrome_psk_shuffle", "chrome_padding_psk_shuffle", "chrome_pq", "chrome_pq_psk", "firefox", "edge", "safari", "360", "qq", "ios", "android", "random", "randomized"],
+  "config.outbounds.packet_encoding": <String>["", "(none)", "xudp", "packetaddr"],
+  "config.outbounds.transport.type": <String>["", "http", "ws", "grpc", "quic", "httpupgrade"],
+  "config.outbounds.type": <String>[
+    "vless",
+    "vmess",
+    "trojan",
+    "xray",
+    "shadowsocks",
+    "wireguard",
+    "hysteria",
+    "hysteria2",
+    "tuic",
+    "ssh",
+    "shadowtls",
+    "custom",
+    "direct",
+    "block",
+    "socks",
+    "http",
+  ]
+};
 
 /// Edit your JSON object with this Widget. Create, edit and format objects
 /// using this user friendly widget.
@@ -599,6 +845,16 @@ class _Holder extends StatefulWidget {
   final Map<String, bool> matchedKeys;
   final List allParents;
   final Map<String, bool> expandedObjects;
+  String getKeyPath() {
+    final basePath = allParents.whereType<String>().join('.');
+
+    // final typePath = (parentObject['type'] != null &&
+    //         parentObject['type'] != keyName)
+    //     ? '.${parentObject['type']}'
+    //     : '';
+
+    return '$basePath';
+  }
 
   @override
   State<_Holder> createState() => _HolderState();
@@ -619,7 +875,7 @@ class _HolderState extends State<_Holder> {
   }
 
   void onSelected(_OptionItems selectedItem) {
-    if (selectedItem == _OptionItems.delete) {
+    if (selectedItem == "delete") {
       if (widget.parentObject is Map) {
         widget.parentObject.remove(widget.keyName);
       } else {
@@ -627,7 +883,7 @@ class _HolderState extends State<_Holder> {
       }
 
       widget.setState(() {});
-    } else if (selectedItem == _OptionItems.map) {
+    } else if (selectedItem == "map") {
       if (widget.data is Map) {
         widget.data[_newKey] = Map<String, dynamic>();
       } else {
@@ -635,7 +891,19 @@ class _HolderState extends State<_Holder> {
       }
 
       setState(() {});
-    } else if (selectedItem == _OptionItems.list) {
+      widget.onChanged();
+    } else if (exampleSchemaValues.containsKey(selectedItem.split("___")[0])) {
+      final jsonItem = exampleSchemaValues[selectedItem.split("___")[0]]![selectedItem.split("___")[1]]!;
+      for (final key in jsonItem.keys) {
+        widget.data[key] = jsonDecode(jsonEncode(jsonItem[key]));
+      }
+
+      setState(() {});
+    } else if (protocolSchemaValues.containsKey(selectedItem)) {
+      final jsonItem = protocolSchemaValues[selectedItem]!;
+      widget.data.add(jsonDecode(jsonEncode(jsonItem)));
+      setState(() {});
+    } else if (selectedItem == "list") {
       if (widget.data is Map) {
         widget.data[_newKey] = [];
       } else {
@@ -731,7 +999,7 @@ class _HolderState extends State<_Holder> {
             child: Row(
               children: [
                 const SizedBox(width: _expandIconWidth),
-                if (_enableMoreOptions) _Options<Map>(onSelected),
+                if (_enableMoreOptions) _Options<Map>(onSelected, widget.getKeyPath()),
                 SizedBox(width: widget.paddingLeft),
                 InkWell(
                   hoverColor: Colors.transparent,
@@ -810,7 +1078,7 @@ class _HolderState extends State<_Holder> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 const SizedBox(width: _expandIconWidth),
-                if (_enableMoreOptions) _Options<List>(onSelected),
+                if (_enableMoreOptions) _Options<List>(onSelected, widget.getKeyPath()),
                 SizedBox(width: widget.paddingLeft),
                 InkWell(
                   hoverColor: Colors.transparent,
@@ -868,7 +1136,7 @@ class _HolderState extends State<_Holder> {
           mainAxisSize: MainAxisSize.min,
           children: [
             const SizedBox(width: _expandIconWidth),
-            if (_enableMoreOptions) _Options<String>(onSelected),
+            if (_enableMoreOptions) _Options<String>(onSelected, widget.getKeyPath()),
             SizedBox(
               width: widget.paddingLeft + (_expandIconWidth * 2),
             ),
@@ -902,6 +1170,7 @@ class _HolderState extends State<_Holder> {
                   _ReplaceTextWithField(
                     key: UniqueKey(),
                     initialValue: widget.data,
+                    keyPath: widget.getKeyPath(),
                     onChanged: onValueChanged,
                     setState: setState,
                   ),
@@ -920,15 +1189,8 @@ class _HolderState extends State<_Holder> {
 }
 
 class _ReplaceTextWithField extends StatefulWidget {
-  const _ReplaceTextWithField({
-    super.key,
-    required this.initialValue,
-    required this.onChanged,
-    required this.setState,
-    this.isKey = false,
-    this.isHighlighted = false,
-  });
-
+  const _ReplaceTextWithField({super.key, required this.initialValue, required this.onChanged, required this.setState, this.isKey = false, this.isHighlighted = false, this.keyPath = ""});
+  final String keyPath;
   final dynamic initialValue;
   final bool isKey;
   final ValueChanged<Object> onChanged;
@@ -1008,7 +1270,40 @@ class _ReplaceTextWithFieldState extends State<_ReplaceTextWithField> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.initialValue is bool) {
+    if (possibleValues.containsKey(widget.keyPath)) {
+      final options = possibleValues[widget.keyPath]!;
+      return Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Transform.scale(
+            scale: 0.75,
+            child: DropdownButton<String>(
+              hint: Text('Select ${widget.keyPath.replaceAll("config.outbounds", "")}'),
+              value: _text,
+              icon: Icon(Icons.arrow_downward),
+              iconSize: 24,
+              elevation: 16,
+              underline: Container(
+                height: 2,
+              ),
+              onChanged: (String? newValue) {
+                widget.onChanged(newValue!);
+                _text = newValue;
+                setState(() {
+                  _text = newValue;
+                });
+              },
+              items: options.map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+            ),
+          ),
+        ],
+      );
+    } else if (widget.initialValue is bool) {
       return Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -1068,8 +1363,8 @@ class _ReplaceTextWithFieldState extends State<_ReplaceTextWithField> {
 }
 
 class _Options<T> extends StatelessWidget {
-  const _Options(this.onSelected);
-
+  const _Options(this.onSelected, this.keyPath);
+  final String keyPath;
   final void Function(_OptionItems) onSelected;
 
   @override
@@ -1080,7 +1375,7 @@ class _Options<T> extends StatelessWidget {
       onSelected: onSelected,
       itemBuilder: (context) {
         return <PopupMenuEntry<_OptionItems>>[
-          if (T == Map)
+          if (keyPath != "config" && T == Map)
             const _PopupMenuWidget(Row(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -1090,7 +1385,7 @@ class _Options<T> extends StatelessWidget {
                 Text("Insert", style: TextStyle(fontSize: 14)),
               ],
             )),
-          if (T == List)
+          if (keyPath != "config" && T == List)
             const _PopupMenuWidget(Row(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -1100,87 +1395,129 @@ class _Options<T> extends StatelessWidget {
                 Text("Append", style: TextStyle(fontSize: 14)),
               ],
             )),
-          if (T == Map || T == List) ...[
-            const PopupMenuItem<_OptionItems>(
-              height: _popupMenuHeight,
-              padding: EdgeInsets.only(left: _popupMenuItemPadding),
-              value: _OptionItems.string,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(Icons.abc),
-                  SizedBox(width: 10),
-                  Text("String", style: TextStyle(fontSize: 14)),
-                ],
+          if (keyPath != "config" && (T == Map || T == List)) ...[
+            if (keyPath == "config.outbounds" && T == List) ...[
+              for (final String key in protocolSchemaValues.keys) ...{
+                PopupMenuItem<_OptionItems>(
+                  height: _popupMenuHeight,
+                  padding: EdgeInsets.only(left: _popupMenuItemPadding),
+                  value: key,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.data_object),
+                      SizedBox(width: 10),
+                      Text(key, style: TextStyle(fontSize: 14)),
+                    ],
+                  ),
+                ),
+              },
+              const PopupMenuDivider(height: 1),
+            ],
+            if (T == Map) ...[
+              for (final String key in exampleSchemaValues.keys) ...{
+                if (keyPath == key)
+                  for (final String key2 in exampleSchemaValues[key]!.keys) ...{
+                    PopupMenuItem<_OptionItems>(
+                      height: _popupMenuHeight,
+                      padding: EdgeInsets.only(left: _popupMenuItemPadding),
+                      value: key + "___" + key2,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(Icons.data_object),
+                          SizedBox(width: 10),
+                          Text(key2, style: TextStyle(fontSize: 14)),
+                        ],
+                      ),
+                    ),
+                  },
+                const PopupMenuDivider(height: 1),
+              },
+            ],
+            if (keyPath != "config" && !(T == List && keyPath == "config.outbounds")) ...[
+              const PopupMenuItem<_OptionItems>(
+                height: _popupMenuHeight,
+                padding: EdgeInsets.only(left: _popupMenuItemPadding),
+                value: "string",
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.abc),
+                    SizedBox(width: 10),
+                    Text("String", style: TextStyle(fontSize: 14)),
+                  ],
+                ),
               ),
-            ),
-            const PopupMenuItem<_OptionItems>(
-              height: _popupMenuHeight,
-              padding: EdgeInsets.only(left: _popupMenuItemPadding),
-              value: _OptionItems.num,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(Icons.onetwothree),
-                  SizedBox(width: 10),
-                  Text("Number", style: TextStyle(fontSize: 14)),
-                ],
+              const PopupMenuItem<_OptionItems>(
+                height: _popupMenuHeight,
+                padding: EdgeInsets.only(left: _popupMenuItemPadding),
+                value: "num",
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.onetwothree),
+                    SizedBox(width: 10),
+                    Text("Number", style: TextStyle(fontSize: 14)),
+                  ],
+                ),
               ),
-            ),
-            const PopupMenuItem<_OptionItems>(
-              height: _popupMenuHeight,
-              padding: EdgeInsets.only(left: _popupMenuItemPadding),
-              value: _OptionItems.bool,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(Icons.check_rounded),
-                  SizedBox(width: 10),
-                  Text("Boolean", style: TextStyle(fontSize: 14)),
-                ],
+              const PopupMenuItem<_OptionItems>(
+                height: _popupMenuHeight,
+                padding: EdgeInsets.only(left: _popupMenuItemPadding),
+                value: "bool",
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.check_rounded),
+                    SizedBox(width: 10),
+                    Text("Boolean", style: TextStyle(fontSize: 14)),
+                  ],
+                ),
               ),
-            ),
-            const PopupMenuItem<_OptionItems>(
-              height: _popupMenuHeight,
-              padding: EdgeInsets.only(left: _popupMenuItemPadding),
-              value: _OptionItems.map,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(Icons.data_object),
-                  SizedBox(width: 10),
-                  Text("config", style: TextStyle(fontSize: 14)),
-                ],
+              const PopupMenuItem<_OptionItems>(
+                height: _popupMenuHeight,
+                padding: EdgeInsets.only(left: _popupMenuItemPadding),
+                value: "map",
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.data_object),
+                    SizedBox(width: 10),
+                    Text("object", style: TextStyle(fontSize: 14)),
+                  ],
+                ),
               ),
-            ),
-            const PopupMenuItem<_OptionItems>(
-              height: _popupMenuHeight,
-              padding: EdgeInsets.only(left: _popupMenuItemPadding),
-              value: _OptionItems.list,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(Icons.data_array),
-                  SizedBox(width: 10),
-                  Text("List", style: TextStyle(fontSize: 14)),
-                ],
+              const PopupMenuItem<_OptionItems>(
+                height: _popupMenuHeight,
+                padding: EdgeInsets.only(left: _popupMenuItemPadding),
+                value: "list",
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.data_array),
+                    SizedBox(width: 10),
+                    Text("List", style: TextStyle(fontSize: 14)),
+                  ],
+                ),
               ),
-            ),
+            ],
           ],
           const PopupMenuDivider(height: 1),
-          const PopupMenuItem<_OptionItems>(
-            height: _popupMenuHeight,
-            padding: EdgeInsets.only(left: 5),
-            value: _OptionItems.delete,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(Icons.delete),
-                SizedBox(width: 10),
-                Text("Delete", style: TextStyle(fontSize: 14)),
-              ],
+          if (keyPath != "config" && !(T == List && keyPath == "config.outbounds"))
+            const PopupMenuItem<_OptionItems>(
+              height: _popupMenuHeight,
+              padding: EdgeInsets.only(left: 5),
+              value: "delete",
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.delete),
+                  SizedBox(width: 10),
+                  Text("Delete", style: TextStyle(fontSize: 14)),
+                ],
+              ),
             ),
-          ),
         ];
       },
       child: _options,
