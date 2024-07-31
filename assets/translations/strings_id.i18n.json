@@ -318,17 +318,30 @@
     "connecting": "Sambungkan",
     "disconnecting": "Putus Sambungan",
     "connected": "Tersambung",
+    "reconnect": "Hubungkan kembali",
+    "connectAnyWay": "Menghubung",
     "experimentalNotice": "Fitur Experimental digunakan",
     "experimentalNoticeMsg": "Kamu telah mengaktifkan fitur experimental yang mungkin mempengaruhi kualitas sambungan dan error tidak terduga. Kamu tetap bisa merubah atau set ulang opsi dari Halaman Konfigurasi",
-    "disableExperimentalNotice": "Jangan tampil lagi"
+    "disableExperimentalNotice": "Jangan tampil lagi",
+    "reconnectMsg": "Menghubungkan kembali untuk memperhitungkan perubahan..."
   },
   "config": {
     "resetBtn": "Set Ulang Opsi",
     "serviceMode": "Sambung ulang agar perubahan diterapkan",
+    "quickSettings": "Pengaturan Cepat",
+    "setupWarp": "Siapkan WARP",
+    "allOptions": "Semua Opsi Konfigurasi",
     "serviceModes": {
       "proxy": "Proxy",
       "systemProxy": "Sistem Proxy",
-      "tun": "VPN"
+      "tun": "VPN",
+      "tunService": "Layanan VPN"
+    },
+    "shortServiceModes": {
+      "proxy": "Proksi",
+      "systemProxy": "Proksi Sistem",
+      "tun": "VPN",
+      "tunService": "Layanan VPN"
     },
     "section": {
       "route": "Opsi Route",
@@ -344,8 +357,12 @@
       "title": "Persetujuan Cloudflare WARP",
       "description(rich)": "Cloudflare WARP adalah WireGuard VPN Provider gratis. Dengan mengaktifkan opsi/pilihan ini berarti kamu setuju pada Cloudflare WARP's ${tos(Terms of Service)} dan ${privacy(Privacy Policy)}."
     },
+    "generateWarpConfig": "Hasilkan Konfigurasi WARP",
+    "missingWarpConfig": "Konfigurasi WARP tidak ada",
+    "warpConfigGenerated": "Konfigurasi WARP Dihasilkan",
     "pageTitle": "Opsi Konfig",
     "logLevel": "Log Level",
+    "blockAds": "Blokir Iklan",
     "resolveDestination": "Resolve Destination",
     "ipv6Mode": "IPv6 Route",
     "ipv6Modes": {

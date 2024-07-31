@@ -318,17 +318,30 @@
     "connecting": "Bağlanıyor",
     "disconnecting": "Bağlantı kesiliyor",
     "connected": "Bağlandı",
+    "reconnect": "Yeniden bağlan",
+    "connectAnyWay": "Bağlamak",
     "experimentalNotice": "Kullanımdaki Deneysel Özellikler",
     "experimentalNoticeMsg": "Bağlantı kalitesini etkileyebilecek ve beklenmeyen hatalara neden olabilecek bazı deneysel özellikleri etkinleştirdiniz. Bu seçenekleri istediğiniz zaman Yapılandırma seçenekleri sayfasından değiştirebilir veya sıfırlayabilirsiniz.",
-    "disableExperimentalNotice": "Bir daha gösterme"
+    "disableExperimentalNotice": "Bir daha gösterme",
+    "reconnectMsg": "Değişiklikleri dikkate almak için yeniden bağlanılıyor..."
   },
   "config": {
     "resetBtn": "Ayarları sıfırla",
     "serviceMode": "Servis modu",
+    "quickSettings": "Hızlı Ayarlar",
+    "setupWarp": "WARP'ı Kur",
+    "allOptions": "Tüm Yapılandırma Seçenekleri",
     "serviceModes": {
       "proxy": "Proxy",
       "systemProxy": "Sistem Proxy",
-      "tun": "VPN"
+      "tun": "VPN",
+      "tunService": "VPN Hizmeti"
+    },
+    "shortServiceModes": {
+      "proxy": "vekil",
+      "systemProxy": "Sistem Proxy'si",
+      "tun": "VPN",
+      "tunService": "VPN Hizmeti"
     },
     "section": {
       "route": "Rota Seçenekleri",
@@ -344,6 +357,9 @@
       "title": "Cloudflare WARP Onayı",
       "description(rich)": "Cloudflare WARP ücretsiz bir WireGuard VPN sağlayıcısıdır. Bu seçeneği etkinleştirerek Cloudflare WARP'ın ${tos(Hizmet Şartları)} ve ${privacy(Gizlilik Politikası)}'nı kabul etmiş olursunuz."
     },
+    "generateWarpConfig": "WARP Yapılandırması Oluştur",
+    "missingWarpConfig": "WARP Yapılandırması Eksik",
+    "warpConfigGenerated": "WARP Yapılandırması Oluşturuldu",
     "pageTitle": "Yapılandırma Seçenekleri",
     "logLevel": "Log Seviyesi",
     "resolveDestination": "Hedefi Çöz",

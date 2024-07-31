@@ -362,6 +362,7 @@
     "warpConfigGenerated": "تم إنشاء تكوين WARP",
     "pageTitle": "خيارات التكوين",
     "logLevel": "مستوى السجل",
+    "blockAds": "منع الإعلانات",
     "resolveDestination": "حل الوجهة",
     "ipv6Mode": "توجيه IPv6",
     "ipv6Modes": {

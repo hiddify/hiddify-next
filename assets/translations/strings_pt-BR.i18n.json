@@ -310,23 +310,36 @@
   },
   "play": {
     "title": "Hiddify (Pré-visualização)",
-    "short_description": "Auto, SSH, VLESS, VMess, Trojan, Reality, Sing-Box, Clash, XRay, Shadowsocks"
+    "short_description": "Auto, SSH, VLESS, VMess, Trojan, Reality, Sing-Box, Clash, XRay, Shadowsocks",
+    "full_description": "O principal objetivo do Hiddify é fornecer um cliente de tunelamento seguro, fácil de usar e eficiente. Ele permite que você direcione todo o tráfego ou tráfego de aplicativo selecionado para um servidor remoto de sua escolha, utilizando a permissão do serviço VPN.<inlang-LineFeed>\nNota: Não fornecemos nenhum servidor; os usuários são obrigados a garantir que suas atividades online permaneçam privadas usando seu próprio servidor auto-hospedado ou servidores confiáveis.<inlang-LineFeed>\nOferecemos suporte a servidores com:\n- Link de assinatura V2Ray/XRay normal\n- Link de assinatura do Clash\n- Link de assinatura do Sing-Box<inlang-LineFeed>\nQuais são os nossos recursos exclusivos?\n- Amigo do usuário\n- Otimizado e rápido\n- Selecione automaticamente o LowerPing\n- Mostrar informações de uso do usuário\n- Importe facilmente sublinks com um clique usando deeplinking\n- Gratuito e sem anúncios\n- Alterne facilmente sublinks de usuários\n- Mais e mais<inlang-LineFeed>\nApoiar:\n- Todos os protocolos suportados pelo Sing-Box\n- VLESS + XTLS Realidade, Visão\n- VMess\n- Trojan\n- ShadowSocks\n- Realidade\n- WireGuard\n-V2Ray\n- Histeria2\n-TUICv5\n-SSH\n- ShadowTLS<inlang-LineFeed><inlang-LineFeed>\nO código-fonte existe em https://github.com/hiddify/Hiddify-Next\nO núcleo do aplicativo é baseado no Sing-Box de código aberto.<inlang-LineFeed>\nDescrição da permissão:\n- Serviço VPN: Como o objetivo desta aplicação é fornecer um cliente de tunelamento seguro, fácil de usar e eficiente, precisamos dessa permissão para poder rotear o tráfego via túnel para o servidor remoto.\n- CONSULTAR TODOS OS PACOTES: Esta permissão é usada para permitir que os usuários incluam ou excluam aplicativos específicos para tunelamento.\n- RECEBER BOOT COMPLETED: Esta permissão pode ser habilitada ou desabilitada nas configurações do aplicativo para ativar este aplicativo na inicialização do dispositivo.\n- PÓS NOTIFICAÇÕES: Esta permissão é essencial, pois empregamos um serviço de primeiro plano para garantir a operação contínua do serviço VPN.\n- Este aplicativo está livre de anúncios. A análise e dados de travamento só ocorrem com o consentimento explícito do usuário na primeira utilização do aplicativo."
   },
   "connection": {
     "tapToConnect": "Toque para conectar",
     "connecting": "Conectando",
     "disconnecting": "Desconectando",
     "connected": "Conectado",
+    "reconnect": "Reconectar",
+    "connectAnyWay": "Conectar",
     "experimentalNotice": "Recursos experimentais em uso",
     "experimentalNoticeMsg": "Você ativou alguns recursos experimentais que podem afetar a qualidade da conexão e causar erros inesperados. Você sempre pode alterar ou redefinir essas opções na página de opções de configuração.",
-    "disableExperimentalNotice": "Não mostrar novamente"
+    "disableExperimentalNotice": "Não mostrar novamente",
+    "reconnectMsg": "Reconectando por levar em conta as mudanças..."
   },
   "config": {
     "resetBtn": "Redefinir opções",
     "serviceMode": "Modo de serviço",
+    "quickSettings": "Configurações rápidas",
+    "setupWarp": "Configurar WARP",
+    "allOptions": "Todas as opções de configuração",
     "serviceModes": {
       "proxy": "Somente serviço de proxy",
       "systemProxy": "Definir proxy do sistema",
+      "tun": "VPN",
+      "tunService": "Serviço VPN"
+    },
+    "shortServiceModes": {
+      "proxy": "Procurador",
+      "systemProxy": "Proxy do sistema",
       "tun": "VPN",
       "tunService": "Serviço VPN"
     },
