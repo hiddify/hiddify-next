@@ -412,6 +412,8 @@
     "warpCleanIp": "清理 IP",
     "warpPort": "端口",
     "warpNoise": "噪音计数",
+    "warpNoiseSize": "噪音大小",
+    "warpNoiseMode": "噪音模式",
     "warpNoiseDelay": "噪音延迟"
   }
 }

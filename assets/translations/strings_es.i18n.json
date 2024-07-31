@@ -375,6 +375,7 @@
     "directDnsAddress": "DNS Directo",
     "directDnsDomainStrategy": "Estrategia de dominio DNS directo",
     "mixedPort": "Puerto Mixto",
+    "tproxyPort": "Puerto proxy transparente",
     "localDnsPort": "Puerto DNS local",
     "allowConnectionFromLan": "Permitir conexión desde LAN",
     "tunImplementation": "Implementación de TUN",
@@ -401,12 +402,17 @@
     "enableWarp": "Enable WARP",
     "warpDetourMode": "Detour Mode",
     "warpDetourModes": {
+      "proxyOverWarp": "Desviar proxies a través de WARP",
+      "warpOverProxy": "Desvío WARP a través de proxies",
       "inbound": "Detour WARP through proxies",
       "outbound": "Detour proxies through WARP"
     },
     "warpLicenseKey": "License Key",
     "warpCleanIp": "Clean IP",
     "warpPort": "Port",
-    "warpNoise": "Noise"
+    "warpNoise": "Noise",
+    "warpNoiseSize": "Tamaño del ruido",
+    "warpNoiseMode": "Modo de ruido",
+    "warpNoiseDelay": "Retraso de ruido"
   }
 }

@@ -362,6 +362,7 @@
     "warpConfigGenerated": "Configuração WARP gerada",
     "pageTitle": "Opções de configuração",
     "logLevel": "Nível de registro",
+    "blockAds": "Bloquear anúncios",
     "resolveDestination": "Resolver destino",
     "ipv6Mode": "Rota IPv6",
     "ipv6Modes": {
@@ -375,6 +376,7 @@
     "directDnsAddress": "DNS direto",
     "directDnsDomainStrategy": "Estratégia de Domínio DNS Direto",
     "mixedPort": "Porta Mista",
+    "tproxyPort": "Porta proxy transparente",
     "localDnsPort": "Porta DNS local",
     "allowConnectionFromLan": "Permitir conexão da LAN",
     "tunImplementation": "Implementação TUN",
@@ -401,6 +403,8 @@
     "enableWarp": "Habilitar WARP",
     "warpDetourMode": "Modo de desvio",
     "warpDetourModes": {
+      "proxyOverWarp": "Proxies de desvio através do WARP",
+      "warpOverProxy": "Desvio WARP através de proxies",
       "inbound": "Desvie o WARP através de proxies",
       "outbound": "Desviar proxies através do WARP"
     },
@@ -408,6 +412,8 @@
     "warpCleanIp": "Limpar IP",
     "warpPort": "Porta",
     "warpNoise": "Contagem de ruído",
+    "warpNoiseSize": "Tamanho do ruído",
+    "warpNoiseMode": "Modo de ruído",
     "warpNoiseDelay": "Atraso de ruído"
   }
 }

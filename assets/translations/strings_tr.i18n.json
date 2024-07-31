@@ -362,6 +362,7 @@
     "warpConfigGenerated": "WARP Yapılandırması Oluşturuldu",
     "pageTitle": "Yapılandırma Seçenekleri",
     "logLevel": "Log Seviyesi",
+    "blockAds": "Reklamları Engelle",
     "resolveDestination": "Hedefi Çöz",
     "ipv6Mode": "IPv6 Rotası",
     "ipv6Modes": {
@@ -375,6 +376,7 @@
     "directDnsAddress": "Doğrudan DNS",
     "directDnsDomainStrategy": "Doğrudan DNS Domain Stratejisi",
     "mixedPort": "Mixed Port",
+    "tproxyPort": "Şeffaf Proxy Bağlantı Noktası",
     "localDnsPort": "Yerel DNS Bağlantı Noktası",
     "allowConnectionFromLan": "Allow Connection from LAN",
     "tunImplementation": "TUN İmplementasyonu",
@@ -401,12 +403,17 @@
     "enableWarp": "Enable WARP",
     "warpDetourMode": "Detour Mode",
     "warpDetourModes": {
+      "proxyOverWarp": "WARP Aracılığıyla Proxy'lerin Yolunu Değiştirmek",
+      "warpOverProxy": "Proxy'ler Aracılığıyla WARP'tan Sapma",
       "inbound": "Detour WARP through proxies",
       "outbound": "Detour proxies through WARP"
     },
     "warpLicenseKey": "License Key",
     "warpCleanIp": "Clean IP",
     "warpPort": "Port",
-    "warpNoise": "Noise"
+    "warpNoise": "Noise",
+    "warpNoiseSize": "Gürültü Boyutu",
+    "warpNoiseMode": "Gürültü Modu",
+    "warpNoiseDelay": "Gürültü Gecikmesi"
   }
 }

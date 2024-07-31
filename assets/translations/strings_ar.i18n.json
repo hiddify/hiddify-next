@@ -412,6 +412,8 @@
     "warpCleanIp": "عنوان IP نظيف",
     "warpPort": "المنفذ",
     "warpNoise": "عدد الضوضاء",
+    "warpNoiseSize": "حجم الضوضاء",
+    "warpNoiseMode": "وضع الضوضاء",
     "warpNoiseDelay": "تأخير الضوضاء"
   }
 }

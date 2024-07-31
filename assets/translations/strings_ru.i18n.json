@@ -362,6 +362,7 @@
     "warpConfigGenerated": "WARP конфиг сгенерирован",
     "pageTitle": "Параметры конфигурации",
     "logLevel": "Подробность журналирования",
+    "blockAds": "Блокировать рекламу",
     "resolveDestination": "Определять назначение",
     "ipv6Mode": "Маршрутизация IPv6",
     "ipv6Modes": {
@@ -410,6 +411,9 @@
     "warpLicenseKey": "License Key",
     "warpCleanIp": "Clean IP",
     "warpPort": "Port",
-    "warpNoise": "Noise"
+    "warpNoise": "Noise",
+    "warpNoiseSize": "Размер шума",
+    "warpNoiseMode": "Шумовой режим",
+    "warpNoiseDelay": "Задержка шума"
   }
 }

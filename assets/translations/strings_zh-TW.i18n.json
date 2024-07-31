@@ -362,6 +362,7 @@
     "warpConfigGenerated": "WARP 配置檔案已生成",
     "pageTitle": "配置選項",
     "logLevel": "紀錄等級",
+    "blockAds": "阻止廣告",
     "resolveDestination": "解析目標地址",
     "ipv6Mode": "IPv6 路由",
     "ipv6Modes": {
@@ -411,6 +412,8 @@
     "warpCleanIp": "清理 IP",
     "warpPort": "連接埠",
     "warpNoise": "噪音計數",
+    "warpNoiseSize": "噪音大小",
+    "warpNoiseMode": "噪音模式",
     "warpNoiseDelay": "噪音延遲"
   }
 }

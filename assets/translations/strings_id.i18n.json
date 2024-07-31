@@ -376,6 +376,7 @@
     "directDnsAddress": "Direct DNS",
     "directDnsDomainStrategy": "Direct DNS Domain Strategy",
     "mixedPort": "Mixed Port",
+    "tproxyPort": "Port Proksi Transparan",
     "localDnsPort": "DNS Port Lokal",
     "allowConnectionFromLan": "Perbolehkan Sambungan LAN",
     "tunImplementation": "Implementasi TUN",
@@ -402,12 +403,17 @@
     "enableWarp": "Enable WARP",
     "warpDetourMode": "Detour Mode",
     "warpDetourModes": {
+      "proxyOverWarp": "Memutar Proxy Melalui WARP",
+      "warpOverProxy": "Jalan memutar WARP Melalui Proxy",
       "inbound": "Detour WARP through proxies",
       "outbound": "Detour proxies through WARP"
     },
     "warpLicenseKey": "License Key",
     "warpCleanIp": "Clean IP",
     "warpPort": "Port",
-    "warpNoise": "Noise"
+    "warpNoise": "Noise",
+    "warpNoiseSize": "Ukuran Kebisingan",
+    "warpNoiseMode": "Modus Kebisingan",
+    "warpNoiseDelay": "Penundaan Kebisingan"
   }
 }
