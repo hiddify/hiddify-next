@@ -78,6 +78,8 @@
         "permissionRequest": "Permissão para a câmera digitalizar o QR Code"
       },
       "manually": "Entrada manual",
+      "addWarp": "Adicionar distorção",
+      "addingWarpMsg": "Aguarde enquanto registramos o WARP.",
       "addingProfileMsg": "Adicionando Perfil",
       "failureMsg": "Falha ao adicionar perfil"
     },
@@ -162,6 +164,10 @@
     "requiresRestartMsg": "Para que isso tenha efeito, reinicie o aplicativo",
     "experimental": "Experimental",
     "experimentalMsg": "Os recursos com sinalização Experimental ainda estão em desenvolvimento e podem causar problemas.",
+    "exportOptions": "Copiar opções anônimas para a área de transferência",
+    "exportAllOptions": "Copiar todas as opções para a área de transferência",
+    "importOptions": "Opções de importação da área de transferência",
+    "importOptionsMsg": "Isto irá reescrever todas as opções de configuração com os valores fornecidos. Tem certeza?",
     "general": {
       "sectionTitle": "Geral",
       "locale": "Linguagem",

@@ -79,6 +79,7 @@
       },
       "manually": "إدخال يدوي",
       "addWarp": "أضف الاعوجاج",
+      "addingWarpMsg": "الرجاء الانتظار بينما نقوم بتسجيل WARP.",
       "addingProfileMsg": "إضافة ملف التعريف",
       "failureMsg": "فشل في إضافة ملف التعريف"
     },

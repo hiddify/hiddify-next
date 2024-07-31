@@ -79,6 +79,7 @@
       },
       "manually": "Entrada manual",
       "addWarp": "Agregar deformación",
+      "addingWarpMsg": "Espere mientras registramos WARP.",
       "addingProfileMsg": "Agregar perfil",
       "failureMsg": "No se pudo agregar el perfil"
     },
@@ -130,10 +131,22 @@
     "emptyProxiesMsg": "No proxies disponibles",
     "delayTestTooltip": "Prueba de Restraso",
     "sortTooltip": "Ordenar Proxies",
+    "checkIp": "Comprobar IP",
+    "unknownIp": "IP desconocida",
     "sortOptions": {
       "unsorted": "Por Defecto",
       "name": "Alfabéticamente",
       "delay": "Por retraso"
+    },
+    "activeProxySemanticLabel": "Proxy activo",
+    "delaySemantics": {
+      "result": "Retraso: ${delay}ms",
+      "timeout": "Retrasar el tiempo de espera de la prueba",
+      "testing": "Retraso: Probando..."
+    },
+    "ipInfoSemantics": {
+      "address": "Dirección IP",
+      "country": "País"
     }
   },
   "logs": {
@@ -151,6 +164,10 @@
     "requiresRestartMsg": "Para que esto surta efecto, reinicie la aplicación.",
     "experimental": "Experimental",
     "experimentalMsg": "Las funciones con el indicador Experimental aún están en desarrollo y pueden causar problemas.",
+    "exportOptions": "Copiar opciones anónimas al portapapeles",
+    "exportAllOptions": "Copiar todas las opciones al portapapeles",
+    "importOptions": "Opciones de importación desde el portapapeles",
+    "importOptionsMsg": "Esto reescribirá todas las opciones de configuración con los valores proporcionados. ¿Está seguro?",
     "general": {
       "sectionTitle": "General",
       "locale": "Idioma",
@@ -178,7 +195,9 @@
       "openWorkingDir": "Abrir directorio de trabajo",
       "ignoreBatteryOptimizations": "Deshabilitar la optimización de la batería",
       "ignoreBatteryOptimizationsMsg": "Elimine las restricciones para un rendimiento VPN óptimo",
-      "dynamicNotification": "Mostrar velocidad en la notificación"
+      "dynamicNotification": "Mostrar velocidad en la notificación",
+      "hapticFeedback": "Retroalimentación háptica",
+      "autoIpCheck": "Verificar automáticamente la IP de conexión"
     },
     "advanced": {
       "sectionTitle": "Avanzado",

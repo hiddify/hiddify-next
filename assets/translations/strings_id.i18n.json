@@ -79,6 +79,7 @@
       },
       "manually": "Isian Manual",
       "addWarp": "Tambahkan Warp",
+      "addingWarpMsg": "Mohon tunggu selagi kami mendaftarkan WARP.",
       "addingProfileMsg": "Tambahkan Profil",
       "failureMsg": "Gagal tambahkan profil"
     },
@@ -130,10 +131,22 @@
     "emptyProxiesMsg": "Tidak ada proxy",
     "delayTestTooltip": "Test delay",
     "sortTooltip": "Urut Proxy",
+    "checkIp": "Periksa IP",
+    "unknownIp": "IP tidak dikenal",
     "sortOptions": {
       "unsorted": "Awal",
       "name": "Alfabetikal",
       "delay": "Berdasarkan Delay"
+    },
+    "activeProxySemanticLabel": "Proksi Aktif",
+    "delaySemantics": {
+      "result": "Penundaan: ${delay}ms",
+      "timeout": "Batas Waktu Uji Tunda",
+      "testing": "Penundaan: Menguji..."
+    },
+    "ipInfoSemantics": {
+      "address": "Alamat IP",
+      "country": "Negara"
     }
   },
   "logs": {
@@ -151,6 +164,10 @@
     "requiresRestartMsg": "Untuk mencoba restart aplikasi",
     "experimental": "Eksperimen",
     "experimentalMsg": "Fitur dengan tanda Eksperimen masih dalam pengembangan dan resiko bermasalah.",
+    "exportOptions": "Salin Opsi Anonim ke Papan Klip",
+    "exportAllOptions": "Salin Semua Opsi ke Clipboard",
+    "importOptions": "Opsi Impor Dari Papan Klip",
+    "importOptionsMsg": "Ini akan menulis ulang semua opsi konfigurasi dengan nilai yang diberikan. Apa kamu yakin?",
     "general": {
       "sectionTitle": "Umum",
       "locale": "Bahasa",
@@ -178,7 +195,9 @@
       "openWorkingDir": "Buka Direktori Kerja",
       "ignoreBatteryOptimizations": "Menonaktifkan Optimisasi Baterai",
       "ignoreBatteryOptimizationsMsg": "Hapus batasan untuk performa VPN yang optimal",
-      "dynamicNotification": "Tampilkan Kecepatan di notifikasi"
+      "dynamicNotification": "Tampilkan Kecepatan di notifikasi",
+      "hapticFeedback": "Umpan Balik Haptik",
+      "autoIpCheck": "Secara Otomatis Memeriksa IP Koneksi"
     },
     "advanced": {
       "sectionTitle": "Mode Lanjut",
