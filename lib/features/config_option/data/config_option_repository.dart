@@ -57,7 +57,8 @@ abstract class ConfigOptions {
 
   static final remoteDnsAddress = PreferencesNotifier.create<String, String>(
     "remote-dns-address",
-    "https://sky.rethinkdns.com/dns-query",
+    "udp://1.1.1.1",
+    // "https://sky.rethinkdns.com/dns-query",
     validator: (value) => value.isNotBlank,
   );
 
