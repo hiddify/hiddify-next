@@ -49,7 +49,12 @@ class AppDatabase extends _$AppDatabase with InfraLogger {
           await _prePopulateGeoAssets();
         },
         from3To4: (m, schema) async {
-          await m.addColumn(profileEntries, profileEntries.testUrl);
+          // TODO: check if column exists, if not then add column
+          try {
+            await m.addColumn(profileEntries, profileEntries.testUrl);
+          } on Exception catch (err) {
+            loggy.debug(err);
+          }
         },
       ),
       beforeOpen: (details) async {
