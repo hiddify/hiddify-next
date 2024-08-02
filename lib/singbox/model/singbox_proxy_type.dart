@@ -22,12 +22,13 @@ enum ProxyType {
   urltest("URLTest"),
   warp("Warp"),
 
-  xvless("XVLESS"),
-  xvmess("XVMess"),
-  xtrojan("Xtrojan"),
-  xfreedom("Xfragment"),
-  xshadowsocks("XShadowsocks"),
-  xsocks("XSocks"),
+  xvless("xVLESS"),
+  xvmess("xVMess"),
+  xtrojan("xTrojan"),
+  xfreedom("xFragment"),
+  xshadowsocks("xShadowsocks"),
+  xsocks("xSocks"),
+  invalid("Invalid"),
   unknown("Unknown");
 
   const ProxyType(this.label);
