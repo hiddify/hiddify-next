@@ -174,11 +174,12 @@
       "region": "Region",
       "regionMsg": "Helps set default options to bypass domestic addresses",
       "regions": {
-        "ir": "Iran (ir)",
-        "cn": "China (cn)",
-        "ru": "Russia (ru)",
-        "af": "Afghanistan (af)",
-        "id": "Indonesia (id)",
+        "ir": "Iran (ir) 🇮🇷",
+        "cn": "China (cn) 🇨🇳",
+        "ru": "Russia (ru) 🇷🇺",
+        "af": "Afghanistan (af) 🇦🇫",
+        "id": "Indonesia (id) 🇮🇩",
+        "tr": "Turkey (tr) 🇹🇷",
         "other": "Other"
       },
       "themeMode": "Theme Mode",
