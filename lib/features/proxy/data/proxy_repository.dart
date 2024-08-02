@@ -19,9 +19,7 @@ abstract interface class ProxyRepository {
   TaskEither<ProxyFailure, Unit> urlTest(String groupTag);
 }
 
-class ProxyRepositoryImpl
-    with ExceptionHandler, InfraLogger
-    implements ProxyRepository {
+class ProxyRepositoryImpl with ExceptionHandler, InfraLogger implements ProxyRepository {
   ProxyRepositoryImpl({
     required this.singbox,
     required this.client,
@@ -103,10 +101,7 @@ class ProxyRepositoryImpl
     String outboundTag,
   ) {
     return exceptionHandler(
-      () => singbox
-          .selectOutbound(groupTag, outboundTag)
-          .mapLeft(ProxyUnexpectedFailure.new)
-          .run(),
+      () => singbox.selectOutbound(groupTag, outboundTag).mapLeft(ProxyUnexpectedFailure.new).run(),
       ProxyUnexpectedFailure.new,
     );
   }
@@ -114,18 +109,19 @@ class ProxyRepositoryImpl
   @override
   TaskEither<ProxyFailure, Unit> urlTest(String groupTag_) {
     var groupTag = groupTag_;
-    if (!["auto", "select"].contains(groupTag)) {
-      loggy.warning("only proxy group can do url test");
-      groupTag = "select";
+    loggy.debug("testing group: [$groupTag]");
+    if (!["auto"].contains(groupTag)) {
+      loggy.warning("only auto proxy group can do url test. Please change go code if you want");
     }
+    groupTag = "auto";
+
     return exceptionHandler(
       () => singbox.urlTest(groupTag).mapLeft(ProxyUnexpectedFailure.new).run(),
       ProxyUnexpectedFailure.new,
     );
   }
 
-  final Map<String, IpInfo Function(Map<String, dynamic> response)>
-      _ipInfoSources = {
+  static final Map<String, IpInfo Function(Map<String, dynamic> response)> _ipInfoSources = {
     // "https://geolocation-db.com/json/": IpInfo.fromGeolocationDbComJson, //bug response is not json
     "https://ipwho.is/": IpInfo.fromIpwhoIsJson,
     "https://api.ip.sb/geoip/": IpInfo.fromIpSbJson,
@@ -144,6 +140,7 @@ class ProxyRepositoryImpl
             final response = await client.get<Map<String, dynamic>>(
               source.key,
               cancelToken: cancelToken,
+              proxyOnly: true,
             );
             if (response.statusCode == 200 && response.data != null) {
               return source.value(response.data!);
