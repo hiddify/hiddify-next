@@ -1,6 +1,18 @@
 # Changelog
 
 
+## 2.1.1 (2024-08-02)
+
+#### New
+
+* Add turkey region. 
+
+#### Other
+
+* Add change log. 
+
+
+
 ## v2.1.0 (2024-08-02)
 
 #### New

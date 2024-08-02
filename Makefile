@@ -242,9 +242,13 @@ release: # Create a new tag for release.
 	sed -i "s/^msix_version: .*/msix_version: $${VERSION_ARRAY[0]}.$${VERSION_ARRAY[1]}.$${VERSION_ARRAY[2]}.0/g" windows/packaging/msix/make_config.yaml && \
 	sed -i "s/CURRENT_PROJECT_VERSION = $${cbuild_number}/CURRENT_PROJECT_VERSION = $${BUILD_NUMBER}/g" ios/Runner.xcodeproj/project.pbxproj && \
 	sed -i "s/MARKETING_VERSION = $${cstr_version}/MARKETING_VERSION = $${VERSION_STR}/g" ios/Runner.xcodeproj/project.pbxproj && \
-	git add ios/Runner.xcodeproj/project.pbxproj pubspec.yaml windows/packaging/msix/make_config.yaml && \
+	git tag $${TAG} > /dev/null && \
+	gitchangelog > HISTORY.md || { git tag -d $${TAG}; echo "Please run pip install gitchangelog pystache mustache markdown"; exit 2; } && \
+	git tag -d $${TAG} > /dev/null && \
+	git add ios/Runner.xcodeproj/project.pbxproj pubspec.yaml windows/packaging/msix/make_config.yaml HISTORY.md && \
 	git commit -m "release: version $${TAG}" && \
 	echo "creating git tag : v$${TAG}" && \
+	
 	git push && \
 	git tag v$${TAG} && \
 	git push -u origin HEAD --tags && \
