@@ -12,7 +12,8 @@
     "ru",
     "tr",
     "zh-CN",
-    "zh-TW"
+    "zh-TW",
+    "hi"
   ],
   "modules": [
     "https://cdn.jsdelivr.net/npm/@inlang/plugin-i18next@4/dist/index.js",
