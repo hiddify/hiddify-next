@@ -381,7 +381,7 @@
     "localDnsPort": "پورت DNS داخلی",
     "allowConnectionFromLan": "اشتراک VPN در شبکه داخلی",
     "tunImplementation": "پیاده‌سازی TUN",
-    "mtu": "سایز بسته‌ها (MTU) ",
+    "mtu": "سایز بسته‌ (MTU) ",
     "connectionTestUrl": "لینک بررسی اتصال",
     "urlTestInterval": "فاصله‌ی زمانی بررسی لینک",
     "enableClashApi": "فعال‌سازی Clash API",

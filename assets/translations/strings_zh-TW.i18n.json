@@ -381,7 +381,7 @@
     "localDnsPort": "本機 DNS 連接埠",
     "allowConnectionFromLan": "允許區域網路連線",
     "tunImplementation": "TUN 實現",
-    "mtu": "MTU",
+    "mtu": "封包大小 (MTU)",
     "connectionTestUrl": "連線測試網址",
     "urlTestInterval": "網址測試間隔",
     "enableClashApi": "啟用 Clash API",

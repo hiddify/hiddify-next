@@ -381,7 +381,7 @@
     "localDnsPort": "Локальный порт DNS",
     "allowConnectionFromLan": "Allow Connection from LAN",
     "tunImplementation": "Реализация TUN",
-    "mtu": "MTU",
+    "mtu": "Размер пакета (MTU)",
     "connectionTestUrl": "URL проверки подключения",
     "urlTestInterval": "Интервал проверки URL",
     "enableClashApi": "Использовать Clash API",

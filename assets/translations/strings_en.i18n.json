@@ -381,7 +381,7 @@
     "localDnsPort": "Local DNS Port",
     "allowConnectionFromLan": "Share VPN in Local Network",
     "tunImplementation": "TUN Implementation",
-    "mtu": "MTU",
+    "mtu": "Packet Size (MTU)",
     "connectionTestUrl": "Connection Test URL",
     "urlTestInterval": "URL Test Interval",
     "enableClashApi": "Enable Clash API",

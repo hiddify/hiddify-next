@@ -381,7 +381,7 @@
     "localDnsPort": "منفذ DNS المحلي",
     "allowConnectionFromLan": "مشاركة VPN على الشبكة المحلية",
     "tunImplementation": "تنفيذ TUN",
-    "mtu": "MTU",
+    "mtu": "حجم الحزمة (MTU)",
     "connectionTestUrl": "عنوان URL لاختبار الاتصال",
     "urlTestInterval": "مُدة اختبار عنوان URL",
     "enableClashApi": "تمكين Clash API",

@@ -381,7 +381,7 @@
     "localDnsPort": "DNS Port Lokal",
     "allowConnectionFromLan": "Perbolehkan Sambungan LAN",
     "tunImplementation": "Implementasi TUN",
-    "mtu": "MTU",
+    "mtu": "Ukuran Paket (MTU)",
     "connectionTestUrl": "URL Tes Sambungan",
     "urlTestInterval": "URL Test Interval",
     "enableClashApi": "Aktifkan Clash API",

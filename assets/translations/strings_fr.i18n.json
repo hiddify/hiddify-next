@@ -295,9 +295,126 @@
       "notFound": "Profil non trouvé",
       "invalidConfig": "Configurations invalides",
       "invalidUrl": "URL invalide"
+    },
+    "connection": {
+      "unexpected": "Erreur de connexion inattendue",
+      "timeout": "Délai de connection dépassé",
+      "badResponse": "Mauvaise réponse",
+      "connectionError": "Erreur de connexion",
+      "badCertificate": "Mauvais certificat"
+    },
+    "geoAssets": {
+      "unexpected": "Erreur inattendue",
+      "notUpdate": "Pas de mise a jour disponible",
+      "activeNotFound": "Actif géographique actif introuvable"
     }
   },
   "play": {
+    "title": "Hiddify (aperçu)",
+    "short_description": "Auto, SSH, VLESS, VMess, cheval de Troie, Reality, Sing-Box, Clash, XRay, Shadowsocks",
     "full_description": "L'objectif principal de Hiddify est de fournir un client de tunneling sécurisé, convivial et efficace. Il vous permet d'acheminer tout le trafic ou le trafic d'applications sélectionnées vers un serveur distant de votre choix, en utilisant l'autorisation du service VPN.<inlang-LineFeed>\nRemarque : Nous ne fournissons aucun serveur ; les utilisateurs sont tenus de garantir que leurs activités en ligne restent privées en utilisant leur propre serveur auto-hébergé ou des serveurs de confiance.<inlang-LineFeed>\nNous prenons en charge les serveurs avec :\n- Lien d'abonnement normal V2Ray/XRay\n- Lien d'abonnement Clash\n- Lien d'abonnement à Sing-Box<inlang-LineFeed>\nQuelles sont nos caractéristiques uniques ?\n- Convivial\n- Optimisé et rapide\n- Sélectionnez automatiquement le plus bas Ping\n- Afficher les informations d'utilisation de l'utilisateur\n- Importez facilement des sous-liens en un seul clic grâce au deeplinking\n- Gratuit et sans publicité\n- Changez facilement de sous-liens utilisateur\n- De plus en plus<inlang-LineFeed>\nSoutien:\n- Tous les protocoles pris en charge par Sing-Box\n- VLESS + XTLS Réalité, Vision\n-VMess\n- Cheval de Troie\n- Chaussettes Shadow\n- Réalité\n- WireGuard\n-V2Ray\n- Hystérie2\n-TUICv5\n-SSH\n-OmbreTLS<inlang-LineFeed><inlang-LineFeed>\nLe code source existe sur https://github.com/hiddify/Hiddify-Next\nLe cœur de l'application est basé sur Sing-Box open source.<inlang-LineFeed>\nDescription de l'autorisation :\n- Service VPN : L'objectif de cette application étant de fournir un client de tunneling sécurisé, convivial et efficace, nous avons besoin de cette autorisation pour pouvoir acheminer le trafic via un tunnel vers le serveur distant.\n- REQUÊTER TOUS LES PAQUETS : cette autorisation est utilisée pour permettre aux utilisateurs d'inclure ou d'exclure des applications spécifiques pour le tunneling.\n- RECEVOIR LE BOOT TERMINÉ : Cette autorisation peut être activée ou désactivée à partir des paramètres de l'application pour activer cette application au démarrage de l'appareil.\n- POST NOTIFICATIONS : Cette autorisation est essentielle car nous utilisons un service de premier plan pour assurer le fonctionnement continu du service VPN.\n- Cette application est exempte de publicités. Les données d'analyse et de crash n'ont lieu qu'avec le consentement explicite de l'utilisateur lors de la première utilisation de l'application."
+  },
+  "connection": {
+    "tapToConnect": "Appuyez pour vous connecter",
+    "connecting": "De liaison",
+    "disconnecting": "Déconnexion",
+    "connected": "Connecté",
+    "reconnect": "Reconnecter",
+    "connectAnyWay": "Connecter",
+    "experimentalNotice": "Fonctionnalités expérimentales utilisées",
+    "experimentalNoticeMsg": "Vous avez activé certaines fonctionnalités expérimentales qui peuvent affecter la qualité de la connexion et provoquer des erreurs inattendues. Vous pouvez toujours modifier ou réinitialiser ces options à partir de la page des options de configuration.",
+    "disableExperimentalNotice": "Ne plus montrer",
+    "reconnectMsg": "Se reconnecter pour prendre en compte les changements..."
+  },
+  "config": {
+    "resetBtn": "Options de réinitialisation",
+    "serviceMode": "Mode de service",
+    "quickSettings": "Réglages rapides",
+    "setupWarp": "Configuration de la chaîne",
+    "allOptions": "Toutes les options de configuration",
+    "serviceModes": {
+      "proxy": "Service proxy uniquement",
+      "systemProxy": "Définir le proxy système",
+      "tun": "VPN",
+      "tunService": "Service VPN"
+    },
+    "shortServiceModes": {
+      "proxy": "Proxy",
+      "systemProxy": "Proxy système",
+      "tun": "VPN",
+      "tunService": "Service VPN"
+    },
+    "section": {
+      "route": "Options d'itinéraire",
+      "dns": "Options DNS",
+      "inbound": "Options entrantes",
+      "mux": "MultiPlexeur",
+      "outbound": "Options sortantes",
+      "tlsTricks": "Astuces TLS",
+      "warp": "Options WARP ",
+      "misc": "Diverses options"
+    },
+    "warpConsent": {
+      "title": "Consentement Cloudflare WARP",
+      "description(rich)": "Cloudflare WARP est un fournisseur VPN WireGuard gratuit. En activant cette option, vous acceptez les ${tos(Terms of Service)} et ${privacy(Privacy Policy)} de Cloudflare WARP."
+    },
+    "generateWarpConfig": "Générer une configuration WARP",
+    "missingWarpConfig": "Configuration WARP manquante",
+    "warpConfigGenerated": "Configuration WARP générée",
+    "pageTitle": "Options de configuration",
+    "logLevel": "Niveau de journalisation",
+    "blockAds": "Bloquer les publicités",
+    "resolveDestination": "Résoudre la destination",
+    "ipv6Mode": "Itinéraire IPv6",
+    "ipv6Modes": {
+      "disable": "Désactiver",
+      "enable": "Activer",
+      "prefer": "Préféré",
+      "only": "Exclusif"
+    },
+    "remoteDnsAddress": "DNS distant",
+    "remoteDnsDomainStrategy": "Stratégie de domaine DNS distant",
+    "directDnsAddress": "DNS direct",
+    "directDnsDomainStrategy": "Stratégie de domaine DNS direct",
+    "mixedPort": "Port mixte",
+    "tproxyPort": "Port proxy transparent",
+    "localDnsPort": "Port DNS local",
+    "allowConnectionFromLan": "Partager un VPN sur un réseau local",
+    "tunImplementation": "Implémentation du TUN",
+    "mtu": "Taille du paquet (MTU)",
+    "connectionTestUrl": "URL de test de connexion",
+    "urlTestInterval": "Intervalle de test d'URL",
+    "enableClashApi": "Activer l'API Clash",
+    "clashApiPort": "Port API de conflit",
+    "enableTun": "Activer TUN",
+    "setSystemProxy": "Définir le proxy système",
+    "enableDnsRouting": "Activer le routage DNS",
+    "enableFakeDns": "Activer le faux DNS",
+    "bypassLan": "Contourner le réseau local",
+    "strictRoute": "Itinéraire strict",
+    "enableTlsFragment": "Activer le fragment TLS",
+    "tlsFragmentSize": "Taille des fragments TLS",
+    "tlsFragmentSleep": "Veille des fragments TLS",
+    "enableTlsMixedSniCase": "Activer le cas TLS Mixed SNI",
+    "enableTlsPadding": "Activer TLS Padding",
+    "tlsPaddingSize": "TLS Padding",
+    "enableMux": "Activer MUX",
+    "muxProtocol": "Protocole MUX",
+    "muxMaxStreams": "Flux simultanés maximum",
+    "enableWarp": "Activer WARP",
+    "warpDetourMode": "Mode détour",
+    "warpDetourModes": {
+      "proxyOverWarp": "Proxy de détour via WARP",
+      "warpOverProxy": "Détour WARP via des proxys",
+      "inbound": "Détour WARP via des proxys",
+      "outbound": "Proxy de détour via WARP"
+    },
+    "warpLicenseKey": "Clé de licence",
+    "warpCleanIp": "IP propre",
+    "warpPort": "Port",
+    "warpNoise": "Nombre de bruit",
+    "warpNoiseSize": "Taille du bruit",
+    "warpNoiseMode": "Mode bruit",
+    "warpNoiseDelay": "Retard de bruit"
   }
 }

@@ -381,7 +381,7 @@
     "localDnsPort": "Porta DNS local",
     "allowConnectionFromLan": "Permitir conexão da LAN",
     "tunImplementation": "Implementação TUN",
-    "mtu": "MTU",
+    "mtu": "Tamanho do pacote (MTU)",
     "connectionTestUrl": "URL de teste de conexão",
     "urlTestInterval": "Intervalo de teste de URL",
     "enableClashApi": "Ativar API Clash",

@@ -381,7 +381,7 @@
     "localDnsPort": "Yerel DNS Bağlantı Noktası",
     "allowConnectionFromLan": "Allow Connection from LAN",
     "tunImplementation": "TUN İmplementasyonu",
-    "mtu": "MTU",
+    "mtu": "Paket Boyutu (MTU)",
     "connectionTestUrl": "Bağlantı Testi URL'i",
     "urlTestInterval": "URL Test Aralığı",
     "enableClashApi": "Clash API'yi etkinleştir",
