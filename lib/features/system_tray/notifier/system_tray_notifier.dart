@@ -15,6 +15,7 @@ import 'package:hiddify/singbox/model/singbox_config_enum.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:tray_manager/tray_manager.dart';
+import 'package:window_manager/window_manager.dart';
 
 part 'system_tray_notifier.g.dart';
 
@@ -23,8 +24,10 @@ class SystemTrayNotifier extends _$SystemTrayNotifier with AppLogger {
   @override
   Future<void> build() async {
     if (!PlatformUtils.isDesktop) return;
-    ref.watch(activeProxyNotifierProvider).whenData((activeProxy) => setDelay(activeProxy.urlTestDelay));
 
+    final activeProxy = await ref.watch(activeProxyNotifierProvider);
+    final delay = activeProxy.value?.urlTestDelay ?? 0;
+    final newConnectionStatus = delay > 0 && delay < 65000;
     ConnectionStatus connection;
     try {
       connection = await ref.watch(connectionNotifierProvider.future);
@@ -32,14 +35,32 @@ class SystemTrayNotifier extends _$SystemTrayNotifier with AppLogger {
       loggy.warning("error getting connection status", e);
       connection = const ConnectionStatus.disconnected();
     }
+
+    final t = ref.watch(translationsProvider);
+
+    var tooltip = Constants.appName;
     final serviceMode = ref.watch(ConfigOptions.serviceMode);
     if (connection == Disconnected()) {
       setIcon(connection);
+    } else if (newConnectionStatus) {
+      setIcon(const Connected());
+      tooltip = "$tooltip - ${connection.present(t)}";
+      if (newConnectionStatus) {
+        tooltip = "$tooltip : ${delay}ms";
+      } else {
+        tooltip = "$tooltip : -";
+      }
+      // else if (delay>1000)
+      //   SystemTrayNotifier.setIcon(timeout ? Disconnecting() : Connecting());
+    } else {
+      setIcon(const Disconnecting());
+      tooltip = "${tooltip} - ${connection.present(t)}";
     }
+    if (Platform.isMacOS) {
+      windowManager.setBadgeLabel("${delay}ms");
+    }
+    if (!Platform.isLinux) await trayManager.setToolTip(tooltip);
 
-    if (!Platform.isLinux) await trayManager.setToolTip(Constants.appName);
-
-    final t = ref.watch(translationsProvider);
     final destinations = <(String label, String location)>[
       (t.home.pageTitle, const HomeRoute().location),
       (t.proxies.pageTitle, const ProxiesRoute().location),
@@ -48,7 +69,7 @@ class SystemTrayNotifier extends _$SystemTrayNotifier with AppLogger {
       (t.about.pageTitle, const AboutRoute().location),
     ];
 
-    loggy.debug('updating system tray');
+    // loggy.debug('updating system tray');
 
     final menu = Menu(
       items: [
@@ -120,16 +141,6 @@ class SystemTrayNotifier extends _$SystemTrayNotifier with AppLogger {
     );
 
     await trayManager.setContextMenu(menu);
-  }
-
-  static void setDelay(int delay) {
-    if (delay > 65000 || delay == 0) {
-      setIcon(const Disconnecting());
-      // else if (delay>1000)
-      //   SystemTrayNotifier.setIcon(timeout ? Disconnecting() : Connecting());
-    } else {
-      setIcon(const Connected());
-    }
   }
 
   static void setIcon(ConnectionStatus status) {
