@@ -18,8 +18,10 @@
     "unknown": "Bilinmeyen",
     "hidden": "Gizlenmiş",
     "timeout": "Zaman aşımı",
+    "clipboardExportSuccessMsg": "Panoya Eklendi",
     "showMore": "Daha fazla göster",
     "showLess": "Daha az göster",
+    "openAppSettings": "Uygulama Ayarlarını Aç",
     "grantPermission": "İzin Ver"
   },
   "intro": {
@@ -32,10 +34,14 @@
     "noActiveProfileMsg": "Profil seçin"
   },
   "stats": {
+    "traffic": "Trafik",
     "trafficLive": "Canlı Trafik",
     "trafficTotal": "Toplam Trafik",
     "uplink": "Çıkış Yolu",
-    "downlink": "Giriş Yolu"
+    "downlink": "Giriş Yolu",
+    "connection": "Bağlantı",
+    "speed": "Hız",
+    "totalTransferred": "Toplam Aktarılan"
   },
   "profile": {
     "overviewPageTitle": "Profiller",
@@ -49,7 +55,11 @@
       "remainingDuration": "${duration} Gün Kaldı",
       "remainingTrafficSemanticLabel": "${consumed}/${total} trafik tüketildi",
       "expired": "Süresi Doldu",
-      "noTraffic": "Kotal Doldu"
+      "noTraffic": "Kotal Doldu",
+      "upload": "Yüklemek",
+      "download": "İndirmek",
+      "total": "Toplam Trafik",
+      "expireDate": "Son kullanma tarihi"
     },
     "sortBy": {
       "lastUpdate": "Yakın zamanda güncellendi",
@@ -64,9 +74,12 @@
         "permissionDeniedError": "İzin reddedildi",
         "unexpectedError": "Bir şeyler yanlış gitti",
         "torchSemanticLabel": "El feneri",
-        "facingSemanticLabel": "Kameraya önü"
+        "facingSemanticLabel": "Kameraya önü",
+        "permissionRequest": "QR Kodunu taramak için kamera izni"
       },
       "manually": "Manuel giriş",
+      "addWarp": "Çarpıtma Ekle",
+      "addingWarpMsg": "WARP'ı kaydederken lütfen bekleyin.",
       "addingProfileMsg": "Profil Ekleniyor",
       "failureMsg": "Profil eklenemedi"
     },
@@ -118,10 +131,22 @@
     "emptyProxiesMsg": "Kullanılabilir proxy yok",
     "delayTestTooltip": "Test Gecikmesi",
     "sortTooltip": "Proxy'leri Sırala",
+    "checkIp": "IP'yi kontrol edin",
+    "unknownIp": "Bilinmeyen IP",
     "sortOptions": {
       "unsorted": "Varsayılan",
       "name": "Alfabetik olarak",
       "delay": "Gecikmeyle"
+    },
+    "activeProxySemanticLabel": "Aktif Vekil",
+    "delaySemantics": {
+      "result": "Gecikme: ${delay}ms",
+      "timeout": "Gecikme Testi Zaman Aşımı",
+      "testing": "Gecikme: Test ediliyor..."
+    },
+    "ipInfoSemantics": {
+      "address": "IP adresi",
+      "country": "Ülke"
     }
   },
   "logs": {
@@ -139,6 +164,10 @@
     "requiresRestartMsg": "Bunun etkili olması için uygulamayı yeniden başlatın",
     "experimental": "Deneysel",
     "experimentalMsg": "Deneysel işaretli özellikler hâlâ geliştirilme aşamasındadır ve sorunlara neden olabilir.",
+    "exportOptions": "Anonim Seçenekleri Panoya Kopyala",
+    "exportAllOptions": "Tüm Seçenekleri Panoya Kopyala",
+    "importOptions": "Seçenekleri Panodan İçe Aktarma",
+    "importOptionsMsg": "Bu, tüm yapılandırma seçeneklerini sağlanan değerlerle yeniden yazacaktır. Emin misin?",
     "general": {
       "sectionTitle": "Genel",
       "locale": "Dil",
@@ -167,7 +196,9 @@
       "openWorkingDir": "Çalışma Dizinini Aç",
       "ignoreBatteryOptimizations": "Pil Optimizasyonunu Devre Dışı Bırak",
       "ignoreBatteryOptimizationsMsg": "Optimum VPN performansı için kısıtlamaları kaldırın",
-      "dynamicNotification": "Bildirimde hızı göster"
+      "dynamicNotification": "Bildirimde hızı göster",
+      "hapticFeedback": "Dokunsal geribildirim",
+      "autoIpCheck": "Bağlantı IP'sini Otomatik Olarak Kontrol Et"
     },
     "advanced": {
       "sectionTitle": "Gelişmiş",
@@ -288,17 +319,30 @@
     "connecting": "Bağlanıyor",
     "disconnecting": "Bağlantı kesiliyor",
     "connected": "Bağlandı",
+    "reconnect": "Yeniden bağlan",
+    "connectAnyWay": "Bağlamak",
     "experimentalNotice": "Kullanımdaki Deneysel Özellikler",
     "experimentalNoticeMsg": "Bağlantı kalitesini etkileyebilecek ve beklenmeyen hatalara neden olabilecek bazı deneysel özellikleri etkinleştirdiniz. Bu seçenekleri istediğiniz zaman Yapılandırma seçenekleri sayfasından değiştirebilir veya sıfırlayabilirsiniz.",
-    "disableExperimentalNotice": "Bir daha gösterme"
+    "disableExperimentalNotice": "Bir daha gösterme",
+    "reconnectMsg": "Değişiklikleri dikkate almak için yeniden bağlanılıyor..."
   },
   "config": {
     "resetBtn": "Ayarları sıfırla",
     "serviceMode": "Servis modu",
+    "quickSettings": "Hızlı Ayarlar",
+    "setupWarp": "WARP'ı Kur",
+    "allOptions": "Tüm Yapılandırma Seçenekleri",
     "serviceModes": {
       "proxy": "Proxy",
       "systemProxy": "Sistem Proxy",
-      "tun": "VPN"
+      "tun": "VPN",
+      "tunService": "VPN Hizmeti"
+    },
+    "shortServiceModes": {
+      "proxy": "vekil",
+      "systemProxy": "Sistem Proxy'si",
+      "tun": "VPN",
+      "tunService": "VPN Hizmeti"
     },
     "section": {
       "route": "Rota Seçenekleri",
@@ -314,8 +358,12 @@
       "title": "Cloudflare WARP Onayı",
       "description(rich)": "Cloudflare WARP ücretsiz bir WireGuard VPN sağlayıcısıdır. Bu seçeneği etkinleştirerek Cloudflare WARP'ın ${tos(Hizmet Şartları)} ve ${privacy(Gizlilik Politikası)}'nı kabul etmiş olursunuz."
     },
+    "generateWarpConfig": "WARP Yapılandırması Oluştur",
+    "missingWarpConfig": "WARP Yapılandırması Eksik",
+    "warpConfigGenerated": "WARP Yapılandırması Oluşturuldu",
     "pageTitle": "Yapılandırma Seçenekleri",
     "logLevel": "Log Seviyesi",
+    "blockAds": "Reklamları Engelle",
     "resolveDestination": "Hedefi Çöz",
     "ipv6Mode": "IPv6 Rotası",
     "ipv6Modes": {
@@ -329,6 +377,7 @@
     "directDnsAddress": "Doğrudan DNS",
     "directDnsDomainStrategy": "Doğrudan DNS Domain Stratejisi",
     "mixedPort": "Mixed Port",
+    "tproxyPort": "Şeffaf Proxy Bağlantı Noktası",
     "localDnsPort": "Yerel DNS Bağlantı Noktası",
     "allowConnectionFromLan": "Allow Connection from LAN",
     "tunImplementation": "TUN İmplementasyonu",
@@ -355,12 +404,17 @@
     "enableWarp": "Enable WARP",
     "warpDetourMode": "Detour Mode",
     "warpDetourModes": {
+      "proxyOverWarp": "WARP Aracılığıyla Proxy'lerin Yönünü Değiştirin",
+      "warpOverProxy": "Proxy'ler Aracılığıyla WARP'tan Sapma",
       "inbound": "Detour WARP through proxies",
       "outbound": "Detour proxies through WARP"
     },
     "warpLicenseKey": "License Key",
     "warpCleanIp": "Clean IP",
     "warpPort": "Port",
-    "warpNoise": "Noise"
+    "warpNoise": "Noise",
+    "warpNoiseSize": "Gürültü Boyutu",
+    "warpNoiseMode": "Gürültü Modu",
+    "warpNoiseDelay": "Gürültü Gecikmesi"
   }
 }

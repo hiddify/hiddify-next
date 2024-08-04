@@ -179,6 +179,7 @@
         "ru": "俄羅斯 (ru)",
         "af": "阿富汗 (af)",
         "id": "印尼 (id)",
+        "tr": "土耳其 (tr) 🇹🇷",
         "other": "其他"
       },
       "themeMode": "主題模式",
@@ -362,6 +363,7 @@
     "warpConfigGenerated": "WARP 配置檔案已生成",
     "pageTitle": "配置選項",
     "logLevel": "紀錄等級",
+    "blockAds": "阻止廣告",
     "resolveDestination": "解析目標地址",
     "ipv6Mode": "IPv6 路由",
     "ipv6Modes": {
@@ -411,6 +413,8 @@
     "warpCleanIp": "清理 IP",
     "warpPort": "連接埠",
     "warpNoise": "噪音計數",
+    "warpNoiseSize": "噪音大小",
+    "warpNoiseMode": "噪音模式",
     "warpNoiseDelay": "噪音延遲"
   }
 }
