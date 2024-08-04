@@ -179,6 +179,7 @@
         "ru": "ڕووسیا (ru)",
         "af": "ئەفغانستان (af)",
         "id": "إندونيسيا (id)",
+        "tr": "Tirkiye",
         "other": "ئی تر"
       },
       "themeMode": "دۆخی تێم",
@@ -362,6 +363,7 @@
     "warpConfigGenerated": "ڕێکخستنی WARP دروست کراوە",
     "pageTitle": "ڕێکخستنەکان",
     "logLevel": "ئاستی گوزارش",
+    "blockAds": "Advertisements Asteng bike",
     "resolveDestination": "لکاندنی شوێنی مەبەست",
     "ipv6Mode": "ڕێڕەوکردنی IPv6",
     "ipv6Modes": {
@@ -411,6 +413,8 @@
     "warpCleanIp": "IP خاوێن",
     "warpPort": "پۆرت",
     "warpNoise": "ژمارەی ژاوەژاو",
+    "warpNoiseSize": "Deng Siza",
+    "warpNoiseMode": "Moda Deng",
     "warpNoiseDelay": "دواکەوتنی ژاوەژاو"
   }
 }
