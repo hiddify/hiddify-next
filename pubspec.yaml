@@ -127,7 +127,9 @@ flutter:
     - assets/images/tray_icon_dark.ico
     - assets/images/tray_icon_dark.png
     - assets/images/tray_icon_connected.ico
+    - assets/images/tray_icon_connected.png
     - assets/images/tray_icon_disconnected.ico
+    - assets/images/tray_icon_disconnected.png
     - assets/images/connect_norouz.PNG
     - assets/images/disconnect_norouz.PNG
 
