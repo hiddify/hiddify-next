@@ -459,7 +459,7 @@ class _JsonEditorState extends State<JsonEditor> {
 
   void copyData() async {
     await Clipboard.setData(
-      ClipboardData(text: jsonEncode(_data)),
+      ClipboardData(text: JsonEncoder.withIndent(' ').convert(_data)),
     );
   }
 
