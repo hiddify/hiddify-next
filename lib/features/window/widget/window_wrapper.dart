@@ -1,6 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:hiddify/core/localization/translations.dart';
+import 'package:hiddify/features/common/adaptive_root_scaffold.dart';
+import 'package:hiddify/features/connection/notifier/connection_notifier.dart';
 import 'package:hiddify/features/window/notifier/window_notifier.dart';
 import 'package:hiddify/utils/custom_loggers.dart';
 import 'package:hiddify/utils/platform_utils.dart';
@@ -16,8 +19,9 @@ class WindowWrapper extends StatefulHookConsumerWidget {
   ConsumerState<ConsumerStatefulWidget> createState() => _WindowWrapperState();
 }
 
-class _WindowWrapperState extends ConsumerState<WindowWrapper>
-    with WindowListener, AppLogger {
+class _WindowWrapperState extends ConsumerState<WindowWrapper> with WindowListener, AppLogger {
+  late AlertDialog closeDialog;
+
   @override
   Widget build(BuildContext context) {
     ref.watch(windowNotifierProvider);
@@ -44,7 +48,31 @@ class _WindowWrapperState extends ConsumerState<WindowWrapper>
 
   @override
   Future<void> onWindowClose() async {
-    await ref.read(windowNotifierProvider.notifier).close();
+    if (RootScaffold.stateKey.currentContext == null) {
+      await ref.read(windowNotifierProvider.notifier).close();
+      return;
+    }
+    final t = ref.watch(translationsProvider);
+
+    await showDialog(
+      context: RootScaffold.stateKey.currentContext!,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text(t.window.alertMessage),
+        actions: [
+          TextButton(
+            onPressed: () async => await ref.read(windowNotifierProvider.notifier).quit(),
+            child: Text(t.window.close.toUpperCase()),
+          ),
+          TextButton(
+            onPressed: () async {
+              Navigator.of(context).maybePop(false);
+              await ref.read(windowNotifierProvider.notifier).close();
+            },
+            child: Text(t.window.hide.toUpperCase()),
+          ),
+        ],
+      ),
+    );
   }
 
   @override

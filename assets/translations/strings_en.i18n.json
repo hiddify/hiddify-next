@@ -416,5 +416,10 @@
     "warpNoiseSize": "Noise Size",
     "warpNoiseMode": "Noise Mode",
     "warpNoiseDelay": "Noise Delay"
+  },
+  "window":{
+    "hide": "Hide",
+    "close": "Exit",
+    "alertMessage":"Hide or Exit the application?"
   }
 }

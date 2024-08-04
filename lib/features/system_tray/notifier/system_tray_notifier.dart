@@ -54,7 +54,7 @@ class SystemTrayNotifier extends _$SystemTrayNotifier with AppLogger {
       //   SystemTrayNotifier.setIcon(timeout ? Disconnecting() : Connecting());
     } else {
       setIcon(const Disconnecting());
-      tooltip = "${tooltip} - ${connection.present(t)}";
+      tooltip = "$tooltip - ${connection.present(t)}";
     }
     if (Platform.isMacOS) {
       windowManager.setBadgeLabel("${delay}ms");
