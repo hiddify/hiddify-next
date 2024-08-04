@@ -17,7 +17,9 @@ extension AppLocaleX on AppLocale {
         "tr" => "Türkçe",
         "es" => "Spanish",
         "id" => "Indonesian",
+        "hi" => "हिन्दी",
         "pt_BR" => "Portuguese (Brazil)",
+        "fr" => "Français",
         _ => "Unknown",
       };
 }
