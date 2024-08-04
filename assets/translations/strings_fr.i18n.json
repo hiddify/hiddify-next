@@ -25,7 +25,7 @@
     "grantPermission": "Donner la permission"
   },
   "intro": {
-    "termsAndPolicyCaution(rich)": "En continuant, vous êtes d'accord avec ${tap( @:about .termsAndConditions)}",
+    "termsAndPolicyCaution(rich)": "En continuant, vous êtes d'accord avec ${tap( @:about.termsAndConditions)}",
     "start": "Commencer"
   },
   "home": {
@@ -248,7 +248,7 @@
   "appUpdate": {
     "notAvailableMsg": "Vous utilisez déjà la dernière version",
     "dialogTitle": "Mise à jour disponible",
-    "updateMsg": "Une nouvelle version de @:general .appTitle est disponible. Souhaitez-vous mettre à jour maintenant ?",
+    "updateMsg": "Une nouvelle version de @:general.appTitle est disponible. Souhaitez-vous mettre à jour maintenant ?",
     "currentVersionLbl": "Version actuelle",
     "newVersionLbl": "Nouvelle version",
     "updateNowBtnTxt": "Mettez à jour maintenant",
