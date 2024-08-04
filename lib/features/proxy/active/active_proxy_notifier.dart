@@ -78,11 +78,11 @@ class IpInfoNotifier extends _$IpInfoNotifier with AppLogger {
   }
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 class ActiveProxyNotifier extends _$ActiveProxyNotifier with AppLogger {
   @override
   Stream<ProxyItemEntity> build() async* {
-    ref.disposeDelay(const Duration(seconds: 20));
+    // ref.disposeDelay(const Duration(seconds: 20));
 
     final serviceRunning = await ref.watch(serviceRunningProvider.future);
     if (!serviceRunning) {
