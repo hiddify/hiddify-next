@@ -2,11 +2,12 @@
   "$schema": "https://inlang.com/schema/project-settings",
   "sourceLanguageTag": "en",
   "languageTags": [
-    "ar",
     "en",
+    "ar",
     "ckb-KUR",
     "es",
     "fa",
+    "fr",
     "id",
     "pt-BR",
     "ru",

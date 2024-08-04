@@ -1,0 +1,300 @@
+{
+  "general": {
+    "appTitle": "Hiddify",
+    "reset": "Réinitialiser",
+    "toggle": {
+      "enabled": "Activé",
+      "disabled": "Désactivé"
+    },
+    "state": {
+      "disable": "Désactiver"
+    },
+    "sort": "Trier",
+    "sortBy": "Trier par",
+    "addToClipboard": "Ajouter au presse-papiers",
+    "notSet": "Pas encore défini",
+    "agree": "Accepter",
+    "decline": "Déclin",
+    "unknown": "Inconnu",
+    "hidden": "Caché",
+    "timeout": "Temps mort",
+    "clipboardExportSuccessMsg": "Ajouté au presse-papiers",
+    "showMore": "Montre plus",
+    "showLess": "Montrer moins",
+    "openAppSettings": "Ouvrir les paramètres de l'application",
+    "grantPermission": "Donner la permission"
+  },
+  "intro": {
+    "termsAndPolicyCaution(rich)": "En continuant, vous êtes d'accord avec ${tap( @:about .termsAndConditions)}",
+    "start": "Commencer"
+  },
+  "home": {
+    "pageTitle": "Maison",
+    "emptyProfilesMsg": "Commencez par ajouter un profil d'abonnement",
+    "noActiveProfileMsg": "Choisissez un profil"
+  },
+  "stats": {
+    "traffic": "Trafic",
+    "trafficLive": "Trafic en direct",
+    "trafficTotal": "Trafic total",
+    "uplink": "Liaison montante",
+    "downlink": "Liaison descendante",
+    "connection": "Connexion",
+    "speed": "Vitesse",
+    "totalTransferred": "Total transféré"
+  },
+  "profile": {
+    "overviewPageTitle": "Profils",
+    "detailsPageTitle": "Profil",
+    "activeProfileNameSemanticLabel": "Nom du profil actif : \"${name}\".",
+    "activeProfileBtnSemanticLabel": "Afficher tous les profils",
+    "nonActiveProfileBtnSemanticLabel": "Sélectionnez \"${name}\" comme profil actif",
+    "subscription": {
+      "traffic": "Trafic",
+      "updatedTimeAgo": "Mise à jour ${timeago}",
+      "remainingDuration": "${duration} jours restants",
+      "remainingTrafficSemanticLabel": "${consumed} de ${total} de trafic consommé",
+      "expired": "Expiré",
+      "noTraffic": "Hors quota",
+      "upload": "Télécharger",
+      "download": "Télécharger",
+      "total": "Trafic total",
+      "expireDate": "Date d'expiration"
+    },
+    "sortBy": {
+      "lastUpdate": "Récemment mis à jour",
+      "name": "Alphabétiquement"
+    },
+    "add": {
+      "buttonText": "Nouveau profile",
+      "shortBtnTxt": "Nouveau profile",
+      "fromClipboard": "Ajouter à partir du presse-papiers",
+      "scanQr": "Scanner le code QR",
+      "qrScanner": {
+        "permissionDeniedError": "Permission refusée",
+        "unexpectedError": "Quelque chose s'est mal passé",
+        "torchSemanticLabel": "Lampe torche",
+        "facingSemanticLabel": "Face à la caméra",
+        "permissionRequest": "Autorisation de la caméra pour scanner le code QR"
+      },
+      "manually": "Saisie manuelle",
+      "addWarp": "Ajouter une déformation",
+      "addingWarpMsg": "Veuillez patienter pendant que nous enregistrons WARP.",
+      "addingProfileMsg": "Ajout d'un profil",
+      "failureMsg": "Échec de l'ajout du profil"
+    },
+    "update": {
+      "buttonTxt": "Mise à jour",
+      "tooltip": "Mettre à jour le profil",
+      "updateSubscriptions": "Mettre à jour les abonnements",
+      "failureMsg": "Échec de la mise à jour du profil",
+      "successMsg": "Mise à jour du profil réussie",
+      "namedFailureMsg": "Échec de la mise à jour de \"${name}\"",
+      "namedSuccessMsg": "\"${name}\" a été mis à jour avec succès"
+    },
+    "share": {
+      "buttonText": "Partager",
+      "exportToClipboardSuccess": "Exporté vers le Presse-papiers",
+      "exportSubLinkToClipboard": "Exporter le lien d'abonnement vers le presse-papiers",
+      "subLinkQrCode": "Code QR du lien d'abonnement",
+      "exportConfigToClipboard": "Exporter la configuration vers le presse-papiers",
+      "exportConfigToClipboardSuccess": "Configuration copiée dans le presse-papiers"
+    },
+    "edit": {
+      "buttonTxt": "Modifier",
+      "selectActiveTxt": "Sélectionnez un profil actif"
+    },
+    "delete": {
+      "buttonTxt": "Supprimer",
+      "confirmationMsg": "Supprimer le profil définitivement ?",
+      "successMsg": "Profil supprimé avec succès"
+    },
+    "save": {
+      "buttonText": "Sauvegarder",
+      "successMsg": "Profil enregistré avec succès",
+      "failureMsg": "Échec de l'enregistrement du profil"
+    },
+    "detailsForm": {
+      "nameLabel": "Nom",
+      "nameHint": "Nom de profil",
+      "urlLabel": "URL",
+      "urlHint": "URL de configuration complète",
+      "emptyNameMsg": "Le nom est requis",
+      "invalidUrlMsg": "URL invalide",
+      "lastUpdate": "Dernière mise à jour",
+      "updateInterval": "Mise à jour automatique",
+      "updateIntervalDialogTitle": "Intervalle de mise à jour automatique (en heures)"
+    }
+  },
+  "proxies": {
+    "pageTitle": "Procurations",
+    "emptyProxiesMsg": "Aucun proxy disponible",
+    "delayTestTooltip": "Délai de test",
+    "sortTooltip": "Trier les proxys",
+    "checkIp": "Vérifier l'adresse IP",
+    "unknownIp": "IP inconnue",
+    "sortOptions": {
+      "unsorted": "Défaut",
+      "name": "Alphabétiquement",
+      "delay": "Par retard"
+    },
+    "activeProxySemanticLabel": "Mandataire actif",
+    "delaySemantics": {
+      "result": "Délai : ${delay} ms",
+      "timeout": "Délai d'expiration du test",
+      "testing": "Retard : test..."
+    },
+    "ipInfoSemantics": {
+      "address": "Adresse IP",
+      "country": "Pays"
+    }
+  },
+  "logs": {
+    "pageTitle": "Journaux",
+    "filterHint": "Filtre",
+    "allLevelsFilter": "Tous",
+    "shareCoreLogs": "Partager les journaux principaux",
+    "shareAppLogs": "Partager les journaux d'applications",
+    "pauseTooltip": "Pause",
+    "resumeTooltip": "CV",
+    "clearTooltip": "Clair"
+  },
+  "settings": {
+    "pageTitle": "Paramètres",
+    "requiresRestartMsg": "Pour que cela prenne effet, redémarrez l'application",
+    "experimental": "Expérimental",
+    "experimentalMsg": "Les fonctionnalités avec l'indicateur expérimental sont encore en développement et peuvent causer des problèmes.",
+    "exportOptions": "Copier les options anonymes dans le presse-papiers",
+    "exportAllOptions": "Copier toutes les options dans le presse-papiers",
+    "importOptions": "Options d'importation à partir du Presse-papiers",
+    "importOptionsMsg": "Cela réécrira toutes les options de configuration avec les valeurs fournies. Es-tu sûr?",
+    "general": {
+      "sectionTitle": "Général",
+      "locale": "Langue",
+      "region": "Région",
+      "regionMsg": "Aide à définir les options par défaut pour contourner les adresses nationales",
+      "regions": {
+        "ir": "Iran (ir) 🇮🇷",
+        "cn": "Chine (cn) 🇨🇳",
+        "ru": "Russie (ru) 🇷🇺",
+        "af": "Afghanistan (af) 🇦🇫",
+        "id": "Indonésie (id) 🇮🇩",
+        "tr": "Turquie (tr) 🇹🇷",
+        "other": "Autre"
+      },
+      "themeMode": "Mode Thème",
+      "themeModes": {
+        "system": "Suivre le thème du système",
+        "dark": "Mode sombre",
+        "light": "Mode lumière",
+        "black": "Mode noir"
+      },
+      "enableAnalytics": "Activer l'analyse",
+      "enableAnalyticsMsg": "Autoriser la collecte d'analyses et l'envoi de rapports d'erreur pour améliorer l'application",
+      "autoStart": "Commencez par la connexion",
+      "silentStart": "Démarrer réduit",
+      "openWorkingDir": "Ouvrir le répertoire de travail",
+      "ignoreBatteryOptimizations": "Désactiver l'optimisation de la batterie",
+      "ignoreBatteryOptimizationsMsg": "Supprimez les restrictions pour des performances VPN optimales",
+      "dynamicNotification": "Vitesse d'affichage dans les notifications",
+      "hapticFeedback": "Retour haptique",
+      "autoIpCheck": "Vérifier automatiquement l'adresse IP de la connexion"
+    },
+    "advanced": {
+      "sectionTitle": "Avancé",
+      "debugMode": "Mode débogage",
+      "debugModeMsg": "Redémarrez l'application pour appliquer cette modification",
+      "memoryLimit": "Limite de mémoire",
+      "memoryLimitMsg": "Activer si vous rencontrez des erreurs de mémoire insuffisante ou des plantages fréquents de l'application",
+      "resetTunnel": "Réinitialiser le profil VPN"
+    },
+    "network": {
+      "perAppProxyPageTitle": "Proxy par application",
+      "perAppProxyModes": {
+        "off": "Tous",
+        "offMsg": "Proxy Toutes les applications",
+        "include": "Proxy",
+        "includeMsg": "Applications sélectionnées par proxy uniquement",
+        "exclude": "Contourne",
+        "excludeMsg": "Ne pas proxyer les applications sélectionnées"
+      },
+      "showSystemApps": "Afficher les applications système",
+      "hideSystemApps": "Masquer les applications système",
+      "clearSelection": "Effacer la sélection"
+    },
+    "geoAssets": {
+      "pageTitle": "Actifs de routage",
+      "geoip": "GéoIP",
+      "geosite": "GéoSite",
+      "version": "Version ${version}",
+      "fileMissing": "Dossier manquant",
+      "update": "Mise à jour",
+      "download": "Télécharger",
+      "failureMsg": "Échec de la mise à jour de l'actif",
+      "successMsg": "Actif mis à jour avec succès",
+      "addRecommended": "Ajouter des actifs recommandés",
+      "missingGeoAssetsMsg": "Les fichiers des ressources de routage sélectionnées sont manquants. Téléchargez-les ou choisissez ceux existants"
+    }
+  },
+  "about": {
+    "pageTitle": "À propos",
+    "version": "Version",
+    "sourceCode": "Code source",
+    "telegramChannel": "Chaîne de Telegram",
+    "checkForUpdate": "Rechercher une mise à jour",
+    "privacyPolicy": "politique de confidentialité",
+    "termsAndConditions": "Termes et conditions"
+  },
+  "appUpdate": {
+    "notAvailableMsg": "Vous utilisez déjà la dernière version",
+    "dialogTitle": "Mise à jour disponible",
+    "updateMsg": "Une nouvelle version de @:general .appTitle est disponible. Souhaitez-vous mettre à jour maintenant ?",
+    "currentVersionLbl": "Version actuelle",
+    "newVersionLbl": "Nouvelle version",
+    "updateNowBtnTxt": "Mettez à jour maintenant",
+    "laterBtnTxt": "Plus tard",
+    "ignoreBtnTxt": "Ignorer"
+  },
+  "tray": {
+    "dashboard": "Tableau de bord",
+    "quit": "Quitter",
+    "open": "Ouvrir",
+    "status": {
+      "connect": "Connecter",
+      "connecting": "De liaison",
+      "disconnect": "Déconnecter",
+      "disconnecting": "Déconnexion"
+    }
+  },
+  "failure": {
+    "unexpected": "Erreur inattendue",
+    "clash": {
+      "unexpected": "Erreur inattendue",
+      "core": "Erreur de conflit ${raison}"
+    },
+    "singbox": {
+      "unexpected": "Erreur de service inattendue",
+      "serviceNotRunning": "Le service ne fonctionne pas",
+      "missingPrivilege": "Privilège manquant",
+      "missingPrivilegeMsg": "Le mode VPN nécessite des privilèges d'administrateur. Soit relancez l'application en tant qu'administrateur, soit changez de mode de service.",
+      "missingGeoAssets": "Actifs géographiques manquants",
+      "missingGeoAssetsMsg": "Les ressources géographiques sont manquantes. Pensez à modifier l'actif actif ou à télécharger celui sélectionné dans les paramètres.",
+      "invalidConfigOptions": "Options de configuration invalides",
+      "invalidConfig": "Configuration invalide",
+      "create": "Erreur de création de service",
+      "start": "Erreur de démarrage du service"
+    },
+    "connectivity": {
+      "unexpected": "Échec inattendu",
+      "missingVpnPermission": "Autorisation VPN manquante",
+      "missingNotificationPermission": "Autorisation de notification manquante",
+      "core": "Erreur principale"
+    },
+    "profiles": {
+      "unexpected": "Erreur inattendue",
+      "notFound": "Profil non trouvé",
+      "invalidConfig": "Configurations invalides",
+      "invalidUrl": "URL invalide"
+    }
+  }
+}
