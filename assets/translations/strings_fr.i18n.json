@@ -270,7 +270,7 @@
     "unexpected": "Erreur inattendue",
     "clash": {
       "unexpected": "Erreur inattendue",
-      "core": "Erreur de conflit ${raison}"
+      "core": "Erreur de conflit ${reason}"
     },
     "singbox": {
       "unexpected": "Erreur de service inattendue",
