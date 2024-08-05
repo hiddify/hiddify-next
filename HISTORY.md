@@ -1,7 +1,31 @@
 # Changelog
 
 
-## 2.1.4 (2024-08-05)
+## 2.1.5 (2024-08-05)
+
+#### Fix
+
+* Vpn service issue. 
+
+#### Other
+
+* Revert android changes. 
+
+* Fix warp generation. 
+
+* Try fix vpn. 
+
+* Check macos. 
+
+* Disable mac. 
+
+* Revert changes to android vpn service. 
+
+* Better tryicons. 
+
+
+
+## v2.1.4 (2024-08-05)
 
 #### New
 
