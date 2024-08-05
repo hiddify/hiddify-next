@@ -60,9 +60,9 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - platform: android-apk
-            os: ubuntu-latest
-            targets: apk
+          # - platform: android-apk
+          #   os: ubuntu-latest
+          #   targets: apk
 
           # - platform: android-aab
           #   os: ubuntu-latest
@@ -78,10 +78,10 @@ jobs:
           #   aarch: amd64
           #   targets: AppImage,deb,rpm
 
-          # - platform: macos
-          #   os: macos-13
-          #   aarch: universal
-          #   targets: dmg,pkg
+          - platform: macos
+            os: macos-13
+            aarch: universal
+            targets: dmg,pkg
             
           # - platform: ios
           #   os: macos-14
