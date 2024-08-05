@@ -1,7 +1,62 @@
 # Changelog
 
 
-## 2.1.1 (2024-08-02)
+## 2.1.4 (2024-08-05)
+
+#### New
+
+* Add exit dialog when press close button. 
+
+* Colorized tray icon. 
+
+#### Fix
+
+* Some bugs. 
+
+* Bugs in tray icon. 
+
+* Fr trnalsation. 
+
+* Translate bug. 
+
+* Single instance flutter in linux? 
+
+#### Other
+
+* Less retry for ipinfo. 
+
+* Add french lang. 
+
+* Test icon linux? 
+
+* Connection button by proxy status indicator, change connected to connecting when timeout. 
+
+* Formated export in json editor. 
+
+* Merge pull request #1174 from Hannisiddiqui/main. 
+  _Wanted to add hindi language for indian users_
+
+* Inlang/manage: add languageTag hi. 
+
+* Inlang/manage: install module. 
+
+* Chore: update translations with Fink 🐦 
+
+* Chore: update translations with Fink 🐦 
+
+* Chore: update translations with Fink 🐦 
+
+* Chore: update translations with Fink 🐦 
+
+* Chore: update translations with Fink 🐦 
+
+* Update warp. 
+
+* Update release_message.md. 
+
+
+
+## v2.1.1 (2024-08-02)
 
 #### New
 
