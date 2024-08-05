@@ -142,7 +142,7 @@ class VPNService : VpnService(), PlatformInterfaceWrapper {
                         }
                     }
                     try {
-                        builder.addDisallowedApplication(packageName)
+                        //builder.addDisallowedApplication(packageName)
                     } catch (_: NameNotFoundException) {
                     }
                 }
@@ -166,7 +166,7 @@ class VPNService : VpnService(), PlatformInterfaceWrapper {
                     }
                 }
                 try {
-                    builder.addDisallowedApplication(packageName)
+                    //builder.addDisallowedApplication(packageName)
                 } catch (_: NameNotFoundException) {
                 }
             }
