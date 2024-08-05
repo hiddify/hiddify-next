@@ -256,23 +256,20 @@ class AddProfileModal extends HookConsumerWidget {
         builder: (context) => const WarpLicenseAgreementModal(),
       );
 
-      if (agreed ?? false) {
-        await _prefs.setBool(warpConsentGiven, true);
-        final toast = notification.showInfoToast(t.profile.add.addingWarpMsg, duration: const Duration(milliseconds: 100));
-        toast?.pause();
-        await _warp.generateWarpConfig();
-        toast?.start();
-      } else {
-        return;
-      }
+      if (agreed != true) return;
     }
+    await _prefs.setBool(warpConsentGiven, true);
+    var toast = notification.showInfoToast(t.profile.add.addingWarpMsg, duration: const Duration(milliseconds: 100));
+    toast?.pause();
+    await _warp.generateWarpConfig();
+    toast?.start();
 
     // final accountId = _prefs.getString("warp2-account-id");
     // final accessToken = _prefs.getString("warp2-access-token");
     // final hasWarp2Config = accountId != null && accessToken != null;
 
     // if (!hasWarp2Config || true) {
-    final toast = notification.showInfoToast(t.profile.add.addingWarpMsg, duration: const Duration(milliseconds: 100));
+    toast = notification.showInfoToast(t.profile.add.addingWarpMsg, duration: const Duration(milliseconds: 100));
     toast?.pause();
     await _warp.generateWarp2Config();
     toast?.start();
