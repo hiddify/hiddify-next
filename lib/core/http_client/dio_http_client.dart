@@ -28,8 +28,10 @@ class DioHttpClient with InfraLogger {
               dio: _dio[mode]!,
               retryDelays: [
                 const Duration(seconds: 1),
-                const Duration(seconds: 2),
-                if (mode != "proxy") const Duration(seconds: 3),
+                if (mode != "proxy") ...[
+                  const Duration(seconds: 2),
+                  const Duration(seconds: 3),
+                ]
               ],
             ),
           );
