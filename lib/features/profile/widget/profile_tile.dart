@@ -41,7 +41,7 @@ class ProfileTile extends HookConsumerWidget {
         CustomToast.error(t.presentShortError(err)).show(context);
       },
       initialOnSuccess: () {
-        if (context.mounted) context.pop();
+        if (context.mounted && context.canPop()) context.pop();
       },
     );
 
@@ -50,12 +50,9 @@ class ProfileTile extends HookConsumerWidget {
       _ => null,
     };
 
-    final effectiveMargin = isMain
-        ? const EdgeInsets.symmetric(horizontal: 16, vertical: 8)
-        : const EdgeInsets.only(left: 12, right: 12, bottom: 12);
+    final effectiveMargin = isMain ? const EdgeInsets.symmetric(horizontal: 16, vertical: 8) : const EdgeInsets.only(left: 12, right: 12, bottom: 12);
     final double effectiveElevation = profile.active ? 12 : 4;
-    final effectiveOutlineColor =
-        profile.active ? theme.colorScheme.outlineVariant : Colors.transparent;
+    final effectiveOutlineColor = profile.active ? theme.colorScheme.outlineVariant : Colors.transparent;
 
     return Card(
       margin: effectiveMargin,
@@ -98,9 +95,7 @@ class ProfileTile extends HookConsumerWidget {
                       if (selectActiveMutation.state.isInProgress) return;
                       if (profile.active) return;
                       selectActiveMutation.setFuture(
-                        ref
-                            .read(profilesOverviewNotifierProvider.notifier)
-                            .selectActiveProfile(profile.id),
+                        ref.read(profilesOverviewNotifierProvider.notifier).selectActiveProfile(profile.id),
                       );
                     }
                   },
@@ -120,20 +115,17 @@ class ProfileTile extends HookConsumerWidget {
                               color: Colors.transparent,
                               clipBehavior: Clip.antiAlias,
                               child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Flexible(
                                     child: Text(
                                       profile.name,
                                       maxLines: 2,
                                       overflow: TextOverflow.ellipsis,
-                                      style:
-                                          theme.textTheme.titleMedium?.copyWith(
+                                      style: theme.textTheme.titleMedium?.copyWith(
                                         fontFamily: FontFamily.emoji,
                                       ),
-                                      semanticsLabel: t.profile
-                                          .activeProfileNameSemanticLabel(
+                                      semanticsLabel: t.profile.activeProfileNameSemanticLabel(
                                         name: profile.name,
                                       ),
                                     ),
@@ -201,9 +193,7 @@ class ProfileActionButton extends HookConsumerWidget {
               if (ref.read(updateProfileProvider(profile.id)).isLoading) {
                 return;
               }
-              ref
-                  .read(updateProfileProvider(profile.id).notifier)
-                  .updateProfile(profile as RemoteProfileEntity);
+              ref.read(updateProfileProvider(profile.id).notifier).updateProfile(profile as RemoteProfileEntity);
             },
             child: const Icon(FluentIcons.arrow_sync_24_filled),
           ),
@@ -243,9 +233,7 @@ class ProfileActionsMenu extends HookConsumerWidget {
       initialOnFailure: (err) {
         CustomToast.error(t.presentShortError(err)).show(context);
       },
-      initialOnSuccess: () =>
-          CustomToast.success(t.profile.share.exportConfigToClipboardSuccess)
-              .show(context),
+      initialOnSuccess: () => CustomToast.success(t.profile.share.exportConfigToClipboardSuccess).show(context),
     );
     final deleteProfileMutation = useMutation(
       initialOnFailure: (err) {
@@ -262,9 +250,7 @@ class ProfileActionsMenu extends HookConsumerWidget {
             if (ref.read(updateProfileProvider(profile.id)).isLoading) {
               return;
             }
-            ref
-                .read(updateProfileProvider(profile.id).notifier)
-                .updateProfile(profile as RemoteProfileEntity);
+            ref.read(updateProfileProvider(profile.id).notifier).updateProfile(profile as RemoteProfileEntity);
           },
         ),
       AdaptiveMenuItem(
@@ -279,8 +265,7 @@ class ProfileActionsMenu extends HookConsumerWidget {
                 if (link.isNotEmpty) {
                   await Clipboard.setData(ClipboardData(text: link));
                   if (context.mounted) {
-                    CustomToast(t.profile.share.exportToClipboardSuccess)
-                        .show(context);
+                    CustomToast(t.profile.share.exportToClipboardSuccess).show(context);
                   }
                 }
               },
@@ -305,9 +290,7 @@ class ProfileActionsMenu extends HookConsumerWidget {
                 return;
               }
               exportConfigMutation.setFuture(
-                ref
-                    .read(profilesOverviewNotifierProvider.notifier)
-                    .exportConfigToClipboard(profile),
+                ref.read(profilesOverviewNotifierProvider.notifier).exportConfigToClipboard(profile),
               );
             },
           ),
@@ -335,9 +318,7 @@ class ProfileActionsMenu extends HookConsumerWidget {
           );
           if (deleteConfirmed) {
             deleteProfileMutation.setFuture(
-              ref
-                  .read(profilesOverviewNotifierProvider.notifier)
-                  .deleteProfile(profile),
+              ref.read(profilesOverviewNotifierProvider.notifier).deleteProfile(profile),
             );
           }
         },
@@ -367,8 +348,7 @@ class ProfileSubscriptionInfo extends HookConsumerWidget {
       return (t.profile.subscription.remainingDuration(duration: "∞"), null);
     } else {
       return (
-        t.profile.subscription
-            .remainingDuration(duration: subInfo.remaining.inDays),
+        t.profile.subscription.remainingDuration(duration: subInfo.remaining.inDays),
         null,
       );
     }
@@ -390,8 +370,7 @@ class ProfileSubscriptionInfo extends HookConsumerWidget {
               subInfo.total > 10 * 1099511627776 //10TB
                   ? "∞ GiB"
                   : subInfo.consumption.sizeOf(subInfo.total),
-              semanticsLabel:
-                  t.profile.subscription.remainingTrafficSemanticLabel(
+              semanticsLabel: t.profile.subscription.remainingTrafficSemanticLabel(
                 consumed: subInfo.consumption.sizeGB(),
                 total: subInfo.total.sizeGB(),
               ),

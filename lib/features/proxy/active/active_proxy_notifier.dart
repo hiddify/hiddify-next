@@ -48,8 +48,8 @@ class IpInfoNotifier extends _$IpInfoNotifier with AppLogger {
     final info = await ref.watch(proxyRepositoryProvider).getCurrentIpInfo(cancelToken).getOrElse(
       (err) {
         loggy.warning("error getting proxy ip info", err, StackTrace.current);
-        throw err; //hiddify: remove exception to be logged
-        //throw const UnknownIp();
+        // throw err; //hiddify: remove exception to be logged
+        throw const UnknownIp();
       },
     ).run();
 

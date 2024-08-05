@@ -39,7 +39,7 @@ class AddProfileModal extends HookConsumerWidget {
         if (next case AsyncData(value: final _?)) {
           WidgetsBinding.instance.addPostFrameCallback(
             (_) {
-              if (context.mounted) context.pop();
+              if (context.mounted && context.canPop()) context.pop();
             },
           );
         }
