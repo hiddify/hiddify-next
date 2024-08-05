@@ -133,13 +133,17 @@ class VPNService : VpnService(), PlatformInterfaceWrapper {
                         } catch (_: NameNotFoundException) {
                         }
                     }
-                    builder.addAllowedApplication(packageName)
+                    //builder.addAllowedApplication(packageName)
                 } else {
                     appList.forEach {
                         try {
                             builder.addDisallowedApplication(it)
                         } catch (_: NameNotFoundException) {
                         }
+                    }
+                    try {
+                        builder.addDisallowedApplication(packageName)
+                    } catch (_: NameNotFoundException) {
                     }
                 }
             } else {
@@ -152,7 +156,6 @@ class VPNService : VpnService(), PlatformInterfaceWrapper {
                         }
                     }
                 }
-
                 val excludePackage = options.excludePackage
                 if (excludePackage.hasNext()) {
                     while (excludePackage.hasNext()) {
@@ -161,6 +164,10 @@ class VPNService : VpnService(), PlatformInterfaceWrapper {
                         } catch (_: NameNotFoundException) {
                         }
                     }
+                }
+                try {
+                    builder.addDisallowedApplication(packageName)
+                } catch (_: NameNotFoundException) {
                 }
             }
         }
