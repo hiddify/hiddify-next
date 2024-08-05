@@ -357,6 +357,20 @@ class ConfigOptionsPage extends HookConsumerWidget {
                     digitsOnly: true,
                     inputToValue: int.tryParse,
                   ),
+                  // add cloudflare ip test config
+                  const SettingsDivider(),
+                  SwitchListTile(
+                    title: Text(t.config.enableCloudFlare),
+                    value: ref.watch(ConfigOptions.enableCloudFlare),
+                    onChanged: ref.watch(ConfigOptions.enableCloudFlare.notifier).update,
+                  ),
+                  ValuePreferenceWidget(
+                    value: ref.watch(ConfigOptions.cloudflareIpNum),
+                    preferences: ref.watch(ConfigOptions.cloudflareIpNum.notifier),
+                    title: t.config.cloudflareIpNum,
+                    inputToValue: int.tryParse,
+                    digitsOnly: true,
+                  ),
                   const Gap(24),
                 ],
               ),

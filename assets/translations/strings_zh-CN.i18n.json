@@ -415,6 +415,8 @@
     "warpNoise": "噪音计数",
     "warpNoiseSize": "噪音大小",
     "warpNoiseMode": "噪音模式",
-    "warpNoiseDelay": "噪音延迟"
+    "warpNoiseDelay": "噪音延迟",
+    "enableCloudFlare": "启用CloudFlare测试",
+    "cloudflareIpNum": "CloudFlare IP数量"
   }
 }

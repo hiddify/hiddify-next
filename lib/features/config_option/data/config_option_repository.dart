@@ -314,6 +314,18 @@ abstract class ConfigOptions {
     },
   );
 
+  // cloudflare ip scanner used to get the best ip
+  static final enableCloudFlare = PreferencesNotifier.create<bool, bool>(
+    "enable-cloudflare",
+    false,
+  );
+
+  static final cloudflareIpNum = PreferencesNotifier.create<int, int>(
+    "cloudflare-ip-num",
+    200,
+    validator: (value) => value > 10,
+  );
+
   /// preferences to exclude from share and export
   static final privatePreferencesKeys = {
     "warp.license-key",
@@ -381,6 +393,10 @@ abstract class ConfigOptions {
     "warp2.account-id": warp2AccountId,
     "warp2.access-token": warp2AccessToken,
     "warp2.wireguard-config": warp2WireguardConfig,
+
+    // cloudflare
+    "enable-cloudflare": enableCloudFlare,
+    "cloudflare-ip-num": cloudflareIpNum,
   };
 
   static final singboxConfigOptions = FutureProvider<SingboxConfigOption>(
@@ -500,6 +516,8 @@ abstract class ConfigOptions {
           noiseSize: ref.watch(warpNoiseSize),
           noiseDelay: ref.watch(warpNoiseDelay),
         ),
+        enableCloudFlare: ref.watch(enableCloudFlare),
+        cloudflareIpNum: ref.watch(cloudflareIpNum),
         // geoipPath: ref.watch(geoAssetPathResolverProvider).relativePath(
         //       geoAssets.geoip.providerName,
         //       geoAssets.geoip.fileName,

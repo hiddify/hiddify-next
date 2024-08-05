@@ -415,7 +415,9 @@
     "warpNoise": "Noise Count",
     "warpNoiseSize": "Noise Size",
     "warpNoiseMode": "Noise Mode",
-    "warpNoiseDelay": "Noise Delay"
+    "warpNoiseDelay": "Noise Delay",
+    "enableCloudFlare": "Enable CloudFlare",
+    "cloudflareIpNum": "CloudFlare IP Number"
   },
   "window":{
     "hide": "Hide",
