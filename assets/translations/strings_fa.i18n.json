@@ -415,6 +415,8 @@
     "warpNoise": "تعداد نویز",
     "warpNoiseSize": "اندازه نویز",
     "warpNoiseMode": "حالت نویز",
-    "warpNoiseDelay": "تأخیر نویز"
+    "warpNoiseDelay": "تأخیر نویز",
+    "enableCloudFlare": "فعال‌سازی CloudFlare",
+    "cloudflareIpNum": "تعداد آی‌پی"
   }
 }

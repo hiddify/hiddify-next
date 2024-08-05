@@ -415,6 +415,8 @@
     "warpNoise": "عدد الضوضاء",
     "warpNoiseSize": "حجم الضوضاء",
     "warpNoiseMode": "وضع الضوضاء",
-    "warpNoiseDelay": "تأخير الضوضاء"
+    "warpNoiseDelay": "تأخير الضوضاء",
+    "enableCloudFlare": "تمكين CloudFlare",
+    "cloudflareIpNum": "عدد عناوين IP"
   }
 }

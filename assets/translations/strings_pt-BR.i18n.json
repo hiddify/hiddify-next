@@ -415,6 +415,8 @@
     "warpNoise": "Contagem de ruído",
     "warpNoiseSize": "Tamanho do ruído",
     "warpNoiseMode": "Modo de ruído",
-    "warpNoiseDelay": "Atraso de ruído"
+    "warpNoiseDelay": "Atraso de ruído",
+    "enableCloudFlare": "Habilitar CloudFlare",
+    "cloudflareIpNum": "Número de IPs"
   }
 }

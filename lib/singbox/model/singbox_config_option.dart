@@ -36,6 +36,7 @@ class SingboxConfigOption with _$SingboxConfigOption {
     @IntervalInSecondsConverter() required Duration urlTestInterval,
     required bool enableClashApi,
     required int clashApiPort,
+    required String webSecret,
     required bool enableTun,
     required bool enableTunService,
     required bool setSystemProxy,
@@ -51,6 +52,8 @@ class SingboxConfigOption with _$SingboxConfigOption {
     required SingboxTlsTricks tlsTricks,
     required SingboxWarpOption warp,
     required SingboxWarpOption warp2,
+    required bool enableCloudFlare,
+    required int cloudflareIpNum,
   }) = _SingboxConfigOption;
 
   String format() {

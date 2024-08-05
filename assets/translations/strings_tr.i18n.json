@@ -415,6 +415,8 @@
     "warpNoise": "Noise",
     "warpNoiseSize": "Gürültü Boyutu",
     "warpNoiseMode": "Gürültü Modu",
-    "warpNoiseDelay": "Gürültü Gecikmesi"
+    "warpNoiseDelay": "Gürültü Gecikmesi",
+    "enableCloudFlare": "Enable CloudFlare",
+    "cloudflareIpNum": "CloudFlare IP Number"
   }
 }

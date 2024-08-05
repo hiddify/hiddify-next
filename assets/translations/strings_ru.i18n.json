@@ -415,6 +415,8 @@
     "warpNoise": "Noise",
     "warpNoiseSize": "Размер шума",
     "warpNoiseMode": "Шумовой режим",
-    "warpNoiseDelay": "Задержка шума"
+    "warpNoiseDelay": "Задержка шума",
+    "enableCloudFlare": "Enable CloudFlare",
+    "cloudflareIpNum": "IP Number"
   }
 }

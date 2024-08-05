@@ -386,6 +386,7 @@
     "urlTestInterval": "网址测试间隔",
     "enableClashApi": "启用 Clash API",
     "clashApiPort": "Clash API 端口",
+    "webSecret": "Clash API 密钥",
     "enableTun": "启用 TUN",
     "setSystemProxy": "设置系统代理",
     "enableDnsRouting": "启用 DNS 路由",
@@ -415,6 +416,8 @@
     "warpNoise": "噪音计数",
     "warpNoiseSize": "噪音大小",
     "warpNoiseMode": "噪音模式",
-    "warpNoiseDelay": "噪音延迟"
+    "warpNoiseDelay": "噪音延迟",
+    "enableCloudFlare": "启用CloudFlare测试",
+    "cloudflareIpNum": "CloudFlare IP数量"
   }
 }

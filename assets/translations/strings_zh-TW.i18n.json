@@ -386,6 +386,7 @@
     "urlTestInterval": "網址測試間隔",
     "enableClashApi": "啟用 Clash API",
     "clashApiPort": "Clash API 連接埠",
+    "webSecret": "Clash API 密鑰",
     "enableTun": "啟用 TUN",
     "setSystemProxy": "設定系統代理",
     "enableDnsRouting": "啟用 DNS 路由",
@@ -415,6 +416,8 @@
     "warpNoise": "噪音計數",
     "warpNoiseSize": "噪音大小",
     "warpNoiseMode": "噪音模式",
-    "warpNoiseDelay": "噪音延遲"
+    "warpNoiseDelay": "噪音延遲",
+    "enableCloudFlare": "啟用CloudFlare測試",
+    "cloudflareIpNum": "CloudFlare IP數量"
   }
 }

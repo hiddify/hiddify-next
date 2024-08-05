@@ -416,5 +416,7 @@
     "warpNoiseSize": "Deng Siza",
     "warpNoiseMode": "Moda Deng",
     "warpNoiseDelay": "دواکەوتنی ژاوەژاو"
+    "enableCloudFlare": "چالاک کردنی CloudFlare",
+    "cloudflareIpNum": "ژمارەی IP"
   }
 }

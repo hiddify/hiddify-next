@@ -136,6 +136,11 @@ abstract class ConfigOptions {
     validator: (value) => isPort(value.toString()),
   );
 
+  static final webSecret = PreferencesNotifier.create<String, String>(
+    "web-secret",
+    "hiddifynext",
+  );
+
   static final bypassLan = PreferencesNotifier.create<bool, bool>("bypass-lan", false);
 
   static final allowConnectionFromLan = PreferencesNotifier.create<bool, bool>(
@@ -314,6 +319,18 @@ abstract class ConfigOptions {
     },
   );
 
+  // cloudflare ip scanner used to get the best ip
+  static final enableCloudFlare = PreferencesNotifier.create<bool, bool>(
+    "enable-cloudflare",
+    false,
+  );
+
+  static final cloudflareIpNum = PreferencesNotifier.create<int, int>(
+    "cloudflare-ip-num",
+    200,
+    validator: (value) => value > 10,
+  );
+
   /// preferences to exclude from share and export
   static final privatePreferencesKeys = {
     "warp.license-key",
@@ -346,6 +363,7 @@ abstract class ConfigOptions {
     "connection-test-url": connectionTestUrl,
     "url-test-interval": urlTestInterval,
     "clash-api-port": clashApiPort,
+    "web-secret": webSecret,
     "bypass-lan": bypassLan,
     "allow-connection-from-lan": allowConnectionFromLan,
     "enable-dns-routing": enableDnsRouting,
@@ -381,6 +399,10 @@ abstract class ConfigOptions {
     "warp2.account-id": warp2AccountId,
     "warp2.access-token": warp2AccessToken,
     "warp2.wireguard-config": warp2WireguardConfig,
+
+    // cloudflare
+    "enable-cloudflare": enableCloudFlare,
+    "cloudflare-ip-num": cloudflareIpNum,
   };
 
   static final singboxConfigOptions = FutureProvider<SingboxConfigOption>(
@@ -450,6 +472,7 @@ abstract class ConfigOptions {
         urlTestInterval: ref.watch(urlTestInterval),
         enableClashApi: ref.watch(enableClashApi),
         clashApiPort: ref.watch(clashApiPort),
+        webSecret: ref.watch(webSecret),
         enableTun: mode == ServiceMode.tun,
         enableTunService: mode == ServiceMode.tunService,
         setSystemProxy: mode == ServiceMode.systemProxy,
@@ -500,6 +523,8 @@ abstract class ConfigOptions {
           noiseSize: ref.watch(warpNoiseSize),
           noiseDelay: ref.watch(warpNoiseDelay),
         ),
+        enableCloudFlare: ref.watch(enableCloudFlare),
+        cloudflareIpNum: ref.watch(cloudflareIpNum),
         // geoipPath: ref.watch(geoAssetPathResolverProvider).relativePath(
         //       geoAssets.geoip.providerName,
         //       geoAssets.geoip.fileName,
