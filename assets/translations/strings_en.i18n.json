@@ -386,6 +386,7 @@
     "urlTestInterval": "URL Test Interval",
     "enableClashApi": "Enable Clash API",
     "clashApiPort": "Clash API Port",
+    "webSecret": "Clash API Secret",
     "enableTun": "Enable TUN",
     "setSystemProxy": "Set System Proxy",
     "enableDnsRouting": "Enable DNS Routing",

@@ -386,6 +386,7 @@
     "urlTestInterval": "网址测试间隔",
     "enableClashApi": "启用 Clash API",
     "clashApiPort": "Clash API 端口",
+    "webSecret": "Clash API 密钥",
     "enableTun": "启用 TUN",
     "setSystemProxy": "设置系统代理",
     "enableDnsRouting": "启用 DNS 路由",

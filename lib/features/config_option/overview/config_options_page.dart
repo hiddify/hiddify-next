@@ -357,6 +357,11 @@ class ConfigOptionsPage extends HookConsumerWidget {
                     digitsOnly: true,
                     inputToValue: int.tryParse,
                   ),
+                  ValuePreferenceWidget(
+                    title: t.config.webSecret,
+                    value: ref.watch(ConfigOptions.webSecret),
+                    preferences: ref.watch(ConfigOptions.webSecret.notifier),
+                  ),
                   // add cloudflare ip test config
                   const SettingsDivider(),
                   SwitchListTile(

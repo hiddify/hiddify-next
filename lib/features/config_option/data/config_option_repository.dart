@@ -136,6 +136,11 @@ abstract class ConfigOptions {
     validator: (value) => isPort(value.toString()),
   );
 
+  static final webSecret = PreferencesNotifier.create<String, String>(
+    "web-secret",
+    "hiddifynext",
+  );
+
   static final bypassLan = PreferencesNotifier.create<bool, bool>("bypass-lan", false);
 
   static final allowConnectionFromLan = PreferencesNotifier.create<bool, bool>(
@@ -358,6 +363,7 @@ abstract class ConfigOptions {
     "connection-test-url": connectionTestUrl,
     "url-test-interval": urlTestInterval,
     "clash-api-port": clashApiPort,
+    "web-secret": webSecret,
     "bypass-lan": bypassLan,
     "allow-connection-from-lan": allowConnectionFromLan,
     "enable-dns-routing": enableDnsRouting,
@@ -466,6 +472,7 @@ abstract class ConfigOptions {
         urlTestInterval: ref.watch(urlTestInterval),
         enableClashApi: ref.watch(enableClashApi),
         clashApiPort: ref.watch(clashApiPort),
+        webSecret: ref.watch(webSecret),
         enableTun: mode == ServiceMode.tun,
         enableTunService: mode == ServiceMode.tunService,
         setSystemProxy: mode == ServiceMode.systemProxy,
