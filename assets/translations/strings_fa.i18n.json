@@ -327,6 +327,10 @@
     "reconnectMsg": "در حال اتصال مجدد برای اعمال تغییرات..."
   },
   "config": {
+    "useXrayCoreWhenPossible":{
+      "Label":"استفاده از Xray-core در صورت ممکن",
+      "Description":"برای استفاده از Xray-core باید دوباره لینک ساب را وارد کنید تا این گزینه فعال شود."
+    },
     "resetBtn": "بازنشانی تنظیمات",
     "serviceMode": "حالت سرویس",
     "quickSettings": "تنظیمات سریع",

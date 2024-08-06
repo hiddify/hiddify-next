@@ -31,7 +31,10 @@ abstract class ConfigOptions {
     mapFrom: Region.values.byName,
     mapTo: (value) => value.name,
   );
-
+  static final useXrayCoreWhenPossible = PreferencesNotifier.create<bool, bool>(
+    "use-xray-core-when-possible",
+    false,
+  );
   static final blockAds = PreferencesNotifier.create<bool, bool>(
     "block-ads",
     false,
@@ -329,6 +332,7 @@ abstract class ConfigOptions {
   static final Map<String, StateNotifierProvider<PreferencesNotifier, dynamic>> preferences = {
     "region": region,
     "block-ads": blockAds,
+    "use-xray-core-when-possible": useXrayCoreWhenPossible,
     "service-mode": serviceMode,
     "log-level": logLevel,
     "resolve-destination": resolveDestination,
@@ -432,6 +436,7 @@ abstract class ConfigOptions {
       return SingboxConfigOption(
         region: ref.watch(region).name,
         blockAds: ref.watch(blockAds),
+        useXrayCoreWhenPossible: ref.watch(useXrayCoreWhenPossible),
         executeConfigAsIs: false,
         logLevel: ref.watch(logLevel),
         resolveDestination: ref.watch(resolveDestination),

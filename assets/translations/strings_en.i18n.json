@@ -327,6 +327,10 @@
     "reconnectMsg": "Reconnecting for taking into account the changes..."
   },
   "config": {
+    "useXrayCoreWhenPossible":{
+      "Label":"Use Xray-core When Possible",
+      "Description":"Use Xray-core during parsing sub links. You need to reimport the sub link to enable this option."
+    },
     "resetBtn": "Reset Options",
     "serviceMode": "Service Mode",
     "quickSettings": "Quick Settings",
