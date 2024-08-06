@@ -275,7 +275,7 @@ abstract class ConfigOptions {
   );
   static final warpNoiseMode = PreferencesNotifier.create<String, String>(
     "warp-noise-mode",
-    "m6",
+    "m4",
   );
 
   static final warpNoiseDelay = PreferencesNotifier.create<OptionalRange, String>(
