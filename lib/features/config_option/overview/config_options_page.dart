@@ -358,13 +358,14 @@ class ConfigOptionsPage extends HookConsumerWidget {
                     digitsOnly: true,
                     inputToValue: int.tryParse,
                   ),
-                  const Gap(24),
+                  
                   SwitchListTile(
                     title: Text(experimental(t.config.useXrayCoreWhenPossible.Label)),
                     subtitle: Text(t.config.useXrayCoreWhenPossible.Description),
                     value: ref.watch(ConfigOptions.useXrayCoreWhenPossible),
                     onChanged: ref.watch(ConfigOptions.useXrayCoreWhenPossible.notifier).update,
                   ),
+                  const Gap(24),
                 ],
               ),
             ),

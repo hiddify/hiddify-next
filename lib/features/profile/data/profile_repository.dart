@@ -177,7 +177,9 @@ class ProfileRepositoryImpl with ExceptionHandler, InfraLogger implements Profil
     bool debug,
   ) {
     return exceptionHandler(
-      () {
+      () async {
+        singbox.changeOptions(await configOptionRepository.getConfigOptions()).run();
+
         return singbox.validateConfigByPath(path, tempPath, debug).mapLeft(ProfileFailure.invalidConfig).run();
       },
       ProfileUnexpectedFailure.new,
@@ -276,7 +278,7 @@ class ProfileRepositoryImpl with ExceptionHandler, InfraLogger implements Profil
     return TaskEither<ProfileFailure, String>.Do(
       ($) async {
         final configFile = profilePathResolver.file(id);
-        // TODO pass options
+
         final options = await configOptionRepository.getConfigOptions();
 
         singbox.changeOptions(options).mapLeft(InvalidConfigOption.new).run();
@@ -394,10 +396,13 @@ class ProfileRepositoryImpl with ExceptionHandler, InfraLogger implements Profil
         final tempFile = profilePathResolver.tempFile(fileName);
 
         try {
+          final configs = await configOptionRepository.getConfigOptions();
+
           final response = await httpClient.download(
             url.trim(),
             tempFile.path,
             cancelToken: cancelToken,
+            userAgent: configs.useXrayCoreWhenPossible ? "v2rayNG/1.8.23" : null,
           );
           final headers = await _populateHeaders(response.headers.map, tempFile.path);
           return await validateConfig(file.path, tempFile.path, false)
