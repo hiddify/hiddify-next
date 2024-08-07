@@ -78,7 +78,7 @@
         "permissionRequest": "QR Kodunu taramak için kamera izni"
       },
       "manually": "Manuel giriş",
-      "addWarp": "Çarpıtma Ekle",
+      "addWarp": "Warp ekle",
       "addingWarpMsg": "WARP'ı kaydederken lütfen bekleyin.",
       "addingProfileMsg": "Profil Ekleniyor",
       "failureMsg": "Profil eklenemedi"

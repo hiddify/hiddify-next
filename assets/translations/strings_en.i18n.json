@@ -327,9 +327,9 @@
     "reconnectMsg": "Reconnecting for taking into account the changes..."
   },
   "config": {
-    "useXrayCoreWhenPossible":{
-      "Label":"Use Xray-core When Possible",
-      "Description":"Use Xray-core during parsing sub links. You need to reimport the sub link to enable this option."
+    "useXrayCoreWhenPossible": {
+      "Label": "Use Xray-core When Possible",
+      "Description": "Use Xray-core during parsing sub links. You need to reimport the sub link to enable this option."
     },
     "resetBtn": "Reset Options",
     "serviceMode": "Service Mode",
@@ -421,9 +421,9 @@
     "warpNoiseMode": "Noise Mode",
     "warpNoiseDelay": "Noise Delay"
   },
-  "window":{
+  "window": {
     "hide": "Hide",
     "close": "Exit",
-    "alertMessage":"Hide or Exit the application?"
+    "alertMessage": "Hide or Exit the application?"
   }
 }

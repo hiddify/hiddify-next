@@ -78,7 +78,7 @@
         "permissionRequest": "Permissão para a câmera digitalizar o QR Code"
       },
       "manually": "Entrada manual",
-      "addWarp": "Adicionar distorção",
+      "addWarp": "Adicionar Warp",
       "addingWarpMsg": "Aguarde enquanto registramos o WARP.",
       "addingProfileMsg": "Adicionando Perfil",
       "failureMsg": "Falha ao adicionar perfil"

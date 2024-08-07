@@ -78,7 +78,7 @@
         "permissionRequest": "الإذن للكاميرا لمسح رمز الاستجابة السريعة"
       },
       "manually": "إدخال يدوي",
-      "addWarp": "أضف الاعوجاج",
+      "addWarp": "أضف Warp",
       "addingWarpMsg": "الرجاء الانتظار بينما نقوم بتسجيل WARP.",
       "addingProfileMsg": "إضافة ملف التعريف",
       "failureMsg": "فشل في إضافة ملف التعريف"

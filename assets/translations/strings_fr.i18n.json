@@ -78,7 +78,7 @@
         "permissionRequest": "Autorisation de la caméra pour scanner le code QR"
       },
       "manually": "Saisie manuelle",
-      "addWarp": "Ajouter une déformation",
+      "addWarp": "Ajouter Warp",
       "addingWarpMsg": "Veuillez patienter pendant que nous enregistrons WARP.",
       "addingProfileMsg": "Ajout d'un profil",
       "failureMsg": "Échec de l'ajout du profil"
