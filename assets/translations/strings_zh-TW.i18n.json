@@ -360,7 +360,7 @@
     },
     "generateWarpConfig": "生成 WARP 配置檔案",
     "missingWarpConfig": "WARP 配置檔案缺失",
-    "warpConfigGenerated": "WARP 配置檔案已生成",
+    "warpConfigGenerated": "WARP 設定已生成",
     "pageTitle": "配置選項",
     "logLevel": "紀錄等級",
     "blockAds": "阻止廣告",

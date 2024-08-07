@@ -78,7 +78,7 @@
         "permissionRequest": "Permiso a la cámara para escanear el código QR"
       },
       "manually": "Entrada manual",
-      "addWarp": "Añadir Warp",
+      "addWarp": "Añadir WARP",
       "addingWarpMsg": "Por favor, espere mientras registramos WARP.",
       "addingProfileMsg": "Agregar perfil",
       "failureMsg": "No se pudo agregar el perfil"
@@ -360,7 +360,7 @@
     },
     "generateWarpConfig": "Generar configuración WARP",
     "missingWarpConfig": "Falta la configuración WARP",
-    "warpConfigGenerated": "Configuración WARP generada",
+    "warpConfigGenerated": "Se genera la configuración WARP",
     "pageTitle": "Opciones de configuración",
     "logLevel": "Registro del Nivel",
     "blockAds": "Bloquear anuncios",

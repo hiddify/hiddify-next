@@ -78,7 +78,7 @@
         "permissionRequest": "Права на использование камеры для считывания QR"
       },
       "manually": "Ввести вручную",
-      "addWarp": "Добавить Warp",
+      "addWarp": "Добавить WARP",
       "addingWarpMsg": "Пожалуйста, подождите, пока мы зарегистрируем WARP.",
       "addingProfileMsg": "Добавление профиля",
       "failureMsg": "Не удалось добавить профиль"
@@ -360,7 +360,7 @@
     },
     "generateWarpConfig": "Cгенерировать WARP конфиг",
     "missingWarpConfig": "Отсутствует WARP конфиг",
-    "warpConfigGenerated": "WARP конфиг сгенерирован",
+    "warpConfigGenerated": "Создана конфигурация WARP",
     "pageTitle": "Параметры конфигурации",
     "logLevel": "Подробность журналирования",
     "blockAds": "Блокировать рекламу",

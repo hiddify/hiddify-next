@@ -78,7 +78,7 @@
         "permissionRequest": "Permission to camera to scan QR Code"
       },
       "manually": "Manual Entry",
-      "addWarp": "Add Warp",
+      "addWarp": "Add WARP",
       "addingWarpMsg": "Please wait while we register WARP.",
       "addingProfileMsg": "Adding Profile",
       "failureMsg": "Failed to Add Profile"
@@ -364,7 +364,7 @@
     },
     "generateWarpConfig": "Generate WARP Config",
     "missingWarpConfig": "Missing WARP Config",
-    "warpConfigGenerated": "WARP Config Generated",
+    "warpConfigGenerated": "WARP Config is Generated",
     "pageTitle": "Config Options",
     "logLevel": "Log Level",
     "blockAds": "Block Advertisements",

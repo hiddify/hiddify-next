@@ -78,7 +78,7 @@
         "permissionRequest": "Izin ke kamera untuk memindai Kode QR"
       },
       "manually": "Isian Manual",
-      "addWarp": "Tambahkan Warp",
+      "addWarp": "Tambahkan WARP",
       "addingWarpMsg": "Mohon tunggu selagi kami mendaftarkan WARP.",
       "addingProfileMsg": "Tambahkan Profil",
       "failureMsg": "Gagal tambahkan profil"
@@ -360,7 +360,7 @@
     },
     "generateWarpConfig": "Hasilkan Konfigurasi WARP",
     "missingWarpConfig": "Konfigurasi WARP tidak ada",
-    "warpConfigGenerated": "Konfigurasi WARP Dihasilkan",
+    "warpConfigGenerated": "Konfigurasi WARP Dibuat",
     "pageTitle": "Opsi Konfig",
     "logLevel": "Log Level",
     "blockAds": "Blokir Iklan",

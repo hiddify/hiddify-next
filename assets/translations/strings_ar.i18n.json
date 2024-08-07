@@ -1,6 +1,6 @@
 {
   "general": {
-    "appTitle": "Hiddify",
+    "appTitle": "هیدیفای",
     "reset": "إعادة تعيين",
     "toggle": {
       "enabled": "مُفعّل",
@@ -78,7 +78,7 @@
         "permissionRequest": "الإذن للكاميرا لمسح رمز الاستجابة السريعة"
       },
       "manually": "إدخال يدوي",
-      "addWarp": "أضف Warp",
+      "addWarp": "أضف WARP",
       "addingWarpMsg": "الرجاء الانتظار بينما نقوم بتسجيل WARP.",
       "addingProfileMsg": "إضافة ملف التعريف",
       "failureMsg": "فشل في إضافة ملف التعريف"

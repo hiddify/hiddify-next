@@ -360,7 +360,7 @@
     },
     "generateWarpConfig": "生成 WARP 配置文件",
     "missingWarpConfig": "WARP 配置文件缺失",
-    "warpConfigGenerated": "WARP 配置文件已生成",
+    "warpConfigGenerated": "WARP 配置已生成",
     "pageTitle": "配置选项",
     "logLevel": "日志级别",
     "blockAds": "阻止广告",
