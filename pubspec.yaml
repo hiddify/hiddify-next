@@ -95,6 +95,7 @@ dependencies:
   protobuf: ^3.1.0
   grpc: ^3.2.4
   dynamic_color: ^1.7.0
+  flutter_typeahead: ^5.0.1
 dev_dependencies:
   flutter_test:
     sdk: flutter

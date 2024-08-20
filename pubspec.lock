@@ -630,6 +630,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.8"
+  flutter_typeahead:
+    dependency: "direct main"
+    description:
+      name: flutter_typeahead
+      sha256: d64712c65db240b1057559b952398ebb6e498077baeebf9b0731dade62438a6d
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.2.0"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
@@ -1188,6 +1196,38 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.8"
+  pointer_interceptor:
+    dependency: transitive
+    description:
+      name: pointer_interceptor
+      sha256: "57210410680379aea8b1b7ed6ae0c3ad349bfd56fe845b8ea934a53344b9d523"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.10.1+2"
+  pointer_interceptor_ios:
+    dependency: transitive
+    description:
+      name: pointer_interceptor_ios
+      sha256: a6906772b3205b42c44614fcea28f818b1e5fdad73a4ca742a7bd49818d9c917
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.10.1"
+  pointer_interceptor_platform_interface:
+    dependency: transitive
+    description:
+      name: pointer_interceptor_platform_interface
+      sha256: "0597b0560e14354baeb23f8375cd612e8bd4841bf8306ecb71fcd0bb78552506"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.10.0+1"
+  pointer_interceptor_web:
+    dependency: transitive
+    description:
+      name: pointer_interceptor_web
+      sha256: "7a7087782110f8c1827170660b09f8aa893e0e9a61431dbbe2ac3fc482e8c044"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.10.2+1"
   pool:
     dependency: transitive
     description:

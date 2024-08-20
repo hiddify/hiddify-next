@@ -48,7 +48,47 @@ class SettingsInputDialog<T> extends HookConsumerWidget with PresLogger {
             mainAxisSize: MainAxisSize.min,
             children: [
               if (possibleValues != null)
-                AutocompleteField(initialValue: initialValue.toString(), options: possibleValues!.map((e) => e.toString()).toList())
+                // AutocompleteField(initialValue: initialValue.toString(), options: possibleValues!.map((e) => e.toString()).toList())
+                TypeAheadField<String>(
+                  controller: textController,
+                  builder: (context, controller, focusNode) {
+                    return TextField(
+                      controller: controller,
+                      focusNode: focusNode,
+                      textDirection: TextDirection.ltr,
+                      autofocus: true,
+                      // decoration: InputDecoration(
+                      //     // border: OutlineInputBorder(),
+                      //     // labelText: 'City',
+                      //     )
+                    );
+                  },
+                  // Callback to fetch suggestions based on user input
+                  suggestionsCallback: (pattern) async {
+                    final items = possibleValues!.map((p) => p.toString());
+                    var res = items.where((suggestion) => suggestion.toLowerCase().contains(pattern.toLowerCase())).toList();
+                    if (res.length <= 1) res = [pattern, ...items.where((s) => s != pattern)];
+                    return res;
+                  },
+                  // Widget to build each suggestion in the list
+                  itemBuilder: (context, suggestion) {
+                    return ListTile(
+                      contentPadding: const EdgeInsets.symmetric(vertical: 3, horizontal: 10), // Minimize ListTile padding
+                      minTileHeight: 0,
+                      title: Text(
+                        suggestion,
+                        textDirection: TextDirection.ltr,
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
+                    );
+                  },
+                  // Callback when a suggestion is selected
+                  onSelected: (suggestion) {
+                    // Handle the selected suggestion
+                    print('Selected: $suggestion');
+                    textController.text = suggestion.toString();
+                  },
+                )
               else
                 CustomTextFormField(
                   controller: textController,
