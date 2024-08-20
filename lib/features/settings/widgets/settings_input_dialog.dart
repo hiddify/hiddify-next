@@ -1,29 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class SettingsInputDialog<T> extends HookConsumerWidget with PresLogger {
-  const SettingsInputDialog({
-    super.key,
-    required this.title,
-    required this.initialValue,
-    this.mapTo,
-    this.validator,
-    this.valueFormatter,
-    this.onReset,
-    this.optionalAction,
-    this.icon,
-    this.digitsOnly = false,
-  });
+  const SettingsInputDialog({super.key, required this.title, required this.initialValue, this.mapTo, this.validator, this.valueFormatter, this.onReset, this.optionalAction, this.icon, this.digitsOnly = false, this.possibleValues});
 
   final String title;
   final T initialValue;
   final T? Function(String value)? mapTo;
   final bool Function(String value)? validator;
   final String Function(T value)? valueFormatter;
+  final List<T>? possibleValues;
   final VoidCallback? onReset;
   final (String text, VoidCallback)? optionalAction;
   final IconData? icon;
@@ -53,14 +44,22 @@ class SettingsInputDialog<T> extends HookConsumerWidget with PresLogger {
         icon: icon != null ? Icon(icon) : null,
         content: FocusTraversalOrder(
           order: const NumericFocusOrder(1),
-          child: CustomTextFormField(
-            controller: textController,
-            inputFormatters: [
-              FilteringTextInputFormatter.singleLineFormatter,
-              if (digitsOnly) FilteringTextInputFormatter.digitsOnly,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (possibleValues != null)
+                AutocompleteField(initialValue: initialValue.toString(), options: possibleValues!.map((e) => e.toString()).toList())
+              else
+                CustomTextFormField(
+                  controller: textController,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.singleLineFormatter,
+                    if (digitsOnly) FilteringTextInputFormatter.digitsOnly,
+                  ],
+                  autoCorrect: true,
+                  hint: title,
+                ),
             ],
-            autoCorrect: true,
-            hint: title,
           ),
         ),
         actions: [
@@ -70,8 +69,7 @@ class SettingsInputDialog<T> extends HookConsumerWidget with PresLogger {
               child: TextButton(
                 onPressed: () async {
                   optionalAction!.$2();
-                  await Navigator.of(context)
-                      .maybePop(T == String ? textController.value.text : null);
+                  await Navigator.of(context).maybePop(T == String ? textController.value.text : null);
                 },
                 child: Text(optionalAction!.$1.toUpperCase()),
               ),
@@ -103,11 +101,9 @@ class SettingsInputDialog<T> extends HookConsumerWidget with PresLogger {
                 if (validator?.call(textController.value.text) == false) {
                   await Navigator.of(context).maybePop(null);
                 } else if (mapTo != null) {
-                  await Navigator.of(context)
-                      .maybePop(mapTo!.call(textController.value.text));
+                  await Navigator.of(context).maybePop(mapTo!.call(textController.value.text));
                 } else {
-                  await Navigator.of(context)
-                      .maybePop(T == String ? textController.value.text : null);
+                  await Navigator.of(context).maybePop(T == String ? textController.value.text : null);
                 }
               },
               child: Text(localizations.okButtonLabel.toUpperCase()),
@@ -115,6 +111,32 @@ class SettingsInputDialog<T> extends HookConsumerWidget with PresLogger {
           ),
         ],
       ),
+    );
+  }
+}
+
+class AutocompleteField extends StatelessWidget {
+  const AutocompleteField({super.key, required this.initialValue, required this.options});
+  final List<String> options;
+  final String initialValue;
+
+  @override
+  Widget build(BuildContext context) {
+    return Autocomplete<String>(
+      initialValue: TextEditingValue(
+        text: this.initialValue, selection: TextSelection(baseOffset: 0, extentOffset: this.initialValue.length), // Selects the entire text
+      ),
+      optionsBuilder: (TextEditingValue textEditingValue) {
+        // if (textEditingValue.text == '') {
+        //   return const Iterable<String>.empty();
+        // }
+        return options.where((String option) {
+          return option.contains(textEditingValue.text.toLowerCase());
+        });
+      },
+      onSelected: (String selection) {
+        //debugPrint('You just selected $selection');
+      },
     );
   }
 }

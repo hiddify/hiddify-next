@@ -61,7 +61,17 @@ abstract class ConfigOptions {
   static final remoteDnsAddress = PreferencesNotifier.create<String, String>(
     "remote-dns-address",
     "udp://1.1.1.1",
-    // "https://sky.rethinkdns.com/dns-query",
+    possibleValues: List.of([
+      "local",
+      "udp://223.5.5.5",
+      "udp://1.1.1.1",
+      "udp://1.1.1.2",
+      "tcp://1.1.1.1",
+      "https://1.1.1.1/dns-query",
+      "https://sky.rethinkdns.com/dns-query",
+      "4.4.2.2",
+      "8.8.8.8",
+    ]),
     validator: (value) => value.isNotBlank,
   );
 
@@ -74,7 +84,18 @@ abstract class ConfigOptions {
 
   static final directDnsAddress = PreferencesNotifier.create<String, String>(
     "direct-dns-address",
-    "1.1.1.1",
+    "udp://1.1.1.1",
+    possibleValues: List.of([
+      "local",
+      "udp://223.5.5.5",
+      "udp://1.1.1.1",
+      "udp://1.1.1.2",
+      "tcp://1.1.1.1",
+      "https://1.1.1.1/dns-query",
+      "https://sky.rethinkdns.com/dns-query",
+      "4.4.2.2",
+      "8.8.8.8",
+    ]),
     defaultValueFunction: (ref) => ref.read(region) == Region.cn ? "223.5.5.5" : "1.1.1.1",
     validator: (value) => value.isNotBlank,
   );
@@ -117,7 +138,18 @@ abstract class ConfigOptions {
 
   static final connectionTestUrl = PreferencesNotifier.create<String, String>(
     "connection-test-url",
-    "http://connectivitycheck.gstatic.com/generate_204",
+    "http://cp.cloudflare.com",
+    possibleValues: List.of([
+      "http://connectivitycheck.gstatic.com/generate_204",
+      "http://www.gstatic.com/generate_204",
+      "https://www.gstatic.com/generate_204",
+      "http://cp.cloudflare.com",
+      "http://kernel.org",
+      "http://detectportal.firefox.com",
+      "http://captive.apple.com/hotspot-detect.html",
+      "https://1.1.1.1",
+      "http://1.1.1.1",
+    ]),
     validator: (value) => value.isNotBlank && isUrl(value),
   );
 

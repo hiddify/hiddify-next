@@ -41,6 +41,7 @@ class ValuePreferenceWidget<T> extends StatelessWidget {
           onReset: preferences.reset,
           digitsOnly: digitsOnly,
           mapTo: inputToValue,
+          possibleValues: preferences.possibleValues,
         ).show(context);
         if (inputValue == null) {
           return;

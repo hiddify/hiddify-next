@@ -358,7 +358,7 @@ class ConfigOptionsPage extends HookConsumerWidget {
                     digitsOnly: true,
                     inputToValue: int.tryParse,
                   ),
-                  
+
                   SwitchListTile(
                     title: Text(experimental(t.config.useXrayCoreWhenPossible.Label)),
                     subtitle: Text(t.config.useXrayCoreWhenPossible.Description),
