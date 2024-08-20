@@ -74,33 +74,36 @@ PODS:
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
+  - pointer_interceptor_ios (0.0.1):
+    - Flutter
   - PromisesObjC (2.4.0)
   - protocol_handler_ios (0.0.1):
     - Flutter
-  - Sentry/HybridSDK (8.20.0):
-    - SentryPrivate (= 8.20.0)
-  - sentry_flutter (0.0.1):
+  - Sentry/HybridSDK (8.25.0)
+  - sentry_flutter (7.20.2):
     - Flutter
     - FlutterMacOS
-    - Sentry/HybridSDK (= 8.20.0)
-  - SentryPrivate (8.20.0)
+    - Sentry/HybridSDK (= 8.25.0)
   - share_plus (0.0.1):
     - Flutter
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
-  - "sqlite3 (3.45.3+1)":
-    - "sqlite3/common (= 3.45.3+1)"
-  - "sqlite3/common (3.45.3+1)"
-  - "sqlite3/fts5 (3.45.3+1)":
+  - "sqlite3 (3.46.0+1)":
+    - "sqlite3/common (= 3.46.0+1)"
+  - "sqlite3/common (3.46.0+1)"
+  - "sqlite3/dbstatvtab (3.46.0+1)":
     - sqlite3/common
-  - "sqlite3/perf-threadsafe (3.45.3+1)":
+  - "sqlite3/fts5 (3.46.0+1)":
     - sqlite3/common
-  - "sqlite3/rtree (3.45.3+1)":
+  - "sqlite3/perf-threadsafe (3.46.0+1)":
+    - sqlite3/common
+  - "sqlite3/rtree (3.46.0+1)":
     - sqlite3/common
   - sqlite3_flutter_libs (0.0.1):
     - Flutter
-    - sqlite3 (~> 3.45.1)
+    - "sqlite3 (~> 3.46.0+1)"
+    - sqlite3/dbstatvtab
     - sqlite3/fts5
     - sqlite3/perf-threadsafe
     - sqlite3/rtree
@@ -120,6 +123,7 @@ DEPENDENCIES:
   - mobile_scanner (from `.symlinks/plugins/mobile_scanner/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
+  - pointer_interceptor_ios (from `.symlinks/plugins/pointer_interceptor_ios/ios`)
   - protocol_handler_ios (from `.symlinks/plugins/protocol_handler_ios/ios`)
   - sentry_flutter (from `.symlinks/plugins/sentry_flutter/ios`)
   - share_plus (from `.symlinks/plugins/share_plus/ios`)
@@ -143,7 +147,6 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - Sentry
-    - SentryPrivate
     - sqlite3
 
 EXTERNAL SOURCES:
@@ -169,6 +172,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/package_info_plus/ios"
   path_provider_foundation:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
+  pointer_interceptor_ios:
+    :path: ".symlinks/plugins/pointer_interceptor_ios/ios"
   protocol_handler_ios:
     :path: ".symlinks/plugins/protocol_handler_ios/ios"
   sentry_flutter:
@@ -183,13 +188,13 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
-  cupertino_http: 5f8b1161107fe6c8d94a0c618735a033d93fa7db
+  cupertino_http: 1a3a0f163c1b26e7f1a293b33d476e0fde7a64ec
   device_info_plus: c6fb39579d0f423935b0c9ce7ee2f44b71b9fce6
   EasyPermissionX: ff4c438f6ee80488f873b4cb921e32d982523067
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   flutter_easy_permission: c67b480f134ff748c069cac2d645f873de2b7880
   flutter_keyboard_visibility: 0339d06371254c3eb25eeb90ba8d17dca8f9c069
-  flutter_native_splash: 52501b97d1c0a5f898d687f1646226c1f93c56ef
+  flutter_native_splash: edf599c81f74d093a4daf8e17bd7a018854bc778
   flutter_timezone: ffb07bdad3c6276af8dada0f11978d8a1f8a20bb
   GoogleDataTransport: 6c09b596d841063d76d4288cc2d2f42cc36e1e2a
   GoogleMLKit: 97ac7af399057e99182ee8edfa8249e3226a4065
@@ -205,17 +210,17 @@ SPEC CHECKSUMS:
   mobile_scanner: 8564358885a9253c43f822435b70f9345c87224f
   nanopb: 438bc412db1928dac798aa6fd75726007be04262
   package_info_plus: 115f4ad11e0698c8c1c5d8a689390df880f47e85
-  path_provider_foundation: 29f094ae23ebbca9d3d0cec13889cd9060c0e943
+  path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
+  pointer_interceptor_ios: 508241697ff0947f853c061945a8b822463947c1
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   protocol_handler_ios: a5db8abc38526ee326988b808be621e5fd568990
-  Sentry: a8d7b373b9f9868442b02a0c425192f693103cbf
-  sentry_flutter: 03e7660857a8cdb236e71456a7e8447b65c8a788
-  SentryPrivate: 006b24af16828441f70e2ab6adf241bd0a8ad130
+  Sentry: cd86fc55628f5b7c572cabe66cc8f95a9d2f165a
+  sentry_flutter: 0cf2507eb90ff7a6aa3304e900dd7f08edbbefdf
   share_plus: c3fef564749587fc939ef86ffb283ceac0baf9f5
-  shared_preferences_foundation: 5b919d13b803cadd15ed2dc053125c68730e5126
-  sqlite3: 02d1f07eaaa01f80a1c16b4b31dfcbb3345ee01a
-  sqlite3_flutter_libs: af0e8fe9bce48abddd1ffdbbf839db0302d72d80
-  url_launcher_ios: bf5ce03e0e2088bad9cc378ea97fa0ed5b49673b
+  shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
+  sqlite3: 292c3e1bfe89f64e51ea7fc7dab9182a017c8630
+  sqlite3_flutter_libs: c00457ebd31e59fa6bb830380ddba24d44fbcd3b
+  url_launcher_ios: 5334b05cef931de560670eeae103fd3e431ac3fe
 
 PODFILE CHECKSUM: ca6e79d459489669f6140111d32fd30a12ea2c9e
 

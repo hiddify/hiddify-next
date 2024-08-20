@@ -2,7 +2,7 @@ import Cocoa
 import FlutterMacOS
 
 import UserNotifications
-@NSApplicationMain
+@main
 class AppDelegate: FlutterAppDelegate {
   override func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
     // https://github.com/leanflutter/window_manager/issues/214
