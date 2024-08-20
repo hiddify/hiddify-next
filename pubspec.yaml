@@ -5,7 +5,7 @@ version: 2.1.5+20105
 
 environment:
   sdk: ">=3.3.0 <4.0.0"
-  flutter: ">=3.22.3 <=3.22.3"
+  flutter: ">=3.24.0 <=3.24.3"
 
 dependencies:
   flutter:
@@ -28,7 +28,7 @@ dependencies:
   slang_flutter: ^3.30.0
   fpdart: ^1.1.0
   freezed_annotation: ^2.4.1
-  json_annotation: ^4.8.1
+  json_annotation: ^4.9.0
   hooks_riverpod: ^2.4.10
   flutter_hooks: ^0.20.5
   riverpod_annotation: ^2.3.4
@@ -95,7 +95,6 @@ dependencies:
   protobuf: ^3.1.0
   grpc: ^3.2.4
   dynamic_color: ^1.7.0
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -114,7 +113,7 @@ dev_dependencies:
 
 dependency_overrides:
   # drift & package_info_plus are not compatible
-  web: ^0.5.1
+  web: ^1.0.0
 
 flutter:
   uses-material-design: true
