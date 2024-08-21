@@ -1,0 +1,39 @@
+{
+  "general": {
+    "appTitle": "Hiddify",
+    "reset": "ပြန်လည်သတ်မှတ်ရန်",
+    "toggle": {
+      "enabled": "ဖွင့်ထားသည်",
+      "disabled": "ပိတ်ထားသည်"
+    },
+    "state": {
+      "disable": "ပိတ်ထားသည်"
+    },
+    "sort": "စီစဉ်မှု",
+    "sortBy": "အလိုက်စဥ်ခြင်း",
+    "addToClipboard": "ကလစ်ဘုတ်သို့ ပေါင်းထည့်ရန်",
+    "agree": "သဘောတူ",
+    "decline": "ငြင်းပယ်",
+    "unknown": "မသိရှိ",
+    "hidden": "ဝှက်ထားသော",
+    "showMore": "ပိုမို ပြသရန်",
+    "showLess": "အနည်းငယ်သာ ပြသရန်",
+    "grantPermission": "လုပ်ဆောင်ခွင့်ပြုရန်"
+  },
+  "intro": {
+    "start": "စတင်ရန်"
+  },
+  "stats": {
+    "traffic": "အသွားအလာ",
+    "trafficLive": "လက်ရှိ အသွားအလာ",
+    "trafficTotal": "စုစုပေါင်း အသွားအလာ",
+    "connection": "ချိတ်ဆက်မှု",
+    "speed": "အမြန်နှုန်း",
+    "totalTransferred": "စုစုပေါင်း ပြောင်းရွှေ့မှု"
+  },
+  "profile": {
+    "subscription": {
+      "traffic": "အသွားအလာ"
+    }
+  }
+}
