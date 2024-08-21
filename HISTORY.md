@@ -1,7 +1,57 @@
 # Changelog
 
 
-## 2.1.5 (2024-08-05)
+## 2.2.0 (2024-08-21)
+
+#### New
+
+* Add several values for dns and url test in auto complete mode. 
+
+* Add use xray core option. 
+
+#### Changes
+
+* Default tun mode to gvisor. 
+
+#### Fix
+
+* Some hard coded items. 
+
+* Apple bug. 
+
+* Bug of back button in rtl flutter 3.24. 
+
+* Naming of links containing &&detour. 
+
+#### Other
+
+* Better auto complete. 
+
+* Remove hindi. 
+
+* Update flutter to 3.24. 
+
+* Merge pull request #1217 from lexxfin/main. 
+  _chore: update translations with Fink 🐦_
+
+* Chore: update translations with Fink 🐦 
+
+* Merge pull request #1210 from bLueriVerLHR/main. 
+  _Fix typo in stats_repository.dart_
+
+* Fix typo in stats_repository.dart. 
+
+* Chore: update translations with Fink 🐦 
+
+* Include app configs before validaing proxies. 
+
+* Chore: update translations with Fink 🐦 
+
+* Change default warp mode to m4. 
+
+
+
+## v2.1.5 (2024-08-05)
 
 #### Fix
 
