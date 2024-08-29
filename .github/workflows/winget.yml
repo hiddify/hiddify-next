@@ -8,7 +8,7 @@ env:
 
 jobs:
   publish:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: vedantmgoyal9/winget-releaser@main
         with:
