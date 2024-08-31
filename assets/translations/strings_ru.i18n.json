@@ -420,5 +420,10 @@
     "warpNoiseSize": "Размер шума",
     "warpNoiseMode": "Шумовой режим",
     "warpNoiseDelay": "Задержка шума"
+  },
+  "window": {
+    "hide": "Свернуть",
+    "close": "Выйти",
+    "alertMessage": "Свернуть или Выйти из приложения?"
   }
 }
