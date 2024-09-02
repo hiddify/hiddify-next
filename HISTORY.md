@@ -1,7 +1,48 @@
 # Changelog
 
 
-## 2.2.0 (2024-08-21)
+## 2.3.0 (2024-09-02)
+
+#### New
+
+* Add brazil region. 
+
+#### Fix
+
+* Black screenn when press back button. 
+
+#### Other
+
+* Hide back icon when no back. 
+
+* Merge pull request #1277 from sillydillydiddy/main. 
+  _Update translations_
+
+* Chore: update translations with Fink 🐦 
+
+* Merge pull request #1282 from vedantmgoyal9/patch-1. 
+  _Update winget-releaser to latest_
+
+* Update winget.yml. 
+
+* Update winget.yml. 
+
+* Update winget-releaser to latest. 
+
+* Merge pull request #1278 from tensionc/main. 
+  _fix: Black screenn when press back button_
+
+* Merge remote-tracking branch 'origin/main' 
+
+* Update warp. 
+
+* Update warp. 
+
+* Revert: Keep button, add judgment. 
+
+
+
+## v2.2.0 (2024-08-21)
 
 #### New
 
@@ -14,6 +55,8 @@
 * Default tun mode to gvisor. 
 
 #### Fix
+
+* Bug. 
 
 * Some hard coded items. 
 
