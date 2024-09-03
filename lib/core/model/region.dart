@@ -7,6 +7,7 @@ enum Region {
   af,
   id,
   tr,
+  br,
   other;
 
   String present(TranslationsEn t) => switch (this) {
@@ -16,6 +17,7 @@ enum Region {
         tr => t.settings.general.regions.tr,
         af => t.settings.general.regions.af,
         id => t.settings.general.regions.id,
+        br => t.settings.general.regions.br,
         other => t.settings.general.regions.other,
       };
 }
