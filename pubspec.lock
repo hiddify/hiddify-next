@@ -487,10 +487,11 @@ packages:
   flutter_easy_permission:
     dependency: "direct main"
     description:
-      name: flutter_easy_permission
-      sha256: "05eb1b561c894adef28b3ae38d8087fc2635f1047c5e18cf2698fb42b6ccc132"
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: da0cf67a7c0a2d8ad257084956ce6d32a98f8ccc
+      url: "https://github.com/MichaelStH/flutter_easy_permission/"
+    source: git
     version: "1.1.2"
   flutter_gen_core:
     dependency: transitive
