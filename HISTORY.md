@@ -1,7 +1,23 @@
 # Changelog
 
 
-## 2.3.0 (2024-09-02)
+## 2.3.1 (2024-09-06)
+
+#### Fix
+
+* Android. 
+
+#### Other
+
+* Merge branch 'main' of https://github.com/hiddify/hiddify-next. 
+
+* Change name to hiddifypackettunnel. 
+
+* Fix android build issue. 
+
+
+
+## v2.3.0 (2024-09-02)
 
 #### New
 
