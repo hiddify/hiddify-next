@@ -63,15 +63,15 @@ Vless، Vmess، Reality، TUIC، Hysteria، Wireguard، SSH وغيرها
 
 ## 📥 تنزيل مباشر
 
-<div align=left>
+<div align=right>
 <table>
-    <thead align=left>
+    <thead align=right>
         <tr>
             <th>نظام التشغيل</th>
             <th>تنزيل</th>
         </tr>
     </thead>
-    <tbody align=left>
+    <tbody align=right>
         <tr>
         <td>iOS</td>
             <td>
