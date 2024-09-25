@@ -1,6 +1,6 @@
-<div dir="ltr">
+<div dir="rtl">
     
-[**![Lang_farsi](https://user-images.githubusercontent.com/125398461/234186932-52f1fa82-52c6-417f-8b37-08fe9250a55f.png) فارسی**](README_fa.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**عربي 🇾🇪**](README_ar.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**Русский 🇷🇺**](README_ru.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**简体中文 🇨🇳**](README_cn.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**日本語 🇯🇵**](README_ja.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**Portugês-BR 🇧🇷**](README_br.md)
+[**![Lang_farsi](https://user-images.githubusercontent.com/125398461/234186932-52f1fa82-52c6-417f-8b37-08fe9250a55f.png) فارسی**](README_fa.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**روسي 🇷🇺**](README_ru.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**صيني 🇨🇳**](README_cn.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**ياباني 🇯🇵**](README_ja.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**برتغالي 🇧🇷**](README_br.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**عربي 🇾🇪**](README_ar.md)
 
 </div>
 <br>
@@ -56,19 +56,19 @@ Vless، Vmess، Reality، TUIC، Hysteria، Wireguard، SSH وغيرها
 
 📱 متوفر في المتاجر الرسمية
 
-## 🛍️ Get It On Stores
+## 🛍️ أحصل عليه من المتاجر
 <a href="https://play.google.com/store/apps/details?id=app.hiddify.com"><img height=50px src="https://github.com/hiddify/hiddify-next/blob/main/docs/google-play-badge.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://apps.microsoft.com/detail/Hiddify/9pdfnl3qv2s5?mode=mini" target="_blank"><img height=50px src="https://github.com/hiddify/hiddify-next/assets/125398461/620750bb-4459-41b5-9f86-ba82119345b8" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 
-## 📥 Direct Download
+## 📥 تنزيل مباشر
 
 <div align=left>
 <table>
     <thead align=left>
         <tr>
-            <th>OS</th>
-            <th>Download</th>
+            <th>نظام التشغيل</th>
+            <th>تنزيل</th>
         </tr>
     </thead>
     <tbody align=left>
@@ -116,29 +116,29 @@ Vless، Vmess، Reality، TUIC، Hysteria، Wireguard، SSH وغيرها
 
 </div>
 
-## ⚙️ Installation and tutorials
+## ⚙️ التثبيت والشروحات
 
-**Find tutorial information on our wiki page by clicking on image below.**
+**يمكنك العثور على معلومات الشروحات في صفحة الويكي الخاصة بنا من خلال النقر على الصورة أدناه.**
 
 <div align="center">
 
-[![Tutorials on Wiki](https://github.com/hiddify/hiddify-next/assets/125398461/95bb5cf8-c143-4934-87d6-b9d4c31e035e)](https://hiddify.com/app/)
+[![شروحات على الويكي](https://github.com/hiddify/hiddify-next/assets/125398461/95bb5cf8-c143-4934-87d6-b9d4c31e035e)](https://hiddify.com/app/)
 
 
 </div>
 
-## 🌎 Translations
+## 🌎 الترجمات
 
 <div align=center>
     
 [![inlang status badge](https://inlang.com/badge?url=github.com/hiddify/hiddify-next)](https://inlang.com/editor/github.com/hiddify/hiddify-next?ref=badge)
 </div>
 
-Improve existing languages or add new ones by manually editing the JSON files located in `/assets/translations` or by using the [Inlang online editor](https://inlang.com/editor/github.com/hiddify/hiddify-next).
+تحسين اللغات الحالية أو إضافة لغات جديدة عن طريق تعديل ملفات JSON يدويًا الموجودة في المسار `/assets/translations` أو باستخدام [محرر Inlang عبر الإنترنت](https://inlang.com/editor/github.com/hiddify/hiddify-next).
 
-## ✏️ Acknowledgements
+## ✏️ الشكر والتقدير
 
-We would like to express our sincere appreciation to the contributors of the following projects, whose robust foundation and innovative features have significantly enhanced the success and functionality of this project.
+نود أن نعرب عن خالص تقديرنا لمساهمي المشاريع التالية، التي ساهمت بميزاتها المبتكرة وأساسها المتين بشكل كبير في نجاح ووظائف هذا المشروع.
 
 - [Sing-box](https://github.com/SagerNet/sing-box)
 - [Sing-box for Android](https://github.com/SagerNet/sing-box-for-android)
@@ -146,12 +146,12 @@ We would like to express our sincere appreciation to the contributors of the fol
 - [Clash](https://github.com/Dreamacro/clash)
 - [Clash Meta](https://github.com/MetaCubeX/Clash.Meta)
 - [FClash](https://github.com/Fclash/Fclash)
-- [Vazirmatn Font by Saber Rastikerdar](https://github.com/rastikerdar/vazirmatn)
-- [Others](./pubspec.yaml)
+- [خط Vazirmatn من صابر راستيكردار](https://github.com/rastikerdar/vazirmatn)
+- [مشاريع أخرى](./pubspec.yaml)
 
-## 🎯 Donation and Support
+## 🎯 التبرع والدعم
 
-The easiest way to support us is to click on the star (⭐) at the top of this page.
+أسهل طريقة لدعمنا هي الضغط على النجمة (⭐) أعلى هذه الصفحة.
 
 <div align=center>
     
@@ -159,11 +159,11 @@ The easiest way to support us is to click on the star (⭐) at the top of this p
 
 </div>
 
-We also need financial support for our services. All of our activities are done voluntarily and financial support will be spent on the development of the project. You can view our support addresses [here](https://github.com/hiddify/hiddify-server/wiki/support).
+نحن بحاجة أيضًا إلى دعم مالي لخدماتنا. تتم جميع أنشطتنا بشكل تطوعي، وسُيستخدم الدعم المالي في تطوير المشروع. يمكنك الاطلاع على عناوين الدعم الخاصة بنا [هنا](https://github.com/hiddify/hiddify-server/wiki/support).
 
-## 👩‍🏫 Collaboration and Contact Information
+👩‍🏫 معلومات التعاون والاتصال
 
-Hiddify is a community driven project. If you're interested in contributing, please read the [contribution guidelines](./CONTRIBUTING.md). We would specially appreciate any help we can get in these areas: **Flutter, Go, iOS development (Swift), Android development (Kotlin).**
+Hiddify هو مشروع مدعوم من المجتمع. إذا كنت مهتمًا بالمساهمة، يرجى قراءة [إرشادات المساهمة](./CONTRIBUTING.md). سنكون ممتنين لأي مساعدة يمكننا الحصول عليها في هذه المجالات بشكل خاص: **Flutter، Go، تطوير iOS (Swift)، تطوير Android (Kotlin).**
 
 <div align=center>
 
@@ -178,7 +178,7 @@ Hiddify is a community driven project. If you're interested in contributing, ple
 </div>
 
 <p align=center>
- We appreciate all people who are participating in this project. Some people here and many many more outside of Github. It means a lot to us. ♥
+نحن نقدر جميع الأشخاص المشاركين في هذا المشروع، سواء هنا أو العديد من الآخرين خارج Github. هذا يعني الكثير لنا. ♥
  </p>
  
 <p align=center> 
