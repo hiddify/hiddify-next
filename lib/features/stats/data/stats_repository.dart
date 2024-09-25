@@ -24,7 +24,7 @@ class StatsRepositoryImpl
           (event) => StatsEntity(
             uplink: event.uplink,
             downlink: event.downlink,
-            uplinkTotal: event.downlink,
+            uplinkTotal: event.uplinkTotal,
             downlinkTotal: event.downlinkTotal,
           ),
         )

@@ -5,8 +5,7 @@ import 'package:hiddify/features/profile/model/profile_entity.dart';
 extension ProfileEntityMapper on ProfileEntity {
   ProfileEntriesCompanion toEntry() {
     return switch (this) {
-      RemoteProfileEntity(:final url, :final options, :final subInfo) =>
-        ProfileEntriesCompanion.insert(
+      RemoteProfileEntity(:final url, :final options, :final subInfo) => ProfileEntriesCompanion.insert(
           id: id,
           type: ProfileType.remote,
           active: active,
@@ -20,6 +19,7 @@ extension ProfileEntityMapper on ProfileEntity {
           expire: Value(subInfo?.expire),
           webPageUrl: Value(subInfo?.webPageUrl),
           supportUrl: Value(subInfo?.supportUrl),
+          testUrl: Value(testUrl),
         ),
       LocalProfileEntity() => ProfileEntriesCompanion.insert(
           id: id,
@@ -41,6 +41,7 @@ extension RemoteProfileEntityMapper on RemoteProfileEntity {
       expire: Value(subInfo?.expire),
       webPageUrl: Value(subInfo?.webPageUrl),
       supportUrl: Value(subInfo?.supportUrl),
+      testUrl: Value(testUrl),
     );
   }
 }
@@ -73,12 +74,14 @@ extension ProfileEntryMapper on ProfileEntry {
           lastUpdate: lastUpdate,
           options: options,
           subInfo: subInfo,
+          testUrl: testUrl,
         ),
       ProfileType.local => LocalProfileEntity(
           id: id,
           active: active,
           name: name,
           lastUpdate: lastUpdate,
+          testUrl: testUrl,
         ),
     };
   }

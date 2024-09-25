@@ -3,13 +3,12 @@ import 'package:fpdart/fpdart.dart';
 import 'package:hiddify/core/model/optional_range.dart';
 import 'package:hiddify/core/model/region.dart';
 import 'package:hiddify/core/preferences/general_preferences.dart';
+
 import 'package:hiddify/core/utils/exception_handler.dart';
 import 'package:hiddify/core/utils/json_converters.dart';
 import 'package:hiddify/core/utils/preferences_utils.dart';
 import 'package:hiddify/features/config_option/model/config_option_failure.dart';
-import 'package:hiddify/features/geo_asset/data/geo_asset_data_providers.dart';
-import 'package:hiddify/features/geo_asset/data/geo_asset_path_resolver.dart';
-import 'package:hiddify/features/geo_asset/data/geo_asset_repository.dart';
+
 import 'package:hiddify/features/log/model/log_level.dart';
 import 'package:hiddify/singbox/model/singbox_config_enum.dart';
 import 'package:hiddify/singbox/model/singbox_config_option.dart';
@@ -26,6 +25,20 @@ abstract class ConfigOptions {
     mapTo: (value) => value.key,
   );
 
+  static final region = PreferencesNotifier.create<Region, String>(
+    "region",
+    Region.other,
+    mapFrom: Region.values.byName,
+    mapTo: (value) => value.name,
+  );
+  static final useXrayCoreWhenPossible = PreferencesNotifier.create<bool, bool>(
+    "use-xray-core-when-possible",
+    false,
+  );
+  static final blockAds = PreferencesNotifier.create<bool, bool>(
+    "block-ads",
+    false,
+  );
   static final logLevel = PreferencesNotifier.create<LogLevel, String>(
     "log-level",
     LogLevel.warn,
@@ -48,11 +61,21 @@ abstract class ConfigOptions {
   static final remoteDnsAddress = PreferencesNotifier.create<String, String>(
     "remote-dns-address",
     "udp://1.1.1.1",
+    possibleValues: List.of([
+      "local",
+      "udp://223.5.5.5",
+      "udp://1.1.1.1",
+      "udp://1.1.1.2",
+      "tcp://1.1.1.1",
+      "https://1.1.1.1/dns-query",
+      "https://sky.rethinkdns.com/dns-query",
+      "4.4.2.2",
+      "8.8.8.8",
+    ]),
     validator: (value) => value.isNotBlank,
   );
 
-  static final remoteDnsDomainStrategy =
-      PreferencesNotifier.create<DomainStrategy, String>(
+  static final remoteDnsDomainStrategy = PreferencesNotifier.create<DomainStrategy, String>(
     "remote-dns-domain-strategy",
     DomainStrategy.auto,
     mapFrom: (value) => DomainStrategy.values.firstWhere((e) => e.key == value),
@@ -61,12 +84,23 @@ abstract class ConfigOptions {
 
   static final directDnsAddress = PreferencesNotifier.create<String, String>(
     "direct-dns-address",
-    "1.1.1.1",
+    "udp://1.1.1.1",
+    possibleValues: List.of([
+      "local",
+      "udp://223.5.5.5",
+      "udp://1.1.1.1",
+      "udp://1.1.1.2",
+      "tcp://1.1.1.1",
+      "https://1.1.1.1/dns-query",
+      "https://sky.rethinkdns.com/dns-query",
+      "4.4.2.2",
+      "8.8.8.8",
+    ]),
+    defaultValueFunction: (ref) => ref.read(region) == Region.cn ? "223.5.5.5" : "1.1.1.1",
     validator: (value) => value.isNotBlank,
   );
 
-  static final directDnsDomainStrategy =
-      PreferencesNotifier.create<DomainStrategy, String>(
+  static final directDnsDomainStrategy = PreferencesNotifier.create<DomainStrategy, String>(
     "direct-dns-domain-strategy",
     DomainStrategy.auto,
     mapFrom: (value) => DomainStrategy.values.firstWhere((e) => e.key == value),
@@ -75,38 +109,47 @@ abstract class ConfigOptions {
 
   static final mixedPort = PreferencesNotifier.create<int, int>(
     "mixed-port",
-    2334,
+    12334,
     validator: (value) => isPort(value.toString()),
   );
 
   static final tproxyPort = PreferencesNotifier.create<int, int>(
     "tproxy-port",
-    2335,
+    12335,
     validator: (value) => isPort(value.toString()),
   );
 
   static final localDnsPort = PreferencesNotifier.create<int, int>(
     "local-dns-port",
-    6450,
+    16450,
     validator: (value) => isPort(value.toString()),
   );
 
-  static final tunImplementation =
-      PreferencesNotifier.create<TunImplementation, String>(
+  static final tunImplementation = PreferencesNotifier.create<TunImplementation, String>(
     "tun-implementation",
-    TunImplementation.mixed,
+    TunImplementation.gvisor,
     mapFrom: TunImplementation.values.byName,
     mapTo: (value) => value.name,
   );
 
   static final mtu = PreferencesNotifier.create<int, int>("mtu", 9000);
 
-  static final strictRoute =
-      PreferencesNotifier.create<bool, bool>("strict-route", true);
+  static final strictRoute = PreferencesNotifier.create<bool, bool>("strict-route", true);
 
   static final connectionTestUrl = PreferencesNotifier.create<String, String>(
     "connection-test-url",
-    "http://cp.cloudflare.com/",
+    "http://cp.cloudflare.com",
+    possibleValues: List.of([
+      "http://connectivitycheck.gstatic.com/generate_204",
+      "http://www.gstatic.com/generate_204",
+      "https://www.gstatic.com/generate_204",
+      "http://cp.cloudflare.com",
+      "http://kernel.org",
+      "http://detectportal.firefox.com",
+      "http://captive.apple.com/hotspot-detect.html",
+      "https://1.1.1.1",
+      "http://1.1.1.1",
+    ]),
     validator: (value) => value.isNotBlank && isUrl(value),
   );
 
@@ -124,12 +167,11 @@ abstract class ConfigOptions {
 
   static final clashApiPort = PreferencesNotifier.create<int, int>(
     "clash-api-port",
-    6756,
+    16756,
     validator: (value) => isPort(value.toString()),
   );
 
-  static final bypassLan =
-      PreferencesNotifier.create<bool, bool>("bypass-lan", false);
+  static final bypassLan = PreferencesNotifier.create<bool, bool>("bypass-lan", false);
 
   static final allowConnectionFromLan = PreferencesNotifier.create<bool, bool>(
     "allow-connection-from-lan",
@@ -156,18 +198,16 @@ abstract class ConfigOptions {
     false,
   );
 
-  static final tlsFragmentSize =
-      PreferencesNotifier.create<OptionalRange, String>(
+  static final tlsFragmentSize = PreferencesNotifier.create<OptionalRange, String>(
     "tls-fragment-size",
-    const OptionalRange(min: 1, max: 500),
+    const OptionalRange(min: 10, max: 30),
     mapFrom: OptionalRange.parse,
     mapTo: const OptionalRangeJsonConverter().toJson,
   );
 
-  static final tlsFragmentSleep =
-      PreferencesNotifier.create<OptionalRange, String>(
+  static final tlsFragmentSleep = PreferencesNotifier.create<OptionalRange, String>(
     "tls-fragment-sleep",
-    const OptionalRange(min: 0, max: 500),
+    const OptionalRange(min: 2, max: 8),
     mapFrom: OptionalRange.parse,
     mapTo: const OptionalRangeJsonConverter().toJson,
   );
@@ -182,8 +222,7 @@ abstract class ConfigOptions {
     false,
   );
 
-  static final tlsPaddingSize =
-      PreferencesNotifier.create<OptionalRange, String>(
+  static final tlsPaddingSize = PreferencesNotifier.create<OptionalRange, String>(
     "tls-padding-size",
     const OptionalRange(min: 1, max: 1500),
     mapFrom: OptionalRange.parse,
@@ -218,8 +257,7 @@ abstract class ConfigOptions {
     false,
   );
 
-  static final warpDetourMode =
-      PreferencesNotifier.create<WarpDetourMode, String>(
+  static final warpDetourMode = PreferencesNotifier.create<WarpDetourMode, String>(
     "warp-detour-mode",
     WarpDetourMode.proxyOverWarp,
     mapFrom: WarpDetourMode.values.byName,
@@ -230,14 +268,26 @@ abstract class ConfigOptions {
     "warp-license-key",
     "",
   );
+  static final warp2LicenseKey = PreferencesNotifier.create<String, String>(
+    "warp2s-license-key",
+    "",
+  );
 
   static final warpAccountId = PreferencesNotifier.create<String, String>(
     "warp-account-id",
     "",
   );
+  static final warp2AccountId = PreferencesNotifier.create<String, String>(
+    "warp2-account-id",
+    "",
+  );
 
   static final warpAccessToken = PreferencesNotifier.create<String, String>(
     "warp-access-token",
+    "",
+  );
+  static final warp2AccessToken = PreferencesNotifier.create<String, String>(
+    "warp2-access-token",
     "",
   );
 
@@ -254,21 +304,34 @@ abstract class ConfigOptions {
 
   static final warpNoise = PreferencesNotifier.create<OptionalRange, String>(
     "warp-noise",
-    const OptionalRange(min: 5, max: 10),
+    const OptionalRange(min: 1, max: 3),
     mapFrom: (value) => OptionalRange.parse(value, allowEmpty: true),
     mapTo: const OptionalRangeJsonConverter().toJson,
   );
+  static final warpNoiseMode = PreferencesNotifier.create<String, String>(
+    "warp-noise-mode",
+    "m4",
+  );
 
-  static final warpNoiseDelay =
-      PreferencesNotifier.create<OptionalRange, String>(
+  static final warpNoiseDelay = PreferencesNotifier.create<OptionalRange, String>(
     "warp-noise-delay",
-    const OptionalRange(min: 20, max: 200),
+    const OptionalRange(min: 10, max: 30),
+    mapFrom: (value) => OptionalRange.parse(value, allowEmpty: true),
+    mapTo: const OptionalRangeJsonConverter().toJson,
+  );
+  static final warpNoiseSize = PreferencesNotifier.create<OptionalRange, String>(
+    "warp-noise-size",
+    const OptionalRange(min: 10, max: 30),
     mapFrom: (value) => OptionalRange.parse(value, allowEmpty: true),
     mapTo: const OptionalRangeJsonConverter().toJson,
   );
 
   static final warpWireguardConfig = PreferencesNotifier.create<String, String>(
     "warp-wireguard-config",
+    "",
+  );
+  static final warp2WireguardConfig = PreferencesNotifier.create<String, String>(
+    "warp2-wireguard-config",
     "",
   );
 
@@ -278,13 +341,7 @@ abstract class ConfigOptions {
       if (PlatformUtils.isDesktop && mode == ServiceMode.tun) {
         return true;
       }
-      if (ref.watch(enableTlsFragment) ||
-          ref.watch(enableTlsMixedSniCase) ||
-          ref.watch(enableTlsPadding) ||
-          ref.watch(enableMux) ||
-          ref.watch(enableWarp) ||
-          ref.watch(bypassLan) ||
-          ref.watch(allowConnectionFromLan)) {
+      if (ref.watch(enableTlsFragment) || ref.watch(enableTlsMixedSniCase) || ref.watch(enableTlsPadding) || ref.watch(enableMux) || ref.watch(enableWarp) || ref.watch(bypassLan) || ref.watch(allowConnectionFromLan)) {
         return true;
       }
 
@@ -298,10 +355,16 @@ abstract class ConfigOptions {
     "warp.access-token",
     "warp.account-id",
     "warp.wireguard-config",
+    "warp2.license-key",
+    "warp2.access-token",
+    "warp2.account-id",
+    "warp2.wireguard-config",
   };
 
-  static final Map<String, StateNotifierProvider<PreferencesNotifier, dynamic>>
-      preferences = {
+  static final Map<String, StateNotifierProvider<PreferencesNotifier, dynamic>> preferences = {
+    "region": region,
+    "block-ads": blockAds,
+    "use-xray-core-when-possible": useXrayCoreWhenPossible,
     "service-mode": serviceMode,
     "log-level": logLevel,
     "resolve-destination": resolveDestination,
@@ -346,51 +409,66 @@ abstract class ConfigOptions {
     "warp.clean-ip": warpCleanIp,
     "warp.clean-port": warpPort,
     "warp.noise": warpNoise,
+    "warp.noise-size": warpNoiseSize,
+    "warp.noise-mode": warpNoiseMode,
     "warp.noise-delay": warpNoiseDelay,
     "warp.wireguard-config": warpWireguardConfig,
+    "warp2.license-key": warp2LicenseKey,
+    "warp2.account-id": warp2AccountId,
+    "warp2.access-token": warp2AccessToken,
+    "warp2.wireguard-config": warp2WireguardConfig,
   };
 
   static final singboxConfigOptions = FutureProvider<SingboxConfigOption>(
     (ref) async {
-      final region = ref.watch(Preferences.region);
-      final rules = switch (region) {
-        Region.ir => [
-            const SingboxRule(
-              domains: "domain:.ir,geosite:ir",
-              ip: "geoip:ir",
-              outbound: RuleOutbound.bypass,
-            ),
-          ],
-        Region.cn => [
-            const SingboxRule(
-              domains: "domain:.cn,geosite:cn",
-              ip: "geoip:cn",
-              outbound: RuleOutbound.bypass,
-            ),
-          ],
-        Region.ru => [
-            const SingboxRule(
-              domains: "domain:.ru",
-              ip: "geoip:ru",
-              outbound: RuleOutbound.bypass,
-            ),
-          ],
-        Region.af => [
-            const SingboxRule(
-              domains: "domain:.af,geosite:af",
-              ip: "geoip:af",
-              outbound: RuleOutbound.bypass,
-            ),
-          ],
-        _ => <SingboxRule>[],
-      };
-
-      final geoAssetsRepo = await ref.watch(geoAssetRepositoryProvider.future);
-      final geoAssets =
-          await geoAssetsRepo.getActivePair().getOrElse((l) => throw l).run();
+      // final region = ref.watch(Preferences.region);
+      final rules = <SingboxRule>[];
+      // final rules = switch (region) {
+      //   Region.ir => [
+      //       const SingboxRule(
+      //         domains: "domain:.ir,geosite:ir",
+      //         ip: "geoip:ir",
+      //         outbound: RuleOutbound.bypass,
+      //       ),
+      //     ],
+      //   Region.cn => [
+      //       const SingboxRule(
+      //         domains: "domain:.cn,geosite:cn",
+      //         ip: "geoip:cn",
+      //         outbound: RuleOutbound.bypass,
+      //       ),
+      //     ],
+      //   Region.ru => [
+      //       const SingboxRule(
+      //         domains: "domain:.ru",
+      //         ip: "geoip:ru",
+      //         outbound: RuleOutbound.bypass,
+      //       ),
+      //     ],
+      //   Region.af => [
+      //       const SingboxRule(
+      //         domains: "domain:.af,geosite:af",
+      //         ip: "geoip:af",
+      //         outbound: RuleOutbound.bypass,
+      //       ),
+      //     ],
+      //   Region.id => [
+      //       const SingboxRule(
+      //         domains: "domain:.id,geosite:id",
+      //         ip: "geoip:id",
+      //         outbound: RuleOutbound.bypass,
+      //       ),
+      //     ],
+      //   _ => <SingboxRule>[],
+      // };
 
       final mode = ref.watch(serviceMode);
+      // final reg = ref.watch(Preferences.region.notifier).raw();
+
       return SingboxConfigOption(
+        region: ref.watch(region).name,
+        blockAds: ref.watch(blockAds),
+        useXrayCoreWhenPossible: ref.watch(useXrayCoreWhenPossible),
         executeConfigAsIs: false,
         logLevel: ref.watch(logLevel),
         resolveDestination: ref.watch(resolveDestination),
@@ -441,16 +519,32 @@ abstract class ConfigOptions {
           cleanIp: ref.watch(warpCleanIp),
           cleanPort: ref.watch(warpPort),
           noise: ref.watch(warpNoise),
+          noiseMode: ref.watch(warpNoiseMode),
+          noiseSize: ref.watch(warpNoiseSize),
           noiseDelay: ref.watch(warpNoiseDelay),
         ),
-        geoipPath: ref.watch(geoAssetPathResolverProvider).relativePath(
-              geoAssets.geoip.providerName,
-              geoAssets.geoip.fileName,
-            ),
-        geositePath: ref.watch(geoAssetPathResolverProvider).relativePath(
-              geoAssets.geosite.providerName,
-              geoAssets.geosite.fileName,
-            ),
+        warp2: SingboxWarpOption(
+          enable: ref.watch(enableWarp),
+          mode: ref.watch(warpDetourMode),
+          wireguardConfig: ref.watch(warp2WireguardConfig),
+          licenseKey: ref.watch(warp2LicenseKey),
+          accountId: ref.watch(warp2AccountId),
+          accessToken: ref.watch(warp2AccessToken),
+          cleanIp: ref.watch(warpCleanIp),
+          cleanPort: ref.watch(warpPort),
+          noise: ref.watch(warpNoise),
+          noiseMode: ref.watch(warpNoiseMode),
+          noiseSize: ref.watch(warpNoiseSize),
+          noiseDelay: ref.watch(warpNoiseDelay),
+        ),
+        // geoipPath: ref.watch(geoAssetPathResolverProvider).relativePath(
+        //       geoAssets.geoip.providerName,
+        //       geoAssets.geoip.fileName,
+        //     ),
+        // geositePath: ref.watch(geoAssetPathResolverProvider).relativePath(
+        //       geoAssets.geosite.providerName,
+        //       geoAssets.geosite.fileName,
+        //     ),
         rules: rules,
       );
     },
@@ -461,17 +555,12 @@ class ConfigOptionRepository with ExceptionHandler, InfraLogger {
   ConfigOptionRepository({
     required this.preferences,
     required this.getConfigOptions,
-    required this.geoAssetRepository,
-    required this.geoAssetPathResolver,
   });
 
   final SharedPreferences preferences;
   final Future<SingboxConfigOption> Function() getConfigOptions;
-  final GeoAssetRepository geoAssetRepository;
-  final GeoAssetPathResolver geoAssetPathResolver;
 
-  TaskEither<ConfigOptionFailure, SingboxConfigOption>
-      getFullSingboxConfigOption() {
+  TaskEither<ConfigOptionFailure, SingboxConfigOption> getFullSingboxConfigOption() {
     return exceptionHandler(
       () async {
         return right(await getConfigOptions());

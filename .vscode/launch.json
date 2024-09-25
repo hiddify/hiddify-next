@@ -2,6 +2,16 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "go Package",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "cwd": "./libcore",
+            "program": "./libcore/cli/main.go",
+            "args": ["build","-c","a.txt","-d","b.txt","--full-config"] ,
+            "buildFlags": "-tags with_clash_api,with_gvisor,with_quic,with_wireguard,with_grpc,with_ech,with_utls,with_reality_server"
+        },
+        {
             "name": "Hiddify Dev",
             "request": "launch",
             "type": "dart",

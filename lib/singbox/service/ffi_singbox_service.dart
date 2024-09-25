@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'dart:ffi';
 import 'dart:io';
 import 'dart:isolate';
-
 import 'package:combine/combine.dart';
 import 'package:ffi/ffi.dart';
 import 'package:fpdart/fpdart.dart';
@@ -52,10 +51,7 @@ class FFISingboxService with InfraLogger implements SingboxService {
   Future<void> init() async {
     loggy.debug("initializing");
     _statusReceiver = ReceivePort('service status receiver');
-    final source = _statusReceiver
-        .asBroadcastStream()
-        .map((event) => jsonDecode(event as String))
-        .map(SingboxStatus.fromEvent);
+    final source = _statusReceiver.asBroadcastStream().map((event) => jsonDecode(event as String)).map(SingboxStatus.fromEvent);
     _status = ValueConnectableStream.seeded(
       source,
       const SingboxStopped(),
@@ -123,10 +119,7 @@ class FFISingboxService with InfraLogger implements SingboxService {
       () => CombineWorker().execute(
         () {
           final json = jsonEncode(options.toJson());
-          final err = _box
-              .changeConfigOptions(json.toNativeUtf8().cast())
-              .cast<Utf8>()
-              .toDartString();
+          final err = _box.changeConfigOptions(json.toNativeUtf8().cast()).cast<Utf8>().toDartString();
           if (err.isNotEmpty) {
             return left(err);
           }
@@ -265,10 +258,7 @@ class FFISingboxService with InfraLogger implements SingboxService {
       },
     );
 
-    final err = _box
-        .startCommandClient(1, receiver.sendPort.nativePort)
-        .cast<Utf8>()
-        .toDartString();
+    final err = _box.startCommandClient(1, receiver.sendPort.nativePort).cast<Utf8>().toDartString();
     if (err.isNotEmpty) {
       loggy.error("error starting status command: $err");
       throw err;
@@ -310,10 +300,7 @@ class FFISingboxService with InfraLogger implements SingboxService {
     );
 
     try {
-      final err = _box
-          .startCommandClient(5, receiver.sendPort.nativePort)
-          .cast<Utf8>()
-          .toDartString();
+      final err = _box.startCommandClient(5, receiver.sendPort.nativePort).cast<Utf8>().toDartString();
       if (err.isNotEmpty) {
         logger.error("error starting group command: $err");
         throw err;
@@ -357,10 +344,7 @@ class FFISingboxService with InfraLogger implements SingboxService {
     );
 
     try {
-      final err = _box
-          .startCommandClient(13, receiver.sendPort.nativePort)
-          .cast<Utf8>()
-          .toDartString();
+      final err = _box.startCommandClient(13, receiver.sendPort.nativePort).cast<Utf8>().toDartString();
       if (err.isNotEmpty) {
         logger.error("error starting: $err");
         throw err;
@@ -399,10 +383,7 @@ class FFISingboxService with InfraLogger implements SingboxService {
     return TaskEither(
       () => CombineWorker().execute(
         () {
-          final err = _box
-              .urlTest(groupTag.toNativeUtf8().cast())
-              .cast<Utf8>()
-              .toDartString();
+          final err = _box.urlTest(groupTag.toNativeUtf8().cast()).cast<Utf8>().toDartString();
           if (err.isNotEmpty) {
             return left(err);
           }
@@ -418,9 +399,7 @@ class FFISingboxService with InfraLogger implements SingboxService {
   @override
   Stream<List<String>> watchLogs(String path) async* {
     yield await _readLogFile(File(path));
-    yield* Watcher(path, pollingDelay: const Duration(seconds: 1))
-        .events
-        .asyncMap((event) async {
+    yield* Watcher(path, pollingDelay: const Duration(seconds: 1)).events.asyncMap((event) async {
       if (event.type == ChangeType.MODIFY) {
         await _readLogFile(File(path));
       }
@@ -431,17 +410,18 @@ class FFISingboxService with InfraLogger implements SingboxService {
   @override
   TaskEither<String, Unit> clearLogs() {
     return TaskEither(
-      () async {
-        _logBuffer.clear();
-        return right(unit);
-      },
+      () => CombineWorker().execute(
+        () {
+          _logBuffer.clear();
+          return right(unit);
+        },
+      ),
     );
   }
 
   Future<List<String>> _readLogFile(File file) async {
     if (_logFilePosition == 0 && file.lengthSync() == 0) return [];
-    final content =
-        await file.openRead(_logFilePosition).transform(utf8.decoder).join();
+    final content = await file.openRead(_logFilePosition).transform(utf8.decoder).join();
     _logFilePosition = file.lengthSync();
     final lines = const LineSplitter().convert(content);
     if (lines.length > 300) {

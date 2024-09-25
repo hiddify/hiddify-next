@@ -4,8 +4,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/model/optional_range.dart';
+import 'package:hiddify/core/model/region.dart';
 import 'package:hiddify/core/notification/in_app_notification_controller.dart';
-import 'package:hiddify/core/preferences/general_preferences.dart';
 import 'package:hiddify/core/widget/adaptive_icon.dart';
 import 'package:hiddify/core/widget/tip_card.dart';
 import 'package:hiddify/features/common/confirmation_dialogs.dart';
@@ -23,17 +23,20 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:humanizer/humanizer.dart';
 
 enum ConfigOptionSection {
-  warp;
+  warp,
+  fragment;
 
   static final _warpKey = GlobalKey(debugLabel: "warp-section-key");
+  static final _fragmentKey = GlobalKey(debugLabel: "fragment-section-key");
 
-  GlobalKey get key => switch (this) { _ => _warpKey };
+  GlobalKey get key => switch (this) {
+        ConfigOptionSection.warp => _warpKey,
+        ConfigOptionSection.fragment => _fragmentKey,
+      };
 }
 
 class ConfigOptionsPage extends HookConsumerWidget {
-  ConfigOptionsPage({super.key, String? section})
-      : section =
-            section != null ? ConfigOptionSection.values.byName(section) : null;
+  ConfigOptionsPage({super.key, String? section}) : section = section != null ? ConfigOptionSection.values.byName(section) : null;
 
   final ConfigOptionSection? section;
 
@@ -47,14 +50,10 @@ class ConfigOptionsPage extends HookConsumerWidget {
         if (section != null) {
           WidgetsBinding.instance.addPostFrameCallback(
             (_) {
-              final box =
-                  section!.key.currentContext?.findRenderObject() as RenderBox?;
+              final box = section!.key.currentContext?.findRenderObject() as RenderBox?;
               final offset = box?.localToGlobal(Offset.zero);
               if (offset == null) return;
-              final height = scrollController.offset +
-                  offset.dy -
-                  MediaQueryData.fromView(View.of(context)).padding.top -
-                  kToolbarHeight;
+              final height = scrollController.offset + offset.dy - MediaQueryData.fromView(View.of(context)).padding.top - kToolbarHeight;
               scrollController.animateTo(
                 height,
                 duration: const Duration(milliseconds: 500),
@@ -83,36 +82,26 @@ class ConfigOptionsPage extends HookConsumerWidget {
                 itemBuilder: (context) {
                   return [
                     PopupMenuItem(
-                      onTap: () async => ref
-                          .read(configOptionNotifierProvider.notifier)
-                          .exportJsonToClipboard()
-                          .then((success) {
+                      onTap: () async => ref.read(configOptionNotifierProvider.notifier).exportJsonToClipboard().then((success) {
                         if (success) {
-                          ref
-                              .read(inAppNotificationControllerProvider)
-                              .showSuccessToast(
+                          ref.read(inAppNotificationControllerProvider).showSuccessToast(
                                 t.general.clipboardExportSuccessMsg,
                               );
                         }
                       }),
                       child: Text(t.settings.exportOptions),
                     ),
-                    if (ref.watch(debugModeNotifierProvider))
-                      PopupMenuItem(
-                        onTap: () async => ref
-                            .read(configOptionNotifierProvider.notifier)
-                            .exportJsonToClipboard(excludePrivate: false)
-                            .then((success) {
-                          if (success) {
-                            ref
-                                .read(inAppNotificationControllerProvider)
-                                .showSuccessToast(
-                                  t.general.clipboardExportSuccessMsg,
-                                );
-                          }
-                        }),
-                        child: Text(t.settings.exportAllOptions),
-                      ),
+                    // if (ref.watch(debugModeNotifierProvider))
+                    PopupMenuItem(
+                      onTap: () async => ref.read(configOptionNotifierProvider.notifier).exportJsonToClipboard(excludePrivate: false).then((success) {
+                        if (success) {
+                          ref.read(inAppNotificationControllerProvider).showSuccessToast(
+                                t.general.clipboardExportSuccessMsg,
+                              );
+                        }
+                      }),
+                      child: Text(t.settings.exportAllOptions),
+                    ),
                     PopupMenuItem(
                       onTap: () async {
                         final shouldImport = await showConfirmationDialog(
@@ -121,9 +110,7 @@ class ConfigOptionsPage extends HookConsumerWidget {
                           message: t.settings.importOptionsMsg,
                         );
                         if (shouldImport) {
-                          await ref
-                              .read(configOptionNotifierProvider.notifier)
-                              .importFromClipboard();
+                          await ref.read(configOptionNotifierProvider.notifier).importFromClipboard();
                         }
                       },
                       child: Text(t.settings.importOptions),
@@ -131,9 +118,7 @@ class ConfigOptionsPage extends HookConsumerWidget {
                     PopupMenuItem(
                       child: Text(t.config.resetBtn),
                       onTap: () async {
-                        await ref
-                            .read(configOptionNotifierProvider.notifier)
-                            .resetOption();
+                        await ref.read(configOptionNotifierProvider.notifier).resetOption();
                       },
                     ),
                   ];
@@ -153,20 +138,31 @@ class ConfigOptionsPage extends HookConsumerWidget {
                     title: t.config.logLevel,
                     presentChoice: (value) => value.name.toUpperCase(),
                   ),
+
                   const SettingsDivider(),
                   SettingsSection(t.config.section.route),
+                  ChoicePreferenceWidget(
+                    selected: ref.watch(ConfigOptions.region),
+                    preferences: ref.watch(ConfigOptions.region.notifier),
+                    choices: Region.values,
+                    title: t.settings.general.region,
+                    presentChoice: (value) => value.present(t),
+                    onChanged: (val) => ref.watch(ConfigOptions.directDnsAddress.notifier).reset(),
+                  ),
+                  SwitchListTile(
+                    title: Text(experimental(t.config.blockAds)),
+                    value: ref.watch(ConfigOptions.blockAds),
+                    onChanged: ref.watch(ConfigOptions.blockAds.notifier).update,
+                  ),
                   SwitchListTile(
                     title: Text(experimental(t.config.bypassLan)),
                     value: ref.watch(ConfigOptions.bypassLan),
-                    onChanged:
-                        ref.watch(ConfigOptions.bypassLan.notifier).update,
+                    onChanged: ref.watch(ConfigOptions.bypassLan.notifier).update,
                   ),
                   SwitchListTile(
                     title: Text(t.config.resolveDestination),
                     value: ref.watch(ConfigOptions.resolveDestination),
-                    onChanged: ref
-                        .watch(ConfigOptions.resolveDestination.notifier)
-                        .update,
+                    onChanged: ref.watch(ConfigOptions.resolveDestination.notifier).update,
                   ),
                   ChoicePreferenceWidget(
                     selected: ref.watch(ConfigOptions.ipv6Mode),
@@ -179,28 +175,24 @@ class ConfigOptionsPage extends HookConsumerWidget {
                   SettingsSection(t.config.section.dns),
                   ValuePreferenceWidget(
                     value: ref.watch(ConfigOptions.remoteDnsAddress),
-                    preferences:
-                        ref.watch(ConfigOptions.remoteDnsAddress.notifier),
+                    preferences: ref.watch(ConfigOptions.remoteDnsAddress.notifier),
                     title: t.config.remoteDnsAddress,
                   ),
                   ChoicePreferenceWidget(
                     selected: ref.watch(ConfigOptions.remoteDnsDomainStrategy),
-                    preferences: ref
-                        .watch(ConfigOptions.remoteDnsDomainStrategy.notifier),
+                    preferences: ref.watch(ConfigOptions.remoteDnsDomainStrategy.notifier),
                     choices: DomainStrategy.values,
                     title: t.config.remoteDnsDomainStrategy,
                     presentChoice: (value) => value.displayName,
                   ),
                   ValuePreferenceWidget(
                     value: ref.watch(ConfigOptions.directDnsAddress),
-                    preferences:
-                        ref.watch(ConfigOptions.directDnsAddress.notifier),
+                    preferences: ref.watch(ConfigOptions.directDnsAddress.notifier),
                     title: t.config.directDnsAddress,
                   ),
                   ChoicePreferenceWidget(
                     selected: ref.watch(ConfigOptions.directDnsDomainStrategy),
-                    preferences: ref
-                        .watch(ConfigOptions.directDnsDomainStrategy.notifier),
+                    preferences: ref.watch(ConfigOptions.directDnsDomainStrategy.notifier),
                     choices: DomainStrategy.values,
                     title: t.config.directDnsDomainStrategy,
                     presentChoice: (value) => value.displayName,
@@ -208,9 +200,7 @@ class ConfigOptionsPage extends HookConsumerWidget {
                   SwitchListTile(
                     title: Text(t.config.enableDnsRouting),
                     value: ref.watch(ConfigOptions.enableDnsRouting),
-                    onChanged: ref
-                        .watch(ConfigOptions.enableDnsRouting.notifier)
-                        .update,
+                    onChanged: ref.watch(ConfigOptions.enableDnsRouting.notifier).update,
                   ),
                   // const SettingsDivider(),
                   // SettingsSection(experimental(t.config.section.mux)),
@@ -247,13 +237,11 @@ class ConfigOptionsPage extends HookConsumerWidget {
                   SwitchListTile(
                     title: Text(t.config.strictRoute),
                     value: ref.watch(ConfigOptions.strictRoute),
-                    onChanged:
-                        ref.watch(ConfigOptions.strictRoute.notifier).update,
+                    onChanged: ref.watch(ConfigOptions.strictRoute.notifier).update,
                   ),
                   ChoicePreferenceWidget(
                     selected: ref.watch(ConfigOptions.tunImplementation),
-                    preferences:
-                        ref.watch(ConfigOptions.tunImplementation.notifier),
+                    preferences: ref.watch(ConfigOptions.tunImplementation.notifier),
                     choices: TunImplementation.values,
                     title: t.config.tunImplementation,
                     presentChoice: (value) => value.name,
@@ -287,25 +275,21 @@ class ConfigOptionsPage extends HookConsumerWidget {
                       experimental(t.config.allowConnectionFromLan),
                     ),
                     value: ref.watch(ConfigOptions.allowConnectionFromLan),
-                    onChanged: ref
-                        .read(ConfigOptions.allowConnectionFromLan.notifier)
-                        .update,
+                    onChanged: ref.read(ConfigOptions.allowConnectionFromLan.notifier).update,
                   ),
                   const SettingsDivider(),
                   SettingsSection(
                     experimental(t.config.section.tlsTricks),
+                    key: ConfigOptionSection._fragmentKey,
                   ),
                   SwitchListTile(
                     title: Text(t.config.enableTlsFragment),
                     value: ref.watch(ConfigOptions.enableTlsFragment),
-                    onChanged: ref
-                        .watch(ConfigOptions.enableTlsFragment.notifier)
-                        .update,
+                    onChanged: ref.watch(ConfigOptions.enableTlsFragment.notifier).update,
                   ),
                   ValuePreferenceWidget(
                     value: ref.watch(ConfigOptions.tlsFragmentSize),
-                    preferences:
-                        ref.watch(ConfigOptions.tlsFragmentSize.notifier),
+                    preferences: ref.watch(ConfigOptions.tlsFragmentSize.notifier),
                     title: t.config.tlsFragmentSize,
                     inputToValue: OptionalRange.tryParse,
                     presentValue: (value) => value.present(t),
@@ -313,8 +297,7 @@ class ConfigOptionsPage extends HookConsumerWidget {
                   ),
                   ValuePreferenceWidget(
                     value: ref.watch(ConfigOptions.tlsFragmentSleep),
-                    preferences:
-                        ref.watch(ConfigOptions.tlsFragmentSleep.notifier),
+                    preferences: ref.watch(ConfigOptions.tlsFragmentSleep.notifier),
                     title: t.config.tlsFragmentSleep,
                     inputToValue: OptionalRange.tryParse,
                     presentValue: (value) => value.present(t),
@@ -323,21 +306,16 @@ class ConfigOptionsPage extends HookConsumerWidget {
                   SwitchListTile(
                     title: Text(t.config.enableTlsMixedSniCase),
                     value: ref.watch(ConfigOptions.enableTlsMixedSniCase),
-                    onChanged: ref
-                        .watch(ConfigOptions.enableTlsMixedSniCase.notifier)
-                        .update,
+                    onChanged: ref.watch(ConfigOptions.enableTlsMixedSniCase.notifier).update,
                   ),
                   SwitchListTile(
                     title: Text(t.config.enableTlsPadding),
                     value: ref.watch(ConfigOptions.enableTlsPadding),
-                    onChanged: ref
-                        .watch(ConfigOptions.enableTlsPadding.notifier)
-                        .update,
+                    onChanged: ref.watch(ConfigOptions.enableTlsPadding.notifier).update,
                   ),
                   ValuePreferenceWidget(
                     value: ref.watch(ConfigOptions.tlsPaddingSize),
-                    preferences:
-                        ref.watch(ConfigOptions.tlsPaddingSize.notifier),
+                    preferences: ref.watch(ConfigOptions.tlsPaddingSize.notifier),
                     title: t.config.tlsPaddingSize,
                     inputToValue: OptionalRange.tryParse,
                     presentValue: (value) => value.format(),
@@ -350,38 +328,26 @@ class ConfigOptionsPage extends HookConsumerWidget {
                   SettingsSection(t.config.section.misc),
                   ValuePreferenceWidget(
                     value: ref.watch(ConfigOptions.connectionTestUrl),
-                    preferences:
-                        ref.watch(ConfigOptions.connectionTestUrl.notifier),
+                    preferences: ref.watch(ConfigOptions.connectionTestUrl.notifier),
                     title: t.config.connectionTestUrl,
                   ),
                   ListTile(
                     title: Text(t.config.urlTestInterval),
                     subtitle: Text(
-                      ref
-                          .watch(ConfigOptions.urlTestInterval)
-                          .toApproximateTime(isRelativeToNow: false),
+                      ref.watch(ConfigOptions.urlTestInterval).toApproximateTime(isRelativeToNow: false),
                     ),
                     onTap: () async {
                       final urlTestInterval = await SettingsSliderDialog(
                         title: t.config.urlTestInterval,
-                        initialValue: ref
-                            .watch(ConfigOptions.urlTestInterval)
-                            .inMinutes
-                            .coerceIn(0, 60)
-                            .toDouble(),
-                        onReset: ref
-                            .read(ConfigOptions.urlTestInterval.notifier)
-                            .reset,
+                        initialValue: ref.watch(ConfigOptions.urlTestInterval).inMinutes.coerceIn(0, 60).toDouble(),
+                        onReset: ref.read(ConfigOptions.urlTestInterval.notifier).reset,
                         min: 1,
                         max: 60,
                         divisions: 60,
-                        labelGen: (value) => Duration(minutes: value.toInt())
-                            .toApproximateTime(isRelativeToNow: false),
+                        labelGen: (value) => Duration(minutes: value.toInt()).toApproximateTime(isRelativeToNow: false),
                       ).show(context);
                       if (urlTestInterval == null) return;
-                      await ref
-                          .read(ConfigOptions.urlTestInterval.notifier)
-                          .update(Duration(minutes: urlTestInterval.toInt()));
+                      await ref.read(ConfigOptions.urlTestInterval.notifier).update(Duration(minutes: urlTestInterval.toInt()));
                     },
                   ),
                   ValuePreferenceWidget(
@@ -391,6 +357,13 @@ class ConfigOptionsPage extends HookConsumerWidget {
                     validateInput: isPort,
                     digitsOnly: true,
                     inputToValue: int.tryParse,
+                  ),
+
+                  SwitchListTile(
+                    title: Text(experimental(t.config.useXrayCoreWhenPossible.Label)),
+                    subtitle: Text(t.config.useXrayCoreWhenPossible.Description),
+                    value: ref.watch(ConfigOptions.useXrayCoreWhenPossible),
+                    onChanged: ref.watch(ConfigOptions.useXrayCoreWhenPossible.notifier).update,
                   ),
                   const Gap(24),
                 ],

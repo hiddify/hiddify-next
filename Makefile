@@ -1,3 +1,4 @@
+# .ONESHELL:
 include dependencies.properties
 MKDIR := mkdir -p
 RM  := rm -rf
@@ -39,7 +40,7 @@ DISTRIBUTOR_ARGS=--skip-clean --build-target $(TARGET) --build-dart-define sentr
 
 
 
-get:
+get:	
 	flutter pub get
 
 gen:
@@ -58,9 +59,11 @@ prepare:
 	@echo    make macos-prepare
 	@echo    make ios-prepare
 
-windows-prepare: get-geo-assets get gen translate windows-libs
+windows-prepare: get gen translate windows-libs
 	
 ios-prepare: get-geo-assets get gen translate ios-libs 
+	cd ios; pod repo update; pod install;echo "done ios prepare"
+	
 macos-prepare: get-geo-assets get gen translate macos-libs
 linux-prepare: get-geo-assets get gen translate linux-libs
 linux-appimage-prepare:linux-prepare
@@ -84,10 +87,10 @@ macos-install-dependencies:
 
 ios-install-dependencies: 
 	if [ "$(flutter)" = "true" ]; then \
-		curl -L -o ~/Downloads/flutter_macos_3.19.3-stable.zip https://storage.googleapis.com/flutter_infra_release/releases/stable/macos/flutter_macos_3.19.3-stable.zip; \
+		curl -L -o ~/Downloads/flutter_macos_3.19.3-stable.zip https://storage.googleapis.com/flutter_infra_release/releases/stable/macos/flutter_macos_3.22.3-stable.zip; \
 		mkdir -p ~/develop; \
 		cd ~/develop; \
-		unzip ~/Downloads/flutter_macos_3.19.3-stable.zip; \
+		unzip ~/Downloads/flutter_macos_3.22.3-stable.zip; \
 		export PATH="$$PATH:$$HOME/develop/flutter/bin"; \
 		echo 'export PATH="$$PATH:$$HOME/develop/flutter/bin"' >> ~/.zshrc; \
 		export PATH="$PATH:$HOME/develop/flutter/bin"; \
@@ -143,7 +146,8 @@ gen_translations: #generating missing translations using google translate
 android-release: android-apk-release
 
 android-apk-release:
-	flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi --target $(TARGET) $(BUILD_ARGS)
+	echo flutter build apk --target $(TARGET) $(BUILD_ARGS) --target-platform android-arm,android-arm64,android-x64 --split-per-abi --verbose  
+	flutter build apk --target $(TARGET) $(BUILD_ARGS) --target-platform android-arm,android-arm64,android-x64 --verbose  
 	ls -R build/app/outputs
 
 android-aab-release:
@@ -190,8 +194,9 @@ ios-libs: #not tested
 	curl -L $(CORE_URL)/$(CORE_NAME)-ios.tar.gz | tar xz -C "$(IOS_OUT)"
 
 get-geo-assets:
-	curl -L https://github.com/SagerNet/sing-geoip/releases/latest/download/geoip.db -o $(GEO_ASSETS_DIR)/geoip.db
-	curl -L https://github.com/SagerNet/sing-geosite/releases/latest/download/geosite.db -o $(GEO_ASSETS_DIR)/geosite.db
+	echo ""
+	# curl -L https://github.com/SagerNet/sing-geoip/releases/latest/download/geoip.db -o $(GEO_ASSETS_DIR)/geoip.db
+	# curl -L https://github.com/SagerNet/sing-geosite/releases/latest/download/geosite.db -o $(GEO_ASSETS_DIR)/geosite.db
 
 build-headers:
 	make -C libcore -f Makefile headers && mv $(BINDIR)/$(CORE_NAME)-headers.h $(BINDIR)/libcore.h
@@ -218,24 +223,31 @@ release: # Create a new tag for release.
  	
 	@echo "previous version was $$(git describe --tags $$(git rev-list --tags --max-count=1))"
 	@echo "WARNING: This operation will creates version tag and push to github"
-	@bash -c '\
-	[ "404" == $$(curl -I -s -w "%{http_code}" https://github.com/hiddify/hiddify-next-core/releases/download/v$(core.version)/hiddify-core-linux-amd64.tar.gz -o /dev/null) ]&&{ echo "Core Not Found"; exit 1 ; };\
-	cversion_string=`grep -e "^version:" pubspec.yaml | cut -d: -f2-`; \
+	@if [ "$$(curl -o /dev/null -I -s -w "%{http_code}" https://github.com/hiddify/hiddify-core/releases/download/v$(core.version)/hiddify-core-linux-amd64.tar.gz)" = "404" ]; then \
+		echo "Core v$(core.version) not Found"; \
+		exit 3; \
+	fi
+	bash -c '\
+	cversion_string=$$(grep -e "^version:" pubspec.yaml | cut -d: -f2-); \
 	cstr_version=`echo "$${cversion_string}" | sed -n "s/[ ]*\\([0-9]\\+\\.[0-9]\\+\\.[0-9]\\+\\)+.*/\\1/p"`; \
+	[ "$$cversion_string" == "" ] && { echo "getting old version error"; exit 1 ; }; \
 	cbuild_number=`echo "$${cversion_string}" | sed -n "s/.*+\\([0-9]\\+\\)/\\1/p"`; \
-	echo "Current Version Name:$${cstr_version}   Build Number:$${cbuild_number}";\
+	echo "Current Version Name:$${cstr_version}   Build Number:$${cbuild_number}"; \
 	read -p "new Version? (provide the next x.y.z semver) : " TAG && \
-	echo $$TAG &&\
+	echo $$TAG && \
 	[[ "$$TAG" =~ ^[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{1,2}(\.dev)?$$ ]] || { echo "Incorrect tag. e.g., 1.2.3 or 1.2.3.dev"; exit 1; } && \
 	IFS="." read -r -a VERSION_ARRAY <<< "$$TAG" && \
 	VERSION_STR="$${VERSION_ARRAY[0]}.$${VERSION_ARRAY[1]}.$${VERSION_ARRAY[2]}" && \
 	BUILD_NUMBER=$$(( $${VERSION_ARRAY[0]} * 10000 + $${VERSION_ARRAY[1]} * 100 + $${VERSION_ARRAY[2]} )) && \
 	echo "version: $${VERSION_STR}+$${BUILD_NUMBER}" && \
-	sed -i "s/^version: .*/version: $${VERSION_STR}\+$${BUILD_NUMBER}/g" pubspec.yaml && \
-	sed -i "s/^msix_version: .*/msix_version: $${VERSION_ARRAY[0]}.$${VERSION_ARRAY[1]}.$${VERSION_ARRAY[2]}.0/g" windows/packaging/msix/make_config.yaml && \
-	sed -i "s/CURRENT_PROJECT_VERSION = $${cbuild_number}/CURRENT_PROJECT_VERSION = $${BUILD_NUMBER}/g" ios/Runner.xcodeproj/project.pbxproj && \
-	sed -i "s/MARKETING_VERSION = $${cstr_version}/MARKETING_VERSION = $${VERSION_STR}/g" ios/Runner.xcodeproj/project.pbxproj && \
-	git add ios/Runner.xcodeproj/project.pbxproj pubspec.yaml windows/packaging/msix/make_config.yaml && \
+	sed -i "" "s/^version: .*/version: $${VERSION_STR}\+$${BUILD_NUMBER}/g" pubspec.yaml && \
+	sed -i "" "s/^msix_version: .*/msix_version: $${VERSION_ARRAY[0]}.$${VERSION_ARRAY[1]}.$${VERSION_ARRAY[2]}.0/g" windows/packaging/msix/make_config.yaml && \
+	sed -i "" "s/CURRENT_PROJECT_VERSION = $${cbuild_number}/CURRENT_PROJECT_VERSION = $${BUILD_NUMBER}/g" ios/Runner.xcodeproj/project.pbxproj && \
+	sed -i "" "s/MARKETING_VERSION = $${cstr_version}/MARKETING_VERSION = $${VERSION_STR}/g" ios/Runner.xcodeproj/project.pbxproj && \
+	git tag $${TAG} > /dev/null && \
+	gitchangelog > HISTORY.md || { git tag -d $${TAG}; echo "Please run pip install gitchangelog pystache mustache markdown"; exit 2; } && \
+	git tag -d $${TAG} > /dev/null && \
+	git add ios/Runner.xcodeproj/project.pbxproj pubspec.yaml windows/packaging/msix/make_config.yaml HISTORY.md && \
 	git commit -m "release: version $${TAG}" && \
 	echo "creating git tag : v$${TAG}" && \
 	git push && \

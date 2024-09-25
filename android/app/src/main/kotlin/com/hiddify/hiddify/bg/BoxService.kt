@@ -292,8 +292,8 @@ class BoxService(
             }
         }
     }
-    override fun postServiceClose(){
-        //TODO:
+    override fun postServiceClose() {
+        // Not used on Android
     }
 
     private suspend fun stopAndAlert(type: Alert, message: String? = null) {

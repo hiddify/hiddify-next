@@ -47,8 +47,7 @@ abstract class LinkParser {
     for (final line in lines) {
       final uri = Uri.tryParse(line);
       if (uri == null) continue;
-      final fragment =
-          uri.hasFragment ? Uri.decodeComponent(uri.fragment) : null;
+      final fragment = uri.hasFragment ? Uri.decodeComponent(uri.fragment.split("&&detour")[0]) : null;
       name ??= switch (uri.scheme) {
         'ss' => fragment ?? ProxyType.shadowsocks.label,
         'ssconf' => fragment ?? ProxyType.shadowsocks.label,
@@ -80,24 +79,17 @@ abstract class LinkParser {
     final queryParams = uri.queryParameters;
     switch (uri.scheme) {
       case 'clash' || 'clashmeta' when uri.authority == 'install-config':
-        if (uri.authority != 'install-config' ||
-            !queryParams.containsKey('url')) return null;
+        if (uri.authority != 'install-config' || !queryParams.containsKey('url')) return null;
         return (url: queryParams['url']!, name: queryParams['name'] ?? '');
       case 'sing-box':
-        if (uri.authority != 'import-remote-profile' ||
-            !queryParams.containsKey('url')) return null;
+        if (uri.authority != 'import-remote-profile' || !queryParams.containsKey('url')) return null;
         return (url: queryParams['url']!, name: queryParams['name'] ?? '');
       case 'hiddify':
         if (uri.authority == "import") {
-          return (
-            url: uri.path.substring(1) + (uri.hasQuery ? "?${uri.query}" : ""),
-            name: uri.fragment
-          );
+          return (url: uri.path.substring(1) + (uri.hasQuery ? "?${uri.query}" : ""), name: uri.fragment);
         }
         //for backward compatibility
-        if ((uri.authority != 'install-config' &&
-                uri.authority != 'install-sub') ||
-            !queryParams.containsKey('url')) return null;
+        if ((uri.authority != 'install-config' && uri.authority != 'install-sub') || !queryParams.containsKey('url')) return null;
         return (url: queryParams['url']!, name: queryParams['name'] ?? '');
       default:
         return null;

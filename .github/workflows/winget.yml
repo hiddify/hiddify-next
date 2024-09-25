@@ -8,9 +8,9 @@ env:
 
 jobs:
   publish:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
-      - uses: vedantmgoyal2009/winget-releaser@v1
+      - uses: vedantmgoyal9/winget-releaser@2
         with:
           identifier: ${{ env.IDENTIFIER }}
           version: ${{ github.event.release.tag_name }}

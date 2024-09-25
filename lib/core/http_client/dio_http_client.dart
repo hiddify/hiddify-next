@@ -8,49 +8,84 @@ import 'package:flutter_loggy_dio/flutter_loggy_dio.dart';
 import 'package:hiddify/utils/custom_loggers.dart';
 
 class DioHttpClient with InfraLogger {
+  final Map<String, Dio> _dio = {};
   DioHttpClient({
     required Duration timeout,
     required String userAgent,
     required bool debug,
   }) {
-    _dio = Dio(
-      BaseOptions(
-        connectTimeout: timeout,
-        sendTimeout: timeout,
-        receiveTimeout: timeout,
-        headers: {"User-Agent": userAgent},
-      ),
-    );
+    for (var mode in ["proxy", "direct", "both"]) {
+      _dio[mode] = Dio(
+        BaseOptions(
+          connectTimeout: timeout,
+          sendTimeout: timeout,
+          receiveTimeout: timeout,
+          headers: {"User-Agent": userAgent},
+        ),
+      );
+      _dio[mode]!.interceptors.add(
+            RetryInterceptor(
+              dio: _dio[mode]!,
+              retryDelays: [
+                const Duration(seconds: 1),
+                if (mode != "proxy") ...[
+                  const Duration(seconds: 2),
+                  const Duration(seconds: 3),
+                ]
+              ],
+            ),
+          );
 
-    _dio.interceptors.add(
-      RetryInterceptor(
-        dio: _dio,
-        retryDelays: const [
-          Duration(seconds: 1),
-          Duration(seconds: 2),
-          Duration(seconds: 3),
-        ],
-      ),
-    );
+      _dio[mode]!.httpClientAdapter = IOHttpClientAdapter(
+        createHttpClient: () {
+          final client = HttpClient();
+          client.findProxy = (url) {
+            if (mode == "proxy") {
+              return "PROXY localhost:$port";
+            } else if (mode == "direct") {
+              return "DIRECT";
+            } else {
+              return "PROXY localhost:$port; DIRECT";
+            }
+          };
+          return client;
+        },
+      );
+    }
 
     if (debug) {
-      _dio.interceptors.add(LoggyDioInterceptor(requestHeader: true));
+      // _dio.interceptors.add(LoggyDioInterceptor(requestHeader: true));
     }
   }
 
-  late final Dio _dio;
+  int port = 0;
+  // bool isPortOpen(String host, int port, {Duration timeout = const Duration(milliseconds: 200)}) async{
+  //   try {
+  //     Socket.connect(host, port, timeout: timeout).then((socket) {
+  //       socket.destroy();
+  //     });
+  //     return true;
+  //   } on SocketException catch (_) {
+  //     return false;
+  //   } catch (_) {
+  //     return false;
+  //   }
+  // }
+  Future<bool> isPortOpen(String host, int port, {Duration timeout = const Duration(seconds: 5)}) async {
+    try {
+      final socket = await Socket.connect(host, port, timeout: timeout);
+      await socket.close();
+      return true;
+    } on SocketException catch (_) {
+      return false;
+    } catch (_) {
+      return false;
+    }
+  }
 
   void setProxyPort(int port) {
+    this.port = port;
     loggy.debug("setting proxy port: [$port]");
-    _dio.httpClientAdapter = IOHttpClientAdapter(
-      createHttpClient: () {
-        final client = HttpClient();
-        client.findProxy = (url) {
-          return "PROXY localhost:$port; DIRECT";
-        };
-        return client;
-      },
-    );
   }
 
   Future<Response<T>> get<T>(
@@ -58,8 +93,16 @@ class DioHttpClient with InfraLogger {
     CancelToken? cancelToken,
     String? userAgent,
     ({String username, String password})? credentials,
+    bool proxyOnly = false,
   }) async {
-    return _dio.get<T>(
+    final mode = proxyOnly
+        ? "proxy"
+        : await isPortOpen("127.0.0.1", port)
+            ? "both"
+            : "direct";
+    final dio = _dio[mode]!;
+
+    return dio.get<T>(
       url,
       cancelToken: cancelToken,
       options: _options(url, userAgent: userAgent, credentials: credentials),
@@ -72,8 +115,15 @@ class DioHttpClient with InfraLogger {
     CancelToken? cancelToken,
     String? userAgent,
     ({String username, String password})? credentials,
+    bool proxyOnly = false,
   }) async {
-    return _dio.download(
+    final mode = proxyOnly
+        ? "proxy"
+        : await isPortOpen("127.0.0.1", port)
+            ? "both"
+            : "direct";
+    final dio = _dio[mode]!;
+    return dio.download(
       url,
       path,
       cancelToken: cancelToken,

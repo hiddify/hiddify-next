@@ -6,6 +6,8 @@ import 'package:hiddify/core/localization/locale_preferences.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/model/region.dart';
 import 'package:hiddify/core/preferences/general_preferences.dart';
+import 'package:hiddify/features/config_option/data/config_option_repository.dart';
+import 'package:hiddify/features/config_option/notifier/config_option_notifier.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class LocalePrefTile extends HookConsumerWidget {
@@ -41,9 +43,7 @@ class LocalePrefTile extends HookConsumerWidget {
           },
         );
         if (selectedLocale != null) {
-          await ref
-              .read(localePreferencesProvider.notifier)
-              .changeLocale(selectedLocale);
+          await ref.read(localePreferencesProvider.notifier).changeLocale(selectedLocale);
         }
       },
     );
@@ -57,7 +57,7 @@ class RegionPrefTile extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final t = ref.watch(translationsProvider);
 
-    final region = ref.watch(Preferences.region);
+    final region = ref.watch(ConfigOptions.region);
 
     return ListTile(
       title: Text(t.settings.general.region),
@@ -83,7 +83,19 @@ class RegionPrefTile extends HookConsumerWidget {
           },
         );
         if (selectedRegion != null) {
-          await ref.read(Preferences.region.notifier).update(selectedRegion);
+          // await ref.read(Preferences.region.notifier).update(selectedRegion);
+
+          await ref.watch(ConfigOptions.region.notifier).update(selectedRegion);
+
+          await ref.watch(ConfigOptions.directDnsAddress.notifier).reset();
+
+          // await ref.read(configOptionNotifierProvider.notifier).build();
+          // await ref.watch(ConfigOptions.resolveDestination.notifier).update(!ref.watch(ConfigOptions.resolveDestination.notifier).raw());
+          //for reload config
+          // final tmp = ref.watch(ConfigOptions.resolveDestination.notifier).raw();
+          // await ref.watch(ConfigOptions.resolveDestination.notifier).update(!tmp);
+          // await ref.watch(ConfigOptions.resolveDestination.notifier).update(tmp);
+          //TODO: fix it
         }
       },
     );
@@ -117,13 +129,9 @@ class EnableAnalyticsPrefTile extends HookConsumerWidget {
           return onChanged!(value);
         }
         if (enabled) {
-          await ref
-              .read(analyticsControllerProvider.notifier)
-              .disableAnalytics();
+          await ref.read(analyticsControllerProvider.notifier).disableAnalytics();
         } else {
-          await ref
-              .read(analyticsControllerProvider.notifier)
-              .enableAnalytics();
+          await ref.read(analyticsControllerProvider.notifier).enableAnalytics();
         }
       },
     );

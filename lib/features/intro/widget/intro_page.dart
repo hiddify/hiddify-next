@@ -10,6 +10,7 @@ import 'package:hiddify/core/model/constants.dart';
 import 'package:hiddify/core/model/region.dart';
 import 'package:hiddify/core/preferences/general_preferences.dart';
 import 'package:hiddify/features/common/general_pref_tiles.dart';
+import 'package:hiddify/features/config_option/data/config_option_repository.dart';
 import 'package:hiddify/gen/assets.gen.dart';
 import 'package:hiddify/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -26,11 +27,12 @@ class IntroPage extends HookConsumerWidget with PresLogger {
     final t = ref.watch(translationsProvider);
 
     final isStarting = useState(false);
+
     if (!locationInfoLoaded) {
-      autoSelectRegion(ref)
-          .then((value) => loggy.debug("Auto Region selection finished!"));
+      autoSelectRegion(ref).then((value) => loggy.debug("Auto Region selection finished!"));
       locationInfoLoaded = true;
     }
+
     return Scaffold(
       body: SafeArea(
         child: CustomScrollView(
@@ -83,14 +85,10 @@ class IntroPage extends HookConsumerWidget with PresLogger {
                       onPressed: () async {
                         if (isStarting.value) return;
                         isStarting.value = true;
-                        if (!ref
-                            .read(analyticsControllerProvider)
-                            .requireValue) {
+                        if (!ref.read(analyticsControllerProvider).requireValue) {
                           loggy.info("disabling analytics per user request");
                           try {
-                            await ref
-                                .read(analyticsControllerProvider.notifier)
-                                .disableAnalytics();
+                            await ref.read(analyticsControllerProvider.notifier).disableAnalytics();
                           } catch (error, stackTrace) {
                             loggy.error(
                               "could not disable analytics",
@@ -99,9 +97,7 @@ class IntroPage extends HookConsumerWidget with PresLogger {
                             );
                           }
                         }
-                        await ref
-                            .read(Preferences.introCompleted.notifier)
-                            .update(true);
+                        await ref.read(Preferences.introCompleted.notifier).update(true);
                       },
                       child: isStarting.value
                           ? LinearProgressIndicator(
@@ -127,10 +123,9 @@ class IntroPage extends HookConsumerWidget with PresLogger {
       loggy.debug(
         'Timezone Region: ${regionLocale.region} Locale: ${regionLocale.locale}',
       );
-      await ref.read(Preferences.region.notifier).update(regionLocale.region);
-      await ref
-          .read(localePreferencesProvider.notifier)
-          .changeLocale(regionLocale.locale);
+      await ref.read(ConfigOptions.region.notifier).update(regionLocale.region);
+      await ref.watch(ConfigOptions.directDnsAddress.notifier).reset();
+      await ref.read(localePreferencesProvider.notifier).changeLocale(regionLocale.locale);
       return;
     } catch (e) {
       loggy.warning(
@@ -142,25 +137,20 @@ class IntroPage extends HookConsumerWidget with PresLogger {
     try {
       final DioHttpClient client = DioHttpClient(
         timeout: const Duration(seconds: 2),
-        userAgent:
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:123.0) Gecko/20100101 Firefox/123.0",
+        userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:123.0) Gecko/20100101 Firefox/123.0",
         debug: true,
       );
-      final response =
-          await client.get<Map<String, dynamic>>('https://api.ip.sb/geoip/');
+      final response = await client.get<Map<String, dynamic>>('https://api.ip.sb/geoip/');
 
       if (response.statusCode == 200) {
         final jsonData = response.data!;
-        final regionLocale =
-            _getRegionLocale(jsonData['country_code']?.toString() ?? "");
+        final regionLocale = _getRegionLocale(jsonData['country_code']?.toString() ?? "");
 
         loggy.debug(
           'Region: ${regionLocale.region} Locale: ${regionLocale.locale}',
         );
-        await ref.read(Preferences.region.notifier).update(regionLocale.region);
-        await ref
-            .read(localePreferencesProvider.notifier)
-            .changeLocale(regionLocale.locale);
+        await ref.read(ConfigOptions.region.notifier).update(regionLocale.region);
+        await ref.read(localePreferencesProvider.notifier).changeLocale(regionLocale.locale);
       } else {
         loggy.warning('Request failed with status: ${response.statusCode}');
       }

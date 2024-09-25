@@ -18,7 +18,7 @@
     "unknown": "未知",
     "hidden": "隐藏",
     "timeout": "超时",
-    "clipboardExportSuccessMsg": "已导出到剪切板",
+    "clipboardExportSuccessMsg": "已导出到剪贴板",
     "showMore": "显示更多",
     "showLess": "显示更少",
     "openAppSettings": "打开应用设置",
@@ -55,7 +55,7 @@
       "remainingDuration": "剩余 ${duration} 天",
       "remainingTrafficSemanticLabel": "已使用 ${consumed} 流量，共 ${total} 流量。",
       "expired": "已过期",
-      "noTraffic": "超出配额",
+      "noTraffic": "超出限额",
       "upload": "上传",
       "download": "下载",
       "total": "总流量",
@@ -63,7 +63,7 @@
     },
     "sortBy": {
       "lastUpdate": "最近更新",
-      "name": "字母顺序"
+      "name": "按字母顺序"
     },
     "add": {
       "buttonText": "新的配置文件",
@@ -78,6 +78,8 @@
         "permissionRequest": "授予相机权限以允许扫描二维码"
       },
       "manually": "手动输入",
+      "addWarp": "添加 WARP",
+      "addingWarpMsg": "我们正在注册 WARP，请稍候。",
       "addingProfileMsg": "添加配置文件",
       "failureMsg": "添加配置文件失败"
     },
@@ -162,9 +164,9 @@
     "requiresRestartMsg": "要使其生效，请重新启动应用程序",
     "experimental": "实验性选项",
     "experimentalMsg": "带有实验标志的功能仍在开发中，可能会出现问题。",
-    "exportOptions": "导出选项到剪切板",
-    "exportAllOptions": "导出选项到剪切板（用于调试）",
-    "importOptions": "从剪切板导入选项",
+    "exportOptions": "将匿名选项导出到剪贴板",
+    "exportAllOptions": "将所有选项导出到剪贴板（用于调试）",
+    "importOptions": "从剪贴板导入选项",
     "importOptionsMsg": "这将使用提供的值重写所有配置选项。您确定吗？",
     "general": {
       "sectionTitle": "一般选项",
@@ -176,6 +178,9 @@
         "cn": "中国 (cn)",
         "ru": "俄罗斯 (ru)",
         "af": "阿富汗 (af)",
+        "id": "印度尼西亚 (id)",
+        "tr": "火鸡（tr）🇹🇷",
+        "br": "巴西 (br) 🇧🇷",
         "other": "其它"
       },
       "themeMode": "主题模式",
@@ -308,7 +313,7 @@
   "play": {
     "title": "Hiddify（预览）",
     "short_description": "自动，SSH, VLESS, Vmess, Trojan, Reality, Sing-Box, Clash, Xray, Shadowsocks",
-    "full_description": "Hiddify 的主要目标是提供安全、用户友好且高效的隧道客户端。它使您能够利用 VPN 服务权限将所有流量或选定的应用程序流量路由到您选择的远程服务器。\n\n注：我们不提供任何服务器；用户需要使用自己托管的服务器或可信的服务器来确保您在线活动的私密性。\n \n我们支持以下类型的服务器：\n- 普通 V2ray/Xray 订阅链接\n- Clash 订阅链接\n- Sing-Box 订阅链接\n\n我们的特色是什么？\n\n- 用户友好\n- 优化和高速\n- 自动选择最低延迟\n- 显示用户使用信息\n- 通过一键链接轻松导入\n- 免费且无广告\n- 轻松切换线路\n- 等等\n\n支持：\n- Sing-Box 支持的所有协议\n- VLESS + XTLS Reality、Vision 协议\n- VMESS\n- Trojan\n- Shoadowsocks\n- Reality\n- WireGuard\n- V2ray\n- Hystria2\n- TUIC\n- SSH\n- ShadowTLS\n\n\n源代码位于 https://github.com/hiddify/Hiddify-Next\n应用程序核心基于开源的 Sing-Box。\n\n权限说明：\n\n- VPN 服务：由于此应用程序的目标是提供安全、用户友好和高效的隧道客户端，我们需要此权限以能够通过隧道将流量路由到远程服务器。\n获取应用程序列表：此权限用于允许用户包括或排除特定应用程序以进行隧道传输。\n- 接收开机广播：可以从应用程序设置中启用或禁用此权限，以便在设备启动时激活此应用程序。\n- 发送通知：此权限是必需的，因为我们使用前台服务来确保 VPN 服务的持续运行。\n- 本应用程序没有广告。分析和崩溃数据仅在首次使用应用程序时经用户明确同意的情况下发生。"
+    "full_description": "Hiddify 的主要目标是提供安全、用户友好且高效的隧道客户端。它使您能够利用 VPN 服务权限将所有流量或选定的应用程序流量路由到您选择的远程服务器。\n\n注：我们不提供任何服务器；用户需要使用自己托管的服务器或可信的服务器来确保您在线活动的私密性。\n \n我们支持以下类型的服务器：\n- 普通 V2ray/Xray 订阅链接\n- Clash 订阅链接\n- Sing-Box 订阅链接\n\n我们的特色是什么？\n\n- 用户友好\n- 优化和高速\n- 自动选择最低延迟\n- 显示用户使用信息\n- 通过一键链接轻松导入\n- 免费且无广告\n- 轻松切换线路\n- 等等\n\n支持：\n- Sing-Box 支持的所有协议\n- VLESS + XTLS Reality、Vision 协议\n- VMESS\n- Trojan\n- ShadowSocks\n- Reality\n- WireGuard\n- V2ray\n- Hystria2\n- TUIC\n- SSH\n- ShadowTLS\n\n\n源代码位于 https://github.com/hiddify/Hiddify-Next\n应用程序核心基于开源的 Sing-Box。\n\n权限说明：\n\n- VPN 服务：由于此应用程序的目标是提供安全、用户友好和高效的隧道客户端，我们需要此权限以能够通过隧道将流量路由到远程服务器。\n获取应用程序列表：此权限用于允许用户包括或排除特定应用程序以进行隧道传输。\n- 接收开机广播：可以从应用程序设置中启用或禁用此权限，以便在设备启动时激活此应用程序。\n- 发送通知：此权限是必需的，因为我们使用前台服务来确保 VPN 服务的持续运行。\n- 本应用程序没有广告。分析和崩溃数据仅在首次使用应用程序时经用户明确同意的情况下发生。"
   },
   "connection": {
     "tapToConnect": "点击连接",
@@ -323,6 +328,10 @@
     "reconnectMsg": "重新连接以使更改生效"
   },
   "config": {
+    "useXrayCoreWhenPossible": {
+      "Label": "尽可能使用 Xray-core",
+      "Description": "解析子链接时使用 Xray-core。您需要重新导入子链接才能启用此选项。"
+    },
     "resetBtn": "重置选项",
     "serviceMode": "服务模式",
     "quickSettings": "快速设置",
@@ -356,9 +365,10 @@
     },
     "generateWarpConfig": "生成 WARP 配置文件",
     "missingWarpConfig": "WARP 配置文件缺失",
-    "warpConfigGenerated": "WARP 配置文件已生成",
-    "pageTitle": "配置",
+    "warpConfigGenerated": "WARP 配置已生成",
+    "pageTitle": "配置选项",
     "logLevel": "日志级别",
+    "blockAds": "阻止广告",
     "resolveDestination": "解析目标地址",
     "ipv6Mode": "IPv6 路由",
     "ipv6Modes": {
@@ -376,7 +386,7 @@
     "localDnsPort": "本地 DNS 端口",
     "allowConnectionFromLan": "允许局域网连接",
     "tunImplementation": "TUN 实现",
-    "mtu": "MTU",
+    "mtu": "数据包大小 (MTU)",
     "connectionTestUrl": "连接测试网址",
     "urlTestInterval": "网址测试间隔",
     "enableClashApi": "启用 Clash API",
@@ -408,6 +418,13 @@
     "warpCleanIp": "清理 IP",
     "warpPort": "端口",
     "warpNoise": "噪音计数",
+    "warpNoiseSize": "噪音大小",
+    "warpNoiseMode": "噪音模式",
     "warpNoiseDelay": "噪音延迟"
+  },
+  "window": {
+    "hide": "隐藏",
+    "close": "关闭",
+    "alertMessage": "隐藏或退出应用程序？"
   }
 }

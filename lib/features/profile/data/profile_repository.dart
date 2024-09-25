@@ -6,6 +6,8 @@ import 'package:fpdart/fpdart.dart';
 import 'package:hiddify/core/database/app_database.dart';
 import 'package:hiddify/core/http_client/dio_http_client.dart';
 import 'package:hiddify/core/utils/exception_handler.dart';
+import 'package:hiddify/features/config_option/data/config_option_repository.dart';
+import 'package:hiddify/features/connection/model/connection_failure.dart';
 import 'package:hiddify/features/profile/data/profile_data_mapper.dart';
 import 'package:hiddify/features/profile/data/profile_data_source.dart';
 import 'package:hiddify/features/profile/data/profile_parser.dart';
@@ -36,7 +38,10 @@ abstract interface class ProfileRepository {
     bool markAsActive = false,
     CancelToken? cancelToken,
   });
-
+  TaskEither<ProfileFailure, Unit> updateContent(
+    String profileId,
+    String content,
+  );
   TaskEither<ProfileFailure, Unit> addByContent(
     String content, {
     required String name,
@@ -62,19 +67,19 @@ abstract interface class ProfileRepository {
   TaskEither<ProfileFailure, Unit> deleteById(String id);
 }
 
-class ProfileRepositoryImpl
-    with ExceptionHandler, InfraLogger
-    implements ProfileRepository {
+class ProfileRepositoryImpl with ExceptionHandler, InfraLogger implements ProfileRepository {
   ProfileRepositoryImpl({
     required this.profileDataSource,
     required this.profilePathResolver,
     required this.singbox,
+    required this.configOptionRepository,
     required this.httpClient,
   });
 
   final ProfileDataSource profileDataSource;
   final ProfilePathResolver profilePathResolver;
   final SingboxService singbox;
+  final ConfigOptionRepository configOptionRepository;
   final DioHttpClient httpClient;
 
   @override
@@ -105,10 +110,7 @@ class ProfileRepositoryImpl
 
   @override
   Stream<Either<ProfileFailure, ProfileEntity?>> watchActiveProfile() {
-    return profileDataSource
-        .watchActiveProfile()
-        .map((event) => event?.toEntity())
-        .handleExceptions(
+    return profileDataSource.watchActiveProfile().map((event) => event?.toEntity()).handleExceptions(
       (error, stackTrace) {
         loggy.error("error watching active profile", error, stackTrace);
         return ProfileUnexpectedFailure(error, stackTrace);
@@ -118,10 +120,7 @@ class ProfileRepositoryImpl
 
   @override
   Stream<Either<ProfileFailure, bool>> watchHasAnyProfile() {
-    return profileDataSource
-        .watchProfilesCount()
-        .map((event) => event != 0)
-        .handleExceptions(ProfileUnexpectedFailure.new);
+    return profileDataSource.watchProfilesCount().map((event) => event != 0).handleExceptions(ProfileUnexpectedFailure.new);
   }
 
   @override
@@ -129,10 +128,7 @@ class ProfileRepositoryImpl
     ProfilesSort sort = ProfilesSort.lastUpdate,
     SortMode sortMode = SortMode.ascending,
   }) {
-    return profileDataSource
-        .watchAll(sort: sort, sortMode: sortMode)
-        .map((event) => event.map((e) => e.toEntity()).toList())
-        .handleExceptions(ProfileUnexpectedFailure.new);
+    return profileDataSource.watchAll(sort: sort, sortMode: sortMode).map((event) => event.map((e) => e.toEntity()).toList()).handleExceptions(ProfileUnexpectedFailure.new);
   }
 
   @override
@@ -143,14 +139,10 @@ class ProfileRepositoryImpl
   }) {
     return exceptionHandler(
       () async {
-        final existingProfile = await profileDataSource
-            .getByUrl(url)
-            .then((value) => value?.toEntity());
+        final existingProfile = await profileDataSource.getByUrl(url).then((value) => value?.toEntity());
         if (existingProfile case RemoteProfileEntity()) {
           loggy.info("profile with same url already exists, updating");
-          final baseProfile = markAsActive
-              ? existingProfile.copyWith(active: true)
-              : existingProfile;
+          final baseProfile = markAsActive ? existingProfile.copyWith(active: true) : existingProfile;
           return updateSubscription(
             baseProfile,
             cancelToken: cancelToken,
@@ -163,9 +155,7 @@ class ProfileRepositoryImpl
               (profile) => TaskEither(
                 () async {
                   await profileDataSource.insert(
-                    profile
-                        .copyWith(id: profileId, active: markAsActive)
-                        .toEntry(),
+                    profile.copyWith(id: profileId, active: markAsActive).toEntry(),
                   );
                   return right(unit);
                 },
@@ -187,13 +177,36 @@ class ProfileRepositoryImpl
     bool debug,
   ) {
     return exceptionHandler(
-      () {
-        return singbox
-            .validateConfigByPath(path, tempPath, debug)
-            .mapLeft(ProfileFailure.invalidConfig)
-            .run();
+      () async {
+        singbox.changeOptions(await configOptionRepository.getConfigOptions()).run();
+
+        return singbox.validateConfigByPath(path, tempPath, debug).mapLeft(ProfileFailure.invalidConfig).run();
       },
       ProfileUnexpectedFailure.new,
+    );
+  }
+
+  @override
+  TaskEither<ProfileFailure, Unit> updateContent(
+    String profileId,
+    String content,
+  ) {
+    return exceptionHandler(
+      () async {
+        final file = profilePathResolver.file(profileId);
+        final tempFile = profilePathResolver.tempFile(profileId);
+
+        try {
+          await tempFile.writeAsString(content);
+          return await validateConfig(file.path, tempFile.path, false).run();
+        } finally {
+          if (tempFile.existsSync()) tempFile.deleteSync();
+        }
+      },
+      (error, stackTrace) {
+        loggy.warning("error adding profile by content", error, stackTrace);
+        return ProfileUnexpectedFailure(error, stackTrace);
+      },
     );
   }
 
@@ -206,28 +219,22 @@ class ProfileRepositoryImpl
     return exceptionHandler(
       () async {
         final profileId = const Uuid().v4();
-        final file = profilePathResolver.file(profileId);
-        final tempFile = profilePathResolver.tempFile(profileId);
 
-        try {
-          await tempFile.writeAsString(content);
-          return await validateConfig(file.path, tempFile.path, false)
-              .andThen(
-                () => TaskEither(() async {
-                  final profile = LocalProfileEntity(
-                    id: profileId,
-                    active: markAsActive,
-                    name: name,
-                    lastUpdate: DateTime.now(),
-                  );
-                  await profileDataSource.insert(profile.toEntry());
-                  return right(unit);
-                }),
-              )
-              .run();
-        } finally {
-          if (tempFile.existsSync()) tempFile.deleteSync();
-        }
+        return await updateContent(profileId, content)
+            .andThen(
+              () => TaskEither(() async {
+                final profile = LocalProfileEntity(
+                  id: profileId,
+                  active: markAsActive,
+                  name: name,
+                  lastUpdate: DateTime.now(),
+                );
+                await profileDataSource.insert(profile.toEntry());
+
+                return right(unit);
+              }),
+            )
+            .run();
       },
       (error, stackTrace) {
         loggy.warning("error adding profile by content", error, stackTrace);
@@ -271,11 +278,13 @@ class ProfileRepositoryImpl
     return TaskEither<ProfileFailure, String>.Do(
       ($) async {
         final configFile = profilePathResolver.file(id);
-        // TODO pass options
+
+        final options = await configOptionRepository.getConfigOptions();
+
+        singbox.changeOptions(options).mapLeft(InvalidConfigOption.new).run();
+
         return await $(
-          singbox
-              .generateFullConfigByPath(configFile.path)
-              .mapLeft(ProfileFailure.unexpected),
+          singbox.generateFullConfigByPath(configFile.path).mapLeft(ProfileFailure.unexpected),
         );
       },
     ).handleExceptions(ProfileFailure.unexpected);
@@ -296,9 +305,7 @@ class ProfileRepositoryImpl
             .flatMap(
               (remoteProfile) => TaskEither(
                 () async {
-                  final profilePatch = remoteProfile
-                      .subInfoPatch()
-                      .copyWith(lastUpdate: Value(DateTime.now()));
+                  final profilePatch = remoteProfile.subInfoPatch().copyWith(lastUpdate: Value(DateTime.now()), active: Value(baseProfile.active));
 
                   await profileDataSource.edit(
                     baseProfile.id,
@@ -306,8 +313,8 @@ class ProfileRepositoryImpl
                         ? profilePatch.copyWith(
                             name: Value(baseProfile.name),
                             url: Value(baseProfile.url),
-                            updateInterval:
-                                Value(baseProfile.options?.updateInterval),
+                            testUrl: Value(baseProfile.testUrl),
+                            updateInterval: Value(baseProfile.options?.updateInterval),
                           )
                         : profilePatch,
                   );
@@ -374,6 +381,7 @@ class ProfileRepositoryImpl
     'profile-update-interval',
     'support-url',
     'profile-web-page-url',
+    'test-url',
   ];
 
   @visibleForTesting
@@ -388,13 +396,15 @@ class ProfileRepositoryImpl
         final tempFile = profilePathResolver.tempFile(fileName);
 
         try {
+          final configs = await configOptionRepository.getConfigOptions();
+
           final response = await httpClient.download(
             url.trim(),
             tempFile.path,
             cancelToken: cancelToken,
+            userAgent: configs.useXrayCoreWhenPossible ? "v2rayNG/1.8.23" : null,
           );
-          final headers =
-              await _populateHeaders(response.headers.map, tempFile.path);
+          final headers = await _populateHeaders(response.headers.map, tempFile.path);
           return await validateConfig(file.path, tempFile.path, false)
               .andThen(
                 () => TaskEither(() async {
@@ -444,15 +454,9 @@ class ProfileRepositoryImpl
       if (line.startsWith("#") || line.startsWith("//")) {
         final index = line.indexOf(':');
         if (index == -1) continue;
-        final key = line
-            .substring(0, index)
-            .replaceFirst(RegExp("^#|//"), "")
-            .trim()
-            .toLowerCase();
+        final key = line.substring(0, index).replaceFirst(RegExp("^#|//"), "").trim().toLowerCase();
         final value = line.substring(index + 1).trim();
-        if (!headers.keys.contains(key) &&
-            _subInfoHeaders.contains(key) &&
-            value.isNotEmpty) {
+        if (!headers.keys.contains(key) && _subInfoHeaders.contains(key) && value.isNotEmpty) {
           headers[key] = [value];
         }
       }

@@ -78,6 +78,8 @@
         "permissionRequest": "Permission to camera to scan QR Code"
       },
       "manually": "Manual Entry",
+      "addWarp": "Add WARP",
+      "addingWarpMsg": "Please wait while we register WARP.",
       "addingProfileMsg": "Adding Profile",
       "failureMsg": "Failed to Add Profile"
     },
@@ -162,8 +164,8 @@
     "requiresRestartMsg": "For this to take effect restart the app",
     "experimental": "Experimental",
     "experimentalMsg": "Features with Experimental flag are still in development and might cause issues.",
-    "exportOptions": "Export Options to Clipboard",
-    "exportAllOptions": "Export Options to Clipboard (Debug)",
+    "exportOptions": "Copy Anonymous Options to Clipboard",
+    "exportAllOptions": "Copy All Options to Clipboard",
     "importOptions": "Import Options From Clipboard",
     "importOptionsMsg": "This will rewrite all config options with provided values. Are you sure?",
     "general": {
@@ -172,10 +174,13 @@
       "region": "Region",
       "regionMsg": "Helps set default options to bypass domestic addresses",
       "regions": {
-        "ir": "Iran (ir)",
-        "cn": "China (cn)",
-        "ru": "Russia (ru)",
-        "af": "Afghanistan (af)",
+        "ir": "Iran (ir) 🇮🇷",
+        "cn": "China (cn) 🇨🇳",
+        "ru": "Russia (ru) 🇷🇺",
+        "af": "Afghanistan (af) 🇦🇫",
+        "id": "Indonesia (id) 🇮🇩",
+        "tr": "Türkiye (tr) 🇹🇷",
+        "br": "Brazil (br) 🇧🇷",
         "other": "Other"
       },
       "themeMode": "Theme Mode",
@@ -308,7 +313,7 @@
   "play": {
     "title": "Hiddify (Preview)",
     "short_description": "Auto, SSH, VLESS, VMess, Trojan, Reality, Sing-Box, Clash, XRay, Shadowsocks",
-    "full_description": "The key goal of Hiddify is to provide a secure, user-friendly and efficient tunneling client. It enables you to route all traffic or selected app traffic to a remote server of your choose, utilizing VPN-Service permission.\n\nNote: We do not provide any server; users are required to ensure their online activities stay private by using use their own self-hosted server or trusted servers. \n \nWe Support Servers With:\n- Normal V2Ray/XRay Subscription Link\n- Clash Subscription Link\n- Sing-Box Subscription Link\n\nWhat is our unique features?\n - User Friendly\n - Optimized and Fast\n - Automatically select LowestPing \n - Show user usage information\n - Easily import sublink by one click using deeplinking \n - Free and No ADS\n - Easily switch user sublinks\n - More and more\n\nSupport:\n- All Protocols Supported by Sing-Box \n- VLESS + XTLS Reality, Vision\n- VMess\n- Trojan\n- ShoadowSocks\n- Reality\n- WireGuard\n- V2Ray\n- Hysteria2\n- TUICv5\n- SSH\n- ShadowTLS\n\n\nThe source code exist in https://github.com/hiddify/Hiddify-Next\nThe application core is based on open-source Sing-Box.\n\nPermission Description:\n- VPN Service: As the goal of this application is to provide a secure, user-friendly and efficient tunneling client, we need this permission to be able to route the traffic via tunnel to the remote server. \n- QUERY ALL PACKAGES: This permission is used to allow users to include or exclude specific applications for tunneling.\n- RECEIVE BOOT COMPLETED: This permission can be enabled or disabled from app settings to activate this application upon device boot.\n- POST NOTIFICATIONS: This permission is essential as we employ a foreground service to ensure the continuous operation of the VPN service.\n- This application is free from advertisements. The analytics and crash data only occurs with the explicit consent of the user in the first use of application."
+    "full_description": "The key goal of Hiddify is to provide a secure, user-friendly and efficient tunneling client. It enables you to route all traffic or selected app traffic to a remote server of your choose, utilizing VPN-Service permission.\n\nNote: We do not provide any server; users are required to ensure their online activities stay private by using use their own self-hosted server or trusted servers. \n \nWe Support Servers With:\n- Normal V2Ray/XRay Subscription Link\n- Clash Subscription Link\n- Sing-Box Subscription Link\n\nWhat is our unique features?\n - User Friendly\n - Optimized and Fast\n - Automatically select LowestPing \n - Show user usage information\n - Easily import sublink by one click using deeplinking \n - Free and No ADS\n - Easily switch user sublinks\n - More and more\n\nSupport:\n- All Protocols Supported by Sing-Box \n- VLESS + XTLS Reality, Vision\n- VMess\n- Trojan\n- ShadowSocks\n- Reality\n- WireGuard\n- V2Ray\n- Hysteria2\n- TUICv5\n- SSH\n- ShadowTLS\n\n\nThe source code exist in https://github.com/hiddify/Hiddify-Next\nThe application core is based on open-source Sing-Box.\n\nPermission Description:\n- VPN Service: As the goal of this application is to provide a secure, user-friendly and efficient tunneling client, we need this permission to be able to route the traffic via tunnel to the remote server. \n- QUERY ALL PACKAGES: This permission is used to allow users to include or exclude specific applications for tunneling.\n- RECEIVE BOOT COMPLETED: This permission can be enabled or disabled from app settings to activate this application upon device boot.\n- POST NOTIFICATIONS: This permission is essential as we employ a foreground service to ensure the continuous operation of the VPN service.\n- This application is free from advertisements. The analytics and crash data only occurs with the explicit consent of the user in the first use of application."
   },
   "connection": {
     "tapToConnect": "Tap To Connect",
@@ -320,9 +325,13 @@
     "experimentalNotice": "Experimental Features In Use",
     "experimentalNoticeMsg": "You've enabled some experimental features which might affect connection quality and cause unexpected errors. You can always change or reset these options from Config options page.",
     "disableExperimentalNotice": "Don't Show Again",
-    "reconnectMsg": "Reconnect for Changes to Take Effect"
+    "reconnectMsg": "Reconnecting for taking into account the changes..."
   },
   "config": {
+    "useXrayCoreWhenPossible": {
+      "Label": "Use Xray-core When Possible",
+      "Description": "Use Xray-core during parsing sub links. You need to reimport the sub link to enable this option."
+    },
     "resetBtn": "Reset Options",
     "serviceMode": "Service Mode",
     "quickSettings": "Quick Settings",
@@ -356,9 +365,10 @@
     },
     "generateWarpConfig": "Generate WARP Config",
     "missingWarpConfig": "Missing WARP Config",
-    "warpConfigGenerated": "WARP Config Generated",
+    "warpConfigGenerated": "WARP Config is Generated",
     "pageTitle": "Config Options",
     "logLevel": "Log Level",
+    "blockAds": "Block Advertisements",
     "resolveDestination": "Resolve Destination",
     "ipv6Mode": "IPv6 Route",
     "ipv6Modes": {
@@ -376,7 +386,7 @@
     "localDnsPort": "Local DNS Port",
     "allowConnectionFromLan": "Share VPN in Local Network",
     "tunImplementation": "TUN Implementation",
-    "mtu": "MTU",
+    "mtu": "Packet Size (MTU)",
     "connectionTestUrl": "Connection Test URL",
     "urlTestInterval": "URL Test Interval",
     "enableClashApi": "Enable Clash API",
@@ -408,6 +418,13 @@
     "warpCleanIp": "Clean IP",
     "warpPort": "Port",
     "warpNoise": "Noise Count",
+    "warpNoiseSize": "Noise Size",
+    "warpNoiseMode": "Noise Mode",
     "warpNoiseDelay": "Noise Delay"
+  },
+  "window": {
+    "hide": "Hide",
+    "close": "Exit",
+    "alertMessage": "Hide or Exit the application?"
   }
 }

@@ -1,4 +1,5 @@
 package com.hiddify.hiddify.bg
+import android.util.Log
 
 import com.hiddify.hiddify.Settings
 import android.content.Intent
@@ -51,6 +52,25 @@ class VPNService : VpnService(), PlatformInterfaceWrapper {
 
     var systemProxyAvailable = false
     var systemProxyEnabled = false
+    fun addIncludePackage(builder: Builder, packageName: String) {
+        if (packageName == this.packageName) { 
+            Log.d("VpnService","Cannot include myself: $packageName")
+            return
+        }
+        try {     
+            Log.d("VpnService","Including $packageName")
+            builder.addAllowedApplication(packageName)
+        } catch (e: NameNotFoundException) {
+        }
+    }
+
+    fun addExcludePackage(builder: Builder, packageName: String) {
+        try {     
+            Log.d("VpnService","Excluding $packageName")
+            builder.addDisallowedApplication(packageName)
+        } catch (e: NameNotFoundException) {
+        }
+    }
 
     override fun openTun(options: TunOptions): Int {
         if (prepare(this) != null) error("android: missing vpn permission")
@@ -128,40 +148,30 @@ class VPNService : VpnService(), PlatformInterfaceWrapper {
                 val appList = Settings.perAppProxyList
                 if (Settings.perAppProxyMode == PerAppProxyMode.INCLUDE) {
                     appList.forEach {
-                        try {
-                            builder.addAllowedApplication(it)
-                        } catch (_: NameNotFoundException) {
-                        }
+                        addIncludePackage(builder,it)
                     }
-                    builder.addAllowedApplication(packageName)
+                    addIncludePackage(builder,packageName)
                 } else {
                     appList.forEach {
-                        try {
-                            builder.addDisallowedApplication(it)
-                        } catch (_: NameNotFoundException) {
-                        }
+                        addExcludePackage(builder,it)
                     }
+                    //addExcludePackage(builder,packageName)
                 }
             } else {
                 val includePackage = options.includePackage
                 if (includePackage.hasNext()) {
                     while (includePackage.hasNext()) {
-                        try {
-                            builder.addAllowedApplication(includePackage.next())
-                        } catch (_: NameNotFoundException) {
-                        }
+                        addIncludePackage(builder,includePackage.next())
                     }
                 }
-
                 val excludePackage = options.excludePackage
                 if (excludePackage.hasNext()) {
                     while (excludePackage.hasNext()) {
-                        try {
-                            builder.addDisallowedApplication(excludePackage.next())
-                        } catch (_: NameNotFoundException) {
-                        }
+                        addExcludePackage(builder,excludePackage.next())
                     }
                 }
+                //addExcludePackage(builder,packageName)
+                
             }
         }
 

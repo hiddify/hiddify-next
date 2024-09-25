@@ -17,7 +17,12 @@
     "decline": "Recusar",
     "unknown": "Desconhecido",
     "hidden": "Escondido",
-    "timeout": "Tempo Esgotado"
+    "timeout": "Tempo Esgotado",
+    "clipboardExportSuccessMsg": "Adicionado à área de transferência",
+    "showMore": "Mostre mais",
+    "showLess": "Mostre menos",
+    "openAppSettings": "Abra as configurações do aplicativo",
+    "grantPermission": "Conceder permissão"
   },
   "intro": {
     "termsAndPolicyCaution(rich)": "ao continuar você concorda com ${tap( @:about.termsAndConditions)}",
@@ -29,6 +34,7 @@
     "noActiveProfileMsg": "Escolha um perfil"
   },
   "stats": {
+    "traffic": "Tráfego",
     "trafficLive": "Tráfego ao vivo",
     "trafficTotal": "Tráfego total",
     "uplink": "Ligação ascendente",
@@ -68,9 +74,12 @@
         "permissionDeniedError": "Permissão Negada",
         "unexpectedError": "Algo deu errado",
         "torchSemanticLabel": "Luz do flash",
-        "facingSemanticLabel": "Câmera voltada"
+        "facingSemanticLabel": "Câmera voltada",
+        "permissionRequest": "Permissão para a câmera digitalizar o QR Code"
       },
       "manually": "Entrada manual",
+      "addWarp": "Adicionar WARP",
+      "addingWarpMsg": "Aguarde enquanto registramos o WARP.",
       "addingProfileMsg": "Adicionando Perfil",
       "failureMsg": "Falha ao adicionar perfil"
     },
@@ -155,6 +164,10 @@
     "requiresRestartMsg": "Para que isso tenha efeito, reinicie o aplicativo",
     "experimental": "Experimental",
     "experimentalMsg": "Os recursos com sinalização Experimental ainda estão em desenvolvimento e podem causar problemas.",
+    "exportOptions": "Copiar opções anônimas para a área de transferência",
+    "exportAllOptions": "Copiar todas as opções para a área de transferência",
+    "importOptions": "Opções de importação da área de transferência",
+    "importOptionsMsg": "Isto irá reescrever todas as opções de configuração com os valores fornecidos. Tem certeza?",
     "general": {
       "sectionTitle": "Geral",
       "locale": "Linguagem",
@@ -165,6 +178,8 @@
         "cn": "China (cn)",
         "ru": "Rússia (ru)",
         "af": "Afeganistão (af)",
+        "id": "Indonesia (id)",
+        "tr": "Turquia (tr) 🇹🇷",
         "other": "Outro"
       },
       "themeMode": "Modo de Tema",
@@ -296,23 +311,36 @@
   },
   "play": {
     "title": "Hiddify (Pré-visualização)",
-    "short_description": "Auto, SSH, VLESS, VMess, Trojan, Reality, Sing-Box, Clash, XRay, Shadowsocks"
+    "short_description": "Auto, SSH, VLESS, VMess, Trojan, Reality, Sing-Box, Clash, XRay, Shadowsocks",
+    "full_description": "O principal objetivo do Hiddify é fornecer um cliente de tunelamento seguro, fácil de usar e eficiente. Ele permite que você direcione todo o tráfego ou tráfego de aplicativo selecionado para um servidor remoto de sua escolha, utilizando a permissão do serviço VPN.<inlang-LineFeed>\nNota: Não fornecemos nenhum servidor; os usuários são obrigados a garantir que suas atividades online permaneçam privadas usando seu próprio servidor auto-hospedado ou servidores confiáveis.<inlang-LineFeed>\nOferecemos suporte a servidores com:\n- Link de assinatura V2Ray/XRay normal\n- Link de assinatura do Clash\n- Link de assinatura do Sing-Box<inlang-LineFeed>\nQuais são os nossos recursos exclusivos?\n- Amigo do usuário\n- Otimizado e rápido\n- Selecione automaticamente o LowerPing\n- Mostrar informações de uso do usuário\n- Importe facilmente sublinks com um clique usando deeplinking\n- Gratuito e sem anúncios\n- Alterne facilmente sublinks de usuários\n- Mais e mais<inlang-LineFeed>\nApoiar:\n- Todos os protocolos suportados pelo Sing-Box\n- VLESS + XTLS Realidade, Visão\n- VMess\n- Trojan\n- ShadowSocks\n- Realidade\n- WireGuard\n-V2Ray\n- Histeria2\n-TUICv5\n-SSH\n- ShadowTLS<inlang-LineFeed><inlang-LineFeed>\nO código-fonte existe em https://github.com/hiddify/Hiddify-Next\nO núcleo do aplicativo é baseado no Sing-Box de código aberto.<inlang-LineFeed>\nDescrição da permissão:\n- Serviço VPN: Como o objetivo desta aplicação é fornecer um cliente de tunelamento seguro, fácil de usar e eficiente, precisamos dessa permissão para poder rotear o tráfego via túnel para o servidor remoto.\n- CONSULTAR TODOS OS PACOTES: Esta permissão é usada para permitir que os usuários incluam ou excluam aplicativos específicos para tunelamento.\n- RECEBER BOOT COMPLETED: Esta permissão pode ser habilitada ou desabilitada nas configurações do aplicativo para ativar este aplicativo na inicialização do dispositivo.\n- PÓS NOTIFICAÇÕES: Esta permissão é essencial, pois empregamos um serviço de primeiro plano para garantir a operação contínua do serviço VPN.\n- Este aplicativo está livre de anúncios. A análise e os dados de travamento só ocorrem com o consentimento explícito do usuário na primeira utilização do aplicativo."
   },
   "connection": {
     "tapToConnect": "Toque para conectar",
     "connecting": "Conectando",
     "disconnecting": "Desconectando",
     "connected": "Conectado",
+    "reconnect": "Reconectar",
+    "connectAnyWay": "Conectar",
     "experimentalNotice": "Recursos experimentais em uso",
     "experimentalNoticeMsg": "Você ativou alguns recursos experimentais que podem afetar a qualidade da conexão e causar erros inesperados. Você sempre pode alterar ou redefinir essas opções na página de opções de configuração.",
-    "disableExperimentalNotice": "Não mostrar novamente"
+    "disableExperimentalNotice": "Não mostrar novamente",
+    "reconnectMsg": "Reconectando por levar em conta as mudanças..."
   },
   "config": {
     "resetBtn": "Redefinir opções",
     "serviceMode": "Modo de serviço",
+    "quickSettings": "Configurações rápidas",
+    "setupWarp": "Configurar WARP",
+    "allOptions": "Todas as opções de configuração",
     "serviceModes": {
       "proxy": "Somente serviço de proxy",
       "systemProxy": "Definir proxy do sistema",
+      "tun": "VPN",
+      "tunService": "Serviço VPN"
+    },
+    "shortServiceModes": {
+      "proxy": "Procuração",
+      "systemProxy": "Proxy do sistema",
       "tun": "VPN",
       "tunService": "Serviço VPN"
     },
@@ -332,9 +360,10 @@
     },
     "generateWarpConfig": "Gerar configuração WARP",
     "missingWarpConfig": "Configuração WARP ausente",
-    "warpConfigGenerated": "Configuração WARP gerada",
+    "warpConfigGenerated": "A configuração WARP é gerada",
     "pageTitle": "Opções de configuração",
     "logLevel": "Nível de registro",
+    "blockAds": "Bloquear anúncios",
     "resolveDestination": "Resolver destino",
     "ipv6Mode": "Rota IPv6",
     "ipv6Modes": {
@@ -348,10 +377,11 @@
     "directDnsAddress": "DNS direto",
     "directDnsDomainStrategy": "Estratégia de Domínio DNS Direto",
     "mixedPort": "Porta Mista",
+    "tproxyPort": "Porta proxy transparente",
     "localDnsPort": "Porta DNS local",
     "allowConnectionFromLan": "Permitir conexão da LAN",
     "tunImplementation": "Implementação TUN",
-    "mtu": "MTU",
+    "mtu": "Tamanho do pacote (MTU)",
     "connectionTestUrl": "URL de teste de conexão",
     "urlTestInterval": "Intervalo de teste de URL",
     "enableClashApi": "Ativar API Clash",
@@ -374,6 +404,8 @@
     "enableWarp": "Habilitar WARP",
     "warpDetourMode": "Modo de desvio",
     "warpDetourModes": {
+      "proxyOverWarp": "Proxies de desvio através do WARP",
+      "warpOverProxy": "Desvio WARP através de proxies",
       "inbound": "Desvie o WARP através de proxies",
       "outbound": "Desviar proxies através do WARP"
     },
@@ -381,6 +413,8 @@
     "warpCleanIp": "Limpar IP",
     "warpPort": "Porta",
     "warpNoise": "Contagem de ruído",
+    "warpNoiseSize": "Tamanho do ruído",
+    "warpNoiseMode": "Modo de ruído",
     "warpNoiseDelay": "Atraso de ruído"
   }
 }

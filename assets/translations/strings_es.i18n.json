@@ -16,7 +16,13 @@
     "agree": "Aceptar",
     "decline": "Rechazar",
     "unknown": "Desconocido",
-    "timeout": "Se acabó el tiempo"
+    "hidden": "Oculto",
+    "timeout": "Se acabó el tiempo",
+    "clipboardExportSuccessMsg": "Añadido al portapapeles",
+    "showMore": "Mostrar más",
+    "showLess": "Muestra menos",
+    "openAppSettings": "Abrir la configuración de la aplicación",
+    "grantPermission": "Conceder permiso"
   },
   "intro": {
     "termsAndPolicyCaution(rich)": "al continuar, aceptas ${tap(@:about.termsAndConditions)}",
@@ -26,6 +32,16 @@
     "pageTitle": "Hogar",
     "emptyProfilesMsg": "Comience agregando un perfil de suscripción",
     "noActiveProfileMsg": "Elige un perfil"
+  },
+  "stats": {
+    "traffic": "Tráfico",
+    "trafficLive": "Tráfico en tiempo real",
+    "trafficTotal": "Tráfico total",
+    "uplink": "Enlace de subida",
+    "downlink": "Enlace de bajada",
+    "connection": "Conexión",
+    "speed": "Velocidad",
+    "totalTransferred": "Total transferido"
   },
   "profile": {
     "overviewPageTitle": "Perfiles",
@@ -39,7 +55,11 @@
       "remainingDuration": "${duration} días restantes",
       "remainingTrafficSemanticLabel": "${consumed} de ${total} Tráfico Consumido",
       "expired": "Caducado",
-      "noTraffic": "Fuera de cuota"
+      "noTraffic": "Fuera de cuota",
+      "upload": "Subir",
+      "download": "Descargar",
+      "total": "Tráfico total",
+      "expireDate": "Fecha de expiración"
     },
     "sortBy": {
       "lastUpdate": "Recientemente actualizado",
@@ -54,9 +74,12 @@
         "permissionDeniedError": "Permiso Denegado",
         "unexpectedError": "Algo salió mal",
         "torchSemanticLabel": "Linterna",
-        "facingSemanticLabel": "Frente a la cámara"
+        "facingSemanticLabel": "Frente a la cámara",
+        "permissionRequest": "Permiso a la cámara para escanear el código QR"
       },
       "manually": "Entrada manual",
+      "addWarp": "Añadir WARP",
+      "addingWarpMsg": "Por favor, espere mientras registramos WARP.",
       "addingProfileMsg": "Agregar perfil",
       "failureMsg": "No se pudo agregar el perfil"
     },
@@ -108,10 +131,22 @@
     "emptyProxiesMsg": "No proxies disponibles",
     "delayTestTooltip": "Prueba de Restraso",
     "sortTooltip": "Ordenar Proxies",
+    "checkIp": "Comprobar IP",
+    "unknownIp": "IP desconocida",
     "sortOptions": {
       "unsorted": "Por Defecto",
       "name": "Alfabéticamente",
       "delay": "Por retraso"
+    },
+    "activeProxySemanticLabel": "Proxy activo",
+    "delaySemantics": {
+      "result": "Retraso: ${delay}ms",
+      "timeout": "Tiempo de espera del Timeout",
+      "testing": "Retraso: Probando..."
+    },
+    "ipInfoSemantics": {
+      "address": "Dirección IP",
+      "country": "País"
     }
   },
   "logs": {
@@ -129,6 +164,10 @@
     "requiresRestartMsg": "Para que esto surta efecto, reinicie la aplicación.",
     "experimental": "Experimental",
     "experimentalMsg": "Las funciones con el indicador Experimental aún están en desarrollo y pueden causar problemas.",
+    "exportOptions": "Copiar opciones anónimas al portapapeles",
+    "exportAllOptions": "Copiar todas las opciones al portapapeles",
+    "importOptions": "Importar opciones desde el portapapeles",
+    "importOptionsMsg": "Esto reescribirá todas las opciones de configuración con los valores proporcionados. ¿Está seguro?",
     "general": {
       "sectionTitle": "General",
       "locale": "Idioma",
@@ -139,6 +178,8 @@
         "cn": "China (CN)",
         "ru": "Rusia (ru)",
         "af": "Afganistán (af)",
+        "id": "Indonesia (id)",
+        "tr": "Turquía (tr) 🇹🇷",
         "other": "Otro"
       },
       "themeMode": "Modo temático",
@@ -155,7 +196,9 @@
       "openWorkingDir": "Abrir directorio de trabajo",
       "ignoreBatteryOptimizations": "Deshabilitar la optimización de la batería",
       "ignoreBatteryOptimizationsMsg": "Elimine las restricciones para un rendimiento VPN óptimo",
-      "dynamicNotification": "Mostrar velocidad en la notificación"
+      "dynamicNotification": "Mostrar velocidad en la notificación",
+      "hapticFeedback": "Respuesta háptica",
+      "autoIpCheck": "Comprobación automática de la IP de conexión"
     },
     "advanced": {
       "sectionTitle": "Avanzado",
@@ -197,7 +240,7 @@
     "pageTitle": "Acerca de",
     "version": "Versión",
     "sourceCode": "Código fuente",
-    "telegramChannel": "Canal de telegramas",
+    "telegramChannel": "Canal de Telegram",
     "checkForUpdate": "Buscar actualizaciones",
     "privacyPolicy": "Política de privacidad",
     "termsAndConditions": "Términos y condiciones"
@@ -276,17 +319,30 @@
     "connecting": "Conectando",
     "disconnecting": "Desconectando",
     "connected": "Conectado",
+    "reconnect": "Reconectar",
+    "connectAnyWay": "Conectar",
     "experimentalNotice": "Funciones experimentales en uso",
     "experimentalNoticeMsg": "Ha habilitado algunas funciones experimentales que podrían afectar la calidad de la conexión y provocar errores inesperados. Siempre puede cambiar o restablecer estas opciones desde la página de opciones de configuración.",
-    "disableExperimentalNotice": "No volver a mostrar"
+    "disableExperimentalNotice": "No volver a mostrar",
+    "reconnectMsg": "Reconectar para tener en cuenta los cambios..."
   },
   "config": {
     "resetBtn": "Restablecer opciones",
     "serviceMode": "Modo de servicio",
+    "quickSettings": "Ajustes rápidos",
+    "setupWarp": "Configurar WARP",
+    "allOptions": "Todas las opciones de configuración",
     "serviceModes": {
       "proxy": "Proxy",
       "systemProxy": "Sistema Proxy",
-      "tun": "VPN"
+      "tun": "VPN",
+      "tunService": "Servicio VPN"
+    },
+    "shortServiceModes": {
+      "proxy": "Proxy",
+      "systemProxy": "Proxy del sistema",
+      "tun": "VPN",
+      "tunService": "Servicio VPN"
     },
     "section": {
       "route": "Opciones de ruta",
@@ -302,8 +358,12 @@
       "title": "Consentimiento WARP de Cloudflare",
       "description(rich)": "Cloudflare WARP es un proveedor de VPN WireGuard gratuito. Al habilitar esta opción, acepta los ${tos(Términos de servicio)} y ${privacy(Política de privacidad)} de Cloudflare WARP."
     },
+    "generateWarpConfig": "Generar configuración WARP",
+    "missingWarpConfig": "Falta la configuración WARP",
+    "warpConfigGenerated": "Se genera la configuración WARP",
     "pageTitle": "Opciones de configuración",
     "logLevel": "Registro del Nivel",
+    "blockAds": "Bloquear anuncios",
     "resolveDestination": "Resolver Destino",
     "ipv6Mode": "Ruta IPv6",
     "ipv6Modes": {
@@ -317,16 +377,17 @@
     "directDnsAddress": "DNS Directo",
     "directDnsDomainStrategy": "Estrategia de dominio DNS directo",
     "mixedPort": "Puerto Mixto",
+    "tproxyPort": "Puerto de proxy transparente",
     "localDnsPort": "Puerto DNS local",
     "allowConnectionFromLan": "Permitir conexión desde LAN",
     "tunImplementation": "Implementación de TUN",
-    "mtu": "MTU",
+    "mtu": "Tamaño de paquete (MTU)",
     "connectionTestUrl": "URL de prueba de conexión",
     "urlTestInterval": "URL Prueba de Intervalo",
     "enableClashApi": "Habilitar API de choque",
     "clashApiPort": "Puerto API de choque",
     "enableTun": "Habilitar sintonización",
-    "setSystemProxy": "Establecer proxy del sistema",
+    "setSystemProxy": "stablecer proxy del sistema",
     "enableDnsRouting": "Habilitar enrutamiento DNS",
     "enableFakeDns": "Habilitar DNS falso",
     "bypassLan": "Omitir LAN",
@@ -343,12 +404,17 @@
     "enableWarp": "Enable WARP",
     "warpDetourMode": "Detour Mode",
     "warpDetourModes": {
+      "proxyOverWarp": "Desvío de proxies a través de WARP",
+      "warpOverProxy": "Desvío de WARP a través de proxies",
       "inbound": "Detour WARP through proxies",
       "outbound": "Detour proxies through WARP"
     },
     "warpLicenseKey": "License Key",
     "warpCleanIp": "Clean IP",
     "warpPort": "Port",
-    "warpNoise": "Noise"
+    "warpNoise": "Noise",
+    "warpNoiseSize": "Tamaño de ruido",
+    "warpNoiseMode": "Modo Ruido",
+    "warpNoiseDelay": "Retraso por ruido"
   }
 }

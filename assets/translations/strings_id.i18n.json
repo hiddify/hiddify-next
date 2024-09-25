@@ -16,7 +16,13 @@
     "agree": "Setuju",
     "decline": "Tolak",
     "unknown": "Tidak Dikenal",
-    "timeout": "Waktu habis"
+    "hidden": "Tersembunyi",
+    "timeout": "Waktu habis",
+    "clipboardExportSuccessMsg": "Ditambahkan ke Papan Klip",
+    "showMore": "Menampilkan lebih banyak",
+    "showLess": "Tampilkan Lebih Sedikit",
+    "openAppSettings": "Buka Pengaturan Aplikasi",
+    "grantPermission": "Memberikan ijin"
   },
   "intro": {
     "termsAndPolicyCaution(rich)": "lanjut berarti setuju dengan ${tap(@:about.termsAndConditions)}",
@@ -29,10 +35,13 @@
   },
   "stats": {
     "traffic": "Trafik Langsung",
+    "trafficLive": "Lalu Lintas Langsung",
     "trafficTotal": "Total Trafik",
     "uplink": "Uplink",
     "downlink": "Downlink",
-    "connection": "Sambungan"
+    "connection": "Sambungan",
+    "speed": "Kecepatan",
+    "totalTransferred": "Jumlah yang Ditransfer"
   },
   "profile": {
     "overviewPageTitle": "Beberapa Profil",
@@ -46,7 +55,11 @@
       "remainingDuration": "Tersisa ${duration} hari lagi",
       "remainingTrafficSemanticLabel": "${consumed}/${total} trafik terpakai",
       "expired": "Kadaluarsa",
-      "noTraffic": "Kuota Habis"
+      "noTraffic": "Kuota Habis",
+      "upload": "Mengunggah",
+      "download": "Unduh",
+      "total": "Jumlah Lalu Lintas",
+      "expireDate": "Tanggal kadaluarsa"
     },
     "sortBy": {
       "lastUpdate": "Baru diperbaharui",
@@ -61,9 +74,12 @@
         "permissionDeniedError": "Izin ditolak",
         "unexpectedError": "Terjadi masalah",
         "torchSemanticLabel": "Lampu Flash",
-        "facingSemanticLabel": "Hadap Kamera"
+        "facingSemanticLabel": "Hadap Kamera",
+        "permissionRequest": "Izin ke kamera untuk memindai Kode QR"
       },
       "manually": "Isian Manual",
+      "addWarp": "Tambahkan WARP",
+      "addingWarpMsg": "Mohon tunggu selagi kami mendaftarkan WARP.",
       "addingProfileMsg": "Tambahkan Profil",
       "failureMsg": "Gagal tambahkan profil"
     },
@@ -115,10 +131,22 @@
     "emptyProxiesMsg": "Tidak ada proxy",
     "delayTestTooltip": "Test delay",
     "sortTooltip": "Urut Proxy",
+    "checkIp": "Periksa IP",
+    "unknownIp": "IP tidak dikenal",
     "sortOptions": {
       "unsorted": "Awal",
       "name": "Alfabetikal",
       "delay": "Berdasarkan Delay"
+    },
+    "activeProxySemanticLabel": "Proksi Aktif",
+    "delaySemantics": {
+      "result": "Penundaan: ${delay}ms",
+      "timeout": "Batas Waktu Uji Tunda",
+      "testing": "Penundaan: Menguji..."
+    },
+    "ipInfoSemantics": {
+      "address": "Alamat IP",
+      "country": "Negara"
     }
   },
   "logs": {
@@ -136,6 +164,10 @@
     "requiresRestartMsg": "Untuk mencoba restart aplikasi",
     "experimental": "Eksperimen",
     "experimentalMsg": "Fitur dengan tanda Eksperimen masih dalam pengembangan dan resiko bermasalah.",
+    "exportOptions": "Salin Opsi Anonim ke Papan Klip",
+    "exportAllOptions": "Salin Semua Opsi ke Clipboard",
+    "importOptions": "Impor Opsi Dari Clipboard",
+    "importOptionsMsg": "Ini akan menulis ulang semua opsi konfigurasi dengan nilai yang diberikan. Apa kamu yakin?",
     "general": {
       "sectionTitle": "Umum",
       "locale": "Bahasa",
@@ -146,6 +178,8 @@
         "cn": "Çin (cn)",
         "ru": "Russia (ru)",
         "af": "Afghanistan (af)",
+        "id": "Indonesia (id)",
+        "tr": "Turki (tr) 🇹🇷",
         "other": "Lainnya"
       },
       "themeMode": "Jenis Tema",
@@ -162,7 +196,9 @@
       "openWorkingDir": "Buka Direktori Kerja",
       "ignoreBatteryOptimizations": "Menonaktifkan Optimisasi Baterai",
       "ignoreBatteryOptimizationsMsg": "Hapus batasan untuk performa VPN yang optimal",
-      "dynamicNotification": "Tampilkan Kecepatan di notifikasi"
+      "dynamicNotification": "Tampilkan Kecepatan di notifikasi",
+      "hapticFeedback": "Umpan Balik Haptik",
+      "autoIpCheck": "Secara Otomatis Memeriksa IP Koneksi"
     },
     "advanced": {
       "sectionTitle": "Mode Lanjut",
@@ -283,17 +319,30 @@
     "connecting": "Sambungkan",
     "disconnecting": "Putus Sambungan",
     "connected": "Tersambung",
+    "reconnect": "Hubungkan kembali",
+    "connectAnyWay": "Menghubung",
     "experimentalNotice": "Fitur Experimental digunakan",
     "experimentalNoticeMsg": "Kamu telah mengaktifkan fitur experimental yang mungkin mempengaruhi kualitas sambungan dan error tidak terduga. Kamu tetap bisa merubah atau set ulang opsi dari Halaman Konfigurasi",
-    "disableExperimentalNotice": "Jangan tampil lagi"
+    "disableExperimentalNotice": "Jangan tampil lagi",
+    "reconnectMsg": "Menghubungkan kembali untuk memperhitungkan perubahan..."
   },
   "config": {
     "resetBtn": "Set Ulang Opsi",
     "serviceMode": "Sambung ulang agar perubahan diterapkan",
+    "quickSettings": "Pengaturan Cepat",
+    "setupWarp": "Siapkan WARP",
+    "allOptions": "Semua Opsi Konfigurasi",
     "serviceModes": {
       "proxy": "Proxy",
       "systemProxy": "Sistem Proxy",
-      "tun": "VPN"
+      "tun": "VPN",
+      "tunService": "Layanan VPN"
+    },
+    "shortServiceModes": {
+      "proxy": "Proksi",
+      "systemProxy": "Proksi Sistem",
+      "tun": "VPN",
+      "tunService": "Layanan VPN"
     },
     "section": {
       "route": "Opsi Route",
@@ -309,8 +358,12 @@
       "title": "Persetujuan Cloudflare WARP",
       "description(rich)": "Cloudflare WARP adalah WireGuard VPN Provider gratis. Dengan mengaktifkan opsi/pilihan ini berarti kamu setuju pada Cloudflare WARP's ${tos(Terms of Service)} dan ${privacy(Privacy Policy)}."
     },
+    "generateWarpConfig": "Hasilkan Konfigurasi WARP",
+    "missingWarpConfig": "Konfigurasi WARP tidak ada",
+    "warpConfigGenerated": "Konfigurasi WARP Dibuat",
     "pageTitle": "Opsi Konfig",
     "logLevel": "Log Level",
+    "blockAds": "Blokir Iklan",
     "resolveDestination": "Resolve Destination",
     "ipv6Mode": "IPv6 Route",
     "ipv6Modes": {
@@ -324,10 +377,11 @@
     "directDnsAddress": "Direct DNS",
     "directDnsDomainStrategy": "Direct DNS Domain Strategy",
     "mixedPort": "Mixed Port",
+    "tproxyPort": "Port Proksi Transparan",
     "localDnsPort": "DNS Port Lokal",
     "allowConnectionFromLan": "Perbolehkan Sambungan LAN",
     "tunImplementation": "Implementasi TUN",
-    "mtu": "MTU",
+    "mtu": "Ukuran Paket (MTU)",
     "connectionTestUrl": "URL Tes Sambungan",
     "urlTestInterval": "URL Test Interval",
     "enableClashApi": "Aktifkan Clash API",
@@ -350,12 +404,17 @@
     "enableWarp": "Enable WARP",
     "warpDetourMode": "Detour Mode",
     "warpDetourModes": {
+      "proxyOverWarp": "Memutar Proxy Melalui WARP",
+      "warpOverProxy": "Jalan memutar WARP Melalui Proxy",
       "inbound": "Detour WARP through proxies",
       "outbound": "Detour proxies through WARP"
     },
     "warpLicenseKey": "License Key",
     "warpCleanIp": "Clean IP",
     "warpPort": "Port",
-    "warpNoise": "Noise"
+    "warpNoise": "Noise",
+    "warpNoiseSize": "Ukuran Kebisingan",
+    "warpNoiseMode": "Modus Kebisingan",
+    "warpNoiseDelay": "Penundaan Kebisingan"
   }
 }
