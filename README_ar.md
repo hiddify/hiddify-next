@@ -1,6 +1,6 @@
 <div dir="ltr">
     
-[**![Lang_farsi](https://user-images.githubusercontent.com/125398461/234186932-52f1fa82-52c6-417f-8b37-08fe9250a55f.png) فارسی**](README_fa.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**Русский 🇷🇺**](README_ru.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**简体中文 🇨🇳**](README_cn.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**日本語 🇯🇵**](README_ja.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**Portugês-BR 🇧🇷**](README_br.md)
+[**![Lang_farsi](https://user-images.githubusercontent.com/125398461/234186932-52f1fa82-52c6-417f-8b37-08fe9250a55f.png) فارسی**](README_fa.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**عربي 🇾🇪**](README_ar.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**Русский 🇷🇺**](README_ru.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**简体中文 🇨🇳**](README_cn.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**日本語 🇯🇵**](README_ja.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**Portugês-BR 🇧🇷**](README_br.md)
 
 </div>
 <br>
@@ -22,41 +22,39 @@
 
 
 
-## What is Hiddify app?
-
-<p dir="ltr" style="font-size: 16px">A multi-platform proxy client based on <a href="https://github.com/SagerNet/sing-box">Sing-box</a> universal proxy tool-chain. Hiddify offers a wide range of capabilities, like automatic node selection, TUN mode, remote profiles etc. Hiddify is ad-free and open-source. With support for a wide range of protocols, it provides a secure and private way for accessing free internet.</p>
+## ماهو تطبيق Hiddify?
+<h2 dir="rtl" style="font-size: 16px">عميل وكيل متعدد المنصات يعتمد على أداة <a href="https://github.com/SagerNet/sing-box">Sing-box</a> الشاملة لسلسلة أدوات الوكيل. يقدم Hiddify مجموعة واسعة من القدرات، مثل اختيار العقد التلقائي، وضع TUN، الملفات الشخصية البعيدة وغيرها. Hiddify خالٍ من الإعلانات ومفتوح المصدر. مع دعمه لمجموعة واسعة من البروتوكولات، يوفر وسيلة آمنة وخاصة للوصول إلى الإنترنت المجاني.</h2>
 
 <div align=center>
-<img width=90% alt="English Demo" src="https://github.com/hiddify/hiddify-next/assets/125398461/ffe5346d-3404-470f-b5e0-4364e23743d2">
-
+<img width=90% alt="عرض توضيحي بالإنجليزية" src="https://github.com/hiddify/hiddify-next/assets/125398461/ffe5346d-3404-470f-b5e0-4364e23743d2">
 </div>
 
-## 🚀 Main features
+## 🚀 الميزات الرئيسية
 
-✈️ Multi-platform: Android, iOS, Windows, macOS and Linux
+✈️ متعدد المنصات: يعمل على أندرويد، iOS، ويندوز، macOS، ولينكس
 
-⭐ Intuitive and accessible UI
+⭐ واجهة مستخدم بديهية وسهلة الوصول
 
-🔍 Delay based node selection
+🔍 اختيار العقد بناءً على التأخير
 
-🟡 Wide range of protocols:
-Vless, Vmess, Reality, TUIC, Hysteria, Wireguard, SSH etc.
+🟡 مجموعة واسعة من البروتوكولات:
+Vless، Vmess، Reality، TUIC، Hysteria، Wireguard، SSH وغيرها
 
-🟡 Subscription link and configuration formats: Sing-box, V2ray, Clash, Clash meta
+🟡 روابط الاشتراك وصيغ التكوين: Sing-box، V2ray، Clash، Clash meta
 
-🔄 Automatic subscription update
+🔄 تحديث الاشتراكات تلقائيًا
 
-🔎 Display profile information including remaining days and traffic usage
+🔎 عرض معلومات الملف الشخصي بما في ذلك الأيام المتبقية واستهلاك البيانات
 
-🛡 Open source, secure and community driven
+🛡 مفتوح المصدر، آمن ومدعوم من المجتمع
 
-🌙 Dark and light modes
+🌙 أوضاع مظلمة وفاتحة
 
-⚙ Compatible with all proxy management panels
+⚙ متوافق مع جميع لوحات إدارة الوكلاء
 
-⭐ Appropriate configuration for Iran, China, Russia and other countries
+⭐ إعداد مناسب لإيران، الصين، روسيا ودول أخرى
 
-📱 Available on official stores
+📱 متوفر في المتاجر الرسمية
 
 ## 🛍️ Get It On Stores
 <a href="https://play.google.com/store/apps/details?id=app.hiddify.com"><img height=50px src="https://github.com/hiddify/hiddify-next/blob/main/docs/google-play-badge.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
