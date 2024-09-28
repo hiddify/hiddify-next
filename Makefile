@@ -240,10 +240,10 @@ release: # Create a new tag for release.
 	VERSION_STR="$${VERSION_ARRAY[0]}.$${VERSION_ARRAY[1]}.$${VERSION_ARRAY[2]}" && \
 	BUILD_NUMBER=$$(( $${VERSION_ARRAY[0]} * 10000 + $${VERSION_ARRAY[1]} * 100 + $${VERSION_ARRAY[2]} )) && \
 	echo "version: $${VERSION_STR}+$${BUILD_NUMBER}" && \
-	sed -i "" "s/^version: .*/version: $${VERSION_STR}\+$${BUILD_NUMBER}/g" pubspec.yaml && \
-	sed -i "" "s/^msix_version: .*/msix_version: $${VERSION_ARRAY[0]}.$${VERSION_ARRAY[1]}.$${VERSION_ARRAY[2]}.0/g" windows/packaging/msix/make_config.yaml && \
-	sed -i "" "s/CURRENT_PROJECT_VERSION = $${cbuild_number}/CURRENT_PROJECT_VERSION = $${BUILD_NUMBER}/g" ios/Runner.xcodeproj/project.pbxproj && \
-	sed -i "" "s/MARKETING_VERSION = $${cstr_version}/MARKETING_VERSION = $${VERSION_STR}/g" ios/Runner.xcodeproj/project.pbxproj && \
+	sed -i "s/^version: .*/version: $${VERSION_STR}\+$${BUILD_NUMBER}/g" pubspec.yaml && \
+	sed -i "s/^msix_version: .*/msix_version: $${VERSION_ARRAY[0]}.$${VERSION_ARRAY[1]}.$${VERSION_ARRAY[2]}.0/g" windows/packaging/msix/make_config.yaml && \
+	sed -i "s/CURRENT_PROJECT_VERSION = $${cbuild_number}/CURRENT_PROJECT_VERSION = $${BUILD_NUMBER}/g" ios/Runner.xcodeproj/project.pbxproj && \
+	sed -i "s/MARKETING_VERSION = $${cstr_version}/MARKETING_VERSION = $${VERSION_STR}/g" ios/Runner.xcodeproj/project.pbxproj && \
 	git tag $${TAG} > /dev/null && \
 	gitchangelog > HISTORY.md || { git tag -d $${TAG}; echo "Please run pip install gitchangelog pystache mustache markdown"; exit 2; } && \
 	git tag -d $${TAG} > /dev/null && \
