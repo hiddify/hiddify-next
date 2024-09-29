@@ -73,7 +73,7 @@ class MethodHandler(private val scope: CoroutineScope) : FlutterPlugin,
                 }
             }
 
-            Trigger.ChangeHiddifyOptions.method -> {
+            Trigger.changeHiddifyOptions.method -> {
                 scope.launch {
                     result.runCatching {
                         val args = call.arguments as String
