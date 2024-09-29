@@ -1,7 +1,18 @@
 # Changelog
 
 
-## 2.5.2 (2024-09-29)
+## 2.5.5 (2024-09-29)
+
+#### Other
+
+* Merge pull request #1368 from tarzst/main. 
+  _Update RU translations_
+
+* Chore: update translations with Fink 🐦 
+
+
+
+## v2.5.2 (2024-09-29)
 
 #### Fix
 

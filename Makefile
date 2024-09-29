@@ -220,7 +220,7 @@ build-ios-libs:
 	mv $(BINDIR)/Libcore.xcframework $(IOS_OUT)/Libcore.xcframework
 
 release: # Create a new tag for release.
-	@CORE_VERSION=$(core.version) .github/change_version.sh 
+	@CORE_VERSION=$(core.version) bash -c ".github/change_version.sh "
 
 
 
