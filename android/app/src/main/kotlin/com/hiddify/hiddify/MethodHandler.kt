@@ -13,6 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.io.File
 
 class MethodHandler(private val scope: CoroutineScope) : FlutterPlugin,
     MethodChannel.MethodCallHandler {
@@ -54,8 +55,20 @@ class MethodHandler(private val scope: CoroutineScope) : FlutterPlugin,
             Trigger.Setup.method -> {
                 GlobalScope.launch {
                     result.runCatching {
-                        Mobile.setup()
-                        success("")
+                           val baseDir = Application.application.filesDir                
+                            baseDir.mkdirs()
+                            val workingDir = Application.application.getExternalFilesDir(null)
+                            workingDir?.mkdirs()
+                            val tempDir = Application.application.cacheDir
+                            tempDir.mkdirs()
+                            Log.d(TAG, "base dir: ${baseDir.path}")
+                            Log.d(TAG, "working dir: ${workingDir?.path}")
+                            Log.d(TAG, "temp dir: ${tempDir.path}")
+                            
+                            Mobile.setup(baseDir.path, workingDir?.path, tempDir.path, false)
+                            Libbox.redirectStderr(File(workingDir, "stderr2.log").path)
+
+                            success("")
                     }
                 }
             }
