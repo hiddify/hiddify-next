@@ -5,6 +5,8 @@ import 'package:hiddify/core/localization/locale_extensions.dart';
 import 'package:hiddify/core/localization/locale_preferences.dart';
 import 'package:hiddify/core/localization/translations.dart';
 import 'package:hiddify/core/model/region.dart';
+import 'package:hiddify/core/preferences/actions_at_closing.dart';
+import 'package:hiddify/core/preferences/general_preferences.dart';
 import 'package:hiddify/core/theme/app_theme_mode.dart';
 import 'package:hiddify/core/theme/theme_preferences.dart';
 import 'package:hiddify/features/config_option/data/config_option_repository.dart';
@@ -172,6 +174,46 @@ class ThemeModePrefTile extends ConsumerWidget {
         );
         if (selectedThemeMode != null) {
           await ref.read(themePreferencesProvider.notifier).changeThemeMode(selectedThemeMode);
+        }
+      },
+    );
+  }
+}
+
+class ClosingPrefTile extends ConsumerWidget {
+  const ClosingPrefTile({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = ref.watch(translationsProvider);
+
+    final action = ref.watch(Preferences.actionAtClose);
+
+    return ListTile(
+      title: Text(t.settings.general.actionAtClosing),
+      subtitle: Text(action.present(t)),
+      leading: const Icon(FluentIcons.arrow_exit_20_regular),
+      onTap: () async {
+        final selectedAction = await showDialog<ActionsAtClosing>(
+          context: context,
+          builder: (context) {
+            return SimpleDialog(
+              title: Text(t.settings.general.actionAtClosing),
+              children: ActionsAtClosing.values
+                  .map(
+                    (e) => RadioListTile(
+                      title: Text(e.present(t)),
+                      value: e,
+                      groupValue: action,
+                      onChanged: Navigator.of(context).maybePop,
+                    ),
+                  )
+                  .toList(),
+            );
+          },
+        );
+        if (selectedAction != null) {
+          await ref.read(Preferences.actionAtClose.notifier).update(selectedAction);
         }
       },
     );
