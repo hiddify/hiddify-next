@@ -225,7 +225,16 @@ Hiddify is a community driven project. If you're interested in contributing, ple
   </picture>
 </a>
 
-<!-- Made with [OSS Insight](https://ossinsight.io/) -->
+<!-- Made with [<!-- Copy-paste in your Readme.md file -->
+
+<a href="https://next.ossinsight.io/widgets/official/analyze-repo-stars-history?repo_id=643504282" target="_blank" style="display: block" align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://next.ossinsight.io/widgets/official/analyze-repo-stars-history/thumbnail.png?repo_id=643504282&image_size=auto&color_scheme=dark" width="721" height="auto">
+    <img alt="Star History of hiddify/hiddify-app" src="https://next.ossinsight.io/widgets/official/analyze-repo-stars-history/thumbnail.png?repo_id=643504282&image_size=auto&color_scheme=light" width="721" height="auto">
+  </picture>
+</a>
+
+<!-- Made with [OSS Insight](https://ossinsight.io/) -->OSS Insight](https://ossinsight.io/) -->
 
 <!-- Copy-paste in your Readme.md file -->
 
