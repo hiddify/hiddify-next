@@ -1,7 +1,6 @@
 <div dir="ltr">
 
-[**![Lang_farsi](https://user-images.githubusercontent.com/125398461/234186932-52f1fa82-52c6-417f-8b37-08fe9250a55f.png) فارسی**](README_fa.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**Русский 🇷🇺**](README_ru.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**简体中文 🇨🇳**](README_cn.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**English 🇺🇸**](README.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**Portugês-BR 🇧🇷**](README_br.md)
-
+<p align="center"> 	<a href="./README.md"> 	English 	</a> 	\ 	 <a href="./README_ru.md"> Русский </a>  \  <a href="./README_cn.md"> 	简体中文 	</a>  \  <a href="./README_ja.md"> 	日本語 	</a>  \  <a href="./README_br.md"> 	Portugês-BR 	</a>  \  <a href="./README_ar.md"> 	اَلْعَرَبِيَّةُ 	</a>  \  <a href="./README_fa.md"> 	فارسی 	</a> </p>
 
 </div>
 <br>
