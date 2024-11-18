@@ -12,28 +12,225 @@
     "sort": "စီစဉ်မှု",
     "sortBy": "အလိုက်စဥ်ခြင်း",
     "addToClipboard": "ကလစ်ဘုတ်သို့ ပေါင်းထည့်ရန်",
+    "notSet": "မသတ်မှတ်ထားပါ",
     "agree": "သဘောတူ",
     "decline": "ငြင်းပယ်",
     "unknown": "မသိရှိ",
     "hidden": "ဝှက်ထားသော",
+    "timeout": "အချိန်ကုန်",
+    "clipboardExportSuccessMsg": "ကလစ်ဘုတ်သို့ ပေါင်းထည့်ပြီး",
     "showMore": "ပိုမို ပြသရန်",
     "showLess": "အနည်းငယ်သာ ပြသရန်",
+    "openAppSettings": "အက်ပ် အပြင်အဆင်များ ဖွင့်ရန်",
     "grantPermission": "လုပ်ဆောင်ခွင့်ပြုရန်"
   },
   "intro": {
+    "termsAndPolicyCaution(rich)": "ဆက်လက်လုပ်ဆောင်ခြင်းဖြင့် သင်သည် ${tap(@:about.termsAndConditions)} ဖြင့် သဘောတူသည်။",
     "start": "စတင်ရန်"
+  },
+  "home": {
+    "pageTitle": "ပင်မ",
+    "emptyProfilesMsg": "စာရင်းသွင်းမှု ပရိုဖိုင်ကို ထည့်ခြင်းဖြင့် စတင်ပါ။",
+    "noActiveProfileMsg": "ပရိုဖိုင် တစ်ခုကို ရွေးပါ။"
   },
   "stats": {
     "traffic": "အသွားအလာ",
     "trafficLive": "လက်ရှိ အသွားအလာ",
     "trafficTotal": "စုစုပေါင်း အသွားအလာ",
+    "uplink": "Uplink",
+    "downlink": "Downlink",
     "connection": "ချိတ်ဆက်မှု",
     "speed": "အမြန်နှုန်း",
     "totalTransferred": "စုစုပေါင်း ပြောင်းရွှေ့မှု"
   },
   "profile": {
+    "overviewPageTitle": "ပရိုဖိုင်များ",
+    "detailsPageTitle": "ပရိုဖိုင်",
+    "activeProfileNameSemanticLabel": "သက်ဝင်နေသော ပရိုဖိုင်အမည်: \"${name}\"။",
+    "activeProfileBtnSemanticLabel": "ပရိုဖိုင်များ အားလုံး ကြည့်ရန်",
+    "nonActiveProfileBtnSemanticLabel": "သက်ဝင်သော ပရိုဖိုင် အဖြစ် \"${name}\" ကို ရွေးပါ။",
     "subscription": {
-      "traffic": "အသွားအလာ"
+      "traffic": "အသွားအလာ",
+      "updatedTimeAgo": "${timeago} က မွမ်းမံခဲ့သည်",
+      "remainingDuration": "${duration} ရက် ကျန်သေးသည်",
+      "remainingTrafficSemanticLabel": "${total} ၏ ${consumed} အသွားအလာ သုံးစွဲပြီး",
+      "expired": "သက်တမ်းကုန်",
+      "noTraffic": "Quota ထဲက",
+      "upload": "အပ်လုပ်",
+      "download": "ဒေါင်းလုပ်",
+      "total": "စုစုပေါင်း အသွားအလာ",
+      "expireDate": "ကုန်ဆုံးရက်"
+    },
+    "sortBy": {
+      "lastUpdate": "မကြာသေးမီက မွမ်းမံခဲ့သည်",
+      "name": "အက္ခရာစဉ်"
+    },
+    "add": {
+      "buttonText": "ပရိုဖိုင်အသစ်",
+      "shortBtnTxt": "ပရိုဖိုင်အသစ်",
+      "fromClipboard": "ကလစ်ဘုတ်မှ ပေါင်းထည့်ရန်",
+      "scanQr": "ကျူအာကုဒ်အား စကင်န်ဖတ်ရန်",
+      "qrScanner": {
+        "permissionDeniedError": "ခွင့်တောင်းမှုငြင်းဆိုခြင်း",
+        "unexpectedError": "တစ်ခုခုမှားသွားသည်",
+        "torchSemanticLabel": "ဖလက်ရှ်မီး",
+        "facingSemanticLabel": "ကင်မရာမျက်နှာစာ",
+        "permissionRequest": "ကျူအာကုဒ် စကင်န်ဖတ်ရန် ကင်မရာအား ခွင့်ပြုချက်"
+      },
+      "manually": "လက်ဖြင့် ထည့်သွင်းရန်",
+      "addWarp": "WARP ပေါင်းထည့်ရန်",
+      "addingWarpMsg": "ကျွန်ုပ်တို့ WARP အားစာရင်းသွင်းနေစဉ် ကျေးဇူးပြု၍ စောင့်ပါ။",
+      "addingProfileMsg": "ပရိုဖိုင် ထည့်သွင်းခြင်း",
+      "failureMsg": "ပရိုဖိုင် ပေါင်းထည့်မှု မအောင်မြင်ပါ"
+    },
+    "update": {
+      "buttonTxt": "မွမ်းမံ",
+      "tooltip": "ပရိုဖိုင်အား မွမ်းမံရန်",
+      "updateSubscriptions": "စာရင်းသွင်းမှုများကို အပ်ဒိတ်လုပ်ရန်",
+      "failureMsg": "ပရိုဖိုင်အား မွမ်းမံရန် မအောင်မြင်ပါ",
+      "successMsg": "ပရိုဖိုင်အား အောင်မြင်စွာ မွမ်းမံပြီးပြီ",
+      "namedFailureMsg": "\"${name}\" အား မွမ်းမံရန် မအောင်မြင်ပါ",
+      "namedSuccessMsg": "\"${name}\" အား အောင်မြင်စွာ မွမ်းမံခဲ့သည်"
+    },
+    "share": {
+      "buttonText": "မျှဝေရန်",
+      "exportToClipboardSuccess": "ကလစ်ဘုတ်သို့ တင်ပို့ပြီးပြီ",
+      "exportSubLinkToClipboard": "စာရင်းသွင်းမှု လင့်ခ်အား ကလစ်ဘုတ်သို့ တင်ပို့ရန်",
+      "subLinkQrCode": "စာရင်းသွင်းလင့်ခ် ကျူအာကုဒ်",
+      "exportConfigToClipboard": "အပြင်အဆင်များအား ကလစ်ဘုတ်သို့ တင်ပို့ရန်",
+      "exportConfigToClipboardSuccess": "ကလစ်ဘုတ်သို့ အပြင်အဆင်များ ကူးယူပြီးပြီ"
+    },
+    "edit": {
+      "buttonTxt": "တည်းဖြတ်",
+      "selectActiveTxt": "သက်ဝင်ပရိုဖိုင် ရွေးချယ်ရန်"
+    },
+    "delete": {
+      "buttonTxt": "ဖျက်",
+      "confirmationMsg": "ပရိုဖိုင်အား အပြီးတိုင် ဖျက်မည်လော",
+      "successMsg": "ပရိုဖိုင်အား အောင်မြင်စွာ ဖျက်ပြီးပြီ"
+    },
+    "save": {
+      "buttonText": "သိမ်းဆည်း",
+      "successMsg": "ပရိုဖိုင်အား အောင်မြင်စွာ သိမ်းဆည်းပြီးပြီ",
+      "failureMsg": "ပရိုဖိုင်အား သိမ်းဆည်းရန် မအောင်မြင်ပါ"
+    },
+    "detailsForm": {
+      "nameLabel": "အမည်",
+      "nameHint": "ပရိုဖိုင်အမည်",
+      "urlLabel": "URL",
+      "urlHint": "Config URL အပြည့်အစုံ",
+      "emptyNameMsg": "အမည် လိုအပ်သည်",
+      "invalidUrlMsg": "မရေရာသော URL",
+      "lastUpdate": "နောက်ဆုံး မွမ်းမံမှု",
+      "updateInterval": "အလိုအလျောက် မွမ်းမံ",
+      "updateIntervalDialogTitle": "အလိုအလျောက် မွမ်းမံမှု အပိုင်းအခြား (နာရီဖြင့်)"
     }
+  },
+  "proxies": {
+    "pageTitle": "ပရောက်စီများ",
+    "emptyProxiesMsg": "ပရောက်စီများ မရနိုင်ပါ",
+    "delayTestTooltip": "စမ်းသပ်မှုနှောင့်နှေး",
+    "sortTooltip": "ပရောက်စီများ စီစဉ်",
+    "checkIp": "အိုင်ပီ စစ်ဆေး",
+    "unknownIp": "မသိရှိရသော အိုင်ပီ",
+    "sortOptions": {
+      "unsorted": "ပုံသေ",
+      "name": "အက္ခရာစဉ်ဖြင့်",
+      "delay": "နှောင့်နှေးမှုဖြင့်"
+    },
+    "activeProxySemanticLabel": "သက်ဝင်နေသော ပရောက်စီ",
+    "delaySemantics": {
+      "result": "နှောင့်နှေး: ${delay}ms"
+    },
+    "ipInfoSemantics": {
+      "address": "အိုင်ပီလိပ်စာ",
+      "country": "နိုင်ငံ"
+    }
+  },
+  "logs": {
+    "pageTitle": "မှတ်တမ်းများ",
+    "filterHint": "စိစစ်မှု",
+    "allLevelsFilter": "အားလုံး",
+    "clearTooltip": "ရှင်းလင်း"
+  },
+  "settings": {
+    "pageTitle": "အပြင်အဆင်များ",
+    "experimental": "စမ်းသပ်ခြင်း",
+    "general": {
+      "sectionTitle": "အထွေထွေ",
+      "locale": "ဘာသာစကား",
+      "region": "ဒေသ",
+      "regions": {
+        "ir": "အီရန် (ir) 🇮🇷",
+        "cn": "တရုတ် (cn) 🇨🇳",
+        "ru": "ရုရှား (ru) 🇷🇺",
+        "af": "အာဖဂန်နစ္စတန် (af) 🇦🇫",
+        "id": "အင်ဒိုနီးရှား (id) 🇮🇩",
+        "tr": "တူရကီ (tr) 🇹🇷",
+        "br": "ဘရာဇီးလ် (br) 🇧🇷",
+        "other": "အခြား"
+      },
+      "themeModes": {
+        "dark": "အမှောင်မုဒ်",
+        "black": "အမည်းမုဒ်"
+      },
+      "actionsAtClosing": {
+        "hide": "ဝှက်ရန်",
+        "exit": "ထွက်ရန်"
+      }
+    },
+    "network": {
+      "perAppProxyModes": {
+        "off": "အားလုံး",
+        "include": "ပရောက်စီ"
+      }
+    },
+    "geoAssets": {
+      "update": "မွမ်းမံ",
+      "download": "ဒေါင်းလုပ်"
+    }
+  },
+  "about": {
+    "pageTitle": "အကြောင်း",
+    "version": "ဗားရှင်း",
+    "sourceCode": "ရင်းမြစ်ကုဒ်",
+    "telegramChannel": "တယ်လီဂရမ် ချန်နယ်",
+    "checkForUpdate": "မွမ်းမံရန် စစ်ဆေး",
+    "privacyPolicy": "ကိုယ်ရေးမူဝါဒ",
+    "termsAndConditions": "သတ်မှတ်ချက်များ"
+  },
+  "appUpdate": {
+    "dialogTitle": "မွမ်းမံခြင်း ရနိုင်သည်",
+    "currentVersionLbl": "လက်ရှိ ဗားရှင်း",
+    "newVersionLbl": "ဗားရှင်း အသစ်",
+    "updateNowBtnTxt": "ယခု မွမ်းမံရန်",
+    "laterBtnTxt": "နောက်မှ",
+    "ignoreBtnTxt": "လစ်လျူရှု"
+  },
+  "tray": {
+    "quit": "ထွက်ရန်",
+    "open": "ဖွင့်ရန်",
+    "status": {
+      "connect": "ချိတ်ဆက်ရန်",
+      "connecting": "ချိတ်ဆက်နေသည်",
+      "disconnect": "ချိတ်ဆက်မှုဖြုတ်ရန်",
+      "disconnecting": "ချိတ်ဆက်မှုဖြုတ်နေသည်"
+    }
+  },
+  "failure": {
+    "unexpected": "မမျှော်လင့်သော အမှား",
+    "clash": {
+      "unexpected": "မမျှော်လင့်သော အမှား"
+    },
+    "profiles": {
+      "unexpected": "မမျှော်လင့်သော အမှား"
+    }
+  },
+  "connection": {
+    "connecting": "ချိတ်ဆက်နေသည်",
+    "connected": "ချိတ်ဆက်ထားသည်",
+    "reconnect": "ပြန်လည်ချိတ်ဆက်ရန်",
+    "connectAnyWay": "ချိတ်ဆက်ရန်",
+    "disableExperimentalNotice": "နောက်တစ်ခါ မပြပါနှင့်"
   }
 }
