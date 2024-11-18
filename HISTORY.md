@@ -1,7 +1,141 @@
 # Changelog
 
 
-## 2.2.0 (2024-08-21)
+## 2.5.7 (2024-10-03)
+
+#### Other
+
+* Merge pull request #1382 from TheLastFlame/main. 
+  _Remembering window closing action_
+
+* Feat: add action options for closing the application. 
+
+* Chore: update .gitignore to exclude /data directory. 
+
+* Refactor: replace HookConsumerWidget with ConsumerWidget and add ThemeModePrefTile. 
+
+
+
+## v2.5.6 (2024-10-02)
+
+#### Fix
+
+* Version bug. 
+
+* Version bug. 
+
+
+
+## v2.5.5 (2024-09-29)
+
+#### Other
+
+* Merge pull request #1368 from tarzst/main. 
+  _Update RU translations_
+
+* Chore: update translations with Fink 🐦 
+
+
+
+## v2.5.2 (2024-09-29)
+
+#### Fix
+
+* Typo. 
+
+
+
+## v2.5.1 (2024-09-29)
+
+#### Fix
+
+* Exception. 
+
+* Version. 
+
+
+
+## v2.5.0 (2024-09-28)
+
+#### Other
+
+* Merge pull request #1335 from laperuz92/patch-1. 
+  _Update russian translations_
+
+* Update russian translations. 
+
+* Merge pull request #1328 from yxiZo/main. 
+  _Update translations_
+
+* Chore: update translations with Fink 🐦 
+
+* Merge pull request #1322 from andythesilly/main. 
+  _set edgeToEdge ui mode_
+
+* Chore: update translations with Fink 🐦 
+
+* Set edgeToEdge ui mode. 
+
+
+
+## v2.3.1 (2024-09-07)
+
+#### Fix
+
+* Android. 
+
+#### Other
+
+* Merge branch 'main' of https://github.com/hiddify/hiddify-next. 
+
+* Change name to hiddifypackettunnel. 
+
+* Fix android build issue. 
+
+
+
+## v2.3.0 (2024-09-02)
+
+#### New
+
+* Add brazil region. 
+
+#### Fix
+
+* Black screenn when press back button. 
+
+#### Other
+
+* Hide back icon when no back. 
+
+* Merge pull request #1277 from sillydillydiddy/main. 
+  _Update translations_
+
+* Chore: update translations with Fink 🐦 
+
+* Merge pull request #1282 from vedantmgoyal9/patch-1. 
+  _Update winget-releaser to latest_
+
+* Update winget.yml. 
+
+* Update winget.yml. 
+
+* Update winget-releaser to latest. 
+
+* Merge pull request #1278 from tensionc/main. 
+  _fix: Black screenn when press back button_
+
+* Merge remote-tracking branch 'origin/main' 
+
+* Update warp. 
+
+* Update warp. 
+
+* Revert: Keep button, add judgment. 
+
+
+
+## v2.2.0 (2024-08-21)
 
 #### New
 
@@ -14,6 +148,8 @@
 * Default tun mode to gvisor. 
 
 #### Fix
+
+* Bug. 
 
 * Some hard coded items. 
 

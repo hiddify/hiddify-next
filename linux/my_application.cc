@@ -68,6 +68,8 @@ static void my_application_activate(GApplication *application)
   gtk_container_add(GTK_CONTAINER(window), GTK_WIDGET(view));
 
   fl_register_plugins(FL_PLUGIN_REGISTRY(view));
+  // Flutter 3.24 breaks the gtk_widget_realize solution: https://github.com/leanflutter/window_manager/issues/179#issuecomment-2299534856
+  gtk_widget_hide(GTK_WIDGET(window));
 
   gtk_widget_grab_focus(GTK_WIDGET(view));
   
@@ -137,6 +139,6 @@ MyApplication *my_application_new()
 {
   return MY_APPLICATION(g_object_new(my_application_get_type(),
                                      "application-id", APPLICATION_ID,
-                                     "flags", G_APPLICATION_FLAGS_NONE,
+                                     "flags", G_APPLICATION_DEFAULT_FLAGS,
                                      nullptr));
 }

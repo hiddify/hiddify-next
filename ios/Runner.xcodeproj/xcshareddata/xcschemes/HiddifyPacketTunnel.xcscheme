@@ -16,8 +16,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "03E392B52ADDA00E000ADF15"
-               BuildableName = "SingBoxPacketTunnel.appex"
-               BlueprintName = "SingBoxPacketTunnel"
+               BuildableName = "HiddifyPacketTunnel.appex"
+               BlueprintName = "HiddifyPacketTunnel"
                ReferencedContainer = "container:Runner.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

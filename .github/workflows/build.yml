@@ -83,11 +83,11 @@ jobs:
             aarch: universal
             targets: dmg,pkg
             
-          - platform: ios
-            os: macos-14
-            aarch: universal
-            filename: hiddify-ios
-            targets: ipa
+          # - platform: ios
+          #   os: macos-14
+          #   aarch: universal
+          #   filename: hiddify-ios
+          #   targets: ipa
     runs-on: ${{ matrix.os }}
     steps:
       - name: checkout

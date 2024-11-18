@@ -40,13 +40,15 @@ class NestedAppBar extends StatelessWidget {
                 RootScaffold.stateKey.currentState?.openDrawer();
               },
             )
-          : IconButton(
-              icon: Icon(context.isRtl ? Icons.arrow_forward : Icons.arrow_back),
-              padding: EdgeInsets.only(right: context.isRtl ? 50 : 0),
-              onPressed: () {
-                Navigator.of(context).pop(); // Pops the current route off the navigator stack
-              },
-            ),
+          : (Navigator.of(context).canPop()
+              ? IconButton(
+                  icon: Icon(context.isRtl ? Icons.arrow_forward : Icons.arrow_back),
+                  padding: EdgeInsets.only(right: context.isRtl ? 50 : 0),
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Pops the current route off the navigator stack
+                  },
+                )
+              : null),
       title: title,
       actions: actions,
       pinned: pinned,

@@ -1,11 +1,11 @@
-<div align="left" markdown="1" dir="ltr">
+<div align="center" markdown="1" dir="ltr">
 
-[**🇺🇸 English**](README.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**🇨🇳 简体中文**](README_cn.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**🇷🇺 Русский**](README_ru.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**🇯🇵 日本語**](README_ja.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**🇧🇷 Portugês-BR**](README_br.md)
+[**🇺🇸 English**](README.md) / [**🇨🇳 简体中文**](README_cn.md) / [**🇷🇺 Русский**](README_ru.md) / [**🇯🇵 日本語**](README_ja.md) / [**🇧🇷 Portugês-BR**](README_br.md)
 
 </div>
 <br>
 
-<p align="center"><img src="https://github.com/hiddify/hiddify-next/assets/125398461/d821cfe0-b4c4-441f-be4e-eb9209f59542" /></p>
+<p align="center"><img src="https://github.com/hiddify/hiddify.com/blob/main/docs/assets/hiddify-app-logo.svg" width=56% /></p>
 <br>
 
 <div align="center">
@@ -15,7 +15,7 @@
 
 </div>
 
-## هیدیفای‌‌اپ چیست؟
+## اپ هیدیفای چیست؟
 
 یک کلاینت خودکار مالتی‌پلتفرم مبتنی بر [سینگ‌باکس](https://github.com/SagerNet/sing-box) که به عنوان یک ابزار عمومی برای پروکسی عمل می‌کند. این برنامه طیف گسترده‌ای از قابلیت‌ها را ارائه می‌دهد مثل انتخاب خودکار نود، مود تونل، پروفایل‌های ریموت و غیره. این برنامه رایگان، بدون آگهی و منبع باز است. با پشتیبانی از طیف وسیعی از پروتکل‌ها، این اپلیکیشن یک ابزار امن و مطمئن برای دسترسی به اینترنت رایگان فراهم می‌کند.
 
@@ -62,6 +62,7 @@ Vless, Vmess, Reality, TUIC, Hysteria, Wireguard, SSH, etc.
 ## 🛍️ دریافت از استورها
 <div dir=rtl align=right>
     
+<a href="https://apps.apple.com/us/app/hiddify-proxy-vpn/id6596777532?platform=iphone"><img height=50px src="https://github.com/user-attachments/assets/a7c62126-07ce-4f18-8197-bbb672f6d8be"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://play.google.com/store/apps/details?id=app.hiddify.com"><img height=50px src="https://github.com/hiddify/hiddify-next/blob/main/docs/google-play-badge.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://apps.microsoft.com/detail/Hiddify/9pdfnl3qv2s5?mode=mini" target="_blank"><img height=50px src="https://github.com/hiddify/hiddify-next/assets/125398461/620750bb-4459-41b5-9f86-ba82119345b8" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -103,6 +104,7 @@ Vless, Vmess, Reality, TUIC, Hysteria, Wireguard, SSH, etc.
         <tr>
             <td>مک</td>
             <td>
+                <a href="https://apps.apple.com/us/app/hiddify-proxy-vpn/id6596777532"><img src="https://img.shields.io/badge/IPA-ARM-D33A54.svg?logo=apple"></a><br>
                 <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/Hiddify-MacOS.dmg"><img src="https://img.shields.io/badge/DMG-Universal-ea005e.svg?logo=apple"></a><br>
                 <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/Hiddify-MacOS-Installer.pkg"><img src="https://img.shields.io/badge/PKG-Universal-bc544b.svg?logo=apple" /></a>
             </td>
