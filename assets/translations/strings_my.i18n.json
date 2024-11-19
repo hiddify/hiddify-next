@@ -179,11 +179,16 @@
         "br": "ဘရာဇီးလ် (br) 🇧🇷",
         "other": "အခြား"
       },
+      "themeMode": "အပြင်အဆင် မုဒ်",
       "themeModes": {
+        "system": "စနစ်အပြင်အဆင်ကို လိုက်နာပါ။",
         "dark": "အမှောင်မုဒ်",
+        "light": "အလင်းမုဒ်",
         "black": "အမည်းမုဒ်"
       },
       "enableAnalyticsMsg": "အက်ပ်ကို ပိုမိုကောင်းမွန်လာစေရန် ခွဲခြမ်းစိတ်ဖြာမှုများကို စုဆောင်းပြီး ပျက်စီးမှုအစီရင်ခံစာများ ပေးပို့ရန် ခွင့်ပြုချက်ပေးပါ။",
+      "autoStart": "Login တွင်စတင်ပါ။",
+      "ignoreBatteryOptimizations": "ဘက်ထရီ ပိုမိုကောင်းမွန်အောင် လုပ်ဆောင်ခြင်းကို ပိတ်ပါ။",
       "autoIpCheck": "ချိတ်ဆက်မှု အိုင်ပီ ကို အလိုအလျောက် စစ်ဆေးပါ။",
       "actionsAtClosing": {
         "askEachTime": "အချိန်တိုင်းမေးပါ။",
@@ -274,10 +279,43 @@
     "title": "ဟစ်ဒီဖိုင်း (အကြိုကြည့်ရှုခြင်း)"
   },
   "connection": {
+    "tapToConnect": "ချိတ်ဆက်ရန် နှိပ်ပါ။",
     "connecting": "ချိတ်ဆက်နေသည်",
+    "disconnecting": "ချိတ်ဆက်မှုဖြုတ်နေသည်",
     "connected": "ချိတ်ဆက်ထားသည်",
     "reconnect": "ပြန်လည်ချိတ်ဆက်ရန်",
     "connectAnyWay": "ချိတ်ဆက်ရန်",
     "disableExperimentalNotice": "နောက်တစ်ခါ မပြပါနှင့်"
+  },
+  "config": {
+    "resetBtn": "ရွေးစရာများကို ပြန်လည်သတ်မှတ်ပါ။",
+    "serviceMode": "ဝန်ဆောင်မှုမုဒ်",
+    "quickSettings": "အမြန်ဆက်တင်များ",
+    "allOptions": "Config Options အားလုံး",
+    "serviceModes": {
+      "systemProxy": "စနစ် ပရောက်စီ သတ်မှတ်ရန်",
+      "tun": "ဗီပီအန်",
+      "tunService": "ဗီပီအန် ဝန်ဆောင်မှု"
+    },
+    "shortServiceModes": {
+      "proxy": "ပရောက်စီ",
+      "systemProxy": "စနစ် ပရောက်စီ",
+      "tun": "ဗီပီအန်",
+      "tunService": "ဗီပီအန် ဝန်ဆောင်မှု"
+    },
+    "blockAds": "ကြော်ငြာများကိုပိတ်ပါ။",
+    "resolveDestination": "Destination ကို ဖြေရှင်းပါ။",
+    "ipv6Modes": {
+      "disable": "ပိတ်ပါ။",
+      "enable": "ဖွင့်ပါ။",
+      "prefer": "နှစ်သက်သော"
+    },
+    "warpLicenseKey": "လိုင်စင်ကီး"
+  },
+  "window": {
+    "hide": "ဝှက်ရန်",
+    "close": "ထွက်ရန်",
+    "alertMessage": "အပလီကေးရှင်းကို ဝှက်ပါ သို့မဟုတ် ထွက်လိုပါသလား။",
+    "remember": "ကျွန်ုပ်၏ ရွေးချယ်မှုကို မှတ်သားထားပါ"
   }
 }
