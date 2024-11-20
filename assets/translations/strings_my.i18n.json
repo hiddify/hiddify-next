@@ -209,12 +209,14 @@
     },
     "advanced": {
       "sectionTitle": "အဆင့်မြင့်",
+      "debugMode": "အမှားရှာမုဒ်",
       "debugModeMsg": "ဤပြောင်းလဲမှုကို အသုံးပြုရန်အတွက် အက်ပ်ကို ပြန်လည်စတင်ပါ",
       "memoryLimit": "မန်မိုရီ ကန့်သတ်ချက်",
       "memoryLimitMsg": "မန်မိုရီအမှားအယွင်းများ သို့မဟုတ် မကြာခဏအက်ပ်ပျက်ကျမှုများ ကြုံတွေ့နေရပါက ဖွင့်ထားပါ",
       "resetTunnel": "ဗီပီအန် ပရိုဖိုင်ကို ပြန်လည်သတ်မှတ်ပါ။"
     },
     "network": {
+      "perAppProxyPageTitle": "အက်ပ်တစ်ခုလျှင် ပရောက်စီ",
       "perAppProxyModes": {
         "off": "အားလုံး",
         "offMsg": "အက်ပ်များအားလုံး ပရောက်စီ သုံးမည်",
@@ -283,6 +285,7 @@
       "missingPrivilege": "အခွင့်ထူး ပျောက်ဆုံးနေသည်။",
       "missingPrivilegeMsg": "ဗီပီအန် မုဒ်သည် စီမံခန့်ခွဲသူအခွင့်ထူးများ လိုအပ်သည်။ အက်ပ်ကို စီမံခန့်ခွဲသူအဖြစ် ပြန်လည်စတင်နိုင်သည် သို့မဟုတ် ဝန်ဆောင်မှုမုဒ်ကို ပြောင်းလဲပါ။",
       "missingGeoAssets": "ပျောက်ဆုံးနေသော Geo ပိုင်ဆိုင်မှုများ",
+      "missingGeoAssetsMsg": "Geo ပိုင်ဆိုင်မှုများ ပျောက်ဆုံးနေပါသည်။ အသုံးပြုနေသော ပိုင်ဆိုင်မှုကို ပြောင်းလဲရန် စဉ်းစားပါ သို့မဟုတ် ရွေးချယ်ထားသည့်အရာအား ဆက်တင်များတွင် ဒေါင်းလုဒ်လုပ်ပါ။",
       "invalidConfigOptions": "မမှန်ကန်သော ဖွဲ့စည်းမှုရွေးချယ်စရာများ",
       "invalidConfig": "မမှန်ကန်သော ဖွဲ့စည်းမှု",
       "create": "ဝန်ဆောင်မှု ဖန်တီးမှု အမှား",
@@ -362,7 +365,8 @@
       "misc": "ထွေလာ ရွေးစရာများ"
     },
     "warpConsent": {
-      "title": "Cloudflare WARP သဘောတူညီချက်"
+      "title": "Cloudflare WARP သဘောတူညီချက်",
+      "description(rich)": "Cloudflare WARP သည် အခမဲ့ WireGuard VPN ဝန်ဆောင်မှုပေးသူဖြစ်သည်။ ဤရွေးချယ်မှုကိုဖွင့်ခြင်းဖြင့် သင်သည် Cloudflare WARP ၏ ${tos(ဝန်ဆောင်မှုစည်းမျဉ်းများ)} နှင့် ${privacy(ကိုယ်ရေးကိုယ်တာမူဝါဒ)} ကို သဘောတူပါသည်။"
     },
     "generateWarpConfig": "WARP Config ကိုထုတ်လုပ်ပါ။",
     "missingWarpConfig": "WARP Config ပျောက်နေသည်။",
@@ -386,13 +390,26 @@
     "tproxyPort": "Transparent Proxy Port",
     "localDnsPort": "Local DNS Port",
     "allowConnectionFromLan": "Local Network တွင် ဗီပီအန် ကိုမျှဝေပါ။",
+    "tunImplementation": "TUN အကောင်အထည်ဖော်ခြင်း။",
+    "mtu": "Packet Size (MTU)",
     "connectionTestUrl": "ချိတ်ဆက်မှု စမ်းသပ်ခြင်း URL",
     "urlTestInterval": "URL စမ်းသပ်ကာလ",
     "enableClashApi": "Clash API ကိုဖွင့်ပါ။",
     "clashApiPort": "Clash API Port",
     "enableTun": "TUN ကိုဖွင့်ပါ။",
     "setSystemProxy": "စနစ်ပရောက်စီ သတ်မှတ်ပါ။",
-    "warpLicenseKey": "လိုင်စင်ကီး"
+    "enableDnsRouting": "DNS Routing ကိုဖွင့်ပါ။",
+    "enableFakeDns": "Fake DNS ကိုဖွင့်ပါ။",
+    "enableTlsFragment": "TLS Fragment ကိုဖွင့်ပါ။",
+    "tlsFragmentSize": "TLS Fragment အရွယ်အစား",
+    "enableWarp": "WARP ကိုဖွင့်ပါ။",
+    "warpDetourMode": "လမ်းလွှဲမုဒ်",
+    "warpDetourModes": {
+      "proxyOverWarp": "WARP မှတဆင့် ပရောက်စီများကိုလမ်းလွှဲပါ။",
+      "warpOverProxy": "ပရောက်စီများမှတဆင့် WARP ကိုလမ်းလွှဲပါ။"
+    },
+    "warpLicenseKey": "လိုင်စင်ကီး",
+    "warpCleanIp": "IP ကို သန့်ရှင်းပါ။"
   },
   "window": {
     "hide": "ဝှက်ရန်",
