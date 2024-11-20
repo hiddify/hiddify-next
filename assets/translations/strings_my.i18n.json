@@ -140,7 +140,9 @@
     },
     "activeProxySemanticLabel": "သက်ဝင်နေသော ပရောက်စီ",
     "delaySemantics": {
-      "result": "နှောင့်နှေး: ${delay}ms"
+      "result": "နှောင့်နှေး: ${delay}ms",
+      "timeout": "နှောင့်နှေးစမ်းသပ်မှု ကုန်ဆုံးချိန်",
+      "testing": "နှောင့်နှေးခြင်း- စမ်းသပ်ခြင်း..."
     },
     "ipInfoSemantics": {
       "address": "အိုင်ပီလိပ်စာ",
@@ -151,6 +153,8 @@
     "pageTitle": "မှတ်တမ်းများ",
     "filterHint": "စိစစ်မှု",
     "allLevelsFilter": "အားလုံး",
+    "shareCoreLogs": "Core မှတ်တမ်းများကို မျှဝေရန်",
+    "shareAppLogs": "အက်ပ်မှတ်တမ်းများကို မျှဝေရန်",
     "pauseTooltip": "ခဏရပ်ပါ",
     "resumeTooltip": "ပြန်လည်စတင်",
     "clearTooltip": "ရှင်းလင်း"
@@ -186,10 +190,17 @@
         "light": "အလင်းမုဒ်",
         "black": "အမည်းမုဒ်"
       },
+      "enableAnalytics": "Analytics ကိုဖွင့်ရန်",
       "enableAnalyticsMsg": "အက်ပ်ကို ပိုမိုကောင်းမွန်လာစေရန် ခွဲခြမ်းစိတ်ဖြာမှုများကို စုဆောင်းပြီး ပျက်စီးမှုအစီရင်ခံစာများ ပေးပို့ရန် ခွင့်ပြုချက်ပေးပါ။",
       "autoStart": "Login တွင်စတင်ပါ။",
+      "silentStart": "အနိမ့်ဆုံးစတင်ပါ",
+      "openWorkingDir": "လုပ်ဆောင်ခြင်းလမ်းညွှန်ကိုဖွင့်ပါ",
       "ignoreBatteryOptimizations": "ဘက်ထရီ ပိုမိုကောင်းမွန်အောင် လုပ်ဆောင်ခြင်းကို ပိတ်ပါ။",
+      "ignoreBatteryOptimizationsMsg": "အကောင်းဆုံး ဗီပီအန် စွမ်းဆောင်ရည်အတွက် ကန့်သတ်ချက်များကို ဖယ်ရှားပါ",
+      "dynamicNotification": "အသိပေးချက်တွင် မြန်နှုန်း ပြသရန်",
+      "hapticFeedback": "Haptic တုံ့ပြန်ချက်",
       "autoIpCheck": "ချိတ်ဆက်မှု အိုင်ပီ ကို အလိုအလျောက် စစ်ဆေးပါ။",
+      "actionAtClosing": "ပိတ်ရာတွင် လုပ်ဆောင်ချက်",
       "actionsAtClosing": {
         "askEachTime": "အချိန်တိုင်းမေးပါ။",
         "hide": "ဝှက်ရန်",
@@ -197,18 +208,27 @@
       }
     },
     "advanced": {
-      "sectionTitle": "အဆင့်မြင့်"
+      "sectionTitle": "အဆင့်မြင့်",
+      "debugModeMsg": "ဤပြောင်းလဲမှုကို အသုံးပြုရန်အတွက် အက်ပ်ကို ပြန်လည်စတင်ပါ",
+      "memoryLimit": "မန်မိုရီ ကန့်သတ်ချက်",
+      "memoryLimitMsg": "မန်မိုရီအမှားအယွင်းများ သို့မဟုတ် မကြာခဏအက်ပ်ပျက်ကျမှုများ ကြုံတွေ့နေရပါက ဖွင့်ထားပါ",
+      "resetTunnel": "ဗီပီအန် ပရိုဖိုင်ကို ပြန်လည်သတ်မှတ်ပါ။"
     },
     "network": {
       "perAppProxyModes": {
         "off": "အားလုံး",
-        "include": "ပရောက်စီ"
+        "offMsg": "အက်ပ်များအားလုံး ပရောက်စီ သုံးမည်",
+        "include": "ပရောက်စီ",
+        "includeMsg": "ရွေးချယ်ထားသော အက်ပ်များအတွက်သာ ပရောက်စီ သုံးမည်",
+        "exclude": "ရှောင်ကွင်းခြင်း",
+        "excludeMsg": "ရွေးချယ်ထားသောအက်ပ်များကို ပရောက်စီမသုံးပါနှင့်"
       },
       "showSystemApps": "စနစ်အက်ပ်များကိုပြသပါ။",
       "hideSystemApps": "စနစ်အက်ပ်များကို ဝှက်ထားပါ။",
       "clearSelection": "ရွေးချယ်မှုကို ရှင်းလင်းပါ။"
     },
     "geoAssets": {
+      "pageTitle": "ပိုင်ဆိုင်မှုလမ်းကြောင်းများ",
       "geoip": "GeoIP",
       "geosite": "GeoSite",
       "version": "ဗားရှင်း ${version}",
@@ -217,7 +237,8 @@
       "download": "ဒေါင်းလုပ်",
       "failureMsg": "ပိုင်ဆိုင်မှုကို အပ်ဒိတ်လုပ်ရန် မအောင်မြင်ပါ။",
       "successMsg": "ပိုင်ဆိုင်မှုကို အောင်မြင်စွာ အပ်ဒိတ်လုပ်ထားသည်။",
-      "addRecommended": "အကြံပြုထားသော ပိုင်ဆိုင်မှုများကို ထည့်ပါ။"
+      "addRecommended": "အကြံပြုထားသော ပိုင်ဆိုင်မှုများကို ထည့်ပါ။",
+      "missingGeoAssetsMsg": "ရွေးချယ်ထားသော လမ်းကြောင်းသတ်မှတ်ခြင်း ပိုင်ဆိုင်မှုများ ဖိုင်များ ပျောက်ဆုံးနေပါသည်။ ၎င်းတို့ကို ဒေါင်းလုဒ်လုပ်ပါ သို့မဟုတ် ရှိပြီးသားအရာများကို ရွေးချယ်ပါ။"
     }
   },
   "about": {
@@ -232,6 +253,7 @@
   "appUpdate": {
     "notAvailableMsg": "နောက်ဆုံးထွက်ဗားရှင်းကို အသုံးပြုနေပြီဖြစ်သည်။",
     "dialogTitle": "မွမ်းမံခြင်း ရနိုင်သည်",
+    "updateMsg": "@:general.appTitle ၏ ဗားရှင်းအသစ် ကို ရနိုင်ပါသည်။ ယခု အပ်ဒိတ်လုပ်လိုပါသလား။",
     "currentVersionLbl": "လက်ရှိ ဗားရှင်း",
     "newVersionLbl": "ဗားရှင်း အသစ်",
     "updateNowBtnTxt": "ယခု မွမ်းမံရန်",
@@ -252,11 +274,25 @@
   "failure": {
     "unexpected": "မမျှော်လင့်သော အမှား",
     "clash": {
-      "unexpected": "မမျှော်လင့်သော အမှား"
+      "unexpected": "မမျှော်လင့်သော အမှား",
+      "core": "Clash အမှား ${reason}"
     },
     "singbox": {
       "unexpected": "မမျှော်လင့်ထားသော ဝန်ဆောင်မှုအမှား",
-      "serviceNotRunning": "ဝန်ဆောင်မှုသည် အလုပ်မလုပ်ပါ။"
+      "serviceNotRunning": "ဝန်ဆောင်မှုသည် အလုပ်မလုပ်ပါ။",
+      "missingPrivilege": "အခွင့်ထူး ပျောက်ဆုံးနေသည်။",
+      "missingPrivilegeMsg": "ဗီပီအန် မုဒ်သည် စီမံခန့်ခွဲသူအခွင့်ထူးများ လိုအပ်သည်။ အက်ပ်ကို စီမံခန့်ခွဲသူအဖြစ် ပြန်လည်စတင်နိုင်သည် သို့မဟုတ် ဝန်ဆောင်မှုမုဒ်ကို ပြောင်းလဲပါ။",
+      "missingGeoAssets": "ပျောက်ဆုံးနေသော Geo ပိုင်ဆိုင်မှုများ",
+      "invalidConfigOptions": "မမှန်ကန်သော ဖွဲ့စည်းမှုရွေးချယ်စရာများ",
+      "invalidConfig": "မမှန်ကန်သော ဖွဲ့စည်းမှု",
+      "create": "ဝန်ဆောင်မှု ဖန်တီးမှု အမှား",
+      "start": "ဝန်ဆောင်မှု စတင်ခြင်း အမှား"
+    },
+    "connectivity": {
+      "unexpected": "မထင်မှတ်ထားသော ကျရှုံးမှု",
+      "missingVpnPermission": "ဗီပီအန် ခွင့်ပြုချက် ရှိမနေပါ",
+      "missingNotificationPermission": "အသိပေးချက် ခွင့်ပြုချက် ရှိမနေပါ",
+      "core": "Core အမှား"
     },
     "profiles": {
       "unexpected": "မမျှော်လင့်သော အမှား",
@@ -268,15 +304,18 @@
       "unexpected": "မမျှော်လင့်ထားသော ချိတ်ဆက်မှု အမှား",
       "timeout": "ချိတ်ဆက်မှု ကုန်ဆုံးသွားသည်။",
       "badResponse": "တုံ့ပြန်မှုမကောင်းပါ။",
-      "connectionError": "ချိတ်ဆက်မှုအမှား"
+      "connectionError": "ချိတ်ဆက်မှုအမှား",
+      "badCertificate": "လက်မှတ်မကောင်း"
     },
     "geoAssets": {
       "unexpected": "မမျှော်လင့်ထားသော အမှား",
-      "notUpdate": "အပ်ဒိတ် မရနိုင်ပါ။"
+      "notUpdate": "အပ်ဒိတ် မရနိုင်ပါ။",
+      "activeNotFound": "Active Geo Asset မတွေ့ပါ။"
     }
   },
   "play": {
-    "title": "ဟစ်ဒီဖိုင်း (အကြိုကြည့်ရှုခြင်း)"
+    "title": "ဟစ်ဒီဖိုင်း (အကြိုကြည့်ရှုခြင်း)",
+    "short_description": "အလိုအလျောက်, SSH, VLESS, VMess, Trojan, Reality, Sing-Box, Clash, XRay, Shadowsocks"
   },
   "connection": {
     "tapToConnect": "ချိတ်ဆက်ရန် နှိပ်ပါ။",
@@ -285,14 +324,23 @@
     "connected": "ချိတ်ဆက်ထားသည်",
     "reconnect": "ပြန်လည်ချိတ်ဆက်ရန်",
     "connectAnyWay": "ချိတ်ဆက်ရန်",
-    "disableExperimentalNotice": "နောက်တစ်ခါ မပြပါနှင့်"
+    "experimentalNotice": "စမ်းသပ်အသုံးပြုနေသည့် အင်္ဂါရပ်များ",
+    "experimentalNoticeMsg": "ချိတ်ဆက်မှုအရည်အသွေးကို ထိခိုက်စေနိုင်ပြီး မမျှော်လင့်ထားသော အမှားအယွင်းများကို ဖြစ်စေနိုင်သည့် စမ်းသပ်အင်္ဂါရပ်အချို့ကို သင်ဖွင့်ထားသည်။ Config options စာမျက်နှာမှ ဤရွေးချယ်စရာများကို သင်အမြဲပြောင်းလဲနိုင်သည် သို့မဟုတ် ပြန်လည်သတ်မှတ်နိုင်သည်။",
+    "disableExperimentalNotice": "နောက်တစ်ခါ မပြပါနှင့်",
+    "reconnectMsg": "အပြောင်းအလဲများကို ထည့်သွင်းစဉ်းစားရန် ပြန်လည်ချိတ်ဆက်နေသည်..."
   },
   "config": {
+    "useXrayCoreWhenPossible": {
+      "Label": "ဖြစ်နိုင်လျှင် Xray-core ကိုသုံးပါ။",
+      "Description": "လင့်ခ်ခွဲခွဲများကို ခွဲခြမ်းစိတ်ဖြာနေစဉ် Xray-core ကိုသုံးပါ။ ဤရွေးချယ်မှုကိုဖွင့်ရန် သင်သည် လင့်ခ်ခွဲခွဲကို ပြန်လည်တင်သွင်းရန် လိုအပ်သည်။"
+    },
     "resetBtn": "ရွေးစရာများကို ပြန်လည်သတ်မှတ်ပါ။",
     "serviceMode": "ဝန်ဆောင်မှုမုဒ်",
     "quickSettings": "အမြန်ဆက်တင်များ",
+    "setupWarp": "WARP ကို စနစ်ထည့်သွင်းပါ။",
     "allOptions": "Config Options အားလုံး",
     "serviceModes": {
+      "proxy": "ပရောက်စီဝန်ဆောင်မှုသာ",
       "systemProxy": "စနစ် ပရောက်စီ သတ်မှတ်ရန်",
       "tun": "ဗီပီအန်",
       "tunService": "ဗီပီအန် ဝန်ဆောင်မှု"
@@ -303,13 +351,47 @@
       "tun": "ဗီပီအန်",
       "tunService": "ဗီပီအန် ဝန်ဆောင်မှု"
     },
+    "section": {
+      "route": "လမ်းကြောင်းရွေးချယ်မှုများ",
+      "dns": "DNS ရွေးချယ်မှုများ",
+      "inbound": "Inbound ရွေးစရာများ",
+      "mux": "MultiPlexer",
+      "outbound": "Outbound ရွေးချယ်မှုများ",
+      "tlsTricks": "TLS လှည့်ကွက်များ",
+      "warp": "WARP ရွေးချယ်မှုများ",
+      "misc": "ထွေလာ ရွေးစရာများ"
+    },
+    "warpConsent": {
+      "title": "Cloudflare WARP သဘောတူညီချက်"
+    },
+    "generateWarpConfig": "WARP Config ကိုထုတ်လုပ်ပါ။",
+    "missingWarpConfig": "WARP Config ပျောက်နေသည်။",
+    "warpConfigGenerated": "WARP Config ကို ထုတ်ပေးပါသည်။",
+    "pageTitle": "Config ရွေးစရာများ",
+    "logLevel": "မှတ်တမ်းအဆင့်",
     "blockAds": "ကြော်ငြာများကိုပိတ်ပါ။",
     "resolveDestination": "Destination ကို ဖြေရှင်းပါ။",
+    "ipv6Mode": "IPv6 လမ်းကြောင်း",
     "ipv6Modes": {
       "disable": "ပိတ်ပါ။",
       "enable": "ဖွင့်ပါ။",
-      "prefer": "နှစ်သက်သော"
+      "prefer": "နှစ်သက်သော",
+      "only": "သီးသန့်"
     },
+    "remoteDnsAddress": "အဝေးထိန်း DNS",
+    "remoteDnsDomainStrategy": "အဝေးထိန်း DNS Domain ဗျူဟာ",
+    "directDnsAddress": "တိုက်ရိုက် DNS",
+    "directDnsDomainStrategy": "တိုက်ရိုက် DNS Domain ဗျူဟာ",
+    "mixedPort": "ရောနှောထားသော Port",
+    "tproxyPort": "Transparent Proxy Port",
+    "localDnsPort": "Local DNS Port",
+    "allowConnectionFromLan": "Local Network တွင် ဗီပီအန် ကိုမျှဝေပါ။",
+    "connectionTestUrl": "ချိတ်ဆက်မှု စမ်းသပ်ခြင်း URL",
+    "urlTestInterval": "URL စမ်းသပ်ကာလ",
+    "enableClashApi": "Clash API ကိုဖွင့်ပါ။",
+    "clashApiPort": "Clash API Port",
+    "enableTun": "TUN ကိုဖွင့်ပါ။",
+    "setSystemProxy": "စနစ်ပရောက်စီ သတ်မှတ်ပါ။",
     "warpLicenseKey": "လိုင်စင်ကီး"
   },
   "window": {
