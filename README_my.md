@@ -35,9 +35,9 @@
 
 ✈️ ပလက်ဖောင်းမျိုးစုံ - အန်းဒရွိုက်၊ အိုင်အိုအက်စ်၊ ဝင်းဒိုးစ်၊ မက်အိုအက်စ်နှင့် လင်းနစ်
 
-⭐ Intuitive and accessible UI
+⭐ နားလည်လွယ်သော အသွင်အပြင်
 
-🔍 Delay based node selection
+🔍 Delay အခြေပြု node ရွေးချယ်ခြင်းများ
 
 🟡 ကျယ်ပြန့်သော ပရိုတိုကောလ်များ-
 Vless, Vmess, Reality, TUIC, Hysteria, Wireguard, SSH စသည်
