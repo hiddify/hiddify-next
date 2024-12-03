@@ -25,13 +25,13 @@
     "grantPermission": "လုပ်ဆောင်ခွင့်ပေးမည်"
   },
   "intro": {
-    "termsAndPolicyCaution(rich)": "By Continuing You Agree With ${tap(@:about.termsAndConditions)}",
-    "start": "Start"
+    "termsAndPolicyCaution(rich)": "ဆက်လက်လုပ်ဆောင်ရန် ခွင့်ပြုမည် ${tap(@:about.termsAndConditions)}",
+    "start": "စမည်"
   },
   "home": {
     "pageTitle": "Home",
     "emptyProfilesMsg": "Begin by Adding a Subscription Profile",
-    "noActiveProfileMsg": "Choose a Profile"
+    "noActiveProfileMsg": "Profile ရွေးမည်"
   },
   "stats": {
     "traffic": "Traffic",
@@ -46,28 +46,28 @@
   "profile": {
     "overviewPageTitle": "Profiles",
     "detailsPageTitle": "Profile",
-    "activeProfileNameSemanticLabel": "Active Profile Name: \"${name}\".",
-    "activeProfileBtnSemanticLabel": "View All Profiles",
+    "activeProfileNameSemanticLabel": "လက်ရှိသုံးနေသော Profile အမည်: \"${name}\".",
+    "activeProfileBtnSemanticLabel": "Profiles အားလုံးကိုကြည့်မည်",
     "nonActiveProfileBtnSemanticLabel": "Select \"${name}\" as Active Profile",
     "subscription": {
       "traffic": "Traffic",
-      "updatedTimeAgo": "Updated ${timeago}",
-      "remainingDuration": "${duration} Days Remaining",
+      "updatedTimeAgo": "ပြင်ဆင်ခဲ့သည် ${timeago}",
+      "remainingDuration": "${duration} သက်တမ်းကျန်ရှိသောရက်",
       "remainingTrafficSemanticLabel": "${consumed} of ${total} Traffic Consumed",
-      "expired": "Expired",
+      "expired": "သက်တမ်းကုန်ဆုံးသွားပါပြီ",
       "noTraffic": "Out of Quota",
       "upload": "Upload",
       "download": "Download",
       "total": "Total Traffic",
-      "expireDate": "Expire Date"
+      "expireDate": "သက်တမ်းကုန်ဆုံးရက် "
     },
     "sortBy": {
       "lastUpdate": "Recently Updated",
       "name": "Alphabetically"
     },
     "add": {
-      "buttonText": "New Profile",
-      "shortBtnTxt": "New Profile",
+      "buttonText": " Profile အသစ်",
+      "shortBtnTxt": "Profile အသစ်",
       "fromClipboard": "Add From Clipboard",
       "scanQr": "Scan QR Code",
       "qrScanner": {
